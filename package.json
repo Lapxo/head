@@ -1,0 +1,34 @@
+{
+  "name": "@lapxo/head",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An MCP server that folds: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
+  "license": "MIT",
+  "author": "Lapxo",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "bin": {
+    "head": "./dist/src/index.js"
+  },
+  "files": [
+    "dist/src",
+    "TARGET.bound",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p . --incremental false --tsBuildInfoFile null",
+    "prepack": "npm run build",
+    "test": "node --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@lapxo/bound": "0.1.6",
+    "@lapxo/topos": "0.1.12",
+    "@modelcontextprotocol/sdk": "1.32.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3"
+  }
+}
