@@ -1,0 +1,57 @@
+{
+ "about": [
+  "What topos-openapi read and judged of a cut of GitHub-s description, as the lines bound places for a place that selects it: the operations, the verdict of which may be called, and the factory read ceilings."
+ ],
+ "from": {
+  "world": "topos-openapi",
+  "blob": "sha256:17063e9a706bcb622afa1c8c5457cedb671692a335062e78bd6e9d98411d3fd9",
+  "spec": {
+   "from": "six issue operations and the components they reach, cut from https://raw.githubusercontent.com/github/rest-api-description/734bc9c1030b774eb3fc909cce477aceea21cf77/descriptions/api.github.com/api.github.com.json sha256:3c608117f6d5a69c2d34404328f8431baff8f3808c81b978c1422590b42aa53d",
+   "digest": "sha256:9f9605988d1d1b46e701f052972dc8bdd9ef237ae76a8fd7850715f9a6ad0ddc"
+  }
+ },
+ "lines": [
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/version value=3.0.3",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/method/issues/list-for-repo value=get",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/path/issues/list-for-repo value=/repos/{owner}/{repo}/issues",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/tags/issues/list-for-repo value=issues",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/params/issues/list-for-repo value=path:owner|path:repo|query:assignee|query:creator|query:direction|query:issue_field_values|query:labels|query:mentioned|query:milestone|query:page|query:per_page|query:since|query:sort|query:state|query:type",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/returns/issues/list-for-repo value=array",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/response/issues/list-for-repo value=active_lock_reason|assignee|assignees|author_association|body|body_html|body_text|closed_at|closed_by|comments|comments_url|created_at|draft|events_url|html_url|id|issue_dependencies_summary|issue_field_values|labels|labels_url|locked|milestone|node_id|number|parent_issue_url|performed_via_github_app|pinned_comment|pull_request|reactions|repository|repository_url|state|state_reason|sub_issues_summary|timeline_url|title|type|updated_at|url|user",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/method/issues/create value=post",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/path/issues/create value=/repos/{owner}/{repo}/issues",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/tags/issues/create value=issues",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/params/issues/create value=path:owner|path:repo",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/returns/issues/create value=object",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/response/issues/create value=active_lock_reason|assignee|assignees|author_association|body|body_html|body_text|closed_at|closed_by|comments|comments_url|created_at|draft|events_url|html_url|id|issue_dependencies_summary|issue_field_values|labels|labels_url|locked|milestone|node_id|number|parent_issue_url|performed_via_github_app|pinned_comment|pull_request|reactions|repository|repository_url|state|state_reason|sub_issues_summary|timeline_url|title|type|updated_at|url|user",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/method/issues/get value=get",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/path/issues/get value=/repos/{owner}/{repo}/issues/{issue_number}",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/tags/issues/get value=issues",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/params/issues/get value=path:issue_number|path:owner|path:repo",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/returns/issues/get value=object",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/response/issues/get value=active_lock_reason|assignee|assignees|author_association|body|body_html|body_text|closed_at|closed_by|comments|comments_url|created_at|draft|events_url|html_url|id|issue_dependencies_summary|issue_field_values|labels|labels_url|locked|milestone|node_id|number|parent_issue_url|performed_via_github_app|pinned_comment|pull_request|reactions|repository|repository_url|state|state_reason|sub_issues_summary|timeline_url|title|type|updated_at|url|user",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/method/issues/update value=patch",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/path/issues/update value=/repos/{owner}/{repo}/issues/{issue_number}",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/tags/issues/update value=issues",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/params/issues/update value=path:issue_number|path:owner|path:repo",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/response/issues/update value=active_lock_reason|assignee|assignees|author_association|body|body_html|body_text|closed_at|closed_by|comments|comments_url|created_at|draft|events_url|html_url|id|issue_dependencies_summary|issue_field_values|labels|labels_url|locked|milestone|node_id|number|parent_issue_url|performed_via_github_app|pinned_comment|pull_request|reactions|repository|repository_url|state|state_reason|sub_issues_summary|suggestions|timeline_url|title|type|updated_at|url|user",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/method/issues/unlock value=delete",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/path/issues/unlock value=/repos/{owner}/{repo}/issues/{issue_number}/lock",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/tags/issues/unlock value=issues",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/params/issues/unlock value=path:issue_number|path:owner|path:repo",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/method/issues/lock value=put",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/path/issues/lock value=/repos/{owner}/{repo}/issues/{issue_number}/lock",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/tags/issues/lock value=issues",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/params/issues/lock value=path:issue_number|path:owner|path:repo",
+  "bound-lock/1 at=policy:fixture by=target form=alphabet measure=id role=reads scope=openapi/where value=https://api.github.com",
+  "bound-lock/1 at=policy:fixture by=target form=interval measure=calls role=reads scope=callable/issues/create value=0..0",
+  "bound-lock/1 at=policy:fixture by=target form=interval measure=calls role=reads scope=callable/issues/get value=1..1",
+  "bound-lock/1 at=policy:fixture by=target form=interval measure=calls role=reads scope=callable/issues/list-for-repo value=1..1",
+  "bound-lock/1 at=policy:fixture by=target form=interval measure=calls role=reads scope=callable/issues/lock value=0..0",
+  "bound-lock/1 at=policy:fixture by=target form=interval measure=calls role=reads scope=callable/issues/unlock value=0..0",
+  "bound-lock/1 at=policy:fixture by=target form=interval measure=calls role=reads scope=callable/issues/update value=0..0",
+  "bound-lock/1 about=\"a host calls the API at most this often for one person\" at=policy:fixture by=target form=interval measure=calls-per-hour role=reads scope=read/rate value=0..60",
+  "bound-lock/1 about=\"a read answers with at most this many bytes; one that answers more is refused, not cut\" at=policy:fixture by=target form=interval measure=bytes role=reads scope=read/response-bytes value=0..1048576",
+  "bound-lock/1 about=\"a read follows no page beyond the first\" at=policy:fixture by=target form=interval measure=pages role=reads scope=read/pages value=0..1"
+ ]
+}

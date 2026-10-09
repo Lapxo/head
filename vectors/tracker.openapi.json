@@ -1,0 +1,452 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "tracker",
+    "version": "1"
+  },
+  "servers": [
+    {
+      "url": "https://tracker.example",
+      "description": "production"
+    },
+    {
+      "url": "https://staging.tracker.example",
+      "description": "staging"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "token": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "session": {
+        "type": "http",
+        "scheme": "bearer",
+        "x-access": {
+          "inputs": {
+            "properties": {
+              "email": {
+                "x-ask": "form"
+              },
+              "password": {
+                "x-ask": "secret"
+              },
+              "shopId": {
+                "x-ask": "form"
+              }
+            }
+          },
+          "steps": [
+            {
+              "stepId": "login",
+              "operationId": "$sourceDescriptions.accounts.login",
+              "requestBody": {
+                "payload": {
+                  "email": "$inputs.email",
+                  "password": "$inputs.password"
+                }
+              },
+              "outputs": {
+                "token": "$response.body#/token"
+              }
+            },
+            {
+              "stepId": "shop",
+              "operationId": "$sourceDescriptions.accounts.selectShop",
+              "x-token": "$steps.login.outputs.token",
+              "requestBody": {
+                "payload": {
+                  "shopId": "$inputs.shopId"
+                }
+              },
+              "outputs": {
+                "token": "$response.body#/token",
+                "expires": "$response.body#/expiresIn"
+              }
+            }
+          ],
+          "outputs": {
+            "token": "$steps.shop.outputs.token",
+            "expires": "$steps.shop.outputs.expires"
+          },
+          "x-attach": {
+            "in": "header",
+            "name": "Authorization",
+            "template": "Bearer {token}"
+          }
+        }
+      },
+      "oauth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://tracker.example/authorize",
+            "tokenUrl": "https://tracker.example/token",
+            "scopes": {
+              "read:issues": "read issues",
+              "write:issues": "write issues"
+            }
+          }
+        }
+      },
+      "pass": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "key2": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "api_key"
+      },
+      "picked": {
+        "type": "http",
+        "scheme": "bearer",
+        "x-access": {
+          "inputs": {
+            "properties": {
+              "email": {
+                "x-ask": "form"
+              },
+              "password": {
+                "x-ask": "secret"
+              },
+              "shopId": {
+                "x-ask": "choice",
+                "x-from": "$steps.login.outputs.shops",
+                "x-label": "$steps.login.outputs.names"
+              }
+            }
+          },
+          "steps": [
+            {
+              "stepId": "login",
+              "operationId": "$sourceDescriptions.accounts.login",
+              "requestBody": {
+                "payload": {
+                  "email": "$inputs.email",
+                  "password": "$inputs.password"
+                }
+              },
+              "outputs": {
+                "token": "$response.body#/token",
+                "selection": "$response.body#/selectionToken",
+                "shops": "$response.body#/shops/*/id",
+                "names": "$response.body#/shops/*/name"
+              }
+            },
+            {
+              "stepId": "shop",
+              "x-when": "$steps.login.outputs.selection",
+              "operationId": "$sourceDescriptions.accounts.selectShop",
+              "requestBody": {
+                "payload": {
+                  "selectionToken": "$steps.login.outputs.selection",
+                  "shopId": "$inputs.shopId"
+                }
+              },
+              "outputs": {
+                "token": "$response.body#/token"
+              }
+            }
+          ],
+          "outputs": {
+            "token": [
+              "$steps.shop.outputs.token",
+              "$steps.login.outputs.token"
+            ]
+          },
+          "x-attach": {
+            "in": "header",
+            "name": "Authorization",
+            "template": "Bearer {token}"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "owner": {
+        "name": "owner",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "repo": {
+        "name": "repo",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "token": []
+    }
+  ],
+  "paths": {
+    "/repos/{owner}/{repo}/issues": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/owner"
+        },
+        {
+          "$ref": "#/components/parameters/repo"
+        }
+      ],
+      "get": {
+        "operationId": "issues/list-for-repo",
+        "tags": [
+          "issues"
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "issues",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "number": {
+                        "type": "integer"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "issues/create",
+        "tags": [
+          "issues"
+        ],
+        "x-idempotency": "Idempotency-Key",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "made"
+          }
+        }
+      }
+    },
+    "/repos/{owner}/{repo}/issues/{issue_number}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/owner"
+        },
+        {
+          "$ref": "#/components/parameters/repo"
+        },
+        {
+          "name": "issue_number",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "get": {
+        "operationId": "issues/get",
+        "tags": [
+          "issues"
+        ],
+        "responses": {
+          "200": {
+            "description": "one issue"
+          }
+        }
+      }
+    },
+    "/status": {
+      "get": {
+        "operationId": "status",
+        "tags": [
+          "meta"
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "up"
+          }
+        }
+      }
+    },
+    "/digest": {
+      "get": {
+        "operationId": "digest",
+        "tags": [
+          "meta"
+        ],
+        "security": [
+          {
+            "key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "a digest"
+          }
+        }
+      }
+    },
+    "/repos/{owner}/{repo}/issues/{issue_number}/lock": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/owner"
+        },
+        {
+          "$ref": "#/components/parameters/repo"
+        },
+        {
+          "name": "issue_number",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "put": {
+        "operationId": "issues/lock",
+        "tags": [
+          "issues"
+        ],
+        "responses": {
+          "204": {
+            "description": "locked"
+          }
+        }
+      }
+    },
+    "/mine": {
+      "get": {
+        "operationId": "issues/mine",
+        "tags": [
+          "issues"
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "mine"
+          }
+        }
+      }
+    },
+    "/assigned": {
+      "get": {
+        "operationId": "issues/assigned",
+        "tags": [
+          "issues"
+        ],
+        "security": [
+          {
+            "oauth": [
+              "read:issues"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "assigned"
+          }
+        }
+      }
+    },
+    "/sum": {
+      "get": {
+        "operationId": "sum",
+        "tags": [
+          "meta"
+        ],
+        "security": [
+          {
+            "pass": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "a sum"
+          }
+        }
+      }
+    },
+    "/count": {
+      "get": {
+        "operationId": "count",
+        "tags": [
+          "meta"
+        ],
+        "security": [
+          {
+            "key2": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "a count"
+          }
+        }
+      }
+    },
+    "/picked": {
+      "get": {
+        "operationId": "issues/picked",
+        "tags": [
+          "issues"
+        ],
+        "security": [
+          {
+            "picked": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "picked"
+          }
+        }
+      }
+    }
+  }
+}
