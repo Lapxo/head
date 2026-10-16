@@ -1,0 +1,20 @@
+name: tag
+on:
+  workflow_run:
+    workflows: [test]
+    types: [completed]
+jobs:
+  tag:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+      - run: |
+          version="v$(node -p "require('./package.json').version")"
+          git tag --list "$version" | grep -q . && exit 0
+          git tag "$version" && git push origin "$version"
