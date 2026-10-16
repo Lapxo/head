@@ -25,7 +25,8 @@ jobs:
       - name: Run tests, shard ${{ matrix.shard }} of 3
         run: |
           set -euo pipefail
-          node --test --test-shard=${{ matrix.shard }}/3 test/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
+          files=$(node .github/shard.mts ${{ matrix.shard }} 3)
+          node --test $files 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
       - name: Preserve test logs
         if: always()
         uses: actions/upload-artifact@v4
