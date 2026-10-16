@@ -1,7 +1,7 @@
 import { dirname, extname, join, relative, sep } from 'node:path';
 import { canonical, LOCK, parse } from '@lapxo/topos/wire';
 import { inPlace, standingOr, within, type Asked, type Context } from './answer.ts';
-import { members, valueOf, type Said } from './lock.ts';
+import { members, under, valueOf, type Said } from './lock.ts';
 import { fieldsOf, vocabOf } from './read.ts';
 import { sayIn } from './surface.ts';
 import { digestIn, linesOf } from './worlds.ts';
@@ -14,7 +14,7 @@ const packed = (context: Context, place: string, own: readonly Said[], urls: Rea
   const [word, v, digest, held] = [(k: string) => valueOf(context.lock, k), vocabOf(context.lock), digestIn(context.lock), (rel: string) => context.files.take(join(place, rel)) ?? new Uint8Array()];
   const row = (scope: string, value: string, more: Readonly<Record<string, string>> = {}) => [canonical({ at: 'policy:head/share', by: 'target', form: 'alphabet', measure: 'digest', role: 'writes', scope, value, ...more }),
     ...(more['needs'] && URL.canParse(urls[more['needs']] ?? '') ? [canonical({ at: 'policy:head/share', by: 'target', form: 'alphabet', measure: 'id', role: 'writes', scope, value: urls[more['needs']]! })] : [])];
-  const pins = own.filter((l) => l.scope?.startsWith('uses/') && l.needs?.startsWith(`${word('place/compiled')}/`)).map((l) => ((source) => ({ source, pin: l.value!, needs: l.needs!, lines: linesOf(held(l.needs!)), laid: context.files.read.laidOf(context, place, source) }))(l.scope!.slice('uses/'.length)));
+  const pins = own.filter((l) => l.scope?.startsWith('uses/') && under(context.lock, 'place/compiled', l.needs)).map((l) => ((source) => ({ source, pin: l.value!, needs: l.needs!, lines: linesOf(held(l.needs!)), laid: context.files.read.laidOf(context, place, source) }))(l.scope!.slice('uses/'.length)));
   const declares = new Map(pins.flatMap((p) => (fieldsOf(p.lines, `${v.region}/${p.source}`)[v.issuers] ?? []).map((issuer) => [issuer, p.source] as const)));
   const rested = pins.map((p) => ({ ...p, rests: [...new Set(p.lines.filter((l) => l.measure === 'issuer').flatMap((l) => declares.get(l.value ?? '') ?? []))].filter((s) => s !== p.source).sort() })), sources = orderOf(rested) ?? rested;
   return { names: sources.map((s) => s.source), files: sources.flatMap((s) => [...s.laid, [s.needs, held(s.needs)] as const]), lines: [...own.filter((l) => members(word('world/adopts')).some((w) => l.scope === `uses/${w}`)).flatMap((l) => row(l.scope!, l.value!)),
@@ -24,7 +24,7 @@ const packed = (context: Context, place: string, own: readonly Said[], urls: Rea
 /** A place packed as its published lock would name it, into a folder inside it or one the client shares, apart from what head and bound keep: each world its sources were compiled under, and each source — document, overlay, and compiled pin resting on the sources whose issuers it names — by digest, beside the bytes those digests name, and where the person says they are also published, at that encrypted address. No line of access, key or grant: a package grants nothing, and nothing is asked, signed or landed. */
 export const shared = (asked: Asked, context: Context): Promise<readonly string[]> => inPlace(asked, context, async (place) => {
   const [say, to, held] = [sayIn(context.lock), asked['to'] ?? '', await standingOr(context, place, context.policy)], [rel, there] = [relative(place, to), linesOf(context.files.take(join(to, LOCK)) ?? new Uint8Array())];
-  if (!(await within(context, place, to)) || (!rel.startsWith('..') && (rel === '' || rel.startsWith('.') || rel.split(sep)[0] === valueOf(context.lock, 'place/connected'))) || foreignIn(there)) return [say('share-to', { place, to })];
+  if (!(await within(context, place, to)) || (!rel.startsWith('..') && (rel === '' || rel.startsWith('.') || [valueOf(context.lock, 'place/connected'), ...members(valueOf(context.lock, 'place/compiled')), valueOf(context.lock, 'walk/context/file')].some((at) => rel.split(sep)[0] === at.split('/')[0]))) || foreignIn(there)) return [say('share-to', { place, to })];
   if ('said' in held) return held.said;
   const pack = packed(context, place, held.lines, ((u) => (u && typeof u === 'object' ? u : {}))((() => { try { return JSON.parse(asked['urls'] || '{}') as Record<string, string>; } catch { return {}; } })())), bytes = new TextEncoder().encode(`${pack.lines.join('\n')}\n`);
   return !pack.names.length ? [say('share-none', { place })] : ([...pack.files, [LOCK, bytes] as const].forEach(([at, laid]) => context.files.lay(to, at, laid)), [say('shared', { place, to, sources: pack.names.join(', '), digest: digestIn(context.lock)(bytes) }), ...pack.lines]);

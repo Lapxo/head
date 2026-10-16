@@ -32,13 +32,13 @@ const paired = async () => {
     const lock = readFileSync(join(p.dir, 'TARGET.bound'), 'utf8');
     for (const scope of ['wire/walk/contract', 'view/walk', 'view/evidence', 'walk/origin']) ok(lock.includes(` scope=${scope} `), `${p.name} was born without ${scope}`);
     const pin = / scope=walk\/context .*value=(sha256:[0-9a-f]+)/.exec(lock)?.[1] ?? '';
-    deepStrictEqual(`sha256:${createHash('sha256').update(readFileSync(join(p.dir, '.head', 'walk', 'context.bound'))).digest('hex')}`, pin, 'the context laid beside the lock is the one pinned');
+    deepStrictEqual(`sha256:${createHash('sha256').update(readFileSync(join(p.dir, 'walk', 'context.bound'))).digest('hex')}`, pin, 'the context laid beside the lock is the one pinned');
     return pin;
   });
   places.forEach((p, i) => {
     const other = places[1 - i]!;
-    writeFileSync(join(p.dir, '.head', 'walk', `${other.name}.bound`), readFileSync(join(other.dir, '.head', 'walk', 'context.bound')));
-    deepStrictEqual(bound(p, ['land', lot(`${p.name}-pair`, [row(`uses/peer-${other.name}`, 'digest', pins[1 - i]!, { needs: `.head/walk/${other.name}.bound` })]), ...signed])?.code, 0);
+    writeFileSync(join(p.dir, 'walk', `${other.name}.bound`), readFileSync(join(other.dir, 'walk', 'context.bound')));
+    deepStrictEqual(bound(p, ['land', lot(`${p.name}-pair`, [row(`uses/peer-${other.name}`, 'digest', pins[1 - i]!, { needs: `walk/${other.name}.bound` })]), ...signed])?.code, 0);
   });
   const [org, member] = places as [(typeof places)[0], (typeof places)[0]];
   return { shared, org, member, bound, lot, signed };

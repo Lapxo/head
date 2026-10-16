@@ -1,7 +1,7 @@
 import { LOCK } from '@lapxo/topos/wire';
 import { standingOr } from '../core/answer.ts';
 import type { Answer } from '../core/answer.ts';
-import { valueOf } from '../core/lock.ts';
+import { under, valueOf } from '../core/lock.ts';
 import { sayIn } from '../core/surface.ts';
 
 /**
@@ -21,7 +21,7 @@ export const answer: Answer = async (asked, context) => {
     if ('said' in held) { said.push(...held.said); continue; }
     const at = word('receipt/at'), last = held.lines.filter((l) => l.scope?.startsWith(`${word('receipt/family')}/`) && l.at?.startsWith(`${at}:`)).sort((a, b) => (a.at! < b.at! ? 1 : -1))[0];
     said.push(say('place-held', { name: p.scope!.split('/')[1]!, dir: p.value!,
-      sources: held.lines.filter((l) => l.scope?.startsWith('uses/') && l.needs?.startsWith(`${word('place/compiled')}/`)).map((l) => l.scope!.slice('uses/'.length)).join(', ') || '—',
+      sources: held.lines.filter((l) => l.scope?.startsWith('uses/') && under(context.lock, 'place/compiled', l.needs)).map((l) => l.scope!.slice('uses/'.length)).join(', ') || '—',
       grants: held.lines.filter((l) => l.scope?.startsWith('allow/') && !(l.measure === 'until' && (l.value ?? '') < today)).map((l) => `${l.scope} ${l.measure} ${l.value}`).join('; ') || '—',
       last: last ? `${last.scope!.split('/').slice(1, 3).join('/')} at ${last.at!.slice(at.length + 1)}` : '—' }));
   }

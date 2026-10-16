@@ -81,7 +81,7 @@ test('no: a package is refused by name before anything is asked when its digest,
   ok(!existsSync(join(to.place, 'connected')), 'no byte was laid');
 });
 
-test('no: a pin the package names that this head does not compile is refused by name once every source is connected; and share writes only into a folder apart from what a place keeps', async () => {
+test('no: a pin the package names that this head does not compile is refused by name once every source is connected; and share writes only into a folder apart from what a place keeps — its own folders, compiled pins and walk context among them', async () => {
   const from = await sender(), to = await receiver(), asked: string[] = [];
   const line = readFileSync(join(from.pkg, 'TARGET.bound'), 'utf8').split('\n').find((l) => l.includes(' scope=uses/jobs '))!, compiled = join(from.pkg, / needs=(\S+)/.exec(line)![1]!);
   writeFileSync(compiled, `${readFileSync(compiled, 'utf8')}bound-lock/1 at=place:openapi form=alphabet measure=class role=writes scope=offers/jobs/delete-everything value=callable\n`);
@@ -89,7 +89,7 @@ test('no: a pin the package names that this head does not compile is refused by 
   const [got] = await receive(to, from.pkg, resaid(from.pkg, (ls) => ls.map((l) => (l === line ? l.replace(/value=\S+$/, `value=${other}`) : l))), asked, [from.shared]);
   match(text(got), said('package-pin')); match(text(got), new RegExp(`jobs compiled here as sha256:[0-9a-f]{64}, not as the ${other}`)); doesNotMatch(text(got), said('received'));
   deepStrictEqual(asked.length, 1);
-  for (const at of [from.place, join(from.place, 'connected'), join(from.place, '.head', 'out'), from.shared]) {
+  for (const at of [from.place, join(from.place, 'connected'), join(from.place, '.head', 'out'), join(from.place, 'pins', 'out'), join(from.place, 'walk', 'out'), from.shared]) {
     const [refused] = await ask([tool('share', { place: from.place, to: at })], [from.shared], from.env);
     match(text(refused), said('share-to'));
   }
