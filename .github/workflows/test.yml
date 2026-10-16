@@ -34,3 +34,23 @@ jobs:
           name: head-node-${{ matrix.node }}
           path: ${{ runner.temp }}/head-tests.log
           if-no-files-found: ignore
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm run build
+      - name: Build the Desktop Extension, named by its digest
+        run: node .github/mcpb/build.mts "$RUNNER_TEMP/mcpb"
+      - name: Run it as a host would, from the unpacked bundle in a fresh home
+        run: node .github/mcpb/smoke.mts "$RUNNER_TEMP"/mcpb/head-*.mcpb "$RUNNER_TEMP/mcpb/release.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: head-mcpb
+          path: ${{ runner.temp }}/mcpb/
+          if-no-files-found: error
