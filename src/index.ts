@@ -9,7 +9,8 @@ import type { Asked, Context } from './core/answer.ts';
 import { valueOf } from './core/lock.ts';
 import { fill, sayIn } from './core/surface.ts';
 import { matchTemplate, refusedOn, shapeOf, shapeSchema, surfaceOf } from './ports/surface.ts';
-import { closing, founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, words } from './ports/bound.ts';
+import { closing, cooled, founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, warm, words } from './ports/bound.ts';
+import { warmth } from './ports/warm.ts';
 import { held, keep } from './ports/cache.ts';
 import { registryFor } from './ports/signers.ts';
 import { dropAt, folderOf, hasAt, layAt, listAt, lockAt, takeAt } from './ports/place.ts';
@@ -26,6 +27,9 @@ const surface = surfaceOf(lock);
 const runs = valueOf(lock, 'runs');
 Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile', 'receipts'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
 Object.assign(limits, { wait: Number(valueOf(lock, 'bound/wait').split('..')[1]), most: Number(valueOf(lock, 'bound/printed').split('..')[1]) });
+Object.assign(warmth, { spares: Number(valueOf(lock, 'bound/spares').split('..')[1]), boot: valueOf(lock, 'bound/spare-env').split('|') });
+/** One call at a time, with bound started ahead for it and nothing of it kept once it is answered. */
+const turn = <T>(act: () => Promise<T>): Promise<T> => inTurn('', () => { void warm(runs); return act().finally(cooled); });
 const offered = (n: number) => (n ? { listChanged: false } : undefined);
 const server = new Server({ name: surface.name, version: surface.version }, { capabilities: { tools: offered(surface.tools.length), resources: offered(surface.resources.length), prompts: offered(surface.prompts.length) } });
 /** The person, asked as the client lets head ask; every wait on them is counted, so a time ceiling measures head's work and never the person's. */
@@ -85,7 +89,7 @@ const schemaOf = (fields: Readonly<{ name: string; about: string; type: string; 
 
 if (surface.tools.length) server.setRequestHandler(ListToolsRequestSchema, () => ({ tools: surface.tools.map((tool) => ({ name: tool.name, description: tool.about,
   inputSchema: schemaOf([...tool.fields]), outputSchema: shapeSchema(lock), annotations: Object.fromEntries(tool.hints.map((hint) => [`${hint}Hint`, true])) })) }));
-if (surface.tools.length) server.setRequestHandler(CallToolRequestSchema, async (request, extra) => inTurn('', async () => {
+if (surface.tools.length) server.setRequestHandler(CallToolRequestSchema, async (request, extra) => turn(async () => {
   const tool = surface.tools.find((one) => one.name === request.params.name);
   if (tool === undefined) return { isError: true, content: [] };
   const refused = refusedOn(lock, process.platform);
@@ -94,7 +98,7 @@ if (surface.tools.length) server.setRequestHandler(CallToolRequestSchema, async 
 }));
 if (surface.resources.length) server.setRequestHandler(ListResourcesRequestSchema, () => ({ resources: [] }));
 if (surface.resources.length) server.setRequestHandler(ListResourceTemplatesRequestSchema, () => ({ resourceTemplates: surface.resources.map((r) => ({ name: r.name, uriTemplate: r.template, description: r.about, mimeType: r.mime })) }));
-if (surface.resources.length) server.setRequestHandler(ReadResourceRequestSchema, async (request, extra) => inTurn('', async () => {
+if (surface.resources.length) server.setRequestHandler(ReadResourceRequestSchema, async (request, extra) => turn(async () => {
   const found = surface.resources.flatMap((r) => ((vars) => (vars === undefined ? [] : [{ r, vars }]))(matchTemplate(r.template, request.params.uri)))[0];
   if (found === undefined) return { contents: [] };
   const refused = refusedOn(lock, process.platform);

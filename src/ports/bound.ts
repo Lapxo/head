@@ -6,6 +6,7 @@ import { parse } from '@lapxo/topos/wire';
 import type { Said } from '../core/lock.ts';
 import type { Outcome } from '../core/answer.ts';
 import { spawned } from './process.ts';
+import { cooled, kept, warmed } from './warm.ts';
 import type { Printed } from './process.ts';
 export type { Printed };
 
@@ -19,9 +20,13 @@ const binOf = (name: string): string | undefined => {
 
 export const limits = { wait: 0, most: 0 };
 
-/** bound run as a process in a folder, beside head and never blocking it, within the wait and the bytes head's lock gives it and stopped when the asker cancels. */
-export const run = async (name: string, cwd: string, args: readonly string[], env: Readonly<Record<string, string>> = {}, signal?: AbortSignal): Promise<Printed | undefined> => ((bin) => (bin === undefined ? undefined
-  : spawned(process.execPath, [bin, ...args], { cwd, env: { ...process.env, ...env } }, { wait: limits.wait, most: limits.most || Number.MAX_SAFE_INTEGER, ...(signal ? { signal } : {}) })))(binOf(name));
+/** bound run as a process in a folder, beside head and never blocking it, within the wait and the bytes head's lock gives it and stopped when the asker cancels: one started ahead when head holds one, else one started now. */
+export const run = async (name: string, cwd: string, args: readonly string[], env: Readonly<Record<string, string>> = {}, signal?: AbortSignal): Promise<Printed | undefined> => ((bin, at, bounds) => (bin === undefined ? undefined
+  : warmed(bin, args, at, bounds) ?? spawned(process.execPath, [bin, ...args], at, bounds)))(binOf(name), { cwd, env: { ...process.env, ...env } }, { wait: limits.wait, most: limits.most || Number.MAX_SAFE_INTEGER, ...(signal ? { signal } : {}) });
+
+/** bound started ahead of the first ask of a call, as many times as head's lock keeps it started; resolved once each is ready. */
+export const warm = (name: string): Promise<unknown> => ((bin) => (bin === undefined ? Promise.resolve() : kept(bin)))(binOf(name));
+export { cooled };
 
 export type Folded = { readonly lines: readonly Said[] } | { readonly refused: string };
 const facts = (out: readonly string[]): readonly Said[] => out.flatMap((line) => ((got) => (got.kind === 'fact' ? [got.value.fields] : []))(parse(line)));
