@@ -9,7 +9,7 @@ const plan = (place: string, lines: readonly string[]) => ({ method: 'tools/call
 const landing = (lot: string) => ({ method: 'tools/call', params: { name: 'land', arguments: { lot } } });
 const allow = (scope: string, times: number) => line(scope, 'calls', `0..${times}`, { form: 'interval', at: 'policy:person/allows' });
 const yes = () => ({ action: 'accept', content: { yes: true } });
-const lotOf = (answer: any): string => /Lot (sha256:[0-9a-f]+)/.exec(text(answer))![1]!;
+const lotOf = (answer: any): string => /lot="(sha256:[0-9a-f]+)"/.exec(text(answer))![1]!;
 const posts = (seen: readonly { method?: string }[]) => seen.filter((one) => one.method === 'POST').length;
 
 test('the sentences are prompts: three carry the one line to sign, three name the tool that founds, connects and reaches', async () => {
@@ -65,7 +65,7 @@ test('act: asked to be asked, a no calls nothing; a read-only cap wins over any 
   const [withKey, withoutKey] = await ask([create(keyed.place, 'c'), { method: 'tools/call', params: { name: 'act', arguments: { place: keyed.place, source: 'tracker', operation: 'issues/lock', args: { owner: 'lapxo', repo: 'demo', issue_number: '1' } } } }], [], keyed.keychain.env);
   await server.close();
   match(text(refused), said('no-yes')); match(text(cap), said('not-allowed'));
-  deepStrictEqual([text(agreed), text(withKey), text(withoutKey)].map((one) => said('untyped').test(one) && one.includes(' 200 ')), [true, true, true]);
+  deepStrictEqual([text(agreed), text(withKey), text(withoutKey)].map((one) => said('untyped').test(one) && one.includes(' status="200"')), [true, true, true]);
   deepStrictEqual(server.seen.map((one) => one.method), ['POST', 'POST', 'PUT']);
   deepStrictEqual(server.seen.map((one) => /^[0-9a-f]{64}$/.test(String(one.headers['idempotency-key']))), [true, true, false]);
 });

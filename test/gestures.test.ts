@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
-import { api, said, text, viewOf } from './place.ts';
+import { answered, api, said, text, viewOf } from './place.ts';
 
 const tool = (name: string, args: Record<string, unknown>) => ({ method: 'tools/call', params: { name, arguments: args } });
 const ok = { 200: { description: 'ok', content: { 'application/json': { schema: { type: 'object', properties: { id: { type: 'integer' } } } } } } };
@@ -29,15 +29,15 @@ test('never ask twice: a place is born letting a kept answer stand in as long as
   try {
     match(readFileSync(join(at.place, 'TARGET.bound'), 'utf8'), / form=interval measure=seconds role=writes scope=allow\/reuse .*value=0\.\.7776000/);
     const [first, second] = [await at.look('getForecast'), await at.look('getForecast')];
-    match(first, /answered 200 to getForecast/); match(second, said('reused'));
+    match(first, answered('getForecast', 200)); match(second, said('reused'));
     deepStrictEqual([at.server.seen.filter((r) => r.url === '/forecast').length, at.asked.length], [1, 1], 'one call, one yes');
     const [refused, again] = [await at.look('getAlerts'), await at.look('getAlerts')];
-    for (const one of [refused, again]) match(one, /answered 401 to getAlerts/);
+    for (const one of [refused, again]) match(one, answered('getAlerts', 401));
     deepStrictEqual(at.server.seen.filter((r) => r.url === '/alerts').length, 2, 'a refusal is never kept as an answer');
     const [lot] = await ask([tool('plan', { place: at.place, lines: 'bound-lock/1 at=policy:person/reuse by=target form=interval measure=seconds role=writes scope=allow/reuse/weather value=0..0' })], [], at.env, () => ({ action: 'accept', content: { yes: true } }));
-    await ask([tool('land', { lot: /Lot (sha256:[0-9a-f]+)/.exec(text(lot))?.[1] ?? '' })], [], at.env);
+    await ask([tool('land', { lot: /lot="(sha256:[0-9a-f]+)"/.exec(text(lot))?.[1] ?? '' })], [], at.env);
     match(viewOf(at.place, 'lines'), / scope=allow\/reuse\/weather .*value=0\.\.0/);
-    match(await at.look('getForecast'), /answered 200 to getForecast/);
+    match(await at.look('getForecast'), answered('getForecast', 200));
     deepStrictEqual(at.server.seen.filter((r) => r.url === '/forecast').length, 2, 'the person-s own line for the source stands over the place-s');
   } finally { await at.server.close(); }
 });

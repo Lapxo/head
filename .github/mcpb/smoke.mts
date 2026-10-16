@@ -29,6 +29,6 @@ await ask([tool('place', { dir: place })], [], env, yes);
 await ask([tool('connect', { place, source: 'weather', document: join(shared, 'weather.json') })], [shared], env, yes);
 const [read] = await ask([tool('look', { place, source: 'weather', operation: 'getForecast', at: '8' })], [], env, yes);
 server.close();
-const answered = JSON.stringify(read?.result ?? read).includes('answered 200 to getForecast');
+const answered = (read?.result?.structuredContent?.cells ?? []).some((c: { code: string; fields: Record<string, string> }) => c.code === 'head/answered' && c.fields['status'] === '200' && c.fields['operation'] === 'getForecast');
 console.log(`SMOKE    ${digest} · tools ${tools.length} (${tools.join(' ')}) · read ${answered ? 'answered 200' : 'did not answer'}`);
 if (tools.join(' ') !== [...named.tools].sort().join(' ') || !answered) { console.error(JSON.stringify(read?.result ?? read).slice(0, 1200)); process.exit(1); }

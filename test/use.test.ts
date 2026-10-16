@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
-import { said, text } from './place.ts';
+import { answered, said, text } from './place.ts';
 
 const tool = (name: string, args: Record<string, unknown>) => ({ method: 'tools/call', params: { name, arguments: args } });
 const document = JSON.stringify({ openapi: '3.0.3', info: { title: 'weather', version: '1' }, paths: { '/forecast': {
@@ -32,13 +32,13 @@ test('one address, one yes: an origin that publishes its catalog is used on a si
   try {
     const [used] = await ask([tool('connect', { document: served.url })], [], env, yes(asked));
     match(text(used), said('used')); deepStrictEqual(asked.length, 1, 'one yes'); match(asked[0]!, said('elicit-use'));
-    const place = /from (\S+), as/.exec(text(used))![1]!;
+    const place = / dir="([^"]+)"/.exec(text(used))![1]!;
     const [read] = await ask([tool('look', { place, source: '127-0-0-1', operation: 'getForecast', at: '8' })], [], env, yes(asked));
-    match(text(read), /answered 200 to getForecast/); deepStrictEqual(asked.length, 1, 'reads asked nothing more');
+    match(text(read), answered('getForecast', 200)); deepStrictEqual(asked.length, 1, 'reads asked nothing more');
     const [wrote] = await ask([tool('act', { place, source: '127-0-0-1', operation: 'setForecast' })], [], env, yes(asked));
     match(text(wrote), said('not-allowed')); deepStrictEqual(served.seen.filter((r) => r.method === 'POST').length, 0, 'nothing that is not a read is ever called');
     const [listed, again] = await ask([tool('places', {}), tool('connect', { document: served.url })], [], env, yes(asked));
-    match(text(listed), /127-0-0-1 at .* sources: 127-0-0-1\. Grants standing today: .*allow\/127-0-0-1 calls 0\.\.0.*allow\/read sources 127-0-0-1/);
+    match(text(listed), /name="127-0-0-1" [^\n]*sources="127-0-0-1" grants="[^"]*allow\/127-0-0-1 calls 0\.\.0[^"]*allow\/read sources 127-0-0-1/);
     match(text(again), said('use-held')); deepStrictEqual(asked.length, 1);
     deepStrictEqual(served.seen.slice(0, 2).map((r) => r.url), ['/.well-known/api-catalog', '/specs/weather.json'], 'the catalog first, then the document it names');
   } finally { await served.close(); }
@@ -51,6 +51,6 @@ test('an origin with no catalog is looked for at the paths head-s lock names, th
     match(text(found), said('used')); deepStrictEqual(fallback.seen.slice(0, 2).map((r) => r.url), ['/.well-known/api-catalog', '/openapi.json']);
     const asked: string[] = [];
     const [none] = await ask([tool('connect', { document: empty.url })], [], device(), yes(asked));
-    match(text(none), said('use-none')); match(text(none), /tried .*\/openapi\.json/); deepStrictEqual(asked.length, 1);
+    match(text(none), said('use-none')); match(text(none), / tried="[^"]*\/openapi\.json/); deepStrictEqual(asked.length, 1);
   } finally { await fallback.close(); await empty.close(); }
 });

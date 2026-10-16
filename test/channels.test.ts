@@ -49,7 +49,7 @@ const run = async (modes: Readonly<Record<string, object>> | 'none', server: Awa
     const requests = [...own.join('\n').matchAll(/ scope=(?:read|kept)\/jobs\/list-jobs\/([0-9a-f]{16})/g)].map((m) => m[1]);
     deepStrictEqual([requests.length, new Set(requests).size], [2, 1], 'the body and the typed answer are kept under one request, made as one principal');
     const lines = (file: string) => readFileSync(join(dir, file), 'utf8').split('\n').filter(Boolean).map(bare).sort();
-    return { seen: device ? device.seen() : seen, said: [text(accessed).split('\n')[0], ...text(read).split('\n').filter((l) => !l.startsWith('red:')).map(bare)], lock: lines('TARGET.bound'), journal: own.map(bare).sort(),
+    return { seen: device ? device.seen() : seen, said: [text(accessed).split('\n')[0], ...text(read).split('\n').filter((l) => !l.startsWith('said/head/red ')).map(bare)], lock: lines('TARGET.bound'), journal: own.map(bare).sort(),
       sent: server.seen.slice(before).map((one) => [one.method, one.url, one.body, one.headers['authorization'] ?? '']), kept: JSON.parse(Buffer.from(keychain.held(`place/${basename(dir)}/issuer/org`), 'base64url').toString('utf8')).secret };
   } finally { /* the API outlives each run */ }
 };

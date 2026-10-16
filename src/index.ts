@@ -8,7 +8,7 @@ import { answerOf } from './core/answer.ts';
 import type { Asked, Context } from './core/answer.ts';
 import { valueOf } from './core/lock.ts';
 import { fill } from './core/surface.ts';
-import { matchTemplate, refusedOn, surfaceOf } from './ports/surface.ts';
+import { matchTemplate, refusedOn, shapeOf, shapeSchema, surfaceOf } from './ports/surface.ts';
 import { closing, founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, words } from './ports/bound.ts';
 import { held, keep } from './ports/cache.ts';
 import { registryFor } from './ports/signers.ts';
@@ -79,13 +79,13 @@ const schemaOf = (fields: Readonly<{ name: string; about: string; type: string; 
   properties: Object.fromEntries(fields.map((f) => [f.name, { type: f.type, description: f.about }])), required: fields.filter((f) => f.required).map((f) => f.name) });
 
 if (surface.tools.length) server.setRequestHandler(ListToolsRequestSchema, () => ({ tools: surface.tools.map((tool) => ({ name: tool.name, description: tool.about,
-  inputSchema: schemaOf([...tool.fields]), annotations: Object.fromEntries(tool.hints.map((hint) => [`${hint}Hint`, true])) })) }));
+  inputSchema: schemaOf([...tool.fields]), outputSchema: shapeSchema(lock), annotations: Object.fromEntries(tool.hints.map((hint) => [`${hint}Hint`, true])) })) }));
 if (surface.tools.length) server.setRequestHandler(CallToolRequestSchema, async (request, extra) => inTurn('', async () => {
   const tool = surface.tools.find((one) => one.name === request.params.name);
   if (tool === undefined) return { isError: true, content: [] };
   const refused = refusedOn(lock, process.platform);
-  if (refused !== undefined) return { content: [{ type: 'text' as const, text: refused }] };
-  return { content: [{ type: 'text' as const, text: extra.signal.aborted ? '' : (await (await answerOf('tools', tool.name))(askedOf(request.params.arguments), contextOf(extra.signal))).join('\n') }] };
+  const answer = refused !== undefined ? [refused] : extra.signal.aborted ? [] : await (await answerOf('tools', tool.name))(askedOf(request.params.arguments), contextOf(extra.signal));
+  return { content: [{ type: 'text' as const, text: answer.join('\n') }], structuredContent: shapeOf(answer) };
 }));
 if (surface.resources.length) server.setRequestHandler(ListResourcesRequestSchema, () => ({ resources: [] }));
 if (surface.resources.length) server.setRequestHandler(ListResourceTemplatesRequestSchema, () => ({ resourceTemplates: surface.resources.map((r) => ({ name: r.name, uriTemplate: r.template, description: r.about, mimeType: r.mime })) }));

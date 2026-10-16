@@ -73,5 +73,10 @@ export const born = (server: string | undefined, extra: readonly string[] = [], 
 };
 
 /** What head says for a key, as a pattern of its whole template: every field it fills may be anything, every word around them must stand. */
-export const said = (key: string) => new RegExp(lock.find((l) => l.scope === `said/${key}`)!.about!.split(/\{\w+\}/).map((part) => part.replace(/[.*+?^$()|[\]\\{}]/g, '\\$&')).join('[\\s\\S]*?'));
+/** A code head said: the cell line of it — head's own code, or bound's code with head's beside it; a question the person reads, by its lock words. */
+export const said = (key: string) => (lock.find((l) => l.scope === `said/${key}/state`)?.value === 'asked'
+  ? new RegExp(lock.find((l) => l.scope === `said/${key}`)!.about!.split(/\{\w+\}/).map((part) => part.replace(/[.*+?^$()|[\]\\{}]/g, '\\$&')).join('[\\s\\S]*?'))
+  : new RegExp(`said/(head/${key}|\\S+ [^\\n]*head="head/${key}") `));
+/** A cell of an answer from a source: its operation and the status it answered, whatever the code that said it. */
+export const answered = (operation: string, status: number) => new RegExp(`^said/head/\\S+ (?=[^\\n]*operation="${operation}")(?=[^\\n]*status="${status}")`, 'm');
 export const text = (answer: any): string => answer.result?.content?.[0]?.text ?? JSON.stringify(answer.error ?? answer);

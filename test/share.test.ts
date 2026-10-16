@@ -87,7 +87,7 @@ test('no: a pin the package names that this head does not compile is refused by 
   writeFileSync(compiled, `${readFileSync(compiled, 'utf8')}bound-lock/1 at=place:openapi form=alphabet measure=class role=writes scope=offers/jobs/delete-everything value=callable\n`);
   const other = digestOf(readFileSync(compiled));
   const [got] = await receive(to, from.pkg, resaid(from.pkg, (ls) => ls.map((l) => (l === line ? l.replace(/value=\S+$/, `value=${other}`) : l))), asked, [from.shared]);
-  match(text(got), said('package-pin')); match(text(got), new RegExp(`jobs compiled here as sha256:[0-9a-f]{64}, not as the ${other}`)); doesNotMatch(text(got), said('received'));
+  match(text(got), said('package-pin')); match(text(got), new RegExp(`said/head/package-pin [^\\n]*source="jobs" pin="${other}" got="sha256:[0-9a-f]{64}"`)); doesNotMatch(text(got), said('received'));
   deepStrictEqual(asked.length, 1);
   for (const at of [from.place, join(from.place, 'connected'), join(from.place, '.head', 'out'), join(from.place, 'pins', 'out'), join(from.place, 'walk', 'out'), from.shared]) {
     const [refused] = await ask([tool('share', { place: from.place, to: at })], [from.shared], from.env);
@@ -145,7 +145,7 @@ test('absence is not a refusal: a source whose bytes did not arrive, or hash oth
   const blocked = await receiver(), authAt = join(from.pkg, 'connected', 'auth.json');
   writeFileSync(authAt, auth.replace('login', 'logout'));
   const [neither] = await receive(blocked, from.pkg, from.digest, [], [from.shared]);
-  doesNotMatch(text(neither), said('received')); match(text(neither), /jobs waits on bytes[^\n]*: auth\./);
+  doesNotMatch(text(neither), said('received')); match(text(neither), /said\/head\/received-open [^\n]*source="jobs" waits="auth"/);
   deepStrictEqual(pinsOf(blocked.place), [], 'a source resting on one that waits waits too');
   writeFileSync(authAt, auth);
 });

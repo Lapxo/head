@@ -8,7 +8,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
-import { said, text, viewOf } from './place.ts';
+import { answered, said, text, viewOf } from './place.ts';
 
 const tool = (name: string, args: Record<string, unknown>) => ({ method: 'tools/call', params: { name, arguments: args } });
 type Seen = { method: string; path: string; query: URLSearchParams; headers: Record<string, unknown>; body: string };
@@ -58,13 +58,13 @@ test('a resource that refuses with its metadata names its authorizer: head obser
   try {
     const at = await placed(rs.url);
     const first = await at.read();
-    match(first, /answered 401 to listItems/); match(first, said('authorizer-observed'));
+    match(first, answered('listItems', 401)); match(first, said('authorizer-observed'));
     const evidence = viewOf(at.place, 'evidence');
     ok(evidence.split('\n').some((l) => / by=head .*scope=access\/items\/authorizer\/steps\/1 .*value=http:\/\/127\.0\.0\.1:\d+\/authorize$/.test(l.replace(/ sig="[^"]*"/, ''))), 'the flow, observed under head-s key');
     const second = await at.read();
-    match(second, /answered 200 to listItems/); deepStrictEqual(at.visits.length, 1, 'signed in once, on head-s page');
+    match(second, answered('listItems', 200)); deepStrictEqual(at.visits.length, 1, 'signed in once, on head-s page');
     const third = await at.read();
-    match(third, /answered 200 to listItems/); deepStrictEqual(at.visits.length, 1, 'renewed with nothing asked');
+    match(third, answered('listItems', 200)); deepStrictEqual(at.visits.length, 1, 'renewed with nothing asked');
     deepStrictEqual(rs.seen.filter((r) => r.path === '/items').map((r) => r.headers['authorization'] ?? ''), ['', 'Bearer at-1', 'Bearer at-2']);
     const [register, authorize] = [as.seen.find((r) => r.path === '/register')!, as.seen.find((r) => r.path === '/authorize')!];
     deepStrictEqual([JSON.parse(register.body).redirect_uris.length, JSON.parse(register.body).token_endpoint_auth_method, authorize.query.get('code_challenge_method'), authorize.query.get('client_id'), authorize.query.get('resource'), authorize.query.get('scope')],
@@ -80,7 +80,7 @@ test('no: metadata that names another resource than the one that refused is no a
   try {
     const at = await placed(rs.url);
     const [first, second] = [await at.read(), await at.read()];
-    for (const one of [first, second]) match(one, /answered 401 to listItems/);
+    for (const one of [first, second]) match(one, answered('listItems', 401));
     deepStrictEqual([/ scope=access\/items\/authorizer/.test(viewOf(at.place, 'evidence')), as.seen.length, at.visits.length], [false, 0, 0]);
   } finally { await as.close(); await rs.close(); }
 });

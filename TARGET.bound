@@ -513,3 +513,254 @@ bound-lock/1 about="where a person starts: the first place, founded with the fir
 bound-lock/1 about="the lines of the onboard region, together: split from the sources that connect, never raised" at=policy:head/ceilings/0.1.2 by=target form=interval measure=onboard-lines role=reads scope=onboard/lines value=0..40
 bound-lock/1 about="the folder a person-s first place is founded in, under their own home, when they connect a source naming no place: named for what it holds, theirs to rename by founding another with the place tool" at=policy:head/onboard/0.1.2 by=target form=alphabet measure=id role=writes scope=first-run/folder value=place
 bound-lock/1 about="head asks to found your place at {dir} — a root key made in your keychain, reads bounded, nothing it may write — and to connect {source} to it from {document}: compiled once and pinned; nothing is called. Say yes only to this; a place elsewhere, named as you like, is founded with the place tool." at=policy:head/surface/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-first-run value=lock
+bound-lock/1 about="the states a cell of head-s answers is in: done, refused, open (something owed is named), red (a ceiling ran past, for the cell it measured), asked (a question the person reads)" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=shape/states value=done|refused|open|red|asked
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/bad-lot/state value=refused
+bound-lock/1 about="a lot of drafted lines, one a line, by=target and unsigned" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/bad-lot/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/place-absolute/state value=refused
+bound-lock/1 about="an absolute folder" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/place-absolute/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/access-kept/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/access-kept/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/open/state value=open
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/open/next value=look
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/open/next/args value=source:$source|operation:$operation|closes:$intent
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/reread/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/reread/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/reused/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/reused/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/closed/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/closed/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-earlier/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-earlier/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history/state value=done
+bound-lock/1 about="history, not a current answer" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/trust/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/trust/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/nothing-open/state value=refused
+bound-lock/1 about="nothing stands open" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/nothing-open/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-place/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-place/next value=places
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-none/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-none/next value=look
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-none/next/args value=source:$source|operation:$operation|at:8
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-untyped/state value=done
+bound-lock/1 about="the receipt stands as evidence" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-untyped/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-key/state value=refused
+bound-lock/1 about="the lines the other device-s key tool answered" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-key/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/answer/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/answer/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/enter/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/enter/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/pick/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/pick/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit/yes/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit/yes/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/planned/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/planned/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/step-unanswered/state value=refused
+bound-lock/1 about="an overlay whose flow goes on" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/step-unanswered/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/place-taken/state value=refused
+bound-lock/1 about="another name" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/place-taken/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/entry-unfinished/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/entry-unfinished/next value=access
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/entry-unfinished/next/args value=source:$source
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-yes/state value=refused
+bound-lock/1 about="the person said no" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-yes/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unread/state value=open
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unread/next value=connect
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unread/next/args value=source:$source
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/base-moved/state value=refused
+bound-lock/1 about="plan again" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/base-moved/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-landed/state value=refused
+bound-lock/1 about="what bound names" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-landed/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/too-large/state value=refused
+bound-lock/1 about="a wider read/response-bytes the root signs" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/too-large/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/host-input/state value=refused
+bound-lock/1 about="an overlay whose flow asks the person" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/host-input/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/nothing-offered/state value=refused
+bound-lock/1 about="a document that offers an operation" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/nothing-offered/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/sign-yourself/state value=open
+bound-lock/1 about="the person signs these lines in their place and lands them" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/sign-yourself/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-role/state value=refused
+bound-lock/1 about="the roles head and person" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-role/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-keychain/state value=refused
+bound-lock/1 about="a keychain head reaches" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-keychain/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/attested-again/state value=done
+bound-lock/1 about="already attested" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/attested-again/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-root/state value=refused
+bound-lock/1 about="whoever holds the place-s root" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-root/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-cells/state value=refused
+bound-lock/1 about="a view of cells the place signs" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-cells/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-gone/state value=done
+bound-lock/1 about="the receipt stands as evidence" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-gone/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/carry-unsettled/state value=refused
+bound-lock/1 about="an overlay that makes it one request" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/carry-unsettled/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/cross-origin/state value=refused
+bound-lock/1 about="an overlay that keeps the person-s entry at its origin" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/cross-origin/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unsettled/state value=refused
+bound-lock/1 about="what bound names" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unsettled/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unreachable/state value=refused
+bound-lock/1 about="bound installed beside head" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unreachable/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unfolded/state value=refused
+bound-lock/1 about="what bound names" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unfolded/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-act/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-act/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-admit/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-admit/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-receive/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-receive/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-connect/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-connect/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-place/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-place/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-transport/state value=refused
+bound-lock/1 about="an origin reached the way head carries" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-transport/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/cannot-ask/state value=refused
+bound-lock/1 about="a client that asks, or head-s page opened" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/cannot-ask/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-lot/state value=refused
+bound-lock/1 about="a lot planned first" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-lot/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/grant/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/grant/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/platform/state value=refused
+bound-lock/1 about="a host head runs on" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/platform/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-world/state value=open
+bound-lock/1 about="the line that follows" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-world/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/rate/state value=refused
+bound-lock/1 about="the next hour, or a wider read/rate the root signs" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/rate/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/red/state value=red
+bound-lock/1 about="the ceiling it ran past" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/red/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/compiled-moved/state value=refused
+bound-lock/1 about="the source connected again" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/compiled-moved/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/landed/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/landed/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/received/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/received/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/received-open/state value=open
+bound-lock/1 about="the bytes it waits on, then the package connected again" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/received-open/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/shared/state value=done
+bound-lock/1 about="the package digest, sent apart" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/shared/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/place-exists/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/place-exists/next value=places
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/fetch-status/state value=refused
+bound-lock/1 about="access the document accepts" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/fetch-status/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/package-line/state value=refused
+bound-lock/1 about="a package as it is shared" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/package-line/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-digest/state value=refused
+bound-lock/1 about="the bytes the digest names" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-digest/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/fetch-cross-origin/state value=refused
+bound-lock/1 about="a source reached at the document-s origin" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/fetch-cross-origin/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/fetch-redirect/state value=refused
+bound-lock/1 about="the document-s digest named" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/fetch-redirect/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/package-world/state value=refused
+bound-lock/1 about="a package shared from a head that pins the same world" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/package-world/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-unread/state value=refused
+bound-lock/1 about="an https address, or a file the client shares" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-unread/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/trust-one-time/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/trust-one-time/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/trust-secret/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/trust-secret/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/trust-none/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/trust-none/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/visit/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/visit/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/admitted/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/admitted/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/born/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/born/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/missing-param/state value=refused
+bound-lock/1 about="the parameter it names" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/missing-param/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/is-read/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/is-read/next value=look
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/is-read/next/args value=source:$source|operation:$operation|at:8
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-callable/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-callable/next value=act
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-callable/next/args value=source:$source|operation:$operation
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/split-offer/state value=refused
+bound-lock/1 about="an overlay that settles it" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/split-offer/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/act-failed/state value=open
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/act-failed/next value=look
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/act-failed/next/args value=source:$source|operation:$operation|closes:$intent
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-allowed/state value=refused
+bound-lock/1 about="a wider allowance the person signs" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-allowed/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/insecure-origin/state value=refused
+bound-lock/1 about="its encrypted address" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/insecure-origin/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/key-taken/state value=refused
+bound-lock/1 about="another name, or the old admission withdrawn" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/key-taken/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-covered/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-covered/next value=plan
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/not-covered/next/args value=place:$place
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-undeclared/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-undeclared/next value=plan
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/history-undeclared/next/args value=place:$place
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/share-none/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/share-none/next value=connect
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/share-none/next/args value=place:$place
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unwitnessed/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unwitnessed/next value=plan
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unwitnessed/next/args value=place:$place
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/parent-lock/state value=refused
+bound-lock/1 about="composing policies is bound-s" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/parent-lock/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/untyped/state value=done
+bound-lock/1 about="no world typed the answer" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/untyped/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/answered/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/answered/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/package-pin/state value=refused
+bound-lock/1 about="a package shared from a head at this release" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/package-pin/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-origin/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-origin/next value=plan
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/pick-origin/state value=refused
+bound-lock/1 about="the person picks one origin" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/pick-origin/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unreachable-source/state value=refused
+bound-lock/1 about="the source answering" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unreachable-source/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/login-refused/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/login-refused/next value=access
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/login-refused/next/args value=source:$source
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/access-unstated/state value=refused
+bound-lock/1 about="an overlay that states it" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/access-unstated/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-unsupported/state value=refused
+bound-lock/1 about="a document of a profile a world reads" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-unsupported/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-unparsed/state value=refused
+bound-lock/1 about="the document mended" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-unparsed/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/connected/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/connected/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-client/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-client/next value=plan
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-collision/state value=refused
+bound-lock/1 about="one document a source" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/document-collision/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unknown-operation/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unknown-operation/next value=look
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unknown-operation/next/args value=source:$source|at:1
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-adapter/state value=refused
+bound-lock/1 about="an overlay that says how the token rides" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/no-adapter/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/resolved/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/resolved/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unresolved/state value=open
+bound-lock/1 about="the document that declares it, connected" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/unresolved/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/access-anonymous/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/access-anonymous/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/secret-unallowed/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/secret-unallowed/next value=plan
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/share-to/state value=refused
+bound-lock/1 about="a folder apart from the place-s own" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/share-to/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/places-none/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/places-none/next value=place
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/place-held/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/place-held/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-use/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-use/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/used/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/used/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/use-held/state value=done
+bound-lock/1 about="already in use" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/use-held/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/use-none/state value=refused
+bound-lock/1 about="a document the person names" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/use-none/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/authorizer-observed/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/authorizer-observed/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/why/state value=done
+bound-lock/1 about=done at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/why/next value=none
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/why-none/state value=refused
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/why-none/next value=look
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/why-none/next/args value=source:$source|operation:$operation|at:8
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-first-run/state value=asked
+bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-first-run/next value=none

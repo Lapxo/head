@@ -21,12 +21,12 @@ test('places: what this device has connected — none before a place is founded;
     match(text(none), said('places-none'));
     await ask([tool('place', { dir: place })], [], env, yes);
     const [fresh] = await ask([tool('places', {})], [], env);
-    match(text(fresh), said('place-held')); match(text(fresh), /sources: —\. .*Last read: —\.$/);
+    match(text(fresh), said('place-held')); match(text(fresh), / sources="—" grants="[^"]*" last="—"/);
     await ask([tool('connect', { place, source: 'weather', document: join(shared, 'weather.json') })], [shared], env, yes);
     await ask([tool('look', { place, source: 'weather', operation: 'getForecast', args: { city: 'lima' }, at: '8' })], [], env, yes);
     asked.length = 0;
     const [held, one, other] = await ask([tool('places', {}), tool('places', { place }), tool('places', { place: join(shared, 'elsewhere') })], [], env, yes);
-    match(text(held), new RegExp(`^weather at ${place.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} — sources: weather\\. Grants standing today: .*allow/read .*Last read: weather/getForecast at 20\\d\\d-`));
+    match(text(held), new RegExp(`name="weather" dir="${place.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}" sources="weather" grants="[^"]*allow/read[^"]*" last="weather/getForecast at 20\\d\\d-`));
     deepStrictEqual([text(one), asked], [text(held), []], 'one place asked by its folder answers the same; nothing is asked');
     match(text(other), said('places-none'));
   } finally { await server.close(); }
