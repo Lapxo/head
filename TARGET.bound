@@ -470,7 +470,7 @@ bound-lock/1 at=policy:project by=target form=alphabet measure=coordinates role=
 bound-lock/1 at=policy:project by=target form=alphabet measure=coordinates role=reads scope=region/source value=src/**
 bound-lock/1 at=policy:project by=target form=alphabet measure=id role=writes scope=license value=MIT
 bound-lock/1 at=policy:project by=target form=alphabet measure=id role=writes scope=name value=@lapxo/head
-bound-lock/1 at=policy:project/0.1.1 by=target form=alphabet measure=id role=writes scope=version value=0.1.1
+bound-lock/1 at=policy:project/0.1.3 by=target form=alphabet measure=id role=writes scope=version value=0.1.3
 bound-lock/1 about="Where the package-s bytes are also published, as a JSON object from each path the package names to an encrypted address, signed or expiring as it may be; optional. A receiver then connects the lock from its own address, by its digest." at=policy:head/surface/0.1.1g by=target form=alphabet measure=id role=writes scope=tool/share/urls value=string
 bound-lock/1 about="Share a place with someone: its sources, as a package they connect by its digest." at=policy:head/surface/0.1.1g by=target form=alphabet measure=id role=writes scope=prompt/share value=place|who
 bound-lock/1 about="Share the place {place} with {who}: pack it with the share tool into a folder I share, show me the package-s digest, and tell me to send {who} the folder — or the addresses it is published at — and the digest apart from it, over a private channel." at=policy:head/surface/0.1.1g by=target form=alphabet measure=id role=writes scope=prompt/share/text value=lock
