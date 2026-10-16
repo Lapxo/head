@@ -4,8 +4,8 @@
  ],
  "from": {
   "world": "@lapxo/topos-openapi",
-  "standing": "sha256:6156314672e2b5b2d077829ca77f9ac327ffbfc9ef644f11317321350a6a422a",
-  "blob": "sha256:6a1f1ae6b2921c9f94a3e80913b630753d3150b3fb4f5f9ffce7172c390cfbdd",
+  "standing": "sha256:24e6ad5fd58afce93964cdf1079a353046b09b5a075906b3dad225bfe21cda74",
+  "blob": "sha256:13a79fc41f1b837a0527fbe4c5aed3cec190fae7d28215a36ec25e54f7d67274",
   "documents": [
    {
     "document": "vectors/tracker.openapi.json",
