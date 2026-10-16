@@ -1,5 +1,5 @@
 // The Desktop Extension (.mcpb) of the package as npm ships it: the same files, its production dependencies at the lock's exact versions, and a manifest rendered from head's lock (name, version, tools); validated and zipped as mcpb does, its entries in order, at one fixed time and mode, so the same commit gives the same digest.
-// usage: node .github/mcpb/build.mts <out dir>   (it compiles the sources itself, so no file a stale build left can reach the bundle)
+// usage: node .github/mcpb/build.mts <out dir> [--from <package.tgz>]   (it compiles the sources itself, so no file a stale build left can reach the bundle; with --from it is made of that archive's bytes instead, the production dependencies read from this tree's package-lock.json, so a bundle released beside an approved archive derives from it)
 import { execFileSync } from 'node:child_process';
 import { getAllFilesWithCount, readMcpbIgnorePatterns, validateManifest } from '@anthropic-ai/mcpb/node';
 import { zipSync } from 'fflate';
@@ -9,12 +9,18 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { declaredOf } from '../../src/core/lock.ts';
 
-const [out] = process.argv.slice(2) as [string];
-const root = resolve(import.meta.dirname, '../..'), pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')), lock = declaredOf(readFileSync(join(root, 'TARGET.bound'), 'utf8'));
-const stage = mkdtempSync(join(tmpdir(), 'head-mcpb-'));
-for (const at of [...pkg.files.filter((f: string) => !f.startsWith('dist')), 'package.json', 'package-lock.json', 'README.md'].filter((f) => existsSync(join(root, f)))) cpSync(join(root, at), join(stage, at), { recursive: true });
-execFileSync('npx', ['--no-install', 'tsc', '-p', root, '--outDir', join(stage, 'dist'), '--incremental', 'false', '--tsBuildInfoFile', 'null'], { stdio: 'inherit' });
-for (const at of readdirSync(join(stage, 'dist'))) if (!pkg.files.includes(`dist/${at}`)) rmSync(join(stage, 'dist', at), { recursive: true, force: true });
+const [out, flag, archive] = process.argv.slice(2) as [string, string?, string?];
+const root = resolve(import.meta.dirname, '../..'), stage = mkdtempSync(join(tmpdir(), 'head-mcpb-'));
+if (flag === '--from') {
+  execFileSync('tar', ['-xzf', resolve(archive!), '-C', stage, '--strip-components', '1']);
+  cpSync(join(root, 'package-lock.json'), join(stage, 'package-lock.json'));
+} else {
+  const files = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).files as string[];
+  for (const at of [...files.filter((f) => !f.startsWith('dist')), 'package.json', 'package-lock.json', 'README.md'].filter((f) => existsSync(join(root, f)))) cpSync(join(root, at), join(stage, at), { recursive: true });
+  execFileSync('npx', ['--no-install', 'tsc', '-p', root, '--outDir', join(stage, 'dist'), '--incremental', 'false', '--tsBuildInfoFile', 'null'], { stdio: 'inherit' });
+  for (const at of readdirSync(join(stage, 'dist'))) if (!files.includes(`dist/${at}`)) rmSync(join(stage, 'dist', at), { recursive: true, force: true });
+}
+const pkg = JSON.parse(readFileSync(join(stage, 'package.json'), 'utf8')), lock = declaredOf(readFileSync(join(stage, 'TARGET.bound'), 'utf8'));
 execFileSync('npm', ['ci', '--omit=dev', '--ignore-scripts', '--no-audit', '--no-fund', '--loglevel=error'], { cwd: stage, stdio: 'inherit' });
 const tools = lock.filter((l) => /^tool\/[a-z]+$/.test(l.scope ?? '')).map((l) => ({ name: l.scope!.slice('tool/'.length), description: l.about ?? '' })).sort((a, b) => a.name.localeCompare(b.name));
 const manifest = {
