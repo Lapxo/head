@@ -28,16 +28,19 @@ const facts = (out: readonly string[]): readonly Said[] => out.flatMap((line) =>
 const readOf = (printed: Printed | undefined): Folded => (printed === undefined || printed.code !== 0 ? { refused: printed?.err.at(-1) ?? '' } : { lines: facts(printed.out) });
 
 /**
- * The lines a place stands on, from bound's public views alone: its folded normative standing (the lines view), and from
+ * The lines a place stands on, from bound's public views alone: its folded normative standing (the lines view) — its
+ * policy, all that a reader of its pins, keys and views needs, read alone where nothing else is — and from
  * its authenticated evidence what this device's own keys signed. Receipts are history, each kept as it was made; any other
  * line of a device key, the person's own attestation, stands only while it is the one line of its scope and measure,
  * unwithdrawn and beside no line of the place's own: anything else needs a fold bound does not publish, and is refused by
  * name. A place whose land prints no act result is refused before anything lands in it. Any refusal of bound is no standing.
  */
+export const policyAt = async (name: string, place: string, signal?: AbortSignal): Promise<Folded> => ((folded) => ('refused' in folded || folded.lines.some((line) => line.scope === words.profile) ? folded
+  : { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` }))(readOf(await run(name, place, [words.read, words.view, words.standing], {}, signal)));
+
 export const standingAt = async (name: string, place: string, devicesOf: (lines: readonly Said[]) => readonly string[], isHistory: (line: Said) => boolean, signal?: AbortSignal): Promise<Folded> => {
-  const folded = readOf(await run(name, place, [words.read, words.view, words.standing], {}, signal));
+  const folded = await policyAt(name, place, signal);
   if ('refused' in folded) return folded;
-  if (!folded.lines.some((line) => line.scope === words.profile)) return { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` };
   const evidence = readOf(await run(name, place, [words.read, words.view, words.evidence], {}, signal));
   if ('refused' in evidence) return evidence;
   const ids = new Set(devicesOf(folded.lines)), own = evidence.lines.filter((line) => ids.has(line.by ?? ''));

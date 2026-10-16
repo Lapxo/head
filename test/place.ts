@@ -8,7 +8,7 @@ import { basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { canonical, parse } from '@lapxo/topos/wire';
 import { admissionOf } from '../src/core/device.ts';
-import { newKey } from '../src/core/keys.ts';
+import { newKey } from '../src/ports/keys.ts';
 import { run } from './cli.ts';
 import { lockAt } from '../src/ports/place.ts';
 import { fakeKeychain } from './fake-keychain.ts';

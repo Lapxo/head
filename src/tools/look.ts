@@ -6,11 +6,12 @@ import { vocabOf } from '../core/read.ts';
 import { redIn, sayIn } from '../core/surface.ts';
 import { readSource } from '../flows/read.ts';
 import { standingFor } from '../flows/world.ts';
+import { trustOf } from '../core/trust.ts';
 
 /**
  * One view of a place, folded by bound at the resolution asked; or, of a source, what it offers as typed lines — at the
- * first resolution where it is reached and each offer's class, by default its forms and how access is proven too, never
- * what only a transport reads — and, at the call resolution, one read of an offer of the class head reads. Each answer
+ * first resolution where it is reached and each offer's class, by default its forms and how access is proven too, with
+ * its flows in the order of trust, never what only a transport reads — and, at the call resolution, one read of an offer of the class head reads. Each answer
  * is measured against answer/seconds and reads red past it, with the question it answered as its coordinate.
  */
 export const answer: Answer = (asked, context) => ((started) => inPlace(asked, context, async (place) => {
@@ -30,7 +31,7 @@ export const answer: Answer = (asked, context) => ((started) => inPlace(asked, c
       if (!ofOffer || scope.endsWith(`/${v.carry}`)) return false;
       return !first || (!scope.endsWith(`/${v.form}`) && shallow.includes(l.measure ?? ''));
     });
-    return shown.length ? shown.map((l) => canonical(l)).sort() : [sayIn(context.lock)('unread', { source })];
+    return shown.length ? [...shown.map((l) => canonical(l)).sort(), ...(first ? [] : trustOf(context.lock, held.lines, source))] : [sayIn(context.lock)('unread', { source })];
   }
   const view = `${asked['view'] || word('bound/standing')}${asked['at'] ? `${word('bound/at')}${asked['at']}` : ''}`;
   return printedOr(context, await context.bound(place, [word('bound/read'), word('bound/view'), view]));

@@ -45,7 +45,7 @@ const drafted = async (context: Context, place: string, source: string, file: st
  * one's withdraw, said at its own time, since a withdrawn saying stays withdrawn.
  */
 export const pinIn = (context: Context, place: string, lands: (lot: readonly string[]) => Promise<Outcome>, line: Line) => async (source: string, read: readonly string[]): Promise<Pinned> => {
-  const [say, digest, held] = [sayIn(context.lock), digestIn(context.lock), await context.standing(place)];
+  const [say, digest, held] = [sayIn(context.lock), digestIn(context.lock), await context.policy(place)];
   if ('refused' in held) return { said: [say('unsettled', { source, why: held.refused })] };
   const own = held.lines;
   const input = digest([...own.filter((l) => l.scope?.startsWith('uses/') && l.scope !== `uses/${source}`).map((l) => `${l.scope} ${l.value}`), ...read].sort().join('\n'));
@@ -64,7 +64,7 @@ export const pinIn = (context: Context, place: string, lands: (lot: readonly str
  * never reconnected. What each answers is said by the pin; one still unresolved stays a demand.
  */
 export const paidBy = async (context: Context, place: string, pin: ReturnType<typeof pinIn>, laid: string): Promise<readonly { readonly source: string; readonly pinned: Pinned }[]> => {
-  const [v, held] = [vocabOf(context.lock), await context.standing(place)];
+  const [v, held] = [vocabOf(context.lock), await context.policy(place)];
   if ('refused' in held) return [];
   const owed = held.lines.filter((l) => l.scope?.startsWith('uses/') && l.needs?.startsWith(`${valueOf(context.lock, 'place/compiled')}/`)
     && linesOf(context.files.take(join(place, l.needs)) ?? new Uint8Array()).some((r) => r.measure === v.unresolved && basename((r.value ?? '').split('#')[0]!) === basename(laid)));

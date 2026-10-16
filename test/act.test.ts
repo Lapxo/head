@@ -18,7 +18,7 @@ test('the sentences are prompts: three carry the one line to sign, three name th
     { method: 'prompts/get', params: { name: 'can', arguments: { source: 'tracker', operation: 'issues/create', times: '2' } } },
     { method: 'prompts/get', params: { name: 'readonly', arguments: { source: 'tracker' } } },
     { method: 'prompts/get', params: { name: 'ask', arguments: { source: 'tracker', operation: 'issues/create' } } }], [place], keychain.env);
-  deepStrictEqual(listed.result.prompts.map((p: any) => p.name).sort(), ['access', 'ask', 'can', 'connect', 'place', 'readonly']);
+  deepStrictEqual(listed.result.prompts.map((p: any) => p.name).sort(), ['access', 'ask', 'can', 'connect', 'place', 'readonly', 'receive', 'share']);
   const last = (answer: any) => answer.result.messages[0].content.text.split('\n').at(-1);
   for (const got of [can, readonly, asked]) deepStrictEqual(parse(last(got)).kind, 'fact');
   match(last(can), / scope=allow\/tracker\/issues\/create value=0\.\.2$/); match(last(readonly), / scope=allow\/tracker value=0\.\.0$/); match(last(asked), / scope=ask\/tracker\/issues\/create /);

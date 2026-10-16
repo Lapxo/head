@@ -4,11 +4,11 @@ import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { surfaceOf } from '../src/core/surface.ts';
+import { surfaceOf } from '../src/ports/surface.ts';
 import { run } from './cli.ts';
 import { lockAt } from '../src/ports/place.ts';
 import { ask } from './client.ts';
-import { publicOf } from '../src/core/keys.ts';
+import { publicOf } from '../src/ports/keys.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 
 const root = fileURLToPath(new URL('..', import.meta.url));

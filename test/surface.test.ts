@@ -4,7 +4,8 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { matches } from '@lapxo/topos/wire';
 import { fileURLToPath } from 'node:url';
 import { members, declaredOf } from '../src/core/lock.ts';
-import { fill, matchTemplate, redIn, refusedOn, surfaceOf } from '../src/core/surface.ts';
+import { fill, redIn } from '../src/core/surface.ts';
+import { matchTemplate, refusedOn, surfaceOf } from '../src/ports/surface.ts';
 import { lockAt } from '../src/ports/place.ts';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -49,7 +50,7 @@ test('a measure past its ceiling in head-s lock reads red, whole seconds, with t
 
 test('a host the lock does not name is refused by name, every call, nothing done; the one it names is not', () => {
   deepStrictEqual([refusedOn(lock, 'darwin'), refusedOn(lock, 'linux'), refusedOn(lock, 'win32'), refusedOn(lock, 'freebsd')],
-    [undefined, undefined, undefined, 'head runs on darwin|linux|win32; this host is freebsd: nothing was done. Its secret store and browser opener are none head carries.']);
+    [undefined, undefined, undefined, 'head runs on darwin|linux|win32; this host is freebsd: nothing was done. Its secret store and browser opener are none head carries. A host head runs on pays it.']);
 });
 
 /** The files of a region, as the lock's coordinates for it say: file paths follow the coordinates, never the other way. */

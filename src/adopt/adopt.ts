@@ -25,7 +25,7 @@ const readersOf = (lock: readonly Said[], standing: readonly Said[]): readonly {
  * standing cannot be read so is no adoption.
  */
 export const adopted = async (context: Context, place: string, lands: (lot: readonly string[]) => Promise<Outcome>, line: Line): Promise<Outcome> => {
-  const [word, held] = [(k: string) => valueOf(context.lock, k), await context.standing(place)];
+  const [word, held] = [(k: string) => valueOf(context.lock, k), await context.policy(place)];
   if ('refused' in held) return held;
   const own = held.lines, [wait, most] = ['adapter/request/wait', 'world/standing-bytes'].map((k) => Number(word(k).split('..')[1]));
   const lot: string[] = [];

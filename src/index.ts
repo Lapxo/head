@@ -7,14 +7,16 @@ import { CallToolRequestSchema, GetPromptRequestSchema, ListPromptsRequestSchema
 import { answerOf } from './core/answer.ts';
 import type { Asked, Context } from './core/answer.ts';
 import { valueOf } from './core/lock.ts';
-import { fill, matchTemplate, refusedOn, surfaceOf } from './core/surface.ts';
-import { founded, land, landAct, limits, pinnedAt, run, settledView, sign, standingAt, told, words } from './ports/bound.ts';
+import { fill } from './core/surface.ts';
+import { matchTemplate, refusedOn, surfaceOf } from './ports/surface.ts';
+import { founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, words } from './ports/bound.ts';
 import { held, keep } from './ports/cache.ts';
 import { registryFor } from './ports/signers.ts';
-import { dropAt, folderOf, hasAt, layAt, lockAt, takeAt } from './ports/place.ts';
+import { dropAt, folderOf, hasAt, layAt, listAt, lockAt, takeAt } from './ports/place.ts';
+import * as documents from './ports/documents.ts';
 import { keychain } from './ports/keychain.ts';
 import { algorithmOf, deviceOf, idIn } from './core/device.ts';
-import { publicOf } from './core/keys.ts';
+import { publicOf } from './ports/keys.ts';
 import { personOf } from './ports/access/person.ts';
 import { inTurn } from './flows/call.ts';
 
@@ -47,9 +49,10 @@ const contextOf = (signal?: AbortSignal): Context => {
     lock,
     bound: (cwd, args) => run(runs, cwd, args, {}, signal),
     standing: (place) => standingAt(runs, place, (lines) => ['head', 'person'].flatMap((role) => ((id) => (id === undefined ? [] : [id]))(idIn(lines, device(role)))), (line) => line.at?.startsWith(`${valueOf(lock, 'receipt/at')}:`) === true, signal),
+    policy: (place) => policyAt(runs, place, signal),
     world: (place, view) => settledView(runs, place, view, signal),
     adapter: async (origin) => ((name) => (!/^[a-z-]+$/.test(name) ? undefined : import(new URL(`./ports/adapters/${name}${ext}`, import.meta.url).href)))(URL.canParse(origin) ? valueOf(lock, `adapter/${new URL(origin).protocol.slice(0, -1)}`) : ''),
-    files: { lay: layAt, drop: dropAt, has: hasAt, take: takeAt, own: (rel) => takeAt(join(root, rel)) },
+    files: { lay: layAt, drop: dropAt, has: hasAt, list: listAt, read: documents, take: takeAt, own: (rel) => takeAt(join(root, rel)) },
     home: () => home,
     found: (place, account) => founded(runs, place, ...asRoot(account), signal),
     signRoot,

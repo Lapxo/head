@@ -9,20 +9,21 @@ import { run } from './cli.ts';
 import { registryFor } from '../src/ports/signers.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
-import { said, text, viewOf } from './place.ts';
+import { api, said, text, viewOf } from './place.ts';
 
 const tool = (name: string, args: Record<string, string>) => ({ method: 'tools/call', params: { name, arguments: args } });
 const yes = (params: any) => ({ action: 'accept', content: params.requestedSchema?.properties?.yes ? { yes: true } : {} });
 const row = (scope: string, measure: string, value: string, more: Record<string, string> = {}) => canonical({ at: 'policy:fixture', by: 'target', form: 'alphabet', measure, role: 'writes', scope, value, ...more });
 const facts = (lines: readonly string[] = []) => lines.filter((l) => parse(l).kind === 'fact');
 
-test('every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs — the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered', async () => {
+/** Two places head founds, an organisation and a member, paired by their walk contexts: each lays the other's context beside its lock and pins it, signed by its own root. */
+const paired = async () => {
   const shared = mkdtempSync(join(tmpdir(), 'head-walk-'));
   const places = await Promise.all(['org', 'member'].map(async (name) => {
     const keychain = fakeKeychain({}), home = join(shared, `${name}-home`), dir = join(shared, name);
     const [born] = await ask([tool('place', { dir })], [], { ...keychain.env, HEAD_HOME: home }, yes);
     match(text(born), said('born'));
-    return { name, dir, env: { ...keychain.env, BOUND_SIGNERS: registryFor('keychain', `@lapxo/head/${basename(home)}`, `place/${name}/root`, 'root', 'ed25519:era1', 'keychain') } };
+    return { name, dir, head: { ...keychain.env, HEAD_HOME: home }, env: { ...keychain.env, BOUND_SIGNERS: registryFor('keychain', `@lapxo/head/${basename(home)}`, `place/${name}/root`, 'root', 'ed25519:era1', 'keychain') } };
   }));
   const bound = (p: (typeof places)[number], args: readonly string[]) => run('@lapxo/bound', p.dir, [...args], p.env);
   const lot = (name: string, lines: readonly string[]) => ((at) => { writeFileSync(at, `${lines.join('\n')}\n`); return at; })(join(shared, `${name}.bound`));
@@ -40,6 +41,11 @@ test('every place head founds can be walked by bound: an organisation and a memb
     deepStrictEqual(bound(p, ['land', lot(`${p.name}-pair`, [row(`uses/peer-${other.name}`, 'digest', pins[1 - i]!, { needs: `.head/walk/${other.name}.bound` })]), ...signed])?.code, 0);
   });
   const [org, member] = places as [(typeof places)[0], (typeof places)[0]];
+  return { shared, org, member, bound, lot, signed };
+};
+
+test('every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs — the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered', async () => {
+  const { org, member, bound, lot, signed } = await paired();
   deepStrictEqual(bound(org, ['land', lot('grant', [row('allow/read', 'sources', 'jobs|people'), row('allow/read', 'until', '2999-01-01')]), ...signed])?.code, 0);
   const inventory = lot('member-inventory', facts(bound(member, ['fold', '--as', 'walk@0', ...signed])?.out));
   const summary = bound(org, ['fold', '--as', 'walk@1', inventory, ...signed]);
@@ -55,4 +61,22 @@ test('every place head founds can be walked by bound: an organisation and a memb
   const evidence = facts(bound(member, ['fold', '--as', 'evidence'])?.out);
   ok(evidence.some((l) => / scope=allow\/read /.test(l) && / value=jobs\|people$/.test(l)), 'the member holds the organisation-s grant as authenticated evidence');
   ok(!viewOf(member.dir, 'lines').includes('value=jobs|people'), 'foreign history never enters the member-s own standing');
+});
+
+test('a place that connected a source and granted a read can still be walked — its world-s blob pinned with its shape, the grant naming the person who witnessed it — and a member that connects the same document compiles the very pin the walk named', async () => {
+  const server = await api(() => '[{"id":1}]');
+  try {
+    const { shared, org, member, bound, lot, signed } = await paired();
+    writeFileSync(join(shared, 'things.json'), JSON.stringify({ openapi: '3.0.3', info: { title: 'things', version: '1' }, servers: [{ url: server.url }], paths: { '/things': { get: { operationId: 'listThings', security: [], responses: { 200: { description: 'ok' } } } } } }));
+    await ask([tool('connect', { place: org.dir, source: 'things', document: join(shared, 'things.json') })], [shared], org.head, yes);
+    match(text((await ask([tool('look', { place: org.dir, source: 'things', operation: 'listThings', at: '8' })], [], org.head, yes))[0]), said('answered'));
+    const packet = bound(org, ['fold', '--as', 'walk@8', lot('member-inventory', facts(bound(member, ['fold', '--as', 'walk@0', ...signed])?.out)), ...signed]);
+    deepStrictEqual(packet?.code, 0, packet?.err.join('\n'));
+    const payload = facts(packet?.out), named = / scope=uses\/things .*value=(sha256:[0-9a-f]+)/.exec(payload.join('\n'))?.[1];
+    ok(named && payload.some((l) => / scope=dep\/topos-openapi-blob .*shape=/.test(l)) && payload.some((l) => / scope=allow\/read .*witness=/.test(l)), payload.join('\n'));
+    match((bound(member, ['land', lot('payload', payload), ...signed])?.out ?? []).join('\n'), /INGRESS [1-9]\d* new evidence lines/);
+    writeFileSync(join(member.dir, 'things.json'), readFileSync(join(shared, 'things.json')));
+    await ask([tool('connect', { place: member.dir, source: 'things', document: join(member.dir, 'things.json') })], [], member.head, yes);
+    deepStrictEqual(/ scope=uses\/things .*value=(sha256:[0-9a-f]+)/.exec(viewOf(member.dir, 'lines'))?.[1], named, 'the same document compiles to the pin the walk named');
+  } finally { await server.close(); }
 });

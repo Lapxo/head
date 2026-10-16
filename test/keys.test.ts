@@ -3,7 +3,7 @@ import { deepStrictEqual, ok, throws } from 'node:assert';
 import { createPublicKey, verify } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { signedBytes, signerResponseOf } from '@lapxo/topos/wire';
-import { newKey, signLot } from '../src/core/keys.ts';
+import { newKey, signLot } from '../src/ports/keys.ts';
 
 const key = newKey();
 const lot = (by: string, scopes: readonly string[]) => scopes.map((scope) => signedBytes({ at: 'policy:t', by, form: 'alphabet', measure: 'digest', role: 'writes', scope, value: 'sha256:00' }));

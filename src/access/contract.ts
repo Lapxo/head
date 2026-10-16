@@ -15,7 +15,7 @@ export type Answered = { readonly status: number; readonly json: unknown } | und
  * may name, and the person; never a shell, never a file.
  */
 export interface Want {
-  readonly place: string; readonly source: string; readonly scheme: string; readonly params: Fields; readonly scopes: readonly string[]; readonly now: number;
+  readonly place: string; readonly source: string; readonly scheme: string; readonly params: Fields; readonly scopes: readonly string[]; readonly now: number; readonly renew?: string;
   readonly declared: Readonly<Record<string, Fields>>; readonly origin: string; readonly secrets: number; readonly values: readonly string[]; readonly host: Readonly<Record<string, string>>;
   readonly enter: (title: string, fields: readonly Field[]) => Promise<Held | undefined>;
   readonly consent: (message: string) => Promise<boolean>;
@@ -27,6 +27,6 @@ export interface Want {
 }
 
 /** A kind of access, executed by the host: how its secret rides a request, and the flow that obtains it. */
-export interface AccessAdapter { readonly attach: (secret: string, params: Fields) => Attachment; readonly obtain: (want: Want) => Promise<Obtained | { readonly refused: string; readonly input?: string }> }
+export interface AccessAdapter { readonly attach: (secret: string, params: Fields) => Attachment; readonly obtain: (want: Want) => Promise<Obtained | { readonly refused: string; readonly input?: string }>; readonly discover?: (resource: string, challenge: string, get: (url: string) => Promise<unknown>) => Promise<Readonly<Record<string, Fields>> | undefined> }
 
 export const jsonOf = (body: Uint8Array | string): unknown => { try { return JSON.parse(typeof body === 'string' ? body : Buffer.from(body).toString('utf8')) as unknown; } catch { return undefined; } };

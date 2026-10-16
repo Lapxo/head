@@ -39,7 +39,7 @@ test('a source is connected once: its document compiled by the world head carrie
     await ask([tool('place', { dir })], [], env, yes);
     writeFileSync(join(shared, 'things.json'), spec(server.url));
     writeFileSync(join(tmpdir(), 'head-outside.json'), spec(server.url));
-    const [outside, plain] = await ask([tool('connect', { place: dir, source: 'things', document: join(tmpdir(), 'head-outside.json') }), tool('connect', { place: dir, source: 'things', document: `${server.url}/things.json` })], [], env, yes);
+    const [outside, plain] = await ask([tool('connect', { place: dir, source: 'things', document: join(tmpdir(), 'head-outside.json') }), tool('connect', { place: dir, source: 'things', document: `${server.url.replace('127.0.0.1', 'head-plain.invalid')}/things.json` })], [], env, yes);
     const [connected] = await ask([tool('connect', { place: dir, source: 'things', document: join(shared, 'things.json') })], [shared], env, yes);
     const pin = /Pinned as (sha256:[0-9a-f]+)/.exec(text(connected))?.[1];
     match(text(outside), said('document-unread')); match(text(plain), said('document-unread')); deepStrictEqual(server.seen.length, 0); match(text(connected), said('connected')); ok(pin, text(connected));

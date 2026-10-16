@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { chmodSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join } from 'node:path';
-import { newKey } from '../src/core/keys.ts';
+import { newKey } from '../src/ports/keys.ts';
 import { members, valueOf } from '../src/core/lock.ts';
 import { keychain } from '../src/ports/keychain.ts';
 import { lock, root } from './place.ts';
