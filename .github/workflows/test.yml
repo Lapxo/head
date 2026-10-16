@@ -47,6 +47,8 @@ jobs:
       - run: npm run build
       - name: Build the Desktop Extension, named by its digest
         run: node .github/mcpb/build.mts "$RUNNER_TEMP/mcpb"
+      - name: Compare with the digest built on another Mac
+        run: node -e "const [a,b]=['$RUNNER_TEMP/mcpb/release.json','.github/mcpb/expected.json'].map((f)=>JSON.parse(require('fs').readFileSync(f,'utf8'))); console.log((a.digest===b.digest?'SAME     ':'DIFFERS  ')+a.digest+' here · '+b.digest+' '+b.built+' · node '+process.version)"
       - name: Run it as a host would, from the unpacked bundle in a fresh home
         run: node .github/mcpb/smoke.mts "$RUNNER_TEMP"/mcpb/head-*.mcpb "$RUNNER_TEMP/mcpb/release.json"
       - uses: actions/upload-artifact@v4
