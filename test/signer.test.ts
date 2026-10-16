@@ -3,7 +3,7 @@ import { deepStrictEqual } from 'node:assert';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { signedBytes, signerResponseOf } from '@lapxo/topos/wire';
-import { newKey } from '../src/core/keys.ts';
+import { newKey } from '../src/ports/keys.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 
 const signer = fileURLToPath(new URL('../src/signer.ts', import.meta.url));

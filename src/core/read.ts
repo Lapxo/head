@@ -4,7 +4,7 @@ import type { Said } from './lock.ts';
 
 export type Plan = { readonly kind: 'said'; readonly key: string; readonly fields: Readonly<Record<string, string>> };
 export type Fields = Readonly<Record<string, readonly string[]>>;
-export interface Access { readonly kind: string; readonly scheme: string; readonly params: Fields; readonly account: string | undefined; readonly flow: string }
+export interface Access { readonly kind: string; readonly scheme: string; readonly params: Fields; readonly account: string | undefined; readonly flow: string; readonly probe?: true; readonly from?: string }
 export interface Call { readonly kind: 'call'; readonly source: string; readonly operation: string; readonly origin: string; readonly carry: Fields; readonly form: Fields; readonly classes: readonly string[]; readonly access: Access }
 
 const said = (key: string, fields: Readonly<Record<string, string>> = {}): Plan => ({ kind: 'said', key, fields });
@@ -26,10 +26,13 @@ const originOf = (lines: readonly Said[], v: Vocab, source: string): string | Pl
   return declared.length === 1 ? declared[0]! : said(declared.length ? 'pick-origin' : 'no-origin', { source, origins: declared.join(', ') });
 };
 
-/** How access is proven for an offer: its first declared alternative that says how what it obtains rides a request — anonymous, or a scheme whose flow the one adapter runs, its own or its issuer's, kept once per issuer; unstated, or none that says, is no call, named. */
+export const observedAt = (lock: readonly Said[], source: string, operation: string): string => `${valueOf(lock, 'access/family')}/${source}/${operation}/${valueOf(lock, 'access/observed')}`;
+/** How access is proven for an offer: its first declared alternative that says how what it obtains rides a request — anonymous, or a scheme whose flow the one adapter runs, its own or its issuer's, kept once per issuer; none that says is no call, named. Unstated, it is a read with nothing attached: probed once, and anonymous once head observed it answer. */
 const accessOf = (lines: readonly Said[], lock: readonly Said[], v: Vocab, source: string, operation: string, place: string): Access | Plan => {
   const ways = fieldsOf(lines, `${v.offers}/${source}/${operation}`)[v.access] ?? [v.unstated];
-  if (ways.includes(v.unstated)) return said('access-unstated', { source, operation });
+  const by = `${valueOf(lock, 'access/family')}/${source}/${valueOf(lock, 'access/authorizer')}`, account = (issuer?: string) => valueOf(lock, issuer ? 'access/issuer-account' : 'access/account').split('{place}').join(place).split('{source}').join(source).split('{issuer}').join(issuer ?? '');
+  if (ways.includes(v.unstated) && lines.some((l) => l.scope === by)) return { kind: valueOf(lock, 'access/adapter'), scheme: valueOf(lock, 'access/authorizer'), params: fieldsOf(lines, by), flow: `${source}/${valueOf(lock, 'access/authorizer')}`, account: account(), from: by };
+  if (ways.includes(v.unstated)) return ((seen) => ({ kind: v.anonymous, scheme: '', params: {}, account: undefined, flow: '', ...(seen ? {} : { probe: true as const }) }))(lines.some((l) => l.scope === observedAt(lock, source, operation) && l.value === v.anonymous));
   const kindOf = (way: string) => {
     if (way === v.anonymous) return [way, v.anonymous, {} as Fields, '', undefined] as const;
     const issuer = fieldsOf(lines, `${v.keys}/${source}/${way}`)['issuer']?.[0];
@@ -41,7 +44,7 @@ const accessOf = (lines: readonly Said[], lock: readonly Said[], v: Vocab, sourc
   const usable = kinds.find(([, kind]) => kind !== '');
   if (usable === undefined) return said('no-adapter', { source, operation, kinds: ways.join(', ') });
   const [scheme, kind, params, flow, issuer] = usable;
-  return { kind, scheme, params, flow, account: kind === v.anonymous ? undefined : valueOf(lock, issuer ? 'access/issuer-account' : 'access/account').split('{place}').join(place).split('{source}').join(source).split('{issuer}').join(issuer ?? '') };
+  return { kind, scheme, params, flow, account: kind === v.anonymous ? undefined : account(issuer) };
 };
 
 export const stepOf = (lines: readonly Said[], lock: readonly Said[], source: string, operation: string): Call | Plan => {
@@ -66,4 +69,4 @@ const isCallable = (lock: readonly Said[], classes: readonly string[]): boolean 
 
 export const planRead = (lines: readonly Said[], lock: readonly Said[], source: string, operation: string, place: string): Call | Plan => ((call) => (call.kind === 'call' && !isCallable(lock, call.classes) ? said('not-callable', { source, operation, class: call.classes.join(', ') }) : call))(callOf(lines, lock, source, operation, place));
 
-export const planAct = (lines: readonly Said[], lock: readonly Said[], source: string, operation: string, place: string): Call | Plan => ((call) => (call.kind === 'call' && isCallable(lock, call.classes) ? said('is-read', { source, operation }) : call))(callOf(lines, lock, source, operation, place));
+export const planAct = (lines: readonly Said[], lock: readonly Said[], source: string, operation: string, place: string): Call | Plan => ((call) => (call.kind === 'call' && isCallable(lock, call.classes) ? said('is-read', { source, operation }) : call.kind === 'call' && call.access.probe ? said('access-unstated', { source, operation }) : call))(callOf(lines, lock, source, operation, place));

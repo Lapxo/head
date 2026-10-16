@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { LOCK } from '@lapxo/topos/wire';
@@ -17,3 +17,4 @@ export const layAt = (place: string, rel: string, bytes: Uint8Array): void => { 
 export const takeAt = (path: string): Uint8Array | undefined => { try { return readFileSync(path); } catch { return undefined; } };
 export const hasAt = (place: string, rel: string): boolean => existsSync(resolve(place, rel));
 export const dropAt = (place: string, rel: string): void => rmSync(inside(place, rel), { force: true });
+export const listAt = (place: string, rel: string): readonly string[] => { try { return readdirSync(inside(place, rel)); } catch { return []; } };

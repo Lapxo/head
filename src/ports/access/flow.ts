@@ -1,5 +1,7 @@
 import { createHash, randomBytes } from 'node:crypto';
+import { jsonOf } from '../../access/contract.ts';
 import type { AccessAdapter, Fields, Want } from '../../access/contract.ts';
+import { discovered } from './authorizer.ts';
 
 type Value = string | readonly string[] | undefined;
 type Refusal = { readonly refused: string; readonly input?: string };
@@ -23,10 +25,16 @@ const originOf = (url: string): string => (URL.canParse(url) ? new URL(url).orig
  * the token is kept, and it rides a request as the flow's template says.
  */
 export const adapter: AccessAdapter = {
+  discover: discovered,
   attach: (secret, params) => ((into, name, value) => (into === 'header' ? { headers: { [name]: value }, query: {} } : into === 'query' ? { headers: {}, query: { [name]: value } } : { headers: {}, query: {} }))(
     one(params, 'attach-in'), one(params, 'attach-name') ?? '', (one(params, 'attach-template') ?? '{token}').split('{token}').join(secret)),
   obtain: async (want: Want) => {
-    const [d, gen, inputs, outputs] = [want.declared, { state: randomBytes(24).toString('base64url'), verifier: randomBytes(32).toString('base64url') }, new Map<string, string>(), new Map<string, ReadonlyMap<string, Value>>()];
+    const [d, renewed] = [want.declared, ((r) => (r && typeof r === 'object' ? r as { refresh?: string; client?: string } : undefined))(jsonOf(want.renew ?? ''))];
+    if (renewed?.refresh && one(d[''], 'renew')) {
+      const got = await want.post(one(d[''], 'renew')!, { grant_type: 'refresh_token', refresh_token: renewed.refresh, ...(renewed.client ? { client_id: renewed.client } : {}) }, 'form'), [secret, lasts, refresh] = ['/access_token', '/expires_in', '/refresh_token'].map((at) => pointed(got?.json, at)[0]);
+      if (got !== undefined && got.status < 300 && secret) return { secret, ...(Number.isFinite(Number(lasts)) && lasts ? { expires: want.now + Number(lasts) * 1000 } : {}), renew: JSON.stringify({ ...renewed, refresh: refresh ?? renewed.refresh }) };
+    }
+    const [gen, inputs, outputs] = [ { state: randomBytes(24).toString('base64url'), verifier: randomBytes(32).toString('base64url') }, new Map<string, string>(), new Map<string, ReadonlyMap<string, Value>>()] as const;
     let [callback, secrets, refused] = ['', 0, undefined as Refusal | undefined];
     const stop = (why: Refusal): undefined => { refused ??= why; return undefined; };
     const ask = async (name: string): Promise<string | undefined> => {
@@ -90,9 +98,10 @@ export const adapter: AccessAdapter = {
       if (!refused) await kept(steps[page]!, back);
     }
     for (const k of page >= 0 ? steps.slice(page + 1) : steps) if (refused || !(await run(k))) break;
-    const [token, expires] = [(await Promise.all((d['']?.['token'] ?? []).map((e) => resolve(e)))).find((v) => !empty(v)), (await Promise.all((d['']?.['expires'] ?? []).map((e) => resolve(e)))).find((v) => !empty(v))];
+    const [token, expires, refresh] = await Promise.all(['token', 'expires', 'refresh'].map(async (k) => (await Promise.all((d['']?.[k] ?? []).map((e) => resolve(e)))).find((v) => !empty(v))));
     if (refused) return refused;
     if (typeof token !== 'string' || !token) return { refused: 'login-refused' };
-    return { secret: token, ...(typeof expires === 'string' && Number.isFinite(Number(expires)) ? { expires: want.now + Number(expires) * 1000 } : {}), ...(steps.length ? {} : { manual: true as const }) };
+    return { secret: token, ...(typeof expires === 'string' && Number.isFinite(Number(expires)) ? { expires: want.now + Number(expires) * 1000 } : {}), ...(steps.length ? {} : { manual: true as const }),
+      ...(typeof refresh === 'string' && refresh ? { renew: JSON.stringify({ refresh, client: outputs.get('register')?.get('client') ?? one(d[''], 'client') }) } : {}) };
   },
 };

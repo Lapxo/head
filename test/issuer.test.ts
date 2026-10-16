@@ -45,7 +45,7 @@ test('access belongs to its issuer: declared once and referred to across documen
     const reads = await ask([look('jobs'), look('people'), look('timesheets')], [], env, person);
     match(text(accessed), said('access-kept'));
     const [own] = await ask([look('ledger')], [], env, person);
-    for (const [one, source] of [...reads.map((r, i) => [r, ['jobs', 'people', 'timesheets'][i]!] as const), [own, 'ledger'] as const]) match(text(one), new RegExp(`^${source} answered 200 to list-${source}\\.[\\s\\S]* measure=number .*value=1\\n`));
+    for (const [one, source] of [...reads.map((r, i) => [r, ['jobs', 'people', 'timesheets'][i]!] as const), [own, 'ledger'] as const]) match(text(one), new RegExp(`^said/head/answered [^\\n]*source="${source}" operation="list-${source}" status="200"[\\s\\S]* measure=number .*value=1\\n`));
     deepStrictEqual(server.seen.map((one) => [one.url, one.headers['authorization'] ?? '']), [['/login', ''], ['/jobs', 'Bearer t-org'], ['/people', 'Bearer t-org'], ['/timesheets', 'Bearer t-org'], ['/books-login', ''], ['/ledger', 'Bearer t-books']]);
     deepStrictEqual([JSON.parse(server.seen[0]!.body), JSON.parse(server.seen[4]!.body)], [{ email: 'email-of-ana' }, { user: 'user-of-ana' }]);
     deepStrictEqual(asked, ['email', 'yes', 'user'], 'one prompt per issuer and one grant for the place');
@@ -78,12 +78,12 @@ test('an unresolved reference is a demand the issuer-s connect pays: jobs connec
     match(standing('jobs'), / measure=unresolved .*scope=keys\/access\/jobs\/BearerAuth value=auth\.json#\/components\/x-access\/portal$/m);
     const [jobsBefore, payrollBefore] = [pinOf('jobs'), pinOf('payroll')];
     const [late] = await connect('auth');
-    match(text(late), said('resolved')); match(text(late), /^jobs referred to auth before it was here/m); ok(!/^payroll referred/m.test(text(late)), text(late));
+    match(text(late), said('resolved')); match(text(late), /^said\/head\/resolved [^\n]*source="jobs" by="auth"/m); ok(!/^said\/head\/resolved [^\n]*source="payroll"/m.test(text(late)), text(late));
     ok(pinOf('jobs') !== jobsBefore && !standing('jobs').includes('measure=unresolved') && / measure=issuer .*scope=keys\/access\/jobs\/BearerAuth value=portal$/m.test(standing('jobs')), standing('jobs'));
     deepStrictEqual([pinOf('payroll'), lock().match(/ scope=uses\/jobs /g)?.length], [payrollBefore, 1], 'a demand no connect paid keeps its pin; a recompiled pin replaces its old one');
     asked.length = 0;
     const [read] = await ask([tool('look', { place: dir, source: 'jobs', operation: 'list-jobs', at: '8' })], [], env, person);
-    match(text(read), /^jobs answered 200 to list-jobs\./);
+    match(text(read), /^said\/head\/answered [^\n]*source="jobs" operation="list-jobs" status="200"/m);
     deepStrictEqual([asked, server.seen.map((one) => [one.url, one.headers['authorization'] ?? ''])], [['yes', 'email'], [['/login', ''], ['/jobs', 'Bearer t-org']]]);
   } finally { await server.close(); }
 });

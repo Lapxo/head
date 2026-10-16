@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { readFileSync } from 'node:fs';
-import { signLot } from './core/keys.ts';
+import { signLot } from './ports/keys.ts';
 import { keychain } from './ports/keychain.ts';
 
 const [service = '', account = '', key = '', algorithm = '', store = 'keychain'] = process.argv.slice(2);

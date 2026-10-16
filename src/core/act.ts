@@ -10,6 +10,7 @@ export const allowedOf = (lines: readonly Said[], family: string, api: string, o
 export const grantedOf = (lines: readonly Said[], family: string, source: string, now: number): boolean =>
   (lines.find((l) => l.scope === family && l.measure === 'sources')?.value ?? '').split('|').includes(source) && Date.parse(lines.find((l) => l.scope === family && l.measure === 'until')?.value ?? '') > now;
 
+export const untilOf = (period: string, now: number): string => new Date(now + Number(period) * 86_400_000).toISOString().slice(0, 10);
 export const cappedOf = (lines: readonly Said[], family: string, source: string, operation: string): boolean => hi(lines, `${family}/${source}/${operation}`) !== undefined || hi(lines, `${family}/${source}`) !== undefined;
 
 export const askedOf = (lines: readonly Said[], family: string, api: string, operation: string): boolean => lines.some((l) => l.scope === `${family}/${api}/${operation}` && l.value === 'present');

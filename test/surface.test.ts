@@ -4,7 +4,8 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { matches } from '@lapxo/topos/wire';
 import { fileURLToPath } from 'node:url';
 import { members, declaredOf } from '../src/core/lock.ts';
-import { fill, matchTemplate, redIn, refusedOn, surfaceOf } from '../src/core/surface.ts';
+import { fill, redIn, sayIn } from '../src/core/surface.ts';
+import { matchTemplate, refusedOn, surfaceOf } from '../src/ports/surface.ts';
 import { lockAt } from '../src/ports/place.ts';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -44,12 +45,12 @@ test('a measure past its ceiling in head-s lock reads red, whole seconds, with t
   const red = redIn(declaredOf(text('TARGET.bound')));
   deepStrictEqual([red('answer/seconds', 'answer/s/op@8', 0, 2999), red('answer/kept', 'answer/s/op@8', 0, 999), red('connect/seconds', 'connect/s', 0, 10_999)], [[], [], []]);
   deepStrictEqual([red('answer/seconds', 'answer/s/op@8', 0, 3000), red('answer/kept', 'answer/s/op@8', 0, 1000)],
-    [['red: answer/s/op@8 took 3 s, over answer/seconds 0..2.'], ['red: answer/s/op@8 took 1 s, over answer/kept 0..0.']]);
+    [[sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op@8', seconds: '3', scope: 'answer/seconds', ceiling: '0..2' })], [sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op@8', seconds: '1', scope: 'answer/kept', ceiling: '0..0' })]]);
 });
 
 test('a host the lock does not name is refused by name, every call, nothing done; the one it names is not', () => {
   deepStrictEqual([refusedOn(lock, 'darwin'), refusedOn(lock, 'linux'), refusedOn(lock, 'win32'), refusedOn(lock, 'freebsd')],
-    [undefined, undefined, undefined, 'head runs on darwin|linux|win32; this host is freebsd: nothing was done. Its secret store and browser opener are none head carries.']);
+    [undefined, undefined, undefined, sayIn(lock)('platform', { platform: 'freebsd', supported: 'darwin|linux|win32' })]);
 });
 
 /** The files of a region, as the lock's coordinates for it say: file paths follow the coordinates, never the other way. */

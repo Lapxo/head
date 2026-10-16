@@ -7,7 +7,7 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 
 /** A client over stdio: one JSON-RPC message a line. It answers roots/list with the roots it shares, elicitation/create as the test decides — declaring the modes it is given, form and url unless told — and collects answers by id. */
 export const ask = async (calls: readonly { method: string; params?: unknown }[], roots: readonly string[] = [], env: Readonly<Record<string, string>> = {}, elicit?: (params: any) => unknown, modes: Readonly<Record<string, object>> = { form: {}, url: {} }): Promise<readonly any[]> => {
-  const child = spawn(process.execPath, [join(root, 'src/index.ts')], { stdio: ['pipe', 'pipe', 'inherit'], env: { ...process.env, ...offline(), ...env } });
+  const child = spawn(process.execPath, [process.env['HEAD_ENTRY'] || join(root, 'src/index.ts')], { stdio: ['pipe', 'pipe', 'inherit'], env: { ...process.env, ...offline(), ...env } });
   const send = (message: unknown) => child.stdin.write(`${JSON.stringify(message)}\n`);
   const got: any[] = [];
   let buffer = '';

@@ -1,0 +1,114 @@
+name: test
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+        shard: [1, 2, 3]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
+      - name: Run tests, shard ${{ matrix.shard }} of 3
+        run: |
+          set -euo pipefail
+          node --test --test-shard=${{ matrix.shard }}/3 test/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
+      - name: Preserve test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: head-node-${{ matrix.node }}-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/head-tests.log
+          if-no-files-found: ignore
+  time:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
+      - name: Run the timed tests alone on this machine, one at a time
+        run: |
+          set -euo pipefail
+          node --test --test-concurrency=1 test/time/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-time.log"
+      - name: Check the committed receipts on a clean checkout
+        if: ${{ !cancelled() }}
+        run: npx --no-install bound fold --check
+      - name: Preserve the timed log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: head-time-node-${{ matrix.node }}
+          path: ${{ runner.temp }}/head-time.log
+          if-no-files-found: ignore
+  bundle:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - name: Pack the archive npm would publish
+        run: mkdir -p "$RUNNER_TEMP/release" && npm pack --pack-destination "$RUNNER_TEMP/release"
+      - name: Make the Desktop Extension from that archive, twice, repacked with fixed times and order, and require one digest
+        run: |
+          set -euo pipefail
+          test "$(node -p "require('./manifest.json').version")" = "$(node -p "require('./package.json').version")"
+          archive="$(ls "$RUNNER_TEMP"/release/*.tgz)"
+          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          for n in 1 2; do
+            stage="$RUNNER_TEMP/stage-$n"
+            mkdir -p "$stage"
+            tar -xzf "$archive" -C "$stage" --strip-components 1
+            cp package-lock.json manifest.json "$stage/"
+            (cd "$stage" && npm ci --omit=dev --ignore-scripts --no-audit --no-fund --loglevel=error)
+            npx --no-install mcpb pack "$stage" "$RUNNER_TEMP/packed-$n.mcpb"
+            unpacked="$RUNNER_TEMP/unpacked-$n"
+            mkdir -p "$unpacked"
+            unzip -q "$RUNNER_TEMP/packed-$n.mcpb" -d "$unpacked"
+            chmod -R u=rwX,go=rX "$unpacked"
+            TZ=UTC find "$unpacked" -exec touch -h -t 198001020000 {} +
+            (cd "$unpacked" && find . -type f | LC_ALL=C sort | TZ=UTC zip -X -9 -q -@ "$RUNNER_TEMP/head-$n.mcpb")
+          done
+          one="$(shasum -a 256 "$RUNNER_TEMP/head-1.mcpb" | cut -d' ' -f1)"
+          two="$(shasum -a 256 "$RUNNER_TEMP/head-2.mcpb" | cut -d' ' -f1)"
+          for n in 1 2; do printf 'CONTENT %s · %s\n' "$n" "$(cd "$RUNNER_TEMP/unpacked-$n" && find . -type f | LC_ALL=C sort | xargs shasum -a 256 | shasum -a 256 | cut -d' ' -f1)"; done
+          printf 'BUNDLE sha256:%s · made again sha256:%s · from %s\n' "$one" "$two" "$(shasum -a 256 "$archive" | cut -d' ' -f1)"
+          test "$one" = "$two"
+      - name: Run it as a host would, from the unpacked bundle in a fresh home
+        run: HEAD_BUNDLE="$RUNNER_TEMP/head-1.mcpb" node --test test/bundle.test.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: head-bundle
+          path: |
+            ${{ runner.temp }}/release/
+            ${{ runner.temp }}/head-1.mcpb
+          if-no-files-found: error

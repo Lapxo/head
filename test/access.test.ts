@@ -52,7 +52,7 @@ test('no: a secret the place-s root does not allow is never asked — refused na
   const [refused] = await ask([look(denied.place, 'issues/get', issue('1'))], [], denied.keychain.env, () => { prompts += 1; return { action: 'decline' }; });
   const [unasked] = await ask([look(allowed.place, 'issues/get', issue('1'))], [], allowed.keychain.env);
   await server.close();
-  match(text(refused), said('secret-unallowed')); match(text(refused), / for token, a secret/); match(text(unasked), said('entry-unfinished'));
+  match(text(refused), said('secret-unallowed')); match(text(refused), / input="token"/); match(text(unasked), said('entry-unfinished'));
   match(allowed.keychain.opened(), /^http:\/\/127\.0\.0\.1:\d+\/[\w-]+\n$/);
   deepStrictEqual([prompts, kept(denied.keychain, denied.place), kept(allowed.keychain, allowed.place), server.seen.length], [0, undefined, undefined, 0]);
 });
@@ -131,7 +131,7 @@ test('access ahead of any call: a server that names where a client registers (RF
   const [undeclared] = await ask([access(asking.place)], [], asking.keychain.env, person({}, {}, []));
   await provider.close(); await refusing.close();
   match(text(undeclared), said('host-input')); match(text(undeclared), /client-uri/);
-  match(text(kept1), said('access-kept')); match(text(refused), said('step-unanswered')); match(text(refused), /at register/);
+  match(text(kept1), said('access-kept')); match(text(refused), said('step-unanswered')); match(text(refused), / input="register"/);
   deepStrictEqual([provider.seen.map((r) => r.url), refusing.seen.map((r) => r.url)], [['/register', '/token'], ['/register']]);
   const registration = JSON.parse(provider.seen[0]!.body) as Record<string, unknown>;
   deepStrictEqual([registration['token_endpoint_auth_method'], registration['grant_types'], (registration['redirect_uris'] as string[]).every((u) => u.startsWith('http://127.0.0.1:'))], ['none', ['authorization_code'], true]);
@@ -169,5 +169,5 @@ test('a step whose answer is an error that still carries what its outputs name g
   const [stopped] = await ask([look(two.place, 'issues/picked')], [], two.keychain.env, person);
   await conflict.close(); await denied.close();
   match(text(picked), said('untyped')); deepStrictEqual(conflict.seen.map((r) => r.url), ['/login', '/select-shop', '/picked']); deepStrictEqual(kept(one.keychain, one.place)?.secret, 't-picked');
-  match(text(stopped), said('step-unanswered')); match(text(stopped), /at login/); deepStrictEqual(denied.seen.map((r) => r.url), ['/login']);
+  match(text(stopped), said('step-unanswered')); match(text(stopped), / input="login"/); deepStrictEqual(denied.seen.map((r) => r.url), ['/login']);
 });
