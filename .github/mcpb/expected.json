@@ -1,1 +1,1 @@
-{"digest":"sha256:25e0a830a542181c92ee4e803693ef47e9308519963534eb8b2e311ce7a52be0","built":"macOS local, node v24.14.1, npm 11.11.0","from":"repin-021: the head 0.1.3 projection with lot head-0.1.4-repin-021 applied (bound 0.2.1, worlds 0.1.1)"}
+{"digest":"sha256:a299ab38df09e38ca1509f5542d6243e925f82b3d28799edc9c6edc45a81256e","built":"macOS local, node v24.14.1, npm 11.11.0","from":"head 0.1.4 repin-021, the lock projected from the owner's walk at epoch 8 (bound 0.2.1, worlds 0.1.1)"}
