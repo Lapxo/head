@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import type { ChildProcess } from 'node:child_process';
 
-export interface Printed { readonly code: number; readonly out: readonly string[]; readonly err: readonly string[] }
+export interface Printed { readonly code: number; readonly out: readonly string[]; readonly err: readonly string[]; readonly refusal?: Readonly<Record<string, string>> }
 export interface Bounds { readonly wait: number; readonly most: number; readonly signal?: AbortSignal }
 
 const running = new Set<() => void>();

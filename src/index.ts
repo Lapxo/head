@@ -25,7 +25,7 @@ const [ext, root] = ((self) => [self.slice(self.lastIndexOf('.')), fileURLToPath
 const lock = lockAt(root);
 const surface = surfaceOf(lock);
 const runs = valueOf(lock, 'runs');
-Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile', 'receipts'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
+Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile', 'receipts', 'refusal'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
 Object.assign(limits, { wait: Number(valueOf(lock, 'bound/wait').split('..')[1]), most: Number(valueOf(lock, 'bound/printed').split('..')[1]) });
 Object.assign(warmth, { spares: Number(valueOf(lock, 'bound/spares').split('..')[1]), boot: valueOf(lock, 'bound/spare-env').split('|') });
 /** One call at a time, with bound started ahead for it and nothing of it kept once it is answered. */
