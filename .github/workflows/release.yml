@@ -81,27 +81,45 @@ jobs:
         with:
           node-version: 24
       - run: npm ci
-      - name: Make the Desktop Extension from the approved archive
+      - name: Make the Desktop Extension from the approved archive, twice, and require one digest
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/release"
           gh release download "$TAG" --pattern "$ARCHIVE" --dir "$RUNNER_TEMP/release"
           printf '%s  %s\n' "${DIGEST#sha256:}" "$RUNNER_TEMP/release/$ARCHIVE" | shasum -a 256 -c -
-          node .github/mcpb/build.mts "$RUNNER_TEMP/mcpb" --from "$RUNNER_TEMP/release/$ARCHIVE"
-          node -e "const [a,b]=['$RUNNER_TEMP/mcpb/release.json','.github/mcpb/expected.json'].map((f)=>JSON.parse(require('fs').readFileSync(f,'utf8'))); console.log((a.digest===b.digest?'SAME     ':'DIFFERS  ')+a.digest+' here · '+b.digest+' '+b.built); process.exit(a.digest===b.digest?0:1)"
-          node .github/mcpb/smoke.mts "$RUNNER_TEMP"/mcpb/head-*.mcpb "$RUNNER_TEMP/mcpb/release.json"
+          test "v$(node -p "require('./manifest.json').version")" = "$TAG"
+          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          for n in 1 2; do
+            stage="$RUNNER_TEMP/stage-$n"
+            mkdir -p "$stage"
+            tar -xzf "$RUNNER_TEMP/release/$ARCHIVE" -C "$stage" --strip-components 1
+            cp package-lock.json manifest.json "$stage/"
+            (cd "$stage" && npm ci --omit=dev --ignore-scripts --no-audit --no-fund --loglevel=error)
+            npx --no-install mcpb pack "$stage" "$RUNNER_TEMP/head-$n.mcpb"
+          done
+          one="$(shasum -a 256 "$RUNNER_TEMP/head-1.mcpb" | cut -d' ' -f1)"
+          two="$(shasum -a 256 "$RUNNER_TEMP/head-2.mcpb" | cut -d' ' -f1)"
+          test "$one" = "$two"
+          bundle="head-${TAG#v}-${one:0:16}.mcpb"
+          cp "$RUNNER_TEMP/head-1.mcpb" "$RUNNER_TEMP/$bundle"
+          printf 'BUNDLE=%s\nMADE=sha256:%s\n' "$bundle" "$one" >> "$GITHUB_ENV"
+          printf 'BUNDLE %s · sha256:%s · made twice · from %s\n' "$bundle" "$one" "$DIGEST"
+      - name: Run it as a host would, from the unpacked bundle in a fresh home
+        run: HEAD_BUNDLE="$RUNNER_TEMP/$BUNDLE" node --test test/bundle.test.ts
       - name: Attach it to the release, its digest in the notes
         run: |
           set -euo pipefail
-          bundle="$(node -p "require('$RUNNER_TEMP/mcpb/release.json').bundle")"
-          made="$(node -p "require('$RUNNER_TEMP/mcpb/release.json').digest")"
-          gh release upload "$TAG" "$RUNNER_TEMP/mcpb/$bundle" --clobber
           gh release view "$TAG" --json body --jq .body > "$RUNNER_TEMP/notes.md"
-          if ! grep -Fq "$bundle" "$RUNNER_TEMP/notes.md"; then
-            printf '\n\nDesktop Extension `%s` · `%s`, made from `%s` (`%s`), the archive the owner approved.\n' "$bundle" "$made" "$ARCHIVE" "$DIGEST" >> "$RUNNER_TEMP/notes.md"
+          if grep -q 'The Desktop Extension `head-' "$RUNNER_TEMP/notes.md"; then
+            grep -Fq "$MADE" "$RUNNER_TEMP/notes.md" || { printf 'REFUSE·bundle the release names another digest than %s\n' "$MADE"; exit 1; }
+          else
+            printf '\n\nThe signature covers `%s` (`%s`). The Desktop Extension `%s` (`%s`) is made by this workflow from that archive, with SOURCE_DATE_EPOCH at the tag; made again, it gives the same digest.\n' "$ARCHIVE" "$DIGEST" "$BUNDLE" "$MADE" >> "$RUNNER_TEMP/notes.md"
             gh release edit "$TAG" --notes-file "$RUNNER_TEMP/notes.md"
           fi
-          printf 'BUNDLE %s · %s · from %s\n' "$bundle" "$made" "$DIGEST"
+          gh release upload "$TAG" "$RUNNER_TEMP/$BUNDLE" --clobber
+          mkdir -p "$RUNNER_TEMP/back"
+          gh release download "$TAG" --pattern "$BUNDLE" --dir "$RUNNER_TEMP/back"
+          printf '%s  %s\n' "${MADE#sha256:}" "$RUNNER_TEMP/back/$BUNDLE" | shasum -a 256 -c -
   publish:
     needs: [approve, bundle]
     environment: release
