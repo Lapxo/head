@@ -66,7 +66,7 @@ jobs:
           name: head-time-node-${{ matrix.node }}
           path: ${{ runner.temp }}/head-time.log
           if-no-files-found: ignore
-  bundle:
+  release:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -76,16 +76,22 @@ jobs:
         with:
           node-version: 24
       - run: npm ci
-      - run: npm run build
-      - name: Build the Desktop Extension, named by its digest
-        run: node .github/mcpb/build.mts "$RUNNER_TEMP/mcpb"
-      - name: Compare with the digest built on another Mac
-        run: node -e "const [a,b]=['$RUNNER_TEMP/mcpb/release.json','.github/mcpb/expected.json'].map((f)=>JSON.parse(require('fs').readFileSync(f,'utf8'))); console.log((a.digest===b.digest?'SAME     ':'DIFFERS  ')+a.digest+' here · '+b.digest+' '+b.built+' · node '+process.version)"
+      - name: Pack the archive npm would publish
+        run: npm pack --pack-destination "$RUNNER_TEMP/release"
+      - name: Judge it as the release does, an approval signed by a throwaway owner
+        run: node .github/release/rehearse.mts "$RUNNER_TEMP"/release/*.tgz
+      - name: Make the Desktop Extension from that archive, as the release does
+        run: |
+          set -euo pipefail
+          node .github/mcpb/build.mts "$RUNNER_TEMP/mcpb" --from "$RUNNER_TEMP"/release/*.tgz
+          node -e "const [a,b]=['$RUNNER_TEMP/mcpb/release.json','.github/mcpb/expected.json'].map((f)=>JSON.parse(require('fs').readFileSync(f,'utf8'))); console.log((a.digest===b.digest?'SAME     ':'DIFFERS  ')+a.digest+' here · '+b.digest+' '+b.built+' · node '+process.version); process.exit(a.digest===b.digest?0:1)"
       - name: Run it as a host would, from the unpacked bundle in a fresh home
         run: node .github/mcpb/smoke.mts "$RUNNER_TEMP"/mcpb/head-*.mcpb "$RUNNER_TEMP/mcpb/release.json"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: head-mcpb
-          path: ${{ runner.temp }}/mcpb/
+          name: head-release-rehearsal
+          path: |
+            ${{ runner.temp }}/release/
+            ${{ runner.temp }}/mcpb/
           if-no-files-found: error
