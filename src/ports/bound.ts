@@ -56,6 +56,10 @@ export const sign = async (name: string, place: string, lot: readonly string[], 
   ((got) => (got !== undefined && got.code === 0 ? { lines: got.out.filter((line) => parse(line).kind === 'fact') } : { refused: got?.err.at(-1) ?? '' }))(await run(name, place, [words.sign, lotFile(lot), words.key, key, words.signer, signer], env, signal));
 
 /** A lot signed and landed in one process, its result read from what bound printed of the committed act: the records it admitted, never the receipt beside them; a place that declares no act result is refused by name. */
+/** What a place-s root landed, its receipts then rendered beside its lock so bound alone checks the place: a render that fails is said beside what landed, never hidden. A read a device key lands is not followed by one: the next act of the root closes it. */
+export const closing = async (name: string, place: string, landed: Outcome, signal?: AbortSignal): Promise<Outcome> => ('refused' in landed ? landed
+  : ((got) => (got !== undefined && got.code === 0 ? landed : { lines: [...landed.lines, `red: ${place} landed, and its receipts did not close: ${got?.err.at(-1) ?? 'nothing printed'}`] }))(await run(name, place, [words.read, words.view, words.receipts], {}, signal)));
+
 export const landAct = async (name: string, place: string, lot: readonly string[], key: string, signer: string, env: Readonly<Record<string, string>>, signal?: AbortSignal): Promise<Outcome> =>
   ((got) => {
     if (got === undefined || got.code !== 0) return { refused: got?.err.at(-1) ?? '' };
@@ -64,8 +68,8 @@ export const landAct = async (name: string, place: string, lot: readonly string[
       : { lines: got.out.slice(at + 1).filter((line) => parse(line).kind === 'fact').slice(0, -1) };
   })(await run(name, place, [words.land, lotFile(lot), words.key, key, words.signer, signer], env, signal));
 
-export const land = async (name: string, place: string, signed: readonly string[], signal?: AbortSignal): Promise<Outcome> =>
-  ((got) => (got !== undefined && got.code === 0 ? { lines: signed } : { refused: got?.err.at(-1) ?? '' }))(await run(name, place, [words.land, lotFile(signed)], {}, signal));
+export const land = async (name: string, place: string, signed: readonly string[], signal?: AbortSignal): Promise<Outcome> => closing(name, place,
+  ((got) => (got !== undefined && got.code === 0 ? { lines: signed } : { refused: got?.err.at(-1) ?? '' }))(await run(name, place, [words.land, lotFile(signed)], {}, signal)), signal);
 
 export const told = async (name: string, place: string, signed: readonly string[], view: string, signal?: AbortSignal): Promise<readonly string[]> =>
   ((got) => [...(got?.out ?? []), ...(got?.err ?? [])])(await run(name, place, [words.read, words.view, view, lotFile(signed)], {}, signal));
@@ -79,9 +83,9 @@ export const pinnedAt = async (name: string, place: string, file: string, signal
   return pin === undefined || !bytes ? undefined : { pin, bytes, lines: read.lines };
 };
 
-export const founded = async (name: string, place: string, key: string, signer: string, env: Readonly<Record<string, string>>, signal?: AbortSignal): Promise<Outcome> =>
-  ((got) => (got !== undefined && got.code === 0 ? { lines: got.out } : { refused: got?.err.at(-1) ?? '' }))(await run(name, place, [words.land, words.key, key, words.signer, signer], env, signal));
+export const founded = async (name: string, place: string, key: string, signer: string, env: Readonly<Record<string, string>>, signal?: AbortSignal): Promise<Outcome> => closing(name, place,
+  ((got) => (got !== undefined && got.code === 0 ? { lines: got.out } : { refused: got?.err.at(-1) ?? '' }))(await run(name, place, [words.land, words.key, key, words.signer, signer], env, signal)), signal);
 
-export const words = { read: '', view: '', sign: '', land: '', key: '', signer: '', pin: '', topos: '', standing: '', evidence: '', act: '', profile: '' };
+export const words = { read: '', view: '', sign: '', land: '', key: '', signer: '', pin: '', topos: '', standing: '', evidence: '', act: '', profile: '', receipts: '' };
 
 export const settledView = async (name: string, place: string, view: string, signal?: AbortSignal): Promise<Folded> => readOf(await run(name, place, [words.read, words.view, view], {}, signal));

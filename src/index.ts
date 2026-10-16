@@ -9,7 +9,7 @@ import type { Asked, Context } from './core/answer.ts';
 import { valueOf } from './core/lock.ts';
 import { fill } from './core/surface.ts';
 import { matchTemplate, refusedOn, surfaceOf } from './ports/surface.ts';
-import { founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, words } from './ports/bound.ts';
+import { closing, founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, words } from './ports/bound.ts';
 import { held, keep } from './ports/cache.ts';
 import { registryFor } from './ports/signers.ts';
 import { dropAt, folderOf, hasAt, layAt, listAt, lockAt, takeAt } from './ports/place.ts';
@@ -24,7 +24,7 @@ const [ext, root] = ((self) => [self.slice(self.lastIndexOf('.')), fileURLToPath
 const lock = lockAt(root);
 const surface = surfaceOf(lock);
 const runs = valueOf(lock, 'runs');
-Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
+Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile', 'receipts'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
 Object.assign(limits, { wait: Number(valueOf(lock, 'bound/wait').split('..')[1]), most: Number(valueOf(lock, 'bound/printed').split('..')[1]) });
 const offered = (n: number) => (n ? { listChanged: false } : undefined);
 const server = new Server({ name: surface.name, version: surface.version }, { capabilities: { tools: offered(surface.tools.length), resources: offered(surface.resources.length), prompts: offered(surface.prompts.length) } });
@@ -56,7 +56,7 @@ const contextOf = (signal?: AbortSignal): Context => {
     home: () => home,
     found: (place, account) => founded(runs, place, ...asRoot(account), signal),
     signRoot,
-    landRoot: (place, lot, account) => landAct(runs, place, lot, ...asRoot(account), signal),
+    landRoot: async (place, lot, account) => closing(runs, place, await landAct(runs, place, lot, ...asRoot(account), signal), signal),
     pinned: (place, file) => pinnedAt(runs, place, file, signal),
     access: async (kind) => (kind !== valueOf(lock, 'access/adapter') || !/^[a-z0-9-]+$/.test(kind) ? undefined : import(new URL(`./ports/access/${kind}${ext}`, import.meta.url).href).then((m: { adapter: never }) => m.adapter)),
     person,
