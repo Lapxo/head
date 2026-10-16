@@ -11,6 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         node: [22, 24]
+        shard: [1, 2, 3]
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,18 +22,44 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm ci
       - run: npm run build
-      - name: Run tests
+      - name: Run tests, shard ${{ matrix.shard }} of 3
         run: |
           set -euo pipefail
-          npm test 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
-      - name: Check the committed receipts on a clean checkout
-        run: npx --no-install bound fold --check
+          node --test --test-shard=${{ matrix.shard }}/3 test/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
       - name: Preserve test logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: head-node-${{ matrix.node }}
+          name: head-node-${{ matrix.node }}-shard-${{ matrix.shard }}
           path: ${{ runner.temp }}/head-tests.log
+          if-no-files-found: ignore
+  time:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
+      - name: Check the committed receipts on a clean checkout
+        run: npx --no-install bound fold --check
+      - name: Run the timed tests alone on this machine, one at a time
+        run: |
+          set -euo pipefail
+          node --test --test-concurrency=1 test/time/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-time.log"
+      - name: Preserve the timed log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: head-time-node-${{ matrix.node }}
+          path: ${{ runner.temp }}/head-time.log
           if-no-files-found: ignore
   bundle:
     runs-on: macos-latest
