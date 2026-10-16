@@ -18,7 +18,7 @@ test('an offer of class read is made once with the person-s token, its digest la
   const { place, keychain } = born(api.url, [canonical({ at: 'policy:fixture', by: 'target', form: 'interval', measure: 'seconds', role: 'writes', scope: 'allow/reuse/tracker', value: '0..3600' })]);
   const [first, second] = await ask([look(place, 'issues/list-for-repo', { owner: 'lapxo', repo: 'demo' }), look(place, 'issues/list-for-repo', { owner: 'lapxo', repo: 'demo' })], [], keychain.env);
   await api.close();
-  const receipt = text(first).split('\n').filter((l) => !l.startsWith('red:')).at(-1)!;
+  const receipt = text(first).split('\n').filter((l) => !l.startsWith('said/head/red ')).at(-1)!;
   match(text(first), said('untyped')); ok(!text(first).includes('stale'), 'no body reaches the model where no world types it');
   deepStrictEqual(api.seen.map((one) => [one.headers['authorization'], one.headers['connection'] === 'close']), [['Bearer token-for-tests', false]], 'a pooled connection: head no longer blocks while bound folds');
   match(receipt, / by=head .* scope=read\/tracker\/issues\/list-for-repo\/[0-9a-f]{16} sig=/);

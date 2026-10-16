@@ -1,12 +1,12 @@
 import { test } from 'node:test';
 import { deepStrictEqual, match, ok } from 'node:assert';
 import { mkdtempSync, writeFileSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { availableParallelism, loadavg, tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ask } from './client.ts';
-import { fakeKeychain } from './fake-keychain.ts';
-import { kept, overlay } from './kept.ts';
-import { said, text } from './place.ts';
+import { ask } from '../client.ts';
+import { fakeKeychain } from '../fake-keychain.ts';
+import { kept, overlay } from '../kept.ts';
+import { said, text } from '../place.ts';
 
 const tool = (name: string, args: Record<string, string>) => ({ method: 'tools/call', params: { name, arguments: args } });
 const spec = JSON.stringify({ openapi: '3.0.3', info: { title: 'things', version: '1' }, servers: [{ url: 'https://things.example' }],
@@ -21,7 +21,8 @@ const founded = async () => {
   return { shared, env, dir: join(shared, 'shop') };
 };
 
-test('a time ceiling measures head-s work, never the person-s: a yes that took eleven seconds to come puts no red on a connect whose ceiling is ten', async () => {
+test('a time ceiling measures head-s work, never the person-s: a yes that took eleven seconds to come puts no red on a connect whose ceiling is ten', async (run) => {
+  run.diagnostic(`environment: load ${loadavg().map((n) => n.toFixed(2)).join(' ')} on ${availableParallelism()} cpus · node ${process.version} · ${process.platform} · run alone, after the suite`);
   const warm = await kept([spec], async () => ((at) => ask([tool('connect', { place: at.dir, source: 'things', document: join(at.shared, 'things.json') })], [at.shared], at.env, yes).then(() => at.dir))(await founded()));
   const { shared, env, dir } = await founded();
   overlay(dir, warm);

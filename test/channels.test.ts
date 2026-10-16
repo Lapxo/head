@@ -4,6 +4,7 @@ import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
 import { ask } from './client.ts';
+import { browser } from './browser.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 import { api, text, viewOf } from './place.ts';
 
@@ -30,15 +31,15 @@ const person = (seen: string[]) => async (params: any) => {
   return { action: 'accept' };
 };
 
-/** The same place, the same documents, the same API and the same answers, at a client that declares the given elicitation modes: what was asked, what was sent, what landed — each place's own keys aside. */
-const run = async (modes: Readonly<Record<string, object>>, server: Awaited<ReturnType<typeof api>>) => {
+/** The same place, the same documents, the same API and the same answers, at a client that declares the given elicitation modes — or none, the person then at this device's browser: what was asked, what was sent, what landed — each place's own keys aside. */
+const run = async (modes: Readonly<Record<string, object>> | 'none', server: Awaited<ReturnType<typeof api>>) => {
   const shared = mkdtempSync(join(tmpdir(), 'head-channels-'));
-  const [keychain, before] = [fakeKeychain({}), server.seen.length];
-  const [env, dir, seen] = [{ ...keychain.env, HEAD_HOME: join(shared, 'home') }, join(shared, 'org'), [] as string[]];
+  const [keychain, before, device] = [fakeKeychain({}), server.seen.length, modes === 'none' ? browser(answers) : undefined];
+  const [env, dir, seen] = [{ ...(device ? device.path(keychain.env) : keychain.env), HEAD_HOME: join(shared, 'home') }, join(shared, 'org'), [] as string[]];
   try {
     writeFileSync(join(shared, 'auth.json'), document('auth', server.url, { '/otp': { post: op('requestOtp', true) }, '/login': { post: op('loginOtp', true) }, '/select': { post: op('selectCompany', true) } }, { 'x-access': { org: flow } }));
     writeFileSync(join(shared, 'jobs.json'), document('jobs', server.url, { '/jobs': { get: op('list-jobs') } }, {}, 'auth.json#/components/x-access/org'));
-    const at = (calls: readonly any[], roots: readonly string[] = []) => ask(calls, roots, env, person(seen), modes);
+    const at = (calls: readonly any[], roots: readonly string[] = []) => (modes === 'none' ? ask(calls, roots, env) : ask(calls, roots, env, person(seen), modes));
     await at([tool('place', { dir })]);
     for (const source of ['auth', 'jobs']) await at([tool('connect', { place: dir, source, document: join(shared, `${source}.json`) })], [shared]);
     const [accessed] = await at([tool('access', { place: dir, source: 'jobs' })]);
@@ -48,17 +49,18 @@ const run = async (modes: Readonly<Record<string, object>>, server: Awaited<Retu
     const requests = [...own.join('\n').matchAll(/ scope=(?:read|kept)\/jobs\/list-jobs\/([0-9a-f]{16})/g)].map((m) => m[1]);
     deepStrictEqual([requests.length, new Set(requests).size], [2, 1], 'the body and the typed answer are kept under one request, made as one principal');
     const lines = (file: string) => readFileSync(join(dir, file), 'utf8').split('\n').filter(Boolean).map(bare).sort();
-    return { seen, said: [text(accessed).split('\n')[0], ...text(read).split('\n').filter((l) => !l.startsWith('red:')).map(bare)], lock: lines('TARGET.bound'), journal: own.map(bare).sort(),
+    return { seen: device ? device.seen() : seen, said: [text(accessed).split('\n')[0], ...text(read).split('\n').filter((l) => !l.startsWith('said/head/red ')).map(bare)], lock: lines('TARGET.bound'), journal: own.map(bare).sort(),
       sent: server.seen.slice(before).map((one) => [one.method, one.url, one.body, one.headers['authorization'] ?? '']), kept: JSON.parse(Buffer.from(keychain.held(`place/${basename(dir)}/issuer/org`), 'base64url').toString('utf8')).secret };
   } finally { /* the API outlives each run */ }
 };
 
-test('an input is asked through the richest channel the client declares — its form, else head-s one-time page by address — and a yes the same way: the same flow at either client lands the same lines and receipts, sends the same requests and keeps the same token', async () => {
+test('an input is asked through the richest channel the client declares — its form, else head-s one-time page by address, else the same page on this device-s browser — and a yes the same way: the same flow at any of the three lands the same lines and receipts, sends the same requests and keeps the same token', async () => {
   const server = await api((url, body) => (url === '/otp' ? '{"success":true}' : url === '/login' ? [409, '{"selectionToken":"sel-1","memberships":[{"companyId":"c-1","companyName":"Acme"},{"companyId":"c-2","companyName":"Globex"}]}'] as const
     : url === '/select' && body.includes('sel-1') ? '{"token":"t-picked"}' : '{"id":1}'));
-  const [formed, paged] = await (async () => { try { return [await run({ form: {}, url: {} }, server), await run({ url: {} }, server)]; } finally { await server.close(); } })();
+  const [formed, paged, opened] = await (async () => { try { return [await run({ form: {}, url: {} }, server), await run({ url: {} }, server), await run('none', server)]; } finally { await server.close(); } })();
   deepStrictEqual(formed.seen, ['form yes', 'form yes', 'form yes', 'form email', 'form otp', 'form companyId', 'form yes']);
   deepStrictEqual(paged.seen, ['page yes', 'page yes', 'page yes', 'page email', 'page otp', 'page companyId', 'page yes']);
-  deepStrictEqual([paged.said, paged.lock, paged.journal, paged.sent, paged.kept], [formed.said, formed.lock, formed.journal, formed.sent, formed.kept]);
+  deepStrictEqual(opened.seen, paged.seen, 'a client that declares no channel has the same page opened on this device');
+  for (const other of [paged, opened]) deepStrictEqual([other.said, other.lock, other.journal, other.sent, other.kept], [formed.said, formed.lock, formed.journal, formed.sent, formed.kept]);
   ok(formed.sent.some(([, url, body]) => url === '/select' && String(body).includes('c-2')) && formed.kept === 't-picked', 'the company chosen is the one sent');
 });

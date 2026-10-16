@@ -3,7 +3,6 @@ import { canonical, LOCK } from '@lapxo/topos/wire';
 import { unless } from '../core/answer.ts';
 import type { Asked, Context } from '../core/answer.ts';
 import { admissionOf } from '../core/device.ts';
-import { newKey } from '../core/keys.ts';
 import { valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
 import { deviceKey } from '../flows/device.ts';
@@ -28,9 +27,9 @@ const founded = async (context: Context, dir: string, name: string): Promise<{ r
   const [head, person] = [deviceKey(context, 'head'), deviceKey(context, 'person')];
   if (head === undefined || person === undefined) return { refused: 'no-keychain' };
   if (context.keys.read(account) !== undefined) return { refused: 'place-taken' };
-  const root = newKey();
-  context.keys.write(account, root.secret);
-  context.files.lay(dir, LOCK, new TextEncoder().encode(`${birthOf(context.lock, root.publicKey, head, person, name).join('\n')}\n`));
+  const root = context.keys.made?.(account);
+  if (root === undefined) return { refused: 'no-keychain' };
+  context.files.lay(dir, LOCK, new TextEncoder().encode(`${birthOf(context.lock, root, head, person, name).join('\n')}\n`));
   const born = await context.found(dir, account);
   return ((got) => ('refused' in got ? { refused: 'not-landed', why: got.refused } : got))('refused' in born ? born : await walkable(context, dir, account));
 };
@@ -46,8 +45,11 @@ export const bornPlace = async (asked: Asked, context: Context): Promise<readonl
   const name = (asked['name'] || basename(dir)).toLowerCase().replace(/[^a-z0-9-]+/g, '-');
   if (context.files.has(dir, LOCK)) return [say('place-exists', { dir })];
   const refused = await unless(context, say('elicit-place', { name, dir }));
-  if (refused) return refused;
-  const born = await founded(context, dir, name);
+  return refused ?? bornAt(context, dir, name);
+};
+
+export const bornAt = async (context: Context, dir: string, name: string): Promise<readonly string[]> => {
+  const say = sayIn(context.lock), born = await founded(context, dir, name);
   if ('refused' in born) return [say(born.refused, { name, dir, why: born.why ?? '' })];
   const home = context.home();
   const homed = context.files.has(home, LOCK) ? { lines: [] } : await founded(context, home, valueOf(context.lock, 'home/name'));

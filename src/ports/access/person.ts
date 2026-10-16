@@ -12,8 +12,9 @@ export interface Client { readonly can: () => { readonly url: boolean; readonly 
 /**
  * The person at this device, asked through the richest channel the client declares, in the order head's lock lines name:
  * the client's own form; head's one-time page, sent by the client as an address; the same page opened by this device's
- * browser. A secret goes only through the page — never a form the model could see — and a yes only through what the
- * client can ask, else it is the person's to sign. A visit to a provider comes back to such a page.
+ * browser. A secret goes only through the page — never a form the model could see — and a yes is the person's answer on
+ * any of them, never the model's: where none reaches the person, nothing was asked and the lines are theirs to sign.
+ * A visit to a provider comes back to such a page.
  */
 export const personOf = (lock: readonly Said[], client: Client) => {
   const wait = Number(valueOf(lock, 'access/wait').split('..')[1]);
@@ -25,9 +26,13 @@ export const personOf = (lock: readonly Said[], client: Client) => {
   const form = async (message: string, properties: Readonly<Record<string, unknown>>) => ((got) => (got.action === 'accept' ? Object.fromEntries(Object.entries(got.content ?? {}).map(([k, v]) => [k, String(v)])) : undefined))(
     await client.elicit({ message, requestedSchema: { type: 'object', properties, required: Object.keys(properties) } }));
   return {
-    consent: async (message: string, word: string): Promise<'yes' | 'no' | 'none'> => ((how) => (how === undefined ? Promise.resolve('none' as const)
-      : (how === 'form' ? form(message, { yes: { type: 'boolean', title: word } }) : paged(message, [{ name: 'yes', label: word, secret: false, options: [{ value: 'true', label: word }, { value: 'false', label: 'No' }] }], how))
-        .then((got) => (got?.['yes'] === 'true' ? 'yes' as const : 'no' as const))))(channel('ask/consent-channels')),
+    consent: async (message: string, word: string): Promise<'yes' | 'no' | 'none'> => {
+      const how = channel('ask/consent-channels'), said = (got: Held | undefined) => (got?.['yes'] === 'true' ? 'yes' as const : 'no' as const);
+      if (how === undefined) return 'none';
+      if (how === 'form') return said(await form(message, { yes: { type: 'boolean', title: word } }));
+      const page = await open(message, [{ name: 'yes', label: word, secret: false, options: [{ value: 'true', label: word }, { value: 'false', label: 'No' }] }], wait);
+      return (await offer(fill(aboutOf(lock, 'said/answer'), { title: message }), page.url, how)) ? said(await page.held) : (page.close(), 'none');
+    },
     enter: async (title: string, fields: readonly Field[]): Promise<Held | undefined> => paged(title, fields, channel('ask/secret-channels')),
     choose: async (message: string, choices: readonly Choice[]): Promise<Held | undefined> => ((how) => (how === 'form'
       ? form(message, Object.fromEntries(choices.map((c) => [c.name, { type: 'string', title: c.label ?? c.name, ...(c.options ? { oneOf: c.options.map((o) => ({ const: o.value, title: o.label })) } : {}) }])))

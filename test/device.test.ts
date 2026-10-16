@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { canonical } from '@lapxo/topos/wire';
 import { fileURLToPath } from 'node:url';
 import { admissionOf } from '../src/core/device.ts';
-import { newKey } from '../src/core/keys.ts';
+import { newKey } from '../src/ports/keys.ts';
 import { lockAt } from '../src/ports/place.ts';
 import { run } from './cli.ts';
 import { registryFor } from '../src/ports/signers.ts';

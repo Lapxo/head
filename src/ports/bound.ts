@@ -6,6 +6,7 @@ import { parse } from '@lapxo/topos/wire';
 import type { Said } from '../core/lock.ts';
 import type { Outcome } from '../core/answer.ts';
 import { spawned } from './process.ts';
+import { cooled, kept, warmed } from './warm.ts';
 import type { Printed } from './process.ts';
 export type { Printed };
 
@@ -19,25 +20,38 @@ const binOf = (name: string): string | undefined => {
 
 export const limits = { wait: 0, most: 0 };
 
-/** bound run as a process in a folder, beside head and never blocking it, within the wait and the bytes head's lock gives it and stopped when the asker cancels. */
-export const run = async (name: string, cwd: string, args: readonly string[], env: Readonly<Record<string, string>> = {}, signal?: AbortSignal): Promise<Printed | undefined> => ((bin) => (bin === undefined ? undefined
-  : spawned(process.execPath, [bin, ...args], { cwd, env: { ...process.env, ...env } }, { wait: limits.wait, most: limits.most || Number.MAX_SAFE_INTEGER, ...(signal ? { signal } : {}) })))(binOf(name));
+/** bound run as a process in a folder, beside head and never blocking it, within the wait and the bytes head's lock gives it and stopped when the asker cancels: one started ahead when head holds one, else one started now. */
+export const run = async (name: string, cwd: string, args: readonly string[], env: Readonly<Record<string, string>> = {}, signal?: AbortSignal): Promise<Printed | undefined> => ((bin, at, bounds) => (bin === undefined ? undefined
+  : (warmed(bin, args, at, bounds) ?? spawned(process.execPath, [bin, ...args], at, bounds)).then(apart)))(binOf(name), { cwd, env: { ...process.env, ...env } }, { wait: limits.wait, most: limits.most || Number.MAX_SAFE_INTEGER, ...(signal ? { signal } : {}) });
+
+/** The record bound prints after a refusal's diagnostic, read apart from it: what bound printed is kept whole, the record beside it, and why bound refused is the diagnostic's last line, never the record. */
+const recordOf = (line: string): Record<string, string> | undefined => { try { return ((got) => (got?.profile === words.refusal ? got : undefined))(JSON.parse(line) as Record<string, string> | null); } catch { return undefined; } };
+const isRecord = (line: string) => line.startsWith('{') && recordOf(line) !== undefined;
+const apart = (printed: Printed): Printed => ((record) => (record === undefined ? printed : { ...printed, refusal: recordOf(record)! }))([...printed.err].reverse().find(isRecord));
+const why = (printed: Printed | undefined): string | undefined => printed?.err.filter((line) => !isRecord(line)).at(-1);
+
+/** bound started ahead of the first ask of a call, as many times as head's lock keeps it started; resolved once each is ready. */
+export const warm = (name: string): Promise<unknown> => ((bin) => (bin === undefined ? Promise.resolve() : kept(bin)))(binOf(name));
+export { cooled };
 
 export type Folded = { readonly lines: readonly Said[] } | { readonly refused: string };
 const facts = (out: readonly string[]): readonly Said[] => out.flatMap((line) => ((got) => (got.kind === 'fact' ? [got.value.fields] : []))(parse(line)));
-const readOf = (printed: Printed | undefined): Folded => (printed === undefined || printed.code !== 0 ? { refused: printed?.err.at(-1) ?? '' } : { lines: facts(printed.out) });
+const readOf = (printed: Printed | undefined): Folded => (printed === undefined || printed.code !== 0 ? { refused: why(printed) ?? '' } : { lines: facts(printed.out) });
 
 /**
- * The lines a place stands on, from bound's public views alone: its folded normative standing (the lines view), and from
+ * The lines a place stands on, from bound's public views alone: its folded normative standing (the lines view) — its
+ * policy, all that a reader of its pins, keys and views needs, read alone where nothing else is — and from
  * its authenticated evidence what this device's own keys signed. Receipts are history, each kept as it was made; any other
  * line of a device key, the person's own attestation, stands only while it is the one line of its scope and measure,
  * unwithdrawn and beside no line of the place's own: anything else needs a fold bound does not publish, and is refused by
  * name. A place whose land prints no act result is refused before anything lands in it. Any refusal of bound is no standing.
  */
+export const policyAt = async (name: string, place: string, signal?: AbortSignal): Promise<Folded> => ((folded) => ('refused' in folded || folded.lines.some((line) => line.scope === words.profile) ? folded
+  : { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` }))(readOf(await run(name, place, [words.read, words.view, words.standing], {}, signal)));
+
 export const standingAt = async (name: string, place: string, devicesOf: (lines: readonly Said[]) => readonly string[], isHistory: (line: Said) => boolean, signal?: AbortSignal): Promise<Folded> => {
-  const folded = readOf(await run(name, place, [words.read, words.view, words.standing], {}, signal));
+  const folded = await policyAt(name, place, signal);
   if ('refused' in folded) return folded;
-  if (!folded.lines.some((line) => line.scope === words.profile)) return { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` };
   const evidence = readOf(await run(name, place, [words.read, words.view, words.evidence], {}, signal));
   if ('refused' in evidence) return evidence;
   const ids = new Set(devicesOf(folded.lines)), own = evidence.lines.filter((line) => ids.has(line.by ?? ''));
@@ -50,19 +64,22 @@ export const standingAt = async (name: string, place: string, devicesOf: (lines:
 const lotFile = (lines: readonly string[]): string => ((at) => { writeFileSync(at, `${lines.join('\n')}\n`); return at; })(join(mkdtempSync(join(tmpdir(), 'head-lot-')), 'lot.bound'));
 
 export const sign = async (name: string, place: string, lot: readonly string[], key: string, signer: string, env: Readonly<Record<string, string>>, signal?: AbortSignal): Promise<Outcome> =>
-  ((got) => (got !== undefined && got.code === 0 ? { lines: got.out.filter((line) => parse(line).kind === 'fact') } : { refused: got?.err.at(-1) ?? '' }))(await run(name, place, [words.sign, lotFile(lot), words.key, key, words.signer, signer], env, signal));
+  ((got) => (got !== undefined && got.code === 0 ? { lines: got.out.filter((line) => parse(line).kind === 'fact') } : { refused: why(got) ?? '' }))(await run(name, place, [words.sign, lotFile(lot), words.key, key, words.signer, signer], env, signal));
 
 /** A lot signed and landed in one process, its result read from what bound printed of the committed act: the records it admitted, never the receipt beside them; a place that declares no act result is refused by name. */
+/** A place's receipts rendered beside its lock, so bound alone checks the place: nothing when they closed, else why they did not. */
+export const closing = async (name: string, place: string, signal?: AbortSignal): Promise<string | undefined> => ((got) => (got !== undefined && got.code === 0 ? undefined : why(got) ?? 'nothing printed'))(await run(name, place, [words.read, words.view, words.receipts], {}, signal));
+
 export const landAct = async (name: string, place: string, lot: readonly string[], key: string, signer: string, env: Readonly<Record<string, string>>, signal?: AbortSignal): Promise<Outcome> =>
   ((got) => {
-    if (got === undefined || got.code !== 0) return { refused: got?.err.at(-1) ?? '' };
+    if (got === undefined || got.code !== 0) return { refused: why(got) ?? '' };
     const at = got.out.findIndex((line) => line.startsWith(words.act));
     return at < 0 ? { refused: `REFUSE·act bound printed no act result, and the place declares ${words.profile}: what was admitted is bound's to say` }
       : { lines: got.out.slice(at + 1).filter((line) => parse(line).kind === 'fact').slice(0, -1) };
   })(await run(name, place, [words.land, lotFile(lot), words.key, key, words.signer, signer], env, signal));
 
 export const land = async (name: string, place: string, signed: readonly string[], signal?: AbortSignal): Promise<Outcome> =>
-  ((got) => (got !== undefined && got.code === 0 ? { lines: signed } : { refused: got?.err.at(-1) ?? '' }))(await run(name, place, [words.land, lotFile(signed)], {}, signal));
+  ((got) => (got !== undefined && got.code === 0 ? { lines: signed } : { refused: why(got) ?? '' }))(await run(name, place, [words.land, lotFile(signed)], {}, signal));
 
 export const told = async (name: string, place: string, signed: readonly string[], view: string, signal?: AbortSignal): Promise<readonly string[]> =>
   ((got) => [...(got?.out ?? []), ...(got?.err ?? [])])(await run(name, place, [words.read, words.view, view, lotFile(signed)], {}, signal));
@@ -77,8 +94,8 @@ export const pinnedAt = async (name: string, place: string, file: string, signal
 };
 
 export const founded = async (name: string, place: string, key: string, signer: string, env: Readonly<Record<string, string>>, signal?: AbortSignal): Promise<Outcome> =>
-  ((got) => (got !== undefined && got.code === 0 ? { lines: got.out } : { refused: got?.err.at(-1) ?? '' }))(await run(name, place, [words.land, words.key, key, words.signer, signer], env, signal));
+  ((got) => (got !== undefined && got.code === 0 ? { lines: got.out } : { refused: why(got) ?? '' }))(await run(name, place, [words.land, words.key, key, words.signer, signer], env, signal));
 
-export const words = { read: '', view: '', sign: '', land: '', key: '', signer: '', pin: '', topos: '', standing: '', evidence: '', act: '', profile: '' };
+export const words = { read: '', view: '', sign: '', land: '', key: '', signer: '', pin: '', topos: '', standing: '', evidence: '', act: '', profile: '', receipts: '', refusal: '' };
 
 export const settledView = async (name: string, place: string, view: string, signal?: AbortSignal): Promise<Folded> => readOf(await run(name, place, [words.read, words.view, view], {}, signal));

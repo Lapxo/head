@@ -93,7 +93,7 @@ test('head reads a source through the place bound compiled it to: an offer of cl
   const typedLine = (l: string) => ((m) => (m ? `${m[1]} ${m[2] || '.'} ${m[3]}` : ''))(/measure=(\S+) .*scope=answer\/[0-9a-f]{16}(\S*) value=(.*)$/.exec(l));
   deepStrictEqual(typed.map(typedLine).filter(Boolean).sort(), ['members . 1', 'number /0/id 1', 'offer . demo/listThings', 'text /0/name one', 'withheld . 1']);
   for (const receipt of [/ by=head .* scope=read\/demo\/listThings\/[0-9a-f]{16} sig=/, / by=head .* scope=kept\/demo\/listThings\/[0-9a-f]{16}\/[0-9a-f]{16} sig=/]) ok(text(listed).split('\n').some((l) => receipt.test(l)), text(listed));
-  const typedOf = (answer: unknown) => text(answer).split('\n').filter((l) => !/ by=head |^red: /.test(l) && !said('reused').test(l));
+  const typedOf = (answer: unknown) => text(answer).split('\n').filter((l) => !/ by=head |^said\/head\/red /.test(l) && !said('reused').test(l));
   deepStrictEqual(typedOf(again), typedOf(listed)); match(text(again), said('reused'));
   match(text(past), said('history')); deepStrictEqual(typedOf(past).filter((l) => !said('history').test(l)), typedOf(listed), 'history shows what was typed then, as of the read it came from');
   match(text(added), said('not-callable'));

@@ -5,7 +5,7 @@ import type { Call } from '../../core/read.ts';
 import { jsonOf } from '../../access/contract.ts';
 import type { Attachment } from '../../access/contract.ts';
 
-export type Fetched = { readonly kind: 'got'; readonly status: number; readonly bytes: Uint8Array; readonly type: string } | { readonly kind: 'over' } | { readonly kind: 'failed' };
+export type Fetched = { readonly kind: 'got'; readonly status: number; readonly bytes: Uint8Array; readonly type: string; readonly location?: string; readonly authenticate?: string } | { readonly kind: 'over' } | { readonly kind: 'failed' };
 export type Prepared = { readonly key: string; readonly describe: string; readonly send: (attachment: Attachment | undefined, most: number) => Promise<Fetched> } | { readonly missing: string } | { readonly refused: string };
 
 /**
@@ -23,16 +23,19 @@ const requestCapped = async (method: string, url: string, headers: Readonly<Reco
       if (size > most) break;
       chunks.push(chunk);
     }
-    return size > most ? { kind: 'over' } : { kind: 'got', status: response.status, bytes: Buffer.concat(chunks), type: response.headers.get('content-type') ?? '' };
+    return size > most ? { kind: 'over' } : { kind: 'got', status: response.status, bytes: Buffer.concat(chunks), type: response.headers.get('content-type') ?? '', ...((at) => (at ? { location: at } : {}))(response.headers.get('location')), ...((asks) => (asks ? { authenticate: asks } : {}))(response.headers.get('www-authenticate')) };
   } catch { return { kind: 'failed' }; }
 };
 
 const loopback = new Set(['127.0.0.1', 'localhost', '[::1]']);
 
-export const published = async (url: string, digest: string, most: number, wait: number): Promise<Uint8Array | undefined> => (URL.canParse(url) && new URL(url).protocol === 'https:'
+export const published = async (url: string, digest: string, most: number, wait: number): Promise<Uint8Array | undefined> => (URL.canParse(url) && ((at) => at.protocol === 'https:' || loopback.has(at.hostname))(new URL(url))
   ? ((got) => (got.kind === 'got' && got.status < 300 && `sha256:${createHash('sha256').update(got.bytes).digest('hex')}` === digest ? got.bytes : undefined))(await requestCapped('GET', url, {}, undefined, most, wait, 'follow')) : undefined);
 
-export const get = async (url: string, wait: number): Promise<{ readonly bytes: Uint8Array; readonly type: string } | undefined> => (URL.canParse(url) && new URL(url).protocol === 'https:' ? ((got) => (got.kind === 'got' && got.status < 300 ? got : undefined))(await requestCapped('GET', url, {}, undefined, 16_777_216, wait)) : undefined);
+export const fetched = async (url: string, attachment: Attachment | undefined, accept: string | undefined, most: number, wait: number): Promise<Fetched> => (!URL.canParse(url) || !((at) => at.protocol === 'https:' || loopback.has(at.hostname))(new URL(url)) ? { kind: 'failed' }
+  : requestCapped('GET', ((extra) => (extra.size ? `${url}${url.includes('?') ? '&' : '?'}${extra}` : url))(new URLSearchParams(Object.entries(attachment?.query ?? {}))), { ...(attachment?.headers ?? {}), ...(accept ? { accept } : {}) }, undefined, most, wait));
+
+export const get = async (url: string, wait: number): Promise<{ readonly bytes: Uint8Array; readonly type: string } | undefined> => (URL.canParse(url) && ((at) => at.protocol === 'https:' || loopback.has(at.hostname))(new URL(url)) ? ((got) => (got.kind === 'got' && got.status < 300 ? got : undefined))(await requestCapped('GET', url, {}, undefined, 16_777_216, wait)) : undefined);
 
 /** A body posted to an address a declaration names — as a form, or as JSON where the declaration's protocol asks it — as one request under the same rules: encrypted unless it is this device, capped, never redirected. */
 export const post = async (url: string, body: Readonly<Record<string, unknown>>, most: number, wait: number, as: 'form' | 'json' = 'form'): Promise<{ readonly status: number; readonly json: unknown } | undefined> => {

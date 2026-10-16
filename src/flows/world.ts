@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 import type { Context } from '../core/answer.ts';
-import { valueOf } from '../core/lock.ts';
+import { under, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
 import { sayIn } from '../core/surface.ts';
 import { pinnedOf } from '../core/worlds.ts';
@@ -12,12 +12,12 @@ import { adoptsIn } from '../adopt/adopt.ts';
  * is no standing. A place that pins a lock as its parent stands on nothing head may read: composing the two is bound's, never head's. A place that pins none and names a view has bound compile it, asked once; a fold bound refused is no standing either.
  */
 export const standingFor = async (context: Context, place: string): Promise<{ readonly lines: readonly Said[] } | { readonly unsettled: string }> => {
-  const [held, view, compiled] = [await context.standing(place), valueOf(context.lock, 'place/view'), valueOf(context.lock, 'place/compiled')];
+  const [held, view] = [await context.standing(place), valueOf(context.lock, 'place/view')];
   if ('refused' in held) return { unsettled: held.refused };
   const own = held.lines;
   const parent = adoptsIn(context.lock, own);
   if (parent !== undefined) return { unsettled: sayIn(context.lock)('parent-lock', { place, parent }) };
-  const pins = own.filter((l) => l.scope?.startsWith('uses/') && l.needs?.startsWith(`${compiled}/`)).map((l) => [l, pinnedOf(context.lock, context.files.take(join(place, l.needs!)))] as const);
+  const pins = own.filter((l) => l.scope?.startsWith('uses/') && under(context.lock, 'place/compiled', l.needs)).map((l) => [l, pinnedOf(context.lock, context.files.take(join(place, l.needs!)))] as const);
   const moved = pins.find(([l, p]) => p?.pin !== l.value);
   if (moved) return { unsettled: sayIn(context.lock)('compiled-moved', { file: moved[0].needs }) };
   if (pins.length) return { lines: [...own, ...pins.flatMap(([, p]) => p!.lines)] };

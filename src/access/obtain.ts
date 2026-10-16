@@ -43,9 +43,9 @@ export const attachmentFor = async (context: Context, place: string, lines: read
     return got?.kind === 'got' ? { status: got.status, json: jsonOf(got.bytes) } : undefined;
   };
   const reads = new Set(lines.filter((l) => l.scope?.startsWith(`${v.offers}/${plan.source}/`) && l.measure === v.class && l.value === v.callable).map((l) => l.scope));
-  const [scheme, root] = [`${v.keys}/${access.flow}`, valueOf(context.lock, 'founding/root').split('/')[1]];
+  const [scheme, root] = [access.from ?? `${v.keys}/${access.flow}`, valueOf(context.lock, 'founding/root').split('/')[1]];
   const want: Want = {
-    place: placeNameOf(place), source: plan.source, scheme: access.scheme, params: access.params, now: context.now(), origin: plan.origin,
+    place: placeNameOf(place), source: plan.source, scheme: access.scheme, params: access.params, now: context.now(), origin: plan.origin, renew: (held as Kept | undefined)?.renew,
     declared: Object.fromEntries([...new Set(lines.filter((l) => l.scope === scheme || l.scope?.startsWith(`${scheme}/`)).map((l) => l.scope!))].map((at) => [at.slice(scheme.length + 1), fieldsOf(lines, at)])),
     secrets: Number((lines.find((l) => l.scope === valueOf(context.lock, 'access/secrets') && l.by === root)?.value ?? '0..0').split('..')[1]),
     values: members(valueOf(lines, 'wire/access-values') || valueOf(context.lock, 'wire/access-values')),

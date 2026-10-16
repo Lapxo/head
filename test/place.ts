@@ -8,7 +8,7 @@ import { basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { canonical, parse } from '@lapxo/topos/wire';
 import { admissionOf } from '../src/core/device.ts';
-import { newKey } from '../src/core/keys.ts';
+import { newKey } from '../src/ports/keys.ts';
 import { run } from './cli.ts';
 import { lockAt } from '../src/ports/place.ts';
 import { fakeKeychain } from './fake-keychain.ts';
@@ -73,5 +73,10 @@ export const born = (server: string | undefined, extra: readonly string[] = [], 
 };
 
 /** What head says for a key, as a pattern of its whole template: every field it fills may be anything, every word around them must stand. */
-export const said = (key: string) => new RegExp(lock.find((l) => l.scope === `said/${key}`)!.about!.split(/\{\w+\}/).map((part) => part.replace(/[.*+?^$()|[\]\\{}]/g, '\\$&')).join('[\\s\\S]*?'));
+/** A code head said: the cell line of it — head's own code, or bound's code with head's beside it; a question the person reads, by its lock words. */
+export const said = (key: string) => (lock.find((l) => l.scope === `said/${key}/state`)?.value === 'asked'
+  ? new RegExp(lock.find((l) => l.scope === `said/${key}`)!.about!.split(/\{\w+\}/).map((part) => part.replace(/[.*+?^$()|[\]\\{}]/g, '\\$&')).join('[\\s\\S]*?'))
+  : new RegExp(`said/(head/${key}|\\S+ [^\\n]*head="head/${key}") `));
+/** A cell of an answer from a source: its operation and the status it answered, whatever the code that said it. */
+export const answered = (operation: string, status: number) => new RegExp(`^said/head/\\S+ (?=[^\\n]*operation="${operation}")(?=[^\\n]*status="${status}")`, 'm');
 export const text = (answer: any): string => answer.result?.content?.[0]?.text ?? JSON.stringify(answer.error ?? answer);

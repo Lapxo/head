@@ -10,6 +10,8 @@ export const said = (lock: readonly Said[], scope: string): Said | undefined => 
 export const valueOf = (lock: readonly Said[], scope: string): string => said(lock, scope)?.value ?? '';
 export const aboutOf = (lock: readonly Said[], scope: string): string => said(lock, scope)?.about ?? '';
 export const members = (value: string): readonly string[] => (value === '' ? [] : alphabet(value).members);
+/** Whether a path a line needs lies under one of the folders a lock word names: a place's own, or one an older head kept. */
+export const under = (lock: readonly Said[], scope: string, path: string | undefined): boolean => members(valueOf(lock, scope)).some((at) => path?.startsWith(`${at}/`) === true);
 
 /** The lines exactly one step below a family: tool/look under tool, never tool/look/place. */
 export const below = (lock: readonly Said[], family: string): readonly Said[] =>

@@ -1,7 +1,7 @@
 import { basename, join } from 'node:path';
 import { canonical, EXTENSION } from '@lapxo/topos/wire';
 import type { Context, Outcome } from '../core/answer.ts';
-import { valueOf } from '../core/lock.ts';
+import { members, under, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
 import { fieldsOf, vocabOf } from '../core/read.ts';
 import { sayIn } from '../core/surface.ts';
@@ -45,11 +45,11 @@ const drafted = async (context: Context, place: string, source: string, file: st
  * one's withdraw, said at its own time, since a withdrawn saying stays withdrawn.
  */
 export const pinIn = (context: Context, place: string, lands: (lot: readonly string[]) => Promise<Outcome>, line: Line) => async (source: string, read: readonly string[]): Promise<Pinned> => {
-  const [say, digest, held] = [sayIn(context.lock), digestIn(context.lock), await context.standing(place)];
+  const [say, digest, held] = [sayIn(context.lock), digestIn(context.lock), await context.policy(place)];
   if ('refused' in held) return { said: [say('unsettled', { source, why: held.refused })] };
   const own = held.lines;
   const input = digest([...own.filter((l) => l.scope?.startsWith('uses/') && l.scope !== `uses/${source}`).map((l) => `${l.scope} ${l.value}`), ...read].sort().join('\n'));
-  const file = `${valueOf(context.lock, 'place/compiled')}/${source}/${input.split(':')[1]!.slice(0, 16)}${EXTENSION}`;
+  const file = `${members(valueOf(context.lock, 'place/compiled'))[0]}/${source}/${input.split(':')[1]!.slice(0, 16)}${EXTENSION}`;
   const old = own.find((l) => l.scope === `uses/${source}`);
   const pinned = ((kept) => (kept !== undefined && kept.pin === old?.value ? kept : undefined))(pinnedOf(context.lock, old?.needs === file ? context.files.take(join(place, file)) : undefined)) ?? await compiledOf(context, place, source, file);
   if ('said' in pinned || (old?.needs === file && old.value === pinned.pin)) return pinned;
@@ -64,9 +64,9 @@ export const pinIn = (context: Context, place: string, lands: (lot: readonly str
  * never reconnected. What each answers is said by the pin; one still unresolved stays a demand.
  */
 export const paidBy = async (context: Context, place: string, pin: ReturnType<typeof pinIn>, laid: string): Promise<readonly { readonly source: string; readonly pinned: Pinned }[]> => {
-  const [v, held] = [vocabOf(context.lock), await context.standing(place)];
+  const [v, held] = [vocabOf(context.lock), await context.policy(place)];
   if ('refused' in held) return [];
-  const owed = held.lines.filter((l) => l.scope?.startsWith('uses/') && l.needs?.startsWith(`${valueOf(context.lock, 'place/compiled')}/`)
+  const owed = held.lines.filter((l) => l.scope?.startsWith('uses/') && under(context.lock, 'place/compiled', l.needs)
     && linesOf(context.files.take(join(place, l.needs)) ?? new Uint8Array()).some((r) => r.measure === v.unresolved && basename((r.value ?? '').split('#')[0]!) === basename(laid)));
   const paid: { readonly source: string; readonly pinned: Pinned }[] = [];
   for (const l of owed) paid.push({ source: l.scope!.slice('uses/'.length), pinned: await pin(l.scope!.slice('uses/'.length), [`${l.scope} ${l.needs}`]) });

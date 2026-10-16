@@ -1,0 +1,91 @@
+name: test
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+        shard: [1, 2, 3]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
+      - name: Run tests, shard ${{ matrix.shard }} of 3
+        run: |
+          set -euo pipefail
+          files=$(node .github/shard.mts ${{ matrix.shard }} 3)
+          node --test $files 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
+      - name: Preserve test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: head-node-${{ matrix.node }}-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/head-tests.log
+          if-no-files-found: ignore
+  time:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
+      - name: Run the timed tests alone on this machine, one at a time
+        run: |
+          set -euo pipefail
+          node --test --test-concurrency=1 test/time/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-time.log"
+      - name: Check the committed receipts on a clean checkout
+        if: ${{ !cancelled() }}
+        run: npx --no-install bound fold --check
+      - name: Preserve the timed log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: head-time-node-${{ matrix.node }}
+          path: ${{ runner.temp }}/head-time.log
+          if-no-files-found: ignore
+  bundle:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm run build
+      - name: Build the Desktop Extension, named by its digest
+        run: node .github/mcpb/build.mts "$RUNNER_TEMP/mcpb"
+      - name: Compare with the digest built on another Mac
+        run: node -e "const [a,b]=['$RUNNER_TEMP/mcpb/release.json','.github/mcpb/expected.json'].map((f)=>JSON.parse(require('fs').readFileSync(f,'utf8'))); console.log((a.digest===b.digest?'SAME     ':'DIFFERS  ')+a.digest+' here · '+b.digest+' '+b.built+' · node '+process.version)"
+      - name: Run it as a host would, from the unpacked bundle in a fresh home
+        run: node .github/mcpb/smoke.mts "$RUNNER_TEMP"/mcpb/head-*.mcpb "$RUNNER_TEMP/mcpb/release.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: head-mcpb
+          path: ${{ runner.temp }}/mcpb/
+          if-no-files-found: error

@@ -35,7 +35,7 @@ test('who configures is not who asks: the organisation-s head connects and grant
     match(text(admitted), said('admitted')); match(text(admitted), / measure=coverage role=writes scope=keys\/ana .*value=read\/\*\*\|kept\/\*\*\|access\/\*\*/);
     const reuse = canonical({ at: 'policy:person/reuse', by: 'target', form: 'interval', measure: 'seconds', role: 'writes', scope: 'allow/reuse/things', value: '0..600' });
     const [proposed] = await ask([tool('plan', { place: org, lines: reuse })], [], admin, yes);
-    match(text((await ask([tool('land', { lot: /Lot (sha256:[0-9a-f]+)/.exec(text(proposed))?.[1] ?? '' })], [], admin))[0]), said('landed'));
+    match(text((await ask([tool('land', { lot: /lot="(sha256:[0-9a-f]+)"/.exec(text(proposed))?.[1] ?? '' })], [], admin))[0]), said('landed'));
     const look = (operation: string, at: string) => tool('look', { place: org, source: 'things', operation, at });
     const [offered, read, again] = await ask([look('listThings', '1'), look('listThings', '8'), look('listThings', '8')], [], member, counted);
     ok(text(offered).includes('scope=offers/things/listThings '), text(offered));
@@ -80,11 +80,11 @@ test('a place born before its wire named a witness gets it by one lot head propo
     deepStrictEqual(run('@lapxo/bound', dir, ['land', older, '--key', 'root', '--signer', 'keychain'], { ...env, BOUND_SIGNERS: signers })?.code, 0);
     const look = tool('look', { place: dir, source: 'things', operation: 'listThings', at: '8' });
     const [unwitnessed] = await ask([look], [], env, yes);
-    const proposed = text(unwitnessed).split('\n').slice(1);
+    const proposed = text(unwitnessed).split('\n').slice(1).filter((l) => !l.startsWith('said/head/red '));
     match(text(unwitnessed), said('unwitnessed')); deepStrictEqual(proposed.length, 2);
     match(proposed[0]!, / at=policy:fixture\/older by=target .*scope=wire\/fields value=withdraw$/); match(proposed[1]!, / by=target .*scope=wire\/fields value=.*\|witness$/);
     const [planned] = await ask([tool('plan', { place: dir, lines: proposed.join('\n') })], [], env, yes);
-    const [landed] = await ask([tool('land', { lot: /Lot (sha256:[0-9a-f]+)/.exec(text(planned))?.[1] ?? '' })], [], env);
+    const [landed] = await ask([tool('land', { lot: /lot="(sha256:[0-9a-f]+)"/.exec(text(planned))?.[1] ?? '' })], [], env);
     match(text(landed), said('landed'));
     const [read] = await ask([look], [], env, yes);
     match(text(read), said('answered')); match(lock(), / by=root .*scope=allow\/read .*witness=person$/m); deepStrictEqual(lock().match(/ scope=wire\/fields /g)?.length, 1);

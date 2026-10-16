@@ -2,18 +2,13 @@ import { placeNameOf } from '../core/answer.ts';
 import type { Context, Outcome } from '../core/answer.ts';
 import { canonical, parse } from '@lapxo/topos/wire';
 import { deviceOf, idIn, uncoveredIn } from '../core/device.ts';
-import { newKey, publicOf } from '../core/keys.ts';
 import { members, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
 import { fill, sayIn } from '../core/surface.ts';
 import { adoptsIn } from '../adopt/adopt.ts';
 
 /** A key of this device by its role: read from the keychain, or made there once; only its public half is ever handed on. */
-export const deviceKey = (context: Context, role?: string): string | undefined => ((account) => {
-  const held = context.keys.read(account);
-  const secret = held ?? ((made) => { context.keys.write(account, made.secret); return context.keys.read(account) === made.secret ? made.secret : undefined; })(newKey());
-  return secret === undefined ? undefined : publicOf(secret);
-})(deviceOf(context.lock, role).account);
+export const deviceKey = (context: Context, role?: string): string | undefined => context.keys.made?.(deviceOf(context.lock, role).account);
 
 /** The keychain account of a place's root, when this keychain holds it — who configures the place is here; else what head says of that. */
 export const rootIn = (context: Context, place: string): { readonly account: string } | { readonly said: readonly string[] } =>
