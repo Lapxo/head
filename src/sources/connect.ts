@@ -6,7 +6,7 @@ import { valueOf } from '../core/lock.ts';
 import { fieldsOf, vocabOf } from '../core/read.ts';
 import { fill, redIn, sayIn } from '../core/surface.ts';
 import { digestIn, linesOf } from '../core/worlds.ts';
-import { owedIn, unpacked } from '../core/package.ts';
+import { coveredIn, owedIn, unpacked } from '../core/package.ts';
 import { paidBy, pinIn } from '../compile/pin.ts';
 import { adopted } from '../adopt/adopt.ts';
 import type { Line } from '../compile/pin.ts';
@@ -74,7 +74,8 @@ type Laid = (source: string, document: string, doc: Read, overlay: Read | undefi
 const received = async (context: Context, place: string, document: string, bytes: Uint8Array, named: string, laid: Laid, account: string): Promise<readonly string[]> => {
   const [say, got] = [sayIn(context.lock), unpacked(context, document, bytes, await context.files.read.besideOf(context, document, linesOf(bytes)))];
   if (!got.sources) return got.said ?? [];
-  const [names, said] = [got.sources.map((s) => s.source).join(', '), [] as string[]], refused = await unless(context, say('elicit-receive', { place, package: named, sources: names || '—', open: (got.open ?? []).map((o) => o.source).join(', ') || '—' }));
+  const [names, said, before] = [got.sources.map((s) => s.source).join(', '), [] as string[], await context.policy(place)];
+  const refused = coveredIn(context, 'refused' in before ? [] : before.lines, got.sources, named) ? undefined : await unless(context, say('elicit-receive', { place, package: named, sources: names || '—', open: (got.open ?? []).map((o) => o.source).join(', ') || '—' }));
   if (refused) return refused;
   for (const s of got.sources) said.push(...(await laid(s.source, s.document.at, s.document, s.overlay, context.machine())));
   const held = await context.policy(place), [pinOf, owed] = [(source: string) => ('refused' in held ? '' : held.lines.find((l) => l.scope === `uses/${source}`)?.value ?? ''), owedIn(context, 'refused' in held ? [] : held.lines, got.sources, got.open ?? [], named)];

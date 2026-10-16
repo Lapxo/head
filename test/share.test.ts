@@ -138,6 +138,7 @@ test('absence is not a refusal: a source whose bytes did not arrive, or hash oth
   writeFileSync(jobsAt, jobs);
   const [second] = await receive(to, from.pkg, from.digest, asked, [from.shared]);
   match(text(second), said('received')); doesNotMatch(text(second), said('received-open'));
+  deepStrictEqual(asked.length, 1, 'paying the demand asks nothing: the first yes said they connect when they arrive');
   deepStrictEqual(pinsOf(to.place), pinsOf(from.place), 'brought, the same pins');
   ok(owed().some((l) => l.endsWith('value=withdraw')), 'the demand is paid by its withdraw');
 

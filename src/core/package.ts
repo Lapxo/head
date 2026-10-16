@@ -45,6 +45,9 @@ export const unpacked = (context: Context, document: string, bytes: Uint8Array, 
   return { sources: order.filter((s) => !open.has(s.source)).map((s) => ({ source: s.source, pin: s.pin, document: of(`sources/${s.source}`)!, ...((o) => (o ? { overlay: o } : {}))(of(`sources/${s.source}/overlay`)) })),
     open: order.filter((s) => open.has(s.source)).map((s) => ({ source: s.source, owed: missing(s.source).map((l) => l.value!).join('|') || s.rests.filter((r) => open.has(r)).map((r) => `uses/${r}`).join('|'), waits: missing(s.source).map((l) => `${l.value} at ${where(l)}`).join(', ') || s.rests.filter((r) => open.has(r)).join(', ') })) };
 };
+/** Whether the person-s yes to a package already covers what arrives now: every source either pinned as the package names it, or owed by a demand that yes to this same package landed. */
+export const coveredIn = (context: Context, held: readonly Said[], arrived: readonly { readonly source: string; readonly pin: string }[], named: string): boolean => arrived.length > 0 && arrived.every((s) => held.some((l) => l.value !== 'withdraw'
+  && ((l.scope === `uses/${s.source}` && l.value === s.pin) || (l.scope === `${valueOf(context.lock, 'place/needs')}/bytes/${s.source}` && l.role === 'demands' && l.at === `policy:head/receive/${named.slice(7, 23)}`))));
 /** What a received package leaves owed in the place: a demand per open source naming what it waits on, and the withdraw of a demand a source that arrived has paid, or one a new package names otherwise. */
 export const owedIn = (context: Context, held: readonly Said[], arrived: readonly { readonly source: string }[], open: readonly { readonly source: string; readonly owed: string }[], named: string): readonly string[] => {
   const scope = (source: string) => `${valueOf(context.lock, 'place/needs')}/bytes/${source}`, live = (source: string) => held.find((l) => l.scope === scope(source) && l.role === 'demands' && l.value !== 'withdraw');
