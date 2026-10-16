@@ -31,4 +31,4 @@ const [read] = await ask([tool('look', { place, source: 'weather', operation: 'g
 server.close();
 const answered = JSON.stringify(read?.result ?? read).includes('answered 200 to getForecast');
 console.log(`SMOKE    ${digest} · tools ${tools.length} (${tools.join(' ')}) · read ${answered ? 'answered 200' : 'did not answer'}`);
-if (tools.join(' ') !== [...named.tools].sort().join(' ') || !answered) process.exit(1);
+if (tools.join(' ') !== [...named.tools].sort().join(' ') || !answered) { console.error(JSON.stringify(read?.result ?? read).slice(0, 1200)); process.exit(1); }

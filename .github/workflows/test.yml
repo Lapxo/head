@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         node: [22, 24]
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,7 +35,7 @@ jobs:
           path: ${{ runner.temp }}/head-tests.log
           if-no-files-found: ignore
   bundle:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -50,6 +50,7 @@ jobs:
       - name: Run it as a host would, from the unpacked bundle in a fresh home
         run: node .github/mcpb/smoke.mts "$RUNNER_TEMP"/mcpb/head-*.mcpb "$RUNNER_TEMP/mcpb/release.json"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: head-mcpb
           path: ${{ runner.temp }}/mcpb/

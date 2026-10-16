@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 import { canonical, EXTENSION, LOCK } from '@lapxo/topos/wire';
-import { inPlace, unless } from '../core/answer.ts';
+import { inPlace, placeOf, unless } from '../core/answer.ts';
 import type { Asked, Context } from '../core/answer.ts';
 import { valueOf } from '../core/lock.ts';
 import { fieldsOf, vocabOf } from '../core/read.ts';
@@ -10,6 +10,7 @@ import { coveredIn, owedIn, unpacked } from '../core/package.ts';
 import { paidBy, pinIn } from '../compile/pin.ts';
 import { adopted } from '../adopt/adopt.ts';
 import type { Line } from '../compile/pin.ts';
+import { firstRun } from '../onboard/first.ts';
 import { rootIn } from '../flows/device.ts';
 import { bornAt } from '../places/found.ts';
 import { untilOf } from '../core/act.ts';
@@ -27,7 +28,8 @@ import type { Read } from '../ports/documents.ts';
  * its pins rest in, its pin held to the package's; one that differs is refused by name, and the place holds what it
  * compiled. Nothing the sharing place was granted comes with it: access is asked here, issuer by issuer.
  */
-export const connected = (asked: Asked, context: Context): Promise<readonly string[]> => (!asked['source'] && /^([a-z]+:\/\/)?[^/\s]+\/?$/.test(asked['document'] ?? '') ? used(asked, context) : ((started) => inPlace(asked, context, async (place) => {
+export const connected = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (asked['source'] && !(await placeOf(asked, context)) ? firstRun(asked, context, (dir, covered) => connected({ ...asked, place: dir }, context, covered))
+  : !asked['source'] && /^([a-z]+:\/\/)?[^/\s]+\/?$/.test(asked['document'] ?? '') ? used(asked, context) : ((started) => inPlace(asked, context, async (place) => {
   const say = sayIn(context.lock), digest = digestIn(context.lock), { documentOf, fetchedAs, kindOf } = context.files.read;
   const [source, document] = [(asked['source'] ?? '').toLowerCase().replace(/[^a-z0-9-]+/g, '-'), asked['document'] ?? ''];
   const [via, named, accept, lock] = [asked['via'] ?? '', asked['digest'] ?? '', /^[\w.+-]+\/[\w.+-]+$/.test(asked['accept'] ?? '') ? asked['accept'] : undefined, `.${kindOf(document)}` === EXTENSION];
@@ -38,7 +40,7 @@ export const connected = (asked: Asked, context: Context): Promise<readonly stri
   if (named && !/^sha256:[0-9a-f]{64}$/.test(named)) return [say('document-digest', { document, digest: named, got: '' })];
   if (lock) return ((read) => (read === undefined ? [say('document-unread', { document })] : digest(read.bytes) !== named ? [say('document-digest', { document, digest: named, got: digest(read.bytes) })]
     : received(context, place, document, read.bytes, named, laidIn(context, place, root.account), root.account)))(await documentOf(context, place, document, named));
-  const refused = await unless(context, say('elicit-connect', { source, document, place, overlay: asked['overlay'] ?? '' }));
+  const refused = covered ? undefined : await unless(context, say('elicit-connect', { source, document, place, overlay: asked['overlay'] ?? '' }));
   if (refused) return refused;
   const got = via ? await attachedFor(context, place, via) : undefined;
   if (got && 'said' in got) return got.said;

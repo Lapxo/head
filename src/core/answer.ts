@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
-import { canonical } from '@lapxo/topos/wire';
-import type { Said } from './lock.ts';
+import { canonical, LOCK } from '@lapxo/topos/wire';
+import { valueOf, type Said } from './lock.ts';
 import type { Printed } from '../ports/bound.ts';
 export type Outcome = { readonly lines: readonly string[] } | { readonly refused: string };
 import type { KeyStore } from '../ports/keychain.ts';
@@ -26,6 +26,7 @@ export interface Context {
   readonly person: { readonly consent: (message: string, word: string) => Promise<'yes' | 'no' | 'none'>; readonly enter: (title: string, fields: readonly Field[]) => Promise<Held | undefined>; readonly choose: (message: string, choices: readonly Choice[]) => Promise<Held | undefined>; readonly visit: (message: string, to: (back: string) => string | undefined | Promise<string | undefined>) => Promise<Held | undefined> };
   readonly files: { readonly lay: (place: string, rel: string, bytes: Uint8Array) => void; readonly drop: (place: string, rel: string) => void; readonly has: (place: string, rel: string) => boolean; readonly list: (place: string, rel: string) => readonly string[]; readonly read: typeof Documents; readonly take: (path: string) => Uint8Array | undefined; readonly own: (rel: string) => Uint8Array | undefined };
   readonly home: () => string;
+  readonly personal: () => string;
   readonly found: (place: string, account: string) => Promise<Outcome>;
   readonly signRoot: (place: string, lot: readonly string[], account: string) => Promise<Outcome>;
   readonly landRoot: (place: string, lot: readonly string[], account: string) => Promise<Outcome>;
@@ -45,7 +46,8 @@ export type Answer = (asked: Asked, context: Context) => Promise<readonly string
 export const answerOf = async (family: 'tools' | 'resources', name: string): Promise<Answer> =>
   ((await import(new URL(`../${family}/${name}${import.meta.url.slice(import.meta.url.lastIndexOf('.'))}`, import.meta.url).href)) as { answer: Answer }).answer;
 
-export const placeOf = async (asked: Asked, context: Context): Promise<string | undefined> => asked['place'] || (await context.roots())[0];
+export const placeOf = async (asked: Asked, context: Context): Promise<string | undefined> => asked['place'] || (await context.roots())[0] || ((held) => ('refused' in held ? undefined
+  : ((named) => (named.length === 1 ? named[0] : undefined))(held.lines.filter((l) => l.scope?.startsWith(`${valueOf(context.lock, 'home/family')}/`) && l.value !== 'withdraw').map((l) => l.value!))))(context.files.has(context.home(), LOCK) ? await context.policy(context.home()) : { refused: '' });
 export const inPlace = async (asked: Asked, context: Context, then: (place: string) => Promise<readonly string[]>): Promise<readonly string[]> =>
   ((place) => (place === undefined ? [sayIn(context.lock)('no-place')] : then(place)))(await placeOf(asked, context));
 /** The person's yes to exactly what a message says; anything else is what head says of it, and nothing is done. */

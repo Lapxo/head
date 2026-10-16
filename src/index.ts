@@ -54,6 +54,7 @@ const contextOf = (signal?: AbortSignal): Context => {
     adapter: async (origin) => ((name) => (!/^[a-z-]+$/.test(name) ? undefined : import(new URL(`./ports/adapters/${name}${ext}`, import.meta.url).href)))(URL.canParse(origin) ? valueOf(lock, `adapter/${new URL(origin).protocol.slice(0, -1)}`) : ''),
     files: { lay: layAt, drop: dropAt, has: hasAt, list: listAt, read: documents, take: takeAt, own: (rel) => takeAt(join(root, rel)) },
     home: () => home,
+    personal: () => process.env[valueOf(lock, `platform/${process.platform}/home`)] ?? '',
     found: (place, account) => founded(runs, place, ...asRoot(account), signal),
     signRoot,
     landRoot: async (place, lot, account) => closing(runs, place, await landAct(runs, place, lot, ...asRoot(account), signal), signal),
