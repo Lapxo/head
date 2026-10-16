@@ -765,3 +765,6 @@ bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=
 bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-first-run/state value=asked
 bound-lock/1 about="a question the person answers" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/elicit-first-run/next value=none
 bound-lock/1 about="where a place keeps the standing of each world it adopts, laid beside its lock as fetched and checked against the pin, so bound admits the pin on bytes the place holds: a folder named for what it holds" at=policy:head/vocabulary/0.2.0 by=target form=alphabet measure=id role=writes scope=place/worlds value=worlds
+bound-lock/1 about="{place} was acted in, and its receipts did not close: {why}" at=policy:head/surface/0.1.2 by=target form=alphabet measure=id role=writes scope=said/receipts-open value=lock
+bound-lock/1 at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/receipts-open/state value=red
+bound-lock/1 about="what bound names" at=policy:head/shape/0.1.2 by=target form=alphabet measure=id role=writes scope=said/receipts-open/next value=none

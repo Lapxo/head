@@ -30,6 +30,7 @@ export interface Context {
   readonly found: (place: string, account: string) => Promise<Outcome>;
   readonly signRoot: (place: string, lot: readonly string[], account: string) => Promise<Outcome>;
   readonly landRoot: (place: string, lot: readonly string[], account: string) => Promise<Outcome>;
+  readonly settle: () => Promise<readonly string[]>;
   readonly pinned: (place: string, file: string) => Promise<{ readonly pin: string; readonly bytes: string; readonly lines: readonly Said[] } | { readonly refused: string } | undefined>;
   readonly cache: { readonly keep: (bytes: Uint8Array) => string; readonly held: (digest: string) => Uint8Array | undefined };
   readonly signAs: (place: string, lot: readonly string[], role: string, lines: readonly Said[]) => Promise<Outcome>;
