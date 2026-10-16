@@ -6,7 +6,7 @@ import { valueOf } from '../core/lock.ts';
 import { fieldsOf, vocabOf } from '../core/read.ts';
 import { fill, redIn, sayIn } from '../core/surface.ts';
 import { digestIn, linesOf } from '../core/worlds.ts';
-import { unpacked } from '../core/package.ts';
+import { owedIn, unpacked } from '../core/package.ts';
 import { paidBy, pinIn } from '../compile/pin.ts';
 import { adopted } from '../adopt/adopt.ts';
 import type { Line } from '../compile/pin.ts';
@@ -37,7 +37,7 @@ export const connected = (asked: Asked, context: Context): Promise<readonly stri
   if ('said' in root) return root.said;
   if (named && !/^sha256:[0-9a-f]{64}$/.test(named)) return [say('document-digest', { document, digest: named, got: '' })];
   if (lock) return ((read) => (read === undefined ? [say('document-unread', { document })] : digest(read.bytes) !== named ? [say('document-digest', { document, digest: named, got: digest(read.bytes) })]
-    : received(context, place, document, read.bytes, named, laidIn(context, place, root.account))))(await documentOf(context, place, document, named));
+    : received(context, place, document, read.bytes, named, laidIn(context, place, root.account), root.account)))(await documentOf(context, place, document, named));
   const refused = await unless(context, say('elicit-connect', { source, document, place, overlay: asked['overlay'] ?? '' }));
   if (refused) return refused;
   const got = via ? await attachedFor(context, place, via) : undefined;
@@ -71,16 +71,16 @@ const used = async (asked: Asked, context: Context): Promise<readonly string[]> 
 };
 
 type Laid = (source: string, document: string, doc: Read, overlay: Read | undefined, started: number) => Promise<readonly string[]>;
-const received = async (context: Context, place: string, document: string, bytes: Uint8Array, named: string, laid: Laid): Promise<readonly string[]> => {
+const received = async (context: Context, place: string, document: string, bytes: Uint8Array, named: string, laid: Laid, account: string): Promise<readonly string[]> => {
   const [say, got] = [sayIn(context.lock), unpacked(context, document, bytes, await context.files.read.besideOf(context, document, linesOf(bytes)))];
   if (!got.sources) return got.said ?? [];
-  const refused = await unless(context, say('elicit-receive', { place, package: named, sources: got.sources.map((s) => s.source).join(', ') }));
+  const [names, said] = [got.sources.map((s) => s.source).join(', '), [] as string[]], refused = await unless(context, say('elicit-receive', { place, package: named, sources: names || '—', open: (got.open ?? []).map((o) => o.source).join(', ') || '—' }));
   if (refused) return refused;
-  const said: string[] = [];
   for (const s of got.sources) said.push(...(await laid(s.source, s.document.at, s.document, s.overlay, context.machine())));
-  const held = await context.policy(place), pinOf = (source: string) => ('refused' in held ? '' : held.lines.find((l) => l.scope === `uses/${source}`)?.value ?? '');
-  const off = got.sources.filter((s) => pinOf(s.source) !== s.pin);
-  return [...said, ...(off.length ? off.map((s) => say('package-pin', { source: s.source, pin: s.pin, got: pinOf(s.source) || 'none' })) : [say('received', { place, package: named, sources: got.sources.map((s) => s.source).join(', ') })])];
+  const held = await context.policy(place), [pinOf, owed] = [(source: string) => ('refused' in held ? '' : held.lines.find((l) => l.scope === `uses/${source}`)?.value ?? ''), owedIn(context, 'refused' in held ? [] : held.lines, got.sources, got.open ?? [], named)];
+  const [off, landed] = [got.sources.filter((s) => pinOf(s.source) !== s.pin), owed.length ? await context.landRoot(place, owed, account) : undefined];
+  return [...said, ...(off.length ? off.map((s) => say('package-pin', { source: s.source, pin: s.pin, got: pinOf(s.source) || 'none' })) : names ? [say('received', { place, package: named, sources: names })] : []),
+    ...(got.open ?? []).map((o) => say('received-open', { source: o.source, waits: o.waits })), ...(landed && 'refused' in landed ? [say('not-landed', { why: landed.refused })] : [])];
 };
 const laidIn = (context: Context, place: string, account: string): Laid => (source, document, doc, overlay, started) => (async () => {
   const say = sayIn(context.lock), v = vocabOf(context.lock), word = (k: string) => valueOf(context.lock, k), digest = digestIn(context.lock);

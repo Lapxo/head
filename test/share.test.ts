@@ -66,15 +66,11 @@ test('share packs a place into lines and the bytes they name, its pins resting o
   deepStrictEqual([/ scope=access\//.test(viewOf(to.place, 'evidence')), / scope=(allow\/origin|access)\//.test(viewOf(to.place, 'lines'))], [false, false], 'no access, no origin allowed: nothing the sharing place held');
 });
 
-test('no: a package is refused by name before anything is asked when its digest, a byte it names, a line no package carries, the world it was compiled under or the order its pins rest in is not as the package says — and nothing lands', async () => {
+test('no: a package is refused by name before anything is asked when its digest, a line no package carries, the world it was compiled under or the order its pins rest in is not as the package says — and nothing lands', async () => {
   const from = await sender(), to = await receiver(), before = readFileSync(join(to.place, 'TARGET.bound'), 'utf8');
   const refused = async (digest: string, name: string, also?: RegExp) => { const asked: string[] = []; const [got] = await receive(to, from.pkg, digest, asked, [from.shared]);
     match(text(got), said(name)); if (also) match(text(got), also); deepStrictEqual([asked, readFileSync(join(to.place, 'TARGET.bound'), 'utf8')], [[], before]); };
   await refused(digestOf('another package'), 'document-digest');
-  const jobsAt = join(from.pkg, 'connected', 'jobs.json');
-  writeFileSync(jobsAt, jobs.replace('list-jobs', 'list-everything'));
-  await refused(from.digest, 'document-digest', /connected\/jobs\.json/);
-  writeFileSync(jobsAt, jobs);
   const kept = readFileSync(join(from.pkg, 'TARGET.bound'), 'utf8');
   await refused(resaid(from.pkg, (ls) => [...ls, ls[0]!.replace('scope=uses/topos-openapi', 'scope=allow/origin/org').replace(/value=\S+$/, 'value=https://org.example')]), 'package-line', /allow\/origin\/org/);
   writeFileSync(join(from.pkg, 'TARGET.bound'), kept);
@@ -124,9 +120,45 @@ test('one address, one yes: a package published at signed addresses — each byt
     match(text(got), said('received')); deepStrictEqual([asked.length, pinsOf(to.place)], [1, pinsOf(from.place)]);
     deepStrictEqual(store.seen.filter((r) => r.authorization).length, 0, 'nothing attached to any read');
     ok(store.seen.some((r) => r.url.startsWith('/blob/')), 'moved addresses followed, to the bytes their digest names');
-    const other = await receiver(), none: string[] = [];
+    const other = await receiver(), one: string[] = [];
     objects.set(`/blob/${paths.indexOf('connected/jobs.json')}`, jobs.replace('list-jobs', 'list-everything'));
-    const [refused] = await ask([tool('connect', { place: other.place, document: at, digest })], [], other.env, yes(none));
-    match(text(refused), said('document-unread')); match(text(refused), /\/signed\/\d+\?sig=/); deepStrictEqual(none, []);
+    const [opened] = await ask([tool('connect', { place: other.place, document: at, digest })], [], other.env, yes(one));
+    match(text(opened), said('received-open')); match(text(opened), /\/signed\/\d+\?sig=/); deepStrictEqual([one.length, pinsOf(other.place)], [1, pinsOf(from.place).filter((p) => p.startsWith('uses/auth '))], 'a byte that hashes otherwise is not used: its source waits, the rest arrives');
   } finally { await store.close(); }
+});
+
+test('absence is not a refusal: a source whose bytes did not arrive, or hash otherwise, waits, with every source resting on it, as a demand the place holds naming them; the rest arrives on one yes; brought later, the same package connects it and the demand is paid', async () => {
+  const from = await sender(), to = await receiver(), asked: string[] = [], jobsAt = join(from.pkg, 'connected', 'jobs.json'), jobsDigest = digestOf(jobs);
+  writeFileSync(jobsAt, jobs.replace('list-jobs', 'list-everything'));
+  const [first] = await receive(to, from.pkg, from.digest, asked, [from.shared]);
+  match(text(first), said('received')); match(text(first), said('received-open')); match(text(first), new RegExp(`${jobsDigest} at \\S+connected/jobs\\.json`));
+  deepStrictEqual([asked.length, pinsOf(to.place)], [1, pinsOf(from.place).filter((p) => p.startsWith('uses/auth '))], 'auth arrived; jobs, whose bytes hash otherwise, did not');
+  const owed = () => readFileSync(join(to.place, 'TARGET.bound'), 'utf8').split('\n').filter((l) => / scope=needs\/bytes\/jobs /.test(l) && / role=demands /.test(l));
+  ok(owed().some((l) => l.endsWith(`value=${jobsDigest}`)), 'the place holds the demand, naming the bytes it waits on');
+  writeFileSync(jobsAt, jobs);
+  const [second] = await receive(to, from.pkg, from.digest, asked, [from.shared]);
+  match(text(second), said('received')); doesNotMatch(text(second), said('received-open'));
+  deepStrictEqual(pinsOf(to.place), pinsOf(from.place), 'brought, the same pins');
+  ok(owed().some((l) => l.endsWith('value=withdraw')), 'the demand is paid by its withdraw');
+
+  const blocked = await receiver(), authAt = join(from.pkg, 'connected', 'auth.json');
+  writeFileSync(authAt, auth.replace('login', 'logout'));
+  const [neither] = await receive(blocked, from.pkg, from.digest, [], [from.shared]);
+  doesNotMatch(text(neither), said('received')); match(text(neither), /jobs waits on bytes[^\n]*: auth\./);
+  deepStrictEqual(pinsOf(blocked.place), [], 'a source resting on one that waits waits too');
+  writeFileSync(authAt, auth);
+});
+
+test('the same place shares the same bytes twice; a change to one source changes only that source-s lines', async () => {
+  const from = await sender(), linesAt = () => readFileSync(join(from.pkg, 'TARGET.bound'), 'utf8').trimEnd().split('\n');
+  const before = linesAt();
+  const [again] = await ask([tool('share', { place: from.place, to: from.pkg })], [from.shared], from.env);
+  deepStrictEqual([linesAt(), /sha256:[0-9a-f]{64}/.exec(text(again))?.[0]], [before, from.digest], 'shared twice, the same bytes and the same digest');
+  writeFileSync(join(from.shared, 'jobs.json'), jobs.replace('"/jobs"', '"/jobs/all"'));
+  await ask([tool('connect', { place: from.place, source: 'jobs', document: join(from.shared, 'jobs.json'), overlay: join(from.shared, 'jobs.overlay.yaml') })], [from.shared], from.env, yes([]));
+  const [changed] = await ask([tool('share', { place: from.place, to: from.pkg })], [from.shared], from.env), after = linesAt();
+  const scopeOf = (l: string) => / scope=(\S+)/.exec(l)![1]!, moved = before.filter((l) => !after.includes(l)).map(scopeOf).sort();
+  deepStrictEqual(moved, ['sources/jobs', 'uses/jobs'], 'only the changed source-s document and pin');
+  deepStrictEqual(after.map(scopeOf), before.map(scopeOf), 'in the same order');
+  ok(/sha256:[0-9a-f]{64}/.exec(text(changed))?.[0] !== from.digest, 'and the package is named otherwise');
 });

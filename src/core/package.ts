@@ -29,7 +29,7 @@ export const shared = (asked: Asked, context: Context): Promise<readonly string[
   const pack = packed(context, place, held.lines, ((u) => (u && typeof u === 'object' ? u : {}))((() => { try { return JSON.parse(asked['urls'] || '{}') as Record<string, string>; } catch { return {}; } })())), bytes = new TextEncoder().encode(`${pack.lines.join('\n')}\n`);
   return !pack.names.length ? [say('share-none', { place })] : ([...pack.files, [LOCK, bytes] as const].forEach(([at, laid]) => context.files.lay(to, at, laid)), [say('shared', { place, to, sources: pack.names.join(', '), digest: digestIn(context.lock)(bytes) }), ...pack.lines]);
 });
-/** What a package names, checked whole before anything is asked: every line a world or a source's document, overlay or pin, by digest; every byte it names, as read, hashing to its line; each world the one this head pins; an order its pins rest in. */
+/** What a package names, checked whole before anything is asked: every line a world or a source's document, overlay or pin, by digest; each world the one this head pins; an order its pins rest in. A source whose bytes did not arrive, or did not hash to their line, is open, and so is every source resting on it: absence is not a refusal, and the rest arrives. */
 export const unpacked = (context: Context, document: string, bytes: Uint8Array, read: ReadonlyMap<string, Uint8Array | undefined>) => {
   const [say, word, digest, lines] = [sayIn(context.lock), (k: string) => valueOf(context.lock, k), digestIn(context.lock), linesOf(bytes)], said = lines.filter((l) => l.measure === 'digest'), at = (scope: string) => said.find((l) => l.scope === scope);
   const unread = new TextDecoder().decode(bytes).split('\n').find((l) => l && parse(l).kind !== 'fact'), name = (l: Said) => l.scope!.split('/')[1]!;
@@ -38,9 +38,16 @@ export const unpacked = (context: Context, document: string, bytes: Uint8Array, 
   if (odd) return { said: [say('package-line', { document, scope: odd.scope ?? '' })] };
   const world = said.find((l) => !l.needs && l.value !== word(`world/${name(l)}/standing`)), where = (l: Said) => lines.find((o) => o.scope === l.scope && o.measure === 'id')?.value ?? (URL.canParse(document) ? new URL(l.needs!, document).href : join(dirname(document), l.needs!));
   if (world) return { said: [say('package-world', { document, world: name(world), pin: world.value!, held: word(`world/${name(world)}/standing`) })] };
-  const off = said.find((l) => l.needs && digest(read.get(l.needs) ?? '') !== l.value), of = (scope: string) => ((l) => l && { at: where(l), bytes: read.get(l.needs!)!, kind: extname(l.needs!).slice(1) })(at(scope));
-  if (off) return { said: [read.get(off.needs!) === undefined ? say('document-unread', { document: where(off) }) : say('document-digest', { document: where(off), digest: off.value!, got: digest(read.get(off.needs!)!) })] };
+  const off = (l: Said) => l.needs !== undefined && digest(read.get(l.needs) ?? '') !== l.value, of = (scope: string) => ((l) => l && { at: where(l), bytes: read.get(l.needs!)!, kind: extname(l.needs!).slice(1) })(at(scope));
   const order = orderOf(said.filter((l) => l.scope!.startsWith('uses/') && l.needs).map((l) => ({ source: name(l), pin: l.value!, rests: (l.restsOn ?? '').split('|').filter(Boolean).map((r) => r.slice('uses/'.length)) })));
   if (order === undefined) return { said: [say('package-line', { document, scope: 'restsOn' })] };
-  return { sources: order.map((s) => ({ source: s.source, pin: s.pin, document: of(`sources/${s.source}`)!, ...((o) => (o ? { overlay: o } : {}))(of(`sources/${s.source}/overlay`)) })) };
+  const [open, missing] = [order.reduce((o, s) => (said.some((l) => name(l) === s.source && off(l)) || s.rests.some((r) => o.has(r)) ? o.add(s.source) : o), new Set<string>()), (source: string) => said.filter((l) => name(l) === source && off(l))];
+  return { sources: order.filter((s) => !open.has(s.source)).map((s) => ({ source: s.source, pin: s.pin, document: of(`sources/${s.source}`)!, ...((o) => (o ? { overlay: o } : {}))(of(`sources/${s.source}/overlay`)) })),
+    open: order.filter((s) => open.has(s.source)).map((s) => ({ source: s.source, owed: missing(s.source).map((l) => l.value!).join('|') || s.rests.filter((r) => open.has(r)).map((r) => `uses/${r}`).join('|'), waits: missing(s.source).map((l) => `${l.value} at ${where(l)}`).join(', ') || s.rests.filter((r) => open.has(r)).join(', ') })) };
+};
+/** What a received package leaves owed in the place: a demand per open source naming what it waits on, and the withdraw of a demand a source that arrived has paid, or one a new package names otherwise. */
+export const owedIn = (context: Context, held: readonly Said[], arrived: readonly { readonly source: string }[], open: readonly { readonly source: string; readonly owed: string }[], named: string): readonly string[] => {
+  const scope = (source: string) => `${valueOf(context.lock, 'place/needs')}/bytes/${source}`, live = (source: string) => held.find((l) => l.scope === scope(source) && l.role === 'demands' && l.value !== 'withdraw');
+  const withdrawn = [...arrived.map((s) => live(s.source)), ...open.map((o) => ((l) => (l?.value !== o.owed ? l : undefined))(live(o.source)))].flatMap((l) => (l ? [canonical({ ...Object.fromEntries(Object.entries(l).filter(([k]) => !['sig', 'epoch'].includes(k))), by: 'target', value: 'withdraw' })] : []));
+  return [...withdrawn, ...open.filter((o) => live(o.source)?.value !== o.owed).map((o) => canonical({ at: `policy:head/receive/${named.slice(7, 23)}`, by: 'target', form: 'alphabet', measure: 'digest', role: 'demands', scope: scope(o.source), value: o.owed }))];
 };
