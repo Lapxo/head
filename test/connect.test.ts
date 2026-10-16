@@ -47,7 +47,7 @@ test('a source is connected once: its document compiled by the world head carrie
     match(lock(dir), / scope=uses\/things /); match(lock(dir), / scope=uses\/topos-openapi /);
     for (const reader of [/ measure=coordinates .*scope=region\/spec .*value=connected\/\*/, / measure=receipts .*scope=region\/spec .*value=openapi\/\*\*\|overlaid\/\*\*/, / measure=coordinates .*scope=region\/response .*value=\.answers\/\*\*/]) match(lock(dir), reader);
     const stood = lock(dir);
-    ok(!existsSync(join(dir, '.head', 'worlds')) && / scope=sources\/topos-openapi-blob .*value=https:\/\/github\.com\/Lapxo\/topos-openapi\/releases\/download\/v0\.1\.0\//.test(stood), 'the world is pinned where its release publishes it, and none of its bytes is laid in the place');
+    ok(existsSync(join(dir, 'worlds', 'topos-openapi.bound')) && / scope=sources\/topos-openapi-blob .*value=https:\/\/github\.com\/Lapxo\/topos-openapi\/releases\/download\/v0\.1\.\d+\//.test(stood), 'the world-s standing is held in the place, as bound 0.2.0 admits a pin only on held bytes, and pinned where its release publishes it, and none of its bytes is laid in the place');
     ok(!/ scope=(uses|dep|sources)\/topos-mcp/.test(stood), 'topos-mcp is pinned in head, never adopted, until bound composes readings');
     const [again] = await ask([tool('connect', { place: dir, source: 'things', document: join(shared, 'things.json') })], [shared], env, yes);
     ok(text(again).includes(` pin="${pin}"`), text(again)); deepStrictEqual(lock(dir), stood);

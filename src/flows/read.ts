@@ -1,3 +1,4 @@
+import { under } from '../core/lock.ts';
 import type { Asked, Context } from '../core/answer.ts';
 import { observedAt, planRead } from '../core/read.ts';
 import { basisOf, draftOf, receiptsOf, scopeOf, spentOf } from '../core/receipt.ts';
@@ -34,7 +35,7 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   const allowed = (key: string, measure: string) => (lines.find((l) => l.scope === `${word(key)}/${source}` && l.measure === measure) ?? lines.find((l) => l.scope === word(key) && l.measure === measure))?.value;
   if (asked['why'] === 'true') {
     const asOf = principalOf(context, plan, false), [newest] = asOf === undefined ? [] : receiptsOf(lines, at, scopes(asOf)[0]), pin = lines.find((l) => l.scope === `uses/${source}`);
-    const signed = newest && lines.find((l) => l.scope === newest.scope && l.value === newest.digest && l.at === `${at}:${newest.at}`), worlds = lines.filter((l) => l.scope?.startsWith('uses/') && !l.needs).map((l) => `${l.scope!.slice('uses/'.length)} ${l.value}`);
+    const signed = newest && lines.find((l) => l.scope === newest.scope && l.value === newest.digest && l.at === `${at}:${newest.at}`), worlds = lines.filter((l) => l.scope?.startsWith('uses/') && (!l.needs || under(context.lock, 'place/worlds', l.needs))).map((l) => `${l.scope!.slice('uses/'.length)} ${l.value}`);
     return newest === undefined ? say('why-none', { source, operation }) : say('why', { source, operation, origin: plan.origin, at: newest.at, by: signed?.by ?? '', epoch: signed?.epoch ?? '', digest: newest.digest, pin: pin?.value ?? '', pinned: pin?.epoch ?? '', worlds: worlds.join(', ') });
   }
   if (asked['history'] === 'true') {

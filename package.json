@@ -26,8 +26,8 @@
     "test": "node --test test/*.test.ts && node --test --test-concurrency=1 test/time/*.test.ts"
   },
   "dependencies": {
-    "@lapxo/bound": "0.1.6",
-    "@lapxo/topos": "0.1.12",
+    "@lapxo/bound": "0.2.0",
+    "@lapxo/topos": "0.2.0",
     "@modelcontextprotocol/sdk": "1.32.1"
   },
   "devDependencies": {

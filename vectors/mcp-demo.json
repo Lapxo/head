@@ -1,5 +1,5 @@
 {
- "from": "topos-mcp standing sha256:b3de7547323c523c1bb6847872a2602c9734950a7bd677607c981e7332f982c8, case demo \u00b7 place@1: the place the demo folder compiles to, with the ceilings its world reads under",
+ "from": "topos-mcp standing sha256:7f34669a436ab87ab887ac7e115be3ed84949aaf0827dc512b28d6498be93531, case demo \u00b7 place@1: the place the demo folder compiles to, with the ceilings its world reads under",
  "lines": [
   "bound-lock/1 about=\"a host calls the server at most this often for one person\" at=policy:topos/capsule by=target form=interval measure=calls-per-hour role=reads scope=read/rate value=0..60",
   "bound-lock/1 about=\"a read answers with at most this many bytes; one that answers more is refused, not cut\" at=policy:topos/capsule by=target form=interval measure=bytes role=reads scope=read/response-bytes value=0..1048576",

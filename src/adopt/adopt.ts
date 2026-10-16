@@ -1,3 +1,4 @@
+import { EXTENSION } from '@lapxo/topos/wire';
 import type { Context, Outcome } from '../core/answer.ts';
 import { members, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
@@ -33,7 +34,9 @@ export const adopted = async (context: Context, place: string, lands: (lot: read
     const [standing, blob, at, blobAt] = [word(`world/${w}/standing`), word(`world/${w}/blob`), word(`sources/${w}`), word(`sources/${w}-blob`)];
     const bytes = context.cache.held(standing) ?? ((got) => (got === undefined ? undefined : (context.cache.keep(got), got)))(await (await context.adapter(at))?.published(at, standing, most!, wait!));
     if (bytes === undefined) return { refused: `REFUSE·world ${w}: ${at} answered no bytes that hash to its pin ${standing}` };
-    lot.push(line(`uses/${w}`, 'digest', standing), line(`sources/${w}`, 'id', at), line(`dep/${w}-blob`, 'digest', blob, { shape: word('world/shape') }), line(`sources/${w}-blob`, 'id', blobAt),
+    const laid = `${word('place/worlds')}/${w}${EXTENSION}`;
+    context.files.lay(place, laid, bytes);
+    lot.push(line(`uses/${w}`, 'digest', standing, { needs: laid }), line(`sources/${w}`, 'id', at), line(`dep/${w}-blob`, 'digest', blob, { shape: word('world/shape') }), line(`sources/${w}-blob`, 'id', blobAt),
       ...readersOf(context.lock, linesOf(bytes)).map((r) => line(r.scope, r.measure, r.value, { role: 'reads' })));
   }
   return lot.length ? lands(lot) : { lines: [] };
