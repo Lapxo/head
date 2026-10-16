@@ -77,7 +77,7 @@ jobs:
           node-version: 24
       - run: npm ci
       - name: Pack the archive npm would publish
-        run: npm pack --pack-destination "$RUNNER_TEMP/release"
+        run: mkdir -p "$RUNNER_TEMP/release" && npm pack --pack-destination "$RUNNER_TEMP/release"
       - name: Judge it as the release does, an approval signed by a throwaway owner
         run: node .github/release/rehearse.mts "$RUNNER_TEMP"/release/*.tgz
       - name: Make the Desktop Extension from that archive, as the release does
