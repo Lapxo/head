@@ -1,0 +1,39 @@
+name: suite-map
+on:
+  push:
+    branches: ['suite-map/**']
+permissions:
+  contents: read
+jobs:
+  map:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - name: Run each test file alone, three at a time, its processes measured, keeping only what of head they ran
+        run: |
+          set -uo pipefail
+          map="$RUNNER_TEMP/suite-map"
+          mkdir -p "$map"
+          measure() {
+            out="$1/$(basename "$2")"
+            mkdir -p "$out"
+            NODE_V8_COVERAGE="$out" node --test "$2" > "$out.log" 2>&1 || echo "FAILED $2" >> "$out.log"
+            grep -L -F "$GITHUB_WORKSPACE/src/" "$out"/*.json 2>/dev/null | xargs rm -f
+          }
+          export -f measure
+          ls test/*.test.ts | xargs -P 3 -I{} bash -c 'measure "$0" "$1"' "$map" {}
+          git log --format='%H %s' origin/main..HEAD > "$map/commits.txt"
+          cat "$map"/*.log | grep -E '^(FAILED|ℹ (pass|fail))' || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: suite-map
+          path: ${{ runner.temp }}/suite-map/
+          if-no-files-found: error
