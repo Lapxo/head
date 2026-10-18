@@ -9,6 +9,7 @@ import { called } from './call.ts';
 import { principalOf } from '../access/obtain.ts';
 import { jsonOf } from '../access/contract.ts';
 import type { Frame } from './call.ts';
+import { refusedAccess } from '../sources/refused.ts';
 
 /** An intent an earlier act left open, closed by the read that looked at what it would have changed: a line naming that read-s digest, signed by head. */
 const closeWith = async (intent: string | undefined, source: string, digest: string, { word, lines, lands }: Pick<Frame, 'word' | 'lines' | 'lands'>, context: Context): Promise<readonly string[]> => {
@@ -26,7 +27,7 @@ const closeWith = async (intent: string | undefined, source: string, digest: str
  * the reuse the place allows, it answers from what was kept: nothing called. Asked for history, it shows what was kept
  * of that request as of when it was read — evidence of that read, never a current answer — where the place allows it.
  */
-export const readSource = (asked: Asked, context: Context): Promise<readonly string[]> => ((started) => called(asked, context, planRead, async ({ word, say, place, lines, source, operation, plan, prepared, most, typed, attach, send, lands, widen, uncovered }) => {
+export const readSource = (asked: Asked, context: Context): Promise<readonly string[]> => called(asked, context, planRead, async ({ word, say, place, lines, source, operation, plan, prepared, most, typed, attach, send, lands, widen, uncovered }) => {
   const [family, at, when] = [word('receipt/family'), word('receipt/at'), new Date(context.now()).toISOString()];
   const closing = (digest: string): Promise<readonly string[]> => closeWith(asked['closes'], source, digest, { word, lines, lands }, context);
   const scopes = (principal: string) => [scopeOf(family, source, operation, prepared.key, principal), `${scopeOf(word('receipt/kept'), source, operation, prepared.key, principal)}/${basisOf(lines, word, source)}`] as const;
@@ -63,7 +64,7 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   if (principal !== undefined && newest !== undefined && stood && context.now() - Date.parse(newest.at) <= reuse * 1000) {
     const [scope, kept] = scopes(principal);
     const answered = held(receiptsOf(lines, at, kept).find((k) => k.at >= newest.at)?.digest);
-    if (answered !== undefined) return [...new TextDecoder().decode(answered.bytes).split('\n'), ...say('reused', { scope: kept, digest: answered.digest, at: newest.at }), ...(await closing(newest.digest)), ...redIn(context.lock)('answer/kept', `answer/${source}/${operation}@${word('look/call')}`, started, context.machine())];
+    if (answered !== undefined) return [...new TextDecoder().decode(answered.bytes).split('\n'), ...say('reused', { scope: kept, digest: answered.digest, at: newest.at }), ...(await closing(newest.digest)), ...redIn(context.lock)('answer/kept', `answer/${source}/${operation}`, context.begun, context.machine())];
     const body = held(newest.digest);
     if (body !== undefined) {
       const cut = body.bytes.indexOf(10);
@@ -79,6 +80,7 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   const [scope, kept] = scopes(attached.principal ?? '');
   const got = await send(attached.attachment);
   if (got.kind !== 'got') return say(got.kind === 'over' ? 'too-large' : 'unreachable-source', { source });
+  if (got.status === 401 && attached.principal !== 'anonymous') return refusedAccess(context, place, lines, plan, operation);
   const digest = context.cache.keep(Buffer.concat([Buffer.from(`${got.status}\n`), got.bytes]));
   const answer = await typed(String(got.status), got.bytes);
   const observed = plan.access.probe && got.status < 300 ? [canonical({ at: `${at}:${when}`, by: 'target', form: 'alphabet', measure: word('vocab/access'), role: 'writes', scope: observedAt(context.lock, source, operation), value: word('vocab/anonymous') })] : [];
@@ -86,4 +88,4 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   const by = `${word('access/family')}/${source}/${word('access/authorizer')}`, authorizer = Object.entries(found ?? {}).flatMap(([k, f]) => Object.entries(f).map(([measure, all]) => canonical({ at: `${at}:${when}`, by: 'target', form: 'alphabet', measure, role: 'writes', scope: k ? `${by}/${k}` : by, value: all.join('|') })));
   const landed = await lands(draftOf(family, at, scope, digest, when), ...(attached.principal === undefined ? [] : keeping(kept, answer)), ...observed, ...authorizer);
   return [...answer, ...('lines' in landed ? [...landed.lines, ...(await closing(digest))] : say('not-landed', { why: landed.refused })), ...(found?.['']?.['issuer'] && 'lines' in landed ? say('authorizer-observed', { source, issuer: found['']['issuer'][0]! }) : [])];
-}))(context.machine());
+});

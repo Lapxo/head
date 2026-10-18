@@ -3,14 +3,14 @@ import { jsonOf } from './contract.ts';
 import type { Attachment, Obtained, Want } from './contract.ts';
 import { placeNameOf } from '../core/answer.ts';
 import type { Context } from '../core/answer.ts';
-import { members, valueOf } from '../core/lock.ts';
+import { aboutOf, members, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
 import { fieldsOf, stepOf, vocabOf } from '../core/read.ts';
 import type { Call } from '../core/read.ts';
 
 type Kept = Obtained & { readonly at?: string };
-const sealed = (got: Kept): string => Buffer.from(JSON.stringify(got)).toString('base64url');
-const opened = (kept: string | undefined): Kept | undefined => { try { return kept === undefined ? undefined : JSON.parse(Buffer.from(kept, 'base64url').toString('utf8')) as Kept; } catch { return undefined; } };
+export const sealed = (got: Kept): string => Buffer.from(JSON.stringify(got)).toString('base64url');
+export const opened = (kept: string | undefined): Kept | undefined => { try { return kept === undefined ? undefined : JSON.parse(Buffer.from(kept, 'base64url').toString('utf8')) as Kept; } catch { return undefined; } };
 const holds = (held: Kept | undefined, now: number): held is Kept => held !== undefined && (held.expires === undefined || held.expires > now);
 const asOf = (account: string, held: Kept): string | undefined => (held.at === undefined ? undefined : `${account}@${held.at}`);
 
@@ -51,7 +51,7 @@ export const attachmentFor = async (context: Context, place: string, lines: read
     values: members(valueOf(lines, 'wire/access-values') || valueOf(context.lock, 'wire/access-values')),
     host: Object.fromEntries(context.lock.filter((l) => l.scope?.startsWith('host/')).map((l) => [l.scope!.slice('host/'.length), l.value ?? ''])),
     scopes: [...new Set(lines.filter((l) => reads.has(l.scope) && l.measure === 'scopes').flatMap((l) => (l.value ?? '').split('|')))].sort(),
-    enter: (title, fields) => context.person.enter(title, fields), consent: async (message) => (await context.person.consent(message, valueOf(context.lock, 'said/elicit/yes'))) === 'yes', choose: (message, choices) => context.person.choose(message, choices), visit: (message, to) => context.person.visit(message, to),
+    enter: (title, fields) => context.person.enter(title, fields), consent: async (message) => (await context.person.consent(message, aboutOf(context.lock, 'said/elicit/yes'))) === 'yes', choose: (message, choices) => context.person.choose(message, choices), visit: (message, to) => context.person.visit(message, to),
     form: (source, operation) => fieldsOf(lines, `${v.offers}/${source}/${operation}/${v.form}`), call: step,
     post: async (url, body, as) => ((transport) => (transport === undefined ? undefined : transport.post(url, body, most, Number(valueOf(context.lock, 'adapter/request/wait').split('..')[1]), as)))(await context.adapter(url)),
   };

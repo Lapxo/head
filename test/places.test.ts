@@ -1,6 +1,6 @@
 import { test } from 'node:test';
-import { deepStrictEqual, match } from 'node:assert';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { deepStrictEqual, match, ok } from 'node:assert';
+import { mkdtempSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { ask } from './client.ts';
@@ -12,13 +12,13 @@ const tool = (name: string, args: Record<string, unknown>) => ({ method: 'tools/
 test('places: what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked', async () => {
   const server = await api(() => '{"city":"lima","temperature":21}');
   const [home, shared] = [mkdtempSync(join(tmpdir(), 'head-home-')), mkdtempSync(join(tmpdir(), 'head-places-'))];
-  const env = { ...fakeKeychain({}).env, HEAD_HOME: home }, place = join(shared, 'weather'), asked: string[] = [];
+  const env = { ...fakeKeychain({}).env, HEAD_HOME: home, HOME: home, USERPROFILE: home }, place = join(shared, 'weather'), asked: string[] = [];
   const yes = (params: any) => { asked.push(params.message); return { action: 'accept', content: { yes: true } }; };
   try {
     writeFileSync(join(shared, 'weather.json'), JSON.stringify({ openapi: '3.0.3', info: { title: 'weather', version: '1' }, servers: [{ url: server.url }], paths: { '/forecast': { get: { operationId: 'getForecast', security: [],
       parameters: [{ name: 'city', in: 'query', required: true, schema: { type: 'string' } }], responses: { 200: { description: 'the forecast', content: { 'application/json': { schema: { type: 'object', properties: { city: { type: 'string' } } } } } } } } } } }));
     const [none] = await ask([tool('places', {})], [], env);
-    match(text(none), said('places-none'));
+    match(text(none), said('unborn')); ok(!existsSync(join(home, 'place')), 'with no place at all, nothing is founded: it says so, and what connect founds');
     await ask([tool('place', { dir: place })], [], env, yes);
     const [fresh] = await ask([tool('places', {})], [], env);
     match(text(fresh), said('place-held')); match(text(fresh), / sources="—" grants="[^"]*" last="—"/);

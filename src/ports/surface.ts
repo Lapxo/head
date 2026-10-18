@@ -6,19 +6,21 @@ export interface Field { readonly name: string; readonly about: string; readonly
 export interface Tool { readonly name: string; readonly about: string; readonly fields: readonly Field[]; readonly hints: readonly string[] }
 export interface Resource { readonly name: string; readonly about: string; readonly template: string; readonly mime: string }
 export interface Prompt { readonly name: string; readonly about: string; readonly text: string; readonly line: string; readonly fields: readonly Field[] }
-export interface Surface { readonly name: string; readonly version: string; readonly tools: readonly Tool[]; readonly resources: readonly Resource[]; readonly prompts: readonly Prompt[] }
+export interface Surface { readonly name: string; readonly version: string; readonly tools: readonly Tool[]; readonly catalogue: readonly Tool[]; readonly resources: readonly Resource[]; readonly prompts: readonly Prompt[] }
 
 const nameOf = (line: Said): string => line.scope!.split('/')[1]!;
 const fieldsOf = (lock: readonly Said[], scope: string): readonly Field[] => ((required) => members(valueOf(lock, scope)).map((name) => ({
   name, about: aboutOf(lock, `${scope}/${name}`), type: valueOf(lock, `${scope}/${name}`), required: required.includes(name) })))(members(valueOf(lock, `${scope}/required`)));
 
-/** Everything a client is offered, read off the lock alone: its tools, resources and prompts, each with the words a model sees. */
-export const surfaceOf = (lock: readonly Said[]): Surface => ({
-  name: valueOf(lock, 'name'), version: valueOf(lock, 'version'),
-  tools: below(lock, 'tool').map((line) => ({ name: nameOf(line), about: line.about ?? '', fields: fieldsOf(lock, line.scope!), hints: members(valueOf(lock, `${line.scope}/hints`)) })),
+/**
+ * Everything a client is offered, read off the lock alone, each with the words a model sees: the tools surface/tools
+ * names, out of the catalogue the tool lines are (every one of them where it names none), its resources and prompts.
+ */
+export const surfaceOf = (lock: readonly Said[]): Surface => ((catalogue, offered) => ({
+  name: valueOf(lock, 'name'), version: valueOf(lock, 'version'), catalogue, tools: offered.length ? catalogue.filter((t) => offered.includes(t.name)) : catalogue,
   resources: below(lock, 'resource').map((line) => ({ name: nameOf(line), about: line.about ?? '', template: line.value ?? '', mime: valueOf(lock, `${line.scope}/mime`) })),
   prompts: below(lock, 'prompt').map((line) => ({ name: nameOf(line), about: line.about ?? '', text: aboutOf(lock, `${line.scope}/text`), line: aboutOf(lock, `${line.scope}/line`), fields: fieldsOf(lock, line.scope!) })),
-});
+}))(below(lock, 'tool').map((line): Tool => ({ name: nameOf(line), about: line.about ?? '', fields: fieldsOf(lock, line.scope!), hints: members(valueOf(lock, `${line.scope}/hints`)) })), members(valueOf(lock, 'surface/tools')));
 
 export const refusedOn = (lock: readonly Said[], platform: string): string | undefined =>
   ((supported) => (supported.includes(platform) ? undefined : sayIn(lock)('platform', { platform, supported: supported.join('|') })))(members(valueOf(lock, 'platform/supported')));

@@ -14,9 +14,16 @@ const sources = (dir: string): readonly string[] => readdirSync(`${root}/${dir}`
 const text = (file: string): string => readFileSync(`${root}/${file}`, 'utf8');
 const modules = (family: string): readonly string[] => readdirSync(`${root}/src/${family}`).map((f) => f.replace(/\.ts$/, '')).sort();
 
-test('surface/unmatched: every tool and resource line has its module, and every module its line', () => {
-  deepStrictEqual(surface.tools.map((t) => t.name).sort(), modules('tools'));
+test('surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is', () => {
+  const word = (scope: string) => members(lock.find((l) => l.scope === scope)?.value ?? '');
+  deepStrictEqual(surface.catalogue.map((t) => t.name).sort(), modules('tools'));
   deepStrictEqual(surface.resources.map((r) => r.name).sort(), modules('resources'));
+  deepStrictEqual(surface.tools.map((t) => t.name).sort(), [...word('surface/tools')].sort(), 'what is offered is what surface/tools names');
+  deepStrictEqual([...word('surface/tools'), ...word('ask/questions'), ...word('do/actions')].sort(), modules('tools'), 'each catalogue tool is offered, a question of ask or an action of do, once');
+});
+
+test('tools/visible: a client is offered no more tools than the ceiling allows', () => {
+  ok(surface.tools.length > 0 && surface.tools.length <= Number(lock.find((l) => l.scope === 'tools/visible' && l.form === 'interval')!.value!.split('..')[1]));
 });
 
 test('surface/sdk-importers: the protocol is spoken by one file', () => {
@@ -43,9 +50,9 @@ const lock = declaredOf(text('TARGET.bound'));
 
 test('a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing', () => {
   const red = redIn(declaredOf(text('TARGET.bound')));
-  deepStrictEqual([red('answer/seconds', 'answer/s/op@8', 0, 2999), red('answer/kept', 'answer/s/op@8', 0, 999), red('connect/seconds', 'connect/s', 0, 10_999)], [[], [], []]);
-  deepStrictEqual([red('answer/seconds', 'answer/s/op@8', 0, 3000), red('answer/kept', 'answer/s/op@8', 0, 1000)],
-    [[sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op@8', seconds: '3', scope: 'answer/seconds', ceiling: '0..2' })], [sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op@8', seconds: '1', scope: 'answer/kept', ceiling: '0..0' })]]);
+  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, 2999), red('answer/kept', 'answer/s/op', 0, 999), red('connect/seconds', 'connect/s', 0, 10_999)], [[], [], []]);
+  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, 3000), red('answer/kept', 'answer/s/op', 0, 1000)],
+    [[sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: '3', scope: 'answer/seconds', ceiling: '0..2' })], [sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: '1', scope: 'answer/kept', ceiling: '0..0' })]]);
 });
 
 test('a host the lock does not name is refused by name, every call, nothing done; the one it names is not', () => {

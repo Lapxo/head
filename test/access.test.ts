@@ -2,6 +2,8 @@ import { test } from 'node:test';
 import { deepStrictEqual, match, ok } from 'node:assert';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+import { createServer } from 'node:http';
+import type { AddressInfo } from 'node:net';
 import { basename, join } from 'node:path';
 import { ask } from './client.ts';
 import { canonical, parse } from '@lapxo/topos/wire';
@@ -170,4 +172,21 @@ test('a step whose answer is an error that still carries what its outputs name g
   await conflict.close(); await denied.close();
   match(text(picked), said('untyped')); deepStrictEqual(conflict.seen.map((r) => r.url), ['/login', '/select-shop', '/picked']); deepStrictEqual(kept(one.keychain, one.place)?.secret, 't-picked');
   match(text(stopped), said('step-unanswered')); match(text(stopped), / input="login"/); deepStrictEqual(denied.seen.map((r) => r.url), ['/login']);
+});
+
+test('a read its source refuses with the access head held: that access is marked spent, never written to a line; the card shows it open; the next read proves it again on one page, once', async () => {
+  const seen: string[] = [];
+  const server = createServer((request, response) => { const auth = String(request.headers['authorization'] ?? ''); seen.push(auth); response.writeHead(auth === 'Bearer fresh-from-page' ? 200 : 401, { 'content-type': 'application/json' }); response.end('{}'); });
+  await new Promise<void>((done) => server.listen(0, '127.0.0.1', done));
+  const { place, keychain } = born(`http://127.0.0.1:${(server.address() as AddressInfo).port}`, [secrets(1)]);
+  const pages: string[] = [], card = { method: 'tools/call', params: { name: 'ask', arguments: { place, card: true } } };
+  const [refused, open] = await ask([look(place, 'issues/get', issue('1')), card], [], keychain.env, person({ token: 'fresh-from-page' }, {}, pages));
+  const [again, kept_, closed] = await ask([look(place, 'issues/get', issue('1')), look(place, 'issues/get', issue('2')), card], [], keychain.env, person({ token: 'fresh-from-page' }, {}, pages));
+  server.close();
+  match(text(refused), said('access-refused')); match(text(open), said('access-pending'));
+  deepStrictEqual([said('untyped').test(text(again)), said('untyped').test(text(kept_)), said('access-pending').test(text(closed))], [true, true, false], text(again));
+  deepStrictEqual(pages, ['page type="password"'], 'one page, once');
+  deepStrictEqual(seen, ['Bearer token-for-tests', 'Bearer fresh-from-page', 'Bearer fresh-from-page']);
+  ok(!journal(place).includes('fresh-from-page') && !journal(place).includes('token-for-tests'), 'no secret in any line');
+  match(journal(place), / scope=access\/\S+\/refused /);
 });

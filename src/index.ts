@@ -5,8 +5,9 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { CallToolRequestSchema, GetPromptRequestSchema, ListPromptsRequestSchema, ListResourcesRequestSchema, ListResourceTemplatesRequestSchema, ListToolsRequestSchema, ReadResourceRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { answerOf } from './core/answer.ts';
-import type { Asked, Context } from './core/answer.ts';
-import { valueOf } from './core/lock.ts';
+import type { Asked, Context, Outcome } from './core/answer.ts';
+import { parse } from '@lapxo/topos/wire';
+import { aboutOf, valueOf } from './core/lock.ts';
 import { fill, sayIn } from './core/surface.ts';
 import { matchTemplate, refusedOn, shapeOf, shapeSchema, surfaceOf } from './ports/surface.ts';
 import { closing, cooled, founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, warm, words } from './ports/bound.ts';
@@ -19,7 +20,6 @@ import { keychain } from './ports/keychain.ts';
 import { algorithmOf, deviceOf, idIn } from './core/device.ts';
 import { publicOf } from './ports/keys.ts';
 import { personOf } from './ports/access/person.ts';
-import { inTurn } from './flows/call.ts';
 
 const [ext, root] = ((self) => [self.slice(self.lastIndexOf('.')), fileURLToPath(new URL(self.endsWith('.ts') ? '..' : '../..', self))] as const)(import.meta.url);
 const lock = lockAt(root);
@@ -28,8 +28,9 @@ const runs = valueOf(lock, 'runs');
 Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile', 'receipts', 'refusal'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
 Object.assign(limits, { wait: Number(valueOf(lock, 'bound/wait').split('..')[1]), most: Number(valueOf(lock, 'bound/printed').split('..')[1]) });
 Object.assign(warmth, { spares: Number(valueOf(lock, 'bound/spares').split('..')[1]), boot: valueOf(lock, 'bound/spare-env').split('|') });
-/** One call at a time, with bound started ahead for it and nothing of it kept once it is answered. */
-const turn = <T>(act: () => Promise<T>): Promise<T> => inTurn('', () => { void warm(runs); return act().finally(cooled); });
+/** One call at a time, each after the one before it and never on a timer, so one asked while another lands sees its receipt; bound started ahead for it, and nothing of it kept once it is answered. */
+let last: Promise<unknown> = Promise.resolve();
+const turn = <T>(act: () => Promise<T>): Promise<T> => ((next) => { last = next.catch(() => undefined); return next; })(last.then(() => { void warm(runs); return act().finally(cooled); }));
 const offered = (n: number) => (n ? { listChanged: false } : undefined);
 const server = new Server({ name: surface.name, version: surface.version }, { capabilities: { tools: offered(surface.tools.length), resources: offered(surface.resources.length), prompts: offered(surface.prompts.length) } });
 /** The person, asked as the client lets head ask; every wait on them is counted, so a time ceiling measures head's work and never the person's. */
@@ -47,16 +48,17 @@ const device = (role: string): string | undefined => devices.get(role) ?? ((secr
 const asRoot = (account: string) => ((device, key) => [key, device.signer, { BOUND_SIGNERS: registryFor(device.signer, service, account, key, valueOf(lock, 'founding/algorithm'), store) }] as const)(deviceOf(lock), valueOf(lock, 'founding/root').split('/')[1]!);
 /** What a call is answered with, one call at a time as when bound blocked head: every bound process it starts is stopped when the client cancels it, and a call cancelled while it waits its turn is never begun. */
 const contextOf = (signal?: AbortSignal): Context => {
-  /** One call's folds of a place, kept until something lands in it or is laid there; and the places its root acted in, whose receipts close once, when the call ends. */
-  const [folds, touched] = [new Map<string, Promise<never>>(), new Set<string>()], forget = (place: string) => { for (const k of [...folds.keys()]) if (k.endsWith(`\0${place}`)) folds.delete(k); };
+  /** One call's folds of a place, kept until something lands in it or is laid there; the places its root acted in, whose receipts close once, when the call ends; and those where anything but a read's receipts landed, as bound printed it. */
+  const [folds, touched, moved] = [new Map<string, Promise<never>>(), new Set<string>(), new Set<string>()], forget = (place: string) => { for (const k of [...folds.keys()]) if (k.endsWith(`\0${place}`)) folds.delete(k); };
+  const read = (at: string | undefined): boolean => at?.startsWith(`${valueOf(lock, 'receipt/at')}:`) === true;
   const once = <T>(key: string, place: string, fold: () => Promise<T>): Promise<T> => (folds.get(`${key}\0${place}`) ?? ((p) => (folds.set(`${key}\0${place}`, p as Promise<never>), p))(fold())) as Promise<T>;
-  const acted = <T>(place: string, root: boolean, done: Promise<T>): Promise<T> => done.finally(() => { forget(place); if (root) touched.add(place); });
+  const acted = (place: string, root: boolean, done: Promise<Outcome>): Promise<Outcome> => done.then((got) => { if ('lines' in got && !got.lines.every((l) => ((f) => f.kind === 'fact' && read(f.value.fields['at']))(parse(l)))) moved.add(place); return got; }).finally(() => { forget(place); if (root) touched.add(place); });
   const signRoot: Context['signRoot'] = (place, lot, account) => sign(runs, place, lot, ...asRoot(account), signal);
   const signAs: Context['signAs'] = (place, lot, role, lines) => ((one, id) => sign(runs, place, lot, id, one.signer, { BOUND_SIGNERS: registryFor(one.signer, service, one.account, id, algorithmOf(lines), store) }, signal))(deviceOf(lock, role), idIn(lines, device(role)) ?? deviceOf(lock, role).account);
   return {
     lock,
     bound: (cwd, args) => run(runs, cwd, args, {}, signal),
-    standing: (place) => once('standing', place, () => standingAt(runs, place, (lines) => ['head', 'person'].flatMap((role) => ((id) => (id === undefined ? [] : [id]))(idIn(lines, device(role)))), (line) => line.at?.startsWith(`${valueOf(lock, 'receipt/at')}:`) === true, signal)),
+    standing: (place) => once('standing', place, () => standingAt(runs, place, (lines) => ['head', 'person'].flatMap((role) => ((id) => (id === undefined ? [] : [id]))(idIn(lines, device(role)))), (line) => read(line.at), signal)),
     policy: (place) => once('policy', place, () => policyAt(runs, place, signal)),
     world: (place, view) => once(`world/${view}`, place, () => settledView(runs, place, view, signal)),
     adapter: async (origin) => ((name) => (!/^[a-z-]+$/.test(name) ? undefined : import(new URL(`./ports/adapters/${name}${ext}`, import.meta.url).href)))(URL.canParse(origin) ? valueOf(lock, `adapter/${new URL(origin).protocol.slice(0, -1)}`) : ''),
@@ -66,6 +68,7 @@ const contextOf = (signal?: AbortSignal): Context => {
     found: (place, account) => acted(place, true, founded(runs, place, ...asRoot(account), signal)),
     signRoot,
     landRoot: (place, lot, account) => acted(place, true, landAct(runs, place, lot, ...asRoot(account), signal)),
+    moved: (place) => moved.has(place),
     settle: async () => { const red: string[] = []; for (const place of touched) { const why = await closing(runs, place, signal); if (why !== undefined) red.push(sayIn(lock)('receipts-open', { place, why })); } touched.clear(); return red; },
     pinned: (place, file) => pinnedAt(runs, place, file, signal),
     access: async (kind) => (kind !== valueOf(lock, 'access/adapter') || !/^[a-z0-9-]+$/.test(kind) ? undefined : import(new URL(`./ports/access/${kind}${ext}`, import.meta.url).href).then((m: { adapter: never }) => m.adapter)),
@@ -75,9 +78,10 @@ const contextOf = (signal?: AbortSignal): Context => {
     landAs: (place, lot, role, lines) => acted(place, false, ((one, id) => landAct(runs, place, lot, id, one.signer, { BOUND_SIGNERS: registryFor(one.signer, service, one.account, id, algorithmOf(lines), store) }, signal))(deviceOf(lock, role), idIn(lines, device(role)) ?? deviceOf(lock, role).account)),
     land: (place, signed) => acted(place, true, land(runs, place, signed, signal)),
     told: (place, signed) => told(runs, place, signed, words.standing, signal),
-    elicit: (message) => person.consent(message, valueOf(lock, 'said/elicit/yes')),
+    elicit: (message) => person.consent(message, aboutOf(lock, 'said/elicit/yes')),
     now: () => Date.now(),
     machine: () => Date.now() - waited,
+    begun: Date.now() - waited,
     keys,
     device,
     roots: async () => (server.getClientCapabilities()?.roots ? (await server.listRoots()).roots.flatMap((root) => folderOf(root.uri) ?? []) : []),

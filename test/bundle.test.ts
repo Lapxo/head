@@ -6,6 +6,7 @@ import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { members, valueOf } from '../src/core/lock.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 import { lock } from './place.ts';
@@ -13,7 +14,7 @@ import { lock } from './place.ts';
 const bundle = process.env['HEAD_BUNDLE'];
 const tool = (name: string, args: Record<string, string>) => ({ method: 'tools/call', params: { name, arguments: args } });
 
-test('the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the lock-s tools, founds a place, connects a document and reads one offer', { skip: bundle ? false : 'HEAD_BUNDLE names no bundle' }, async () => {
+test('the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer', { skip: bundle ? false : 'HEAD_BUNDLE names no bundle' }, async () => {
   const unpacked = mkdtempSync(join(tmpdir(), 'head-unpacked-'));
   execFileSync('unzip', ['-q', bundle!, '-d', unpacked]);
   const manifest = JSON.parse(readFileSync(join(unpacked, 'manifest.json'), 'utf8')) as { server: { mcp_config: { args: string[] } } };
@@ -30,7 +31,7 @@ test('the Desktop Extension as a host runs it: unpacked in a folder of its own, 
     await ask([tool('place', { dir: place })], [], env, yes);
     await ask([tool('connect', { place, source: 'weather', document: join(shared, 'weather.json') })], [shared], env, yes);
     const [read] = await ask([tool('look', { place, source: 'weather', operation: 'getForecast', at: '8' })], [], env, yes);
-    deepStrictEqual((listed.result.tools as { name: string }[]).map((t) => t.name).sort(), lock.filter((l) => /^tool\/[a-z]+$/.test(l.scope ?? '')).map((l) => l.scope!.slice('tool/'.length)).sort());
+    deepStrictEqual((listed.result.tools as { name: string }[]).map((t) => t.name).sort(), [...members(valueOf(lock, 'surface/tools'))].sort());
     ok((read.result.structuredContent.cells as { code: string; fields: Record<string, string> }[]).some((c) => c.code === 'head/answered' && c.fields['status'] === '200' && c.fields['operation'] === 'getForecast'), JSON.stringify(read.result).slice(0, 800));
   } finally {
     server.close();

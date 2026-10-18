@@ -88,12 +88,12 @@ test('a source is connected once: its document compiled by the world head carrie
   } finally { await server.close(); }
 });
 
-test('each step starts in the person-s words: the place, connect and access prompts fill what they are given and name the tool that does it', async () => {
+test('each step starts in the person-s words: the place, connect and access prompts fill what they are given and name the tool that does it, and the action of do where it is one', async () => {
   const prompt = (name: string, args: Record<string, string>) => ({ method: 'prompts/get', params: { name, arguments: args } });
   const [place, connect, access] = await ask([prompt('place', { dir: '/srv/shop', name: 'shop' }), prompt('connect', { place: '/srv/shop', source: 'things', document: '/srv/things.json' }), prompt('access', { place: '/srv/shop', source: 'things' })]);
   const words = (answer: any): string => answer.result.messages.map((m: any) => m.content.text).join('\n');
-  match(words(place), /^Found the place shop in \/srv\/shop with the place tool\./); match(words(connect), /^Connect things to the place \/srv\/shop from \/srv\/things\.json with the connect tool/);
-  match(words(access), /^Prove access to things in \/srv\/shop with the access tool\. .*never here\.$/);
+  match(words(place), /^Found the place shop in \/srv\/shop with the do tool, as its place action\./); match(words(connect), /^Connect things to the place \/srv\/shop from \/srv\/things\.json with the connect tool/);
+  match(words(access), /^Prove access to things in \/srv\/shop with the do tool, as its access action\. .*never here\.$/);
 });
 
 test('a document that names its operations by method and path, and its servers on the path, connects and reads: each operation keyed as one step, every server it declares an origin', async () => {
