@@ -19,6 +19,7 @@ export const paidIn = async (asked: Asked, context: Context, place: string): Pro
   if ('said' in root) return { said: root.said, answer: false };
   if (read === undefined) return { said: [say('bytes-owed', { source, place, document })], answer: false };
   const laid = await laidIn(context, place, root.account)(source, document, read, undefined, context.machine());
+  if (!laid.connected) return { said: laid.said, answer: false };
   const landed = await context.landRoot(place, [canonical({ ...Object.fromEntries(Object.entries(owed).filter(([k]) => !['sig', 'epoch'].includes(k))), by: 'target', value: 'withdraw' })], root.account);
-  return 'refused' in landed ? { said: [...laid, say('not-landed', { why: landed.refused })], answer: false } : { said: [...laid, ...landed.lines], answer: true };
+  return 'refused' in landed ? { said: [...laid.said, say('not-landed', { why: landed.refused })], answer: false } : { said: [...laid.said, ...landed.lines], answer: true };
 };

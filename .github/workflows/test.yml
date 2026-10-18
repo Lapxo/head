@@ -56,7 +56,9 @@ jobs:
           set -euo pipefail
           node --test --test-concurrency=1 test/time/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-time.log"
       - name: Measure a new person's first minute against an API on this machine
-        run: HEAD_ONBOARDING=1 node --test test/onboarding.test.ts 2>&1 | tee -a "$RUNNER_TEMP/head-time.log"
+        run: |
+          set -euo pipefail
+          HEAD_ONBOARDING=1 node --test test/onboarding.test.ts 2>&1 | tee -a "$RUNNER_TEMP/head-time.log"
       - name: Check the committed receipts on a clean checkout
         if: ${{ !cancelled() }}
         run: npx --no-install bound fold --check

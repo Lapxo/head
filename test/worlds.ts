@@ -24,6 +24,6 @@ for (const { url, digest } of pins) {
   writeFileSync(worldBytes(digest), got);
 }
 export const offline = (env: Readonly<Record<string, string | undefined>> = process.env): Record<string, string> => ({
-  NODE_OPTIONS: [env['NODE_OPTIONS'], `--import ${fileURLToPath(new URL('./offline-worlds.mjs', import.meta.url))}`].filter(Boolean).join(' '),
+  NODE_OPTIONS: [env['NODE_OPTIONS'], `--import ${fileURLToPath(new URL('./offline-worlds.ts', import.meta.url))}`].filter(Boolean).join(' '),
   HEAD_TEST_WORLDS: JSON.stringify(Object.fromEntries(pins.map((p) => [p.url, worldBytes(p.digest)]))),
 });
