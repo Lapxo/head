@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "head",
   "display_name": "head",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "An MCP server that folds: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
   "author": {
     "name": "Lapxo"
@@ -26,52 +26,16 @@
   },
   "tools": [
     {
-      "name": "access",
-      "description": "Prove access to a source ahead of any call, the way its document declares: the person-s own page, or its provider with a client registered for the visit; the secret is kept in this keychain and a receipt lands without it. Nothing is called."
-    },
-    {
-      "name": "act",
-      "description": "Call one offer that is not of class read, only as far as the person allowed it and after their yes when they asked to be asked. The intent lands before the call and the receipt after; a call that never answered stays open until a look closes it."
-    },
-    {
-      "name": "admit",
-      "description": "Admit another device into a place, once whoever holds its root says yes: the key its own key tool handed, under a name, covering what is given — without it, what a member is: asking, keeping what it read, proving access. What it claims to cover is not read."
-    },
-    {
-      "name": "card",
-      "description": "What is open for a key: each cell no reading has answered, its ceiling, its origins and the states it may take, in the order bound ranks them."
+      "name": "ask",
+      "description": "Ask head, and nothing changes but the receipts of what was read. With nothing: what this device has connected. A source: its region, what it offers; with an operation and its parameters, one read of an offer of class read, answered with the receipt the device key landed for it, or, while the place allows reuse, the answer kept for it and nothing called. A view: as bound folds it. card: what is open, and the card do needs. lines: a lot for the person to sign. Nothing that is not a read is ever called. An answer about one place ends with its card, valid from it."
     },
     {
       "name": "connect",
-      "description": "Connect a source to a place, once the person says yes: its document, and an overlay beside it, laid whatever its kind and compiled once by whichever world reads it — or open, with the line that pays it — into what the source offers and how access is proven, pinned by digest. Nothing is called. A document at an address may be read as a source the place connected, with the access it holds, and checked against its digest. A package another place shared is connected whole: its lock as the document, named by its digest. And an origin alone, with no source, is used on one yes: a read-only place of its own, its document found where the origin says, compiled, and reads granted."
+      "description": "Connect a source to a place, once the person says yes: its document, and an overlay beside it, laid whatever its kind and compiled once by whichever world reads it — or open, with the line that pays it — into what the source offers and how access is proven, pinned by digest. Nothing is called. A document at an address may be read as a source the place connected, with the access it holds, and checked against its digest. A package another place shared is connected whole: its lock as the document, named by its digest. A site alone or a folder is looked for its document first, before anything is founded. With no place yet, the first connect founds the person-s place on one yes that also lets head read the source."
     },
     {
-      "name": "key",
-      "description": "The lines that admit a key of this device in a place: its public key, its class, what it may sign and how deep. The key is made once in the keychain and never shown."
-    },
-    {
-      "name": "land",
-      "description": "Land a lot plan signed, by its digest, while the place still stands on the base it was planned against."
-    },
-    {
-      "name": "look",
-      "description": "Read one view of a place as bound folds it; or what a source offers, as typed lines: at 0 where it is reached and the class of each offer, at 1 (the default) their forms and how access is proven; or, at 8 with an operation of class read, that operation once: the response comes back with the receipt the device key landed for it, or, while the place allows reuse, the answer kept for it and nothing called. Nothing else is ever called."
-    },
-    {
-      "name": "place",
-      "description": "Found a place in a folder, once the person says yes: its root key made in the keychain, the lines it is born with — reads bounded, read-only — and its name in head-s index of places."
-    },
-    {
-      "name": "places",
-      "description": "What this device has connected: every place head-s index names, the sources each pinned, the grants that stand today and the last read it kept a receipt of — read off each place-s lines as bound folds them. Nothing is asked, called or signed."
-    },
-    {
-      "name": "plan",
-      "description": "Propose lines for the person to sign: they are shown to the person with the place and the base they are made against; on a yes to exactly those, the person-s key signs them and they are folded as if landed. Nothing lands; the lot is kept by its digest."
-    },
-    {
-      "name": "share",
-      "description": "Pack a place for another place to receive: a lock naming by digest each world its sources were compiled under and each source-s document, overlay and compiled pin, written with those bytes into a folder — and, beside each digest, the encrypted address its bytes are also published at, where the person names one. It carries no key, no grant and no answer; nothing is asked, signed or landed. The folder or the addresses travel as the person chooses, and the digest apart, over a private channel."
+      "name": "do",
+      "description": "Do one action in a place, on the card ask answered for it: found a place, admit a device, land a lot ask planned, share a place, make this device-s key, prove access to a source, or call an offer that is not a read. An action on a place that moved since its card was asked is refused, with nothing done; one the place does not allow is said not to be in the card. The answer ends with the card valid from this act."
     }
   ],
   "tools_generated": false,
@@ -82,8 +46,7 @@
   ],
   "compatibility": {
     "platforms": [
-      "darwin",
-      "win32"
+      "darwin"
     ],
     "runtimes": {
       "node": ">=22.18"
