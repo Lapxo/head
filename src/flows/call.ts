@@ -31,10 +31,6 @@ export const pickedOrigin = async (context: Context, place: string, lines: reado
   return 'refused' in landed ? { said: [sayIn(context.lock)('not-landed', { why: landed.refused })] } : { lines: [...lines, line(chosen)] };
 };
 
-const turns = new Map<string, Promise<unknown>>();
-/** Calls of one place take turns, so one asked while another lands sees its receipt; nothing waits on a timer. */
-export const inTurn = <T>(place: string, act: () => Promise<T>): Promise<T> => { const next = (turns.get(place) ?? Promise.resolve()).then(act, act); turns.set(place, next.catch(() => undefined)); return next; };
-
 export interface Frame {
   readonly say: (key: string, fields?: Readonly<Record<string, string | undefined>>) => readonly string[]; readonly lands: (...lot: readonly string[]) => Promise<Outcome>; readonly most: (scope: string) => number;
   readonly place: string; readonly lines: readonly Said[]; readonly source: string; readonly operation: string; readonly plan: Call; readonly prepared: Extract<Prepared, { key: string }>;
@@ -45,14 +41,14 @@ export interface Frame {
 }
 
 /**
- * The steps a read and an act share: the place, its turn, the lines it stands on once bound settled them, the offer's
+ * The steps a read and an act share: the place, the lines it stands on once bound settled them, the offer's
  * plan, the transport its origin names and the request it prepares; then what is particular, given a frame that says
  * by the lock, attaches access when asked, types what came back and lands a line under head's key.
  */
 export const called = async (asked: Asked, context: Context, planOf: (lines: readonly Said[], lock: readonly Said[], source: string, operation: string, place: string) => Call | Plan, then: (frame: Frame) => Promise<readonly string[]>): Promise<readonly string[]> => {
   const say = (key: string, fields: Readonly<Record<string, string | undefined>> = {}) => [sayIn(context.lock)(key, fields)];
   const [source, operation] = [asked['source'] ?? '', asked['operation'] ?? ''];
-  return inPlace(asked, context, (place) => inTurn(place, async () => {
+  return inPlace(asked, context, async (place) => {
     const held = await standingFor(context, place);
     if ('unsettled' in held) return say('unsettled', { source, why: held.unsettled });
     const widen = async (message: string, lot: readonly string[]) => {
@@ -78,5 +74,5 @@ export const called = async (asked: Asked, context: Context, planOf: (lines: rea
     const attach = async () => ((got) => ('said' in got ? { said: say(got.said, { source, operation, kinds: plan.access.kind, input: got.input }) } : got))(await attachmentFor(context, place, lines, plan));
     const uncovered = (role: string, scopes: readonly string[]) => uncoveredIn(context.lock, lines, context.device(role), place, [], scopes);
     return then({ widen, word: (scope) => valueOf(context.lock, scope), say, place, lines, source, operation, plan, prepared, most, typed, attach, send: (attachment) => prepared.send(attachment, most('read/response-bytes')), lands, uncovered });
-  }));
+  });
 };

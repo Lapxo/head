@@ -80,7 +80,7 @@ test('a place born before its wire named a witness gets it by one lot head propo
     deepStrictEqual(run('@lapxo/bound', dir, ['land', older, '--key', 'root', '--signer', 'keychain'], { ...env, BOUND_SIGNERS: signers })?.code, 0);
     const look = tool('look', { place: dir, source: 'things', operation: 'listThings', at: '8' });
     const [unwitnessed] = await ask([look], [], env, yes);
-    const proposed = text(unwitnessed).split('\n').slice(1).filter((l) => !l.startsWith('said/head/red '));
+    const proposed = text(unwitnessed).split('\n').slice(1).filter((l) => !/^said\/head\/(red|card) /.test(l));
     match(text(unwitnessed), said('unwitnessed')); deepStrictEqual(proposed.length, 2);
     match(proposed[0]!, / at=policy:fixture\/older by=target .*scope=wire\/fields value=withdraw$/); match(proposed[1]!, / by=target .*scope=wire\/fields value=.*\|witness$/);
     const [planned] = await ask([tool('plan', { place: dir, lines: proposed.join('\n') })], [], env, yes);

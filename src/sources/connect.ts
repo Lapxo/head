@@ -1,19 +1,18 @@
 import { join } from 'node:path';
-import { canonical, EXTENSION, LOCK } from '@lapxo/topos/wire';
+import { canonical, EXTENSION } from '@lapxo/topos/wire';
 import { inPlace, placeOf, unless } from '../core/answer.ts';
 import type { Asked, Context } from '../core/answer.ts';
 import { valueOf } from '../core/lock.ts';
 import { fieldsOf, vocabOf } from '../core/read.ts';
-import { fill, redIn, sayIn } from '../core/surface.ts';
+import { redIn, sayIn } from '../core/surface.ts';
 import { digestIn, linesOf } from '../core/worlds.ts';
 import { coveredIn, owedIn, unpacked } from '../core/package.ts';
 import { paidBy, pinIn } from '../compile/pin.ts';
 import { adopted } from '../adopt/adopt.ts';
 import type { Line } from '../compile/pin.ts';
 import { firstRun } from '../onboard/first.ts';
+import { resolved } from '../onboard/site.ts';
 import { rootIn } from '../flows/device.ts';
-import { bornAt } from '../places/found.ts';
-import { untilOf } from '../core/act.ts';
 import { attachedFor } from './access.ts';
 import type { Read } from '../ports/documents.ts';
 
@@ -28,8 +27,9 @@ import type { Read } from '../ports/documents.ts';
  * its pins rest in, its pin held to the package's; one that differs is refused by name, and the place holds what it
  * compiled. Nothing the sharing place was granted comes with it: access is asked here, issuer by issuer.
  */
-export const connected = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (asked['source'] && !(await placeOf(asked, context)) ? firstRun(asked, context, (dir, covered) => connected({ ...asked, place: dir }, context, covered))
-  : !asked['source'] && /^([a-z]+:\/\/)?[^/\s]+\/?$/.test(asked['document'] ?? '') ? used(asked, context) : ((started) => inPlace(asked, context, async (place) => {
+export const connected = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => ((got) => ('said' in got ? got.said : connectedAs(got.asked, context, covered)))(await resolved(asked, context));
+const connectedAs = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (asked['source'] && !(await placeOf(asked, context)) ? firstRun(asked, context, (dir, covered) => connected({ ...asked, place: dir }, context, covered))
+  : ((started) => inPlace(asked, context, async (place) => {
   const say = sayIn(context.lock), digest = digestIn(context.lock), { documentOf, fetchedAs, kindOf } = context.files.read;
   const [source, document] = [(asked['source'] ?? '').toLowerCase().replace(/[^a-z0-9-]+/g, '-'), asked['document'] ?? ''];
   const [via, named, accept, lock] = [asked['via'] ?? '', asked['digest'] ?? '', /^[\w.+-]+\/[\w.+-]+$/.test(asked['accept'] ?? '') ? asked['accept'] : undefined, `.${kindOf(document)}` === EXTENSION];
@@ -51,27 +51,6 @@ export const connected = async (asked: Asked, context: Context, covered = false)
   return `.${read.kind}` === EXTENSION ? [say('parent-lock', { place, parent: source })] : laidIn(context, place, root.account)(source, document, read, overlay, started);
 }))(context.machine()));
 
-const used = async (asked: Asked, context: Context): Promise<readonly string[]> => {
-  const [say, word, until] = [sayIn(context.lock), (k: string) => valueOf(context.lock, k), untilOf(valueOf(context.lock, 'access/period'), context.now())], at = /^[a-z]+:\/\//.test(asked['document'] ?? '') ? asked['document']! : `${word('use/scheme')}//${asked['document'] ?? ''}`;
-  if (!URL.canParse(at)) return [say('document-unread', { document: asked['document'] ?? '' })];
-  const [origin, source] = [new URL(at).origin, new URL(at).hostname.replace(/[^a-z0-9-]+/g, '-')], dir = join(fill(word('use/folder'), { home: context.home() }), source);
-  if (context.files.has(dir, LOCK)) return [say('use-held', { origin, dir })];
-  const refused = await unless(context, say('elicit-use', { origin, dir, until }));
-  if (refused) return refused;
-  const born = await bornAt(context, dir, source), root = rootIn(context, dir), tried: string[] = [];
-  if (born[0] !== say('born', { name: source, dir }) || 'said' in root) return 'said' in root ? [...born, ...root.said] : born;
-  for (const document of await context.files.read.describedAt(context, origin)) {
-    const read = await context.files.read.documentOf(context, dir, document);
-    if (read === undefined || `.${read.kind}` === EXTENSION) { tried.push(document); continue; }
-    const said = await laidIn(context, dir, root.account)(source, document, read, undefined, context.machine()), held = await context.policy(dir);
-    if ('refused' in held || !held.lines.some((l) => l.scope === `uses/${source}`)) { tried.push(document); continue; }
-    const line = (scope: string, measure: string, value: string, form = 'alphabet') => canonical({ at: 'policy:head/use', by: 'target', form, measure, role: 'writes', scope, value });
-    const landed = await context.landRoot(dir, [line(`${word('allow/family')}/${source}`, 'calls', '0..0', 'interval'), line(word('grant/family'), 'sources', source), line(word('grant/family'), 'until', until)], root.account);
-    return [say('used', { origin, dir, source, until }), ...said, ...('refused' in landed ? [say('not-landed', { why: landed.refused })] : landed.lines)];
-  }
-  return [...born, say('use-none', { origin, tried: tried.join(', ') || '—' })];
-};
-
 type Laid = (source: string, document: string, doc: Read, overlay: Read | undefined, started: number) => Promise<readonly string[]>;
 const received = async (context: Context, place: string, document: string, bytes: Uint8Array, named: string, laid: Laid, account: string): Promise<readonly string[]> => {
   const [say, got] = [sayIn(context.lock), unpacked(context, document, bytes, await context.files.read.besideOf(context, document, linesOf(bytes)))];
@@ -85,7 +64,7 @@ const received = async (context: Context, place: string, document: string, bytes
   return [...said, ...(off.length ? off.map((s) => say('package-pin', { source: s.source, pin: s.pin, got: pinOf(s.source) || 'none' })) : names ? [say('received', { place, package: named, sources: names })] : []),
     ...(got.open ?? []).map((o) => say('received-open', { source: o.source, waits: o.waits })), ...(landed && 'refused' in landed ? [say('not-landed', { why: landed.refused })] : [])];
 };
-const laidIn = (context: Context, place: string, account: string): Laid => (source, document, doc, overlay, started) => (async () => {
+export const laidIn = (context: Context, place: string, account: string): Laid => (source, document, doc, overlay, started) => (async () => {
   const say = sayIn(context.lock), v = vocabOf(context.lock), word = (k: string) => valueOf(context.lock, k), digest = digestIn(context.lock);
   const lands = (lot: readonly string[]) => context.landRoot(place, lot, account);
   const line: Line = (scope, measure, value, more = {}) => canonical({ at: 'policy:head/connect', by: 'target', form: 'alphabet', measure, role: 'writes', scope, value, ...more });

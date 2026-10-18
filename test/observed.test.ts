@@ -34,5 +34,6 @@ test('an unstated read is probed once with nothing attached: answered, it lands 
     deepStrictEqual([observed().length, server.seen.filter((r) => r.url === '/locked').length], [1, 2], 'refused, nothing observed; probed again');
     const [wrote] = await ask([tool('act', { place, source: 'silent', operation: 'addItem' })], [], env, yes);
     match(text(wrote), said('access-unstated')); deepStrictEqual(server.seen.filter((r) => r.method === 'POST').length, 0);
+    match(text(wrote), / method="post" path="\/[^"]*"/, 'the refusal names the operation an overlay would state the access of');
   } finally { await server.close(); }
 });

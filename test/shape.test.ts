@@ -25,8 +25,8 @@ test('every said code has a state from the lock-s alphabet and a next — a tool
 });
 
 test('a cell-s next carries the real arguments from its fields; a bound refusal keeps bound-s code with head-s beside it; a red is the state of the cell it measured, beside a done one in the same answer', () => {
-  deepStrictEqual(cellOf(lock, 'not-covered', { place: '/p', coverage: 'read/**', scope: 'act/x' }).next, { tool: 'plan', args: { place: '/p' } });
-  deepStrictEqual(cellOf(lock, 'is-read', { source: 'weather', operation: 'getForecast' }).next, { tool: 'look', args: { source: 'weather', operation: 'getForecast', at: '8' } });
+  deepStrictEqual(cellOf(lock, 'not-covered', { place: '/p', coverage: 'read/**', scope: 'act/x' }).next, { tool: 'ask', args: { place: '/p', lines: '' } }, 'lines the person signs are asked with lines, which the model drafts');
+  deepStrictEqual(cellOf(lock, 'is-read', { source: 'weather', operation: 'getForecast' }).next, { tool: 'ask', args: { source: 'weather', operation: 'getForecast' } }, 'a read is asked with no resolution');
   const refused = cellOf(lock, 'unfolded', { place: '/p', why: 'REFUSE·check receipts are open; a fold must close them' });
   deepStrictEqual([refused.code, refused.head, refused.state], ['REFUSE·check', 'head/unfolded', 'refused']);
   const say = sayIn(lock), answer = shapeOf([say('answered', { source: 'w', operation: 'o', status: '200' }), say('red', { coordinate: 'answer/w/o@8', seconds: '3', scope: 'answer/seconds', ceiling: '0..2' }), 'bound-lock/1 a line']);
@@ -48,5 +48,5 @@ test('no result without state and next: a place founded, a source connected and 
     for (const c of shape.cells) ok(states.includes(c.state) && ('tool' in c.next || 'none' in c.next) && typeof c.code === 'string', `a cell without state or next: ${JSON.stringify(c)}`);
     for (const { code, about } of codes.filter((c) => !asked.has(c.code) && words(c.about).length >= 24)) ok(!text.includes(words(about)), `said/${code} said in its lock words: ${words(about)}`);
   }
-  ok(answers.some((a) => a.result.structuredContent.cells.some((c: any) => c.code === 'head/unknown-operation' && c.state === 'refused' && c.next.tool === 'look' && c.next.args.source === 'weather')), `the refusal on the way, with its next: ${JSON.stringify(answers.map((a) => a.result.structuredContent.cells.map((c: any) => c.code)))}`);
+  ok(answers.some((a) => a.result.structuredContent.cells.some((c: any) => c.code === 'head/unknown-operation' && c.state === 'refused' && c.next.tool === 'ask' && c.next.args.source === 'weather' && c.next.args.why === 'true')), `the refusal on the way, with its next: ${JSON.stringify(answers.map((a) => a.result.structuredContent.cells.map((c: any) => c.code)))}`);
 });
