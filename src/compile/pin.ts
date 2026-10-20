@@ -54,7 +54,7 @@ export const pinIn = (context: Context, place: string, lands: (lot: readonly str
   const pinned = ((kept) => (kept !== undefined && kept.pin === old?.value ? kept : undefined))(pinnedOf(context.lock, old?.needs === file ? context.files.take(join(place, file)) : undefined)) ?? await compiledOf(context, place, source, file);
   if ('said' in pinned || (old?.needs === file && old.value === pinned.pin)) return pinned;
   const withdraw = old === undefined ? [] : [canonical({ ...Object.fromEntries(Object.entries(old).filter(([k]) => !['sig', 'epoch'].includes(k))), by: 'target', value: 'withdraw' })];
-  const landed = await lands([...withdraw, line(`uses/${source}`, 'digest', pinned.pin, { needs: file, at: `policy:head/connect/${new Date(context.now()).toISOString()}` })]);
+  const landed = await lands([...withdraw, line(`uses/${source}`, 'digest', pinned.pin, { needs: file, at: `policy:person/connect/${new Date(context.now()).toISOString()}` })]);
   return 'refused' in landed ? { said: [say('not-landed', { why: landed.refused })] } : pinned;
 };
 

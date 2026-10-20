@@ -25,7 +25,7 @@ export const firstRun = async (asked: Asked, context: Context, then: (place: str
   if (born[0] !== say('born', { name, dir }) || 'said' in root) return 'said' in root ? [...born, ...root.said] : born;
   const connected = await then(dir, true), unread = connected.some((l) => l.startsWith('said/head/document-unread ')), held = unread ? undefined : await context.policy(dir);
   if (held !== undefined && ('refused' in held || !held.lines.some((l) => l.scope === `uses/${source}`))) return [...born, ...connected];
-  const line = (scope: string, measure: string, value: string, role = 'writes') => canonical({ at: 'policy:head/first-run', by: 'target', form: 'alphabet', measure, role, scope, value });
+  const line = (scope: string, measure: string, value: string, role = 'writes') => canonical({ at: 'policy:person/first-run', by: 'target', form: 'alphabet', measure, role, scope, value });
   const owed = unread ? [line(`${word('place/needs')}/bytes/${source}`, 'id', document, 'demands')] : [];
   const landed = await context.landRoot(dir, [line(word('grant/family'), 'sources', source), line(word('grant/family'), 'until', until), ...owed], root.account);
   if ('refused' in landed) return [...born, ...connected, say('not-landed', { why: landed.refused })];
