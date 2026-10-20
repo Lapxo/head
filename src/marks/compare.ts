@@ -38,8 +38,9 @@ export const compared = async (asked: Asked, context: Context, place: string): P
   const kin = (s: string, earlier: readonly Read[]) => earlier.find((e) => same(s, e.source) || shares(s)?.includes(e.source) || shares(e.source)?.includes(s));
   return [...got.flatMap((g) => ('said' in g ? g.said : [])), ...[...new Set(reads.flatMap((r) => [...r.fields.keys()]))].flatMap((field) => {
     const values = reads.filter((r) => r.fields.has(field));
-    if (values.length < 2 || values.length < reads.length || new Set(values.map((r) => r.fields.get(field))).size > 1)
+    if (new Set(values.map((r) => r.fields.get(field))).size > 1)
       return [...values.map((r) => say('forked', { field, source: r.source, value: r.fields.get(field), at: r.at })), say('unmeasured', { what: `${word('marks/loss')} ${values.map((r) => r.source).join(', ')}`, needs: word('marks/loss-needs') })];
+    if (values.length < 2 || values.length < reads.length) return values.map((r) => say('partial', { field, source: r.source, value: r.fields.get(field), at: r.at }));
     const kinOf = values.map((r, i) => kin(r.source, values.slice(0, i))), first = kinOf.findIndex((k) => k !== undefined);
     const base = { field, value: values[0]!.fields.get(field), sources: values.map((r) => r.source).join(', '), marks: kinOf.map((k) => (k ? mark[1] : mark[0])).join(''), receipts: values.map((r) => r.receipt).join('|') };
     return [first >= 0 ? say('agreed-lineage', { ...base, source: values[first]!.source, other: kinOf[first]!.source })

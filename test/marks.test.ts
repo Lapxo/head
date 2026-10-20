@@ -68,6 +68,12 @@ test('no: two sources that differ are both shown, each with its value and hour, 
   } finally { a.close(); b.close(); }
 });
 
+test('missing fields are partial evidence, never disagreement with an absent assertion', async () => {
+  const [a,b]=[await api(()=>'{"temperature":21}'),await api(()=>'{"sky":"clear"}')];
+  try {const got=await (await person(a.document,b.document)).asked();deepStrictEqual(got.filter(c=>c.code==='head/forked'),[]);deepStrictEqual(got.filter(c=>c.code==='head/partial').map(c=>[c.fields.field,c.fields.value]).sort(),[['sky','clear'],['temperature','21']]);}
+  finally {a.close();b.close();}
+});
+
 test('lineage, as the place declares it and no further: a source declared to share the other-s lineage is ○ and may add nothing; declared to share none, nobody has declared that they share lineage — never that they are independent', async () => {
   const [a, b] = [await api(() => '{"temperature":21,"sky":"clear"}'), await api(() => '{"temperature":21,"sky":"clear"}')];
   try {

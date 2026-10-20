@@ -20,14 +20,13 @@ import { keychain } from './ports/keychain.ts';
 import { algorithmOf, deviceOf, idIn } from './core/device.ts';
 import { publicOf } from './ports/keys.ts';
 import { personOf } from './ports/access/person.ts';
-import { folded } from './ahead/fold.ts';
 import { readAhead } from './ahead/read.ts';
 
 const [ext, root] = ((self) => [self.slice(self.lastIndexOf('.')), fileURLToPath(new URL(self.endsWith('.ts') ? '..' : '../..', self))] as const)(import.meta.url);
 const lock = lockAt(root);
 const surface = surfaceOf(lock);
 const runs = valueOf(lock, 'runs');
-Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile', 'receipts', 'refusal'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
+Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile', 'receipts', 'refusal', 'identity'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
 Object.assign(limits, { wait: Number(valueOf(lock, 'bound/wait').split('..')[1]), most: Number(valueOf(lock, 'bound/printed').split('..')[1]) });
 Object.assign(warmth, { spares: Number(valueOf(lock, 'bound/spares').split('..')[1]), boot: valueOf(lock, 'bound/spare-env').split('|') });
 /** One call at a time, each after the one before it and never on a timer, so one asked while another lands sees its receipt; bound started ahead for it, and nothing of it kept once it is answered. */
@@ -61,8 +60,8 @@ const contextOf = (signal?: AbortSignal): Context => {
   return {
     lock,
     bound: (cwd, args) => run(runs, cwd, args, {}, signal),
-    standing: (place) => once('standing', place, () => folded(lock, 'standing', place, () => standingAt(runs, place, (lines) => ['head', 'person'].flatMap((role) => ((id) => (id === undefined ? [] : [id]))(idIn(lines, device(role)))), (line) => read(line.at), signal))),
-    policy: (place) => once('policy', place, () => folded(lock, 'policy', place, () => policyAt(runs, place, signal))),
+    standing: (place) => once('standing', place, () => standingAt(runs, place, (lines) => ['head', 'person'].flatMap((role) => ((id) => (id === undefined ? [] : [id]))(idIn(lines, device(role)))), (line) => read(line.at), signal)),
+    policy: (place) => once('policy', place, () => policyAt(runs, place, signal)),
     world: (place, view) => once(`world/${view}`, place, () => settledView(runs, place, view, signal)),
     adapter: async (origin) => ((name) => (!/^[a-z-]+$/.test(name) ? undefined : import(new URL(`./ports/adapters/${name}${ext}`, import.meta.url).href)))(URL.canParse(origin) ? valueOf(lock, `adapter/${new URL(origin).protocol.slice(0, -1)}`) : ''),
     files: { lay: (place, rel, bytes) => { forget(place); layAt(place, rel, bytes); }, drop: (place, rel) => { forget(place); dropAt(place, rel); }, has: hasAt, list: listAt, read: documents, take: takeAt, own: (rel) => takeAt(join(root, rel)) },
