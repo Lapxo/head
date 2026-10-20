@@ -55,6 +55,9 @@ test('yes, over two places: a link to the package-s standing is inspected where 
       const seen = await inspect(to, link), inspected = cells(seen).find((c) => c.code === 'head/inspected');
       deepStrictEqual([codes(seen), inspected?.fields.sources.split(', ').sort()], [['head/inspected', 'head/sharer-unverified'], ['auth', 'jobs']], text(seen));
       ok(!/ scope=uses\/(jobs|auth) /.test(viewOf(to.place, 'lines')), 'nothing was connected');
+      const [why] = await ask([tool('connect', { place: to.place, document: link, why: 'true' })], [], to.env);
+      ok(codes(why).includes('head/why-transport') && / at=policy:head\/birth .* scope=transport\/https /.test(text(why)), text(why));
+      ok(!readFileSync(join(to.place, valueOf(lock, 'founding/birth-file')), 'utf8').includes(' scope=transport/https '), 'the transport is the profile-s, never in the person-s file');
     }
   } finally { address.close(); }
 });
