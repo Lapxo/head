@@ -21,3 +21,10 @@ test('two unrelated admitted places use bound identities and text bound to the e
   for(const view of ['lines','evidence'] as const){const first=query(view);ok(!('refused' in first),JSON.stringify(first));if('refused' in first)continue;deepStrictEqual(query(view),first);const result=query(view,first.identity);ok(!('refused' in result));if(!('refused' in result))deepStrictEqual(result.text!.trim(),viewOf(p.place,view).trim());}
  }
 });
+
+test('the place a test is born in carries what bound needs to name an identity, as every place head founds does; no: with no finite bytes limit bound refuses by name',()=>{
+ const asked=(extra:string[])=>run('@lapxo/bound',born(undefined,extra).place,['fold','--as','reading-identity@lines']);
+ ok(!('refused' in readingOf(asked([]),'lines')),'born as founded');
+ const refused=asked([line('reading-identity/bytes','bytes','unbounded')]);
+ deepStrictEqual([refused?.code,refused?.err.some((l)=>l.includes('"code":"reading-identity/budget"'))],[1,true]);
+});
