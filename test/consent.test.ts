@@ -52,7 +52,7 @@ test('a source declaring several origins has one picked, once, by the person, am
   await one.close(); await two.close();
   deepStrictEqual(asked, ['choose origin']);
   ok([first, second].every((r) => said('untyped').test(text(r))), text(first));
-  deepStrictEqual([one.seen.length + two.seen.length, new RegExp(` by=person .*scope=allow/origin/tracker .*value=${[one.url, two.url].sort().at(-1)}`).test(ledgers(place))], [2, true]);
+  deepStrictEqual([one.seen.length + two.seen.length, new RegExp(` by=person .*scope=allow/origin/tracker .*value=${two.url}(?: |$)`, 'm').test(ledgers(place))], [2, true]);
 });
 
 test('no: head reads the person-s own attestation only while it is the one line of its scope — a second is refused before it is signed, and one landed from elsewhere leaves the place unread, refused by name, nothing called', async () => {
