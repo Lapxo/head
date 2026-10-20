@@ -67,7 +67,7 @@ test('a place that signs no view of cells answers its card as cells, never a sen
   deepStrictEqual([codes(explained), cells(explained)[0].fields.form, cardOf(explained)], [['head/why-undeclared', 'head/no-cells', 'head/card'], 'card', cardOf(carded)]);
 });
 
-test('person-words: no cell of ask carries a resolution number, a red included; the offers a person reads and the ones why explains are the lock-s resolutions', async () => {
+test('person-words: no cell of ask carries a resolution number or a ledger epoch, a red included; the offers a person reads and the ones why explains are the lock-s resolutions', async () => {
   const slow = createServer((_request, response) => { setTimeout(() => { response.writeHead(200, { 'content-type': 'application/json' }); response.end('[]'); }, 3100); });
   await new Promise<void>((resolve) => slow.listen(0, '127.0.0.1', resolve));
   const { place, keychain } = born(`http://127.0.0.1:${(slow.address() as AddressInfo).port}`);
@@ -76,6 +76,7 @@ test('person-words: no cell of ask carries a resolution number, a red included; 
   const said = answers.flatMap((a) => cells(a).flatMap((c) => [...Object.values(c.fields), ...Object.values('args' in c.next ? c.next.args : {})] as string[]));
   ok(codes(answers[0]).includes('head/red'), `the slow read reads red: ${JSON.stringify(codes(answers[0]))}`);
   deepStrictEqual(said.filter((v) => /@\d/.test(v)), []);
+  deepStrictEqual(answers.flatMap(cells).filter((c) => c.code !== 'head/why' && members(valueOf(lock, 'numbers/structural/why')).some((f) => f in c.fields)).map((c) => c.code), [], 'a ledger epoch reaches only why');
   const [person, why] = [answers[2].result.content[0].text, answers[3].result.content[0].text];
   ok(!/\/form /.test(person) && / scope=offers\/tracker\/[^ ]+\/form /.test(why), 'a person reads where each offer is reached and its class; why brings its forms');
 });

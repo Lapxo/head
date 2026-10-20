@@ -64,9 +64,10 @@ test('a host the lock does not name is refused by name, every call, nothing done
 const regionOf = (name: string): readonly string[] => ((globs) => sources('src').filter((f) => globs.some((glob) => matches(glob, f))))(members(lock.find((l) => l.scope === `region/${name}` && l.measure === 'coordinates')?.value ?? ''));
 const lined = lock.filter((l) => l.scope?.endsWith('/lines') && l.form === 'interval' && lock.some((r) => r.scope === `region/${l.scope!.split('/')[0]}` && r.measure === 'coordinates'));
 
-test('each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — and every source file lives in exactly one', () => {
+test('each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole', () => {
   const over = lined.flatMap((l) => ((name, hi) => ((files) => (l.measure === 'file-lines' ? files.filter((f) => lines(f) > hi) : files.reduce((n, f) => n + lines(f), 0) > hi ? [name] : []))(regionOf(name)))(l.scope!.split('/')[0]!, Number(l.value!.split('..')[1])));
-  deepStrictEqual([lined.length >= 4, over, sources('src').filter((f) => lined.filter((l) => regionOf(l.scope!.split('/')[0]!).includes(f)).length !== 1)], [true, [], []]);
+  const [whole, parts] = [lined.filter((l) => regionOf(l.scope!.split('/')[0]!).length === sources('src').length), lined.filter((l) => regionOf(l.scope!.split('/')[0]!).length < sources('src').length)];
+  deepStrictEqual([lined.length >= 4, whole.length, over, sources('src').filter((f) => parts.filter((l) => regionOf(l.scope!.split('/')[0]!).includes(f)).length !== 1)], [true, 1, [], []]);
 });
 
 test('tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling', () => {

@@ -6,12 +6,13 @@ import { valueOf } from '../core/lock.ts';
 import { sayIn } from '../core/surface.ts';
 import { paidIn } from '../onboard/owed.ts';
 import { pendingIn } from '../sources/refused.ts';
+import { compared } from '../marks/compare.ts';
 import { cardAt } from './card.ts';
 
 /**
  * What a person asks, answered by the question it is. A view, or the region of a source or of one operation in it (what
  * it offers, one read of it, why that answer stands, what was kept of it), is answered by look; drafted lines by plan;
- * what is open by card; anything else by places. Each form is read with no resolution unless the lock declares one for a
+ * what is open by card; one question of several sources at once, by comparing what each said; anything else by places. Each form is read with no resolution unless the lock declares one for a
  * person; asked why, at the one it declares to explain, and where it declares none, the same answer, said so. Nothing
  * here writes one. An answer about one place ends with its card, taken off the fold the answer reads, valid from it.
  * With no place at all, nothing is founded: it says so, and that connecting an API founds the person's place, the question
@@ -27,7 +28,7 @@ export const asked: Answer = async (asked, context) => {
   if (carded && held !== undefined && 'said' in held) return held.said;
   const owed = asked['source'] && founded ? await paidIn(asked, context, place!) : undefined;
   if (owed !== undefined && !owed.answer) return owed.said;
-  const answer = asked['lines'] ? await read('plan', 'plan') : asked['view'] ? await read('view', 'look') : asked['source'] ? await read('offers', 'look')
+  const answer = asked['sources'] && founded ? await compared(asked, context, place!) : asked['lines'] ? await read('plan', 'plan') : asked['view'] ? await read('view', 'look') : asked['source'] ? await read('offers', 'look')
     : !carded ? await read('places', 'places') : founded ? [...await read('card', 'card', { place }), ...await pendingIn(context, place!)] : [];
   const after = held === undefined || 'said' in held || place === undefined || !context.moved(place) ? held : await cardAt(context, place);
   return [...(owed?.said ?? []), ...answer, ...(after === undefined || 'said' in after ? [] : [sayIn(context.lock)('card', { place: place ?? '', card: after.card, from: 'ask' })])];

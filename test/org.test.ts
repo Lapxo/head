@@ -39,7 +39,7 @@ test('who configures is not who asks: the organisation-s head connects and grant
     const look = (operation: string, at: string) => tool('look', { place: org, source: 'things', operation, at });
     const [offered, read, again] = await ask([look('listThings', '1'), look('listThings', '8'), look('listThings', '8')], [], member, counted);
     ok(text(offered).includes('scope=offers/things/listThings '), text(offered));
-    match(text(read), said('answered')); match(text(read), / by=ana .*scope=read\/things\/listThings\/[0-9a-f]{16} sig=/); match(text(again), said('reused'));
+    match(text(read), said('answered')); match(text(read), / by=ana .*scope=read\/things\/listThings\/[0-9a-f]{16} sig=/); match(text(again), said('kept'));
     const plan = tool('plan', { place: org, lines: canonical({ at: 'policy:person/allows', by: 'target', form: 'interval', measure: 'calls', role: 'writes', scope: 'allow/things/addThing', value: '0..1' }) });
     const [acted, connected, readmitted, planned] = await ask([tool('act', { place: org, source: 'things', operation: 'addThing' }),
       tool('connect', { place: org, source: 'more', document: join(shared, 'things.json') }), tool('admit', { place: org, key: text(key), name: 'bob' }), plan], [shared], member, counted);

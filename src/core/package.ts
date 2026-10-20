@@ -5,6 +5,7 @@ import { members, under, valueOf, type Said } from './lock.ts';
 import { fieldsOf, vocabOf } from './read.ts';
 import { sayIn } from './surface.ts';
 import { digestIn, linesOf } from './worlds.ts';
+import { linkOf } from '../links/link.ts';
 
 /** A line no package carries: one that is not a world, or a source's document, overlay or pin, said once by digest — with, beside a digest that names bytes, the encrypted address they are read at. */
 export const foreignIn = (lines: readonly Said[]): Said | undefined => lines.find((l) => !/^(sources\/[a-z0-9-]+(\/overlay)?|uses\/[a-z0-9-]+)$/.test(l.scope ?? '') || lines.some((o) => o !== l && o.scope === l.scope && o.measure === l.measure)
@@ -26,8 +27,8 @@ export const shared = (asked: Asked, context: Context): Promise<readonly string[
   const [say, to, held] = [sayIn(context.lock), asked['to'] ?? '', await standingOr(context, place, context.policy)], [rel, there] = [relative(place, to), linesOf(context.files.take(join(to, LOCK)) ?? new Uint8Array())];
   if (!(await within(context, place, to)) || (!rel.startsWith('..') && (rel === '' || rel.startsWith('.') || [valueOf(context.lock, 'place/connected'), ...members(valueOf(context.lock, 'place/compiled')), valueOf(context.lock, 'walk/context/file'), valueOf(context.lock, 'place/worlds')].some((at) => rel.split(sep)[0] === at.split('/')[0]))) || foreignIn(there)) return [say('share-to', { place, to })];
   if ('said' in held) return held.said;
-  const pack = packed(context, place, held.lines, ((u) => (u && typeof u === 'object' ? u : {}))((() => { try { return JSON.parse(asked['urls'] || '{}') as Record<string, string>; } catch { return {}; } })())), bytes = new TextEncoder().encode(`${pack.lines.join('\n')}\n`);
-  return !pack.names.length ? [say('share-none', { place })] : ([...pack.files, [LOCK, bytes] as const].forEach(([at, laid]) => context.files.lay(to, at, laid)), [say('shared', { place, to, sources: pack.names.join(', '), digest: digestIn(context.lock)(bytes) }), ...pack.lines]);
+  const urls = ((u) => (u && typeof u === 'object' ? u : {}))((() => { try { return JSON.parse(asked['urls'] || '{}') as Record<string, string>; } catch { return {}; } })()), pack = packed(context, place, held.lines, urls), bytes = new TextEncoder().encode(`${pack.lines.join('\n')}\n`);
+  return !pack.names.length ? [say('share-none', { place })] : ([...pack.files, [LOCK, bytes] as const].forEach(([at, laid]) => context.files.lay(to, at, laid)), [say('shared', { place, to, sources: pack.names.join(', '), digest: digestIn(context.lock)(bytes) }), ...linkOf(context, to, pack.lines, urls), ...pack.lines]);
 });
 /** What a package names, checked whole before anything is asked: every line a world or a source's document, overlay or pin, by digest; each world the one this head pins; an order its pins rest in. A source whose bytes did not arrive, or did not hash to their line, is open, and so is every source resting on it: absence is not a refusal, and the rest arrives. */
 export const unpacked = (context: Context, document: string, bytes: Uint8Array, read: ReadonlyMap<string, Uint8Array | undefined>) => {

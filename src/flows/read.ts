@@ -1,7 +1,7 @@
 import { under } from '../core/lock.ts';
 import type { Asked, Context } from '../core/answer.ts';
 import { observedAt, planRead } from '../core/read.ts';
-import { basisOf, draftOf, receiptsOf, scopeOf, spentOf } from '../core/receipt.ts';
+import { basisOf, draftOf, receiptsOf, scopeOf } from '../core/receipt.ts';
 import { redIn, sayIn } from '../core/surface.ts';
 import { grantedOf, isOpen, untilOf } from '../core/act.ts';
 import { canonical } from '@lapxo/topos/wire';
@@ -10,6 +10,8 @@ import { principalOf } from '../access/obtain.ts';
 import { jsonOf } from '../access/contract.ts';
 import type { Frame } from './call.ts';
 import { refusedAccess } from '../sources/refused.ts';
+import { hand, keptOf } from '../kept/kept.ts';
+import { markOf, overOf } from '../ahead/budget.ts';
 
 /** An intent an earlier act left open, closed by the read that looked at what it would have changed: a line naming that read-s digest, signed by head. */
 const closeWith = async (intent: string | undefined, source: string, digest: string, { word, lines, lands }: Pick<Frame, 'word' | 'lines' | 'lands'>, context: Context): Promise<readonly string[]> => {
@@ -32,7 +34,7 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   const closing = (digest: string): Promise<readonly string[]> => closeWith(asked['closes'], source, digest, { word, lines, lands }, context);
   const scopes = (principal: string) => [scopeOf(family, source, operation, prepared.key, principal), `${scopeOf(word('receipt/kept'), source, operation, prepared.key, principal)}/${basisOf(lines, word, source)}`] as const;
   const held = (digest: string | undefined) => ((bytes) => (bytes === undefined || digest === undefined ? undefined : { digest, bytes }))(digest === undefined ? undefined : context.cache.held(digest));
-  const keeping = (kept: string, answer: readonly string[]): readonly string[] => (answer.length > 1 ? [draftOf(word('receipt/kept'), at, kept, context.cache.keep(Buffer.from(answer.join('\n'))), when)] : []);
+  const keeping = (kept: string, answer: readonly string[]): readonly string[] => (answer.length > 1 ? [draftOf(word('receipt/kept'), at, kept, (asked['ahead'] === 'true' ? String : hand)(context.cache.keep(Buffer.from(answer.join('\n')))), when)] : []);
   const allowed = (key: string, measure: string) => (lines.find((l) => l.scope === `${word(key)}/${source}` && l.measure === measure) ?? lines.find((l) => l.scope === word(key) && l.measure === measure))?.value;
   if (asked['why'] === 'true') {
     const asOf = principalOf(context, plan, false), [newest] = asOf === undefined ? [] : receiptsOf(lines, at, scopes(asOf)[0]), pin = lines.find((l) => l.scope === `uses/${source}`);
@@ -53,32 +55,29 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   const stopped = uncovered('head', scopes(principal ?? ''));
   if (stopped) return stopped;
   if (!grantedOf(lines, word('grant/family'), source, context.now())) {
+    if (asked['ahead'] === 'true') return [];
     const sources = [...new Set(lines.filter((l) => l.scope?.startsWith(`${word('vocab/region')}/`) && l.measure === word('vocab/origins')).map((l) => l.scope!.split('/')[1]!))].sort();
     const until = untilOf(word('access/period'), context.now());
-    const line = (measure: string, value: string) => canonical({ at: 'policy:person/grants', by: 'target', form: 'alphabet', measure, role: 'writes', scope: word('grant/family'), value });
-    const granted = await widen(say('grant', { sources: sources.join(', '), place, until })[0]!, [line('sources', sources.join('|')), line('until', until)]);
+    const line = (measure: string, value: string) => canonical({ at: `policy:person/grants/${new Date(context.now()).toISOString()}`, by: 'target', form: 'alphabet', measure, role: 'writes', scope: word('grant/family'), value });
+    const before = [...new Set(lines.filter((l) => l.scope === word('grant/family')).map(({ about: _about, sig: _sig, epoch: _epoch, ...l }) => canonical({ ...l, by: 'target', value: 'withdraw' })))];
+    const granted = await widen(say('grant', { sources: sources.join(', '), place, until })[0]!, [...before, line('sources', sources.join('|')), line('until', until)]);
     if ('said' in granted) return granted.said;
   }
-  const reuse = Number(/^\d+\.\.(\d+)$/.exec(allowed('reuse/family', 'seconds') ?? '')?.[1] ?? Number.NaN);
-  const [newest] = principal === undefined ? [] : receiptsOf(lines, at, scopes(principal)[0]), stood = ((b) => b !== undefined && Number(Buffer.from(b.bytes.subarray(0, b.bytes.indexOf(10))).toString('utf8')) < 300)(held(newest?.digest));
-  if (principal !== undefined && newest !== undefined && stood && context.now() - Date.parse(newest.at) <= reuse * 1000) {
-    const [scope, kept] = scopes(principal);
-    const answered = held(receiptsOf(lines, at, kept).find((k) => k.at >= newest.at)?.digest);
-    if (answered !== undefined) return [...new TextDecoder().decode(answered.bytes).split('\n'), ...say('reused', { scope: kept, digest: answered.digest, at: newest.at }), ...(await closing(newest.digest)), ...redIn(context.lock)('answer/kept', `answer/${source}/${operation}`, context.begun, context.machine())];
-    const body = held(newest.digest);
-    if (body !== undefined) {
-      const cut = body.bytes.indexOf(10);
-      const answer = await typed(Buffer.from(body.bytes.subarray(0, cut)).toString('utf8'), body.bytes.subarray(cut + 1));
-      const keptLines = keeping(kept, answer);
-      const landed = keptLines.length ? await lands(...keptLines) : { lines: [] };
-      return [...answer, ...say('reread', { scope, digest: body.digest, at: newest.at }), ...('lines' in landed ? landed.lines : []), ...(await closing(body.digest))];
-    }
+  const was = principal === undefined ? undefined : keptOf(lines, at, scopes(principal), grantedOf(lines, word('grant/family'), source, context.now()), allowed('reuse/family', 'seconds'), context.now(), held);
+  if (was?.kind === 'kept') return [...(was.bytes ? [...new TextDecoder().decode(was.bytes).split('\n'), ...say('reused', { scope: scopes(principal!)[1], digest: hand(was.digest), at: was.at, receipt: was.receipt })] : say('kept', { source, operation, at: was.at, digest: was.digest, receipt: was.receipt })),
+    ...(await closing(was.receipt)), ...redIn(context.lock)('answer/kept', `answer/${source}/${operation}`, context.begun, context.machine())];
+  if (was?.kind === 'reread') {
+    const answer = await typed(Buffer.from(was.bytes.subarray(0, was.bytes.indexOf(10))).toString('utf8'), was.bytes.subarray(was.bytes.indexOf(10) + 1)), keptLines = keeping(scopes(principal!)[1], answer);
+    const landed = keptLines.length ? await lands(...keptLines) : { lines: [] };
+    return [...answer, ...say('reread', { scope: scopes(principal!)[0], digest: was.digest, at: was.at, receipt: was.digest }), ...('lines' in landed ? landed.lines : []), ...(await closing(was.digest))];
   }
-  if (spentOf(lines, family, at, source, context.now()) >= most('read/rate')) return say('rate', { source });
+  const again = was?.kind === 'again' ? say(`kept-${was.why}`, { source, operation, at: was.at }) : [];
+  if (overOf(lines, [family, at, word('ahead/mark')], source, context.now(), most('read/rate'), Number(word('ahead/share').split('..')[1]), asked)) return asked['ahead'] === 'true' ? [] : say('rate', { source });
   const attached = await attach();
   if ('said' in attached) return attached.said;
   const [scope, kept] = scopes(attached.principal ?? '');
   const got = await send(attached.attachment);
+  if (asked['ahead'] === 'true' && (got.kind !== 'got' || got.status >= 300)) return [];
   if (got.kind !== 'got') return say(got.kind === 'over' ? 'too-large' : 'unreachable-source', { source });
   if (got.status === 401 && attached.principal !== 'anonymous') return refusedAccess(context, place, lines, plan, operation);
   const digest = context.cache.keep(Buffer.concat([Buffer.from(`${got.status}\n`), got.bytes]));
@@ -86,6 +85,6 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   const observed = plan.access.probe && got.status < 300 ? [canonical({ at: `${at}:${when}`, by: 'target', form: 'alphabet', measure: word('vocab/access'), role: 'writes', scope: observedAt(context.lock, source, operation), value: word('vocab/anonymous') })] : [];
   const found = plan.access.probe && got.status === 401 && got.authenticate ? await (await context.access(word('access/adapter')))?.discover?.(plan.origin, got.authenticate, async (url) => jsonOf((await context.files.read.documentOf(context, place, url))?.bytes ?? new Uint8Array())) : undefined;
   const by = `${word('access/family')}/${source}/${word('access/authorizer')}`, authorizer = Object.entries(found ?? {}).flatMap(([k, f]) => Object.entries(f).map(([measure, all]) => canonical({ at: `${at}:${when}`, by: 'target', form: 'alphabet', measure, role: 'writes', scope: k ? `${by}/${k}` : by, value: all.join('|') })));
-  const landed = await lands(draftOf(family, at, scope, digest, when), ...(attached.principal === undefined ? [] : keeping(kept, answer)), ...observed, ...authorizer);
-  return [...answer, ...('lines' in landed ? [...landed.lines, ...(await closing(digest))] : say('not-landed', { why: landed.refused })), ...(found?.['']?.['issuer'] && 'lines' in landed ? say('authorizer-observed', { source, issuer: found['']['issuer'][0]! }) : [])];
+  const landed = await lands(draftOf(family, at, scope, digest, when), ...markOf(asked, [at, word('ahead/mark')], scope, digest, when), ...(attached.principal === undefined ? [] : keeping(kept, answer)), ...observed, ...authorizer);
+  return [...again, ...answer, ...('lines' in landed ? [...landed.lines, ...(await closing(digest))] : say('not-landed', { why: landed.refused })), ...(found?.['']?.['issuer'] && 'lines' in landed ? say('authorizer-observed', { source, issuer: found['']['issuer'][0]! }) : [])];
 });
