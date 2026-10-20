@@ -28,7 +28,7 @@ test('first run: a person connects a source by its address, naming no place and 
   match(text(first), said('born')); deepStrictEqual(asked.length, 1, 'one yes founds the place and connects the source'); match(asked[0]!, said('elicit-first-run'));
   ok(existsSync(join(place, 'TARGET.bound')) && / scope=uses\/weather /.test(run('@lapxo/bound', place, ['fold', '--as', 'lines'])?.out.join('\n') ?? ''), 'the source is pinned in the person-s place');
   const [looked] = await ask([tool('look', { source: 'weather', at: '0' })], [], env, yes);
-  match(text(looked), /offers\/weather\/getForecast/);
+  match(text(looked), said('more-offers')); ok(!/offers\/weather\/getForecast/.test(text(looked)), 'an offer never used is counted, never listed');
   const birth = readFileSync(join(place, valueOf(lock, 'founding/birth-file')), 'utf8').split('\n').filter(Boolean), standing = (run('@lapxo/bound', place, ['fold', '--as', 'lines'])?.out ?? []).filter((l) => l.startsWith('bound-lock/1'));
   deepStrictEqual(birth.filter((l) => !l.includes(` at=${valueOf(lock, 'founding/person-at')}`) || / (sig|epoch)=/.test(l)), [], 'the birth file holds the person-s lines alone, drafted with no signature');
   ok(['keys/root', 'keys/head', 'keys/person', 'lang', 'allow/reuse', 'uses/weather', 'allow/read'].every((s) => birth.some((l) => l.includes(` scope=${s} `))) && !birth.some((l) => / scope=(wire|view|transport|reader|reading-identity|signer)\//.test(l)), birth.join('\n'));

@@ -24,15 +24,15 @@ export const answer: Answer = (asked, context) => inPlace(asked, context, async 
     const held = await standingFor(context, place);
     if ('unsettled' in held) return [sayIn(context.lock)('unsettled', { source, why: held.unsettled })];
     const [v, first, shallow] = [vocabOf(context.lock), asked['at'] === '0', word('look/first').split('|')];
-    const region = `${v.offers}/${source}/${operation ?? ''}`;
+    const [region, uses] = [`${v.offers}/${source}/`, held.lines.filter((l) => l.scope?.startsWith(`${word('use/family')}/${source}/`))], named = operation ? [operation] : uses.map((l) => l.value ?? '');
     const shown = held.lines.filter((l) => {
       const scope = l.scope ?? '';
-      if (scope === `${v.region}/${source}`) return true;
+      if (scope === `${v.region}/${source}` || (!operation && uses.includes(l))) return true;
       if (scope.startsWith(`${v.keys}/${source}/`)) return !first;
-      if (!(operation ? scope === region || scope.startsWith(`${region}/`) : scope.startsWith(region)) || scope.endsWith(`/${v.carry}`)) return false;
+      if (!named.some((op) => scope === `${region}${op}` || scope.startsWith(`${region}${op}/`)) || scope.endsWith(`/${v.carry}`)) return false;
       return !first || (!scope.endsWith(`/${v.form}`) && shallow.includes(l.measure ?? ''));
-    });
-    return shown.length ? [...shown.map((l) => canonical(l)).sort(), ...(first ? [] : trustOf(context.lock, held.lines, source)), ...(operation ? await readSource(asked, context) : [])] : [sayIn(context.lock)('unread', { source })];
+    }), more = held.lines.filter((l) => l.measure === v.class && l.scope?.startsWith(region) && !named.includes(l.scope.slice(region.length))).length;
+    return shown.length ? [...shown.map((l) => canonical(l)).sort(), ...(first ? [] : trustOf(context.lock, held.lines, source)), ...(more ? [sayIn(context.lock)('more-offers', { source, more: String(more) })] : []), ...(operation ? await readSource(asked, context) : [])] : [sayIn(context.lock)('unread', { source })];
   }
   const view = `${asked['view'] ?? ''}${asked['at'] ? `${word('bound/at')}${asked['at']}` : ''}`;
   return printedOr(context, await context.bound(place, [word('bound/read'), word('bound/view'), view]));

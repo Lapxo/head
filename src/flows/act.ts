@@ -4,7 +4,7 @@ import { planAct } from '../core/read.ts';
 import { draftOf } from '../core/receipt.ts';
 import { sayIn } from '../core/surface.ts';
 import { canonical } from '@lapxo/topos/wire';
-import { called } from './call.ts';
+import { calledByName as called } from '../use/named.ts';
 
 /**
  * One offer that is not of the class head reads: within a cap the person signed it is called as far as the cap goes;

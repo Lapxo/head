@@ -86,12 +86,13 @@ test('no: an origin that is neither encrypted nor this device is never sent anyt
   match(text(plain), said('insecure-origin'));
 });
 
-test('look at a source answers typed lines by resolution: where it is reached and each class at 0, forms and access at 1, and never what only a transport reads', async () => {
-  const { place, keychain } = born(undefined);
+test('look at a source answers typed lines by resolution: where it is reached and the class of each offer used at 0, the rest counted, forms and access at 1, and never what only a transport reads', async () => {
+  const { place, keychain } = born(undefined, [line('use/tracker/issues-get', 'operation', 'issues/get', { at: 'policy:person/use/fixture' })]);
   const source = (at?: string) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', ...(at ? { at } : {}) } } });
   const [zero, one, offer] = await ask([source('0'), source('1'), look(place, 'issues/get', {}, '1')], [], keychain.env);
   const scopes = (answer: any) => text(answer).split('\n').map((l) => /scope=(\S+) /.exec(l)?.[1] ?? '');
-  ok(scopes(zero).includes('offers/tracker/issues/get') && !scopes(zero).some((s) => s.endsWith('/form')) && !text(zero).includes('measure=access'));
+  ok(scopes(zero).includes('offers/tracker/issues/get') && !scopes(zero).includes('offers/tracker/count') && !scopes(zero).some((s) => s.endsWith('/form')) && !text(zero).includes('measure=access'));
+  match(text(zero), said('more-offers'));
   ok(scopes(one).includes('offers/tracker/issues/get/form') && text(one).includes('measure=access') && scopes(one).includes('keys/access/tracker/token'));
   ok([zero, one, offer].every((answer) => !scopes(answer).some((s) => s.endsWith('/carry'))));
   ok(scopes(offer).every((s) => s === '' || s.startsWith('offers/tracker/issues/get') || s.startsWith('keys/access/tracker/') || s === 'region/tracker'));

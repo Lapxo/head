@@ -5,7 +5,7 @@ import { basisOf, draftOf, receiptsOf, scopeOf } from '../core/receipt.ts';
 import { redIn, sayIn } from '../core/surface.ts';
 import { grantedOf, isOpen, untilOf } from '../core/act.ts';
 import { canonical } from '@lapxo/topos/wire';
-import { called } from './call.ts';
+import { calledByName as called } from '../use/named.ts';
 import { principalOf } from '../access/obtain.ts';
 import { jsonOf } from '../access/contract.ts';
 import type { Frame } from './call.ts';
