@@ -3,4 +3,4 @@ bound-lock/1 at=place:sha256:559a04c86613332d8f524a354f11c924a58548057984b419026
 bound-lock/1 at=place:sha256:d608d6ad5c81c3b7a7f802d4e5c55e2a8f06ea645f29ecfa0d4e379e62ec8a28 by=bound form=alphabet measure=digest role=writes scope=receipts value=sha256:0c0b7831f2425e40e516b0ea184e6ae8cf53fa1f097720f080ecba97d3ce12e0
 
 bound-lock/1 at=place:sha256:55ac4636c8c922d1db8842cd1d4edb9ed9e38a259ef82c48d5c0eaaf20cfd111 by=bound form=interval measure=count role=writes scope=receipts/instrument value=1..1
-bound-lock/1 at=place:sha256:569a3f21c88cbf0eeaa822065beceede56745f8263d7351587a5f33341f61c19 by=bound form=alphabet measure=bytes role=writes scope=receipts/instrument value=sha256:569a3f21c88cbf0eeaa822065beceede56745f8263d7351587a5f33341f61c19
+bound-lock/1 at=place:sha256:4ae82106c6ff8a96e4ecbfd1a297b5d7448f6d4b9d62dca40228e11f97d3cd69 by=bound form=alphabet measure=bytes role=writes scope=receipts/instrument value=sha256:4ae82106c6ff8a96e4ecbfd1a297b5d7448f6d4b9d62dca40228e11f97d3cd69
