@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { deepStrictEqual, ok } from 'node:assert';
-import { valueOf } from '../src/core/lock.ts';
+import { aboutOf, valueOf } from '../src/core/lock.ts';
 import { lock } from './place.ts';
 import { api, own, person } from './two-sources.ts';
 
@@ -34,4 +34,9 @@ test('missing fields are partial evidence, never disagreement with an absent ass
   const [a,b]=[await api(()=>'{"temperature":21}'),await api(()=>'{"sky":"clear"}')];
   try {const got=await (await person(a.document,b.document)).asked();deepStrictEqual(got.filter(c=>c.code==='head/forked'),[]);deepStrictEqual(got.filter(c=>c.code==='head/partial').map(c=>[c.fields.field,c.fields.value]).sort(),[['sky','clear'],['temperature','21']]);}
   finally {a.close();b.close();}
+});
+
+test('backed is a verb: each mark and why say who backed what, and no text a person reads uses it as a label or a definition', () => {
+  ok(['agreed-unknown', 'agreed-undeclared', 'agreed-lineage', 'forked', 'partial', 'why'].every((code) => / backed (that|by) /.test(aboutOf(lock, `said/${code}`))));
+  deepStrictEqual(lock.filter((l) => /\bbacked\b/i.test(l.about ?? '') && /\bbacked\b(?! (that|by|this|it|line))/i.test(l.about ?? '')).map((l) => l.scope), [], 'never a label');
 });
