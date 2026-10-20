@@ -14,8 +14,15 @@ jobs:
       fail-fast: false
       matrix:
         node: [22, 24]
-        shard: [1, 2, 3]
-    runs-on: macos-latest
+        shard: [1, 2, 3, 4, 5, 6]
+    runs-on: ubuntu-latest
+    env:
+      SHARD_1: test/marks.test.ts
+      SHARD_2: test/kept-zero.test.ts test/reuse.test.ts test/use.test.ts test/claims.test.ts test/consent.test.ts
+      SHARD_3: test/marks-lineage.test.ts test/connect.test.ts test/fetch.test.ts test/access.test.ts test/walk.test.ts test/born-closed.test.ts test/reading-identity.test.ts test/asking.test.ts
+      SHARD_4: test/issuer.test.ts test/share.test.ts test/act.test.ts test/verbs.test.ts test/link-url.test.ts test/first-run.test.ts test/place-neutral.test.ts test/device.test.ts test/stores.test.ts
+      SHARD_5: test/share-receive.test.ts test/share-refused.test.ts test/gestures.test.ts test/authorizer.test.ts test/first-minute.test.ts test/places.test.ts test/fold-ahead.test.ts test/adopt.test.ts test/warm.test.ts test/session.test.ts test/process.test.ts test/refusal-record.test.ts test/signer.test.ts test/bound.test.ts test/warm-compact.test.ts
+      SHARD_6: test/channels.test.ts test/ahead-read.test.ts test/org.test.ts test/read.test.ts test/observed.test.ts test/world.test.ts test/shape.test.ts test/numbers.test.ts test/transport.test.ts test/trust.test.ts test/release.test.ts test/surface.test.ts test/welcome.test.ts test/pack.test.ts test/pending-document.test.ts test/keys.test.ts test/acts.test.ts test/onboarding.test.ts test/bundle.test.ts
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,18 +30,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+      - name: Require every test file in exactly one shard
+        run: diff <(printf '%s\n' $SHARD_1 $SHARD_2 $SHARD_3 $SHARD_4 $SHARD_5 $SHARD_6 | sort) <(ls test/*.test.ts | sort)
       - run: npm ci
       - run: npm run build
-      - name: Run tests, shard ${{ matrix.shard }} of 3
+      - name: Run tests, shard ${{ matrix.shard }} of 6, the files listed for it
         run: |
           set -euo pipefail
-          node --test --test-shard=${{ matrix.shard }}/3 test/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
+          files="SHARD_${{ matrix.shard }}"
+          node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination="$RUNNER_TEMP/head-junit.xml" ${!files} 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
       - name: Preserve test logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: head-node-${{ matrix.node }}-shard-${{ matrix.shard }}
-          path: ${{ runner.temp }}/head-tests.log
+          path: |
+            ${{ runner.temp }}/head-tests.log
+            ${{ runner.temp }}/head-junit.xml
           if-no-files-found: ignore
   time:
     strategy:
