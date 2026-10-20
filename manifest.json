@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "head",
   "display_name": "head",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "An MCP server that folds: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
   "author": {
     "name": "Lapxo"
@@ -35,7 +35,7 @@
     },
     {
       "name": "do",
-      "description": "Do one action in a place, on the card ask answered for it: found a place, admit a device, land a lot ask planned, share a place, make this device-s key, prove access to a source, or call an offer that is not a read. An action on a place that moved since its card was asked is refused, with nothing done; one the place does not allow is said not to be in the card. The answer ends with the card valid from this act."
+      "description": "Do one action in a place, on the card ask answered for it: found a place, admit a device, land a lot ask planned, share a place, make this device-s key, prove access to a source, call an offer that is not a read, or keep what the person states as theirs. An action on a place that moved since its card was asked is refused, with nothing done; one the place does not allow is said not to be in the card. The answer ends with the card valid from this act."
     }
   ],
   "tools_generated": false,
