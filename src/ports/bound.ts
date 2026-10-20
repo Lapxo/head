@@ -9,6 +9,8 @@ import { spawned } from './process.ts';
 import { cooled, kept, warmed } from './warm.ts';
 import { folded } from '../ahead/fold.ts';
 import { readingOf } from './reading.ts';
+import { gate, keyOf } from './key.ts';
+export { gate };
 import type { Printed } from './process.ts';
 export type { Printed };
 
@@ -46,7 +48,7 @@ const nativeView = (name: string, place: string, view: string, signal?: AbortSig
     const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}@${expected}`], {}, signal), view, expected);
     return 'refused' in result ? result : { lines: facts(result.text!.split('\n')) };
   };
-  return !words.identity ? read() : folded(`${name}/${view}`, place, async () => { const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}`], {}, signal), view); return 'refused' in result ? undefined : result.identity; }, read);
+  return !words.identity ? read() : folded(`${name}/${view}`, place, () => keyOf(place), async () => { const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}`], {}, signal), view); return 'refused' in result ? undefined : result.identity; }, read);
 };
 
 /**
