@@ -6,7 +6,7 @@ import { members, valueOf } from '../src/core/lock.ts';
 import { lockAt } from '../src/ports/place.ts';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const [word, standing] = ((lock) => [(scope: string) => members(valueOf(lock, scope)), valueOf(lock, 'bound/standing')] as const)(lockAt(root));
+const [word, standing, run] = ((lock) => [(scope: string) => members(valueOf(lock, scope)), valueOf(lock, 'bound/standing'), valueOf(lock, 'cli/run')] as const)(lockAt(root));
 type Call = { method: string; params?: any };
 /** A look's arguments as ask takes them: no resolution, which is the lock's; the region looked at past 0, or an operation not read, is asked why; no source is the lines that stand. */
 const asking = ({ at, ...args }: Record<string, unknown>): Record<string, unknown> => (args['source'] === undefined ? { ...args, view: args['view'] || standing }
@@ -23,7 +23,7 @@ const carried = (call: Call): { readonly card?: Call; readonly call: Call } => (
 
 /** A client over stdio: one JSON-RPC message a line, each call sent once the one before it is answered, and its session ended — head's input closed where coverage is kept, so head writes it, else asked to stop — once head is gone, so what it reads ahead is done before the next session. It answers roots/list with the roots it shares, elicitation/create as the test decides — declaring the modes it is given, form and url unless told — and collects answers by id, each with the seconds from its call to its answer, beside what head said when it was started; a step named between is run, not sent, once the call before it is answered. */
 export const ask = async (calls: readonly { method: string; params?: unknown }[], roots: readonly string[] = [], env: Readonly<Record<string, string>> = {}, elicit?: (params: any) => unknown, modes: Readonly<Record<string, object>> = { form: {}, url: {} }): Promise<readonly any[]> => {
-  const child = spawn(process.execPath, [process.env['HEAD_ENTRY'] || join(root, 'src/index.ts')], { stdio: ['pipe', 'pipe', 'inherit'], env: { ...process.env, ...offline(), ...env } });
+  const child = spawn(process.execPath, [process.env['HEAD_ENTRY'] || join(root, 'src/index.ts'), run], { stdio: ['pipe', 'pipe', 'inherit'], env: { ...process.env, ...offline(), ...env } });
   const send = (message: unknown) => child.stdin.write(`${JSON.stringify(message)}\n`);
   const waiting = new Map<number, (message: any) => void>();
   let buffer = '';

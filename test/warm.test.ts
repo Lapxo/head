@@ -6,7 +6,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { cooled, kept, warmed, warmth } from '../src/ports/warm.ts';
 import { asked, bin, bounds, timeless, tree, twins } from './warm.ts';
-import { root } from './place.ts';
+import { lock, root } from './place.ts';
+import { aboutOf, valueOf } from '../src/core/lock.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 
 test('warm: the same asks of bound, with and without starting it — two places asked cold agree once their time is taken out, and the place asked warm agrees with them byte for byte, in what bound printed and in every file it left', async () => {
@@ -35,7 +36,7 @@ test('warm, no: a process started under other values of the variables node reads
 
 test('warm, no: head keeps no process past the call it started it for — once a call is answered, head has no child left', async () => {
   const env = { ...process.env, ...fakeKeychain({}).env, HEAD_HOME: mkdtempSync(join(tmpdir(), 'head-warm-home-')) };
-  const child = spawn(process.execPath, [process.env['HEAD_ENTRY'] || join(root, 'src/index.ts')], { stdio: ['pipe', 'pipe', 'inherit'], env });
+  const child = spawn(process.execPath, [process.env['HEAD_ENTRY'] || join(root, 'src/index.ts'), valueOf(lock, 'cli/run')], { stdio: ['pipe', 'pipe', 'inherit'], env });
   const answers: unknown[] = [];
   let buffer = '';
   child.stdout.on('data', (chunk) => { buffer += chunk; for (let at = buffer.indexOf('\n'); at >= 0; at = buffer.indexOf('\n')) { answers.push(JSON.parse(buffer.slice(0, at))); buffer = buffer.slice(at + 1); } });
@@ -52,4 +53,10 @@ test('warm, no: head keeps no process past the call it started it for — once a
     ok(answers.length === 2, 'the call was answered');
     deepStrictEqual(children(), []);
   } finally { child.kill(); }
+});
+
+test('head with nothing starts nothing: it says what a person can do and that a client starts it with run, and ends', () => {
+  const said = execFileSync(process.execPath, [join(root, 'src/index.ts')], { encoding: 'utf8', timeout: 20_000 });
+  deepStrictEqual(said.trim(), aboutOf(lock, 'cli/help'));
+  ok(['connect', 'ask', 'do', 'share', valueOf(lock, 'cli/run')].every((word) => said.includes(word)), said);
 });

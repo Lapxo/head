@@ -19,7 +19,8 @@
     "mcp_config": {
       "command": "node",
       "args": [
-        "${__dirname}/dist/src/index.js"
+        "${__dirname}/dist/src/index.js",
+        "run"
       ],
       "env": {}
     }

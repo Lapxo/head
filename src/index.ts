@@ -24,6 +24,7 @@ import { readAhead } from './ahead/read.ts';
 
 const [ext, root] = ((self) => [self.slice(self.lastIndexOf('.')), fileURLToPath(new URL(self.endsWith('.ts') ? '..' : '../..', self))] as const)(import.meta.url);
 const lock = lockAt(root);
+if (process.argv[2] !== valueOf(lock, 'cli/run')) { process.stdout.write(`${aboutOf(lock, 'cli/help')}\n`); process.exit(0); }
 const surface = surfaceOf(lock);
 const runs = valueOf(lock, 'runs');
 Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile', 'receipts', 'refusal', 'identity'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
