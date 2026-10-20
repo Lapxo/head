@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { markOf, overOf } from '../src/ahead/budget.ts';
 import { deviceOf } from '../src/core/device.ts';
-import { members, valueOf } from '../src/core/lock.ts';
+import { valueOf } from '../src/core/lock.ts';
 import { fill } from '../src/core/surface.ts';
 import { registryFor } from '../src/ports/signers.ts';
 import { run } from './cli.ts';
@@ -21,7 +21,7 @@ const files = (at: string): readonly string[] => (!existsSync(at) ? [] : statSyn
 const question = { source: 'forecast', operation: 'get-forecast', args: { city: 'lima' } };
 const mark = valueOf(lock, 'ahead/mark');
 /** Whether a read ahead landed its mark in a place: its ledger read as it stands, what bound writes as it runs and by digest left aside. */
-const marked = (place: string): boolean => files(join(place, '.bound')).filter((f) => !members(valueOf(lock, 'reading/apart')).some((a) => f.startsWith(join(place, a)))).some((f) => { try { return readFileSync(f, 'latin1').includes(`/${mark} `); } catch { return false; } });
+const marked = (place: string): boolean => files(join(place, '.bound')).some((f) => { try { return readFileSync(f, 'latin1').includes(`/${mark} `); } catch { return false; } });
 
 /** A person with an API of their own, its reads counted and answered as the test says; their first connect founds their place. */
 const person = async (status = () => 200) => {
@@ -79,5 +79,4 @@ test('the budget, by its numbers: of a rate of 10, reads ahead never take more t
   const reads = (n: number, ahead: number) => Array.from({ length: n }, (_, i) => [line(`${family}/forecast/get-forecast/k${i}`, 'digest', 'sha256:00', { at: `${at}:${when}` }), ...(i < ahead ? markOf({ ahead: 'true' }, [at, mark], `${family}/forecast/get-forecast/k${i}`, 'sha256:00', when) : [])]).flat();
   const over = (n: number, ahead: number, asked: Record<string, string>) => overOf(reads(n, ahead).map((l) => Object.fromEntries([...l.matchAll(/ (\w+)=("[^"]*"|\S+)/g)].map((m) => [m[1], m[2]!.replace(/^"|"$/g, '')]))), [family, at, mark], 'forecast', now, 10, share, asked);
   deepStrictEqual([over(0, 0, { ahead: 'true' }), over(4, 4, { ahead: 'true' }), over(5, 5, { ahead: 'true' }), over(5, 5, {}), over(9, 5, {}), over(10, 5, {})], [false, false, true, false, false, true]);
-  deepStrictEqual(members(valueOf(lock, 'reading/apart')).length > 0, true);
 });

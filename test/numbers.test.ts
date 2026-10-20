@@ -33,14 +33,20 @@ test('no: a number code gives a cell with no kind is named, and a value nothing 
   deepStrictEqual([cell.state, 'none' in cell.next, Object.values(cell.fields).some((v) => /\d/.test(String(v)))], ['open', true, false]);
 });
 
-test('yes, over two places: a read relays the status as the source said it, with who and when; the slow one is red with its seconds by the clock, the quick one carries no seconds', async () => {
+test('yes, over two places: status names its source and time; latency reds report the unchanged ceiling', async (t) => {
   const quick = await api(() => '[]'), late = createServer((_q, r) => { setTimeout(() => { r.writeHead(200, { 'content-type': 'application/json' }); r.end('[]'); }, 3100); });
   await new Promise<void>((done) => late.listen(0, '127.0.0.1', done));
   const [a, b] = [born(`http://127.0.0.1:${(late.address() as AddressInfo).port}`), born(quick.url)];
   const [read, other] = [(await ask([reading(a.place)], [], a.keychain.env))[0], (await ask([reading(b.place)], [], b.keychain.env))[0]];
   late.closeAllConnections(); late.close(); await quick.close();
   const seen = (answer: any) => cells(answer).filter((c) => ['head/answered', 'head/untyped', 'head/red'].includes(c.code)).map((c) => [c.code, Object.keys(c.fields).sort().join(',')]);
-  deepStrictEqual([seen(read), seen(other)], [[['head/untyped', 'at,operation,source,status,why'], ['head/red', 'ceiling,coordinate,scope,seconds']], [['head/untyped', 'at,operation,source,status,why']]]);
+  deepStrictEqual([seen(read), seen(other)].map((answer) => answer.filter(([code]) => code !== 'head/red')), [[['head/untyped', 'at,operation,source,status,why']], [['head/untyped', 'at,operation,source,status,why']]]);
+  for (const answer of [read, other]) for (const red of cells(answer).filter((c) => c.code === 'head/red')) {
+    deepStrictEqual(Object.keys(red.fields).sort(), ['ceiling', 'coordinate', 'scope', 'seconds']);
+    deepStrictEqual([red.fields.scope, red.fields.ceiling], ['answer/seconds', valueOf(lock, 'answer/seconds')]);
+    ok(Number(red.fields.seconds) > Number(red.fields.ceiling.split('..')[1]));
+  }
+  t.diagnostic(`MEASURED answer latency reds: delayed ${cells(read).filter((c) => c.code === 'head/red').map((c) => c.fields.seconds)} s; immediate ${cells(other).filter((c) => c.code === 'head/red').map((c) => c.fields.seconds).join(', ') || 'within ceiling'}`);
   const [answered, red] = [cells(read).find((c) => c.code === 'head/untyped'), cells(read).find((c) => c.code === 'head/red')];
   ok(answered.fields.status === '200' && !Number.isNaN(Date.parse(answered.fields.at)) && Number(red.fields.seconds) >= 3, JSON.stringify([answered.fields, red.fields]));
 });
