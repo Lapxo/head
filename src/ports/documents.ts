@@ -36,7 +36,7 @@ export const fetchedAs = async (context: Context, at: string, via: string, got: 
     if (!named) return { said: [say('fetch-redirect', { document: at })] };
     return ((bytes) => (bytes ? { bytes, kind: kindOf(at) } : { said: [say('document-unread', { document: at })] }))(await transport!.published(new URL(answer.location, at).href, named, most, wait));
   }
-  return answer.status < 300 ? { bytes: answer.bytes, kind: kindOf(at, answer.type) } : { said: [say('fetch-status', { document: at, via, status: String(answer.status) })] };
+  return answer.status < 300 ? { bytes: answer.bytes, kind: kindOf(at, answer.type) } : { said: [say('fetch-status', { document: at, via, status: String(answer.status), at: new Date(context.now()).toISOString() })] };
 };
 
 /**

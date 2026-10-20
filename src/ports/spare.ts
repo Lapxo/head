@@ -11,7 +11,7 @@ import { pathToFileURL } from 'node:url';
 const [program] = process.argv.slice(2) as [string];
 const url = pathToFileURL(program), pipe = new Socket({ fd: 3, readable: true, writable: true });
 const asked = new Promise<string>((resolve) => { let text = ''; pipe.setEncoding('utf8').on('data', (chunk: string) => { text += chunk; }).on('error', () => undefined).on('close', () => resolve(text)); });
-await Promise.all([...readFileSync(program, 'utf8').matchAll(/^import [^'"]*['"](\.{1,2}\/[^'"]+)['"];?$/gm)].map(([, path]) => import(new URL(path!, url).href).catch(() => undefined)));
+await Promise.all([...readFileSync(program, 'utf8').matchAll(/(?:^|[;\n])\s*import\s*(?:(?:[^'";]*?)\s*from\s*)?['"](\.{1,2}\/[^'"]+)['"]/g)].map(([, path]) => import(new URL(path!, url).href).catch(() => undefined)));
 pipe.write('ready\n');
 const text = await asked;
 if (!text) process.exit(0);

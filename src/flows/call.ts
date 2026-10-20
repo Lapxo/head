@@ -69,7 +69,7 @@ export const called = async (asked: Asked, context: Context, planOf: (lines: rea
     if ('missing' in prepared) return say('missing-param', { operation, param: prepared.missing });
     if ('refused' in prepared) return say(prepared.refused, { source, origin: plan.origin });
     const most = (scope: string) => Number((lines.find((l) => l.scope === scope)?.value ?? '0..0').split('..')[1]);
-    const typed = async (status: string, bytes: Uint8Array) => ((got) => ['lines' in got ? say('answered', { source, operation, status })[0]! : say('untyped', { source, operation, status, why: got.untyped })[0]!, ...('lines' in got ? got.lines : [])])(await typedAnswer(context, place, lines, source, operation, prepared.key, bytes));
+    const typed = async (status: string, bytes: Uint8Array) => ((got, at) => ['lines' in got ? say('answered', { source, operation, status, at })[0]! : say('untyped', { source, operation, status, at, why: got.untyped })[0]!, ...('lines' in got ? got.lines : [])])(await typedAnswer(context, place, lines, source, operation, prepared.key, bytes), new Date(context.now()).toISOString());
     const lands = (...lot: readonly string[]) => context.landAs(place, lot, 'head', lines);
     const attach = async () => ((got) => ('said' in got ? { said: say(got.said, { source, operation, kinds: plan.access.kind, input: got.input }) } : got))(await attachmentFor(context, place, lines, plan));
     const uncovered = (role: string, scopes: readonly string[]) => uncoveredIn(context.lock, lines, context.device(role), place, [], scopes);

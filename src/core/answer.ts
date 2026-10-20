@@ -15,7 +15,7 @@ export type Asked = Readonly<Record<string, string | undefined>>;
 export interface Context {
   readonly lock: readonly Said[];
   readonly bound: (cwd: string, args: readonly string[]) => Promise<Printed | undefined>;
-  readonly roots: () => Promise<readonly string[]>;
+  readonly roots: () => Promise<readonly string[]>; readonly client: () => string | undefined;
   readonly keys: KeyStore;
   readonly device: (role: string) => string | undefined;
   readonly standing: (place: string) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;

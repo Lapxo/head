@@ -42,7 +42,6 @@ export const warmed = (program: string, args: readonly string[], at: { readonly 
   const live = spares.get(program) ?? [], index = live.findIndex((one) => one.loaded && alive(one) && one.boot === bootOf(at.env));
   const spare = index < 0 ? undefined : live.splice(index, 1)[0];
   if (spare === undefined) return undefined;
-  void kept(program);
   (spare.child.stdio[3] as Duplex).end(`${JSON.stringify({ cwd: at.cwd, args, env: at.env })}\n`);
-  return watched(spare.child, bounds);
+  return watched(spare.child, bounds).finally(() => { void kept(program); });
 };

@@ -7,6 +7,8 @@ import type { Said } from '../core/lock.ts';
 import type { Outcome } from '../core/answer.ts';
 import { spawned } from './process.ts';
 import { cooled, kept, warmed } from './warm.ts';
+import { folded } from '../ahead/fold.ts';
+import { readingOf } from './reading.ts';
 import type { Printed } from './process.ts';
 export type { Printed };
 
@@ -37,6 +39,15 @@ export { cooled };
 export type Folded = { readonly lines: readonly Said[] } | { readonly refused: string };
 const facts = (out: readonly string[]): readonly Said[] => out.flatMap((line) => ((got) => (got.kind === 'fact' ? [got.value.fields] : []))(parse(line)));
 const readOf = (printed: Printed | undefined): Folded => (printed === undefined || printed.code !== 0 ? { refused: why(printed) ?? '' } : { lines: facts(printed.out) });
+/** Native identities and expected-identity results come from the same public CLI contract. Without it, read fresh. */
+const nativeView = (name: string, place: string, view: string, signal?: AbortSignal): Promise<Folded> => {
+  const read = async (expected?: string): Promise<Folded> => {
+    if (expected === undefined) return readOf(await run(name, place, [words.read, words.view, view], {}, signal));
+    const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}@${expected}`], {}, signal), view, expected);
+    return 'refused' in result ? result : { lines: facts(result.text!.split('\n')) };
+  };
+  return !words.identity ? read() : folded(`${name}/${view}`, place, async () => { const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}`], {}, signal), view); return 'refused' in result ? undefined : result.identity; }, read);
+};
 
 /**
  * The lines a place stands on, from bound's public views alone: its folded normative standing (the lines view) — its
@@ -47,12 +58,12 @@ const readOf = (printed: Printed | undefined): Folded => (printed === undefined 
  * name. A place whose land prints no act result is refused before anything lands in it. Any refusal of bound is no standing.
  */
 export const policyAt = async (name: string, place: string, signal?: AbortSignal): Promise<Folded> => ((folded) => ('refused' in folded || folded.lines.some((line) => line.scope === words.profile) ? folded
-  : { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` }))(readOf(await run(name, place, [words.read, words.view, words.standing], {}, signal)));
+  : { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` }))(await nativeView(name, place, words.standing, signal));
 
 export const standingAt = async (name: string, place: string, devicesOf: (lines: readonly Said[]) => readonly string[], isHistory: (line: Said) => boolean, signal?: AbortSignal): Promise<Folded> => {
   const folded = await policyAt(name, place, signal);
   if ('refused' in folded) return folded;
-  const evidence = readOf(await run(name, place, [words.read, words.view, words.evidence], {}, signal));
+  const evidence = await nativeView(name, place, words.evidence, signal);
   if ('refused' in evidence) return evidence;
   const ids = new Set(devicesOf(folded.lines)), own = evidence.lines.filter((line) => ids.has(line.by ?? ''));
   const key = (line: Said) => `${line.scope} ${line.measure}`, attested = own.filter((line) => !isHistory(line));
@@ -96,6 +107,6 @@ export const pinnedAt = async (name: string, place: string, file: string, signal
 export const founded = async (name: string, place: string, key: string, signer: string, env: Readonly<Record<string, string>>, signal?: AbortSignal): Promise<Outcome> =>
   ((got) => (got !== undefined && got.code === 0 ? { lines: got.out } : { refused: why(got) ?? '' }))(await run(name, place, [words.land, words.key, key, words.signer, signer], env, signal));
 
-export const words = { read: '', view: '', sign: '', land: '', key: '', signer: '', pin: '', topos: '', standing: '', evidence: '', act: '', profile: '', receipts: '', refusal: '' };
+export const words = { read: '', view: '', sign: '', land: '', key: '', signer: '', pin: '', topos: '', standing: '', evidence: '', act: '', profile: '', receipts: '', refusal: '', identity: '' };
 
 export const settledView = async (name: string, place: string, view: string, signal?: AbortSignal): Promise<Folded> => readOf(await run(name, place, [words.read, words.view, view], {}, signal));
