@@ -63,9 +63,8 @@ export const policyAt = async (name: string, place: string, signal?: AbortSignal
   : { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` }))(await nativeView(name, place, words.standing, signal));
 
 export const standingAt = async (name: string, place: string, devicesOf: (lines: readonly Said[]) => readonly string[], isHistory: (line: Said) => boolean, signal?: AbortSignal): Promise<Folded> => {
-  const folded = await policyAt(name, place, signal);
+  const [folded, evidence] = await Promise.all([policyAt(name, place, signal), nativeView(name, place, words.evidence, signal)]);
   if ('refused' in folded) return folded;
-  const evidence = await nativeView(name, place, words.evidence, signal);
   if ('refused' in evidence) return evidence;
   const ids = new Set(devicesOf(folded.lines)), own = evidence.lines.filter((line) => ids.has(line.by ?? ''));
   const key = (line: Said) => `${line.scope} ${line.measure}`, attested = own.filter((line) => !isHistory(line));

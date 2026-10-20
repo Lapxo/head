@@ -28,6 +28,14 @@ test('yes and no: while head-s key of a place has not moved its kept fold answer
   deepStrictEqual([asked, calls], [5, 4], 'a moved key with another identity reads the text bound to it');
 });
 
+test('yes: folds of one place asked at once, as a refold asks standing and policy together, share one question to bound and one read', async () => {
+  let [asked, calls] = [0, 0];
+  const place = mkdtempSync(join(tmpdir(), 'head-flight-'));
+  const read = () => folded('lines', place, () => 'k', async () => { asked += 1; await new Promise((r) => setTimeout(r, 20)); return 'one'; }, async () => { calls += 1; return { lines: [] }; });
+  await Promise.all([read(), read(), read()]);
+  deepStrictEqual([asked, calls], [1, 1], 'three asked while the first was in flight');
+});
+
 test('an unavailable identity or a refused expected snapshot never validates a cached answer', async () => {
   const place = mkdtempSync(join(tmpdir(), 'head-identity-refusal-'));
   let identity: string | undefined = 'one', calls = 0, refuse = false, key = 'k1';
