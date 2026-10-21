@@ -22,13 +22,7 @@ const closeWith = async (intent: string | undefined, source: string, digest: str
   return 'refused' in landed ? [say('not-landed', { why: landed.refused })] : [...landed.lines, say('closed', { intent, digest })];
 };
 
-/**
- * A read of one offer the place declares of the class head reads: the response comes back once, typed by the world,
- * and both are kept — the body's digest and the typed answer's, receipts the device key signs. Asked again as the same
- * principal, while the place stands on what typed it, the person's grant holds now and the newest read is younger than
- * the reuse the place allows, it answers from what was kept: nothing called. Asked for history, it shows what was kept
- * of that request as of when it was read — evidence of that read, never a current answer — where the place allows it.
- */
+/** Read one permitted offer, reuse only under its policy and land the signed receipt. */
 export const readSource = (asked: Asked, context: Context): Promise<readonly string[]> => called(asked, context, planRead, async ({ word, say, place, lines, source, operation, plan, prepared, most, typed, attach, send, lands, widen, uncovered }) => {
   const [family, at, when] = [word('receipt/family'), word('receipt/at'), new Date(context.now()).toISOString()];
   const closing = (digest: string): Promise<readonly string[]> => closeWith(asked['closes'], source, digest, { word, lines, lands }, context);
@@ -78,7 +72,7 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   const [scope, kept] = scopes(attached.principal ?? '');
   const got = await send(attached.attachment);
   if (asked['ahead'] === 'true' && (got.kind !== 'got' || got.status >= 300)) return [];
-  if (got.kind !== 'got') return say(got.kind === 'over' ? 'too-large' : 'unreachable-source', { source });
+  if (got.kind !== 'got') return say(got.kind === 'over' ? 'too-large' : 'unreachable-source', { source, why: got.kind === 'failed' ? got.why : '' });
   if (got.status === 401 && attached.principal !== 'anonymous') return refusedAccess(context, place, lines, plan, operation);
   const digest = context.cache.keep(Buffer.concat([Buffer.from(`${got.status}\n`), got.bytes]));
   const answer = await typed(String(got.status), got.bytes);

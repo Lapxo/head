@@ -1,7 +1,10 @@
 import {test} from 'node:test';
 import {deepStrictEqual,ok} from 'node:assert';
+import {writeFileSync} from 'node:fs';
+import {join} from 'node:path';
+import {members,valueOf} from '../src/core/lock.ts';
 import {readingOf} from '../src/ports/reading.ts';
-import {born,line,viewOf} from './place.ts';
+import {born,line,lock,viewOf} from './place.ts';
 import {run} from './cli.ts';
 
 test('identity records refuse malformed, failed, mismatched and unbound results',()=>{
@@ -20,4 +23,18 @@ test('two unrelated admitted places use bound identities and text bound to the e
   const p=born(undefined,budgets),query=(view:string,expected?:string)=>readingOf(run('@lapxo/bound',p.place,['fold','--as',`reading-identity@${view}${expected?'@'+expected:''}`]),view,expected);
   for(const view of ['lines','evidence'] as const){const first=query(view);ok(!('refused' in first),JSON.stringify(first));if('refused' in first)continue;deepStrictEqual(query(view),first);const result=query(view,first.identity);ok(!('refused' in result));if(!('refused' in result))deepStrictEqual(result.text!.trim(),viewOf(p.place,view).trim());}
  }
+});
+
+test('the place a test is born in carries what bound needs to name an identity, as every place head founds does; no: with no finite bytes limit bound refuses by name',()=>{
+ const asked=(extra:string[])=>run('@lapxo/bound',born(undefined,extra).place,['fold','--as','reading-identity@lines']);
+ ok(!('refused' in readingOf(asked([]),'lines')),'born as founded');
+ const refused=asked([line('reading-identity/bytes','bytes','unbounded')]);
+ deepStrictEqual([refused?.code,refused?.err.some((l)=>l.includes('"code":"reading-identity/budget"'))],[1,true]);
+});
+
+test('no: the person-s birth file is an input bound reads, as every file of the place is — writing it moves bound-s identity, so it is never apart from head-s key and is written with a land, never while a fold runs',()=>{
+ const p=born(undefined),id=()=>readingOf(run('@lapxo/bound',p.place,['fold','--as','reading-identity@lines']),'lines'),before=id();
+ writeFileSync(join(p.place,valueOf(lock,'founding/birth-file')),`${line('lang','id','en')}\n`);
+ ok(!('refused' in before)&&JSON.stringify(id())!==JSON.stringify(before),'the identity moved');
+ ok(!members(valueOf(lock,'reading/apart')).includes(valueOf(lock,'founding/birth-file')),'reading/apart never names it');
 });

@@ -1,20 +1,33 @@
 name: tag
 on:
-  workflow_run:
-    workflows: [test]
-    types: [completed]
+  push:
+    branches: [main]
 jobs:
   tag:
-    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: read
+      pull-requests: read
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
-      - run: |
+      - name: Tag the version once the pull request that merged it was checked green on this very tree
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
           version="v$(node -p "require('./package.json').version")"
-          git tag --list "$version" | grep -q . && exit 0
+          git tag --list "$version" | grep -q . && { printf 'TAG %s · exists\n' "$version"; exit 0; }
+          tree="$(git rev-parse "HEAD^{tree}")"
+          pr="$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/pulls" --jq '.[0].number // empty')"
+          test -n "$pr" || { printf 'REFUSE %s · no pull request merged %s\n' "$version" "$GITHUB_SHA"; exit 1; }
+          head="$(gh api "repos/$GITHUB_REPOSITORY/pulls/$pr" --jq .head.sha)"
+          run="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/test.yml/runs?event=pull_request&head_sha=$head&status=success" --jq '.workflow_runs[0].id // empty')"
+          test -n "$run" || { printf 'REFUSE %s · pull request #%s has no green test run at %s\n' "$version" "$pr" "$head"; exit 1; }
+          gh run download "$run" -R "$GITHUB_REPOSITORY" --name tested-tree --dir "$RUNNER_TEMP/tested"
+          tested="$(cat "$RUNNER_TEMP/tested/tested-tree")"
+          test "$tested" = "$tree" || { printf 'REFUSE %s · run %s of pull request #%s tested tree %s; main holds %s\n' "$version" "$run" "$pr" "$tested" "$tree"; exit 1; }
+          printf 'TAG %s · tree %s · tested by run %s of pull request #%s\n' "$version" "$tree" "$run" "$pr"
           git tag "$version" && git push origin "$version"

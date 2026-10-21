@@ -5,7 +5,7 @@ import type { Call } from '../../core/read.ts';
 import { jsonOf } from '../../access/contract.ts';
 import type { Attachment } from '../../access/contract.ts';
 
-export type Fetched = { readonly kind: 'got'; readonly status: number; readonly bytes: Uint8Array; readonly type: string; readonly location?: string; readonly authenticate?: string } | { readonly kind: 'over' } | { readonly kind: 'failed' };
+export type Fetched = { readonly kind: 'got'; readonly status: number; readonly bytes: Uint8Array; readonly type: string; readonly location?: string; readonly authenticate?: string } | { readonly kind: 'over' } | { readonly kind: 'failed'; readonly why?: string };
 export type Prepared = { readonly key: string; readonly describe: string; readonly send: (attachment: Attachment | undefined, most: number) => Promise<Fetched> } | { readonly missing: string } | { readonly refused: string };
 
 /**
@@ -24,7 +24,7 @@ const requestCapped = async (method: string, url: string, headers: Readonly<Reco
       chunks.push(chunk);
     }
     return size > most ? { kind: 'over' } : { kind: 'got', status: response.status, bytes: Buffer.concat(chunks), type: response.headers.get('content-type') ?? '', ...((at) => (at ? { location: at } : {}))(response.headers.get('location')), ...((asks) => (asks ? { authenticate: asks } : {}))(response.headers.get('www-authenticate')) };
-  } catch { return { kind: 'failed' }; }
+  } catch (error) { return { kind: 'failed', why: String((error as { cause?: { code?: string } })?.cause?.code ?? (error as Error)?.name ?? '') }; }
 };
 
 const loopback = new Set(['127.0.0.1', 'localhost', '[::1]']);

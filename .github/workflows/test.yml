@@ -14,8 +14,15 @@ jobs:
       fail-fast: false
       matrix:
         node: [22, 24]
-        shard: [1, 2, 3]
-    runs-on: macos-latest
+        shard: [1, 2, 3, 4, 5, 6]
+    runs-on: ubuntu-latest
+    env:
+      SHARD_1: test/marks.test.ts test/named.test.ts test/answered.test.ts
+      SHARD_2: test/ahead-read.test.ts test/gestures.test.ts test/claims.test.ts test/verbs.test.ts test/share-receive.test.ts test/world.test.ts test/numbers.test.ts test/session.test.ts
+      SHARD_3: test/marks-lineage.test.ts test/authorizer.test.ts test/act.test.ts test/share-refused.test.ts test/consent.test.ts test/shape.test.ts test/adopt.test.ts test/trust.test.ts test/release.test.ts test/device.test.ts test/process.test.ts test/surface.test.ts test/stores.test.ts test/refusal-record.test.ts test/bound.test.ts test/welcome.test.ts test/signer.test.ts test/warm-compact.test.ts test/pack.test.ts test/pending-document.test.ts test/keys.test.ts test/acts.test.ts test/onboarding.test.ts test/bundle.test.ts
+      SHARD_4: test/channels.test.ts test/kept-zero-moved.test.ts test/reuse.test.ts test/walk.test.ts test/kept-zero.test.ts test/first-run.test.ts test/fold-ahead.test.ts test/warm.test.ts test/asking.test.ts test/transport.test.ts
+      SHARD_5: test/fetch.test.ts test/access.test.ts test/share.test.ts test/link-url.test.ts test/first-minute.test.ts test/places.test.ts test/born-closed.test.ts test/reading-identity.test.ts
+      SHARD_6: test/org.test.ts test/connect.test.ts test/issuer.test.ts test/observed.test.ts test/read.test.ts test/use.test.ts test/place-neutral.test.ts
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,18 +30,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+      - name: Require every test file in exactly one shard
+        run: diff <(printf '%s\n' $SHARD_1 $SHARD_2 $SHARD_3 $SHARD_4 $SHARD_5 $SHARD_6 | sort) <(ls test/*.test.ts | sort)
       - run: npm ci
       - run: npm run build
-      - name: Run tests, shard ${{ matrix.shard }} of 3
+      - name: Run tests, shard ${{ matrix.shard }} of 6, the files listed for it
         run: |
           set -euo pipefail
-          node --test --test-shard=${{ matrix.shard }}/3 test/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
+          files="SHARD_${{ matrix.shard }}"
+          node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination="$RUNNER_TEMP/head-junit.xml" ${!files} 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
       - name: Preserve test logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: head-node-${{ matrix.node }}-shard-${{ matrix.shard }}
-          path: ${{ runner.temp }}/head-tests.log
+          path: |
+            ${{ runner.temp }}/head-tests.log
+            ${{ runner.temp }}/head-junit.xml
           if-no-files-found: ignore
   time:
     strategy:
@@ -70,7 +82,7 @@ jobs:
           path: ${{ runner.temp }}/head-time.log
           if-no-files-found: ignore
   bundle:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -91,7 +103,7 @@ jobs:
             stage="$RUNNER_TEMP/stage-$n"
             mkdir -p "$stage"
             tar -xzf "$archive" -C "$stage" --strip-components 1
-            cp package-lock.json manifest.json "$stage/"
+            cp package-lock.json manifest.json .mcpbignore "$stage/"
             (cd "$stage" && npm ci --omit=dev --ignore-scripts --no-audit --no-fund --loglevel=error)
             npx --no-install mcpb pack "$stage" "$RUNNER_TEMP/packed-$n.mcpb"
             unpacked="$RUNNER_TEMP/unpacked-$n"
@@ -115,4 +127,17 @@ jobs:
           path: |
             ${{ runner.temp }}/release/
             ${{ runner.temp }}/head-1.mcpb
+          if-no-files-found: error
+  tree:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Keep the tree this run tests, so a tag can rest on it once the pull request is merged
+        run: git rev-parse "HEAD^{tree}" | tee "$RUNNER_TEMP/tested-tree"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tested-tree
+          path: ${{ runner.temp }}/tested-tree
           if-no-files-found: error

@@ -11,7 +11,7 @@ const look = (place: string) => ({ method: 'tools/call', params: { name: 'look',
 const sealed = (secret: string, at: string) => Buffer.from(JSON.stringify({ secret, at })).toString('base64url');
 const digestIn = (answer: unknown): string => / scope=read\/tracker\/\S+ .*value=sha256:([0-9a-f]{64})/.exec(text(answer))?.[1] ?? '';
 const reusing = (seconds = '0..3600') => [line('allow/reuse/tracker', 'seconds', seconds, { form: 'interval' })];
-const served = async (body: (server: Awaited<ReturnType<typeof api>>) => Promise<void>, answer = '[]') => { const server = await api(() => answer); try { await body(server); } finally { await server.close(); } };
+const served = async (body: (server: Awaited<ReturnType<typeof api>>) => Promise<void>, answer = '{}') => { const server = await api(() => answer); try { await body(server); } finally { await server.close(); } };
 
 test('no: what was read as one account is never answered to another — the token held now was obtained later, so the same request is called again with it', () => served(async (server) => {
   const { place, keychain } = born(server.url, reusing());

@@ -71,7 +71,7 @@ test('act: asked to be asked, a no calls nothing; a read-only cap wins over any 
 });
 
 test('act: a call that never answered leaves its intent open; the same request waits until a look of what it would have changed closes it, and the closing counts as done', async () => {
-  const server = await api(() => '[]', (method, count) => method === 'POST' && count === 1);
+  const server = await api(() => '{}', (method, count) => method === 'POST' && count === 1);
   const { place, keychain } = born(server.url, [allow('allow/tracker/issues/create', 2)]);
   const listing = (closes: string) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', operation: 'issues/list-for-repo', args: { owner: 'lapxo', repo: 'demo' }, closes, at: '8' } } });
   const refusedRead = (closes: string) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', operation: 'issues/create', args: { owner: 'lapxo', repo: 'demo' }, closes, at: '8' } } });

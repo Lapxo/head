@@ -9,17 +9,9 @@ import { pendingIn } from '../sources/refused.ts';
 import { compared } from '../marks/compare.ts';
 import { cardAt } from './card.ts';
 
-/**
- * What a person asks, answered by the question it is. A view, or the region of a source or of one operation in it (what
- * it offers, one read of it, why that answer stands, what was kept of it), is answered by look; drafted lines by plan;
- * what is open by card; one question of several sources at once, by comparing what each said; anything else by places. Each form is read with no resolution unless the lock declares one for a
- * person; asked why, at the one it declares to explain, and where it declares none, the same answer, said so. Nothing
- * here writes one. An answer about one place ends with its card, taken off the fold the answer reads, valid from it.
- * With no place at all, nothing is founded: it says so, and that connecting an API founds the person's place, the question
- * carried along. A place still owing a source's bytes is answered only once they arrive.
- */
+/** Route a question at the declared resolution, then attach the card of the place it read. */
 export const asked: Answer = async (asked, context) => {
-  const why = asked['why'] === 'true', at = (form: string): string | undefined => valueOf(context.lock, `resolution/${form}/${why ? 'why' : 'person'}`) || undefined;
+  const why = asked['why'] === 'true', at = (form: string): string | undefined => ((v) => (v && v !== valueOf(context.lock, 'resolution/own') ? v : undefined))(valueOf(context.lock, `resolution/${form}/${why ? 'why' : 'person'}`));
   const read = async (form: string, tool: string, more: Asked = {}): Promise<readonly string[]> => [...(why && at(form) === undefined ? [sayIn(context.lock)('why-undeclared', { form })] : []),
     ...await (await answerOf('tools', tool))({ ...asked, ...more, at: at(form) }, context)];
   const place = await placeOf(asked, context), founded = place !== undefined && context.files.has(place, LOCK), carded = asked['card'] === 'true';

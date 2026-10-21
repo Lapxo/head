@@ -13,7 +13,7 @@ const look = (place: string) => ({ method: 'tools/call', params: { name: 'look',
 const widen = (place: string) => tool('plan', { place, lines: canonical({ at: 'policy:person/asks', by: 'target', form: 'alphabet', measure: 'status', role: 'writes', scope: 'ask/tracker/issues/create', value: 'present' }) });
 
 test('no: a lock is no source — adopting another place-s lock as a parent is refused by name before anything is asked, and nothing lands', async () => {
-  const server = await api(() => '[]');
+  const server = await api(() => '{}');
   try {
     const [org, member] = [born(server.url), born(server.url)];
     const asked: string[] = [];
@@ -25,7 +25,7 @@ test('no: a lock is no source — adopting another place-s lock as a parent is r
 });
 
 test('no: a place that pins a lock as its parent is never read or signed for with the parent dropped — each is refused by name, nothing called', async () => {
-  const server = await api(() => '[]');
+  const server = await api(() => '{}');
   try {
     const { place, root, keychain } = born(server.url);
     const parent = join(place, '.head', 'adopted', 'org.bound');

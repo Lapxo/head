@@ -6,11 +6,7 @@ import { sayIn } from '../core/surface.ts';
 import { canonical } from '@lapxo/topos/wire';
 import { called } from './call.ts';
 
-/**
- * One offer that is not of the class head reads: within a cap the person signed it is called as far as the cap goes;
- * without one, each call asks the person once, and their yes is signed for exactly that request. The intent lands before
- * the call, the receipt after; a call that never answered stays open until a look of what it would have changed closes it.
- */
+/** Run one action within its declared authority, with the person's approval when required. */
 export const act = (asked: Asked, context: Context): Promise<readonly string[]> => called(asked, context, planAct, async ({ word, say, lines, source, operation, prepared, typed, attach, send, lands, widen, uncovered }) => {
   const [family, done] = [word('act/family'), word('act/done')];
   const allowed = allowedOf(lines, word('allow/family'), source, operation);

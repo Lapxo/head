@@ -32,8 +32,8 @@ const person = async (status = () => 200) => {
   const origin = `http://127.0.0.1:${(server.address() as AddressInfo).port}`, mine = mkdtempSync(join(tmpdir(), 'head-ahead-')), keychain = fakeKeychain({});
   const env = { ...keychain.env, HEAD_HOME: join(mine, '.config', 'head'), HOME: mine, USERPROFILE: mine }, yes = () => ({ action: 'accept', content: { yes: true } });
   const place = join(mine, valueOf(lock, 'first-run/folder')), connect = call('connect', { ...question, document: `${origin}/openapi.json` }), asking = call('ask', { ...question, place });
-  /** Until the read ahead landed its mark, or a few seconds passed: what head reads ahead it reads between two calls. */
-  const landed = async () => { for (let i = 0; i < 100 && !marked(place); i += 1) await new Promise((r) => setTimeout(r, 100)); };
+  /** Until the read ahead landed its mark, within the wait head gives one bound run: what head reads ahead it reads between two calls, and never on a test's clock. */
+  const landed = async () => { for (const end = Date.now() + Number(valueOf(lock, 'bound/wait').split('..')[1]); !marked(place) && Date.now() < end;) await new Promise((r) => setTimeout(r, 100)); ok(marked(place), 'the read ahead landed its mark before the next call'); };
   const rooted = (lines: readonly string[]) => {
     const lot = join(mkdtempSync(join(tmpdir(), 'head-ahead-lot-')), 'lot.bound');
     writeFileSync(lot, `${lines.join('\n')}\n`);

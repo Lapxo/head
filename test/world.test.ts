@@ -102,7 +102,7 @@ test('head reads a source through the place bound compiled it to: an offer of cl
 
 test('no: when bound refuses to settle what the world reads — here the place projects a blob the world does not offer — head calls nothing and says what bound printed', async () => {
   const world = await served();
-  const server = await api(() => '[]');
+  const server = await api(() => '{}');
   try {
     const { place, keychain } = adopting(world.at, server.url, `sha256:${'0'.repeat(64)}`);
     document(place, v1);
@@ -115,7 +115,7 @@ test('no: when bound refuses to settle what the world reads — here the place p
 
 test('a source whose document states only a bearer is reached through the flow an overlay the place holds declares; an overlay whose step sends what the person enters to another origin is refused', async () => {
   const world = await served();
-  const server = await api((url) => (url === '/login' ? '{"token":"t-ledger"}' : '[]'));
+  const server = await api((url) => (url === '/login' ? '{"token":"t-ledger"}' : '{}'));
   const elsewhere = await api(() => '{"token":"stolen"}');
   const ledger = JSON.stringify({ openapi: '3.0.3', info: { title: 'ledger', version: '1' }, servers: [{ url: 'https://ledger.example' }], components: { securitySchemes: { session: { type: 'http', scheme: 'bearer' } } }, security: [{ session: [] }],
     paths: { '/login': { post: { operationId: 'login', security: [], requestBody: { content: { 'application/json': { schema: { type: 'object', properties: { email: { type: 'string' }, password: { type: 'string', format: 'password' } } } } } }, responses: { 200: { description: 'a token' } } } },

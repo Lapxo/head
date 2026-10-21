@@ -3,22 +3,18 @@ import { canonical, LOCK } from '@lapxo/topos/wire';
 import { unless } from '../core/answer.ts';
 import type { Asked, Context } from '../core/answer.ts';
 import { admissionOf } from '../core/device.ts';
-import { valueOf } from '../core/lock.ts';
+import { members, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
 import { deviceKey } from '../flows/device.ts';
 import { walkable } from '../walk/context.ts';
 import { fill, sayIn } from '../core/surface.ts';
 
-/**
- * The lines a place is born with, every one drafted by target: its root, by the public half of a key kept only in the
- * keychain and the signer that reaches it; this device's keys admitted; and the prelude head's lock declares under
- * birth/ — the wire, the regions and views a world is read through, and the lifetime every reader is bounded by.
- */
-const birthOf = (lock: readonly Said[], root: string, head: string, person: string, place: string): readonly string[] => [
+/** Found the place from the declared prelude; personal lines retain the person's provenance. */
+const birthOf = (lock: readonly Said[], root: string, head: string, person: string, place: string, mine = `${valueOf(lock, 'founding/person-at')}birth`): readonly string[] => [
   ...[['class', 'authorize'], ['coverage', '*'], ['signer', valueOf(lock, 'device/head/signer')], ['public-key', root]].map(([measure, value]) =>
-    canonical({ at: 'policy:head/birth', by: 'target', form: 'alphabet', measure: measure!, role: 'writes', scope: valueOf(lock, 'founding/root'), value: value! })),
+    canonical({ at: mine, by: 'target', form: 'alphabet', measure: measure!, role: 'writes', scope: valueOf(lock, 'founding/root'), value: value! })),
   ...admissionOf(lock, head, 'head'), ...admissionOf(lock, person, 'person'),
-  ...lock.filter((l) => l.scope?.startsWith('birth/')).map(({ about: _about, scope, ...line }) => canonical({ ...line, value: fill(line.value ?? '', { place }), scope: scope!.slice('birth/'.length), at: 'policy:head/birth', by: 'target' } as Record<string, string>)),
+  ...lock.filter((l) => l.scope?.startsWith('birth/')).map(({ about: _about, scope, ...line }) => ((s) => canonical({ ...line, value: fill(line.value ?? '', { place }), scope: s, at: members(valueOf(lock, 'founding/person')).includes(s) ? mine : 'policy:head/birth', by: 'target' } as Record<string, string>))(scope!.slice('birth/'.length))),
 ];
 
 /** A place founded in a folder: a root key made in the keychain under the place's name — never a file — the birth lines written, and the first land signed by that root. */

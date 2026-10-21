@@ -23,7 +23,7 @@ export const admitted = (asked: Asked, context: Context): Promise<readonly strin
   const coverage = asked['coverage'] || word('member/coverage');
   const refused = await unless(context, say('elicit-admit', { name, place, coverage }));
   if (refused) return refused;
-  const lot = admissionOf(context.lock, key, 'head', { id: name, coverage, at: `policy:head/admit/${new Date(context.now()).toISOString()}` });
+  const lot = admissionOf(context.lock, key, 'head', { id: name, coverage, at: `policy:person/admit/${new Date(context.now()).toISOString()}` });
   const landed = await context.landRoot(place, lot, root.account);
   return 'refused' in landed ? [say('not-landed', { why: landed.refused })] : [say('admitted', { name, place, coverage }), ...landed.lines];
 });

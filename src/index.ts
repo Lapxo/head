@@ -10,7 +10,7 @@ import { parse } from '@lapxo/topos/wire';
 import { aboutOf, valueOf } from './core/lock.ts';
 import { fill, sayIn } from './core/surface.ts';
 import { matchTemplate, refusedOn, shapeOf, shapeSchema, surfaceOf } from './ports/surface.ts';
-import { closing, cooled, founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, warm, words } from './ports/bound.ts';
+import { birth, closing, cooled, founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, warm, words } from './ports/bound.ts';
 import { warmth } from './ports/warm.ts';
 import { held, keep } from './ports/cache.ts';
 import { registryFor } from './ports/signers.ts';
@@ -24,10 +24,11 @@ import { readAhead } from './ahead/read.ts';
 
 const [ext, root] = ((self) => [self.slice(self.lastIndexOf('.')), fileURLToPath(new URL(self.endsWith('.ts') ? '..' : '../..', self))] as const)(import.meta.url);
 const lock = lockAt(root);
+if (process.argv[2] !== valueOf(lock, 'cli/run')) { process.stdout.write(`${aboutOf(lock, 'cli/help')}\n`); process.exit(0); }
 const surface = surfaceOf(lock);
 const runs = valueOf(lock, 'runs');
 Object.assign(words, Object.fromEntries((['read', 'view', 'sign', 'land', 'key', 'signer', 'pin', 'topos', 'standing', 'evidence', 'act', 'profile', 'receipts', 'refusal', 'identity'] as const).map((w) => [w, valueOf(lock, `bound/${w}`)])));
-Object.assign(limits, { wait: Number(valueOf(lock, 'bound/wait').split('..')[1]), most: Number(valueOf(lock, 'bound/printed').split('..')[1]) });
+Object.assign(limits, { wait: Number(valueOf(lock, 'bound/wait').split('..')[1]), most: Number(valueOf(lock, 'bound/printed').split('..')[1]) }); Object.assign(birth, { at: valueOf(lock, 'founding/person-at'), file: valueOf(lock, 'founding/birth-file') });
 Object.assign(warmth, { spares: Number(valueOf(lock, 'bound/spares').split('..')[1]), boot: valueOf(lock, 'bound/spare-env').split('|') });
 /** One call at a time, each after the one before it and never on a timer, so one asked while another lands sees its receipt; bound started ahead for it, and nothing of it kept once it is answered. */
 let [last, ahead]: [Promise<unknown>, AbortController] = [Promise.resolve(), new AbortController()];

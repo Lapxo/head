@@ -40,7 +40,7 @@ export const profile = (name: string) => [line('wire/act-result', 'id', 'local-a
 export const viewOf = (place: string, view: 'lines' | 'evidence') => (run('@lapxo/bound', place, ['fold', '--as', view])?.out ?? []).filter((l) => l.startsWith('bound-lock/1')).join('\n');
 
 /** An API that answers fixed bytes and keeps every request it was sent: method, path, headers and body; one it drops never answers. */
-export const api = async (answer: (url: string, body: string) => string | readonly [number, string] = () => '[]', drop: (method: string, count: number) => boolean = () => false) => {
+export const api = async (answer: (url: string, body: string) => string | readonly [number, string] = () => '{}', drop: (method: string, count: number) => boolean = () => false) => {
   const seen: { method?: string; url?: string; headers: Record<string, unknown>; body: string }[] = [];
   const server = createServer((request, response) => {
     let body = '';
@@ -50,6 +50,9 @@ export const api = async (answer: (url: string, body: string) => string | readon
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
   return { url: `http://127.0.0.1:${(server.address() as AddressInfo).port}`, seen, close: () => new Promise<void>((resolve) => server.close(() => resolve())) };
 };
+
+/** What bound needs to name a view's identity, as head's birth gives every place it founds. */
+const identityBudget = lock.filter((l) => l.scope?.startsWith('birth/reading-identity/')).map(({ about: _about, scope, ...l }) => canonical({ ...l, scope: scope!.slice('birth/'.length) }));
 
 /** A place born from nothing: a fixture root, head-s and the person-s keys admitted, the place topos-openapi compiled of the demo tracker, the origin the person picked, and a keychain holding both keys and the source's token. */
 export const born = (server: string | undefined, extra: readonly string[] = [], token: string | null = 'token-for-tests', fixture = true, source = 'tracker', granted = true, acts = true) => {
@@ -63,7 +66,7 @@ export const born = (server: string | undefined, extra: readonly string[] = [], 
   const overridden = (l: string) => extra.some((e) => e.includes(` scope=${/ scope=(\S+)/.exec(l)?.[1]} `) && e.includes(` measure=${/ measure=(\S+)/.exec(l)?.[1]} `));
   writeFileSync(join(place, 'TARGET.bound'), [
     line('keys/root', 'class', 'authorize'), line('keys/root', 'coverage', '*'), line('keys/root', 'signer', 'file'), line('keys/root', 'public-key', owner.publicKey.export({ type: 'spki', format: 'der' }).toString('base64')),
-    ...admissionOf(lock, head.publicKey, 'head'), ...admissionOf(lock, person.publicKey, 'person'), ...prelude, ...(acts ? profile(basename(place)) : []), ...(fixture ? world.lines.filter((l) => !overridden(l)) : []), ...extra,
+    ...admissionOf(lock, head.publicKey, 'head'), ...admissionOf(lock, person.publicKey, 'person'), ...prelude, ...identityBudget.filter((l) => !overridden(l)), ...(acts ? profile(basename(place)) : []), ...(fixture ? world.lines.filter((l) => !overridden(l)) : []), ...extra,
     ...(server === undefined ? [] : [line(`allow/origin/${source}`, 'id', server)]),
     ...(granted ? [line('allow/read', 'sources', source), line('allow/read', 'until', '2999-01-01')] : []),
   ].join('\n') + '\n');

@@ -6,7 +6,11 @@ permissions:
   contents: read
 jobs:
   map:
-    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -16,7 +20,7 @@ jobs:
         with:
           node-version: 24
       - run: npm ci
-      - name: Run each test file alone, three at a time, its processes measured, keeping only what of head they ran
+      - name: Run each test file of this shard alone, three at a time, its processes measured, keeping only what of head they ran
         run: |
           set -uo pipefail
           map="$RUNNER_TEMP/suite-map"
@@ -28,12 +32,12 @@ jobs:
             grep -L -F "$GITHUB_WORKSPACE/src/" "$out"/*.json 2>/dev/null | xargs rm -f
           }
           export -f measure
-          ls test/*.test.ts | xargs -P 3 -I{} bash -c 'measure "$0" "$1"' "$map" {}
+          ls test/*.test.ts | awk -v s="${{ matrix.shard }}" 'NR % 6 == s % 6' | xargs -P 3 -I{} bash -c 'measure "$0" "$1"' "$map" {}
           git log --format='%H %s' origin/main..HEAD > "$map/commits.txt"
           cat "$map"/*.log | grep -E '^(FAILED|ℹ (pass|fail))' || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: suite-map
+          name: suite-map-${{ matrix.shard }}
           path: ${{ runner.temp }}/suite-map/
           if-no-files-found: error

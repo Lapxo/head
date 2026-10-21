@@ -11,7 +11,7 @@ import { api, born, line, lock, root, said, text, viewOf } from './place.ts';
 
 const look = (place: string, operation: string, args: Record<string, string> = {}) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', operation, args, at: '8' } } });
 const issue = (n: string) => ({ owner: 'o', repo: 'r', issue_number: n });
-const answers = (url: string, body = '') => (url === '/login' && body.includes('many') ? '{"selectionToken":"sel-1","shops":[{"id":"s1","name":"One"},{"id":"s2","name":"Two"}]}' : url === '/select-shop' && body.includes('sel-1') ? '{"token":"t-picked"}' : url === '/login' ? '{"token":"t-first"}' : url === '/select-shop' ? '{"token":"t-shop","expiresIn":3600}' : url === '/token' ? '{"access_token":"o-1","expires_in":60}' : '[]');
+const answers = (url: string, body = '') => (url === '/login' && body.includes('many') ? '{"selectionToken":"sel-1","shops":[{"id":"s1","name":"One"},{"id":"s2","name":"Two"}]}' : url === '/select-shop' && body.includes('sel-1') ? '{"token":"t-picked"}' : url === '/login' ? '{"token":"t-first"}' : url === '/select-shop' ? '{"token":"t-shop","expiresIn":3600}' : url === '/token' ? '{"access_token":"o-1","expires_in":60}' : '{}');
 const kept = (keychain: { held: (account: string) => string }, place: string, source = 'tracker') => ((sealed) => (sealed ? JSON.parse(Buffer.from(sealed, 'base64url').toString('utf8')) : undefined))(keychain.held(`place/${basename(place)}/api/${source}`));
 const journal = (place: string) => viewOf(place, 'evidence');
 /** The place's root allowing a flow to ask the person this many secrets on head's page. */
@@ -161,8 +161,8 @@ test('a step of another source is reached at the origin of the source access is 
 });
 
 test('a step whose answer is an error that still carries what its outputs name goes on — a 409 with a selection leads to the choice — and an error that names nothing stops the flow by the step', async () => {
-  const conflict = await api((url, body) => (url === '/login' ? [409, '{"success":false,"selectionToken":"sel-1","shops":[{"id":"s1","name":"One"},{"id":"s2","name":"Two"}]}'] as const : url === '/select-shop' && body.includes('sel-1') ? '{"token":"t-picked"}' : '[]'));
-  const denied = await api((url) => (url === '/login' ? [401, '{"success":false,"message":"Invalid or expired code"}'] as const : '[]'));
+  const conflict = await api((url, body) => (url === '/login' ? [409, '{"success":false,"selectionToken":"sel-1","shops":[{"id":"s1","name":"One"},{"id":"s2","name":"Two"}]}'] as const : url === '/select-shop' && body.includes('sel-1') ? '{"token":"t-picked"}' : '{}'));
+  const denied = await api((url) => (url === '/login' ? [401, '{"success":false,"message":"Invalid or expired code"}'] as const : '{}'));
   const run = (at: string) => born(at, [line('allow/origin/accounts', 'id', at), secrets(1)], null);
   const [one, two] = [run(conflict.url), run(denied.url)];
   const person = async (params: any) => (params.mode === 'url' ? (await fetch(params.url, { method: 'POST', body: new URLSearchParams({ password: 'pw' }) }), { action: 'accept' })

@@ -11,10 +11,12 @@ import { rootIn } from '../flows/device.ts';
  * link's, and nothing shows who shared it — and what it names is shown; nothing is connected or granted, since a package
  * is received by the digest its sharer sent apart. A place that admits no content transport is handed the lines that admit
  * one, to sign; bytes that do not arrive are owed by the link until they do; bytes that are not what it names are refused.
+ * Asked why, it shows the transport it reads by: the profile's lines, laid at the place's birth by head, never the person's.
  */
 export const linked = (asked: Asked, context: Context): Promise<readonly string[]> => inPlace(asked, context, async (place) => {
   const [say, word, link] = [sayIn(context.lock), (k: string) => valueOf(context.lock, k), asked['document'] ?? ''], [held, admits] = [await standingOr(context, place, context.policy), members(valueOf(context.lock, 'link/transport'))];
   if ('said' in held) return held.said;
+  if (asked['why'] === 'true') return [...held.lines.filter((l) => admits.includes(l.scope ?? '') || l.scope?.startsWith('transport/')).map((l) => canonical(l)), say('why-transport', { place })];
   const lines = context.lock.filter((l) => admits.some((s) => l.scope === `birth/${s}`)).map(({ about: _about, scope, ...l }) => canonical({ ...l, scope: scope!.slice('birth/'.length), at: 'policy:person/transport', by: 'target' }));
   let reference: ReturnType<typeof decodeReference>;
   try { reference = decodeReference(link); } catch (refused) { return [say('link-refused', { link, why: refused instanceof Error ? refused.message : String(refused) })]; }

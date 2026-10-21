@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "head",
   "display_name": "head",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "An MCP server that folds: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
   "author": {
     "name": "Lapxo"
@@ -19,7 +19,8 @@
     "mcp_config": {
       "command": "node",
       "args": [
-        "${__dirname}/dist/src/index.js"
+        "${__dirname}/dist/src/index.js",
+        "run"
       ],
       "env": {}
     }
