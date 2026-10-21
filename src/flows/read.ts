@@ -78,7 +78,7 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   const [scope, kept] = scopes(attached.principal ?? '');
   const got = await send(attached.attachment);
   if (asked['ahead'] === 'true' && (got.kind !== 'got' || got.status >= 300)) return [];
-  if (got.kind !== 'got') return say(got.kind === 'over' ? 'too-large' : 'unreachable-source', { source });
+  if (got.kind !== 'got') return say(got.kind === 'over' ? 'too-large' : 'unreachable-source', { source, why: got.kind === 'failed' ? got.why : '' });
   if (got.status === 401 && attached.principal !== 'anonymous') return refusedAccess(context, place, lines, plan, operation);
   const digest = context.cache.keep(Buffer.concat([Buffer.from(`${got.status}\n`), got.bytes]));
   const answer = await typed(String(got.status), got.bytes);

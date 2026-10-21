@@ -6,7 +6,8 @@ import { join } from 'node:path';
 import { registryFor } from '../src/ports/signers.ts';
 import { run } from './cli.ts';
 import { ask } from './client.ts';
-import { api, born, line, said, text, viewOf } from './place.ts';
+import { api, born, line, lock, said, text, viewOf } from './place.ts';
+import { aboutOf, members, valueOf } from '../src/core/lock.ts';
 
 const look = (place: string, operation: string, args: Record<string, string> = {}) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', operation, args, at: '8' } } });
 const issue = (n: string) => ({ owner: 'o', repo: 'r', issue_number: n });
@@ -19,13 +20,13 @@ const counting = (asked: string[]) => (params: any) => {
 };
 
 test('the first read of a place asks once for one sentence — its sources and a period — which the person signs; no read after it asks anything', async () => {
-  const server = await api(() => '[]');
+  const server = await api(() => '{}');
   const { place, keychain } = born(server.url, [], 'token-for-tests', true, 'tracker', false);
   const asked: string[] = [];
   const [first, second, third] = await ask([look(place, 'issues/get', issue('1')), look(place, 'issues/get', issue('2')), look(place, 'status')], [], keychain.env, counting(asked));
   await server.close();
   ok([first, second, third].every((one) => said('untyped').test(text(one))), text(first));
-  deepStrictEqual(asked.length, 1); match(asked[0]!, /^yes: head may read accounts, tracker in /);
+  deepStrictEqual(asked.length, 1); match(asked[0]!, /^yes: You would have accounts, tracker read in /);
   match(ledgers(place), / by=person .* measure=sources .*scope=allow\/read .*value=accounts\|tracker/); match(ledgers(place), / by=person .* measure=until .*scope=allow\/read /);
   deepStrictEqual(server.seen.length, 3);
 });
@@ -38,14 +39,14 @@ test('ten reads across three places ask nothing; one write asks once, and the ye
   deepStrictEqual([reads.flat().length, asked.length], [10, 0]);
   const [written] = await ask([{ method: 'tools/call', params: { name: 'act', arguments: { place: places[0]!.place, source: 'tracker', operation: 'issues/create', args: { owner: 'o', repo: 'r', body: { title: 't' } } } } }], [], places[0]!.keychain.env, counting(asked));
   await server.close();
-  deepStrictEqual(asked.length, 1); match(asked[0]!, /^yes: head asks before it calls issues\/create on tracker/);
+  deepStrictEqual(asked.length, 1); match(asked[0]!, /^yes: You would have issues\/create on tracker called/);
   ok(said('untyped').test(text(written)), text(written));
   match(ledgers(places[0]!.place), / by=person .*scope=allow\/tracker\/issues\/create\/[0-9a-f]{16} .*value=present/);
   deepStrictEqual(server.seen.filter((one) => one.method === 'POST').length, 1);
 });
 
 test('a source declaring several origins has one picked, once, by the person, among them alone; none is a default and the next read asks nothing', async () => {
-  const [one, two] = [await api(() => '[]'), await api(() => '[]')];
+  const [one, two] = [await api(() => '{}'), await api(() => '{}')];
   const { place, keychain } = born(undefined, [line('region/tracker', 'origins', `${one.url}|${two.url}`)]);
   const asked: string[] = [];
   const [first, second] = await ask([look(place, 'issues/get', issue('1')), look(place, 'issues/get', issue('2'))], [], keychain.env, counting(asked));
@@ -56,7 +57,7 @@ test('a source declaring several origins has one picked, once, by the person, am
 });
 
 test('no: head reads the person-s own attestation only while it is the one line of its scope — a second is refused before it is signed, and one landed from elsewhere leaves the place unread, refused by name, nothing called', async () => {
-  const server = await api(() => '[]');
+  const server = await api(() => '{}');
   try {
     const { place, keychain } = born(server.url, [], 'token-for-tests', true, 'tracker', false);
     const [first] = await ask([look(place, 'issues/get', issue('1'))], [], keychain.env, counting([]));
@@ -72,4 +73,9 @@ test('no: head reads the person-s own attestation only while it is the one line 
     match(text(after), said('unsettled')); match(text(after), /REFUSE·standing person attests allow\/read until/);
     deepStrictEqual(server.seen.length, 1);
   } finally { await server.close(); }
+});
+
+test('one shape for what is missing: every question head asks for what an answer lacks says what the person would have and asks them to admit it', () => {
+  const prompts = members(valueOf(lock, 'suggest/prompts'));
+  ok(prompts.length > 0 && prompts.every((code) => /^You would have .+ if you admit .+ Yes\?$/.test(aboutOf(lock, `said/${code}`))), prompts.map((code) => aboutOf(lock, `said/${code}`)).join('\n'));
 });

@@ -5,6 +5,7 @@ import { vocabOf, type Call, type Plan } from '../core/read.ts';
 import { sayIn } from '../core/surface.ts';
 import { called, type Frame } from '../flows/call.ts';
 import { standingFor } from '../flows/world.ts';
+import { answering } from '../answers/answered.ts';
 
 /** The words of a name as a person or a model says it: its runs of letters and digits, lowercase. */
 const words = (text: string): readonly string[] => text.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
@@ -43,6 +44,6 @@ export const calledByName = (asked: Asked, context: Context, planOf: (lines: rea
   if ('said' in named) return named.said;
   return called({ ...asked, place, operation: named.operation }, context, planOf, (frame) => {
     let use = named.use !== undefined && frame.uncovered('head', [named.scope!]) === undefined ? [named.use] : [];
-    return then({ ...frame, lands: (...lot) => ((once) => ((use = []), frame.lands(...once, ...lot).then((o) => ('lines' in o ? { lines: o.lines.filter((l) => !l.includes(` scope=${family}/`)) } : o))))(use) });
+    return then(answering(context, place, asked, { ...frame, lands: (...lot) => ((once) => ((use = []), frame.lands(...once, ...lot).then((o) => ('lines' in o ? { lines: o.lines.filter((l) => !l.includes(` scope=${family}/`)) } : o))))(use) }));
   });
 });

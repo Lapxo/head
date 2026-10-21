@@ -34,7 +34,7 @@ test('no: a number code gives a cell with no kind is named, and a value nothing 
 });
 
 test('yes, over two places: status names its source and time; latency reds report the unchanged ceiling', async (t) => {
-  const quick = await api(() => '[]'), late = createServer((_q, r) => { setTimeout(() => { r.writeHead(200, { 'content-type': 'application/json' }); r.end('[]'); }, 3100); });
+  const quick = await api(() => '{}'), late = createServer((_q, r) => { setTimeout(() => { r.writeHead(200, { 'content-type': 'application/json' }); r.end('{}'); }, 3100); });
   await new Promise<void>((done) => late.listen(0, '127.0.0.1', done));
   const [a, b] = [born(`http://127.0.0.1:${(late.address() as AddressInfo).port}`), born(quick.url)];
   const [read, other] = [(await ask([reading(a.place)], [], a.keychain.env))[0], (await ask([reading(b.place)], [], b.keychain.env))[0]];

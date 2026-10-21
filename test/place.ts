@@ -40,7 +40,7 @@ export const profile = (name: string) => [line('wire/act-result', 'id', 'local-a
 export const viewOf = (place: string, view: 'lines' | 'evidence') => (run('@lapxo/bound', place, ['fold', '--as', view])?.out ?? []).filter((l) => l.startsWith('bound-lock/1')).join('\n');
 
 /** An API that answers fixed bytes and keeps every request it was sent: method, path, headers and body; one it drops never answers. */
-export const api = async (answer: (url: string, body: string) => string | readonly [number, string] = () => '[]', drop: (method: string, count: number) => boolean = () => false) => {
+export const api = async (answer: (url: string, body: string) => string | readonly [number, string] = () => '{}', drop: (method: string, count: number) => boolean = () => false) => {
   const seen: { method?: string; url?: string; headers: Record<string, unknown>; body: string }[] = [];
   const server = createServer((request, response) => {
     let body = '';

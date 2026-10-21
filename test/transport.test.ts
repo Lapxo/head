@@ -30,7 +30,7 @@ test('no: a request that stalls is stopped when its wait runs out — nothing it
 });
 
 test('a server that closes idle connections between two reads fails neither: head pools them and waits on bound without blocking, so a closed one is never reused', async () => {
-  const server = await listening((_request, response) => { response.writeHead(200, { 'content-type': 'application/json' }); response.end('[]'); }, 50);
+  const server = await listening((_request, response) => { response.writeHead(200, { 'content-type': 'application/json' }); response.end('{}'); }, 50);
   try {
     const { place, keychain } = born(server.url);
     const [first, second] = await ask([look(place, 'one'), look(place, 'two')], [], keychain.env);
@@ -40,7 +40,7 @@ test('a server that closes idle connections between two reads fails neither: hea
 });
 
 test('no: a request carrying a secret is never redirected — a bearer sent to an origin that answers elsewhere stays with that origin, and the other is never reached', async () => {
-  const elsewhere = await listening((_request, response) => { response.writeHead(200, { 'content-type': 'application/json' }); response.end('[]'); });
+  const elsewhere = await listening((_request, response) => { response.writeHead(200, { 'content-type': 'application/json' }); response.end('{}'); });
   const origin = await listening((_request, response) => { response.writeHead(302, { location: `${elsewhere.url}/taken` }); response.end(); });
   try {
     const call = { kind: 'call', source: 's', operation: 'o', origin: origin.url, carry: { method: ['get'], path: ['/things'] }, form: {}, classes: [], access: {} } as unknown as Call;

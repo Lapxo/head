@@ -21,7 +21,7 @@ const posts = (seen: readonly { method?: string }[]) => seen.filter((one) => one
 const yes = () => ({ action: 'accept', content: { yes: true } });
 
 test('yes: a client is offered three tools; ask reads with no resolution, and a read never moves the card; a do on the card ask answered acts', async () => {
-  const server = await api((_url, body) => (body ? '{"number":7}' : '[]'));
+  const server = await api((_url, body) => (body ? '{"number":7}' : '{}'));
   const { place, keychain } = born(server.url, [allow('allow/tracker/issues/create', 1)]);
   const [listed, carded, read, again] = await ask([{ method: 'tools/list' }, call('ask', { place, card: true }), listing(place), call('ask', { place, card: true })], [], keychain.env);
   const [made] = await ask([create(place, cardOf(again), 'one')], [], keychain.env);
@@ -68,7 +68,7 @@ test('a place that signs no view of cells answers its card as cells, never a sen
 });
 
 test('person-words: no cell of ask carries a resolution number or a ledger epoch, a red included; the offers a person reads and the ones why explains are the lock-s resolutions', async () => {
-  const slow = createServer((_request, response) => { setTimeout(() => { response.writeHead(200, { 'content-type': 'application/json' }); response.end('[]'); }, 3100); });
+  const slow = createServer((_request, response) => { setTimeout(() => { response.writeHead(200, { 'content-type': 'application/json' }); response.end('{}'); }, 3100); });
   await new Promise<void>((resolve) => slow.listen(0, '127.0.0.1', resolve));
   const { place, keychain } = born(`http://127.0.0.1:${(slow.address() as AddressInfo).port}`);
   const answers = await ask([listing(place), listing(place, { why: true }), call('ask', { place, source: 'tracker' }), call('ask', { place, source: 'tracker', why: true }), call('ask', { place, view: valueOf(lock, 'bound/standing') }), call('ask', {}), call('ask', { place, card: true })], [], keychain.env);
@@ -82,7 +82,7 @@ test('person-words: no cell of ask carries a resolution number or a ledger epoch
 });
 
 test('yes: every answer about a place ends with its card, valid from it: a read returns the card it was asked on, a do acts on the card the previous do returned, and a lot landed returns a new one, the old one stale', async () => {
-  const server = await api((_url, body) => (body ? '{"number":7}' : '[]'));
+  const server = await api((_url, body) => (body ? '{"number":7}' : '{}'));
   const { place, keychain } = born(server.url, [allow('allow/tracker/issues/create', 3)]);
   const [carded, read] = await ask([call('ask', { place, card: true }), listing(place)], [], keychain.env);
   const [first] = await ask([create(place, cardOf(read), 'one')], [], keychain.env);
