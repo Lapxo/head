@@ -103,9 +103,8 @@ jobs:
             stage="$RUNNER_TEMP/stage-$n"
             mkdir -p "$stage"
             tar -xzf "$archive" -C "$stage" --strip-components 1
-            cp package-lock.json manifest.json "$stage/"
+            cp package-lock.json manifest.json .mcpbignore "$stage/"
             (cd "$stage" && npm ci --omit=dev --ignore-scripts --no-audit --no-fund --loglevel=error)
-            find "$stage/node_modules" -type f \( -name '*.mts' -o -iname '*changelog*' \) -delete
             npx --no-install mcpb pack "$stage" "$RUNNER_TEMP/packed-$n.mcpb"
             unpacked="$RUNNER_TEMP/unpacked-$n"
             mkdir -p "$unpacked"
