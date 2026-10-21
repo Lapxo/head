@@ -7,42 +7,42 @@ import type { AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { folded } from '../src/ahead/fold.ts';
-import { gate } from '../src/ports/bound.ts';
-import { keyOf } from '../src/ports/key.ts';
 import { aboutOf, members, valueOf } from '../src/core/lock.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
-import { lock } from './place.ts';
+import { lock, born } from './place.ts';
+import { run } from './cli.ts';
+import { readingOf } from '../src/ports/reading.ts';
 
 const call = (name: string, args: Record<string, unknown>) => ({ method: 'tools/call', params: { name, arguments: args } });
 
-test('yes and no: while head-s key of a place has not moved its kept fold answers and bound is not asked; once it moves, bound-s identity decides: the same keeps the fold, another reads the text bound to it', async () => {
-  let [key, identity, asked, calls] = ['k1', 'first', 0, 0];
+test('only Bound identity validates a completed cached view, independently for each place and view', async () => {
+  let identity = 'first', asked = 0, calls = 0;
   const place = mkdtempSync(join(tmpdir(), 'head-identity-'));
-  const read = (view: string, at = place) => folded(view, at, () => key, async () => { asked += 1; return identity; }, async (expected?: string) => { calls += 1; return { lines: [expected!] }; });
+  const read = (view: string, at = place) => folded(view, at, async () => { asked += 1; return identity; }, async (expected?: string) => { calls += 1; return { lines: [expected!] }; });
   await read('lines'); await read('lines'); await read('evidence'); await read('lines', place + '-other');
-  deepStrictEqual([asked, calls], [3, 3], 'each view and place is asked and read once; the same key asks bound nothing again');
-  key = 'k2'; await read('lines'); await read('lines');
-  deepStrictEqual([asked, calls], [4, 3], 'a moved key with the same identity keeps the fold, under the new key: one question to bound, no read');
-  key = 'k3'; identity = 'selected-receipt-changed'; await read('lines');
-  deepStrictEqual([asked, calls], [5, 4], 'a moved key with another identity reads the text bound to it');
+  deepStrictEqual([asked, calls], [4, 3]);
+  await read('lines'); await read('lines');
+  deepStrictEqual([asked, calls], [6, 3], 'each request validates identity without repeating the projection');
+  identity = 'selected-receipt-changed'; await read('lines');
+  deepStrictEqual([asked, calls], [7, 4]);
 });
 
-test('yes: folds of one place asked at once, as a refold asks standing and policy together, share one question to bound and one read', async () => {
+test('yes: folds of one place asked at once, as a refold asks standing and policy together, validate their identities and share one projection', async () => {
   let [asked, calls] = [0, 0];
   const place = mkdtempSync(join(tmpdir(), 'head-flight-'));
-  const read = () => folded('lines', place, () => 'k', async () => { asked += 1; await new Promise((r) => setTimeout(r, 20)); return 'one'; }, async () => { calls += 1; return { lines: [] }; });
+  const read = () => folded('lines', place, async () => { asked += 1; await new Promise((r) => setTimeout(r, 20)); return 'one'; }, async () => { calls += 1; return { lines: [] }; });
   await Promise.all([read(), read(), read()]);
-  deepStrictEqual([asked, calls], [1, 1], 'three asked while the first was in flight');
+  deepStrictEqual([asked, calls], [3, 1], 'each identity is validated; identical results share one projection');
 });
 
 test('an unavailable identity or a refused expected snapshot never validates a cached answer', async () => {
   const place = mkdtempSync(join(tmpdir(), 'head-identity-refusal-'));
-  let identity: string | undefined = 'one', calls = 0, refuse = false, key = 'k1';
-  const read = () => folded('lines', place, () => key, async () => identity, async () => { calls += 1; return refuse ? { refused: 'reading-identity/context' } : { lines: [] }; });
-  await read(); identity = undefined; key = 'k2'; await read(); await read();
+  let identity: string | undefined = 'one', calls = 0, refuse = false;
+  const read = () => folded('lines', place, async () => identity, async () => { calls += 1; return refuse ? { refused: 'reading-identity/context' } : { lines: [] }; });
+  await read(); identity = undefined; await read(); await read();
   deepStrictEqual(calls, 3, 'unsupported or unbudgeted places are read fresh');
-  identity = 'changed'; refuse = true; key = 'k3'; await read(); await read();
+  identity = 'changed'; refuse = true; await read(); await read();
   deepStrictEqual(calls, 5, 'refusal is not retained as a successful projection');
 });
 
@@ -67,34 +67,22 @@ test('no, on a real place: a question read fresh and asked again after a pause f
   } finally { server.close(); }
 });
 
-test('the identity is bound-s alone: only the bound port decodes it; head-s key of a place gates the cache, read by that port alone, and never leaves the process', () => {
-  const reading = readFileSync(join('src', 'ports', 'reading.ts'), 'utf8');
-  ok(!/node:(fs|crypto)|reading\/apart|reading\/environment/.test(reading));
-  ok(readFileSync(join('src', 'ports', 'bound.ts'), 'utf8').includes('readingOf'));
-  const src = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? src(join(dir, e.name)) : e.name.endsWith('.ts') ? [join(dir, e.name)] : []));
-  deepStrictEqual(src('src').filter((f) => /from '\.{1,2}\/(ports\/)?key\.ts'/.test(readFileSync(f, 'utf8'))), [join('src', 'ports', 'bound.ts')], 'one reader of the key: the port that gates the cache');
-  deepStrictEqual([...readFileSync(join('src', 'ahead', 'fold.ts'), 'utf8').matchAll(/^export const (\w+)/gm)].map((m) => m[1]), ['folded'], 'what the cache keeps it keeps to itself');
-});
-
-test('no, head-s key of a place: a name run into its bytes, a blob changed in the store, a receipt rendered again or carried each move it; what bound writes as it reads, named in reading/apart, does not', () => {
-  Object.assign(gate, { apart: members(valueOf(lock, 'reading/apart')), environment: valueOf(lock, 'reading/environment') });
-  ok(gate.apart.length > 0 && !gate.apart.some((a) => ['receipts.bound', '.bound/cas/carried'].includes(a)), 'reading/apart names what bound writes as it reads, and never a receipt');
-  const place = mkdtempSync(join(tmpdir(), 'head-key-')), at = (rel: string) => join(place, rel);
-  for (const rel of gate.apart) rel.endsWith('.bound') ? (mkdirSync(dirname(at(rel)), { recursive: true }), writeFileSync(at(rel), '')) : mkdirSync(at(rel), { recursive: true });
-  const moves = (change: () => void) => { const before = keyOf(place); change(); return keyOf(place) !== before; };
-  mkdirSync(at('notes')); writeFileSync(at('notes/a'), 'bc');
-  ok(moves(() => { rmSync(at('notes/a')); writeFileSync(at('notes/ab'), 'c'); }), 'a and bc is not ab and c');
-  mkdirSync(at('.bound/cas'), { recursive: true }); writeFileSync(at('.bound/cas/blob'), 'kept');
-  ok(moves(() => writeFileSync(at('.bound/cas/blob'), 'altered')), 'a blob changed under its name');
-  ok(moves(() => writeFileSync(at('receipts.bound'), 'rendered again')), 'receipts rendered again');
-  ok(moves(() => { mkdirSync(at('.bound/cas/carried'), { recursive: true }); writeFileSync(at('.bound/cas/carried/one'), 'carried'); }), 'a receipt carried');
-  for (const rel of gate.apart) ok(!moves(() => writeFileSync(rel.endsWith('.bound') ? at(rel) : at(`${rel}/x`), String(Math.random()))), `${rel} is what bound writes as it reads`);
+test('a changed native environment cannot reuse an old view even when place files did not change', async () => {
+  const p = born(undefined), prior = process.env['TZ'];
+  const identity = async () => { const got = readingOf(run('@lapxo/bound', p.place, ['fold', '--as', 'reading-identity@lines']), 'lines'); ok(!('refused' in got), JSON.stringify(got)); return 'refused' in got ? undefined : got.identity; };
+  try {
+    process.env['TZ'] = 'UTC';
+    const first = await folded('environment', p.place, identity, async (expected) => expected);
+    process.env['TZ'] = 'Pacific/Honolulu';
+    const second = await folded('environment', p.place, identity, async (expected) => expected);
+    ok(first !== second, 'Bound changed identity, so Head must invalidate the previous view');
+  } finally { if (prior === undefined) delete process.env['TZ']; else process.env['TZ'] = prior; }
 });
 
 test('no: a fold that failed is not kept — the next one folds again', async () => {
   const place = mkdtempSync(join(tmpdir(), 'head-failed-'));
   let tries = 0;
-  const fold = () => folded('policy', place, () => 'key', async () => 'same', async () => { tries += 1; if (tries === 1) throw Error('bound failed'); return { lines: [] }; });
+  const fold = () => folded('policy', place, async () => 'same', async () => { tries += 1; if (tries === 1) throw Error('bound failed'); return { lines: [] }; });
   await fold().catch(() => undefined); await fold();
   deepStrictEqual(tries, 2);
 });

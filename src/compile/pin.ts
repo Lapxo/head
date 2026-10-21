@@ -10,11 +10,7 @@ import { digestIn, linesOf, pinnedOf } from '../core/worlds.ts';
 export type Line = (scope: string, measure: string, value: string, more?: Readonly<Record<string, string>>) => string;
 export type Pinned = { readonly pin: string; readonly lines: readonly Said[] } | { readonly said: readonly string[]; readonly open?: true; readonly dropped?: true };
 
-/**
- * One compile, by the fold: the place view asked once, this source's lines kept with a region of its own — and the flow
- * of each issuer the source declares, so a flow is pinned once, by whoever declares it — and the standing bound selects
- * from them pinned and laid where its input names it.
- */
+/** Pin the compiled source and adopt only the declared outputs. */
 const compiledOf = async (context: Context, place: string, source: string, file: string): Promise<Pinned> => {
   const say = sayIn(context.lock), v = vocabOf(context.lock);
   const compiled = await context.world(place, valueOf(context.lock, 'place/view'));

@@ -8,16 +8,15 @@ import { sayIn } from '../core/surface.ts';
 import { valueOf } from '../core/lock.ts';
 import { uncoveredIn } from '../core/device.ts';
 import { widening } from './device.ts';
+import { namedIn } from '../use/named.ts';
+import { answering } from '../answers/answered.ts';
 import type { Attachment } from '../access/contract.ts';
 import type { Fetched, Prepared } from '../ports/adapters/request.ts';
 import { attachmentFor } from '../access/obtain.ts';
 import { typedAnswer } from './answer.ts';
 import { standingFor } from './world.ts';
 
-/**
- * The origin of a source a person picks once for a place, when its document declares several: offered as a choice among
- * them, none a default, and kept as the person's line; the lines a call stands on, with it.
- */
+/** Ask for one declared origin when the source offers several. */
 export const pickedOrigin = async (context: Context, place: string, lines: readonly Said[], source: string, plan: Call | Plan): Promise<{ readonly lines: readonly Said[] } | { readonly said: readonly string[] }> => {
   if (plan.kind !== 'said' || plan.key !== 'pick-origin') return { lines };
   const v = vocabOf(context.lock);
@@ -40,17 +39,16 @@ export interface Frame {
   readonly uncovered: (role: string, scopes: readonly string[]) => readonly string[] | undefined;
 }
 
-/**
- * The steps a read and an act share: the place, the lines it stands on once bound settled them, the offer's
- * plan, the transport its origin names and the request it prepares; then what is particular, given a frame that says
- * by the lock, attaches access when asked, types what came back and lands a line under head's key.
- */
+/** Prepare one call, authorize its access and pass its frame to the read or action flow. */
 export const called = async (asked: Asked, context: Context, planOf: (lines: readonly Said[], lock: readonly Said[], source: string, operation: string, place: string) => Call | Plan, then: (frame: Frame) => Promise<readonly string[]>): Promise<readonly string[]> => {
   const say = (key: string, fields: Readonly<Record<string, string | undefined>> = {}) => [sayIn(context.lock)(key, fields)];
-  const [source, operation] = [asked['source'] ?? '', asked['operation'] ?? ''];
+  const source = asked['source'] ?? '';
   return inPlace(asked, context, async (place) => {
     const held = await standingFor(context, place);
     if ('unsettled' in held) return say('unsettled', { source, why: held.unsettled });
+    const named = await namedIn(context, held.lines, source, asked['operation'] ?? '', asked['ahead'] === 'true');
+    if ('said' in named) return named.said;
+    const operation = named.operation;
     const widen = async (message: string, lot: readonly string[]) => {
       const by = widening(context, place, held.lines, lot);
       if ('said' in by) return { said: by.said };
@@ -70,9 +68,10 @@ export const called = async (asked: Asked, context: Context, planOf: (lines: rea
     if ('refused' in prepared) return say(prepared.refused, { source, origin: plan.origin });
     const most = (scope: string) => Number((lines.find((l) => l.scope === scope)?.value ?? '0..0').split('..')[1]);
     const typed = async (status: string, bytes: Uint8Array) => ((got, at) => ['lines' in got ? say('answered', { source, operation, status, at })[0]! : say('untyped', { source, operation, status, at, why: got.untyped })[0]!, ...('lines' in got ? got.lines : [])])(await typedAnswer(context, place, lines, source, operation, prepared.key, bytes), new Date(context.now()).toISOString());
-    const lands = (...lot: readonly string[]) => context.landAs(place, lot, 'head', lines);
     const attach = async () => ((got) => ('said' in got ? { said: say(got.said, { source, operation, kinds: plan.access.kind, input: got.input }) } : got))(await attachmentFor(context, place, lines, plan));
     const uncovered = (role: string, scopes: readonly string[]) => uncoveredIn(context.lock, lines, context.device(role), place, [], scopes);
-    return then({ widen, word: (scope) => valueOf(context.lock, scope), say, place, lines, source, operation, plan, prepared, most, typed, attach, send: (attachment) => prepared.send(attachment, most('read/response-bytes')), lands, uncovered });
+    let use = named.use !== undefined && uncovered('head', [named.scope!]) === undefined ? [named.use] : [];
+    const lands = (...lot: readonly string[]) => { const once = use; use = []; return context.landAs(place, [...once, ...lot], 'head', lines).then((out) => ('lines' in out ? { lines: out.lines.filter((l) => !l.includes(` scope=${valueOf(context.lock, 'use/family')}/`)) } : out)); };
+    return then(answering(context, place, asked, { widen, word: (scope) => valueOf(context.lock, scope), say, place, lines, source, operation, plan, prepared, most, typed, attach, send: (attachment) => prepared.send(attachment, most('read/response-bytes')), lands, uncovered }));
   });
 };

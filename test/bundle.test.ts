@@ -17,6 +17,8 @@ const tool = (name: string, args: Record<string, string>) => ({ method: 'tools/c
 test('the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer', { skip: bundle ? false : 'HEAD_BUNDLE names no bundle' }, async () => {
   const unpacked = mkdtempSync(join(tmpdir(), 'head-unpacked-'));
   execFileSync('unzip', ['-q', bundle!, '-d', unpacked]);
+  const bundleMembers = execFileSync('unzip', ['-Z1', bundle!], { encoding: 'utf8' }).trim().split('\n');
+  deepStrictEqual(bundleMembers.filter((name) => name.endsWith('.mts') || /changelog/i.test(name)), [], 'the delivered bundle excludes TypeScript module declarations and changelogs');
   const manifest = JSON.parse(readFileSync(join(unpacked, 'manifest.json'), 'utf8')) as { server: { mcp_config: { args: string[] } } };
   const before = process.env['HEAD_ENTRY'];
   process.env['HEAD_ENTRY'] = manifest.server.mcp_config.args[0]!.replace('${__dirname}', unpacked);

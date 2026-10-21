@@ -9,8 +9,6 @@ import { spawned } from './process.ts';
 import { cooled, kept, warmed } from './warm.ts';
 import { folded } from '../ahead/fold.ts';
 import { readingOf } from './reading.ts';
-import { gate, keyOf } from './key.ts';
-export { gate };
 import type { Printed } from './process.ts';
 export type { Printed };
 
@@ -48,17 +46,10 @@ const nativeView = (name: string, place: string, view: string, signal?: AbortSig
     const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}@${expected}`], {}, signal), view, expected);
     return 'refused' in result ? result : { lines: facts(result.text!.split('\n')) };
   };
-  return !words.identity ? read() : folded(`${name}/${view}`, place, () => keyOf(place), async () => { const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}`], {}, signal), view); return 'refused' in result ? undefined : result.identity; }, read);
+  return !words.identity ? read() : folded(`${name}/${view}`, place, async () => { const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}`], {}, signal), view); return 'refused' in result ? undefined : result.identity; }, read);
 };
 
-/**
- * The lines a place stands on, from bound's public views alone: its folded normative standing (the lines view) — its
- * policy, all that a reader of its pins, keys and views needs, read alone where nothing else is — and from
- * its authenticated evidence what this device's own keys signed. Receipts are history, each kept as it was made; any other
- * line of a device key, the person's own attestation, stands only while it is the one line of its scope and measure,
- * unwithdrawn and beside no line of the place's own: anything else needs a fold bound does not publish, and is refused by
- * name. A place whose land prints no act result is refused before anything lands in it. Any refusal of bound is no standing.
- */
+/** Read normative standing plus authenticated device evidence; ambiguous device history refuses. */
 export const policyAt = async (name: string, place: string, signal?: AbortSignal): Promise<Folded> => ((folded) => ('refused' in folded || folded.lines.some((line) => line.scope === words.profile) ? folded
   : { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` }))(await nativeView(name, place, words.standing, signal));
 

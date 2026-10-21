@@ -9,10 +9,7 @@ const HEAD = 'head';
 export const deviceOf = (lock: readonly Said[], role: string = HEAD): Device =>
   ({ account: valueOf(lock, `device/${role}/account`), service: valueOf(lock, 'device/service'), signer: valueOf(lock, `device/${role}/signer`) });
 
-/**
- * The drafted lines a place signs to admit a key: each device/<role>/<measure> line of head-s lock, said of keys/<id>, and
- * its public half. The id is the role's own unless whoever admits names it; so is the coverage, unless they give it.
- */
+/** Derive device authority from the admitted lock. */
 export const admissionOf = (lock: readonly Said[], publicKey: string, role: string = HEAD, as: { readonly id?: string; readonly coverage?: string; readonly at?: string } = {}): readonly string[] => ((id, at) => [
   ...['class', 'coverage', 'resolution', 'signer'].flatMap((measure) => ((line) => (line === undefined ? [] : [canonical({ at, by: 'target', form: line.form ?? 'alphabet', measure, role: 'writes', scope: `keys/${id}`, value: measure === 'coverage' && as.coverage ? as.coverage : line.value ?? '' })]))(said(lock, `device/${role}/${measure}`))),
   canonical({ at, by: 'target', form: 'alphabet', measure: 'public-key', role: 'writes', scope: `keys/${id}`, value: publicKey }),

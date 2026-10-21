@@ -5,7 +5,7 @@ import { basisOf, draftOf, receiptsOf, scopeOf } from '../core/receipt.ts';
 import { redIn, sayIn } from '../core/surface.ts';
 import { grantedOf, isOpen, untilOf } from '../core/act.ts';
 import { canonical } from '@lapxo/topos/wire';
-import { calledByName as called } from '../use/named.ts';
+import { called } from './call.ts';
 import { principalOf } from '../access/obtain.ts';
 import { jsonOf } from '../access/contract.ts';
 import type { Frame } from './call.ts';
@@ -22,13 +22,7 @@ const closeWith = async (intent: string | undefined, source: string, digest: str
   return 'refused' in landed ? [say('not-landed', { why: landed.refused })] : [...landed.lines, say('closed', { intent, digest })];
 };
 
-/**
- * A read of one offer the place declares of the class head reads: the response comes back once, typed by the world,
- * and both are kept — the body's digest and the typed answer's, receipts the device key signs. Asked again as the same
- * principal, while the place stands on what typed it, the person's grant holds now and the newest read is younger than
- * the reuse the place allows, it answers from what was kept: nothing called. Asked for history, it shows what was kept
- * of that request as of when it was read — evidence of that read, never a current answer — where the place allows it.
- */
+/** Read one permitted offer, reuse only under its policy and land the signed receipt. */
 export const readSource = (asked: Asked, context: Context): Promise<readonly string[]> => called(asked, context, planRead, async ({ word, say, place, lines, source, operation, plan, prepared, most, typed, attach, send, lands, widen, uncovered }) => {
   const [family, at, when] = [word('receipt/family'), word('receipt/at'), new Date(context.now()).toISOString()];
   const closing = (digest: string): Promise<readonly string[]> => closeWith(asked['closes'], source, digest, { word, lines, lands }, context);
