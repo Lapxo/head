@@ -1,9 +1,10 @@
 import { test } from 'node:test';
-import { deepStrictEqual, ok } from 'node:assert';
+import { schedules, observe } from './scheduled.ts';
+import { deepStrictEqual, ok, throws } from 'node:assert';
 import { readdirSync, readFileSync } from 'node:fs';
 import { matches } from '@lapxo/topos/wire';
 import { fileURLToPath } from 'node:url';
-import { members, declaredOf } from '../src/core/lock.ts';
+import { members, declaredOf, valueOf } from '../src/core/lock.ts';
 import { fill, redIn, sayIn } from '../src/core/surface.ts';
 import { matchTemplate, refusedOn, surfaceOf } from '../src/ports/surface.ts';
 import { lockAt } from '../src/ports/place.ts';
@@ -30,8 +31,9 @@ test('surface/sdk-importers: the protocol is spoken by one file', () => {
   deepStrictEqual(sources('src').filter((f) => text(f).includes('@modelcontextprotocol/sdk')), ['src/index.ts']);
 });
 
-test('surface/scheduled: no timer, no worker, no resident process', () => {
-  deepStrictEqual(sources('src').filter((f) => /\b(setInterval|setTimeout|setImmediate|worker_threads|Worker|unref)\b/.test(text(f))), []);
+test('surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling', () => {
+  const scheduled = sources('src').filter((f) => schedules(text(f))), most = Number(valueOf(lock, 'surface/scheduled').split('..')[1]);
+  deepStrictEqual([scheduled.length <= most, scheduled.filter((f) => !f.endsWith('src/ports/host.ts'))], [true, []]);
 });
 
 test('surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares', () => {
@@ -109,4 +111,13 @@ test('a resource URI gives its template the fields it names, query fields option
   deepStrictEqual(matchTemplate(t, 'bound://view/cells?at=1&place=%2Ftmp%2Fa%20b'), { view: 'cells', place: '/tmp/a b', at: '1' });
   deepStrictEqual(matchTemplate(t, 'bound://other/help'), undefined);
   deepStrictEqual(matchTemplate(t, 'bound://view/a/b'), undefined);
+});
+
+test('surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses', () => {
+  const vector = JSON.parse(text('vectors/scheduled.json')) as { cases: readonly { coordinate: string; text: string; count?: number; refused?: boolean }[] };
+  for (const one of vector.cases) {
+    const read = () => observe(new TextEncoder().encode(one.text), one.coordinate);
+    if (one.refused) throws(read, /REFUSE·surface\/scheduled undeclared scheduling source/);
+    else deepStrictEqual(read(), [{ scope: 'surface/scheduled', role: 'writes', measure: 'count', bound: { kind: 'interval', lo: one.count, hi: one.count } }]);
+  }
 });

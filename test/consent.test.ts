@@ -3,7 +3,7 @@ import { deepStrictEqual, match, ok } from 'node:assert';
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { registryFor } from '../src/ports/signers.ts';
+import { registryFor } from './signers.ts';
 import { run } from './cli.ts';
 import { ask } from './client.ts';
 import { api, born, line, lock, said, text, viewOf } from './place.ts';

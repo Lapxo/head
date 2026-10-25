@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import { deepStrictEqual, match, ok } from 'node:assert';
 import { parse } from '@lapxo/topos/wire';
+import { mkdtempSync, readdirSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { ask } from './client.ts';
 import { api, born, line, said, text } from './place.ts';
 
@@ -91,4 +94,14 @@ test('act: a call that never answered leaves its intent open; the same request w
   match(text(looked), said('closed')); match(text(looked), new RegExp(` scope=${intent.replaceAll('/', '\\/')}\\/closed `));
   deepStrictEqual([said('untyped').test(text(retried)), posts(server.seen)], [true, 2]);
   match(text(past), said('not-allowed'));
+});
+
+test('a sign and a land leave the temporary folder as they found it, and so does a sign bound refuses midway: what a bound run reads is removed once it ends, however it ended; the one folder head keeps its reads in stays, as it is meant to', async () => {
+  const { place, keychain } = born(undefined), tmp = mkdtempSync(join(tmpdir(), 'head-tmp-')), env = { ...keychain.env, TMPDIR: tmp }, cap = allow('allow/tracker/issues/create', 1);
+  const left = () => readdirSync(tmp).filter((f) => f !== 'head-reads'), before = left();
+  const [planned] = await ask([plan(place, [cap])], [], env, yes), signed = left();
+  const [landed] = await ask([landing(lotOf(planned))], [], env, yes), after = left();
+  const [refused] = await ask([plan(place, [allow('allow/tracker/issues/delete', 1).replace('form=interval', 'form=nonsense')])], [], env, yes), midway = left();
+  match(text(planned), said('planned')); match(text(landed), said('landed')); match(text(refused), /REFUSE·/);
+  deepStrictEqual([signed, after, midway], [before, before, before]);
 });

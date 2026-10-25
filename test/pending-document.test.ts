@@ -13,7 +13,7 @@ for (const failure of ['adoption', 'compilation'] as const) test(`a late documen
   const context = {
     lock: lock.map((line) => line.scope === 'world/adopts' ? { ...line, value: '' } : line),
     standing: async () => ({ lines: [owed] }),
-    keys: { read: () => 'unused fixture account' },
+    keys: { read: () => 'unused fixture account', held: () => 'unused fixture account' },
     files: { lay: () => undefined, drop: () => undefined, read: { documentOf: async () => ({ kind: 'json', bytes: new TextEncoder().encode('{}') }) } },
     machine: () => 0,
     policy: async () => failure === 'adoption' ? { refused: 'REFUSE·fixture adoption failed' } : { lines: [] },

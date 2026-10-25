@@ -22,7 +22,7 @@ const founded = async (context: Context, dir: string, name: string): Promise<{ r
   const account = fill(valueOf(context.lock, 'founding/root-account'), { place: name });
   const [head, person] = [deviceKey(context, 'head'), deviceKey(context, 'person')];
   if (head === undefined || person === undefined) return { refused: 'no-keychain' };
-  if (context.keys.read(account) !== undefined) return { refused: 'place-taken' };
+  if (context.keys.held?.(account) !== undefined) return { refused: 'place-taken' };
   const root = context.keys.made?.(account);
   if (root === undefined) return { refused: 'no-keychain' };
   context.files.lay(dir, LOCK, new TextEncoder().encode(`${birthOf(context.lock, root, head, person, name).join('\n')}\n`));

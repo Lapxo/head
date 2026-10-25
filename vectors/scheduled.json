@@ -1,0 +1,29 @@
+{
+  "unit": "source-file-with-scheduling-primitive",
+  "cases": [
+    {
+      "name": "empty",
+      "coordinate": "src/core/value.ts",
+      "text": "",
+      "count": 0
+    },
+    {
+      "name": "ordinary",
+      "coordinate": "src/core/value.ts",
+      "text": "export const value = 1;\n",
+      "count": 0
+    },
+    {
+      "name": "multiple-primitives-one-source",
+      "coordinate": "src/ports/host.ts",
+      "text": "setTimeout(() => undefined, 1).unref();\n",
+      "count": 1
+    },
+    {
+      "name": "unregistered-scheduler",
+      "coordinate": "src/ports/other.ts",
+      "text": "setInterval(() => undefined, 1);\n",
+      "refused": true
+    }
+  ]
+}

@@ -1,10 +1,9 @@
 import { createHash } from 'node:crypto';
-import { parse } from '@lapxo/topos/wire';
-import { members, valueOf } from './lock.ts';
+import { factsOf, members, valueOf } from './lock.ts';
 import type { Said } from './lock.ts';
 
 /** The facts bytes hold, in their order. */
-export const linesOf = (bytes: Uint8Array): readonly Said[] => new TextDecoder().decode(bytes).split('\n').flatMap((line) => ((got) => (got.kind === 'fact' ? [got.value.fields] : []))(parse(line)));
+export const linesOf = (bytes: Uint8Array): readonly Said[] => factsOf(new TextDecoder().decode(bytes).split('\n'));
 
 /** Bytes named by their digest, under the algorithm the wire names: a pinned standing is exactly the bytes its pin hashes. */
 export const digestIn = (lock: readonly Said[]) => (bytes: Uint8Array | string): string => ((algorithm) => `${algorithm}:${createHash(algorithm).update(bytes).digest('hex')}`)(valueOf(lock, 'wire/digest-algorithms'));

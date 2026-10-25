@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import { deepStrictEqual, ok } from 'node:assert';
+import { execFileSync } from 'node:child_process';
 import { existsSync, mkdtempSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
@@ -9,11 +10,11 @@ import { markOf, overOf } from '../src/ahead/budget.ts';
 import { deviceOf } from '../src/core/device.ts';
 import { valueOf } from '../src/core/lock.ts';
 import { fill } from '../src/core/surface.ts';
-import { registryFor } from '../src/ports/signers.ts';
+import { registryFor } from './signers.ts';
 import { run } from './cli.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
-import { line, lock } from './place.ts';
+import { line, lock, viewOf } from './place.ts';
 
 const call = (name: string, args: Record<string, unknown>) => ({ method: 'tools/call', params: { name, arguments: args } });
 const codes = (answer: any): string[] => answer.result.structuredContent.cells.map((c: any) => c.code).filter((c: string) => c !== 'head/card');
@@ -32,8 +33,15 @@ const person = async (status = () => 200) => {
   const origin = `http://127.0.0.1:${(server.address() as AddressInfo).port}`, mine = mkdtempSync(join(tmpdir(), 'head-ahead-')), keychain = fakeKeychain({});
   const env = { ...keychain.env, HEAD_HOME: join(mine, '.config', 'head'), HOME: mine, USERPROFILE: mine }, yes = () => ({ action: 'accept', content: { yes: true } });
   const place = join(mine, valueOf(lock, 'first-run/folder')), connect = call('connect', { ...question, document: `${origin}/openapi.json` }), asking = call('ask', { ...question, place });
-  /** Until the read ahead landed its mark, within the wait head gives one bound run: what head reads ahead it reads between two calls, and never on a test's clock. */
-  const landed = async () => { for (const end = Date.now() + Number(valueOf(lock, 'bound/wait').split('..')[1]); !marked(place) && Date.now() < end;) await new Promise((r) => setTimeout(r, 100)); ok(marked(place), 'the read ahead landed its mark before the next call'); };
+  /** Until the read ahead landed its mark, within the wait head gives one bound run: seen in the place's files, then in the evidence bound reads as landed, since bound writes a lot it is landing before it lands. Past the wait, one more says whether it came late or never, and which bound runs were alive. */
+  const landed = async () => {
+    const [asked, wait] = [Date.now(), Number(valueOf(lock, 'bound/wait').split('..')[1])], held = () => marked(place) && viewOf(place, 'evidence').includes(`/${mark} `);
+    const until = async (end: number): Promise<boolean> => { while (Date.now() < end) { if (held()) return true; await new Promise((r) => setTimeout(r, 100)); } return false; };
+    if (await until(asked + wait)) return;
+    const alive = execFileSync('ps', ['-Ao', 'pid,etime,command'], { encoding: 'utf8' }).split('\n').filter((l) => /@lapxo\/bound|spare\.(ts|js)/.test(l)).join(' | ');
+    const late = await until(Date.now() + wait);
+    ok(false, `the read ahead landed its mark before the next call: ${late ? `it landed late, ${Math.round((Date.now() - asked) / 1000)} s after it was asked` : `it never landed in ${(2 * wait) / 1000} s`}; bound runs alive at the wait's end: ${alive || 'none'}`);
+  };
   const rooted = (lines: readonly string[]) => {
     const lot = join(mkdtempSync(join(tmpdir(), 'head-ahead-lot-')), 'lot.bound');
     writeFileSync(lot, `${lines.join('\n')}\n`);

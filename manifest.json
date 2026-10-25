@@ -2,8 +2,8 @@
   "manifest_version": "0.3",
   "name": "head",
   "display_name": "head",
-  "version": "0.1.6",
-  "description": "An MCP server that folds: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
+  "version": "0.1.7",
+  "description": "An MCP server that answers by its lines: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
   "author": {
     "name": "Lapxo"
   },
@@ -32,11 +32,11 @@
     },
     {
       "name": "connect",
-      "description": "Connect a source to a place, once the person says yes: its document, and an overlay beside it, laid whatever its kind and compiled once by whichever world reads it — or open, with the line that pays it — into what the source offers and how access is proven, pinned by digest. Nothing is called. A document at an address may be read as a source the place connected, with the access it holds, and checked against its digest. A package another place shared is connected whole: its lock as the document, named by its digest. A site alone or a folder is looked for its document first, before anything is founded. With no place yet, the first connect founds the person-s place on one yes that also lets head read the source."
+      "description": "Connect a source to a place, once the person says yes: its document, and an overlay beside it, laid whatever its kind and compiled once by whichever world reads it — or open, with the line that pays it — into what the source offers and how access is proven, pinned by digest. Nothing is called. A document at an address may be read as a source the place connected, with the access it holds, and checked against its digest. A package another place shared is connected whole: its lock as the document, named by its digest. A site alone or a folder is looked for its document first, before anything is founded. With no place yet, the first connect founds the person's place on one yes that also lets head read the source."
     },
     {
       "name": "do",
-      "description": "Do one action in a place, on the card ask answered for it: found a place, admit a device, land a lot ask planned, share a place, make this device-s key, prove access to a source, call an offer that is not a read, or keep what the person states as theirs. An action on a place that moved since its card was asked is refused, with nothing done; one the place does not allow is said not to be in the card. The answer ends with the card valid from this act."
+      "description": "Do one action in a place, on the card ask answered for it: found a place, admit a device, land a lot ask planned, share a place, make this device's key, prove access to a source, call an offer that is not a read, or keep what the person states as theirs. An action on a place that moved since its card was asked is refused, with nothing done; one the place does not allow is said not to be in the card. The answer ends with the card valid from this act."
     }
   ],
   "tools_generated": false,

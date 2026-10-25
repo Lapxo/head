@@ -22,17 +22,16 @@ const compiledOf = async (context: Context, place: string, source: string, file:
   const refused = (['unparsed', 'unsupported', 'collision'] as const).find((word) => fieldsOf(compiled.lines, `${v.region}/${source}`)[v[word]] !== undefined);
   if (refused) return { said: [say(`document-${refused}`, { source, why: fieldsOf(compiled.lines, `${v.region}/${source}`)[v[refused]]!.join('; ') })], dropped: true };
   if (!mine.some((l) => l.measure === v.class && l.scope?.split('/').length === 3)) return { said: [say('nothing-offered', { source })] };
-  return drafted(context, place, source, file, [...mine.map((l) => canonical(l)), canonical({ at: 'policy:head/connect', by: 'target', form: 'alphabet', measure: 'reads', role: 'render', scope: `${v.region}/${source}`, value: [`${v.keys}/${source}/**`, ...issued.flatMap((at) => [at, `${at}/**`]), `${v.offers}/${source}/**|read/**|${v.region}/${source}|write/**`].join('|') })]);
+  return ((pinned) => (pinned === undefined || 'refused' in pinned ? { said: [pinned === undefined ? say('nothing-offered', { source }) : say('unsettled', { source, why: pinned.refused })] } : { pin: pinned.pin, lines: pinned.lines }))(await pinnedAs(context, place, file, [...mine.map((l) => canonical(l)), canonical({ at: 'policy:head/connect', by: 'target', form: 'alphabet', measure: 'reads', role: 'render', scope: `${v.region}/${source}`, value: [`${v.keys}/${source}/**`, ...issued.flatMap((at) => [at, `${at}/**`]), `${v.offers}/${source}/**|read/**|${v.region}/${source}|write/**`].join('|') })]));
 };
 
-const drafted = async (context: Context, place: string, source: string, file: string, lines: readonly string[]): Promise<Pinned> => {
-  const say = sayIn(context.lock), draft = file.replace(new RegExp(`${EXTENSION.replace('.', '\\.')}$`), `.draft${EXTENSION}`);
+export const pinnedAs = async (context: Context, place: string, file: string, lines: readonly string[]) => {
+  const draft = file.replace(new RegExp(`${EXTENSION.replace('.', '\\.')}$`), `.draft${EXTENSION}`);
   context.files.lay(place, draft, new TextEncoder().encode(`${lines.join('\n')}\n`));
   const pinned = await context.pinned(place, draft);
   context.files.drop(place, draft);
-  if (pinned === undefined || 'refused' in pinned) return { said: [pinned === undefined ? say('nothing-offered', { source }) : say('unsettled', { source, why: pinned.refused })] };
-  context.files.lay(place, file, new TextEncoder().encode(pinned.bytes));
-  return { pin: pinned.pin, lines: pinned.lines };
+  if (pinned !== undefined && !('refused' in pinned)) context.files.lay(place, file, new TextEncoder().encode(pinned.bytes));
+  return pinned;
 };
 
 /**

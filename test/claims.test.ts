@@ -49,11 +49,11 @@ test('withdraw: the same words take back what was kept of them, by attesting tha
   deepStrictEqual([codes(again), kept(p.a)], [['head/claimed'], ['The soil is clay']], 'what was taken back may be stated again');
 });
 
-test('no: nothing the model concluded becomes the person-s — only the claim action keeps a statement, and nothing else in head reads the family it is kept under', () => {
+test('no: nothing the model concluded becomes the person-s — only the claim action keeps a statement, and only it and the claims view read the family it is kept under', () => {
   const files = (dir: string): readonly string[] => readdirSync(join(root, dir)).flatMap((n) => (statSync(join(root, dir, n)).isDirectory() ? files(`${dir}/${n}`) : n.endsWith('.ts') ? [`${dir}/${n}`] : []));
   const reading = files('src').filter((f) => readFileSync(join(root, f), 'utf8').includes("'claim/family'"));
   const importing = files('src').filter((f) => readFileSync(join(root, f), 'utf8').includes('claims/claim.ts'));
-  deepStrictEqual([reading, importing], [['src/claims/claim.ts'], ['src/tools/claim.ts']]);
+  deepStrictEqual([reading, importing], [['src/claims/claim.ts', 'src/claims/view.ts'], ['src/tools/claim.ts']]);
 });
 
 test('no: a place whose lines admit no field for who carried a statement keeps nothing, and is handed the line that admits it, for its root to sign', async () => {
