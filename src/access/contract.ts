@@ -18,10 +18,8 @@ export interface Want {
   readonly place: string; readonly source: string; readonly scheme: string; readonly params: Fields; readonly scopes: readonly string[]; readonly now: number; readonly renew?: string;
   readonly declared: Readonly<Record<string, Fields>>; readonly origin: string; readonly secrets: number; readonly values: readonly string[]; readonly host: Readonly<Record<string, string>>;
   readonly enter: (title: string, fields: readonly Field[]) => Promise<Held | undefined>;
-  readonly consent: (message: string) => Promise<boolean>;
   readonly choose: (message: string, choices: readonly Choice[]) => Promise<Held | undefined>;
   readonly visit: (message: string, to: (back: string) => string | undefined | Promise<string | undefined>) => Promise<Held | undefined>;
-  readonly form: (source: string, operation: string) => Fields;
   readonly call: (source: string, operation: string, body: unknown, attachment?: Attachment) => Promise<Answered>;
   readonly post: (url: string, body: Readonly<Record<string, unknown>>, as?: 'form' | 'json') => Promise<Answered>;
 }

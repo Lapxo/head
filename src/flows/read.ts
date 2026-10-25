@@ -11,7 +11,7 @@ import { jsonOf } from '../access/contract.ts';
 import type { Frame } from './call.ts';
 import { refusedAccess } from '../sources/refused.ts';
 import { hand, keptOf } from '../kept/kept.ts';
-import { markOf, overOf } from '../ahead/budget.ts';
+import { calledIn, markOf, overOf } from '../ahead/budget.ts';
 
 /** An intent an earlier act left open, closed by the read that looked at what it would have changed: a line naming that read-s digest, signed by head. */
 const closeWith = async (intent: string | undefined, source: string, digest: string, { word, lines, lands }: Pick<Frame, 'word' | 'lines' | 'lands'>, context: Context): Promise<readonly string[]> => {
@@ -67,6 +67,8 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   }
   const again = was?.kind === 'again' ? say(`kept-${was.why}`, { source, operation, at: was.at }) : [];
   if (overOf(lines, [family, at, word('ahead/mark')], source, context.now(), most('read/rate'), Number(word('ahead/share').split('..')[1]), asked)) return asked['ahead'] === 'true' ? [] : say('rate', { source });
+  const calls = lines.find((l) => l.scope === `${word('calls/family')}/${source}`), made = calls && calledIn(lines, [family, at, word('ahead/mark')], source, calls.measure ?? '', context.now());
+  if (calls && (made === undefined || made >= most(calls.scope!))) return asked['ahead'] === 'true' ? [] : say(made === undefined ? 'calls-unwindowed' : 'calls-owed', { source, calls: String(most(calls.scope!)), window: calls.measure });
   const attached = await attach();
   if ('said' in attached) return attached.said;
   const [scope, kept] = scopes(attached.principal ?? '');

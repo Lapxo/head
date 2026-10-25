@@ -13,7 +13,7 @@ What head never does. It never guesses how access is proven: when a document doe
 ## Install
 
 - **As an extension:** download `head-<version>-<digest>.mcpb` from the [latest release](https://github.com/Lapxo/head/releases/latest) and open it. Its digest is in the release notes.
-- **By command:** `npx -y @lapxo/head@0.1.6 run`, for an assistant that starts its servers by command.
+- **By command:** `npx -y @lapxo/head@0.1.7 run`, for an assistant that starts its servers by command.
 
 head runs on macOS for now. Its keys live in your keychain, never in a file.
 

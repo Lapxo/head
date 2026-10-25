@@ -60,6 +60,7 @@ export const printedOr = (context: Context, printed: Printed | undefined): reado
 /** The lines a place stands on, or what head says when bound refused to fold them: a refusal is never an empty standing. */
 export const standingOr = async (context: Context, place: string, of: Context['standing'] = context.standing): Promise<{ readonly lines: readonly Said[] } | { readonly said: readonly string[] }> =>
   ((held) => ('refused' in held ? { said: [sayIn(context.lock)('unfolded', { place, why: held.refused })] } : held))(await of(place));
+export const inStanding = (asked: Asked, context: Context, then: (place: string, lines: readonly Said[]) => Promise<readonly string[]>, of: Context['standing'] = context.standing): Promise<readonly string[]> => inPlace(asked, context, async (place) => ((held) => ('said' in held ? held.said : then(place, held.lines)))(await standingOr(context, place, of)));
 
 export const baseOf = (lines: readonly Said[]): string => createHash('sha256').update(lines.map((l) => canonical(l)).sort().join('\n')).digest('hex').slice(0, 16);
 

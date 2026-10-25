@@ -3,7 +3,7 @@ import { jsonOf } from './contract.ts';
 import type { Attachment, Obtained, Want } from './contract.ts';
 import { placeNameOf } from '../core/answer.ts';
 import type { Context } from '../core/answer.ts';
-import { aboutOf, members, valueOf } from '../core/lock.ts';
+import { members, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
 import { fieldsOf, stepOf, vocabOf } from '../core/read.ts';
 import type { Call } from '../core/read.ts';
@@ -51,8 +51,8 @@ export const attachmentFor = async (context: Context, place: string, lines: read
     values: members(valueOf(lines, 'wire/access-values') || valueOf(context.lock, 'wire/access-values')),
     host: Object.fromEntries(context.lock.filter((l) => l.scope?.startsWith('host/')).map((l) => [l.scope!.slice('host/'.length), l.value ?? ''])),
     scopes: [...new Set(lines.filter((l) => reads.has(l.scope) && l.measure === 'scopes').flatMap((l) => (l.value ?? '').split('|')))].sort(),
-    enter: (title, fields) => context.person.enter(title, fields), consent: async (message) => (await context.person.consent(message, aboutOf(context.lock, 'said/elicit/yes'))) === 'yes', choose: (message, choices) => context.person.choose(message, choices), visit: (message, to) => context.person.visit(message, to),
-    form: (source, operation) => fieldsOf(lines, `${v.offers}/${source}/${operation}/${v.form}`), call: step,
+    enter: (title, fields) => context.person.enter(title, fields), choose: (message, choices) => context.person.choose(message, choices), visit: (message, to) => context.person.visit(message, to),
+    call: step,
     post: async (url, body, as) => ((transport) => (transport === undefined ? undefined : transport.post(url, body, most, Number(valueOf(context.lock, 'adapter/request/wait').split('..')[1]), as)))(await context.adapter(url)),
   };
   const got = await adapter.obtain(want);

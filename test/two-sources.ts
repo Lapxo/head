@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { deviceOf } from '../src/core/device.ts';
 import { members, valueOf } from '../src/core/lock.ts';
 import { fill } from '../src/core/surface.ts';
-import { registryFor } from '../src/ports/signers.ts';
+import { registryFor } from './signers.ts';
 import { run } from './cli.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';

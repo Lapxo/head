@@ -1,0 +1,80 @@
+name: measure
+on:
+  workflow_dispatch:
+  push:
+    tags: ['epoch/*']
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+        shard: [1, 2, 3, 4, 5, 6]
+    runs-on: ubuntu-latest
+    env:
+      SHARD_1: test/doors.test.ts test/share.test.ts test/verbs.test.ts test/reuse.test.ts test/born-closed.test.ts test/reading-identity.test.ts test/numbers.test.ts test/transport.test.ts
+      SHARD_2: test/act.test.ts test/channels.test.ts test/consent.test.ts test/gestures.test.ts test/claims.test.ts test/fold-ahead.test.ts test/trust.test.ts
+      SHARD_3: test/marks.test.ts test/share-receive.test.ts test/authorizer.test.ts test/link-url.test.ts test/read.test.ts test/shape.test.ts test/release.test.ts test/device.test.ts test/surface.test.ts test/refusal-record.test.ts test/welcome.test.ts test/bound.test.ts test/warm-compact.test.ts test/pack.test.ts test/pending-document.test.ts test/keys.test.ts test/acts.test.ts test/bundle.test.ts test/onboarding.test.ts
+      SHARD_4: test/issuer.test.ts test/fetch.test.ts test/connect.test.ts test/first-minute.test.ts test/use.test.ts test/places.test.ts test/warm.test.ts test/session.test.ts test/process.test.ts test/stores.test.ts test/signer.test.ts
+      SHARD_5: test/org.test.ts test/ahead-read.test.ts test/access.test.ts test/answered.test.ts test/world.test.ts test/named.test.ts test/first-run.test.ts test/place-neutral.test.ts
+      SHARD_6: test/marks-lineage.test.ts test/share-refused.test.ts test/kept-zero-moved.test.ts test/observed.test.ts test/walk.test.ts test/kept-zero.test.ts test/adopt.test.ts test/asking.test.ts
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Require every test file in exactly one shard
+        run: diff <(printf '%s\n' $SHARD_1 $SHARD_2 $SHARD_3 $SHARD_4 $SHARD_5 $SHARD_6 | sort) <(ls test/*.test.ts | sort)
+      - run: npm ci
+      - run: npm run build
+      - name: Run tests, shard ${{ matrix.shard }} of 6, the files listed for it
+        run: |
+          set -euo pipefail
+          files="SHARD_${{ matrix.shard }}"
+          node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination="$RUNNER_TEMP/head-junit.xml" ${!files} 2>&1 | tee "$RUNNER_TEMP/head-tests.log"
+      - name: Preserve test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: head-node-${{ matrix.node }}-shard-${{ matrix.shard }}
+          path: |
+            ${{ runner.temp }}/head-tests.log
+            ${{ runner.temp }}/head-junit.xml
+          if-no-files-found: ignore
+  time:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
+      - name: Run the timed tests alone on this machine, one at a time
+        run: |
+          set -euo pipefail
+          node --test --test-concurrency=1 test/time/*.test.ts 2>&1 | tee "$RUNNER_TEMP/head-time.log"
+      - name: Measure a new person's first minute against an API on this machine
+        run: |
+          set -euo pipefail
+          HEAD_ONBOARDING=1 node --test test/onboarding.test.ts 2>&1 | tee -a "$RUNNER_TEMP/head-time.log"
+      - name: Check the committed receipts on a clean checkout
+        if: ${{ !cancelled() }}
+        run: npx --no-install bound fold --check
+      - name: Preserve the timed log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: head-time-node-${{ matrix.node }}
+          path: ${{ runner.temp }}/head-time.log
+          if-no-files-found: ignore

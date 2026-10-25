@@ -1,4 +1,3 @@
-import { join } from 'node:path';
 import { canonical, EXTENSION } from '@lapxo/topos/wire';
 import { inPlace, placeOf, unless } from '../core/answer.ts';
 import type { Asked, Context } from '../core/answer.ts';

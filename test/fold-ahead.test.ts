@@ -91,7 +91,7 @@ test('the client is told what to show a person: no coordinate, digest, pin or le
   const answers = await ask([{ method: 'tools/list' }], [], { ...fakeKeychain({}).env, HEAD_HOME: mkdtempSync(join(tmpdir(), 'head-home-')) });
   deepStrictEqual((answers as any).initialized.result.instructions, aboutOf(lock, 'prose/en/instructions'));
   ok(/digest/.test(aboutOf(lock, 'prose/en/instructions')) && /why/.test(aboutOf(lock, 'prose/en/instructions')));
-  ok(/claim only with the person-s exact words, never with a conclusion of yours/.test(aboutOf(lock, 'prose/en/instructions')), 'and that claim carries only the person-s own words');
+  ok(/claim only with the person's exact words, never with a conclusion of yours/.test(aboutOf(lock, 'prose/en/instructions')), 'and that claim carries only the person-s own words');
 });
 
 /** The sentences of a text a person reads that ask to show them a structural number: show, tell or give, with no never. */
@@ -103,4 +103,18 @@ test('person-words, widened: no text a person reads — a prompt, the welcome, t
   deepStrictEqual(texts.filter((t) => t.asks.length && !shown.includes(t.form)).map((t) => t.form), []);
   deepStrictEqual(asksToShow('Read it, then show me the card digest and its pin.'), ['Read it, then show me the card digest and its pin.'], 'a prompt that asks to show one is seen');
   ok(texts.some((t) => t.form === 'share' && t.asks.length), 'share asks to show the digest it shares, as the lock declares it may');
+});
+
+test('person-words, possessive: no text a person or their client is shown writes the possessive as -s; the lock names which texts those are', () => {
+  const families = members(valueOf(lock, 'person-words/families')), shown = (scope: string) => families.some((f) => (f.endsWith('/') ? scope.startsWith(f) : scope === f)), dashed = /\b[a-z]+-s\b/;
+  deepStrictEqual(lock.filter((l) => shown(l.scope ?? '') && dashed.test(l.about ?? '')).map((l) => l.scope), []);
+  ok(families.length > 3 && lock.some((l) => shown(l.scope ?? '') && /\b[a-z]+'s\b/.test(l.about ?? '')), 'the families hold texts, and their possessives are written with an apostrophe');
+  ok(dashed.test('your place-s lock') && !dashed.test("your place's lock"), 'the dashed form is seen, the apostrophe is not');
+});
+
+test('person-words, forbidden: no word of bound-s machinery reaches what a person reads, placeholders filled first, a drafted wire line read as a line, the why form apart; the words and the texts are the lock-s', () => {
+  const [words, read, apart] = ['', '/read', '/apart'].map((k) => members(valueOf(lock, `person-words/forbidden${k}`)));
+  const word = new RegExp(`\\b(${words.join('|')})(s|ed|ing)?\\b`, 'i'), filled = (t: string) => t.replace(/\{[^}]*\}/g, ''), reads = (s: string) => read.some((r) => (r.endsWith('/') ? s.startsWith(r) : s === r)) && !apart.includes(s);
+  deepStrictEqual(lock.filter((l) => reads(l.scope ?? '') && !(l.about ?? '').startsWith('bound-lock/') && word.test(filled(l.scope === 'prose/en/bundle/manifest' ? JSON.parse(l.about ?? '{}').description : l.about ?? ''))).map((l) => l.scope), []);
+  ok(words.length > 10 && read.length > 2 && word.test('nothing was folded') && !word.test(filled('{scope} is not in it')), 'the words are read, and a placeholder is not');
 });

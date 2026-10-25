@@ -6,7 +6,9 @@ import { join } from 'node:path';
 import { canonical } from '@lapxo/topos/wire';
 import { run } from './cli.ts';
 import { ask } from './client.ts';
-import { api, born, line, said, text, viewOf } from './place.ts';
+import { factsOf, valueOf } from '../src/core/lock.ts';
+import { calledIn } from '../src/ahead/budget.ts';
+import { api, born, line, lock, said, text, viewOf } from './place.ts';
 
 const issues = JSON.stringify([{ number: 1, title: 'stale', state: 'open' }]);
 const server = () => api((url) => (url.endsWith('/issues/2') ? 'x'.repeat(4096) : issues));
@@ -90,12 +92,12 @@ test('look at a source answers typed lines by resolution: where it is reached an
   const { place, keychain } = born(undefined, [line('use/tracker/issues-get', 'operation', 'issues/get', { at: 'policy:person/use/fixture' })]);
   const source = (at?: string) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', ...(at ? { at } : {}) } } });
   const [zero, one, offer] = await ask([source('0'), source('1'), look(place, 'issues/get', {}, '1')], [], keychain.env);
-  const scopes = (answer: any) => text(answer).split('\n').map((l) => /scope=(\S+) /.exec(l)?.[1] ?? '');
+  const scopes = (answer: any) => text(answer).split('\n').filter((l) => l.startsWith('bound-lock/1')).map((l) => /scope=(\S+) /.exec(l)?.[1] ?? '');
   ok(scopes(zero).includes('offers/tracker/issues/get') && !scopes(zero).includes('offers/tracker/count') && !scopes(zero).some((s) => s.endsWith('/form')) && !text(zero).includes('measure=access'));
   match(text(zero), said('more-offers'));
   ok(scopes(one).includes('offers/tracker/issues/get/form') && text(one).includes('measure=access') && scopes(one).includes('keys/access/tracker/token'));
   ok([zero, one, offer].every((answer) => !scopes(answer).some((s) => s.endsWith('/carry'))));
-  ok(scopes(offer).every((s) => s === '' || s.startsWith('offers/tracker/issues/get') || s.startsWith('keys/access/tracker/') || s === 'region/tracker'));
+  ok(scopes(offer).every((s) => s === '' || s.startsWith('offers/tracker/issues/get') || s.startsWith('keys/access/tracker/') || s === 'region/tracker'), JSON.stringify(scopes(offer).filter((s) => s && !s.startsWith('offers/tracker/issues/get') && !s.startsWith('keys/access/tracker/') && s !== 'region/tracker')));
 });
 
 test('no: a response past read/response-bytes is refused whole and nothing lands', async () => {
@@ -106,4 +108,17 @@ test('no: a response past read/response-bytes is refused whole and nothing lands
   await api.close();
   match(text(big), said('too-large'));
   deepStrictEqual(readFileSync(join(place, 'TARGET.bound'), 'utf8'), before);
+});
+
+test('a ceiling of calls a window, the window its own line names (calls/R/<start>/<period>): once spent, a question is an open cell and nothing is called; the same place read at two instants, handed in, counts the calls of the window each falls in, so the next window counts none of them; a line naming no window is refused by name, nothing called', async () => {
+  const api = await server(), window = `calls/R/${new Date(Date.now() - 1000).toISOString()}/P1D`;
+  const ceiling = (measure: string) => born(api.url, [canonical({ at: 'policy:fixture', by: 'target', form: 'interval', measure, role: 'writes', scope: `${valueOf(lock, 'calls/family')}/tracker`, value: '0..2' })]);
+  const [{ place, keychain }, other] = [ceiling(window), ceiling('calls-per-day')], get = (at: string, n: string) => look(at, 'issues/get', { owner: 'lapxo', repo: 'demo', issue_number: n });
+  const [, , spent] = await ask([get(place, '1'), get(place, '2'), get(place, '3')], [], keychain.env), called = api.seen.length;
+  const [held, words] = [factsOf(viewOf(place, 'evidence').split('\n')), [valueOf(lock, 'receipt/family'), valueOf(lock, 'receipt/at'), valueOf(lock, 'ahead/mark')] as const];
+  const last = Math.max(...held.filter((l) => l.at?.startsWith(`${words[1]}:`)).map((l) => Date.parse(l.at!.slice(words[1].length + 1)))), at = (now: number) => calledIn(held, words, 'tracker', window, now);
+  const [unwindowed] = await ask([get(other.place, '4')], [], other.keychain.env);
+  await api.close();
+  match(text(spent), /said\/head\/calls-owed state=open /); match(text(unwindowed), /said\/head\/calls-unwindowed state=refused /);
+  deepStrictEqual([called, at(last), at(last + 86_400_000), api.seen.length], [2, 2, 0, 2]);
 });

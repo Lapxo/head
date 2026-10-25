@@ -10,7 +10,7 @@ import { admissionOf } from '../src/core/device.ts';
 import { newKey } from '../src/ports/keys.ts';
 import { lockAt } from '../src/ports/place.ts';
 import { run } from './cli.ts';
-import { registryFor } from '../src/ports/signers.ts';
+import { registryFor } from './signers.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 
 const lock = lockAt(fileURLToPath(new URL('..', import.meta.url)));
@@ -56,5 +56,5 @@ test('no: the same key is refused a line outside read/**: bound will not deliver
   const { place, env } = born();
   const { signed, landed } = signAndLand(place, env, 'write/api/example');
   deepStrictEqual([signed.code, signed.out, landed.code === 0], [1, [], false]);
-  match(signed.err.join('\n'), /REFUSE·signer head uncovered write\/api\/example/);
+  match(signed.err.join('\n'), /REFUSE·authority\/coverage keyId=head scope=write\/api\/example/);
 });

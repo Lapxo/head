@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { deepStrictEqual } from 'node:assert';
+import { deepStrictEqual, match } from 'node:assert';
 import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -8,6 +8,7 @@ import { surfaceOf } from '../src/ports/surface.ts';
 import { run } from './cli.ts';
 import { lockAt } from '../src/ports/place.ts';
 import { ask } from './client.ts';
+import { born } from './place.ts';
 import { publicOf } from '../src/ports/keys.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 
@@ -21,15 +22,19 @@ test('a client is offered exactly the lock-s tools, with their words and hints, 
   deepStrictEqual(templates.result.resourceTemplates.map((r: any) => [r.name, r.uriTemplate]), surface.resources.map((r) => [r.name, r.template]));
 });
 
-test('look over a root the client shares answers exactly what bound printed there', async () => {
-  const place = mkdtempSync(join(tmpdir(), 'head-place-'));
+test('look over a root preserves every byte bound printed, followed only by Head status and its card', async (t) => {
+  const { place } = born(undefined);
   const [looked] = await ask([{ method: 'tools/call', params: { name: 'look', arguments: {} } }], [place]);
   const printed = run('@lapxo/bound', place, ['fold', '--as', 'lines'])!;
-  deepStrictEqual(looked.result.content[0].text, [...printed.out, ...printed.err].join('\n'));
+  const answer = looked.result.content[0].text.split('\n'), expected = [...printed.out, ...printed.err];
+  deepStrictEqual(answer.slice(0, expected.length), expected);
+  const status = answer.slice(expected.length);
+  match(status.pop()!, /^said\/head\/card /);
+  for (const diagnostic of status) { match(diagnostic, /^said\/head\/red /); t.diagnostic(diagnostic); }
 });
 
 test('a view read as a resource is exactly what bound printed for it', async () => {
-  const place = mkdtempSync(join(tmpdir(), 'head-place-'));
+  const { place } = born(undefined);
   const [read] = await ask([{ method: 'resources/read', params: { uri: `bound://view/help?place=${encodeURIComponent(place)}` } }]);
   const printed = run('@lapxo/bound', place, ['fold', '--as', 'help'])!;
   deepStrictEqual(read.result.contents[0].text, [...printed.out, ...printed.err].join('\n'));
@@ -42,4 +47,11 @@ test('key makes the device key once in the keychain and answers only the lines t
   const lines = first.result.content[0].text.split('\n');
   deepStrictEqual([second.result.content[0].text === first.result.content[0].text, lines.length, lines.some((l: string) => l.includes(` scope=keys/head `) && l.includes(publicOf(secret)))], [true, 5, true]);
   deepStrictEqual([first.result.content[0].text.includes(secret), keychain.argv().includes(secret), secret.length > 0], [false, false, true]);
+});
+
+/** A host refuses an unfounded directory with its public foundation code, before any view is read. */
+test('a directory without a founded lock is refused by the host before a view is read', async () => {
+  const place = mkdtempSync(join(tmpdir(), 'head-unfounded-'));
+  const [read] = await ask([{ method: 'resources/read', params: { uri: `bound://view/help?place=${encodeURIComponent(place)}` } }]);
+  match(read.result.contents[0].text, /REFUSE·host\/foundation-required/);
 });

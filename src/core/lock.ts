@@ -3,7 +3,8 @@ import { alphabet, parse, steps } from '@lapxo/topos/wire';
 export type Said = Readonly<Record<string, string>>;
 
 /** The lines head's own lock declares, decoded and nothing more: a withdraw has no place in it, and one there is refused, never folded here. */
-export const declaredOf = (text: string): readonly Said[] => text.split('\n').flatMap((line) => ((got) => (got.kind === 'fact' ? [got.value.fields] : []))(parse(line)))
+export const factsOf = (lines: readonly string[]): readonly Said[] => lines.flatMap((line) => ((got) => (got.kind === 'fact' ? [got.value.fields] : []))(parse(line)));
+export const declaredOf = (text: string): readonly Said[] => factsOf(text.split('\n'))
   .map((f) => { if (f.value === 'withdraw') throw Error(`REFUSE·lock head's own lock withdraws ${f.scope}: its lines are declared, never folded by head`); return f; });
 
 export const said = (lock: readonly Said[], scope: string): Said | undefined => lock.find((f) => f.scope === scope);

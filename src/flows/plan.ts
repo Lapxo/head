@@ -3,6 +3,7 @@ import type { Asked, Context } from '../core/answer.ts';
 import { sayIn } from '../core/surface.ts';
 import { widening } from './device.ts';
 import { parse } from '@lapxo/topos/wire';
+const moved = async (context: Context, place: string, base: string): Promise<readonly string[] | undefined> => ((now) => ('said' in now ? now.said : baseOf(now.lines) !== base ? [sayIn(context.lock)('base-moved', { base })] : undefined))(await standingOr(context, place));
 
 /**
  * A proposal the person signs: drafted lines shown to the person with the place and the base they are made against; on
@@ -22,9 +23,8 @@ export const planLot = (asked: Asked, context: Context): Promise<readonly string
   if (consent === 'no') return [say('no-yes')];
   const signed = await by.sign(lot);
   if ('refused' in signed) return [signed.refused];
-  const now = await standingOr(context, place);
-  if ('said' in now) return now.said;
-  if (baseOf(now.lines) !== base) return [say('base-moved', { base })];
+  const stale = await moved(context, place, base);
+  if (stale) return stale;
   const kept = context.cache.keep(Buffer.from(JSON.stringify({ place, base, signed: signed.lines })));
   return [say('planned', { lot: kept, base }), ...(await context.told(place, signed.lines))];
 });
@@ -35,9 +35,8 @@ export const landLot = async (asked: Asked, context: Context): Promise<readonly 
   const bytes = context.cache.held(asked['lot'] ?? '');
   if (bytes === undefined) return [say('no-lot', { lot: asked['lot'] ?? '' })];
   const kept = JSON.parse(Buffer.from(bytes).toString('utf8')) as { place: string; base: string; signed: string[] };
-  const now = await standingOr(context, kept.place);
-  if ('said' in now) return now.said;
-  if (baseOf(now.lines) !== kept.base) return [say('base-moved', { base: kept.base })];
+  const stale = await moved(context, kept.place, kept.base);
+  if (stale) return stale;
   const landed = await context.land(kept.place, kept.signed);
   return 'refused' in landed ? [landed.refused] : [say('landed', { count: String(landed.lines.length) }), ...landed.lines];
 };

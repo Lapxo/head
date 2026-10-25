@@ -8,7 +8,7 @@ import { basename, join } from 'node:path';
 import { deviceOf } from '../src/core/device.ts';
 import { valueOf } from '../src/core/lock.ts';
 import { fill } from '../src/core/surface.ts';
-import { registryFor } from '../src/ports/signers.ts';
+import { registryFor } from './signers.ts';
 import { run } from './cli.ts';
 import { ask } from './client.ts';
 import { line, lock, text, viewOf } from './place.ts';
@@ -35,8 +35,24 @@ const rooted = (to: { place: string; env: Record<string, string> }, lines: reado
   const landed = run('@lapxo/bound', to.place, ['land', lot, '--key', key, '--signer', signer], { ...to.env, BOUND_SIGNERS: registryFor(signer, `${deviceOf(lock).service}/${basename(to.env['HEAD_HOME']!).replace(/[^\w.-]+/g, '-')}`, account, key, valueOf(lock, 'founding/algorithm'), valueOf(lock, `platform/${process.platform}/store`)) });
   deepStrictEqual(landed?.code, 0, [...(landed?.out ?? []), ...(landed?.err ?? [])].join('\n'));
 };
-/** A receiver that admits a content transport over http too, its root signing it: a test serves on this device, never over https. */
-const admitting = async () => { const to = await receiver(); rooted(to, [line('transport/http', 'id', 'fetch', { at: 'policy:person/transport' })]); return to; };
+/** A receiver with an explicitly bound fixture transport. Real HTTPS receiver policy is tested in warm-compact;
+ * these vectors exercise link integrity, availability and debt using a separate process on loopback only. */
+const admitting = async () => {
+  const to = await receiver(), scratch = mkdtempSync(join(tmpdir(), 'head-link-transport-'));
+  const entry = join(scratch, 'transport.js'), registry = join(scratch, 'registry.json');
+  writeFileSync(entry, `let input = ''; for await (const chunk of process.stdin) input += chunk;
+const request = JSON.parse(input), url = new URL(request.location);
+if (request.protocol !== 'content-request/1' || url.protocol !== 'http:' || url.hostname !== '127.0.0.1') process.exit(1);
+const response = await fetch(url, { redirect: 'error', signal: AbortSignal.timeout(request.timeoutMs) });
+if (response.status !== 200) process.exit(1);
+const bytes = Buffer.from(await response.arrayBuffer());
+if (bytes.length > request.responseBytes) process.exit(1);
+process.stdout.write(bytes);
+`);
+  writeFileSync(registry, JSON.stringify({ fixture: { kind: 'command', executable: process.execPath, args: [entry] } }));
+  rooted(to, [line('transport/http', 'id', 'fixture', { at: 'policy:person/transport' })]);
+  return { ...to, env: { ...to.env, BOUND_TRANSPORTS: registry } };
+};
 const from = await sender();
 /** The sender's package shared again, its standing document's address given: the link it prints. */
 const linkAt = async (url: string) => { const [packed] = await ask([tool('share', { place: from.place, to: from.pkg, urls: JSON.stringify({ [name]: url }) })], [from.shared], from.env); return cells(packed).find((c) => c.code === 'head/shared-link')?.fields.link as string; };

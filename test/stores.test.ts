@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { delimiter, join } from 'node:path';
 import { newKey } from '../src/ports/keys.ts';
 import { members, valueOf } from '../src/core/lock.ts';
-import { keychain } from '../src/ports/keychain.ts';
+import { secretsOf } from '../src/ports/keychain.ts';
 import { lock, root } from './place.ts';
 
 /**
@@ -38,13 +38,13 @@ test('each platform keeps head-s keys in its own store through its own command, 
   const kinds = ['linux', 'win32'].map((p) => lock.find((l) => l.scope === `platform/${p}/store`)!.value!);
   deepStrictEqual(kinds, ['secret-tool', 'credential-manager']);
   for (const kind of kinds) {
-    const keys = keychain('@lapxo/head/home', kind), key = newKey();
+    const keys = secretsOf('@lapxo/head/home', kind), key = newKey();
     keys.write('place/shop/root', key.secret);
     deepStrictEqual([keys.read('place/shop/root'), keys.read('place/shop/none')], [key.secret, undefined], kind);
     ok(!fakes.argv().includes(key.secret), `${kind}: the secret crossed an argument`);
     throws(() => keys.write('place/shop root', key.secret), /REFUSE·keychain/);
   }
-  throws(() => keychain('@lapxo/head/home', 'a-store-head-does-not-carry'), /REFUSE·keychain a-store-head-does-not-carry is no store head carries/);
+  throws(() => secretsOf('@lapxo/head/home', 'a-store-head-does-not-carry'), /REFUSE·keychain a-store-head-does-not-carry is no store head carries/);
   deepStrictEqual(['darwin', 'linux', 'win32'].map((p) => members(valueOf(lock, `platform/${p}/browser`))), [['open'], ['xdg-open'], ['rundll32', 'url.dll,FileProtocolHandler']], 'each opener a command and its arguments, in order, started without a shell');
 });
 
@@ -55,7 +55,7 @@ test('the signer bound starts signs through the store its host-s line names: the
   const key = newKey();
   const lot = 'bound-lock/1 at=policy:fixture by=root form=alphabet measure=id role=writes scope=keys/root value=authorize\n';
   const signed = ['secret-tool', 'credential-manager'].map((kind) => {
-    keychain('@lapxo/head/home', kind).write('place/shop/root', key.secret);
+    secretsOf('@lapxo/head/home', kind).write('place/shop/root', key.secret);
     return execFileSync(process.execPath, [join(root, 'src/signer.ts'), '@lapxo/head/home', 'place/shop/root', 'root', 'ed25519:era1', kind], { input: lot, encoding: 'utf8', env });
   });
   ok(signed[0]!.includes('ed25519:era1:'), signed[0]);

@@ -8,8 +8,7 @@ export interface Access { readonly kind: string; readonly scheme: string; readon
 export interface Call { readonly kind: 'call'; readonly source: string; readonly operation: string; readonly origin: string; readonly carry: Fields; readonly form: Fields; readonly classes: readonly string[]; readonly access: Access }
 
 const said = (key: string, fields: Readonly<Record<string, string>> = {}): Plan => ({ kind: 'said', key, fields });
-const membersOf = (line: Said | undefined): readonly string[] | undefined => (line === undefined ? undefined : alphabet(line.value ?? '').members);
-export const fieldsOf = (lines: readonly Said[], scope: string): Fields => Object.fromEntries(lines.filter((l) => l.scope === scope && l.measure).map((l) => [l.measure!, membersOf(l) ?? []]));
+export const fieldsOf = (lines: readonly Said[], scope: string): Fields => Object.fromEntries(lines.filter((l) => l.scope === scope && l.measure).map((l) => [l.measure!, alphabet(l.value ?? '').members]));
 
 export const vocabOf = (lock: readonly Said[]) => ((w: (k: string) => string) => ({
   offers: w('offers'), keys: w('keys'), region: w('region'), class: w('class'), access: w('access'), origin: w('origin'), origins: w('origins'), issuers: w('issuers'), unresolved: w('unresolved'), unparsed: w('unparsed'), unsupported: w('unsupported'), collision: w('collision'),

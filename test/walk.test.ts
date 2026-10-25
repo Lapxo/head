@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
 import { canonical, parse } from '@lapxo/topos/wire';
 import { run } from './cli.ts';
-import { registryFor } from '../src/ports/signers.ts';
+import { registryFor } from './signers.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 import { api, said, text, viewOf } from './place.ts';

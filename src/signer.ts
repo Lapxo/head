@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import { readFileSync } from 'node:fs';
-import { signLot } from './ports/keys.ts';
-import { keychain } from './ports/keychain.ts';
+import { newKey, publicOf, signLot } from './ports/keys.ts';
+import { secretsOf } from './ports/keychain.ts';
 
-const [service = '', account = '', key = '', algorithm = '', store = 'keychain'] = process.argv.slice(2);
-const secret = keychain(service, store).read(account);
-if (secret === undefined) process.exit(1);
-try { process.stdout.write(signLot(readFileSync(0, 'utf8'), secret, key, algorithm)); } catch { process.exit(1); }
+/** The one process that reads a signing secret, and it prints a public half at most: `make` keeps a key made once, `exists` says whether one is kept, else it signs the lot on stdin. */
+const [first = '', ...rest] = process.argv.slice(2), half = first === 'make' || first === 'exists', [service = '', account = '', key = '', algorithm = '', store = 'keychain'] = half ? [rest[0], rest[1], '', '', rest[2]] : [first, ...rest], keys = secretsOf(service, store);
+const kept = keys.read(account) ?? (first === 'make' ? ((made) => { keys.write(account, made.secret); return keys.read(account) === made.secret ? made.secret : undefined; })(newKey()) : undefined);
+if (kept === undefined) process.exit(half ? 3 : 1);
+try { process.stdout.write(half ? publicOf(kept) : signLot(readFileSync(0, 'utf8'), kept, key, algorithm)); } catch { process.exit(1); }
