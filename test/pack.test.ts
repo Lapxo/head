@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { lock, root } from './place.ts';
+import { members, valueOf } from '../src/core/lock.ts';
 
 type File = { readonly path: string; readonly bytes: Uint8Array };
 const patterns: Readonly<Record<string, RegExp>> = {
@@ -31,7 +32,7 @@ const walk = (dir: string): string[] => (existsSync(dir) ? readdirSync(dir).flat
 const read = (paths: readonly string[]): File[] => paths.filter((p) => existsSync(join(root, p))).map((p) => ({ path: p, bytes: readFileSync(join(root, p)) }));
 const entries = (names: readonly string[]) => names.flatMap((e) => (existsSync(join(root, e)) && statSync(join(root, e)).isDirectory() ? walk(join(root, e)).map((p) => relative(root, p)) : [e]));
 const ceiling = (scope: string) => (scope === 'package/world-bytes' ? 0 : Number(lock.find((l) => l.scope === scope)?.value?.split('..')[1] ?? Number.NaN));
-const allowed = new Set(['127.0.0.1', 'localhost', '[::1]', ...lock.filter((l) => l.scope?.startsWith('sources/') && URL.canParse(l.value ?? '')).map((l) => new URL(l.value!).hostname.toLowerCase())]);
+const allowed = new Set(['127.0.0.1', 'localhost', '[::1]', ...lock.filter((l) => l.scope?.startsWith('sources/') && URL.canParse(l.value ?? '')).map((l) => new URL(l.value!).hostname.toLowerCase()), ...members(valueOf(lock, 'bound/receiver/origins')).map((origin) => new URL(origin).hostname.toLowerCase())]);
 const worlds = new Set(lock.filter((l) => /^world\/[^/]+\/(standing|blob)$/.test(l.scope ?? '')).map((l) => l.value!));
 
 test('a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest', (run) => {
@@ -50,4 +51,12 @@ test('no: each literal a pack must not carry is found by name — a planted key,
   const bytes = Buffer.from('world bytes'), digest = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
   const found = scan(planted(`${key} ${path} ${host} acme-private`), [{ path: 'dist/w.tgz', bytes }], allowed, ['acme-private'], new Set([digest]));
   deepStrictEqual(Object.fromEntries(Object.entries(found).map(([k, v]) => [k, v.length])), { 'literal/key': 1, 'literal/path': 1, 'literal/host': 1, 'literal/org': 1, 'package/world-bytes': 1 });
+});
+
+test('literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found', () => {
+  const origins = members(valueOf(lock, 'bound/receiver/origins'));
+  ok(origins.length > 0, 'the receiver has explicit origins');
+  for (const origin of origins) deepStrictEqual(scan([{ path: 'TARGET.bound', bytes: Buffer.from(origin) }], [], allowed, [], new Set())['literal/host'], []);
+  const outside = ['https:', '', 'unadmitted.example.invalid'].join('/');
+  deepStrictEqual(scan([{ path: 'TARGET.bound', bytes: Buffer.from(outside) }], [], allowed, [], new Set())['literal/host'].length, 1);
 });
