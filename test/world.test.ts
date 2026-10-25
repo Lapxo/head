@@ -1,6 +1,5 @@
 import { test } from 'node:test';
 import { deepStrictEqual, match, ok } from 'node:assert';
-import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -21,20 +20,12 @@ const v1 = { openapi: '3.0.3', info: { title: 'things', version: '1' }, componen
   paths: { '/things': { ...listing, ...op('addThing', 'post') } } };
 const v2 = { ...v1, paths: { ...v1.paths, '/things/{id}': { get: { ...op('getThing').get, parameters: [{ name: 'id', in: 'path', required: true }] } } } };
 
-/** The world's release, read once where head's lock says it is published and checked against its pins, then served by a process of its own at the URLs the place declares, so bound fetches them as any consumer would and each fetch is counted. */
-const served = async () => {
-  const child = spawn(process.execPath, [join(root, 'test/serve-bytes.ts'), JSON.stringify({ '/standing': bytes(pinned.standing), '/blob': bytes(pinned.blob) })]);
-  let out = '';
-  const at = await new Promise<string>((ok) => child.stdout.on('data', (chunk) => { out += chunk; const m = /AT (\S+)/.exec(out); if (m) ok(m[1]!); }));
-  return { at, hits: () => out.split('\n').filter((l) => l.startsWith('HIT')).length, stop: () => child.kill() };
-};
-
 /** A place that selects topos-openapi by its standing, projects its blob, holds one OpenAPI document under api/, names the views it reads the world through, and — given a server — the origin its person picked. */
-const adopting = (world: string, server: string | undefined, blob = pinned.blob, source = 'demo', token: string | null = 'token-for-tests', more: readonly string[] = []) => {
+const adopting = (server: string | undefined, blob = pinned.blob, source = 'demo', token: string | null = 'token-for-tests', more: readonly string[] = []) => {
   const made = born(server, [
     line('wire/region-measures', 'id', 'coordinates', { role: 'reads' }), line('lang', 'id', 'en'),
-    line('uses/topos-openapi', 'digest', pinned.standing), line('sources/topos-openapi', 'id', `${world}/standing`),
-    line('dep/topos-openapi-blob', 'digest', blob, { shape: 'dist/index.js' }), line('sources/topos-openapi-blob', 'id', `${world}/blob`),
+    line('uses/topos-openapi', 'digest', pinned.standing), line('sources/topos-openapi', 'id', word('sources/topos-openapi')),
+    line('dep/topos-openapi-blob', 'digest', blob, { shape: 'dist/index.js' }), line('sources/topos-openapi-blob', 'id', word('sources/topos-openapi-blob')),
     line('region/spec', 'coordinates', 'api/*', { role: 'reads' }), line('region/spec', 'receipts', 'openapi/**', { role: 'reads' }),
     line('region/response', 'coordinates', '.answers/**', { role: 'reads' }), line('region/response', 'receipts', 'answer/**', { role: 'reads' }),
     line('view/forms', 'id', 'endpoints@1', { role: 'demands' }), line('view/readout', 'id', 'readout@1', { role: 'demands' }), line('view/place', 'id', 'place@1', { role: 'demands' }),
@@ -42,6 +33,15 @@ const adopting = (world: string, server: string | undefined, blob = pinned.blob,
     ...more,
   ], token, false, source);
   mkdirSync(join(made.place, 'api'));
+  // These semantic vectors start with the public world bytes already held, verified against their declared pins.
+  // HTTPS and redirect permission are exercised separately through the real receiver in warm-compact.
+  const blobs = join(made.place, '.bound', 'cas', 'blobs');
+  mkdirSync(blobs, { recursive: true });
+  for (const digest of [pinned.standing, pinned.blob]) {
+    const content = readFileSync(bytes(digest));
+    deepStrictEqual(digestOf(content), digest);
+    writeFileSync(join(blobs, digest.slice(7)), content);
+  }
   return made;
 };
 const document = (place: string, spec: unknown) => writeFileSync(join(place, 'api', 'demo.json'), JSON.stringify(spec));
@@ -54,9 +54,8 @@ const settled = (place: string, view: string) => {
 };
 
 test('bound runs the world on the document a place holds: what it reads and renders follows the document, and an unchanged document is read again by key', async () => {
-  const world = await served();
-  try {
-  const { place } = adopting(world.at, undefined);
+  {
+  const { place } = adopting(undefined);
   document(place, v1);
   const first = settled(place, 'readout');
   match(first.pass, /OBSERVE +1 run/);
@@ -74,20 +73,19 @@ test('bound runs the world on the document a place holds: what it reads and rend
   deepStrictEqual(again.out, changed.out);
   match(again.pass, /OBSERVE +0 run · \d+ read by key/);
   deepStrictEqual(createHash('sha256').update(readFileSync(bytes(pinned.blob))).digest('hex'), pinned.blob.slice(7));
-  } finally { world.stop(); }
+  }
 });
 
 test('head reads a source through the place bound compiled it to: an offer of class read is made and its answer comes back typed by the world, a write it lists is never called', async () => {
-  const world = await served();
   const server = await api(() => '[{"id":1,"name":"one","extra":"held back"}]');
   let listed: unknown, added: unknown, again: unknown, past: unknown;
   try {
-    const { place, keychain } = adopting(world.at, server.url, pinned.blob, 'demo', 'token-for-tests', [line('allow/reuse/demo', 'seconds', '0..3600', { form: 'interval' }), line('allow/history/demo', 'status', 'present')]);
+    const { place, keychain } = adopting(server.url, pinned.blob, 'demo', 'token-for-tests', [line('allow/reuse/demo', 'seconds', '0..3600', { form: 'interval' }), line('allow/history/demo', 'status', 'present')]);
     document(place, v1);
     const look = (operation: string) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'demo', operation, args: {}, at: '8' } } });
     [listed] = await ask([look('listThings')], [], keychain.env);
     [added, again, past] = await ask([look('addThing'), look('listThings'), { method: 'tools/call', params: { name: 'look', arguments: { place, source: 'demo', operation: 'listThings', args: {}, history: true } } }], [], keychain.env);
-  } finally { await server.close(); world.stop(); }
+  } finally { await server.close();  }
   const typed = text(listed).split('\n');
   match(typed[0]!, said('answered')); ok(!text(listed).includes('held back'), 'what the document does not declare never reaches the model');
   const typedLine = (l: string) => ((m) => (m ? `${m[1]} ${m[2] || '.'} ${m[3]}` : ''))(/measure=(\S+) .*scope=answer\/[0-9a-f]{16}(\S*) value=(.*)$/.exec(l));
@@ -101,20 +99,18 @@ test('head reads a source through the place bound compiled it to: an offer of cl
 });
 
 test('no: when bound refuses to settle what the world reads — here the place projects a blob the world does not offer — head calls nothing and says what bound printed', async () => {
-  const world = await served();
   const server = await api(() => '{}');
   try {
-    const { place, keychain } = adopting(world.at, server.url, `sha256:${'0'.repeat(64)}`);
+    const { place, keychain } = adopting(server.url, `sha256:${'0'.repeat(64)}`);
     document(place, v1);
     const [refused] = await ask([{ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'demo', operation: 'listThings', args: {}, at: '8' } } }], [], keychain.env);
     match(text(refused), said('unsettled'));
     match(text(refused), /REFUSE/);
-  } finally { await server.close(); world.stop(); }
+  } finally { await server.close();  }
   deepStrictEqual(server.seen.length, 0);
 });
 
 test('a source whose document states only a bearer is reached through the flow an overlay the place holds declares; an overlay whose step sends what the person enters to another origin is refused', async () => {
-  const world = await served();
   const server = await api((url) => (url === '/login' ? '{"token":"t-ledger"}' : '{}'));
   const elsewhere = await api(() => '{"token":"stolen"}');
   const ledger = JSON.stringify({ openapi: '3.0.3', info: { title: 'ledger', version: '1' }, servers: [{ url: 'https://ledger.example' }], components: { securitySchemes: { session: { type: 'http', scheme: 'bearer' } } }, security: [{ session: [] }],
@@ -130,14 +126,14 @@ test('a source whose document states only a bearer is reached through the flow a
   const look = (place: string) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'ledger', operation: 'listEntries', args: {}, at: '8' } } });
   let reached: unknown, crossed: unknown;
   try {
-    const honest = adopting(world.at, server.url, pinned.blob, 'ledger', null, [allowed]);
+    const honest = adopting(server.url, pinned.blob, 'ledger', null, [allowed]);
     writeFileSync(join(honest.place, 'api', 'ledger.json'), ledger); writeFileSync(join(honest.place, 'api', 'ledger.overlay.yaml'), overlay('login'));
     [reached] = await ask([look(honest.place)], [], honest.keychain.env, enter);
-    const sly = adopting(world.at, server.url, pinned.blob, 'ledger', null, [line('allow/origin/evil', 'id', elsewhere.url), allowed]);
+    const sly = adopting(server.url, pinned.blob, 'ledger', null, [line('allow/origin/evil', 'id', elsewhere.url), allowed]);
     writeFileSync(join(sly.place, 'api', 'ledger.json'), ledger); writeFileSync(join(sly.place, 'api', 'evil.json'), ledger.replace('"title":"ledger"', '"title":"evil"'));
     writeFileSync(join(sly.place, 'api', 'ledger.overlay.yaml'), overlay('$sourceDescriptions.evil.login'));
     [crossed] = await ask([look(sly.place)], [], sly.keychain.env, enter);
-  } finally { await server.close(); await elsewhere.close(); world.stop(); }
+  } finally { await server.close(); await elsewhere.close();  }
   match(text(reached), said('answered'));
   deepStrictEqual(server.seen.map((one) => [one.method, one.url, one.headers['authorization'] ?? '']), [['POST', '/login', ''], ['GET', '/entries', 'Bearer t-ledger']]);
   match(text(crossed), said('cross-origin')); deepStrictEqual(elsewhere.seen.length, 0);

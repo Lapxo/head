@@ -1,11 +1,13 @@
 import { test } from 'node:test';
 import { deepStrictEqual, ok } from 'node:assert';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { createRequire } from 'node:module';
+import { createHash } from 'node:crypto';
 import { members, valueOf } from '../src/core/lock.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
@@ -19,6 +21,8 @@ test('the Desktop Extension as a host runs it: unpacked in a folder of its own, 
   execFileSync('unzip', ['-q', bundle!, '-d', unpacked]);
   const bundleMembers = execFileSync('unzip', ['-Z1', bundle!], { encoding: 'utf8' }).trim().split('\n');
   deepStrictEqual(bundleMembers.filter((name) => name.endsWith('.mts') || /changelog/i.test(name)), [], 'the delivered bundle excludes TypeScript module declarations and changelogs');
+  const inventory = (dir: string, path = ''): string[] => readdirSync(join(dir, path), { withFileTypes: true }).flatMap((entry) => entry.isDirectory() ? inventory(dir, join(path, entry.name)) : [`${join(path, entry.name)} ${createHash('sha256').update(readFileSync(join(dir, path, entry.name))).digest('hex')}`]).sort();
+  deepStrictEqual(inventory(join(unpacked, 'node_modules/@lapxo/bound')), inventory(dirname(createRequire(import.meta.url).resolve('@lapxo/bound/package.json'))), 'the bundled instrument retains every installed member, including declarations, byte for byte');
   const manifest = JSON.parse(readFileSync(join(unpacked, 'manifest.json'), 'utf8')) as { server: { mcp_config: { args: string[] } } };
   const before = process.env['HEAD_ENTRY'];
   process.env['HEAD_ENTRY'] = manifest.server.mcp_config.args[0]!.replace('${__dirname}', unpacked);

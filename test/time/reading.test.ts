@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { valueOf } from '../../src/core/lock.ts';
 import { readingOf } from '../../src/ports/reading.ts';
 import { run as instrument } from '../../src/ports/bound.ts';
-import { cooled, hosting } from '../../src/ports/host.ts';
+import { cooled, hosted, configureHost } from '../../src/ports/host.ts';
 import { run } from '../cli.ts';
 import { ask } from '../client.ts';
 import { fakeKeychain } from '../fake-keychain.ts';
@@ -28,13 +28,13 @@ test('reading/seconds: native identity startup, warm query and evidence fold are
   const call = (args: Record<string, unknown>) => ({ method: 'tools/call', params: { name: 'ask', arguments: { source: 'forecast', operation: 'get-forecast', ...args } } });
   await ask([{ method: 'tools/call', params: { name: 'connect', arguments: { source: 'forecast', operation: 'get-forecast', args: { city: 'lima' }, document: `${origin}/openapi.json` } } }, ...['quito', 'cusco', 'arequipa', 'trujillo'].map((city) => call({ place, args: { city } }))], [], env, () => ({ action: 'accept', content: { yes: true } }));
   server.close();
-  const reading = async () => { const got = readingOf(await instrument('@lapxo/bound', place, [valueOf(lock, 'bound/read'), valueOf(lock, 'bound/view'), `${valueOf(lock, 'bound/identity')}@${valueOf(lock, 'bound/evidence')}`]), valueOf(lock, 'bound/evidence')); ok(!('refused' in got), JSON.stringify(got)); return got; };
+  const reading = async (warm = false) => { const args = [valueOf(lock, 'bound/read'), valueOf(lock, 'bound/view'), `${valueOf(lock, 'bound/identity')}@${valueOf(lock, 'bound/evidence')}`], got = readingOf(warm ? await hosted(place, args) : await instrument('@lapxo/bound', place, args), valueOf(lock, 'bound/evidence')); ok(!('refused' in got), JSON.stringify(got)); return got; };
   const timed = async (f: () => unknown) => { const at = performance.now(); await f(); return performance.now() - at; };
-  const first = await timed(reading), samples: number[] = [];
-  Object.assign(hosting, { installed: valueOf(lock, 'dep/bound/installed'), wait: 60_000, bytes: 1 << 24, ...Object.fromEntries(['idle', 'life', 'heap', 'queued'].map((k) => [k, Number(valueOf(lock, `bound/host/${k}`).split('..')[1])])) });
+  const first = await timed(() => reading()), samples: number[] = [];
+  configureHost(lock, { wait: Number(valueOf(lock, 'bound/wait').split('..')[1]), most: Number(valueOf(lock, 'bound/printed').split('..')[1]) });
   try {
-    await reading();
-    for (let i=0;i<10;i+=1) samples.push(await timed(reading));
+    await reading(true);
+    for (let i=0;i<10;i+=1) samples.push(await timed(() => reading(true)));
     const later=samples.sort((a,b)=>a-b)[5]!, folding=await timed(()=>{const result=run('@lapxo/bound', place, [valueOf(lock, 'bound/read'), valueOf(lock, 'bound/view'), valueOf(lock, 'bound/evidence')]);ok(result?.code===0, result?.err.join('\n')??'evidence fold unavailable');});
     t.diagnostic(`MEASURED reading/seconds model=machine-clock · cold ${(first/1000).toFixed(3)} s · warm ${(later/1000).toFixed(3)} s · one fold of evidence ${(folding/1000).toFixed(3)} s · load ${loadavg()[0]!.toFixed(2)} on ${availableParallelism()} cpus · host start outside query clock`);
   } finally {cooled();}

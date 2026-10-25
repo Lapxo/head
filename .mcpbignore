@@ -1,2 +1,3 @@
 *.mts
 *changelog*
+!node_modules/@lapxo/bound/**/*.d.ts
