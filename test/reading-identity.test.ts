@@ -1,11 +1,17 @@
 import {test} from 'node:test';
 import {deepStrictEqual,ok} from 'node:assert';
-import {writeFileSync} from 'node:fs';
+import {cpSync,mkdtempSync,readFileSync,readdirSync,rmSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {tmpdir} from 'node:os';
+import {createRequire} from 'node:module';
+import {dirname} from 'node:path';
+import {nativeHostInstrument,prepareNativeViewIdentity} from '@lapxo/bound/host';
+import {capturedViews,cooled,configureHost,hosting} from '../src/ports/host.ts';
+import {standingAt,words} from '../src/ports/bound.ts';
 import {join} from 'node:path';
 import {members,valueOf} from '../src/core/lock.ts';
-import {readingOf} from '../src/ports/reading.ts';
 import {born,line,lock,viewOf} from './place.ts';
-import {run} from './cli.ts';
+import {readingOf,run} from './cli.ts';
 
 test('identity records refuse malformed, failed, mismatched and unbound results',()=>{
  const identity='sha256:'+'a'.repeat(64);
@@ -37,4 +43,45 @@ test('no: the person-s birth file is an input bound reads, as every file of the 
  writeFileSync(join(p.place,valueOf(lock,'founding/birth-file')),`${line('lang','id','en')}\n`);
  ok(!('refused' in before)&&JSON.stringify(id())!==JSON.stringify(before),'the identity moved');
  ok(!members(valueOf(lock,'reading/apart')).includes(valueOf(lock,'founding/birth-file')),'reading/apart never names it');
+});
+
+
+const configured=()=>{configureHost(lock,{wait:Number(valueOf(lock,'bound/wait').split('..')[1]),most:Number(valueOf(lock,'bound/printed').split('..')[1])});Object.assign(words,Object.fromEntries(Object.keys(words).map(key=>[key,valueOf(lock,`bound/${key}`)])));};
+const installed=dirname(createRequire(import.meta.url).resolve('@lapxo/bound/package.json'));
+const bytesAt=(place:string)=>Object.fromEntries(readdirSync(place,{recursive:true,withFileTypes:true}).filter(entry=>entry.isFile()).map(entry=>{const path=join(entry.parentPath,entry.name);return [path,createHash('sha256').update(readFileSync(path)).digest('hex')];}));
+
+test('Head native batches equal public single-view results in the same actual context, with no persistent changes in two unrelated places',()=>{
+ configured();
+ try {for(const _ of [1,2]){
+  const p=born(undefined),before=bytesAt(p.place),batch=capturedViews(p.place,['lines','evidence']);
+  ok(batch?.kind==='fact',JSON.stringify(batch));if(batch?.kind!=='fact')continue;
+  const instrument=nativeHostInstrument(installed,join(installed,'dist/cli/verb.js'));
+  for(const result of batch.views)deepStrictEqual(result,prepareNativeViewIdentity({place:p.place,instrument,view:result.view,expectedIdentity:result.identity}));
+  deepStrictEqual(bytesAt(p.place),before);
+  for(const result of batch.views)deepStrictEqual(result.text.trim(),viewOf(p.place,result.view as 'lines'|'evidence').trim());
+  deepStrictEqual(capturedViews(p.place,['lines','evidence']),batch,'the CLI fold journal is derived, not a semantic input');
+  writeFileSync(join(p.place,valueOf(lock,'founding/birth-file')),`${line('lang','id','en')}\n`);
+  const moved=capturedViews(p.place,['lines','evidence']);ok(moved?.kind==='refuse'||moved?.kind==='fact'&&moved.views[0]!.identity!==batch.views[0]!.identity);
+ }}finally{cooled();}
+});
+
+test('a corrupted current authority ledger cannot be answered from Head retained parsed views',async()=>{
+ configured();const p=born(undefined),read=()=>standingAt('@lapxo/bound',p.place,()=>[],()=>false);
+ try {ok(!('refused'in await read()));
+  const name=readdirSync(join(p.place,'.bound','ledger')).find(name=>name.endsWith('.bound')&&readFileSync(join(p.place,'.bound','ledger',name),'utf8').includes(' sig='));ok(name,'the altered signature exists');
+  const ledger=join(p.place,'.bound','ledger',name!),held=readFileSync(ledger,'utf8'),changed=held.replace(/ sig=(\S)/,(_all,c)=>' sig='+(c==='a'?'b':'a'));ok(changed!==held);writeFileSync(ledger,changed);
+  ok('refused'in await read(),'changed bytes without land never validate the retained result');
+ }finally{cooled();}
+});
+
+test('native capture checks the installed digest on every call, including a descriptor retained between calls',()=>{
+ configured();const p=born(undefined),copy=join(mkdtempSync(join(tmpdir(),'head-native-copy-')),'bound');cpSync(installed,copy,{recursive:true});
+ try {
+  ok(capturedViews(p.place,['lines'],undefined,copy)?.kind==='fact');
+  const file=join(copy,'README.md');writeFileSync(file,Buffer.concat([readFileSync(file),Buffer.from('\nchanged') ]));
+  const changed=capturedViews(p.place,['lines'],undefined,copy);ok(changed?.kind==='refuse'&&changed.code==='host/instrument-pin');
+  const correct=hosting.installed;hosting.installed='sha256:'+'0'.repeat(64);
+  try{const mismatch=capturedViews(p.place,['lines']);ok(mismatch?.kind==='refuse'&&mismatch.code==='host/instrument-pin');}finally{hosting.installed=correct;}
+  deepStrictEqual(capturedViews(p.place,['lines'],AbortSignal.abort()),undefined);
+ }finally{cooled();rmSync(dirname(copy),{recursive:true,force:true});}
 });

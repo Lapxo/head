@@ -1,0 +1,21 @@
+{
+  "contract": "head-configuration-preflight@1",
+  "producer": "Bound native authority-card API",
+  "consumer": "Head configuration workflow",
+  "scope": ["record-coverage", "Root configuration admission"],
+  "receiverInputs": ["canonical place", "installed instrument digest", "key", "exact records", "authenticated evidence epoch", "explicit unix milliseconds", "instant horizon", "byte and item budgets"],
+  "actions": {
+    "query": "card through ask, with explicit key and records; observation only",
+    "plan": "Root record coverage before consent, and fresh native coverage before signing",
+    "land": "Root signed-record admission before native land; native land independently verifies the actual act"
+  },
+  "snapshot": "A change to the Root epoch invalidates old cards globally. An unrelated key can retain its eligibility while its old card becomes stale. The original Root anchor is not revoked by a local keys/root coverage declaration.",
+  "clock": "The receiver supplies time. An instant card is not a future grant; replay at another instant can refuse authority-card/clock. Neither caller fields nor a presented card choose the receiver context.",
+  "Q4": {
+    "state": "open",
+    "outsideNativeCoverage": ["API execution", "aggregates", "access negotiation", "secret consent", "personal attestation admission"],
+    "existingChecks": "Retain the existing domain card, permission, secret and consent checks. Native authority observations do not replace them."
+  },
+  "security": ["No caller verification callback", "No authority installed by receiving a card", "A policy change during consent cannot land a cached lot on the old base", "Code boundaries do not provide OS isolation from a compromised process of the same user"],
+  "evidence": "Regional source vectors in two unrelated places and Node 22/24; not installed release acceptance, CI or independent-machine evidence"
+}

@@ -1,7 +1,7 @@
 import { canonical, EXTENSION } from '@lapxo/topos/wire';
 import { inPlace, placeOf, unless } from '../core/answer.ts';
 import type { Asked, Context } from '../core/answer.ts';
-import { valueOf } from '../core/lock.ts';
+import { members, valueOf } from '../core/lock.ts';
 import { fieldsOf, vocabOf } from '../core/read.ts';
 import { redIn, sayIn } from '../core/surface.ts';
 import { digestIn, linesOf } from '../core/worlds.ts';
@@ -11,6 +11,7 @@ import { adopted } from '../adopt/adopt.ts';
 import type { Line } from '../compile/pin.ts';
 import { firstRun } from '../onboard/first.ts';
 import { resolved } from '../onboard/site.ts';
+import { receivedBirth } from '../links/birth.ts';
 import { linked } from '../links/inspect.ts';
 import { rootIn } from '../flows/device.ts';
 import { attachedFor } from './access.ts';
@@ -27,7 +28,7 @@ import type { Read } from '../ports/documents.ts';
  * its pins rest in, its pin held to the package's; one that differs is refused by name, and the place holds what it
  * compiled. Nothing the sharing place was granted comes with it: access is asked here, issuer by issuer.
  */
-export const connected = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => ((asked['document'] ?? '').startsWith(valueOf(context.lock, 'link/prefix')) ? linked(asked, context)
+export const connected = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (await receivedBirth(asked, context)) ?? (members(valueOf(context.lock, 'link/prefixes')).some(prefix => (asked['document'] ?? '').startsWith(prefix)) ? linked(asked, context)
   : ((got) => ('said' in got ? got.said : connectedAs(got.asked, context, covered)))(await resolved(asked, context)));
 const connectedAs = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (asked['source'] && !(await placeOf(asked, context)) ? firstRun(asked, context, (dir, covered) => connected({ ...asked, place: dir }, context, covered))
   : ((started) => inPlace(asked, context, async (place) => {

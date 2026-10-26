@@ -1,3 +1,6 @@
+import { namedIn } from '../src/use/named.ts';
+import type { Context } from '../src/core/answer.ts';
+import type { Said } from '../src/core/lock.ts';
 import { test } from 'node:test';
 import { deepStrictEqual, match, ok } from 'node:assert';
 import { readFileSync } from 'node:fs';
@@ -52,4 +55,11 @@ test('outside the read grant the person is asked once; on their yes the offer is
   await server.close();
   deepStrictEqual([asked.length, server.seen.length], [1, 1]);
   ok([' scope=allow/read ', ' scope=use/tracker/list-for-repo '].every((s) => birthOf(place).includes(s)), birthOf(place));
+});
+
+ test('a declared name reuse never reads an offer registry it does not need, in two unrelated domains', async () => {
+  for (const source of ['weather', 'invoices']) {
+    const lines: Said[] = [{ scope: `${valueOf(lock, 'use/family')}/${source}/saved`, value: 'get-status' }, { scope: `unused/${source}`, get measure(): string { throw Error('an unused registry was inspected'); } }];
+    deepStrictEqual(await namedIn({ lock } as Context, lines, source, 'saved', false), { operation: 'get-status' });
+  }
 });

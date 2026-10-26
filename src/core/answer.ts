@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { canonical, LOCK } from '@lapxo/topos/wire';
 import { valueOf, type Said } from './lock.ts';
+import type { authorityAt } from '../ports/host.ts';
 import type { Printed } from '../ports/bound.ts';
 export type Outcome = { readonly lines: readonly string[] } | { readonly refused: string };
 import type { KeyStore } from '../ports/keychain.ts';
@@ -19,6 +20,7 @@ export interface Context {
   readonly keys: KeyStore;
   readonly device: (role: string) => string | undefined;
   readonly standing: (place: string) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
+  readonly authority: (place: string, key: string, kind: string, records: readonly string[], presented?: string) => ReturnType<typeof authorityAt>;
   readonly policy: (place: string) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
   readonly world: (place: string, view: string) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
   readonly adapter: (origin: string) => Promise<{ readonly prepare: (call: Call, args: Readonly<Record<string, unknown>>, lock: readonly Said[]) => Prepared; readonly post: (url: string, body: Readonly<Record<string, unknown>>, most: number, wait: number, as?: 'form' | 'json') => Promise<Answered>; readonly published: (url: string, digest: string, most: number, wait: number) => Promise<Uint8Array | undefined>; readonly fetched: (url: string, attachment: Attachment | undefined, accept: string | undefined, most: number, wait: number) => Promise<Fetched>; readonly get: (url: string, wait: number) => Promise<{ readonly bytes: Uint8Array; readonly type: string } | undefined> } | undefined>;

@@ -1,26 +1,51 @@
 # head
 
-An API already says what it offers, where it is reached and how access to it is proven. head reads that document once, compiles it into lines its place pins by digest, and from then on answers by those lines: which operation reads, what it asks, what it answered. It names no kind of source and no client: what it reads is said by the worlds it adopts, and what it asks through is what the client declares. [Connect any API](https://github.com/Lapxo/head/blob/main/docs/connect-any-api.md) shows each level of access.
+Ask your APIs through an assistant. Keep who answered, what was read, and what you allowed.
 
-A person does four things, in the client they talk to. **Connect** an API: hand head its document, and an overlay beside it when it says too little; it is compiled once and pinned, and the first connect with no place founds `~/place` on the same yes, its root key kept in the keychain. **Ask**: name what you want by its name or in your own words; head finds it in its own registry of the source, never listing the rest to the model, obtains access the first time as the document declares it, calls only what reads, types the answer and lands a receipt. An answer of nothing is what the source holds today, said with its hour; no byte at all is no answer, and the read stays owed until one brings them. **Do** what is not a read, once you say yes to that very call. **Share** a place: share makes a package you can send and verify; your lines are a plain text file you can copy. A client starts head with `head run`; typed alone, `head` says this and starts nothing.
+head is an MCP server. Give it an API document, approve the connection, and ask a question. It reads operations the document declares, returns typed fields when a schema is available, and keeps signed receipts of its reads. Without a usable schema, the answer is named as untyped.
 
-**Your lines.** Beside your place's lock, `birth.bound` holds your lines and nothing of head's: your root and your devices, the sources you connected, what you allowed, each offer you used under the words you asked it by. It is a text file with your lines, in your own words: read it with `cat`, copy it, paste it. head's own lines are its profile, which you see when you ask why.
+```text
+You: Connect this API as forecast.
+     [give its OpenAPI document; approve the connection]
+You: What is the forecast in Lima?
 
-Access comes at three levels, and the place says which. **None**: the document states that a read needs nothing, or says nothing about access at all; then head tries the read once with nothing attached, and keeps what it saw as a receipt. **A declared flow**: the document, or its overlay, declares how access is obtained, as an Arazzo profile: a form, a one-time code, a choice, a provider's page. head runs it once per issuer and keeps only the token, in the keychain. **A secret entered by hand**: a key or a password, only where the place's root allows it, entered on head's own one-time page and never through the model.
+forecast: temperature 21, sky clear
+receipt: sha256:…
+```
 
-What head never does. It never guesses how access is proven: when a document does not state it, only a read is tried, with nothing attached, and nothing else is called. It never calls an operation that is not a read without the person's yes, nor past what the place allows; a place that would stand on another's lock as its parent is refused by name, since composing two places' policies is bound's. It never lets a secret reach the model, a file, an answer or an argument. And it never raises a ceiling to make room: what outgrows one stays open until its responsibilities are reduced or split.
+This is an illustrative fixture, not a live forecast. [Run the local example](docs/first-minute.md) without an account or a real secret.
 
-## Install
+## Start
 
-- **As an extension:** download `head-<version>-<digest>.mcpb` from the [latest release](https://github.com/Lapxo/head/releases/latest) and open it. Its digest is in the release notes.
-- **By command:** `npx -y @lapxo/head@0.1.7 run`, for an assistant that starts its servers by command.
+For an assistant that starts MCP servers by command:
 
-head runs on macOS for now. Its keys live in your keychain, never in a file.
+```sh
+npx -y @lapxo/head@0.2.0 run
+```
 
-## The first minute
+The pin above names this release; the executable examples in this tree use the checkout. A client can also open a desktop extension from [releases](https://github.com/Lapxo/head/releases); check the artifact digests supplied with the release. Starting head alone prints help; `head run` starts the MCP server.
 
-head connects nothing when it is installed, and names no provider: what it reads is the API you hand it.
+macOS is the supported desktop environment. Node 22.18 or later is required. Linux, Windows and unattended cloud execution are not validated as supported environments here. A successful mock or CI job does not establish working system-keychain and browser integration.
 
-1. Ask your assistant something. With no place yet, head says so, and asks for the address of the document of an API that answers it.
-2. Give that address and say yes once. head founds your place in `~/place`, connects the API from its document, pinned by the digest of what it read, and lets head read it for the next 90 days.
-3. Your assistant asks again by itself, and the answer comes back typed, with the source it came from and a receipt signed by head's key.
+## What you do
+
+- **Connect** a document, optionally with an overlay. head pins the compiled description by digest. With no place yet, the first approved connection creates `~/place`.
+- **Ask** for one operation or compare the same question across sources. Receipts keep the source and time. A missing answer stays owed; an empty answer is not a missing answer.
+- **Act** within the place's permissions and consent rules. A suggested next step is not authorization. Writes do not become allowed because a model asked for them.
+- **Share and inspect** public material. A reference identifies content; a separate holder location says where to obtain it. Inspection checks the selected contract and grants nothing. [Try sharing and verification](docs/sharing.md).
+
+Your place keeps its declarations as text. `birth.bound` separates your local declarations from head's profile. Keep it private unless you have reviewed what you are sharing: it is not the portable public `birth.topos` artifact.
+
+## Two names are not two independent sources
+
+If `mirror` shares `forecast`'s declared lineage, agreement is shown as `●○`. Both sources and their receipts remain visible. `●●` does not prove independence; it only reports what the declared lineage and source identity establish. Disagreement keeps each source's value instead of choosing a winner.
+
+[Run the lineage example](docs/lineage.md), including withdrawal of the lineage declaration without erasing earlier receipts.
+
+## Boundaries you can check
+
+Signing keys stay behind a short-lived signer port in the supported flow. Tokens go to the declared transport, not into model arguments. A compromised process running as your user is outside that code boundary: it can invoke the keychain itself.
+
+A digest is not network permission or proof that an answer is true. Received bytes install no authority. Configuration preflight does not replace API permission, access or secret-consent checks. See the [threat model and reporting policy](SECURITY.md), and [connect an API](docs/connect-any-api.md) for access options.
+
+The three public MCP tools are `ask`, `connect` and `do`. Examples reuse the existing client and fixtures; they add no provider-specific behavior to head.

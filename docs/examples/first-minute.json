@@ -1,0 +1,18 @@
+{
+  "example": "typed-local-api@1",
+  "fixture": "Two-field OpenAPI forecast, not real weather",
+  "source": "forecast",
+  "operation": "get-forecast",
+  "args": {
+    "city": "lima"
+  },
+  "response": {
+    "temperature": 21,
+    "sky": "clear"
+  },
+  "expectedTypedValues": {
+    "temperature": "21",
+    "sky": "clear"
+  },
+  "secrets": "Simulated keychain and temporary home; no real credential"
+}

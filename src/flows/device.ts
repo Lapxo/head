@@ -22,7 +22,7 @@ export const rootIn = (context: Context, place: string): { readonly account: str
  * since a second needs a fold bound does not publish; else no one here, and the lines are handed on. A place that pins a
  * lock as its parent has nothing signed here: what the parent would cut is bound's to judge.
  */
-type By = { readonly sign: (lot: readonly string[]) => Promise<Outcome>; readonly land: (lot: readonly string[]) => Promise<Outcome> };
+type By = { readonly key: string; readonly root: boolean; readonly records: (lot: readonly string[]) => readonly string[]; readonly sign: (lot: readonly string[]) => Promise<Outcome>; readonly land: (lot: readonly string[]) => Promise<Outcome> };
 export const widening = (context: Context, place: string, lines: readonly Said[], lot: readonly string[]): By | { readonly said: readonly string[] } => {
   const parent = adoptsIn(context.lock, lines);
   if (parent !== undefined) return { said: [sayIn(context.lock)('parent-lock', { place, parent })] };
@@ -30,7 +30,7 @@ export const widening = (context: Context, place: string, lines: readonly Said[]
   const wire = lines.filter((l) => l.scope === 'wire/fields'), admits = wire.some((l) => members(l.value ?? '').includes(field));
   const witnessed = (signed: readonly string[]) => signed.map((line) => ((got) => (got.kind === 'fact' ? canonical({ ...got.value.fields, [field]: witness! }) : line))(parse(line)));
   if ('account' in root && witness !== undefined) {
-    if (admits || lot.every((line) => / scope=wire\/fields /.test(line))) return { sign: (signed) => context.signRoot(place, admits ? witnessed(signed) : signed, root.account), land: (signed) => context.landRoot(place, admits ? witnessed(signed) : signed, root.account) };
+    if (admits || lot.every((line) => / scope=wire\/fields /.test(line))) return { key: valueOf(context.lock, 'founding/root').split('/')[1]!, root: true, records: (signed) => admits ? witnessed(signed) : signed, sign: (signed) => context.signRoot(place, admits ? witnessed(signed) : signed, root.account), land: (signed) => context.landRoot(place, admits ? witnessed(signed) : signed, root.account) };
     const [named, bare] = [[...new Set([...wire.flatMap((l) => members(l.value ?? '')), field])].join('|'), (l: Said) => Object.fromEntries(Object.entries(l).filter(([k]) => !['sig', 'epoch'].includes(k)))];
     return { said: [sayIn(context.lock)('unwitnessed', { place }), ...wire.map((l) => canonical({ ...bare(l), by: 'target', value: 'withdraw' })),
       canonical({ at: `policy:head/wire/${new Date(context.now()).toISOString()}`, by: 'target', form: 'alphabet', measure: 'id', role: 'reads', scope: 'wire/fields', value: named })] };
@@ -38,5 +38,5 @@ export const widening = (context: Context, place: string, lines: readonly Said[]
   const stopped = uncoveredIn(context.lock, lines, context.device('person'), place, lot);
   if (stopped) return { said: stopped };
   const again = lot.flatMap((line) => ((got) => (got.kind === 'fact' && lines.some((l) => l.scope === got.value.fields.scope && l.measure === got.value.fields.measure) ? [got.value.fields.scope ?? ''] : []))(parse(line)))[0];
-  return again !== undefined ? { said: [sayIn(context.lock)('attested-again', { place, scope: again })] } : { sign: (signed) => context.signAs(place, signed, 'person', lines), land: (signed) => context.landAs(place, signed, 'person', lines) };
+  return again !== undefined ? { said: [sayIn(context.lock)('attested-again', { place, scope: again })] } : { key: witness!, root: false, records: (signed) => signed, sign: (signed) => context.signAs(place, signed, 'person', lines), land: (signed) => context.landAs(place, signed, 'person', lines) };
 };

@@ -3,7 +3,7 @@ import { deepStrictEqual, ok } from 'node:assert';
 import { mkdtempSync } from 'node:fs';
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
-import { tmpdir } from 'node:os';
+import { availableParallelism, loadavg, tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { valueOf } from '../src/core/lock.ts';
 import { ask } from './client.ts';
@@ -20,6 +20,7 @@ import { lock } from './place.ts';
  * seconds from its call to its result, without streaming the whole of it.
  */
 test('onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named', { skip: !process.env['HEAD_ONBOARDING'] }, async (t) => {
+  t.diagnostic(`ENVIRONMENT node=${process.version} platform=${process.platform} cpus=${availableParallelism()} load=${loadavg().join(',')} clock=client-performance-now concurrency=one-timed-suite`);
   const document = JSON.stringify({ openapi: '3.0.3', info: { title: 'forecast', version: '1' }, servers: [{ url: '' }],
     paths: { '/forecast': { get: { operationId: 'get-forecast', parameters: [{ name: 'city', in: 'query', required: true, schema: { type: 'string' } }], responses: { 200: { description: 'ok' } } } } } });
   const server = createServer((request, response) => { response.writeHead(200, { 'content-type': 'application/json' }); response.end(request.url === '/openapi.json' ? document.replace('"url":""', `"url":"${origin}"`) : JSON.stringify({ city: new URL(request.url ?? '/', origin).searchParams.get('city'), temperature: 21 })); });
@@ -54,6 +55,9 @@ test('onboarding: steps, questions, tools and person-words within their ceilings
   ok(part(repeated, true) <= hi('tokens/answer/repeated'), `a question asked again adds ${part(repeated, true)} tokens of content`);
   for (const [kind, chain] of Object.entries(kinds(chained)).filter(([kind]) => kind !== 'repeated-with-receipt')) ok(chain.reduce((n, a) => n + part(a, true), 0) <= hi(`tokens/answer/${kind}`), `a ${kind} question adds ${column(chain, true)} tokens of content, past tokens/answer/${kind}`);
   const over = (['chained', 'typed'] as const).flatMap((way) => Object.entries(kinds(way === 'chained' ? chained : typed)).map(([kind, chain]) => ({ scope: `seconds/first-cell/${kind}/${way}`, ms: Math.round(chain.at(-1).seconds * 100) * 10 }))).filter((m) => m.ms > hi(m.scope));
+  const exactOver = (['chained', 'typed'] as const).flatMap((way) => Object.entries(kinds(way === 'chained' ? chained : typed)).map(([kind, chain]) => ({ scope: `seconds/first-cell/${kind}/${way}`, ms: chain.at(-1).seconds * 1000 }))).filter((m) => m.ms > hi(m.scope));
+  t.diagnostic(`MEASURED exact-first-cell-ms ${JSON.stringify((['chained', 'typed'] as const).flatMap((way) => Object.entries(kinds(way === 'chained' ? chained : typed)).map(([kind, chain]) => ({ scope: `seconds/first-cell/${kind}/${way}`, ms: chain.at(-1).seconds * 1000, ceiling: hi(`seconds/first-cell/${kind}/${way}`) }))))}`);
+  if (process.env['HEAD_FIRST_CELL_STRICT'] === '1') deepStrictEqual(exactOver, [], 'every first cell meets its unchanged ceiling before release');
   t.diagnostic(`MEASURED seconds/first-cell against its ceilings: ${over.map((m) => `RED ${m.scope} ${m.ms} ms past 0..${hi(m.scope)}`).join(' · ') || 'every first cell within its ceiling'}${over.length ? ` · rests on ${valueOf(lock, 'seconds/first-cell/rests-on')}` : ''}`);
   ok(over.length === 0 || valueOf(lock, 'seconds/first-cell/rests-on') !== '', 'a first cell past its ceiling names what it rests on');
 });

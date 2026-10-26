@@ -5,6 +5,8 @@ import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
+import { decodeLocatedReference, LOCATION_REFERENCE_PROFILE } from '@lapxo/topos/contract';
+import { encodeReference } from '@lapxo/bound/reference';
 import { deviceOf } from '../src/core/device.ts';
 import { valueOf } from '../src/core/lock.ts';
 import { fill } from '../src/core/surface.ts';
@@ -58,15 +60,20 @@ const from = await sender();
 const linkAt = async (url: string) => { const [packed] = await ask([tool('share', { place: from.place, to: from.pkg, urls: JSON.stringify({ [name]: url }) })], [from.shared], from.env); return cells(packed).find((c) => c.code === 'head/shared-link')?.fields.link as string; };
 const inspect = (to: { place: string; env: Record<string, string> }, link: string) => ask([tool('connect', { place: to.place, document: link })], [], to.env).then((got) => got[0]);
 
-test('no address, no link: share lays the standing document ready to publish and says a link needs where its bytes are published', () => {
+test('without a location share names its content by the separate profile and declares its missing holder', async () => {
   ok(/^said\/head\/shared-unlinked /m.test(from.packed) && !/shared-link /.test(from.packed) && existsSync(join(from.pkg, name)), from.packed.slice(0, 400));
+  const link = /link="([^"]+)"/.exec(from.packed)?.[1];
+  ok(link?.startsWith(LOCATION_REFERENCE_PROFILE));
+  const to = await receiver(), before = viewOf(to.place, 'lines'), seen = await inspect(to, link!);
+  deepStrictEqual(codes(seen), ['head/reference-needs']);
+  deepStrictEqual(viewOf(to.place, 'lines'), before);
 });
 
 test('yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted', async () => {
   const address = await served(() => readFileSync(join(from.pkg, name)));
   try {
     const link = await linkAt(address.url);
-    ok(link?.startsWith(valueOf(lock, 'link/prefix')), String(link));
+    ok(link?.startsWith(LOCATION_REFERENCE_PROFILE), String(link));
     for (const to of [await admitting(), await admitting()]) {
       const seen = await inspect(to, link), inspected = cells(seen).find((c) => c.code === 'head/inspected');
       deepStrictEqual([codes(seen), inspected?.fields.sources.split(', ').sort()], [['head/inspected', 'head/sharer-unverified'], ['auth', 'jobs']], text(seen));
@@ -106,5 +113,17 @@ test('no: a place that admits no content transport for the link-s address inspec
   try {
     const seen = await inspect(await receiver(), await linkAt(address.url)), missing = cells(seen).find((c) => c.code === 'head/transport-missing');
     ok(missing && missing.next.tool === 'ask' && /scope=wire\/transport /.test(missing.fields.lines) && address.asked() === 0, text(seen));
+  } finally { address.close(); }
+});
+
+ test('the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting', async () => {
+  const address = await served(() => readFileSync(join(from.pkg, name)));
+  try {
+    const located = decodeLocatedReference(await linkAt(address.url));
+    const legacy = encodeReference({ class: located.class, algorithm: located.algorithm, digest: located.digest, blob: located.blob, source: address.url });
+    ok(legacy.startsWith('#bound:1?'));
+    const to = await admitting(), before = viewOf(to.place, 'lines'), seen = await inspect(to, legacy);
+    deepStrictEqual(codes(seen), ['head/inspected', 'head/sharer-unverified']);
+    deepStrictEqual(viewOf(to.place, 'lines'), before);
   } finally { address.close(); }
 });

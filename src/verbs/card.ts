@@ -12,6 +12,6 @@ import { valueOf } from '../core/lock.ts';
 export const cardAt = async (context: Context, place: string | undefined): Promise<{ readonly card: string } | { readonly said: readonly string[] }> => {
   const held = place === undefined || !context.files.has(place, LOCK) ? { lines: [] } : await standingOr(context, place);
   if ('said' in held) return held;
-  const read = `${valueOf(context.lock, 'receipt/at')}:`, keys = ['head', 'person'].map((role) => context.device(role) ?? '');
-  return { card: createHash('sha256').update([baseOf(held.lines.filter((l) => !l.at?.startsWith(read) && !l.scope?.startsWith(`${valueOf(context.lock, 'use/family')}/`))), ...keys].join('\n')).digest('hex').slice(0, 16) };
+  const read = `${valueOf(context.lock, 'receipt/at')}:`, use = `${valueOf(context.lock, 'use/family')}/`, keys = ['head', 'person'].map((role) => context.device(role) ?? '');
+  return { card: createHash('sha256').update([baseOf(held.lines.filter((l) => !l.at?.startsWith(read) && !l.scope?.startsWith(use))), ...keys].join('\n')).digest('hex').slice(0, 16) };
 };

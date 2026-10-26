@@ -1,0 +1,22 @@
+{
+  "example": "declared-lineage-retirement@1",
+  "response": {
+    "temperature": 21,
+    "sky": "clear"
+  },
+  "sources": [
+    "forecast",
+    "mirror"
+  ],
+  "declare": "bound-lock/1 at=policy:person/lineage by=target form=alphabet measure=id role=writes scope=shares/mirror value=forecast",
+  "withdraw": "bound-lock/1 at=policy:person/lineage by=target form=alphabet measure=id role=writes scope=shares/mirror value=withdraw",
+  "before": {
+    "code": "head/agreed-lineage",
+    "marks": "●○"
+  },
+  "after": {
+    "code": "head/agreed-unknown",
+    "marks": "●●"
+  },
+  "interpretation": "No declaration after withdrawal is unknown lineage, never proof of independence; old per-source receipts remain."
+}
