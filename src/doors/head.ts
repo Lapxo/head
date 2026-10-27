@@ -6,7 +6,7 @@ import { aboutOf, members, valueOf, type Said } from '../core/lock.ts';
 import { sayIn } from '../core/surface.ts';
 import { matchTemplate, refusedOn, shapeOf, surfaceOf } from '../ports/surface.ts';
 import { birth, closing, founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, words } from '../ports/bound.ts';
-import { configureHost } from '../ports/host.ts';
+import { configureHost, authorityAt } from '../ports/host.ts';
 import { held, keep } from '../ports/cache.ts';
 import { dropAt, hasAt, layAt, listAt, takeAt } from '../ports/place.ts';
 import * as documents from '../ports/documents.ts';
@@ -52,10 +52,15 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
     const read = (at: string | undefined): boolean => at?.startsWith(`${valueOf(lock, 'receipt/at')}:`) === true;
     const once = <T>(key: string, place: string, fold: () => Promise<T>): Promise<T> => (folds.get(`${key}\0${place}`) ?? ((p) => (folds.set(`${key}\0${place}`, p as Promise<never>), p))(fold())) as Promise<T>;
     const acted = (place: string, root: boolean, done: Promise<Outcome>): Promise<Outcome> => done.then((got) => { if ('lines' in got && !got.lines.every((l) => ((f) => f.kind === 'fact' && read(f.value.fields['at']))(parse(l)))) moved.add(place); return got; }).finally(() => { forget(place); if (root) touched.add(place); });
+    const covered = async (place: string, lot: readonly string[], then: () => Promise<Outcome>): Promise<Outcome> => {
+      const checked = await authorityAt(place, valueOf(lock, 'founding/root').split('/')[1]!, 'record-coverage', lot, Date.now(), signal);
+      return 'refused' in checked ? { refused: checked.refused } : checked.decision !== 'allow' ? { refused: `REFUSE·authority-preflight/${checked.decision} ${checked.needs.join('|')}` } : then();
+    };
     return {
       lock,
       bound: (cwd, args) => run(runs, cwd, args, {}, signal),
       standing: (place) => once('standing', place, () => standingAt(runs, place, (lines) => ['head', 'person'].flatMap((role) => ((id) => (id === undefined ? [] : [id]))(idIn(lines, device(role)))), (line) => read(line.at), signal)),
+      authority: (place, key, kind, records, presented) => authorityAt(place, key, kind, records, Date.now(), signal, presented),
       policy: (place) => once('policy', place, () => policyAt(runs, place, signal)),
       world: (place, view) => once(`world/${view}`, place, () => settledView(runs, place, view, signal)),
       adapter: async (origin) => ((name) => (!/^[a-z-]+$/.test(name) ? undefined : import(new URL(`../ports/adapters/${name}${ext}`, import.meta.url).href)))(URL.canParse(origin) ? valueOf(lock, `adapter/${new URL(origin).protocol.slice(0, -1)}`) : ''),
@@ -63,8 +68,8 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
       home: () => home,
       personal: () => process.env[valueOf(lock, `platform/${process.platform}/home`)] ?? '',
       found: (place, account) => acted(place, true, founded(runs, place, ...asRoot(account), signal)),
-      signRoot: (place, lot, account) => sign(runs, place, lot, ...asRoot(account), signal),
-      landRoot: (place, lot, account) => acted(place, true, landAct(runs, place, lot, ...asRoot(account), signal)),
+      signRoot: (place, lot, account) => covered(place, lot, () => sign(runs, place, lot, ...asRoot(account), signal)),
+      landRoot: (place, lot, account) => acted(place, true, covered(place, lot, () => landAct(runs, place, lot, ...asRoot(account), signal))),
       moved: (place) => moved.has(place),
       settle: async () => { const red: string[] = []; for (const place of touched) { const why = await closing(runs, place, signal); if (why !== undefined) red.push(sayIn(lock)('receipts-open', { place, why })); } touched.clear(); return red; },
       pinned: (place, file) => pinnedAt(runs, place, file, signal),

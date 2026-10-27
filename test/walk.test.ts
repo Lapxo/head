@@ -9,7 +9,9 @@ import { run } from './cli.ts';
 import { registryFor } from './signers.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
-import { api, said, text, viewOf } from './place.ts';
+import { api, said, text, viewOf, lock } from './place.ts';
+import { authorityAt, configureHost } from '../src/ports/host.ts';
+configureHost(lock, { wait: 30000, most: 16777216 });
 
 const tool = (name: string, args: Record<string, string>) => ({ method: 'tools/call', params: { name, arguments: args } });
 const yes = (params: any) => ({ action: 'accept', content: params.requestedSchema?.properties?.yes ? { yes: true } : {} });
@@ -74,9 +76,13 @@ test('a place that connected a source and granted a read can still be walked —
     deepStrictEqual(packet?.code, 0, packet?.err.join('\n'));
     const payload = facts(packet?.out), named = / scope=uses\/things .*value=(sha256:[0-9a-f]+)/.exec(payload.join('\n'))?.[1];
     ok(named && payload.some((l) => / scope=dep\/topos-openapi-blob .*shape=/.test(l)) && payload.some((l) => / scope=allow\/read .*witness=/.test(l)), payload.join('\n'));
+    const observation = () => authorityAt(member.dir, 'root', 'record-coverage', [row('settings/foreign-clock', 'id', 'seen')], 1_792_800_000_000), before = await observation();
+    ok(!('refused' in before) && before.decision === 'allow', JSON.stringify(before));
     match((bound(member, ['land', lot('payload', payload), ...signed])?.out ?? []).join('\n'), /INGRESS [1-9]\d* new evidence lines/);
+    const after = await observation(); ok(!('refused' in after) && after.decision === 'allow', JSON.stringify(after));
+    if (!('refused' in before) && !('refused' in after)) deepStrictEqual(after.authority, before.authority, 'foreign evidence does not change the receiver authority card');
     writeFileSync(join(member.dir, 'things.json'), readFileSync(join(shared, 'things.json')));
-    await ask([tool('connect', { place: member.dir, source: 'things', document: join(member.dir, 'things.json') })], [], member.head, yes);
-    deepStrictEqual(/ scope=uses\/things .*value=(sha256:[0-9a-f]+)/.exec(viewOf(member.dir, 'lines'))?.[1], named, 'the same document compiles to the pin the walk named');
+    const connected = await ask([tool('connect', { place: member.dir, source: 'things', document: join(member.dir, 'things.json') })], [], member.head, yes);
+    deepStrictEqual(/ scope=uses\/things .*value=(sha256:[0-9a-f]+)/.exec(viewOf(member.dir, 'lines'))?.[1], named, `the same document compiles to the pin the walk named: ${text(connected[0])}`);
   } finally { await server.close(); }
 });

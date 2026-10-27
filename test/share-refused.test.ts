@@ -49,7 +49,7 @@ test('no: what makes a place someone-s never travels — a place with its root, 
   match(text((await ask([tool('share', { place: from.place, to: from.pkg })], [from.shared], from.env))[0]), said('shared'));
   const held = readFileSync(join(from.place, 'TARGET.bound'), 'utf8').split('\n'), own = (re: RegExp) => held.find((l) => re.test(l))!;
   const [publics, privates] = [held.flatMap((l) => (/ measure=public-key /.test(l) ? [/ value=(\S+)/.exec(l)![1]!] : [])), secretsOf(from.env)], identity = [...publics, ...privates];
-  const named = ['TARGET.bound', valueOf(lock, 'link/document'), ...readFileSync(join(from.pkg, 'TARGET.bound'), 'utf8').split('\n').flatMap((l) => / needs=(\S+)/.exec(l)?.[1] ?? [])].map((f) => join(from.pkg, f)).sort();
+  const named = ['TARGET.bound', valueOf(lock, 'link/document'), valueOf(lock, 'share/birth-file'), ...readFileSync(join(from.pkg, 'TARGET.bound'), 'utf8').split('\n').flatMap((l) => / needs=(\S+)/.exec(l)?.[1] ?? [])].map((f) => join(from.pkg, f)).sort();
   deepStrictEqual([publics.length, privates.length > 0, filesIn(from.pkg).sort()], [4, true, named], 'the control: a root, two device keys and a member, the secrets behind them, and every file the package is: its lock, its link document and the bytes its lines name');
   deepStrictEqual(filesIn(from.pkg).flatMap((f) => identity.filter((s) => readFileSync(f, 'utf8').includes(s)).map(() => f)), [], 'no file of the package holds a public key or a secret of the place');
   doesNotMatch(readFileSync(join(from.pkg, 'TARGET.bound'), 'utf8'), / scope=(keys|signer|admit|access|allow)\/| measure=(public-key|signer|coverage|class) /);

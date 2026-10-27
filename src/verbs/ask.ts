@@ -21,7 +21,7 @@ export const asked: Answer = async (asked, context) => {
   if (carded && held !== undefined && 'said' in held) return held.said;
   const owed = asked['source'] && founded ? await paidIn(asked, context, place!) : undefined;
   if (owed !== undefined && !owed.answer) return owed.said;
-  const answer = asked['sources'] && founded ? await compared(asked, context, place!) : asked['lines'] ? await read('plan', 'plan') : founded && asked['view'] === valueOf(context.lock, 'claim/view') ? await viewed(asked, context) : asked['view'] ? await read('view', 'look') : asked['source'] ? await read('offers', 'look')
+  const answer = carded && (asked['lines'] !== undefined || asked['preflight'] !== undefined || asked['authority'] !== undefined) ? await read('card', 'card', { place }) : asked['sources'] && founded ? await compared(asked, context, place!) : asked['lines'] ? await read('plan', 'plan') : founded && asked['view'] === valueOf(context.lock, 'claim/view') ? await viewed(asked, context) : asked['view'] ? await read('view', 'look') : asked['source'] ? await read('offers', 'look')
     : !carded ? await read('places', 'places') : founded ? [...await read('card', 'card', { place }), ...await pendingIn(context, place!)] : [];
   const after = held === undefined || 'said' in held || place === undefined || !context.moved(place) ? held : await cardAt(context, place);
   return [...(owed?.said ?? []), ...answer, ...(after === undefined || 'said' in after ? [] : [sayIn(context.lock)('card', { place: place ?? '', card: after.card, from: 'ask' })])];

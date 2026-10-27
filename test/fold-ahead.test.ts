@@ -7,12 +7,14 @@ import type { AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { folded } from '../src/ahead/fold.ts';
+import { readAhead } from '../src/ahead/read.ts';
+import type { Context } from '../src/core/answer.ts';
+import type { Cell } from '../src/ports/surface.ts';
 import { aboutOf, members, valueOf } from '../src/core/lock.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 import { lock, born } from './place.ts';
-import { run } from './cli.ts';
-import { readingOf } from '../src/ports/reading.ts';
+import { readingOf, run } from './cli.ts';
 
 const call = (name: string, args: Record<string, unknown>) => ({ method: 'tools/call', params: { name, arguments: args } });
 
@@ -117,4 +119,12 @@ test('person-words, forbidden: no word of bound-s machinery reaches what a perso
   const word = new RegExp(`\\b(${words.join('|')})(s|ed|ing)?\\b`, 'i'), filled = (t: string) => t.replace(/\{[^}]*\}/g, ''), reads = (s: string) => read.some((r) => (r.endsWith('/') ? s.startsWith(r) : s === r)) && !apart.includes(s);
   deepStrictEqual(lock.filter((l) => reads(l.scope ?? '') && !(l.about ?? '').startsWith('bound-lock/') && word.test(filled(l.scope === 'prose/en/bundle/manifest' ? JSON.parse(l.about ?? '{}').description : l.about ?? ''))).map((l) => l.scope), []);
   ok(words.length > 10 && read.length > 2 && word.test('nothing was folded') && !word.test(filled('{scope} is not in it')), 'the words are read, and a placeholder is not');
+});
+
+
+test('a card with no source read does no speculative recapture; every actual question validates its own snapshot',async()=>{
+ const context={settle:async()=>[],standing:async()=>{throw Error('redundant standing read');},policy:async()=>{throw Error('redundant policy read');}} as unknown as Context;
+ const cells=[{code:'head/card',state:'done',fields:{place:'changed'},next:{tool:'ask',args:{place:'changed',card:'true'}}}] as Cell[];
+ await readAhead(cells,context,new AbortController().signal);
+ await readAhead(cells,context,AbortSignal.abort());
 });

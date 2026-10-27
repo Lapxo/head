@@ -5,11 +5,10 @@ import { canonical, LOCK, parse } from '@lapxo/topos/wire';
 import { factsOf, type Said } from '../core/lock.ts';
 import type { Outcome } from '../core/answer.ts';
 import { spawned } from './process.ts';
-import { hosted, hosting, signedIn } from './host.ts';
+import { capturedViews, hosted, hosting, signedIn } from './host.ts';
 import type { portOf } from './keychain.ts';
 import { cleared, scratchOf } from './scratch.ts';
 import { folded } from '../ahead/fold.ts';
-import { readingOf } from './reading.ts';
 import type { Printed } from './process.ts';
 export type { Printed };
 
@@ -36,28 +35,28 @@ const why = (printed: Printed | undefined): string | undefined => printed?.err.f
 
 export type Folded = { readonly lines: readonly Said[] } | { readonly refused: string };
 const readOf = (printed: Printed | undefined): Folded => (printed === undefined || printed.code !== 0 ? { refused: why(printed) ?? '' } : { lines: factsOf(printed.out) });
-/** Native identities and expected-identity results come from the same public CLI contract. Without it, read fresh. */
-const nativeView = (name: string, place: string, view: string, signal?: AbortSignal): Promise<Folded> => {
-  const read = async (expected?: string): Promise<Folded> => {
-    if (expected === undefined) return readOf(await run(name, place, [words.read, words.view, view], {}, signal));
-    const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}@${expected}`], {}, signal), view, expected);
-    return 'refused' in result ? result : { lines: factsOf(result.text!.split('\n')) };
-  };
-  return !words.identity ? read() : folded(`${name}/${view}`, place, async () => { const result = readingOf(await run(name, place, [words.read, words.view, `${words.identity}@${view}`], {}, signal), view); return 'refused' in result ? undefined : result.identity; }, read);
+/** Only the requested views are captured by Bound; every result binds its text to the actual current native identity. */
+const nativeViews = async (name: string, place: string, views: readonly string[], signal?: AbortSignal): Promise<Folded[]> => {
+  const captured = capturedViews(place, views, signal);
+  if (captured?.kind === 'refuse' && captured.code === 'host/instrument-pin') return views.map(() => ({ refused: captured.diagnostic }));
+  return Promise.all(views.map(async (view) => {
+    const result = captured?.kind === 'fact' ? captured.views.find((one) => one.view === view) : undefined;
+    const read = result ? await folded(`${name}/${view}`, place, async () => result.identity, async () => ({ lines: factsOf(result.text.split('\n')) })) : readOf(await run(name, place, [words.read, words.view, view], {}, signal));
+    return 'refused' in read || view !== words.standing || read.lines.some((line) => line.scope === words.profile) ? read
+      : { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` };
+  }));
 };
 
-/** Read normative standing plus authenticated device evidence; ambiguous device history refuses. */
-export const policyAt = async (name: string, place: string, signal?: AbortSignal): Promise<Folded> => ((folded) => ('refused' in folded || folded.lines.some((line) => line.scope === words.profile) ? folded
-  : { refused: `REFUSE·act the place declares no ${words.profile}: land would print nothing of what it admits, so head lands nothing there; its root can land the local-act@1 profile and view/act` }))(await nativeView(name, place, words.standing, signal));
+export const policyAt = async (name: string, place: string, signal?: AbortSignal): Promise<Folded> => (await nativeViews(name, place, [words.standing], signal))[0]!;
 
 export const standingAt = async (name: string, place: string, devicesOf: (lines: readonly Said[]) => readonly string[], isHistory: (line: Said) => boolean, signal?: AbortSignal): Promise<Folded> => {
-  const [folded, evidence] = await Promise.all([policyAt(name, place, signal), nativeView(name, place, words.evidence, signal)]);
-  if ('refused' in folded) return folded;
-  if ('refused' in evidence) return evidence;
-  const ids = new Set(devicesOf(folded.lines)), own = evidence.lines.filter((line) => ids.has(line.by ?? ''));
+  const [folded, evidence] = await nativeViews(name, place, [words.standing, words.evidence], signal);
+  if ('refused' in folded!) return folded!;
+  if ('refused' in evidence!) return evidence!;
+  const ids = new Set(devicesOf(folded!.lines)), own = evidence!.lines.filter((line) => ids.has(line.by ?? ''));
   const key = (line: Said) => `${line.scope} ${line.measure}`, attested = own.filter((line) => !isHistory(line));
-  const unfolded = attested.find((line) => line.value === 'withdraw' || attested.filter((other) => key(other) === key(line)).length > 1 || folded.lines.some((other) => key(other) === key(line)));
-  return unfolded === undefined ? { lines: [...folded.lines, ...own] }
+  const unfolded = attested.find((line) => line.value === 'withdraw' || attested.filter((other) => key(other) === key(line)).length > 1 || folded!.lines.some((other) => key(other) === key(line)));
+  return unfolded === undefined ? { lines: [...folded!.lines, ...own] }
     : { refused: `REFUSE·standing ${unfolded.by} attests ${key(unfolded)} more than once, withdrawn, or beside the place's own line: folding a device key's lines is bound's, and bound publishes no view of it` };
 };
 

@@ -16,7 +16,7 @@ jobs:
         shard: [1, 2, 3, 4, 5, 6]
     runs-on: ubuntu-latest
     env:
-      SHARD_1: test/doors.test.ts test/share.test.ts test/verbs.test.ts test/reuse.test.ts test/born-closed.test.ts test/reading-identity.test.ts test/numbers.test.ts test/transport.test.ts
+      SHARD_1: test/authority-preflight.test.ts test/portable-birth.test.ts test/doors.test.ts test/share.test.ts test/verbs.test.ts test/reuse.test.ts test/born-closed.test.ts test/reading-identity.test.ts test/numbers.test.ts test/transport.test.ts
       SHARD_2: test/act.test.ts test/channels.test.ts test/consent.test.ts test/gestures.test.ts test/claims.test.ts test/fold-ahead.test.ts test/trust.test.ts
       SHARD_3: test/marks.test.ts test/share-receive.test.ts test/authorizer.test.ts test/link-url.test.ts test/read.test.ts test/shape.test.ts test/release.test.ts test/device.test.ts test/surface.test.ts test/refusal-record.test.ts test/welcome.test.ts test/bound.test.ts test/warm-compact.test.ts test/pack.test.ts test/pending-document.test.ts test/keys.test.ts test/acts.test.ts test/bundle.test.ts test/onboarding.test.ts
       SHARD_4: test/issuer.test.ts test/fetch.test.ts test/connect.test.ts test/first-minute.test.ts test/use.test.ts test/places.test.ts test/warm.test.ts test/session.test.ts test/process.test.ts test/stores.test.ts test/signer.test.ts

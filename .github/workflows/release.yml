@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: npm install --prefix .instrument --no-save --ignore-scripts @lapxo/bound@0.2.7
+      - run: npm install --prefix .instrument --no-save --ignore-scripts @lapxo/bound@0.2.8
       - name: Prepare release
         env:
           GH_TOKEN: ${{ github.token }}

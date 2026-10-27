@@ -1,0 +1,15 @@
+{
+  "example": "public-birth-inspection@1",
+  "sender": {
+    "scope": "lang",
+    "value": "en"
+  },
+  "receiver": {
+    "scope": "lang",
+    "value": "fr"
+  },
+  "expectedCode": "head/birth-inspected",
+  "expectedCollision": "lang",
+  "negativeCode": "head/document-digest",
+  "authorityTransferred": false
+}

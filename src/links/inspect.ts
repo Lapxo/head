@@ -1,4 +1,5 @@
 import { decodeReference } from '@lapxo/bound/reference';
+import { decodeLocatedReference, locatedReferenceIdentity } from '@lapxo/topos/contract';
 import { canonical } from '@lapxo/topos/wire';
 import { inStanding, type Asked, type Context } from '../core/answer.ts';
 import { members, valueOf } from '../core/lock.ts';
@@ -7,7 +8,7 @@ import { linesOf } from '../core/worlds.ts';
 import { rootIn } from '../flows/device.ts';
 
 /**
- * A #bound: link connected: inspected by the instrument in the person's place, never authenticated — its bytes are the
+ * A legacy or located reference connected: inspected by the instrument in the person's place, never authenticated — its bytes are the
  * link's, and nothing shows who shared it — and what it names is shown; nothing is connected or granted, since a package
  * is received by the digest its sharer sent apart. A place that admits no content transport is handed the lines that admit
  * one, to sign; bytes that do not arrive are owed by the link until they do; bytes that are not what it names are refused.
@@ -17,17 +18,25 @@ export const linked = (asked: Asked, context: Context): Promise<readonly string[
   const [say, word, link] = [sayIn(context.lock), (k: string) => valueOf(context.lock, k), asked['document'] ?? ''], admits = members(valueOf(context.lock, 'link/transport'));
   if (asked['why'] === 'true') return [...standing.filter((l) => admits.includes(l.scope ?? '') || l.scope?.startsWith('transport/')).map((l) => canonical(l)), say('why-transport', { place })];
   const lines = context.lock.filter((l) => admits.some((s) => l.scope === `birth/${s}`)).map(({ about: _about, scope, ...l }) => canonical({ ...l, scope: scope!.slice('birth/'.length), at: 'policy:person/transport', by: 'target' }));
-  let reference: ReturnType<typeof decodeReference>;
-  try { reference = decodeReference(link); } catch (refused) { return [say('link-refused', { link, why: refused instanceof Error ? refused.message : String(refused) })]; }
-  if (![admits[0], `transport/${new URL(reference.source).protocol.slice(0, -1)}`].every((s) => standing.some((l) => l.scope === s))) return [say('transport-missing', { place, lines: lines.join('\n') })];
-  const [printed, scope] = [await context.bound(place, [word('bound/read'), link]), `${word('place/needs')}/bytes/${reference.blob.slice(reference.algorithm.length + 1, reference.algorithm.length + 17)}`];
-  const [owed, root, why] = [standing.find((l) => l.scope === scope && l.role === 'demands' && l.value === link), rootIn(context, place), printed?.err.filter((l) => !l.startsWith('{')).at(-1) ?? ''];
-  if ('said' in root) return root.said;
+  let reference: ReturnType<typeof decodeLocatedReference>;
+  const legacy = link.startsWith(word('link/prefix'));
+  try { reference = legacy ? (({ source, ...held }) => ({ ...held, location: source, 'location-class': 'holder' as const }))(decodeReference(link)) : decodeLocatedReference(link); } catch (refused) { return [say('link-refused', { link, why: refused instanceof Error ? refused.message : String(refused) })]; }
+  const identity = legacy ? link : locatedReferenceIdentity(reference), source = reference.location;
+  if (!source || reference['location-class'] === 'viewer') return [say('reference-needs', { identity, needs: 'bytes/holder-location' })];
+  if (![admits[0], `transport/${new URL(source).protocol.slice(0, -1)}`].every((s) => standing.some((l) => l.scope === s))) return [say('transport-missing', { place, lines: lines.join('\n') })];
+  const [printed, scope] = [await context.bound(place, [word('bound/read'), link]), `${word('place/needs')}/bytes/${reference.blob.slice(reference.algorithm.length + 1, legacy ? reference.algorithm.length + 17 : undefined)}`];
+  const [owed, why, absent] = [standing.find((l) => l.scope === scope && l.role === 'demands' && l.value === identity), printed?.err.filter((l) => !l.startsWith('{')).at(-1) ?? '', printed?.out.some((line) => line.startsWith('NEEDS '))];
   if (printed?.code !== 0 && !why.includes(word('link/unarrived'))) return [say('link-refused', { link, why })];
-  const settled = (lot: readonly string[]) => (lot.length ? context.landRoot(place, lot, root.account).then((got) => ('refused' in got ? say('not-landed', { why: got.refused }) : got.lines)) : Promise.resolve([] as readonly string[]));
-  const due = { at: 'policy:head/link', by: 'target', form: 'alphabet', measure: 'id', role: 'demands', scope, value: link };
-  if (printed?.code !== 0) return [say('link-owed', { place, source: reference.source }), ...await settled(owed ? [] : [canonical(due)])];
+  const settled = async (lot: readonly string[]): Promise<readonly string[]> => {
+    if (!lot.length) return [];
+    const root = rootIn(context, place);
+    if ('said' in root) return root.said;
+    const got = await context.landRoot(place, lot, root.account);
+    return 'refused' in got ? [say('not-landed', { why: got.refused })] : got.lines;
+  };
+  const due = { at: 'policy:head/link', by: 'target', form: 'alphabet', measure: 'id', role: 'demands', scope, value: identity };
+  if (printed?.code !== 0 || absent) return [say('link-owed', { place, source }), ...await settled(owed ? [] : [canonical(due)])];
   const named = linesOf(new TextEncoder().encode(printed.out.filter((l) => l.startsWith('TOPOS ')).map((l) => l.slice('TOPOS '.length)).join('\n')));
   const sources = named.filter((l) => /^sources\/[^/]+$/.test(l.scope ?? '')).map((l) => l.scope!.split('/')[1]!);
-  return [say('inspected', { source: reference.source, sources: sources.join(', ') || '—', digest: reference.digest }), say('sharer-unverified', {}), ...await settled(owed ? [canonical({ ...due, value: 'withdraw' })] : [])];
+  return [say('inspected', { source, sources: sources.join(', ') || '—', digest: reference.digest }), say('sharer-unverified', {}), ...await settled(owed ? [canonical({ ...due, value: 'withdraw' })] : [])];
 }, context.policy);
