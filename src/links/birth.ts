@@ -34,7 +34,7 @@ export const receivedBirth = async (asked: Asked, context: Context): Promise<rea
       const pack = decodePortableBirth(new TextDecoder().decode(bytes), budget(context)), allowed = members(valueOf(context.lock, 'share/birth-scopes'));
       if (pack.declarations.some(line => ((p) => p.kind !== 'fact' || !allowed.includes(p.value.fields.scope ?? ''))(parse(line)))) return [say('birth-refused', { why: 'declaration outside the public birth selection' })];
       const inspected = inspectPortableBirth(pack, [...new Set(standing.flatMap(line => line.scope ?? []))], budget(context));
-      return [say('birth-inspected', { status: inspected.status, collisions: inspected.collisions.join(', ') || 'none', origin: pack.origin, declarations: pack.declarations.join('\n') })];
+      return [say('birth-inspected', { inspection: inspected.status, collisions: inspected.collisions.join(', ') || 'none', origin: pack.origin, declarations: pack.declarations.join('\n') })];
     } catch (error) { return refused(context, error); }
   }, context.policy);
 };

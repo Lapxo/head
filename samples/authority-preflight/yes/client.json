@@ -4,17 +4,17 @@
   "runs": [
     {
       "node": "22",
-      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 1188.43825\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1519.882083\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 915.987584\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1461.835334\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1303.516083\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 4737.418291\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 4015.384708\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 337.667958\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 15706.185875\n"
+      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 933.587541\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1399.08025\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 769.107542\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1400.800417\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 91807.667208\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 4841.84025\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 4004.683417\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 346.461667\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 105730.264166\n"
     },
     {
       "node": "24",
-      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 1072.76675\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1476.839375\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 879.900208\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1506.525875\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1360.929875\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 4990.4925\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 3965.463625\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 329.260834\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 15812.68375\n"
+      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 969.765209\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1463.864\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 786.899209\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1470.254584\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1599.495167\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 4837.82725\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 3957.820958\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 326.901542\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 15672.784834\n"
     }
   ],
   "inputs": [
     {
       "path": "docs/contracts/authority-preflight.json",
-      "sha256": "sha256:fbbac5eead0bd31a37c555e611481a278f47a3fe601d6d9102458e8e55ff8122"
+      "sha256": "sha256:7fced2a3721f0857fb78fbcf72c5b0225c8c1e80c10fc192869928014b748b35"
     },
     {
       "path": "src/access/contract.ts",
@@ -150,7 +150,7 @@
     },
     {
       "path": "src/links/birth.ts",
-      "sha256": "sha256:65878318a81a88bfe355370dcc5abec1b8a90b75d2627d711f51d24b3b0c616c"
+      "sha256": "sha256:7b988709cc611e741a70cf480b9b13fed0421cace2fa2be229dad3bab01c6bee"
     },
     {
       "path": "src/links/inspect.ts",
@@ -218,7 +218,7 @@
     },
     {
       "path": "src/ports/host.ts",
-      "sha256": "sha256:fdee7ae14214ac9826d221db7e1bcf06f93c504a9ef6b751c04b7399403b7caa"
+      "sha256": "sha256:45ace2ce71c074471f9ecc4b5ced609967e4900274ced6a51e88fa9360751975"
     },
     {
       "path": "src/ports/keychain.ts",
@@ -658,7 +658,7 @@
     },
     {
       "path": "test/walk.test.ts",
-      "sha256": "sha256:5c425fc592cd6b6930c0ef7301a54b6e80eadf808ae359cffbab66fa1b7a53f3"
+      "sha256": "sha256:a2821aaf6114a6a56100b4d48ba962cfa97fe68d5f625c80dc7f0f49c53ebf87"
     },
     {
       "path": "test/warm-compact.test.ts",
@@ -689,7 +689,8 @@
     "independentProjectors": [
       "test/first-minute.ts",
       "test/share-inspect.ts",
-      "test/authority-preflight-reader.ts"
+      "test/authority-preflight-reader.ts",
+      "test/walk-reading.ts"
     ],
     "staticLocalImportClosure": [
       "src/access/contract.ts",
@@ -714,5 +715,15 @@
       "test/worlds.ts"
     ]
   },
-  "Q4": "API execution, aggregates, access negotiation, secret consent and personal attestation admission remain open"
+  "Q4": "API execution, aggregates, access negotiation, secret consent and personal attestation admission remain open",
+  "artifact": {
+    "sha256": "sha256:38a180e3259eb785daf497c5213cd953727c8aaf854c5e03719771a3a0415c85",
+    "members": 174,
+    "bytes": 160695,
+    "version": "0.2.0",
+    "installedMembersIdentical": true,
+    "releaseSelection": "Prospective regional acceptance for Bound 0.2.8 re-pin and local authority preflight; not admitted, final CI or release approval",
+    "signed": false
+  },
+  "bindingSuccessor": "Independent observer added; executed production, test producers and original run logs remain unchanged."
 }

@@ -6,7 +6,6 @@ import { dirname, join, relative, sep } from 'node:path';
 import { installedHostInstrument, nativeHostEnvironment, prepareNativeViewIdentities, prepareNativeAuthorityCard, answerNativeAuthorityCard, nativeAuthorityRequestIdentity, startNativeHost, type NativeCommandHost } from '@lapxo/bound/host';
 import type { NativeHostInstrument, NativeHostOptions, NativeAuthorityAction } from '@lapxo/bound/host';
 import type { Printed } from './process.ts';
-import { parse } from '@lapxo/topos/wire';
 import { decodeAuthorityCard } from '@lapxo/topos/contract';
 import { members, valueOf, type Said } from '../core/lock.ts';
 
@@ -96,12 +95,8 @@ export const authorityAt = async (place: string, key: string, kind: string, reco
   try {
     current();
     const instrument = pinnedInstrument(root);
-    const evidence = prepareNativeViewIdentities({ place, views: ['evidence'], instrument });
-    if (evidence.kind !== 'fact') return { refused: evidence.diagnostic, code: evidence.code };
-    const epochs = evidence.views[0]!.text.split('\n').flatMap(line => { const p = parse(line); return p.kind === 'fact' && p.value.fields.epoch !== undefined ? [Number(p.value.fields.epoch)] : []; });
-    if (!epochs.length || epochs.some(epoch => !Number.isSafeInteger(epoch) || epoch < 0)) throw Error('REFUSE·authority-preflight/epoch-unavailable');
     const action = { kind, records } as NativeAuthorityAction, clock = { name: hosting.authority.clock, unit: hosting.authority.unit, now };
-    const context = { root: realpathSync(place), place: '.', key, instrument, authorityEpoch: Math.max(...epochs), clock, horizon: { clock: clock.name, unit: clock.unit, from: now, through: now }, limits: { bytes: hosting.bytes, items: hosting.authority.items }, actions: ['record-coverage', 'admission'].includes(kind) ? [action] : [] };
+    const context = { root: realpathSync(place), place: '.', key, instrument, clock, horizon: { clock: clock.name, unit: clock.unit, from: now, through: now }, limits: { bytes: hosting.bytes, items: hosting.authority.items }, actions: ['record-coverage', 'admission'].includes(kind) ? [action] : [] };
     if (!clock.name || !clock.unit || !Number.isSafeInteger(now) || hosting.authority.items < 1) throw Error('REFUSE·authority-preflight/context');
     const prepared = await prepareNativeAuthorityCard(context);
     if (prepared.kind !== 'fact') return { refused: prepared.diagnostic, code: prepared.code };

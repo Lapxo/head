@@ -4,11 +4,11 @@
   "runs": [
     {
       "node": "22",
-      "output": "TAP version 13\n# Subtest: without a location share names its content by the separate profile and declares its missing holder\nok 1 - without a location share names its content by the separate profile and declares its missing holder\n  ---\n  duration_ms: 7462.975042\n  type: 'test'\n  ...\n# Subtest: yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\nok 2 - yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\n  ---\n  duration_ms: 17814.662709\n  type: 'test'\n  ...\n# Subtest: no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\nok 3 - no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\n  ---\n  duration_ms: 17389.063875\n  type: 'test'\n  ...\n# Subtest: no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\nok 4 - no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\n  ---\n  duration_ms: 13372.979166\n  type: 'test'\n  ...\n# Subtest: no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\nok 5 - no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\n  ---\n  duration_ms: 7956.370959\n  type: 'test'\n  ...\n# Subtest: the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\nok 6 - the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\n  ---\n  duration_ms: 9053.912542\n  type: 'test'\n  ...\n# Subtest: portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\nok 7 - portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\n  ---\n  duration_ms: 3.764209\n  type: 'test'\n  ...\n# Subtest: portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\nok 8 - portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\n  ---\n  duration_ms: 1.062208\n  type: 'test'\n  ...\n# Subtest: a portable declaration is inert until a receiver makes its ordinary local admission under its own key\nok 9 - a portable declaration is inert until a receiver makes its ordinary local admission under its own key\n  ---\n  duration_ms: 1124.568208\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 97200.897666\n"
+      "output": "TAP version 13\n# Subtest: without a location share names its content by the separate profile and declares its missing holder\nok 1 - without a location share names its content by the separate profile and declares its missing holder\n  ---\n  duration_ms: 7921.105125\n  type: 'test'\n  ...\n# Subtest: yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\nok 2 - yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\n  ---\n  duration_ms: 18827.7125\n  type: 'test'\n  ...\n# Subtest: no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\nok 3 - no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\n  ---\n  duration_ms: 18801.712833\n  type: 'test'\n  ...\n# Subtest: no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\nok 4 - no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\n  ---\n  duration_ms: 14093.816958\n  type: 'test'\n  ...\n# Subtest: no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\nok 5 - no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\n  ---\n  duration_ms: 8395.327167\n  type: 'test'\n  ...\n# Subtest: the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\nok 6 - the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\n  ---\n  duration_ms: 9499.544458\n  type: 'test'\n  ...\n# Subtest: portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\nok 7 - portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\n  ---\n  duration_ms: 4.240042\n  type: 'test'\n  ...\n# Subtest: portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\nok 8 - portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\n  ---\n  duration_ms: 1.204625\n  type: 'test'\n  ...\n# Subtest: a portable declaration is inert until a receiver makes its ordinary local admission under its own key\nok 9 - a portable declaration is inert until a receiver makes its ordinary local admission under its own key\n  ---\n  duration_ms: 1223.162208\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 99527.239542\n"
     },
     {
       "node": "24",
-      "output": "TAP version 13\n# Subtest: without a location share names its content by the separate profile and declares its missing holder\nok 1 - without a location share names its content by the separate profile and declares its missing holder\n  ---\n  duration_ms: 7454.066667\n  type: 'test'\n  ...\n# Subtest: yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\nok 2 - yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\n  ---\n  duration_ms: 17946.840875\n  type: 'test'\n  ...\n# Subtest: no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\nok 3 - no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\n  ---\n  duration_ms: 17874.649458\n  type: 'test'\n  ...\n# Subtest: no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\nok 4 - no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\n  ---\n  duration_ms: 13360.033791\n  type: 'test'\n  ...\n# Subtest: no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\nok 5 - no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\n  ---\n  duration_ms: 7894.152667\n  type: 'test'\n  ...\n# Subtest: the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\nok 6 - the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\n  ---\n  duration_ms: 9138.954625\n  type: 'test'\n  ...\n# Subtest: portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\nok 7 - portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\n  ---\n  duration_ms: 3.894917\n  type: 'test'\n  ...\n# Subtest: portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\nok 8 - portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\n  ---\n  duration_ms: 1.015292\n  type: 'test'\n  ...\n# Subtest: a portable declaration is inert until a receiver makes its ordinary local admission under its own key\nok 9 - a portable declaration is inert until a receiver makes its ordinary local admission under its own key\n  ---\n  duration_ms: 1117.426959\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 94392.519834\n"
+      "output": "✔ without a location share names its content by the separate profile and declares its missing holder (7979.691417ms)\n✔ yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted (18953.861958ms)\n✔ no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed (18873.07425ms)\n✔ no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn (14392.867834ms)\n✔ no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign (8318.024875ms)\n✔ the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting (9629.44025ms)\n✔ portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority (5.601541ms)\n✔ portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles (0.965583ms)\n✔ a portable declaration is inert until a receiver makes its ordinary local admission under its own key (1231.695041ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 99980.2505\n"
     }
   ],
   "inputs": [
@@ -146,7 +146,7 @@
     },
     {
       "path": "src/links/birth.ts",
-      "sha256": "sha256:65878318a81a88bfe355370dcc5abec1b8a90b75d2627d711f51d24b3b0c616c"
+      "sha256": "sha256:7b988709cc611e741a70cf480b9b13fed0421cace2fa2be229dad3bab01c6bee"
     },
     {
       "path": "src/links/inspect.ts",
@@ -214,7 +214,7 @@
     },
     {
       "path": "src/ports/host.ts",
-      "sha256": "sha256:fdee7ae14214ac9826d221db7e1bcf06f93c504a9ef6b751c04b7399403b7caa"
+      "sha256": "sha256:45ace2ce71c074471f9ecc4b5ced609967e4900274ced6a51e88fa9360751975"
     },
     {
       "path": "src/ports/keychain.ts",
@@ -382,7 +382,7 @@
     },
     {
       "path": "test/authority-preflight-reader.ts",
-      "sha256": "sha256:cd4da6d3749d4b174d2979bb177a63111de219a2358e7948fad36aec6e685eb3"
+      "sha256": "sha256:b9fbece2ab5590ea80737e73e90f4a5c42d8a5440fc0ec320f44d82af1e0a73d"
     },
     {
       "path": "test/authority-preflight.test.ts",
@@ -658,7 +658,7 @@
     },
     {
       "path": "test/walk.test.ts",
-      "sha256": "sha256:5c425fc592cd6b6930c0ef7301a54b6e80eadf808ae359cffbab66fa1b7a53f3"
+      "sha256": "sha256:a2821aaf6114a6a56100b4d48ba962cfa97fe68d5f625c80dc7f0f49c53ebf87"
     },
     {
       "path": "test/warm-compact.test.ts",
@@ -688,7 +688,8 @@
   "inputPolicy": {
     "excludedIndependentProjectors": [
       "test/first-minute.ts",
-      "test/share-inspect.ts"
+      "test/share-inspect.ts",
+      "test/walk-reading.ts"
     ],
     "proof": "Neither independent capture projector is reachable through the static local test imports of the two executed entry files. All production sources remain in the manifest, covering runtime module dispatch. Each projector remains pinned separately by its implementation digest.",
     "testEntries": [
@@ -729,5 +730,15 @@
       "test/signers.ts",
       "test/worlds.ts"
     ]
-  }
+  },
+  "artifact": {
+    "sha256": "sha256:38a180e3259eb785daf497c5213cd953727c8aaf854c5e03719771a3a0415c85",
+    "members": 174,
+    "bytes": 160695,
+    "version": "0.2.0",
+    "installedMembersIdentical": true,
+    "releaseSelection": "Prospective regional acceptance for Bound 0.2.8 re-pin and local authority preflight; not admitted, final CI or release approval",
+    "signed": false
+  },
+  "bindingSuccessor": "Independent observer added; executed production, test producers and original run logs remain unchanged."
 }

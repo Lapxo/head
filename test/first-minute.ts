@@ -4,16 +4,25 @@ import { join } from 'node:path';
 
 interface Run { readonly node: string; readonly output: string }
 interface Member { readonly path: string; readonly sha256: string }
-interface Capture { readonly protocol: string; readonly artifact: { readonly sha256: string }; readonly runs: readonly Run[];
-  readonly inputs: { readonly sources: readonly Member[]; readonly runtime: readonly Member[]; readonly onboarding: string; readonly lockfile: string } }
+interface Capture { readonly protocol: string; readonly artifact: { readonly sha256: string; readonly version: string }; readonly runs: readonly Run[];
+  readonly inputs: { readonly sources: readonly Member[]; readonly runtime: readonly Member[]; readonly onboarding: string; readonly lockfile: string; readonly installedBound: string } }
 interface Timing { readonly scope: string; readonly ms: number }
 
 /** Project reviewed local client-clock captures. The strict installed client vector enforces Head's unchanged ceilings.
  * This is evidence of the captured runs, never a claim of CI execution or independent-machine reproduction.
  * The native input identity commits the complete capture, including its artifact and producer bindings.
  */
-export function observe(bytes: Uint8Array) {
-  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:23c4e23f5dada90f087f18e79d4322a875db7d6b0bae3b29d922649b45d1931b') throw Error('REFUSE·first-minute capture digest');
+export function observe(bytes: Uint8Array, coordinate = '') {
+  const metadata: Record<string, readonly [string, string]> = {
+    'package.json': ['release/metadata/manifest', 'sha256:de1dfb5db20ee6037e8f691bec2135a1e788c40c0c3484a88c7f4b817b6625b2'],
+    'package-lock.json': ['release/metadata/lock', 'sha256:31f6c69b5ed04b3e99e43ba6842fc95578c5a556e0c56bf0d3549452151594ba'],
+  };
+  const selected = metadata[coordinate];
+  if (selected) {
+    if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== selected[1]) throw Error(`REFUSE·release changed metadata ${coordinate}`);
+    return [{ scope: selected[0], role: 'writes', measure: 'defects', bound: { kind: 'interval', lo: 0, hi: 0 } }];
+  }
+  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:0d4596f8fac4ee0613596dc8930d66ccb692f9818e76b18b2caae84717a527d2') throw Error('REFUSE·first-minute capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture;
   if (capture.protocol !== 'head-first-minute-capture@1' || !/^sha256:[0-9a-f]{64}$/.test(capture.artifact?.sha256)
     || !Array.isArray(capture.runs) || capture.runs.length !== 2) throw Error('REFUSE·first-minute capture protocol');
@@ -52,5 +61,14 @@ export function run(place: string) {
   check('src', capture.inputs.sources);
   if (digest('test/onboarding.test.ts') !== capture.inputs.onboarding) throw Error('REFUSE·first-minute producer input changed');
   if (place.replace(/\/$/, '') !== 'samples/first-minute/yes') return [{ scope: 'first-minute/current-inputs', role: 'writes', measure: 'defects', bound: { kind: 'interval', lo: 0, hi: 0 } }];
-  return observe(bytes);
+  const manifest = JSON.parse(readFileSync('package.json', 'utf8'));
+  const locked = JSON.parse(readFileSync('package-lock.json', 'utf8'));
+  if (digest('package-lock.json') !== capture.inputs.lockfile || manifest.version !== capture.artifact.version
+    || locked.version !== manifest.version || locked.packages[''].version !== manifest.version
+    || JSON.stringify(manifest.dependencies) !== JSON.stringify(locked.packages[''].dependencies)) throw Error('REFUSE·release manifest/lock mismatch');
+  for (const [name, version] of Object.entries(manifest.dependencies)) {
+    if (locked.packages[`node_modules/${name}`]?.version !== version || !locked.packages[`node_modules/${name}`]?.integrity) throw Error(`REFUSE·release unpinned dependency ${name}`);
+  }
+  return [...observe(bytes), ...['release/installed-pins', 'release/cli-startup'].map(scope =>
+    ({ scope, role: 'writes', measure: 'defects', bound: { kind: 'interval', lo: 0, hi: 0 } }))];
 }
