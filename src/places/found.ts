@@ -19,6 +19,7 @@ const birthOf = (lock: readonly Said[], root: string, head: string, person: stri
 
 /** A place founded in a folder: a root key made in the keychain under the place's name — never a file — the birth lines written, and the first land signed by that root. */
 const founded = async (context: Context, dir: string, name: string): Promise<{ readonly lines: readonly string[] } | { readonly refused: string; readonly why?: string }> => {
+  if (context.files.has(dir, LOCK) || context.files.has(dir, '.bound')) return { refused: 'place-exists' };
   const account = fill(valueOf(context.lock, 'founding/root-account'), { place: name });
   const [head, person] = [deviceKey(context, 'head'), deviceKey(context, 'person')];
   if (head === undefined || person === undefined) return { refused: 'no-keychain' };
@@ -39,7 +40,7 @@ export const bornPlace = async (asked: Asked, context: Context): Promise<readonl
   const dir = asked['dir'] ?? '';
   if (!isAbsolute(dir)) return [say('place-absolute')];
   const name = (asked['name'] || basename(dir)).toLowerCase().replace(/[^a-z0-9-]+/g, '-');
-  if (context.files.has(dir, LOCK)) return [say('place-exists', { dir })];
+  if (context.files.has(dir, LOCK) || context.files.has(dir, '.bound')) return [say('place-exists', { dir })];
   const refused = await unless(context, say('elicit-place', { name, dir }));
   return refused ?? bornAt(context, dir, name);
 };

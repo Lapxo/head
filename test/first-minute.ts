@@ -14,15 +14,15 @@ interface Timing { readonly scope: string; readonly ms: number }
  */
 export function observe(bytes: Uint8Array, coordinate = '') {
   const metadata: Record<string, readonly [string, string]> = {
-    'package.json': ['release/metadata/manifest', 'sha256:de1dfb5db20ee6037e8f691bec2135a1e788c40c0c3484a88c7f4b817b6625b2'],
-    'package-lock.json': ['release/metadata/lock', 'sha256:31f6c69b5ed04b3e99e43ba6842fc95578c5a556e0c56bf0d3549452151594ba'],
+    'package.json': ['release/metadata/manifest', 'sha256:142a2b2e7477a7c4c045bc507729e5e3ce2427e0cbc19e0a5d0ed76c8693ab1c'],
+    'package-lock.json': ['release/metadata/lock', 'sha256:6bfeb732ba3dd6563941c3d9cdc5b46bead23e3332d19a3be95795e8e494039d'],
   };
   const selected = metadata[coordinate];
   if (selected) {
     if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== selected[1]) throw Error(`REFUSE·release changed metadata ${coordinate}`);
     return [{ scope: selected[0], role: 'writes', measure: 'defects', bound: { kind: 'interval', lo: 0, hi: 0 } }];
   }
-  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:0d4596f8fac4ee0613596dc8930d66ccb692f9818e76b18b2caae84717a527d2') throw Error('REFUSE·first-minute capture digest');
+  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:c415a3dd92eb6dfe893fd72a607526a359b9acd499c72e9838db86b8d05d8edb') throw Error('REFUSE·first-minute capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture;
   if (capture.protocol !== 'head-first-minute-capture@1' || !/^sha256:[0-9a-f]{64}$/.test(capture.artifact?.sha256)
     || !Array.isArray(capture.runs) || capture.runs.length !== 2) throw Error('REFUSE·first-minute capture protocol');
@@ -65,7 +65,7 @@ export function run(place: string) {
   const locked = JSON.parse(readFileSync('package-lock.json', 'utf8'));
   if (digest('package-lock.json') !== capture.inputs.lockfile || manifest.version !== capture.artifact.version
     || locked.version !== manifest.version || locked.packages[''].version !== manifest.version
-    || JSON.stringify(manifest.dependencies) !== JSON.stringify(locked.packages[''].dependencies)) throw Error('REFUSE·release manifest/lock mismatch');
+    || JSON.stringify(Object.entries(manifest.dependencies).sort()) !== JSON.stringify(Object.entries(locked.packages[''].dependencies).sort())) throw Error('REFUSE·release manifest/lock mismatch');
   for (const [name, version] of Object.entries(manifest.dependencies)) {
     if (locked.packages[`node_modules/${name}`]?.version !== version || !locked.packages[`node_modules/${name}`]?.integrity) throw Error(`REFUSE·release unpinned dependency ${name}`);
   }

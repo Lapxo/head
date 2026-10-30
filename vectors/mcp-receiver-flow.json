@@ -1,0 +1,87 @@
+{
+  "protocol": "head-mcp-receiver-vectors@1",
+  "initial": "Empty base or recipient-owned place; no sender grants, keys or credentials",
+  "cases": [
+    {
+      "id": "connected",
+      "expect": true
+    },
+    {
+      "id": "denied",
+      "expect": true
+    },
+    {
+      "id": "normalRead",
+      "expect": true
+    },
+    {
+      "id": "currentByteRefusal",
+      "expect": true
+    },
+    {
+      "id": "noCallDuringConnect",
+      "expect": true
+    },
+    {
+      "id": "exportedMcpb",
+      "expect": true
+    },
+    {
+      "id": "recipientInspectionInert",
+      "expect": true
+    },
+    {
+      "id": "recipientDeclineNoWrites",
+      "expect": true
+    },
+    {
+      "id": "recipientNativeFoundation",
+      "expect": true
+    },
+    {
+      "id": "recipientImportNoInvocation",
+      "expect": true
+    },
+    {
+      "id": "receiverOwnedAssociation",
+      "expect": true
+    },
+    {
+      "id": "restartReusesAssociation",
+      "expect": true
+    },
+    {
+      "id": "selectedRead",
+      "expect": true
+    },
+    {
+      "id": "unselectedActionRefused",
+      "expect": true
+    },
+    {
+      "id": "selectedActionConsent",
+      "expect": true
+    },
+    {
+      "id": "catalogueDriftRefused",
+      "expect": true
+    },
+    {
+      "id": "response-content-visible",
+      "expect": true,
+      "status": "Requires exact fixture text through the pinned response view in sender and installed recipient; historical failures are retained separately."
+    },
+    {
+      "id": "current-physical-capacity",
+      "status": "blocked, ceilings unchanged"
+    },
+    {
+      "id": "answer-seconds",
+      "ceiling": "0..2",
+      "observedMaximumRedSeconds": 6,
+      "strictMilliseconds": 2000,
+      "status": "Open; original answer/seconds also remains unchanged."
+    }
+  ],
+  "network": "Two explicit local TLS fixture domains. No third-party MCP was contacted."
+}

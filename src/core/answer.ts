@@ -14,6 +14,9 @@ import { sayIn } from './surface.ts';
 
 export type Asked = Readonly<Record<string, string | undefined>>;
 export interface Context {
+  readonly remote?: () => Promise<import('../ports/adapters/remote.ts').RemotePort>;
+  readonly packaged?: () => Promise<{ readonly root: string; readonly read: (path: string) => Uint8Array | undefined }>; 
+  readonly bundle?: (payload: import('../ports/adapters/bundle.ts').Payload | undefined) => Promise<{ readonly bytes: Uint8Array; readonly digest: string; readonly sources: readonly string[] }>;
   readonly lock: readonly Said[];
   readonly bound: (cwd: string, args: readonly string[]) => Promise<Printed | undefined>;
   readonly roots: () => Promise<readonly string[]>; readonly client: () => string | undefined;
@@ -51,7 +54,7 @@ export type Answer = (asked: Asked, context: Context) => Promise<readonly string
 export const answerOf = async (family: 'tools' | 'resources', name: string): Promise<Answer> =>
   ((await import(new URL(`../${family}/${name}${import.meta.url.slice(import.meta.url.lastIndexOf('.'))}`, import.meta.url).href)) as { answer: Answer }).answer;
 
-export const placeOf = async (asked: Asked, context: Context): Promise<string | undefined> => asked['place'] || (await context.roots())[0] || ((held) => ('refused' in held ? undefined
+export const placeOf = async (asked: Asked, context: Context): Promise<string | undefined> => asked['place'] || (await context.roots()).find((root) => context.files.has(root, LOCK) || context.files.has(root, '.bound')) || ((held) => ('refused' in held ? undefined
   : ((named) => (named.length === 1 ? named[0] : undefined))(held.lines.filter((l) => l.scope?.startsWith(`${valueOf(context.lock, 'home/family')}/`) && l.value !== 'withdraw').map((l) => l.value!))))(context.files.has(context.home(), LOCK) ? await context.policy(context.home()) : { refused: '' });
 export const inPlace = async (asked: Asked, context: Context, then: (place: string) => Promise<readonly string[]>): Promise<readonly string[]> =>
   ((place) => (place === undefined ? [sayIn(context.lock)('no-place')] : then(place)))(await placeOf(asked, context));

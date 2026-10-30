@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "head",
   "display_name": "head",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An MCP server that answers by its lines: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
   "author": {
     "name": "Lapxo"

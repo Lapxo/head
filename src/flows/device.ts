@@ -1,6 +1,6 @@
 import { placeNameOf } from '../core/answer.ts';
 import type { Context, Outcome } from '../core/answer.ts';
-import { canonical, parse } from '@lapxo/topos/wire';
+import { canonical, parse, LOCK } from '@lapxo/topos/wire';
 import { deviceOf, idIn, uncoveredIn } from '../core/device.ts';
 import { members, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
@@ -10,9 +10,17 @@ import { adoptsIn } from '../adopt/adopt.ts';
 /** A key of this device by its role: read from the keychain, or made there once; only its public half is ever handed on. */
 export const deviceKey = (context: Context, role?: string): string | undefined => context.keys.made?.(deviceOf(context.lock, role).account);
 
-/** The keychain account of a place's root, when this keychain holds it — who configures the place is here; else what head says of that. */
-export const rootIn = (context: Context, place: string): { readonly account: string } | { readonly said: readonly string[] } =>
-  ((account) => (context.keys.held?.(account) === undefined ? { said: [sayIn(context.lock)('no-root', { place })] } : { account }))(fill(valueOf(context.lock, 'founding/root-account'), { place: placeNameOf(place) }));
+/** Read the receiver index through its authenticated policy, or an empty index before its birth. */
+export const homeIndex = (context: Context) => context.files.has(context.home(), LOCK) ? context.policy(context.home()) : Promise.resolve({ lines: [] as readonly Said[] });
+
+/** Resolve the account through the authenticated index; a legacy folder name only locates a key whose public half must match the authenticated root. */
+export const rootIn = async (context: Context, place: string): Promise<{ readonly account: string } | { readonly said: readonly string[] }> => {
+  const home = context.home(), index = await homeIndex(context);
+  const names = 'refused' in index ? [] : [...new Set(index.lines.filter((l) => l.scope?.startsWith(`${valueOf(context.lock, 'home/family')}/`) && l.value === place).map((l) => l.scope!.slice(valueOf(context.lock, 'home/family').length + 1)))];
+  const name = place === home ? valueOf(context.lock, 'home/name') : names[0] ?? placeNameOf(place), account = fill(valueOf(context.lock, 'founding/root-account'), { place: name });
+  const held = await context.policy(place), key = 'refused' in held ? undefined : held.lines.find((l) => l.scope === valueOf(context.lock, 'founding/root') && l.measure === 'public-key')?.value;
+  return 'refused' in index || names.length > 1 || key === undefined || context.keys.held?.(account) !== key ? { said: [sayIn(context.lock)('no-root', { place })] } : { account };
+};
 
 /**
  * Who signs a widening of a place: its root, when this keychain holds it and the place admits this device's person to
@@ -23,10 +31,10 @@ export const rootIn = (context: Context, place: string): { readonly account: str
  * lock as its parent has nothing signed here: what the parent would cut is bound's to judge.
  */
 type By = { readonly key: string; readonly root: boolean; readonly records: (lot: readonly string[]) => readonly string[]; readonly sign: (lot: readonly string[]) => Promise<Outcome>; readonly land: (lot: readonly string[]) => Promise<Outcome> };
-export const widening = (context: Context, place: string, lines: readonly Said[], lot: readonly string[]): By | { readonly said: readonly string[] } => {
+export const widening = async (context: Context, place: string, lines: readonly Said[], lot: readonly string[]): Promise<By | { readonly said: readonly string[] }> => {
   const parent = adoptsIn(context.lock, lines);
   if (parent !== undefined) return { said: [sayIn(context.lock)('parent-lock', { place, parent })] };
-  const [root, witness, field] = [rootIn(context, place), idIn(lines, context.device('person')), valueOf(context.lock, 'widening/witness')];
+  const [root, witness, field] = [await rootIn(context, place), idIn(lines, context.device('person')), valueOf(context.lock, 'widening/witness')];
   const wire = lines.filter((l) => l.scope === 'wire/fields'), admits = wire.some((l) => members(l.value ?? '').includes(field));
   const witnessed = (signed: readonly string[]) => signed.map((line) => ((got) => (got.kind === 'fact' ? canonical({ ...got.value.fields, [field]: witness! }) : line))(parse(line)));
   if ('account' in root && witness !== undefined) {

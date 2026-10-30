@@ -1,0 +1,34 @@
+{
+  "contract": "head-share-runtime@1",
+  "scope": "Provisioned runtime and actual sender share route; remote source execution and recipient association are separate obligations",
+  "producer": "Head source compiler plus standard pinned dependency installation and MCPB packager",
+  "pins": "Head's installed profile selects the runtime inventory by digest. Each declared member is verified by physical byte count and digest before export. The standard selected member set is preserved through export, including declarations needed by an installed instrument's own identity.",
+  "distribution": "The exact existing packager2.1.2 becomes a production dependency; no registry version, resolved address or integrity changes. No install script runs. The candidate uses metadata0.2.0 until separate release selection; it is not relabeled as an already selected0.2.1 release.",
+  "assembly": "Initial standard packaging selects runtime members using the existing exclusions. Re-export receives that verified positive member list and overrides generic packager defaults to preserve it; forbidden source module files, changelogs and private state remain excluded. Runtime inventory and public profile travel as separate metadata, without a self-referential inventory digest.",
+  "ports": "Format details live in the format adapter. Core selects a declared suffix and pending protocols from policy. Folder and bundle export share one destination boundary. The packager runs through the existing bounded process port with captured output, minimal environment, cancellation and temporary cleanup.",
+  "budgets": {
+    "share/bundle-bytes": {
+      "measure": "share-public-bytes",
+      "unit": "physical bytes of selection plus selected public package, excluding runtime and ZIP container",
+      "value": "0..16777216",
+      "per": "export request; never sum across requests or compare with Root storage"
+    },
+    "share/bundle-selections": {
+      "measure": "share-selections",
+      "unit": "selection items per list: source entries and, independently, selected offers within each source",
+      "value": "0..64",
+      "per": "each selection list in one export request; independent of public birth items"
+    },
+    "process": "The existing process wait and printed-output ceilings apply unchanged"
+  },
+  "consumerEvidence": "Node22/24 use the actual default provisioned Head route to found a disposable place, export an empty base, boot that export, connect a public API through existing consent and export its selected package. Current runtime member corruption refuses before writing an artifact. A sender environment canary and private state are absent from unpacked results.",
+  "network": "Production dependency provisioning is offline from integrity-verified cached packages. The existing first-connect world reader may fetch its already pinned public world archive using the existing receiver policy; this is not an offline compiler-world claim and no pin changes.",
+  "rootEvidence": "A native observer verifies reviewed captures and current producer inputs. The actual artifacts are verified in the executed consumer, retained separately and named by digest; the Root observer does not claim to re-execute the consumer or re-read the archive.",
+  "remaining": [
+    "remote protocol connect/call integration",
+    "recipient first-use and existing-home package association, revisions and coexistence",
+    "successor installed acceptances for changed production inputs",
+    "final release selection and real supported-host installation"
+  ],
+  "authority": "Installing and receiving bytes do not install sender keys, grants, answers or action authority. Credentials stay with the recipient. Public documents themselves must be reviewed for embedded sensitive content; no generic text secret detector is claimed."
+}

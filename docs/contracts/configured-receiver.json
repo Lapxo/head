@@ -1,0 +1,25 @@
+{
+  "contract": "head-configured-receiver@2",
+  "status": "contract; admission and execution evidence are recorded separately",
+  "configuration": "Only protocol, name, canonical HTTPS endpoint with full path, catalogue digest and selected tool names. Public document also carries tools and resource for the pinned MCP interpreter. Commands, environment, credential containers and URL credentials/query/fragment are refused. Arbitrary document text is not a secret detector.",
+  "network": "The ordinary receiver binds its own transport. Before every connection, resolve the hostname, reject any non-global or special-use address unless explicitly bound by trusted receiver code, and connect only to a checked address. Payload data cannot supply DNS policy, trust roots, private-network bindings or credentials. TLS peer verification is explicit; inherited proxies, cookies and redirects are not used.",
+  "transport": "Pinned existing SDK Streamable HTTP client, exact endpoint path, bounded pages/tools/catalogue and total wire bytes/time, no reconnect retry; close on completion, rejection and cancellation. The single physical SDK owner handles both protocol directions.",
+  "invocation": "The ordinary read/action flows retain recipient grants, cards, caps, access and signed receipts. Every new MCP invocation additionally requires recipient confirmation; hints grant nothing. Unstated action access may be attempted anonymously only through this confirmed MCP path; it is not an authentication claim. Discovery alone does not invoke a tool. Retained response reuse is not a new invocation and still requires fresh source-byte and policy identities.",
+  "association": "Uses existing alphabet/id/digest records in a namespace selected by trusted receiver policy, not by package data. Receives Bound-authenticated local standing, plans first association, same revision, revision update or collision. Nothing is persisted on inspection or decline. Ordinary recipient import must succeed before approved records are submitted through the existing Bound path.",
+  "history": "One explicit act identifier is supplied by the caller. Only changed records are exactly withdrawn; unchanged records are retained. The receiver owns the signature. New revisions require explicit approval, and same-revision different-digest content refuses. Selecting another target does not delete the old place. No sender key, source grant or permission is installed by an association.",
+  "blocking": [
+    "Physical source/core/door ceilings exceeded; exact measured widening is proposed separately and has not been applied.",
+    "Strict end-to-end source-read latency remains above 2000 ms; neither rounding nor scope changes close it.",
+    "The new Topos-MCP standing and blob are local proposals, not published or owner-admitted."
+  ],
+  "pending": [
+    "Native owner admission and unchanged-ceiling capacity judgment",
+    "Successor installed acceptances after this production integration",
+    "Real supported Desktop installation and final release verification"
+  ],
+  "root": "The preparation does not mutate an existing Root, use its owner, change a ceiling, modify the installed Bound, sign an artifact or publish.",
+  "sourceIntegrity": "The public document is compiled by the existing pinned MCP world. Its full endpoint is host transport metadata, not inferred from an origin. Fresh document digest must occur in the compiled source reading before use or retained response reuse. Tool mapping must be exact, otherwise named refusal; no renamed tools or alternate compiler.",
+  "limits": "Public catalogue discovery is anonymous. A server requiring credentials to list tools is refused; no automatic OAuth or credential guessing is implemented. Invocation attachments, when present, come from the receiver access flow, headers only, never from the package. Existing list/byte/time budgets bound sessions.",
+  "responseModel": "A compiled offer may explicitly name one protocol-owned answer view. It must be safe, unique and already admitted by the recipient from the pinned provider standing. A missing or conflicting view refuses. No raw-body fallback or inferred disclosure fields.",
+  "worldSelection": "Adopt the explicitly requested protocol worlds; use the configured default only when no protocol world is specified. Retain existing worlds. A changed existing world pin refuses and requires a separate explicit migration."
+}

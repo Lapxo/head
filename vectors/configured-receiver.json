@@ -1,0 +1,11 @@
+{
+  "protocol": "head-configured-receiver-vectors@1",
+  "producer": "test/configured-receiver.test.ts plus native-association.ts",
+  "domains": ["sum", "lookup"],
+  "cases": [
+    {"name":"configured transport", "positive":"exact endpoint path and catalogue; selected call only after authorization", "negative":"unknown selection, drift, denied action, redirects, cancellation, absent network capability, wire budget"},
+    {"name":"public configuration", "positive":"five explicit public fields", "negative":"headers, environment, command, URL credentials, query, downgrade"},
+    {"name":"receiver association", "positive":"first acceptance, reloaded local standing, separate identifiers and revision update", "negative":"decline has no records; same revision with different content refuses; old replay cannot overwrite a newer receiver choice"}
+  ],
+  "claim": "Prerequisite port behavior only. Not complete MCPB recipient or live Head integration. Structural and line guards remain blocking."
+}

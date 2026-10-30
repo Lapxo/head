@@ -21,7 +21,7 @@ export const firstRun = async (asked: Asked, context: Context, then: (place: str
   const [source, document, until] = [(asked['source'] ?? '').toLowerCase().replace(/[^a-z0-9-]+/g, '-'), asked['document'] ?? '', untilOf(word('access/period'), context.now())];
   const refused = await unless(context, say('elicit-first-run', { dir, source, document, until }));
   if (refused) return refused;
-  const born = await bornAt(context, dir, name), root = rootIn(context, dir);
+  const born = await bornAt(context, dir, name), root = await rootIn(context, dir);
   if (born[0] !== say('born', { name, dir }) || 'said' in root) return 'said' in root ? [...born, ...root.said] : born;
   const connected = await then(dir, true), unread = connected.some((l) => l.startsWith('said/head/document-unread ')), held = unread ? undefined : await context.policy(dir);
   if (held !== undefined && ('refused' in held || !held.lines.some((l) => l.scope === `uses/${source}`))) return [...born, ...connected];

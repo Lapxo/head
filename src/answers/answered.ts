@@ -10,7 +10,7 @@ const nothing = (bytes: Uint8Array): boolean => ((text) => text === '' || /^\[\s
 /** Distinguish an empty response from missing transport bytes; only the latter leaves a named need. */
 export const answering = (context: Context, place: string, asked: Asked, frame: Frame): Frame => {
   const need = `${valueOf(context.lock, 'place/needs')}/bytes/${frame.source}/${frame.operation}`, held = frame.lines.find((l) => l.scope === need && l.role === 'demands' && l.value !== 'withdraw');
-  const owe = (line: string) => ((root) => ('said' in root ? undefined : context.landRoot(place, [line], root.account)))(rootIn(context, place));
+  const owe = async (line: string) => ((root) => ('said' in root ? undefined : context.landRoot(place, [line], root.account)))(await rootIn(context, place));
   const withdrawn = ({ about: _about, sig: _sig, epoch: _epoch, ...l }: Readonly<Record<string, string>>) => canonical({ ...l, by: 'target', value: 'withdraw' });
   return { ...frame,
     typed: (status, bytes) => (nothing(bytes) ? Promise.resolve(frame.say('answered-nothing', { source: frame.source, operation: frame.operation, status, at: new Date(context.now()).toISOString() })) : frame.typed(status, bytes)),

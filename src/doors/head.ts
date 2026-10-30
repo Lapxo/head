@@ -17,7 +17,7 @@ import { readAhead } from '../ahead/read.ts';
 import { cardAt } from '../verbs/card.ts';
 import { digestOf, guardOf, refusalsOf } from './guard.ts';
 
-export interface Door extends Client { readonly roots: () => Promise<readonly string[]>; readonly client: () => string | undefined; readonly name: string }
+export interface Door extends Client { readonly roots: () => Promise<readonly string[]>; readonly client: () => string | undefined; readonly name: string; readonly network?: Parameters<typeof import('../ports/adapters/remote.ts').remoteAt>[2] }
 export const askedOf = (raw: Readonly<Record<string, unknown>> | undefined): Asked => Object.fromEntries(Object.entries(raw ?? {}).map(([k, v]) => [k, v === undefined ? undefined : typeof v === 'object' ? JSON.stringify(v) : String(v)]));
 /** head behind a door: its lock read, every call answered one at a time and each answer's next read ahead, the same for every door. */
 export const headOf = (lock: readonly Said[], root: string, ext: string, door: Door) => {
@@ -58,6 +58,9 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
     };
     return {
       lock,
+      remote: async () => (await import(new URL(`../ports/adapters/remote${ext}`, import.meta.url).href)).remoteAt({ pages: Number(valueOf(lock, 'share/bundle-selections').split('..')[1]), tools: Number(valueOf(lock, 'share/bundle-selections').split('..')[1]), bytes: Number(valueOf(lock, 'share/bundle-bytes').split('..')[1]), wireBytes: Number(valueOf(lock, 'share/bundle-bytes').split('..')[1]), milliseconds: limits.wait }, signal, door.network),
+      packaged: async () => (await import(new URL(`../ports/adapters/bundle${ext}`, import.meta.url).href)).publicAt(root, Number(valueOf(lock, 'share/bundle-bytes').split('..')[1])),
+      bundle: async payload => (await import(new URL(`../ports/adapters/bundle${ext}`, import.meta.url).href)).bundleAt(root, lock, payload, signal),
       bound: (cwd, args) => run(runs, cwd, args, {}, signal),
       standing: (place) => once('standing', place, () => standingAt(runs, place, (lines) => ['head', 'person'].flatMap((role) => ((id) => (id === undefined ? [] : [id]))(idIn(lines, device(role)))), (line) => read(line.at), signal)),
       authority: (place, key, kind, records, presented) => authorityAt(place, key, kind, records, Date.now(), signal, presented),

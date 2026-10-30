@@ -1,0 +1,66 @@
+{
+  "protocol": "head-bundle-receiver-vectors@1",
+  "cases": [
+    {
+      "id": "inert-base",
+      "input": "no composition",
+      "expected": "ordinary empty Head"
+    },
+    {
+      "id": "first-install",
+      "input": "canonical selected compiled package; no association",
+      "expected": "named next connect; no write"
+    },
+    {
+      "id": "decline",
+      "input": "no consent",
+      "expected": "no import or association"
+    },
+    {
+      "id": "import",
+      "input": "consent; exact public bytes",
+      "expected": "source pins verified; local association afterward"
+    },
+    {
+      "id": "restart",
+      "input": "same package and pins",
+      "expected": "route to chosen local place"
+    },
+    {
+      "id": "selected-read",
+      "input": "selected API operation; ordinary local authorization",
+      "expected": "normal receipt and response"
+    },
+    {
+      "id": "unselected-action",
+      "input": "operation absent from selection",
+      "expected": "refusal; no remote call"
+    },
+    {
+      "id": "corrupt-source",
+      "input": "one altered declared byte",
+      "expected": "refusal before consent/import"
+    },
+    {
+      "id": "collision",
+      "input": "same id/revision; different payload digest",
+      "expected": "named refusal"
+    },
+    {
+      "id": "unsafe-member",
+      "input": "traversal or symlink",
+      "expected": "refusal"
+    },
+    {
+      "id": "budget",
+      "input": "public bytes over declared budget",
+      "expected": "refusal"
+    },
+    {
+      "id": "source-pin",
+      "input": "same source bytes in unrelated places with/without receipts output",
+      "expected": "same source pin; source intervals retained"
+    }
+  ],
+  "model": "No claim of full configured-MCP integration, Desktop installation or Root admission"
+}

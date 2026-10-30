@@ -1,0 +1,19 @@
+{
+  "contract": "head-share-assembly@2",
+  "status": "contract; admission and consumer executions recorded separately",
+  "surface": "existing do/share with an .mcpb destination and optional recipe JSON in args",
+  "base": "No recipe produces Head without connected sources. Pinned compiler worlds are not preconfigured provider APIs.",
+  "selection": "A recipe selects connected, pinned API or MCP sources. Source count and per-source offer count use the declared selection budget. Only selected sources are packaged. Full selected-source catalogue metadata may remain to verify its catalogue pin; the receiver association narrows callable offers but grants no action.",
+  "urls": "A missing canonical document locator returns connect. protocol=mcp explicitly selects discovery of that endpoint. Export never guesses a protocol, discovers a service or invokes a tool implicitly.",
+  "runtime": "The host provisions a locked member inventory. The standard packager is included at its existing exact version. Export preserves each selected runtime member and carries the same inventory so the empty base can be exported again.",
+  "packaging": "Reuse the pinned standard MCPB packager, isolated through Head's existing bounded process port. Capture stdout/stderr, use a minimal environment and remove the temporary directory on success, failure or cancellation. Recipient execution needs no npm or compiler.",
+  "privateState": "Never copy sender environment, home, keychain, signing keys, grants, answers, journals or birth history. Public source documents themselves require review for embedded sensitive content; this is not a general text secret detector.",
+  "authority": "An artifact and its selection have separate digests. Neither an internal digest, an MCP hint nor installing a package grants authority. Recipient credentials and explicit consent remain local.",
+  "evidence": "Consumer captures distinguish local fixture execution from independent-machine and real Desktop-installation claims.",
+  "blocked": [
+    "Native capacity and owner admission",
+    "Installed acceptance successors and final delivery/CI"
+  ],
+  "release": "No admission, signature or publication by this preparation. The manifest/lock promote only an already pinned packager, under exact owner review; metadata version remains0.2.0 until separate selection.",
+  "runtimeContract": "head-share-runtime@1"
+}

@@ -1,0 +1,86 @@
+{
+  "protocol": "head-composition-vectors@1",
+  "interpretation": "Inputs are already interpreted source projections; synthetic digests identify fixture data, not retrieved remote bytes.",
+  "initial": {
+    "sources": [
+      {
+        "name": "archive",
+        "kind": "api",
+        "document": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "pin": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "offers": [
+          "list",
+          "get"
+        ]
+      },
+      {
+        "name": "calculator",
+        "kind": "mcp",
+        "document": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "pin": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "offers": [
+          "list",
+          "sum"
+        ]
+      }
+    ],
+    "recipe": {
+      "id": "my-work",
+      "revision": "1.0.0",
+      "title": "My work",
+      "description": "Selected sources",
+      "sources": [
+        {
+          "source": "archive",
+          "namespace": "records",
+          "offers": [
+            "list"
+          ]
+        },
+        {
+          "source": "calculator",
+          "namespace": "numbers",
+          "offers": [
+            "list",
+            "sum"
+          ]
+        }
+      ]
+    },
+    "policy": {
+      "maximum": 10
+    }
+  },
+  "expected": {
+    "namespaces": [
+      "numbers",
+      "records"
+    ],
+    "sources": [
+      "calculator",
+      "archive"
+    ],
+    "authorityInstalled": false
+  },
+  "catalogueVectors": [
+    "two unrelated tool domains",
+    "readOnlyHint without authorization refuses",
+    "metadata changed before invocation refuses",
+    "catalogue changed during authorization refuses",
+    "unknown tool refuses",
+    "duplicate tool refuses",
+    "pagination cycle refuses",
+    "page limit refuses",
+    "tool limit refuses",
+    "byte limit refuses",
+    "cancelled request closes transport"
+  ],
+  "mcpbVectors": [
+    "two bundle identities",
+    "manifest 0.3 accepted by pinned standard packager",
+    "composition bytes preserved",
+    "no implicit credential env",
+    "invalid manifest refused"
+  ],
+  "scope": "Regional selection and MCP port proof; no remote/process transport, share integration, runtime closure, recipient lifecycle or Desktop acceptance is claimed."
+}

@@ -1,0 +1,22 @@
+{
+  "contract": "head-world-standing-size@1",
+  "producer": "Head native world-standing reader",
+  "consumer": "Existing interval judgment in the installed Bound instrument",
+  "scope": "world/standing-bytes",
+  "measure": "world-standing-bytes",
+  "unit": "one physical byte of one uncompressed standing payload",
+  "limit": "0..1048576",
+  "model": "Each declared world is a separate question world/standing-bytes/<world>. The same unchanged interval applies independently to each question; sizes are not added across worlds, requests, Root history, blobs or unrelated files.",
+  "reason": "The unqualified built-in bytes measure selects the Root's own aggregate byte count before scoped observations. This qualified measure identifies the intended producer and unit, retaining the existing numeric ceiling.",
+  "integrity": "Require exactly one pin for each selected world, payload presence and a matching digest before emitting the complete reading. Missing, changed or ambiguous selected input refuses; it never becomes zero.",
+  "overflow": "Measure a valid pinned oversize payload honestly; the existing Bound interval judgment detects it. The reader does not compare against the ceiling or authorize an exception.",
+  "runtime": "No change to Head adoption, transport, cache, authority or dependency code. The reading is evidence about the declared pinned payloads; it is not a new general transport guarantee or permission to fetch a URL.",
+  "claimsExcluded": [
+    "Root byte totals",
+    "compressed archive size",
+    "independent-machine reproduction",
+    "complete custom MCP bundle",
+    "runtime behavior under an invalid or locally modified pin policy"
+  ],
+  "selection": "Only the worlds explicitly selected by world/adopts are consumed. Unselected pins are not charged. An explicitly empty selection reads zero; a missing or ambiguous selection refuses."
+}

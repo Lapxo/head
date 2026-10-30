@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { deepStrictEqual, match, ok } from 'node:assert';
-import { existsSync, mkdtempSync, readFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
@@ -15,14 +15,17 @@ const tool = (name: string, args: Record<string, string>) => ({ method: 'tools/c
 const weather = JSON.stringify({ openapi: '3.0.3', info: { title: 'weather', version: '1' }, servers: [{ url: 'https://weather.example' }],
   paths: { '/forecast': { get: { operationId: 'getForecast', security: [], responses: { 200: { description: 'ok' } } } } } });
 
-test('first run: a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice', async () => {
+for (const shared of [false, true]) test(`first run (${shared ? 'shared documents' : 'URL'}): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice`, async () => {
   const server = createServer((request, response) => { response.writeHead(request.url === '/weather.json' ? 200 : 404); response.end(request.url === '/weather.json' ? weather : ''); });
   await new Promise<void>((done) => server.listen(0, '127.0.0.1', done));
-  const document = `http://127.0.0.1:${(server.address() as AddressInfo).port}/weather.json`, mine = mkdtempSync(join(tmpdir(), 'head-person-'));
+  const address = `http://127.0.0.1:${(server.address() as AddressInfo).port}/weather.json`, mine = mkdtempSync(join(tmpdir(), 'head-person-'));
+  const document = shared ? join(mine, 'weather.json') : address;
+  if (shared) writeFileSync(document, weather);
+  const roots = shared ? [mine] : [];
   try {
   const env = { ...fakeKeychain({}).env, HEAD_HOME: join(mine, '.config', 'head'), HOME: mine, USERPROFILE: mine }, asked: string[] = [], titles: string[] = [];
   const yes = (params: any) => { asked.push(params.message); titles.push(params.requestedSchema?.properties?.yes?.title); return { action: 'accept', content: { yes: true } }; };
-  const [first] = await ask([tool('connect', { source: 'weather', document })], [], env, yes);
+  const [first] = await ask([tool('connect', { source: 'weather', document })], roots, env, yes);
   deepStrictEqual(titles, [aboutOf(lock, 'said/elicit/yes')], 'the yes a person ticks is titled by the words of its line, never by the line-s value');
   const place = join(mine, 'place');
   match(text(first), said('born')); deepStrictEqual(asked.length, 1, 'one yes founds the place and connects the source'); match(asked[0]!, said('elicit-first-run'));
@@ -34,7 +37,7 @@ test('first run: a person connects a source by its address, naming no place and 
   ok(['keys/root', 'keys/head', 'keys/person', 'lang', 'allow/reuse', 'uses/weather', 'allow/read'].every((s) => birth.some((l) => l.includes(` scope=${s} `))) && !birth.some((l) => / scope=(wire|view|transport|reader|reading-identity|signer)\//.test(l)), birth.join('\n'));
   ok(standing.some((l) => l.includes(' scope=wire/fields ')) && birth.length < standing.length, 'the profile stands in the place for bound to read; the person-s file never names it');
   asked.length = 0;
-  const [again] = await ask([tool('connect', { source: 'tides', document })], [], env, yes);
+  const [again] = await ask([tool('connect', { source: 'tides', document })], roots, env, yes);
   deepStrictEqual([asked.length, text(again).includes('born')], [1, false], 'the second source is connected to the same place, on its own yes; nothing is founded');
   match(asked[0]!, said('elicit-connect')); match(asked[0]!, new RegExp(place.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   } finally { server.closeAllConnections(); server.close(); }

@@ -10,13 +10,13 @@ import { digestIn, linesOf, pinnedOf } from '../core/worlds.ts';
 export type Line = (scope: string, measure: string, value: string, more?: Readonly<Record<string, string>>) => string;
 export type Pinned = { readonly pin: string; readonly lines: readonly Said[] } | { readonly said: readonly string[]; readonly open?: true; readonly dropped?: true };
 
-/** Pin the compiled source and adopt only the declared outputs. */
+/** Pin source declarations and read/write bounds; host output-presence facts are not source policy. */
 const compiledOf = async (context: Context, place: string, source: string, file: string): Promise<Pinned> => {
   const say = sayIn(context.lock), v = vocabOf(context.lock);
   const compiled = await context.world(place, valueOf(context.lock, 'place/view'));
   if ('refused' in compiled) return { said: [say('unsettled', { source, why: compiled.refused })] };
   const issued = (fieldsOf(compiled.lines, `${v.region}/${source}`)[v.issuers] ?? []).map((issuer) => `${v.keys}/${issuer}`);
-  const mine = compiled.lines.filter((l) => l.scope === `${v.region}/${source}` || l.scope?.startsWith(`${v.keys}/${source}/`) || l.scope?.startsWith(`${v.offers}/${source}/`) || /^(read|write)\//.test(l.scope ?? '')
+  const mine = compiled.lines.filter((l) => l.scope === `${v.region}/${source}` || l.scope?.startsWith(`${v.keys}/${source}/`) || l.scope?.startsWith(`${v.offers}/${source}/`) || (l.form === 'interval' && /^(read|write)\//.test(l.scope ?? ''))
     || issued.some((at) => l.scope === at || l.scope?.startsWith(`${at}/`)));
   if (!mine.some((l) => !/^(read|write)\//.test(l.scope ?? ''))) return { said: [], open: true };
   const refused = (['unparsed', 'unsupported', 'collision'] as const).find((word) => fieldsOf(compiled.lines, `${v.region}/${source}`)[v[word]] !== undefined);
@@ -39,7 +39,7 @@ export const pinnedAs = async (context: Context, place: string, file: string, li
  * — so the same input finds its compiled standing by name, and pinned from the place's store: a new pin lands with the old
  * one's withdraw, said at its own time, since a withdrawn saying stays withdrawn.
  */
-export const pinIn = (context: Context, place: string, lands: (lot: readonly string[]) => Promise<Outcome>, line: Line) => async (source: string, read: readonly string[]): Promise<Pinned> => {
+export const pinIn = (context: Context, place: string, lands: (lot: readonly string[]) => Promise<Outcome>, line: Line, validate?: (lines: readonly Said[]) => void) => async (source: string, read: readonly string[]): Promise<Pinned> => {
   const [say, digest, held] = [sayIn(context.lock), digestIn(context.lock), await context.policy(place)];
   if ('refused' in held) return { said: [say('unsettled', { source, why: held.refused })] };
   const own = held.lines;
@@ -47,6 +47,7 @@ export const pinIn = (context: Context, place: string, lands: (lot: readonly str
   const file = `${members(valueOf(context.lock, 'place/compiled'))[0]}/${source}/${input.split(':')[1]!.slice(0, 16)}${EXTENSION}`;
   const old = own.find((l) => l.scope === `uses/${source}`);
   const pinned = ((kept) => (kept !== undefined && kept.pin === old?.value ? kept : undefined))(pinnedOf(context.lock, old?.needs === file ? context.files.take(join(place, file)) : undefined)) ?? await compiledOf(context, place, source, file);
+  if (!('said' in pinned)) validate?.(pinned.lines);
   if ('said' in pinned || (old?.needs === file && old.value === pinned.pin)) return pinned;
   const withdraw = old === undefined ? [] : [canonical({ ...Object.fromEntries(Object.entries(old).filter(([k]) => !['sig', 'epoch'].includes(k))), by: 'target', value: 'withdraw' })];
   const landed = await lands([...withdraw, line(`uses/${source}`, 'digest', pinned.pin, { needs: file, at: `policy:person/connect/${new Date(context.now()).toISOString()}` })]);

@@ -29,7 +29,7 @@ export const linked = (asked: Asked, context: Context): Promise<readonly string[
   if (printed?.code !== 0 && !why.includes(word('link/unarrived'))) return [say('link-refused', { link, why })];
   const settled = async (lot: readonly string[]): Promise<readonly string[]> => {
     if (!lot.length) return [];
-    const root = rootIn(context, place);
+    const root = await rootIn(context, place);
     if ('said' in root) return root.said;
     const got = await context.landRoot(place, lot, root.account);
     return 'refused' in got ? [say('not-landed', { why: got.refused })] : got.lines;
