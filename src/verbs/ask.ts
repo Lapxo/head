@@ -1,3 +1,4 @@
+import { receiverQuestion } from '../core/receiver.ts';
 import { join } from 'node:path';
 import { LOCK } from '@lapxo/topos/wire';
 import { answerOf, placeOf } from '../core/answer.ts';
@@ -12,6 +13,7 @@ import { cardAt } from './card.ts';
 
 /** Route a question at the declared resolution, then attach the card of the place it read. */
 export const asked: Answer = async (asked, context) => {
+  const packaged = await receiverQuestion(asked, context); if (packaged && 'said' in packaged) return packaged.said; if (packaged) asked = { ...asked, place: packaged.place };
   const why = asked['why'] === 'true', at = (form: string): string | undefined => ((v) => (v && v !== valueOf(context.lock, 'resolution/own') ? v : undefined))(valueOf(context.lock, `resolution/${form}/${why ? 'why' : 'person'}`));
   const read = async (form: string, tool: string, more: Asked = {}): Promise<readonly string[]> => [...(why && at(form) === undefined ? [sayIn(context.lock)('why-undeclared', { form })] : []),
     ...await (await answerOf('tools', tool))({ ...asked, ...more, at: at(form) }, context)];

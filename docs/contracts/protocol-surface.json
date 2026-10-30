@@ -1,0 +1,33 @@
+{
+  "contract": "head-protocol-surface@1",
+  "sdkOwners": {
+    "src/ports/adapters/protocol.ts": [
+      "@modelcontextprotocol/sdk/server/index.js",
+      "@modelcontextprotocol/sdk/server/stdio.js",
+      "@modelcontextprotocol/sdk/types.js",
+      "@modelcontextprotocol/sdk/client/index.js",
+      "@modelcontextprotocol/sdk/client/streamableHttp.js"
+    ]
+  },
+  "paginationOwner": "src/ports/adapters/protocol.ts",
+  "clientWords": [
+    "claude",
+    "desktop",
+    "cursor",
+    "windsurf",
+    "vscode",
+    "copilot",
+    "chatgpt",
+    "continue.dev"
+  ],
+  "counting": "One physical source file owns all incoming and outgoing static SDK imports. Catalogue policy and application decisions stay outside that binding. No hidden imports or regrouped file counts; Bound judges the unchanged numerical ceiling.",
+  "pagination": "Only cursor labels in the first argument of listTools on a const SDK Client variable with an unshadowed imported constructor, and nextCursor property accesses on the corresponding const awaited result, are exempt in the declared outgoing adapter. All other occurrences, including strings, comments, identifiers, unrelated objects, fake listTools methods and other files remain forbidden.",
+  "authority": "Module roles are trusted Head code ownership, never network, tool-call or package permissions. No provider or assistant-specific behavior is introduced.",
+  "sourceKinds": {
+    "policy": "surface/kind-words/words",
+    "adapterRegion": "region/adapters",
+    "scanner": "shared by surface tests and native reader; imports, comments, identifiers and literals count",
+    "protocolOwnership": "document parsing, endpoint validation, world binding and refusal vocabulary belong to the adapter; orchestration consumes its immutable descriptor",
+    "authority": "a descriptor or a configured document never grants permission"
+  }
+}

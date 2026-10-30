@@ -15,7 +15,7 @@ export const paidIn = async (asked: Asked, context: Context, place: string): Pro
   const held = await standingOr(context, place), scope = `${word('place/needs')}/bytes/${source}`;
   const owed = 'said' in held ? undefined : held.lines.find((l) => l.scope === scope && l.role === 'demands' && l.value !== 'withdraw');
   if (owed === undefined) return { said: [], answer: true };
-  const document = owed.value ?? '', read = await context.files.read.documentOf(context, place, document), root = rootIn(context, place);
+  const document = owed.value ?? '', read = await context.files.read.documentOf(context, place, document), root = await rootIn(context, place);
   if ('said' in root) return { said: root.said, answer: false };
   if (read === undefined) return { said: [say('bytes-owed', { source, place, document })], answer: false };
   const laid = await laidIn(context, place, root.account)(source, document, read, undefined, context.machine());

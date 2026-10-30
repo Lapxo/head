@@ -1,0 +1,20 @@
+{
+  "protocol": "head-bundle-receiver@1",
+  "status": "contract; signed receipts record admission",
+  "scope": "Receiver-owned import and association of selected compiled API and configured MCP sources, using the same public package and pinned interpreters.",
+  "boundary": {
+    "inspect": "No birth, grant, source invocation or association before explicit connect consent",
+    "configuration": "Only canonical selection and declared public package members; no sender keys, roots, grants, secret locators, headers or environment",
+    "authority": "Association narrows routing; it is not authorization. Existing local access, action cards, compilation and Bound verification remain required",
+    "identity": "Selection plus public lock by digest. Runtime closure separately pinned. ZIP identity is separate.",
+    "import": "Reuse the ordinary received/connect path; verify source pins before recording receiver association",
+    "runtime": "Only allowlisted pinned runtime members; no install, script execution or arbitrary dependency discovery",
+    "sourcePolicy": "Compiled source pins include declared source output and read/write intervals; local output-presence facts are excluded",
+    "network": "Tests contact local fixtures only; installing or inspecting does not invoke a source"
+  },
+  "open": [
+    "Credential-protected MCP catalogue discovery",
+    "Real supported Desktop installation",
+    "Final installed delivery and CI verification"
+  ]
+}

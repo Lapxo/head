@@ -1,3 +1,5 @@
+import { discoverConfigured, configuredRefusal, configuredProtocol } from '../ports/adapters/configured.ts';
+import { receiverConnect } from '../core/receiver.ts';
 import { canonical, EXTENSION } from '@lapxo/topos/wire';
 import { inPlace, placeOf, unless } from '../core/answer.ts';
 import type { Asked, Context } from '../core/answer.ts';
@@ -28,8 +30,8 @@ import type { Read } from '../ports/documents.ts';
  * its pins rest in, its pin held to the package's; one that differs is refused by name, and the place holds what it
  * compiled. Nothing the sharing place was granted comes with it: access is asked here, issuer by issuer.
  */
-export const connected = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (await receivedBirth(asked, context)) ?? (members(valueOf(context.lock, 'link/prefixes')).some(prefix => (asked['document'] ?? '').startsWith(prefix)) ? linked(asked, context)
-  : ((got) => ('said' in got ? got.said : connectedAs(got.asked, context, covered)))(await resolved(asked, context)));
+export const connected = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (await receiverConnect(asked, context)) ?? (await receivedBirth(asked, context)) ?? (members(valueOf(context.lock, 'link/prefixes')).some(prefix => (asked['document'] ?? '').startsWith(prefix)) ? linked(asked, context)
+  : ((got) => ('said' in got ? got.said : connectedAs(got.asked, context, covered)))(asked['protocol'] === configuredProtocol.id ? { asked } : await resolved(asked, context)));
 const connectedAs = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (asked['source'] && !(await placeOf(asked, context)) ? firstRun(asked, context, (dir, covered) => connected({ ...asked, place: dir }, context, covered))
   : ((started) => inPlace(asked, context, async (place) => {
   const say = sayIn(context.lock), digest = digestIn(context.lock), { documentOf, fetchedAs, kindOf } = context.files.read;
@@ -37,7 +39,7 @@ const connectedAs = async (asked: Asked, context: Context, covered = false): Pro
   const [via, named, accept, lock] = [asked['via'] ?? '', asked['digest'] ?? '', /^[\w.+-]+\/[\w.+-]+$/.test(asked['accept'] ?? '') ? asked['accept'] : undefined, `.${kindOf(document)}` === EXTENSION];
   if (lock && !named) return [say('parent-lock', { place, parent: source || document })];
   if (!source && !lock) return [say('missing-param', { operation: 'connect', param: 'source' })];
-  const root = rootIn(context, place);
+  const root = await rootIn(context, place);
   if ('said' in root) return root.said;
   if (named && !/^sha256:[0-9a-f]{64}$/.test(named)) return [say('document-digest', { document, digest: named, got: '' })];
   if (lock) return ((read) => (read === undefined ? [say('document-unread', { document })] : digest(read.bytes) !== named ? [say('document-digest', { document, digest: named, got: digest(read.bytes) })]
@@ -46,20 +48,20 @@ const connectedAs = async (asked: Asked, context: Context, covered = false): Pro
   if (refused) return refused;
   const got = via ? await attachedFor(context, place, via) : undefined;
   if (got && 'said' in got) return got.said;
-  const [read, overlay] = [got ? await fetchedAs(context, document, via, got, named, accept) : await documentOf(context, place, document, named), asked['overlay'] ? await documentOf(context, place, asked['overlay']) : undefined];
+  const [read, overlay] = [asked['protocol'] === configuredProtocol.id ? await discoverConfigured(context, asked, source) : got ? await fetchedAs(context, document, via, got, named, accept) : await documentOf(context, place, document, named), asked['overlay'] ? await documentOf(context, place, asked['overlay']) : undefined];
   if (read !== undefined && 'said' in read) return read.said;
   if (read === undefined || (asked['overlay'] && overlay === undefined)) return [say('document-unread', { document })];
   if (named && digest(read.bytes) !== named) return [say('document-digest', { document, digest: named, got: digest(read.bytes) })];
   return `.${read.kind}` === EXTENSION ? [say('parent-lock', { place, parent: source })] : (await laidIn(context, place, root.account)(source, document, read, overlay, started)).said;
-}))(context.machine()));
+}))(context.machine())).catch(error => { if (asked['protocol'] === configuredProtocol.id || error instanceof Error && error.message.startsWith(configuredProtocol.failurePrefix)) return configuredRefusal(context, error); throw error; });
 
 type Connection = { readonly said: readonly string[]; readonly connected: boolean };
 type Laid = (source: string, document: string, doc: Read, overlay: Read | undefined, started: number) => Promise<Connection>;
-const received = async (context: Context, place: string, document: string, bytes: Uint8Array, named: string, laid: Laid, account: string): Promise<readonly string[]> => {
-  const [say, got] = [sayIn(context.lock), unpacked(context, document, bytes, await context.files.read.besideOf(context, document, linesOf(bytes)))];
+export const received = async (context: Context, place: string, document: string, bytes: Uint8Array, named: string, laid: Laid, account: string, publicFiles?: ReadonlyMap<string, Uint8Array | undefined>): Promise<readonly string[]> => {
+  const [say, got] = [sayIn(context.lock), unpacked(context, document, bytes, publicFiles ?? await context.files.read.besideOf(context, document, linesOf(bytes)))];
   if (!got.sources) return got.said ?? [];
   const [names, said, before] = [got.sources.map((s) => s.source).join(', '), [] as string[], await context.policy(place)];
-  const refused = coveredIn(context, 'refused' in before ? [] : before.lines, got.sources, named) ? undefined : await unless(context, say('elicit-receive', { place, package: named, sources: names || '—', open: (got.open ?? []).map((o) => o.source).join(', ') || '—' }));
+  const refused = publicFiles || coveredIn(context, 'refused' in before ? [] : before.lines, got.sources, named) ? undefined : await unless(context, say('elicit-receive', { place, package: named, sources: names || '—', open: (got.open ?? []).map((o) => o.source).join(', ') || '—' }));
   if (refused) return refused;
   for (const s of got.sources) said.push(...(await laid(s.source, s.document.at, s.document, s.overlay, context.machine())).said);
   const held = await context.policy(place), [pinOf, owed] = [(source: string) => ('refused' in held ? '' : held.lines.find((l) => l.scope === `uses/${source}`)?.value ?? ''), owedIn(context, 'refused' in held ? [] : held.lines, got.sources, got.open ?? [], named)];
@@ -71,8 +73,8 @@ export const laidIn = (context: Context, place: string, account: string): Laid =
   const say = sayIn(context.lock), v = vocabOf(context.lock), word = (k: string) => valueOf(context.lock, k), digest = digestIn(context.lock);
   const lands = (lot: readonly string[]) => context.landRoot(place, lot, account);
   const line: Line = (scope, measure, value, more = {}) => canonical({ at: 'policy:head/connect', by: 'target', form: 'alphabet', measure, role: 'writes', scope, value, ...more });
-  const pin = pinIn(context, place, lands, line);
-  const worlds = await adopted(context, place, lands, line);
+  const configured = configuredProtocol.connection(doc.bytes, source, overlay !== undefined, v);
+  const [pin, worlds] = [pinIn(context, place, lands, line, configured?.verify), await adopted(context, place, lands, line, configured?.worlds ?? [])];
   if ('refused' in worlds) return { said: [say('not-landed', { why: worlds.refused })], connected: false };
   const laid = [[`${word('place/connected')}/${source}.${doc.kind}`, doc.bytes] as const, ...(overlay ? [[`${word('place/connected')}/${source}.overlay.${overlay.kind}`, overlay.bytes] as const] : [])];
   for (const [at, bytes] of laid) context.files.lay(place, at, bytes);

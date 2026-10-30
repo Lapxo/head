@@ -1,0 +1,24 @@
+{
+  "protocol": "head-share-runtime-vectors@1",
+  "cases": [
+    "empty base and exact runtime member preservation",
+    "selected public sources with independent package identity",
+    "missing/changed runtime, unsafe/private paths, budget and cancellation refusals",
+    "selected versus unselected source bytes and changed source pin refusal",
+    "existing retained runtime fixture remains separately identified",
+    "unconnected document hint and pending protocol; credentials in locator refuse",
+    "common protected destination boundary",
+    "actual default sender export and reboot in Node22/24",
+    "actual connected public API export; sender canary absent; runtime corruption refuses"
+  ],
+  "budgets": {
+    "publicBytes": "selection and selected source package only, excluding runtime and ZIP",
+    "sourceCount": "per request; separate from birth items"
+  },
+  "claimsExcluded": [
+    "offline compiler-world execution",
+    "remote protocol invocation",
+    "automatic recipient association",
+    "final release or supported-host GUI installation"
+  ]
+}

@@ -139,10 +139,10 @@ test('a source whose document states only a bearer is reached through the flow a
   match(text(crossed), said('cross-origin')); deepStrictEqual(elsewhere.seen.length, 0);
 });
 
-test('topos-mcp is pinned, never adopted: its release publishes by digest the bytes head-s lock names, the offline vector is the place that pinned standing compiles, and bytes that do not hash to a pin are never answered', async () => {
+test('topos-mcp is pinned, never adopted: held test bytes match the declared digests, the vector names the pinned standing, and a different world-s digest is refused; public release availability is checked separately', async () => {
   const mcp = { standing: word('world/topos-mcp/standing'), blob: word('world/topos-mcp/blob') };
-  for (const digest of [mcp.standing, mcp.blob]) deepStrictEqual(digestOf(readFileSync(worldBytes(digest))), digest, 'read once from its release by its digest');
+  for (const digest of [mcp.standing, mcp.blob]) deepStrictEqual(digestOf(readFileSync(worldBytes(digest))), digest, 'held fixture bytes match their declared digest; this does not verify a public release');
   ok((JSON.parse(readFileSync(join(root, 'vectors/mcp-demo.json'), 'utf8')) as { from: string }).from.includes(mcp.standing), 'the offline vector names the standing head pins');
-  deepStrictEqual(await published(word('sources/topos-mcp'), pinned.standing, 16_777_216, 30_000), undefined);
+  deepStrictEqual(await published(word('sources/topos-mcp'), pinned.standing, 16_777_216, 30_000), undefined, 'a different world-s digest is refused');
   deepStrictEqual(word('world/adopts').split('|').includes('topos-mcp'), false);
 });

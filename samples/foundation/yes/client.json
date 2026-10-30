@@ -1,0 +1,852 @@
+{
+  "protocol": "head-foundation-readings@1",
+  "policy": "sha256:7a57ee7b891940f4cbde982ebf90f1b76c1ccd78d5af72c3760b60414b4a023d",
+  "inputs": [
+    {
+      "path": "src/access/contract.ts",
+      "sha256": "sha256:5e45d3d9c77b134d3ff7a479da7b385b1ffac863bc4f4f95d505bc23972042df"
+    },
+    {
+      "path": "src/access/obtain.ts",
+      "sha256": "sha256:5eb69ec2d57ae10cdd3f9aad9304919efa9c977662d12d684a4ed39f17462a97"
+    },
+    {
+      "path": "src/adopt/adopt.ts",
+      "sha256": "sha256:53dcf9dbd7f1a67ae371593666a424e71e0441fffa7f65adbed48923031fe57b"
+    },
+    {
+      "path": "src/ahead/budget.ts",
+      "sha256": "sha256:b6a82bf168427a0dd934d67106531fd4d62e118493e3d4e86334811ac290b98c"
+    },
+    {
+      "path": "src/ahead/fold.ts",
+      "sha256": "sha256:ab9cb1065a3671c3cbb54f7fe5a03f63b4c7514bad58636e912081e03665b835"
+    },
+    {
+      "path": "src/ahead/read.ts",
+      "sha256": "sha256:db8fdb24eb215841d353464a9630aec8fe5385714480912ac1887881a1541287"
+    },
+    {
+      "path": "src/answers/answered.ts",
+      "sha256": "sha256:443867a12ea54bf07472daf3b47c9a5d0add8ba1b1755f05f87ca84fc28873b5"
+    },
+    {
+      "path": "src/claims/claim.ts",
+      "sha256": "sha256:87547cd309d7a882f8e3a5cb84a05723824ba0ce697f01a149c07abd9bc2aa44"
+    },
+    {
+      "path": "src/claims/view.ts",
+      "sha256": "sha256:681da4339c33b73a4d307f3438bab1862b9d181173182cdabe239499d2bbf879"
+    },
+    {
+      "path": "src/compile/pin.ts",
+      "sha256": "sha256:81b2dcfc9a367b3c5796f92c2c8bb0f7558581c6cdf5604d2d2a14637c7ffd7b"
+    },
+    {
+      "path": "src/core/act.ts",
+      "sha256": "sha256:aca8fcd09bb9dcda42ec79134cf26b232f8c65a993bd64c6e251315b3142dbe9"
+    },
+    {
+      "path": "src/core/answer.ts",
+      "sha256": "sha256:8c6e81a9959c559b816fd14edbe090e8f5c1c425c3ceefe8271c49d641bf2870"
+    },
+    {
+      "path": "src/core/association.ts",
+      "sha256": "sha256:eade8cfc15b0ffbba7f7eb5299e3b361b18fbc628ca602ca57d42ec245b9a6c4"
+    },
+    {
+      "path": "src/core/composition.ts",
+      "sha256": "sha256:508fc458d9875ea2febf293f780da3924d2c2476994639c85e6065be4ee8a0c0"
+    },
+    {
+      "path": "src/core/device.ts",
+      "sha256": "sha256:0b66479e594d83d6fe4e80689964063f0083e0d50aaf6c87c34dbb7379377330"
+    },
+    {
+      "path": "src/core/lock.ts",
+      "sha256": "sha256:5bc1dd2ce293232aa9e7086d561ab152d6f410c9f76324091d9d7d4657c1bc94"
+    },
+    {
+      "path": "src/core/package.ts",
+      "sha256": "sha256:a516caa4f6a5578cd97e0061b50e40cce006fe0ba3b5841b06e45f3ae7b517f6"
+    },
+    {
+      "path": "src/core/read.ts",
+      "sha256": "sha256:5a6af35cd6d2017d482855f47ce69b316bf5fd280ed44125050dd8553b7bfa4a"
+    },
+    {
+      "path": "src/core/receipt.ts",
+      "sha256": "sha256:48eeb764aa7d30e0b1cf8482d69cec24f68d4e21d5a029a4c1cb60f56398af9f"
+    },
+    {
+      "path": "src/core/receiver.ts",
+      "sha256": "sha256:6bc29cf7c4ce0d5f5a7c9b434eb9c735e5f1c443f7af1cea944992d8e8367322"
+    },
+    {
+      "path": "src/core/share-bundle.ts",
+      "sha256": "sha256:21f870076cd11e8584f86963777cddd158c271cb76b8e840084e788d8e5b5bc8"
+    },
+    {
+      "path": "src/core/surface.ts",
+      "sha256": "sha256:615c446ef95684986e7b334ca9afd45e62ebb18ba428056fc543ebf804763521"
+    },
+    {
+      "path": "src/core/trust.ts",
+      "sha256": "sha256:ef32bd52b004d5920278899dd14c3f1e7e54bbfc5af7207e3372329a44efab90"
+    },
+    {
+      "path": "src/core/worlds.ts",
+      "sha256": "sha256:b2ea08498923b7b9631f524fa2b8a15eb4bc859de65c9ee6603745e6236491df"
+    },
+    {
+      "path": "src/doors/guard.ts",
+      "sha256": "sha256:d9970c5129f3aeaa5777063220770fe40bb55727710c2434a6a912e2e1598cbd"
+    },
+    {
+      "path": "src/doors/head.ts",
+      "sha256": "sha256:89bbd796396bd078e00ed32ea4bde074be37eb74aca9c85c0b01814d92e731e8"
+    },
+    {
+      "path": "src/doors/http.ts",
+      "sha256": "sha256:8683d6531bcf61225ce39a90d21ed7fb6e9d617b7ae3bab52861e37287cc95bb"
+    },
+    {
+      "path": "src/doors/lines.ts",
+      "sha256": "sha256:8fe04638fab329687e0bc1f503df134bcc8bf50c12bb0eca608cc41ae4dc0df3"
+    },
+    {
+      "path": "src/flows/act.ts",
+      "sha256": "sha256:87a5785d36397627167da85d1d0d7c20f81b700e9b23e1d84645c8f883b03a70"
+    },
+    {
+      "path": "src/flows/answer.ts",
+      "sha256": "sha256:92b5bdeb8ea96808d6f1360f33773f88d24949919c1fb3fcc0e4b8379c474540"
+    },
+    {
+      "path": "src/flows/call.ts",
+      "sha256": "sha256:95c8e16db0a09979f015d80347a7107727b1d5d3b344b17f97622f208bc77d0d"
+    },
+    {
+      "path": "src/flows/device.ts",
+      "sha256": "sha256:6477d2c90b5265e39c6064867efe0c78079a53cd870b56ac460464826e73c142"
+    },
+    {
+      "path": "src/flows/plan.ts",
+      "sha256": "sha256:44f068c3ecc19c7463060012f3cfd66491d5d4d5e884cd5eaae71e2d0eb6767b"
+    },
+    {
+      "path": "src/flows/read.ts",
+      "sha256": "sha256:c537f1441e237dc0228d3066a888fbf919bd194ac616d7d48e3d4f11e8ab9d83"
+    },
+    {
+      "path": "src/flows/world.ts",
+      "sha256": "sha256:f2a03a1963f68a590ae0dadf4f6a19b9766d74c2809e1b6ff7706b0a51b00a69"
+    },
+    {
+      "path": "src/index.ts",
+      "sha256": "sha256:818c4434138ce280148c4ede768c7db815f850968d6866e63365f28993de173d"
+    },
+    {
+      "path": "src/kept/kept.ts",
+      "sha256": "sha256:2c864b3795e86b5cb826d3c19e24f732b3be92f02a525ba7a8a7f0bcdee659cd"
+    },
+    {
+      "path": "src/links/birth.ts",
+      "sha256": "sha256:7b988709cc611e741a70cf480b9b13fed0421cace2fa2be229dad3bab01c6bee"
+    },
+    {
+      "path": "src/links/inspect.ts",
+      "sha256": "sha256:80e355e3baa19ba5d6b21d653c37a7c6c94af963b3aba9d34d865bbcedafce16"
+    },
+    {
+      "path": "src/links/link.ts",
+      "sha256": "sha256:578fdcb9a1afcd25fece13b90b87f071659cac0ad49403395f8ebc9e01c4600c"
+    },
+    {
+      "path": "src/marks/compare.ts",
+      "sha256": "sha256:afadef223720bf6177014b35bcbbc98c1e02afb09479fa4fbdcb43c4803c0dcb"
+    },
+    {
+      "path": "src/onboard/first.ts",
+      "sha256": "sha256:491b3b5080586fc194ae9cab30d71e7c38fee40cca3c13fef03603719a0c0a33"
+    },
+    {
+      "path": "src/onboard/owed.ts",
+      "sha256": "sha256:564a96722d5208182621adcf428d3111ca2d99fcc5dcbf1a112974fc08d7df7b"
+    },
+    {
+      "path": "src/onboard/site.ts",
+      "sha256": "sha256:01bc44e909ee61acde6243e5abea445cec35b013f312f35372d8f160a06f505e"
+    },
+    {
+      "path": "src/places/admit.ts",
+      "sha256": "sha256:c8500d52be41417859c6e2f996c2707179fa447a39a2f8ced6418b2fce392784"
+    },
+    {
+      "path": "src/places/found.ts",
+      "sha256": "sha256:d41a434d869d39dbf5156094c16ff14e3ef9783df47736678d37a3f9cf7a306c"
+    },
+    {
+      "path": "src/ports/access/authorizer.ts",
+      "sha256": "sha256:ee0f8254a2fe79c4247a01e7ae57f9a07e11667ec017eb5caf7c0d5517504e3b"
+    },
+    {
+      "path": "src/ports/access/flow.ts",
+      "sha256": "sha256:7196da7a07bd5f79d2ca05e246f78c68ef662c625bf252bc5e05118ea0c6cdae"
+    },
+    {
+      "path": "src/ports/access/page.ts",
+      "sha256": "sha256:52264114bf61a247d8d2e5cf54d073be007bfa56997ab49e57a4903047fc9342"
+    },
+    {
+      "path": "src/ports/access/person.ts",
+      "sha256": "sha256:4da8db564f5ea8d423c52073211affd87f69910cf4eec3c3ba8eede068eb6688"
+    },
+    {
+      "path": "src/ports/adapters/bundle.ts",
+      "sha256": "sha256:d3b84d56766ce9f5d63f53c1a6562b0eec96c56cce5a789678e44c75ec8de24d"
+    },
+    {
+      "path": "src/ports/adapters/configured.ts",
+      "sha256": "sha256:7b7e75ea243e6ca849e05f52d1ae6f708a4868b5aa08d365eb3021ba20d437f3"
+    },
+    {
+      "path": "src/ports/adapters/mcp.ts",
+      "sha256": "sha256:b4348cf12e1c894008278caef5e6db8ca36cc0a5c0f44d8b2b0fad26133bdd65"
+    },
+    {
+      "path": "src/ports/adapters/network.ts",
+      "sha256": "sha256:cf5180f93508f1ab54801110f8d953d48bb3ca156da53e7998f89186ec3ea751"
+    },
+    {
+      "path": "src/ports/adapters/protocol.ts",
+      "sha256": "sha256:013197b3aa669ec7dfe3ca1af0e43d8e3c6ac3eb99467307984dbff3867a2c6c"
+    },
+    {
+      "path": "src/ports/adapters/remote.ts",
+      "sha256": "sha256:3a66a8e1e4967a55b4e1cdc54256a0202959c6630f00d1abea780fbcc9ecdb74"
+    },
+    {
+      "path": "src/ports/adapters/request.ts",
+      "sha256": "sha256:b0b7f99df4571e4711bc2c25c2eca9409a33c0fce6127c42f1032ff32415ec76"
+    },
+    {
+      "path": "src/ports/bound.ts",
+      "sha256": "sha256:df143e1880e1cb51d66ecb50f22e75106d60ce2473bc612f55da1f44f36590dd"
+    },
+    {
+      "path": "src/ports/cache.ts",
+      "sha256": "sha256:f8a02cf55649f955df5bcb6990662b0f84fdc171eab262f5da7126da9204d832"
+    },
+    {
+      "path": "src/ports/documents.ts",
+      "sha256": "sha256:8be05f9171bf94d180dd4005369d6b63d08a98e469050fff844ea61d3b2b7b6f"
+    },
+    {
+      "path": "src/ports/host.ts",
+      "sha256": "sha256:45ace2ce71c074471f9ecc4b5ced609967e4900274ced6a51e88fa9360751975"
+    },
+    {
+      "path": "src/ports/keychain.ts",
+      "sha256": "sha256:8997394f3c30b140bbb153d420b62d41d69470279f4882dc25a434c58d206f31"
+    },
+    {
+      "path": "src/ports/keys.ts",
+      "sha256": "sha256:efdea9a9a689ef17115de189364391e0a2d20b7626f48c3317f7d45b220e3985"
+    },
+    {
+      "path": "src/ports/place.ts",
+      "sha256": "sha256:1e9899ab0a20e9bb2012680500c48943a803e8c2e0d8dcb4d5c772c37093dea3"
+    },
+    {
+      "path": "src/ports/process.ts",
+      "sha256": "sha256:3996f92795e7cd6a7a3f079d9aa80920389bfc2ada6abd0600938a1397173386"
+    },
+    {
+      "path": "src/ports/scratch.ts",
+      "sha256": "sha256:f4c584b19bcdffc276c759642ce28c51811ef143a0e48769948f775c5e069354"
+    },
+    {
+      "path": "src/ports/stores/credential-manager.ts",
+      "sha256": "sha256:03dd4a8cb00f697729a547ca8f8a4e5ae96edbcaf7069bed883d79c4298eb4aa"
+    },
+    {
+      "path": "src/ports/stores/keychain.ts",
+      "sha256": "sha256:d1f33f3470e54e37281bd9817f9fc95bbe15ebc88c03403062247e784f613d22"
+    },
+    {
+      "path": "src/ports/stores/secret-tool.ts",
+      "sha256": "sha256:91f9003827c747c66514636401dae11e49d8d4d7ac2fb07a424831c0e1b85f6f"
+    },
+    {
+      "path": "src/ports/surface.ts",
+      "sha256": "sha256:89bfe48d2cca7407ba154140d60c9e7051c388ad33f37fa801b1cb329fc1a900"
+    },
+    {
+      "path": "src/resources/view.ts",
+      "sha256": "sha256:bcbf5a3dcaddf4b04e69b9281b3c574857b8508278471a6abbdf87b8730a6d03"
+    },
+    {
+      "path": "src/signer.ts",
+      "sha256": "sha256:a0e8a0b7cd1f2082a6bb6f71529bfe43ba417731dc191950ba734e8f7a81cc20"
+    },
+    {
+      "path": "src/sources/access.ts",
+      "sha256": "sha256:65433aa239e869dc432a8635b155c111f3894d92ed1e4eb90c51f761910ad8bf"
+    },
+    {
+      "path": "src/sources/connect.ts",
+      "sha256": "sha256:ec91c8b2018035c083ad8a65f8d9ab187774698058d8dc45b49d718a082a0d50"
+    },
+    {
+      "path": "src/sources/refused.ts",
+      "sha256": "sha256:5ce4eaf7e299e78d8c63bf65007f8d23f504832dfbd65af284b5ce5d9af58d6b"
+    },
+    {
+      "path": "src/tools/access.ts",
+      "sha256": "sha256:1a49011fd33bcfc215b3fd67d928d452dbc19e7e49d8d4289c49a3bdfe281d4d"
+    },
+    {
+      "path": "src/tools/act.ts",
+      "sha256": "sha256:6f626e7c5dec2782efe51a51fc1aafdbaad0ce74c035fb8f85433be7de6693fd"
+    },
+    {
+      "path": "src/tools/admit.ts",
+      "sha256": "sha256:44fccddc8648d3a19b8a601997e46bad95a326ea7f9aa82f8d4f2a8aaf934296"
+    },
+    {
+      "path": "src/tools/ask.ts",
+      "sha256": "sha256:9ffd433b0e1dab29de3e647a6167cd9f08942148b2ac3f29d5becb12cc5d038b"
+    },
+    {
+      "path": "src/tools/card.ts",
+      "sha256": "sha256:10be1d6d9e8ecbfe47b0517a0c5e6d9ee70598386214ddadd9a082747887dd70"
+    },
+    {
+      "path": "src/tools/claim.ts",
+      "sha256": "sha256:2d47826e495c92ff825c78604c2f9107f7e17ccd79fe4a8b0bba0733d8d609f6"
+    },
+    {
+      "path": "src/tools/connect.ts",
+      "sha256": "sha256:42094de3060bfd135ab4841bcc0b89a20f320e7b3e6225ab3df7f69a88980629"
+    },
+    {
+      "path": "src/tools/do.ts",
+      "sha256": "sha256:f9b38a68f09b35a0288d50a6e48ac83c2b135038eed2612856bb5eb883361fc8"
+    },
+    {
+      "path": "src/tools/key.ts",
+      "sha256": "sha256:6a1cfc669e5d30a7b5e30bc708dd58d05a1495f0cb1a03c39887cb2d7129fe58"
+    },
+    {
+      "path": "src/tools/land.ts",
+      "sha256": "sha256:349b2d87cb2c3d33d58da09267126cc40de037da8b7351da31c92ce1c5ac10be"
+    },
+    {
+      "path": "src/tools/look.ts",
+      "sha256": "sha256:dab5f3cc0df16f8d92fae6a3d30c5004a5376561d6f951d635646560826fe172"
+    },
+    {
+      "path": "src/tools/place.ts",
+      "sha256": "sha256:85af1570d97dd11d146834886b7a24de244c442684c9626aa2f16cfbf5306942"
+    },
+    {
+      "path": "src/tools/places.ts",
+      "sha256": "sha256:9092853831a8c112b42d50053da726e32ee4342816d9602de9207b38439074b1"
+    },
+    {
+      "path": "src/tools/plan.ts",
+      "sha256": "sha256:df3dfd6c4c51a28030b6301b69711778d11b4f53618738cff2c98200cc9bd3cd"
+    },
+    {
+      "path": "src/tools/share.ts",
+      "sha256": "sha256:abbfd208bfd1825ce574383315bd13d32bdae5230e516183e405e360999f038c"
+    },
+    {
+      "path": "src/use/named.ts",
+      "sha256": "sha256:520ffcfab69c0fe24942783a4c474152fc180e38bd68f951ecd726a98f14c56e"
+    },
+    {
+      "path": "src/verbs/ask.ts",
+      "sha256": "sha256:6bf593752bd673a2ce853d22be1bf1c2380263a284114082ac0990144144ded1"
+    },
+    {
+      "path": "src/verbs/card.ts",
+      "sha256": "sha256:ac8351fbf036f4a11895104b5b5bedcb1320628403c0bd5d5f86a9e7fc6e9df7"
+    },
+    {
+      "path": "src/verbs/do.ts",
+      "sha256": "sha256:6d95196a0e92a0ec205068dfbdc8173f271b0e9f0ee9da8885d74863990d99bf"
+    },
+    {
+      "path": "src/walk/context.ts",
+      "sha256": "sha256:6ba84bbfc01bfdc79839bbbc8a61c3407aab0cb8a40dceca080234ea9eab3e48"
+    },
+    {
+      "path": "test/access.test.ts",
+      "sha256": "sha256:46303cec0698ad8dcc94c2ba5183e20de4114fad195d63d41fa1ef19002d91e1"
+    },
+    {
+      "path": "test/act.test.ts",
+      "sha256": "sha256:36bb3b4751e3dbe9daeae89133bf331c9071e6bd48574485c5e51ddcb4fb2b17"
+    },
+    {
+      "path": "test/acts.test.ts",
+      "sha256": "sha256:9cb52617a181a7732709f63388bd065857cfec09cfa59e800c8b39f8c0b6c51f"
+    },
+    {
+      "path": "test/adopt-model.test.ts",
+      "sha256": "sha256:51399f31e6b0f4c68f4084f8384938627b4a2454c2c84022dfd1b018e1e25343"
+    },
+    {
+      "path": "test/adopt.test.ts",
+      "sha256": "sha256:8cc299402529f6767482b857348c3408443f2b3846b705bbf47bdd13773c2af8"
+    },
+    {
+      "path": "test/ahead-read.test.ts",
+      "sha256": "sha256:2e229d8e56e015a007bb9fc680593010cd4c961b590d374b342ceb38e647e6fa"
+    },
+    {
+      "path": "test/answer-model.test.ts",
+      "sha256": "sha256:457aff068e3bd480187940be1e715f1895c1c6cbb98fd8a504fd330ef7831805"
+    },
+    {
+      "path": "test/answered.test.ts",
+      "sha256": "sha256:0f1d4aebd86ff24027d9201342ae03d95006a738469672dec769568b6fd6cd75"
+    },
+    {
+      "path": "test/asking.test.ts",
+      "sha256": "sha256:1f7b64b0e18137a558fb52f12c94619a15059b32f8a782e3dfd32df77426303f"
+    },
+    {
+      "path": "test/association-native-vector.ts",
+      "sha256": "sha256:948e315ebd79229c7b84a6c73b44d1c5bac3b89175879041f10a034e5b6c6714"
+    },
+    {
+      "path": "test/authority-preflight.test.ts",
+      "sha256": "sha256:800bce204d612d7d53185b637eec361710906dc8365b162070260d8a3b24682c"
+    },
+    {
+      "path": "test/authorizer.test.ts",
+      "sha256": "sha256:d111125a427f1188c48ee61615df7e75eaccc8fbf2179c240c54bec16d3de486"
+    },
+    {
+      "path": "test/born-closed.test.ts",
+      "sha256": "sha256:4cc3ce3f1d576d5b6297171403725f77e18de73a49e008671fb096b0517d2ed8"
+    },
+    {
+      "path": "test/bound.test.ts",
+      "sha256": "sha256:22f2b0892a0665bc190cb4d2fd2d51f7773d8aac43e6b7a7f41367dd1d5ccfa0"
+    },
+    {
+      "path": "test/browser.ts",
+      "sha256": "sha256:bf727efb8ea31ad0c54ccf45cf74a6810e003cb069ae882c759e8b442701d79e"
+    },
+    {
+      "path": "test/bundle.test.ts",
+      "sha256": "sha256:85e4f72b8bb544854669872e26ab21a5af1bbf9ffbc7a7a8be9376eb9f28224c"
+    },
+    {
+      "path": "test/channels.test.ts",
+      "sha256": "sha256:120475f874f6abd8a1917b69a91c9ac50c171cac5062b621516425db1e071ef1"
+    },
+    {
+      "path": "test/claims.test.ts",
+      "sha256": "sha256:3916e99710c40dad5b0aed77b112b14a4a32f5c442538aec6c804cfb6288c98c"
+    },
+    {
+      "path": "test/cli.ts",
+      "sha256": "sha256:fc295154f8dcf46c1b195088ae472ee489a9a551ab0d509dff1ac8d03e0ce7ae"
+    },
+    {
+      "path": "test/client.ts",
+      "sha256": "sha256:e499093fb06ed0a8a427faba7525c0a3090f90eed414a00d6efb1afd00e88432"
+    },
+    {
+      "path": "test/composition-reading.ts",
+      "sha256": "sha256:67702909cc17fd4d2c79027f57f7bcb1f6d1f711e2a873deb9b908ebc06d2a7e"
+    },
+    {
+      "path": "test/composition.test.ts",
+      "sha256": "sha256:d9fe9b730c45a1c1e935e36669bbc1c5d182727deb40063ec10028d8a2447429"
+    },
+    {
+      "path": "test/configured-ports.ts",
+      "sha256": "sha256:c931b7bf9257ffcd647ba32d0900346b64e363cb28c38ed690087a754b8bb834"
+    },
+    {
+      "path": "test/configured-receiver.test.ts",
+      "sha256": "sha256:370cfa0d175fde07a385db4687d295743c510ed064dab7afac928b95693536fa"
+    },
+    {
+      "path": "test/connect.test.ts",
+      "sha256": "sha256:e75e897ea67706f68c34984e5d4904ee5c140a7c4b2d3e73017f765bd93b4184"
+    },
+    {
+      "path": "test/connected-person.ts",
+      "sha256": "sha256:19249d6635fb4ac99772f15dc9636f51aefdb751c4218aea2c4d7845617e9cbe"
+    },
+    {
+      "path": "test/consent.test.ts",
+      "sha256": "sha256:23aad4abc2765f34d604cc33e0c5f0ee6492e0ec71c51cda454a792793460327"
+    },
+    {
+      "path": "test/device.test.ts",
+      "sha256": "sha256:a03b76e7d2b40778124df4a4a0283da7c77f7b8a88e72d1fefa7927cc0467bef"
+    },
+    {
+      "path": "test/doors.test.ts",
+      "sha256": "sha256:35b1664cab648b225216267971fcc5a484e51c6b58298f055378723f29a5c631"
+    },
+    {
+      "path": "test/fake-keychain.ts",
+      "sha256": "sha256:6b8fb8c7e6cf2bc4173347fc98f7484552612d62fc3168ddbe602373aec021df"
+    },
+    {
+      "path": "test/fetch.test.ts",
+      "sha256": "sha256:1a728730b9cbf5deb6f001467862cb2b63c1e2451605ad94904b2d712c76a8e1"
+    },
+    {
+      "path": "test/first-minute.test.ts",
+      "sha256": "sha256:5e1ea3fe5c8a1ab9046d36cc7f1f52161774c4355189ff7af4ae5811473bcfff"
+    },
+    {
+      "path": "test/first-run.test.ts",
+      "sha256": "sha256:49841db2db4a6abce6f5dba74db01a3580f9ffc449a8ca022dc5175d6f91688c"
+    },
+    {
+      "path": "test/fold-ahead.test.ts",
+      "sha256": "sha256:a20c5224aa5f177fbea3c79fe0559b1547c4f28de49bf9361161cc340043d7f0"
+    },
+    {
+      "path": "test/gestures.test.ts",
+      "sha256": "sha256:6fa934dcdb5dedbd635b3afed6ecdfed5a9808e1c478077d2d7e380d01ea7a0e"
+    },
+    {
+      "path": "test/issuer.test.ts",
+      "sha256": "sha256:0e52d9361fb1de6dd9360858815a10e8b958776aa4021868735c0f8f7af1595c"
+    },
+    {
+      "path": "test/kept-zero-moved.test.ts",
+      "sha256": "sha256:35dc038c60e206e59467d92819a7e6b66965d4095d7fc24e5007315b0485fb50"
+    },
+    {
+      "path": "test/kept-zero.test.ts",
+      "sha256": "sha256:ac6cbd57debc25d758fd17aef9add4fd785bfbc5d348fce0decf8e137791f526"
+    },
+    {
+      "path": "test/kept.ts",
+      "sha256": "sha256:146b900f38140c0c72d04acc3a291b88bb06de60c308da9a77e21619d5cd83ae"
+    },
+    {
+      "path": "test/keys.test.ts",
+      "sha256": "sha256:cb7b4f8809ccc82232b40e06e6c1379cedd725de653b6b6f4169ce3c76f48ae4"
+    },
+    {
+      "path": "test/kind-boundary.test.ts",
+      "sha256": "sha256:7fa629e9c3cf7b22e68ea776dd4e846673172bc4a657f7386567ce7eff4981d8"
+    },
+    {
+      "path": "test/link-url.test.ts",
+      "sha256": "sha256:76d45a8c0d6e660fda3764e9ae05bd15c978e5b2e810560ebc6c2d6e184dbd00"
+    },
+    {
+      "path": "test/marks-lineage.test.ts",
+      "sha256": "sha256:d8f0c65760c050e8d070d673c968c950a1f85ac20e6924232e16bf160f93e3bd"
+    },
+    {
+      "path": "test/marks.test.ts",
+      "sha256": "sha256:c6cd70111495c2ae0d176e8258f522a83ac6d90b9aa2e41331364270976282df"
+    },
+    {
+      "path": "test/mcp-fixture.ts",
+      "sha256": "sha256:e614190afd24f4c38d4b71047fcd50d725f90ab6eba81cebad439286b8844d25"
+    },
+    {
+      "path": "test/mcp-flow-native.ts",
+      "sha256": "sha256:363861962e74aa4038369329906283f8d82ea4a91bfdd3f6837bb4cdf7f1788b"
+    },
+    {
+      "path": "test/mcp-receiver-reading.ts",
+      "sha256": "sha256:cdc04818dc6abf3c860467dffeb7c472ab9c3e8c2dcf5cb2e9e2361617645654"
+    },
+    {
+      "path": "test/mcp-transport.test.ts",
+      "sha256": "sha256:ef6cee6ae8db85d6ca496781abb4dabb8c0b5f8be70de8e23ceedd2099f54b0b"
+    },
+    {
+      "path": "test/named.test.ts",
+      "sha256": "sha256:d3130019d19422464bfff2ecd13fbbbdc49a2c7661ea16584f1f7d2a30ffaaff"
+    },
+    {
+      "path": "test/numbers.test.ts",
+      "sha256": "sha256:f4de510de88f2f82c48108dfef90da7451aad7db2cd1c3302df3b5afe264a3c2"
+    },
+    {
+      "path": "test/observed.test.ts",
+      "sha256": "sha256:1dd15a6a0cf96cd1112f6f5365a5fc6cb8e222666f7d24c312e1dca760840f22"
+    },
+    {
+      "path": "test/offline-worlds.ts",
+      "sha256": "sha256:403e49fc77e7477a55522d4fc9a5a1d0e4771f33885a9554777c304d4b7d2076"
+    },
+    {
+      "path": "test/onboarding.test.ts",
+      "sha256": "sha256:45d9229a9c08b85c87eecf7640d2910f7d9ac0e9aadcdfed3628d8d0b06c081d"
+    },
+    {
+      "path": "test/org.test.ts",
+      "sha256": "sha256:8df6d34dbde1279b0fb0fac8d981ffffba5f3668b4c0e7f60c1e6e31a1e2c0ca"
+    },
+    {
+      "path": "test/pack.test.ts",
+      "sha256": "sha256:b5fccead4ab90815e99dca2e870f1bc42839f4fe731a0a6a492f40b685106a1c"
+    },
+    {
+      "path": "test/pending-document.test.ts",
+      "sha256": "sha256:f96bf014a377111bc2784338e005fd1f7ce7819f85c1d37dda042e62d063534b"
+    },
+    {
+      "path": "test/place-neutral.test.ts",
+      "sha256": "sha256:14139f8421f2fa862857840f40251ce7cc44531dc1308546e52421f6b495ec69"
+    },
+    {
+      "path": "test/place.ts",
+      "sha256": "sha256:20a6452df91da65a429259ffc132f45e6df2edb08a0d3ac1264939009adcd6c5"
+    },
+    {
+      "path": "test/places.test.ts",
+      "sha256": "sha256:3a95340fc9f23b8c82bde9b6714b8b828a9729cdf079cd96d31b414540411ede"
+    },
+    {
+      "path": "test/portable-birth.test.ts",
+      "sha256": "sha256:69593a56cfdc7cbd642833e8c3bd16958f39e4c5b909022db10151863524df9f"
+    },
+    {
+      "path": "test/process.test.ts",
+      "sha256": "sha256:be23186b2846808a5393bd4140e59bce30cf7e6dee6f751bf06d32b8c625a29f"
+    },
+    {
+      "path": "test/protocol-surface-reading.ts",
+      "sha256": "sha256:9a9cdc10dc97a543d49b28f5807cf11a662b98e51a2df639363c731424093c27"
+    },
+    {
+      "path": "test/protocol-surface.test.ts",
+      "sha256": "sha256:1dfb0960d5fe9abadf504f3a6d38b541dd060925b3bb1a9ca0461eeb41184eb5"
+    },
+    {
+      "path": "test/protocol-surface.ts",
+      "sha256": "sha256:4326d090e230170b44b9c28176390f753d748f65c2c4db0b8ce0d0c9eb44b0ea"
+    },
+    {
+      "path": "test/read.test.ts",
+      "sha256": "sha256:8a672b412e22f406e0a306fd1603dd2fca11eca8a04984a833ab8bf4ff87e354"
+    },
+    {
+      "path": "test/reading-identity.test.ts",
+      "sha256": "sha256:c3810f2dc474da1257e128ab38e6d2715c8dd89045d330a3c679bee97d3498b4"
+    },
+    {
+      "path": "test/receiver-runtime.ts",
+      "sha256": "sha256:86ac64eeb39dd244e0578c1135fd05f1e3cb3b2bf07a42110838586b7a3b2714"
+    },
+    {
+      "path": "test/receiver.test.ts",
+      "sha256": "sha256:6f12f27a37cba0e85d7e18e6d1fb5c953573b521e0ab7d5bc9e617317ce34823"
+    },
+    {
+      "path": "test/refusal-record.test.ts",
+      "sha256": "sha256:ac5c7caf7eda111645257497113407f614e5852371be8ae655cc0e05ba9ba3c8"
+    },
+    {
+      "path": "test/release.test.ts",
+      "sha256": "sha256:371b60a2f5bdbc1176f70043bb4c287df117eb3d56512d7f3df8ae5159a6c443"
+    },
+    {
+      "path": "test/reuse.test.ts",
+      "sha256": "sha256:e1883e0eec3546985aa5dcbd554c845f1724c769b91edb28eaf96405fe90c824"
+    },
+    {
+      "path": "test/runtime-resolution.test.ts",
+      "sha256": "sha256:bce5b50edd9386371999f325b7824a06eb8f3f44bc59b4b18d105a980baf7587"
+    },
+    {
+      "path": "test/scheduled.ts",
+      "sha256": "sha256:42dc6f0a1d325d23f41a973172f329c7d41444b405f7db9f9ba107ac85d87219"
+    },
+    {
+      "path": "test/sdk-binding-vector.ts",
+      "sha256": "sha256:481c22d2558dc3a82af6165494507e33b149dad46ad305a5dc369aa22961fd83"
+    },
+    {
+      "path": "test/serve-bytes.ts",
+      "sha256": "sha256:87a261695a2b92ecd089d713301adbacf006ed90641d79a0554e9aac2db0ab17"
+    },
+    {
+      "path": "test/session.test.ts",
+      "sha256": "sha256:b380f8abd43507c2fb112a0cbe076c04b21374f8ce3b47a870fc5aa502fdc12c"
+    },
+    {
+      "path": "test/shape.test.ts",
+      "sha256": "sha256:11e280d248aaedc40c2c4c9eaed3ad49f5cae0bb1264f7f1fe90073d7d303828"
+    },
+    {
+      "path": "test/share-bundle.test.ts",
+      "sha256": "sha256:5fec72d858839264e7694372272fa4babc24028ae126060e92117baacb42de4f"
+    },
+    {
+      "path": "test/share-fixture.ts",
+      "sha256": "sha256:e7a387a219ef8beade2fd7d1af6e06162754a2a84ba1eba30ae61bf0a8d7cc39"
+    },
+    {
+      "path": "test/share-receive.test.ts",
+      "sha256": "sha256:408f631741231aed9ee9a626cc7967a12b7abcd7e5c064bda8402f618061afd1"
+    },
+    {
+      "path": "test/share-refused.test.ts",
+      "sha256": "sha256:12a4a76b4b956c61b340c3dc693c3accb4c487a43b67529558bd92a6d6019426"
+    },
+    {
+      "path": "test/share-runtime.ts",
+      "sha256": "sha256:923ae681c8cf3bfec6f87542c51c185d05125200c9e7f24a707328300b9f4efc"
+    },
+    {
+      "path": "test/share.test.ts",
+      "sha256": "sha256:af62f4bac8dd7c14286d643eb2b9e72b896daa8bccfc3b5ec16f46d63bbcc26f"
+    },
+    {
+      "path": "test/signer.test.ts",
+      "sha256": "sha256:cf4b1235dcae769165685bbe66a4c481878d77636cb880ac1d9ce6115ea62869"
+    },
+    {
+      "path": "test/signers.ts",
+      "sha256": "sha256:147336d0eefbd9c288b07156e1463811486587441c3692985321385684a948a3"
+    },
+    {
+      "path": "test/source-lines.ts",
+      "sha256": "sha256:511e866d52ef66e5b2f2354d165bf5c52fb27395fcbc7b5a746543c27250cb4d"
+    },
+    {
+      "path": "test/source-policy.test.ts",
+      "sha256": "sha256:17dcda3d280c08cc569fd1cb5363a5e60e6370f3bf2b23740c31ac10cd4e0f42"
+    },
+    {
+      "path": "test/stores.test.ts",
+      "sha256": "sha256:27956c690b9e355c72db19ae115bea8a8f1bc4dda8bcfa63830d1db75a53c772"
+    },
+    {
+      "path": "test/surface.test.ts",
+      "sha256": "sha256:e5a9fe364e7e4af7adfca1e2b99a6006f92e8803f44457b2dbaca9deacb029ce"
+    },
+    {
+      "path": "test/time/clock.test.ts",
+      "sha256": "sha256:e3eb51cb53249e4cc8c919c4b36248d971b60bd007efdeca4ac26ce4839ed1a9"
+    },
+    {
+      "path": "test/time/reading.test.ts",
+      "sha256": "sha256:2fcf4de60a64b8e94e2ecb0a669afdb2642e593309410d227d42ff56ad620c9e"
+    },
+    {
+      "path": "test/time/store.test.ts",
+      "sha256": "sha256:1dceb37fa8275656e3e859f54402d2d0ae0b50f7f617d7269f8adb1647b64f78"
+    },
+    {
+      "path": "test/time/warm.test.ts",
+      "sha256": "sha256:e7942bb9aa5c3b85145f1f3341f88f22d845300083fa93b565d980336d28e053"
+    },
+    {
+      "path": "test/transport.test.ts",
+      "sha256": "sha256:148b8143b9132e8db5582848a01756a3eead7bfb3fa78cc4ae5d630ca728ba2f"
+    },
+    {
+      "path": "test/trust.test.ts",
+      "sha256": "sha256:b8ebb49b5d2fcbd57d3d244aca579fdf4c9f535a04bc13d5343eaf8763f11f57"
+    },
+    {
+      "path": "test/two-sources.ts",
+      "sha256": "sha256:1dffe5fdfc8d6d68b16cad4646c04cbfa0a044ad44d9dbe2ee84affba5cedfac"
+    },
+    {
+      "path": "test/use.test.ts",
+      "sha256": "sha256:8f411f64b097f6b0f6de9cbb4c56cafc24834fd08e05e65d59108886fde183b2"
+    },
+    {
+      "path": "test/verbs.test.ts",
+      "sha256": "sha256:f00fd0813db20b8dea0422c29003dc21d503bb63e92b05844ca23ba8628dc6ad"
+    },
+    {
+      "path": "test/walk.test.ts",
+      "sha256": "sha256:a2821aaf6114a6a56100b4d48ba962cfa97fe68d5f625c80dc7f0f49c53ebf87"
+    },
+    {
+      "path": "test/warm-compact.test.ts",
+      "sha256": "sha256:d3a5a0ee589e6795ad47095ad755883dfd5504b26440c5959a1b22589a2164af"
+    },
+    {
+      "path": "test/warm.test.ts",
+      "sha256": "sha256:a6c3388a05b125ef0efcf61ecb68a0d9620a18bdaddeead3eceed6f648174695"
+    },
+    {
+      "path": "test/warm.ts",
+      "sha256": "sha256:cead9ade9b3c71fde12181a69c01b333cc6853ad592cd5a97a5eb646a39f1bc7"
+    },
+    {
+      "path": "test/welcome.test.ts",
+      "sha256": "sha256:9607d44001de35c6c35e5cad4916061a20e057500ca7e0c32bf1ae71ae2e00ad"
+    },
+    {
+      "path": "test/world-standing.test.ts",
+      "sha256": "sha256:4486a421158946b6c01ad7cb5f367af7067d223e06d68d241a6b7e955237f085"
+    },
+    {
+      "path": "test/world-standing.ts",
+      "sha256": "sha256:2626f6204564c58719cc4f7c900cd95cf30d02369e89d0ad56fb8d9fe841c515"
+    },
+    {
+      "path": "test/world.test.ts",
+      "sha256": "sha256:017ef17382cfcc80c30c72bd58c06567cb10880ab02599e4352af7d090d14074"
+    },
+    {
+      "path": "test/worlds.ts",
+      "sha256": "sha256:45f61032ff57829b296f943ee2c3446ec86fb2e42e049fce55b85360d3d41d45"
+    }
+  ],
+  "runs": [
+    {
+      "node": "22",
+      "client": "TAP version 13\n# Subtest: first run (URL): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice\nok 1 - first run (URL): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice\n  ---\n  duration_ms: 32168.040292\n  type: 'test'\n  ...\n# Subtest: first run (shared documents): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice\nok 2 - first run (shared documents): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice\n  ---\n  duration_ms: 37287.917084\n  type: 'test'\n  ...\n# Subtest: places (weather): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked\nok 3 - places (weather): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked\n  ---\n  duration_ms: 36866.882542\n  type: 'test'\n  ...\n# Subtest: places (climate): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked\nok 4 - places (climate): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked\n  ---\n  duration_ms: 40825.851459\n  type: 'test'\n  ...\n# Subtest: foundation: a raw do/place needs consent but no card for a fresh folder; existing state is never overwritten\nok 5 - foundation: a raw do/place needs consent but no card for a fresh folder; existing state is never overwritten\n  ---\n  duration_ms: 14796.406708\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 92722.907542\n",
+      "clientParts": [
+        "TAP version 13\n# Subtest: first run (URL): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice\nok 1 - first run (URL): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice\n  ---\n  duration_ms: 32168.040292\n  type: 'test'\n  ...\n# Subtest: first run (shared documents): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice\nok 2 - first run (shared documents): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice\n  ---\n  duration_ms: 37287.917084\n  type: 'test'\n  ...\n# Subtest: places (weather): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked\nok 3 - places (weather): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked\n  ---\n  duration_ms: 36866.882542\n  type: 'test'\n  ...\n# Subtest: places (climate): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked\nok 4 - places (climate): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked\n  ---\n  duration_ms: 40825.851459\n  type: 'test'\n  ...\n# Subtest: foundation: a raw do/place needs consent but no card for a fresh folder; existing state is never overwritten\nok 5 - foundation: a raw do/place needs consent but no card for a fresh folder; existing state is never overwritten\n  ---\n  duration_ms: 14796.406708\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 92722.907542\n",
+        "TAP version 13\n# Subtest: a place head founds is a point at birth: founded, and again after a source is connected, bound alone checks it closed — no head running, nothing but what the place holds; a pinned byte altered afterwards is refused\nok 1 - a place head founds is a point at birth: founded, and again after a source is connected, bound alone checks it closed — no head running, nothing but what the place holds; a pinned byte altered afterwards is refused\n  ---\n  duration_ms: 21831.983166\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 22054.002625\n"
+      ],
+      "identity": "TAP version 13\n# Subtest: foundation identity: an index locates an account, but only a matching authenticated root selects it\nok 1 - foundation identity: an index locates an account, but only a matching authenticated root selects it\n  ---\n  duration_ms: 2.448541\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 219.093125\n"
+    },
+    {
+      "node": "24",
+      "client": "✔ first run (URL): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice (29484.214875ms)\n✔ first run (shared documents): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice (36345.495875ms)\n✔ places (weather): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked (34543.449625ms)\n✔ places (climate): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked (40942.176333ms)\n✔ foundation: a raw do/place needs consent but no card for a fresh folder; existing state is never overwritten (14755.913875ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 90480.862291\n",
+      "clientParts": [
+        "✔ first run (URL): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice (29484.214875ms)\n✔ first run (shared documents): a person connects a source by its address, naming no place and sharing no folder, and on one yes their place is founded under their own home and the source connected to it; asked again with no place, the one place head holds answers, never founded twice (36345.495875ms)\n✔ places (weather): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked (34543.449625ms)\n✔ places (climate): what this device has connected — none before a place is founded; then each place the index names with the sources it pinned, the grants standing today and its last read, read off its lines, nothing asked (40942.176333ms)\n✔ foundation: a raw do/place needs consent but no card for a fresh folder; existing state is never overwritten (14755.913875ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 90480.862291\n",
+        "✔ a place head founds is a point at birth: founded, and again after a source is connected, bound alone checks it closed — no head running, nothing but what the place holds; a pinned byte altered afterwards is refused (22159.576ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 22407.553417\n"
+      ],
+      "identity": "✔ foundation identity: an index locates an account, but only a matching authenticated root selects it (3.594ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 311.725375\n"
+    }
+  ],
+  "claim": "Reviewed Head client source vectors, not installed successor acceptance, independent-machine evidence or CI.",
+  "status": "Observer-only binding successor: retain original regional executions and check current producer bytes.",
+  "predecessor": {
+    "sha256": "sha256:5a9f5c4014671ce2c42e346337ba264356c995d58156b80e5ec18677608a9ca0",
+    "preserved": true
+  },
+  "observerRebinding": {
+    "reason": "Only the existing sender capture observer changed its embedded digest; its logic, all product source/runtime, regional vectors and selected regional policy remain identical.",
+    "changedInputs": [
+      {
+        "path": "test/share-runtime.ts",
+        "before": "sha256:a5c5347a22e2a750539eff7518f856d9c3d4665a1a1cd244ce6d644f858ec793",
+        "after": "sha256:923ae681c8cf3bfec6f87542c51c185d05125200c9e7f24a707328300b9f4efc"
+      }
+    ],
+    "originalRunsUnchanged": true,
+    "regionalMatricesRepeated": false
+  }
+}

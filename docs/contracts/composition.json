@@ -1,0 +1,30 @@
+{
+  "contract": "head-composition@1",
+  "inputs": [
+    "authenticated source interpretation",
+    "source document digest",
+    "compiled source or observed MCP catalogue digest",
+    "explicit namespace",
+    "selected offer names",
+    "composition identity and revision"
+  ],
+  "rules": [
+    "API interpretation uses the existing Topos document, overlay and pin pipeline; no second OpenAPI parser",
+    "MCP discovery uses the pinned SDK and a host-permitted transport; discovery is not execution permission",
+    "Tool descriptions, schemas, annotations and returned content are untrusted data",
+    "A readOnlyHint never grants read access; the existing action and receipt flow must authorize invocation",
+    "Namespaces and source identities are unique; missing, duplicate or unknown selections refuse",
+    "An observed catalogue digest pins metadata, not future server code or responses",
+    "No URL grants network permission; no MCP document may start an executable or forward a credential",
+    "The consuming host owns transport policy, credentials, cancellation and lifecycle",
+    "This regional adapter does not yet expose a remote or local process transport through connect",
+    "The selection is data, not a policy installation or an authority filter on the received source pin"
+  ],
+  "pending": [
+    "wire the adapter through connect and the existing call flow",
+    "network and executable transport authorization",
+    "recipient association and revision handling",
+    "installed consumer acceptance"
+  ],
+  "scope": "runtime integration incomplete"
+}

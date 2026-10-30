@@ -1,3 +1,5 @@
+import { configuredAt, configuredRefusal, configuredProtocol } from '../ports/adapters/configured.ts';
+import { receiverAllows } from '../core/receiver.ts';
 import { inPlace, placeNameOf, unless } from '../core/answer.ts';
 import type { Asked, Context, Outcome } from '../core/answer.ts';
 import type { Said } from '../core/lock.ts';
@@ -22,7 +24,7 @@ export const pickedOrigin = async (context: Context, place: string, lines: reado
   const v = vocabOf(context.lock);
   const origins = fieldsOf(lines, `${v.region}/${source}`)[v.origins] ?? [];
   const line = (value: string): Said => ({ at: 'policy:person/picks', by: 'target', form: 'alphabet', measure: 'id', role: 'writes', scope: `${v.pick}/${source}`, value });
-  const by = widening(context, place, lines, origins.map((o) => canonical(line(o))));
+  const by = await widening(context, place, lines, origins.map((o) => canonical(line(o))));
   if ('said' in by) return { said: by.said };
   const chosen = (await context.person.choose(sayIn(context.lock)('pick', { source }), [{ name: v.origin, options: origins.map((o) => ({ value: o, label: o })) }]))?.[v.origin];
   if (chosen === undefined || !origins.includes(chosen)) return { said: [sayIn(context.lock)(plan.key, plan.fields)] };
@@ -40,7 +42,7 @@ export interface Frame {
 }
 
 /** Prepare one call, authorize its access and pass its frame to the read or action flow. */
-export const called = async (asked: Asked, context: Context, planOf: (lines: readonly Said[], lock: readonly Said[], source: string, operation: string, place: string) => Call | Plan, then: (frame: Frame) => Promise<readonly string[]>): Promise<readonly string[]> => {
+export const called = async (asked: Asked, context: Context, planOf: (lines: readonly Said[], lock: readonly Said[], source: string, operation: string, place: string, explicitInvocation?: boolean) => Call | Plan, then: (frame: Frame) => Promise<readonly string[]>): Promise<readonly string[]> => {
   const say = (key: string, fields: Readonly<Record<string, string | undefined>> = {}) => [sayIn(context.lock)(key, fields)];
   const source = asked['source'] ?? '';
   return inPlace(asked, context, async (place) => {
@@ -49,8 +51,9 @@ export const called = async (asked: Asked, context: Context, planOf: (lines: rea
     const named = await namedIn(context, held.lines, source, asked['operation'] ?? '', asked['ahead'] === 'true');
     if ('said' in named) return named.said;
     const operation = named.operation;
+    try { if (!await receiverAllows(context, place, source, operation)) return say('bundle-not-selected', { place, source, operation }); } catch { return say('bundle-refused', { why: 'bundle/invalid' }); }
     const widen = async (message: string, lot: readonly string[]) => {
-      const by = widening(context, place, held.lines, lot);
+      const by = await widening(context, place, held.lines, lot);
       if ('said' in by) return { said: by.said };
       const refused = await unless(context, message);
       if (refused) return { said: refused };
@@ -60,12 +63,20 @@ export const called = async (asked: Asked, context: Context, planOf: (lines: rea
     const picked = await pickedOrigin(context, place, held.lines, source, planOf(held.lines, context.lock, source, operation, placeNameOf(place)));
     if ('said' in picked) return picked.said;
     const lines = picked.lines;
-    const plan = planOf(lines, context.lock, source, operation, placeNameOf(place));
+    let remote: ReturnType<typeof configuredAt>;
+    try { remote = configuredAt(context, place, source, lines); } catch (error) { return configuredRefusal(context, error); }
+    const plan = planOf(lines, context.lock, source, operation, placeNameOf(place), remote !== undefined);
     if (plan.kind === 'said') return say(plan.key, plan.fields);
-    const prepared = ((transport) => transport?.prepare(plan, JSON.parse(asked['args'] || '{}') as Record<string, unknown>, context.lock))(await context.adapter(plan.origin));
+    if (remote && asked['ahead'] === 'true') return [];
+    if (remote && (!remote.offers.includes(operation) || new URL(remote.endpoint).origin !== new URL(plan.origin).origin)) return configuredRefusal(context, Error(configuredProtocol.toolFailure));
+    const args = JSON.parse(asked['args'] || '{}') as Record<string, unknown>;
+    let request = '';
+    const prepared = remote ? (await context.remote?.())?.prepare(remote, operation, args, async () => await context.elicit(sayIn(context.lock)(configuredProtocol.invoke, { source, operation, endpoint: remote!.endpoint, request })) === 'yes')
+      : ((transport) => transport?.prepare(plan, args, context.lock))(await context.adapter(plan.origin));
     if (prepared === undefined) return say('no-transport', { source, origin: plan.origin });
     if ('missing' in prepared) return say('missing-param', { operation, param: prepared.missing });
     if ('refused' in prepared) return say(prepared.refused, { source, origin: plan.origin });
+    request = prepared.key;
     const most = (scope: string) => Number((lines.find((l) => l.scope === scope)?.value ?? '0..0').split('..')[1]);
     const typed = async (status: string, bytes: Uint8Array) => ((got, at) => ['lines' in got ? say('answered', { source, operation, status, at })[0]! : say('untyped', { source, operation, status, at, why: got.untyped })[0]!, ...('lines' in got ? got.lines : [])])(await typedAnswer(context, place, lines, source, operation, prepared.key, bytes), new Date(context.now()).toISOString());
     const attach = async () => ((got) => ('said' in got ? { said: say(got.said, { source, operation, kinds: plan.access.kind, input: got.input }) } : got))(await attachmentFor(context, place, lines, plan));

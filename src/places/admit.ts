@@ -16,7 +16,7 @@ export const admitted = (asked: Asked, context: Context): Promise<readonly strin
   const name = (asked['name'] ?? '').toLowerCase().replace(/[^a-z0-9-]+/g, '-');
   const key = (asked['key'] ?? '').split('\n').map((line) => parse(line.trim())).flatMap((got) => (got.kind === 'fact' && got.value.fields['measure'] === 'public-key' ? [got.value.fields['value'] ?? ''] : []))[0];
   if (!name || !key) return [say('no-key')];
-  const [root, held] = [rootIn(context, place), await standingOr(context, place, context.policy)];
+  const [root, held] = [await rootIn(context, place), await standingOr(context, place, context.policy)];
   if ('said' in root) return root.said;
   if ('said' in held) return held.said;
   if (held.lines.some((l) => l.scope === `keys/${name}`) || idIn(held.lines, key) !== undefined) return [say('key-taken', { name, place })];

@@ -1,3 +1,4 @@
+import { sdkOwners, clientWords, kindWords, type ProtocolRules } from './protocol-surface.ts';
 import { test } from 'node:test';
 import { schedules, observe } from './scheduled.ts';
 import { deepStrictEqual, ok, throws } from 'node:assert';
@@ -27,8 +28,12 @@ test('tools/visible: a client is offered no more tools than the ceiling allows',
   ok(surface.tools.length > 0 && surface.tools.length <= Number(lock.find((l) => l.scope === 'tools/visible' && l.form === 'interval')!.value!.split('..')[1]));
 });
 
-test('surface/sdk-importers: the protocol is spoken by one file', () => {
-  deepStrictEqual(sources('src').filter((f) => text(f).includes('@modelcontextprotocol/sdk')), ['src/index.ts']);
+const protocolRules = JSON.parse(text('docs/contracts/protocol-surface.json')) as ProtocolRules;
+const sourceBodies = () => Object.fromEntries(sources('src').map(path => [path, text(path)]));
+test('surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling', () => {
+  const checked = sdkOwners(sourceBodies(), protocolRules);
+  deepStrictEqual(checked.issues, []);
+  ok(checked.owners.length <= Number(valueOf(lock, 'surface/sdk-importers').split('..')[1]), 'physical SDK owner count must fit its separately admitted ceiling');
 });
 
 test('surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling', () => {
@@ -38,12 +43,13 @@ test('surface/scheduled: no timer, no worker, no resident process but a place-s 
 
 test('surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares', () => {
   const words = declaredOf(readFileSync(`${root}/TARGET.bound`, 'utf8')).find((l) => l.scope === 'surface/client-words/words')!.value!.split('|');
-  deepStrictEqual([words.length > 0, sources('src').flatMap((f) => words.filter((w) => text(f).toLowerCase().includes(w)).map((w) => `${f}: ${w}`))], [true, []]);
+  deepStrictEqual(words, protocolRules.clientWords, 'the guard contract must preserve the admitted forbidden-name catalogue');
+  deepStrictEqual([words.length > 0, clientWords(sourceBodies(), protocolRules)], [true, []]);
 });
 
 test('surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each', () => {
   const words = declaredOf(readFileSync(`${root}/TARGET.bound`, 'utf8')).find((l) => l.scope === 'surface/kind-words/words')!.value!.split('|');
-  const held = sources('src').filter((f) => !regionOf('adapters').includes(f)).flatMap((f) => words.filter((w) => text(f).toLowerCase().includes(w)).map((w) => `${f}: ${w}`));
+  const held = kindWords(sourceBodies(), regionOf('adapters'), words);
   deepStrictEqual([words.length > 0, held], [true, []]);
 });
 
@@ -51,10 +57,10 @@ const lines = (f: string): number => text(f).split('\n').length - 1;
 const lock = declaredOf(text('TARGET.bound'));
 
 test('a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing', () => {
-  const red = redIn(declaredOf(text('TARGET.bound')));
-  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, 2999), red('answer/kept', 'answer/s/op', 0, 999), red('connect/seconds', 'connect/s', 0, 10_999)], [[], [], []]);
-  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, 3000), red('answer/kept', 'answer/s/op', 0, 1000)],
-    [[sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: '3', scope: 'answer/seconds', ceiling: '0..2' })], [sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: '1', scope: 'answer/kept', ceiling: '0..0' })]]);
+  const red = redIn(lock), ceiling = valueOf(lock, 'answer/seconds'), seconds = Number(ceiling.split('..')[1]) + 1;
+  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, seconds * 1000 - 1), red('answer/kept', 'answer/s/op', 0, 999), red('connect/seconds', 'connect/s', 0, 10_999)], [[], [], []]);
+  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, seconds * 1000), red('answer/kept', 'answer/s/op', 0, 1000)],
+    [[sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: String(seconds), scope: 'answer/seconds', ceiling })], [sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: '1', scope: 'answer/kept', ceiling: '0..0' })]]);
 });
 
 test('a host the lock does not name is refused by name, every call, nothing done; the one it names is not', () => {

@@ -20,7 +20,7 @@ This is an illustrative fixture, not a live forecast. [Run the local example](do
 For an assistant that starts MCP servers by command:
 
 ```sh
-npx -y @lapxo/head@0.2.0 run
+npx -y @lapxo/head@0.2.1 run
 ```
 
 The pin above names this release; the executable examples in this tree use the checkout. A client can also open a desktop extension from [releases](https://github.com/Lapxo/head/releases); check the artifact digests supplied with the release. Starting head alone prints help; `head run` starts the MCP server.

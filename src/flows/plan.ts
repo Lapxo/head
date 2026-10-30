@@ -23,7 +23,7 @@ export const planLot = (asked: Asked, context: Context): Promise<readonly string
   const held = await standingOr(context, place);
   if ('said' in held) return held.said;
   const base = baseOf(held.lines);
-  const by = widening(context, place, held.lines, lot);
+  const by = await widening(context, place, held.lines, lot);
   if ('said' in by) return by.said;
   const initial = by.root ? await authorityFor(context, place, by.key, 'record-coverage', by.records(lot)) : undefined;
   if (initial) return initial;

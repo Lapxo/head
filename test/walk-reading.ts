@@ -4,16 +4,16 @@ import { join } from 'node:path';
 import { canonical, parse, publicationOf } from '@lapxo/topos/wire';
 
 const hash = (bytes: Uint8Array | string) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
-const independent = ['test/first-minute.ts', 'test/share-inspect.ts', 'test/authority-preflight-reader.ts', 'test/walk-reading.ts'];
+const independent = ["test/first-minute.ts","test/share-inspect.ts","test/authority-preflight-reader.ts","test/walk-reading.ts","test/foundation-reading.ts","test/source-lines.ts"];
 interface Capture { readonly protocol: string; readonly policy: string; readonly inputs: readonly { path: string; sha256: string }[];
   readonly runs: readonly { node: string; suitePasses: number; output: string }[] }
 /** Read the existing consumer vectors, never implement the walk or infer a new grant. */
 export function observe(bytes: Uint8Array) {
-  if (hash(bytes) !== 'sha256:80dff9c0f4691ef8c8272bf6d8648a301a78186ba49eb02e3a5e89c3b1d26622') throw Error('REFUSE·walk capture digest');
+  if (hash(bytes) !== 'sha256:c6cca891c755ebdc06279e37bb9cb924a281cfff9ef181595f89a8af6cc3d1a3') throw Error('REFUSE·walk capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture, nodes = new Set<string>();
   if (capture.protocol !== 'head-walk-reading@1' || capture.runs.length !== 2) throw Error('REFUSE·walk capture protocol');
   for (const run of capture.runs) {
-    if (!['22', '24'].includes(run.node) || nodes.has(run.node) || ![2, 13].includes(run.suitePasses)
+    if (!['22', '24'].includes(run.node) || nodes.has(run.node) || run.suitePasses !== 2
       || !new RegExp('^(?:# |ℹ )pass ' + run.suitePasses + '$', 'm').test(run.output) || !/^(?:# |ℹ )fail 0$/m.test(run.output)
       || !/^(?:ok \d+ - |✔ )every place head founds can be walked by bound:/m.test(run.output)
       || !/^(?:ok \d+ - |✔ )a place that connected a source and granted a read can still be walked/m.test(run.output)) throw Error('REFUSE·walk incomplete vectors');

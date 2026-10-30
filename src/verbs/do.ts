@@ -3,6 +3,7 @@ import type { Answer } from '../core/answer.ts';
 import { members, valueOf } from '../core/lock.ts';
 import { sayIn } from '../core/surface.ts';
 import { cardAt } from './card.ts';
+import { LOCK } from '@lapxo/topos/wire';
 
 /**
  * What a person does, carried out by the action it names and only on the card it was asked on: an act on a place that
@@ -16,7 +17,7 @@ export const done: Answer = async (asked, context) => {
   if (!members(word('do/actions')).includes(action)) return [say('unknown-action', { action, actions: word('do/actions') })];
   const place = asked['place'] || asked['dir'] || await placeOf(asked, context), held = await cardAt(context, place);
   if ('said' in held) return held.said;
-  if (held.card !== asked['card']) return [say('card-stale', { action, place: place ?? '', card: asked['card'] ?? '' })];
+  if (held.card !== asked['card'] && !(action === 'place' && place !== undefined && !context.files.has(place, LOCK) && !context.files.has(place, '.bound'))) return [say('card-stale', { action, place: place ?? '', card: asked['card'] ?? '' })];
   const answer = await (await answerOf('tools', action))(asked, context);
   const [bound, own] = [members(word('do/not-in-card/bound')), members(word('do/not-in-card/head'))];
   const refusal = (line: string): string | undefined => ((r) => (r && [r[1]!, ...r[2]!.split(' ')].some((w) => bound.includes(w)) ? r[0] : undefined))(/REFUSE·([\w-]+)([^"]*)/.exec(line));

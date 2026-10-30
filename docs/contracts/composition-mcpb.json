@@ -1,0 +1,20 @@
+{
+  "contract": "head-composition-mcpb@1",
+  "format": "MCPB manifest 0.3, standard pinned mcpb packager",
+  "rules": [
+    "Bundle identity and revision are distinct from Head runtime version and recipient place name",
+    "A bundle carries the selected public source package and composition plus a verified complete runtime closure and licenses",
+    "No install-time dependency fetch or arbitrary host node_modules copy",
+    "No sender keys, credentials, grants, answers, private state, environment or personal paths",
+    "An internal digest is integrity data, not sender authentication",
+    "Recipient consent uses the existing connect flow; installing carries no action authority",
+    "No new verb, provider catalogue, ZIP implementation or alternate compiler",
+    "The target remains the verified platform of the runtime, currently macOS",
+    "The standard packager vector verifies packaging mechanics only, not real Desktop installation or final runtime acceptance"
+  ],
+  "pending": [
+    "Native admission and final installed release acceptance",
+    "Real supported Desktop installation"
+  ],
+  "scope": "Composition of interpreted API documents and configured Streamable HTTP MCP catalogues. Receiving configuration does not copy a remote server implementation or its credentials."
+}

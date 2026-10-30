@@ -14,12 +14,12 @@ jobs:
         shard: [1, 2, 3, 4, 5, 6]
     runs-on: ubuntu-latest
     env:
-      SHARD_1: test/authority-preflight.test.ts test/portable-birth.test.ts test/doors.test.ts test/share.test.ts test/verbs.test.ts test/reuse.test.ts test/born-closed.test.ts test/reading-identity.test.ts test/numbers.test.ts test/transport.test.ts
-      SHARD_2: test/act.test.ts test/channels.test.ts test/consent.test.ts test/gestures.test.ts test/claims.test.ts test/fold-ahead.test.ts test/trust.test.ts
+      SHARD_1: test/authority-preflight.test.ts test/portable-birth.test.ts test/doors.test.ts test/share.test.ts test/verbs.test.ts test/reuse.test.ts test/born-closed.test.ts test/reading-identity.test.ts test/numbers.test.ts test/transport.test.ts test/adopt-model.test.ts test/answer-model.test.ts
+      SHARD_2: test/act.test.ts test/channels.test.ts test/consent.test.ts test/gestures.test.ts test/claims.test.ts test/fold-ahead.test.ts test/trust.test.ts test/configured-receiver.test.ts test/receiver.test.ts
       SHARD_3: test/marks.test.ts test/share-receive.test.ts test/authorizer.test.ts test/link-url.test.ts test/read.test.ts test/shape.test.ts test/release.test.ts test/device.test.ts test/surface.test.ts test/refusal-record.test.ts test/welcome.test.ts test/bound.test.ts test/warm-compact.test.ts test/pack.test.ts test/pending-document.test.ts test/keys.test.ts test/acts.test.ts test/bundle.test.ts test/onboarding.test.ts
       SHARD_4: test/issuer.test.ts test/fetch.test.ts test/connect.test.ts test/first-minute.test.ts test/use.test.ts test/places.test.ts test/warm.test.ts test/session.test.ts test/process.test.ts test/stores.test.ts test/signer.test.ts
-      SHARD_5: test/org.test.ts test/ahead-read.test.ts test/access.test.ts test/answered.test.ts test/world.test.ts test/named.test.ts test/first-run.test.ts test/place-neutral.test.ts
-      SHARD_6: test/marks-lineage.test.ts test/share-refused.test.ts test/kept-zero-moved.test.ts test/observed.test.ts test/walk.test.ts test/kept-zero.test.ts test/adopt.test.ts test/asking.test.ts
+      SHARD_5: test/org.test.ts test/ahead-read.test.ts test/access.test.ts test/answered.test.ts test/world.test.ts test/named.test.ts test/first-run.test.ts test/place-neutral.test.ts test/composition.test.ts test/kind-boundary.test.ts test/protocol-surface.test.ts
+      SHARD_6: test/marks-lineage.test.ts test/share-refused.test.ts test/kept-zero-moved.test.ts test/observed.test.ts test/walk.test.ts test/kept-zero.test.ts test/adopt.test.ts test/asking.test.ts test/mcp-transport.test.ts test/runtime-resolution.test.ts test/share-bundle.test.ts test/source-policy.test.ts test/world-standing.test.ts
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,6 +31,15 @@ jobs:
         run: diff <(printf '%s\n' $SHARD_1 $SHARD_2 $SHARD_3 $SHARD_4 $SHARD_5 $SHARD_6 | sort) <(ls test/*.test.ts | sort)
       - run: npm ci
       - run: npm run build
+      - name: Verify pinned compiler test fixtures without claiming producer publication
+        run: |
+          set -euo pipefail
+          (cd test/fixtures/content && shasum -a 256 -c SHA256SUMS)
+          worlds="$(node -p "require('path').join(require('os').tmpdir(), 'head-worlds')")"
+          mkdir -p "$worlds"
+          while read -r digest file; do
+            cp "test/fixtures/content/$file" "$worlds/$digest"
+          done < test/fixtures/content/SHA256SUMS
       - name: Run tests, shard ${{ matrix.shard }} of 6, the files listed for it
         run: |
           set -euo pipefail
@@ -60,6 +69,15 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm ci
       - run: npm run build
+      - name: Verify pinned compiler test fixtures without claiming producer publication
+        run: |
+          set -euo pipefail
+          (cd test/fixtures/content && shasum -a 256 -c SHA256SUMS)
+          worlds="$(node -p "require('path').join(require('os').tmpdir(), 'head-worlds')")"
+          mkdir -p "$worlds"
+          while read -r digest file; do
+            cp "test/fixtures/content/$file" "$worlds/$digest"
+          done < test/fixtures/content/SHA256SUMS
       - name: Run the timed tests alone on this machine, one at a time
         run: |
           set -euo pipefail

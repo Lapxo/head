@@ -6,11 +6,14 @@ import { fieldsOf, vocabOf } from './read.ts';
 import { sayIn } from './surface.ts';
 import { digestIn, linesOf } from './worlds.ts';
 import { sharedBirth } from '../links/birth.ts';
+import { shareBundle } from './share-bundle.ts';
 import { linkOf } from '../links/link.ts';
 
 /** A line no package carries: one that is not a world, or a source's document, overlay or pin, said once by digest — with, beside a digest that names bytes, the encrypted address they are read at. */
 export const foreignIn = (lines: readonly Said[]): Said | undefined => lines.find((l) => !/^(sources\/[a-z0-9-]+(\/overlay)?|uses\/[a-z0-9-]+)$/.test(l.scope ?? '') || lines.some((o) => o !== l && o.scope === l.scope && o.measure === l.measure)
   || (l.measure !== 'digest' && !(l.measure === 'id' && URL.canParse(l.value ?? '') && lines.some((o) => o.scope === l.scope && o.measure === 'digest' && o.needs))));
+export const sharePath = async (context: Context, place: string, to: string): Promise<boolean> =>
+  await within(context, place, to) && ((rel) => rel.startsWith('..') || (rel !== '' && !rel.startsWith('.') && ![valueOf(context.lock, 'place/connected'), ...members(valueOf(context.lock, 'place/compiled')), valueOf(context.lock, 'walk/context/file'), valueOf(context.lock, 'place/worlds')].some(at => rel.split(sep)[0] === at.split('/')[0])))(relative(place, to));
 const orderOf = <T extends { readonly source: string; readonly rests: readonly string[] }>(all: readonly T[], out: readonly T[] = []): readonly T[] | undefined => ((next) => (next === undefined ? (out.length === all.length ? out : undefined) : orderOf(all, [...out, next])))(all.find((s) => !out.includes(s) && s.rests.every((r) => out.some((o) => o.source === r))));
 const packed = (context: Context, place: string, own: readonly Said[], urls: Readonly<Record<string, string>>) => {
   const [word, v, digest, held] = [(k: string) => valueOf(context.lock, k), vocabOf(context.lock), digestIn(context.lock), (rel: string) => context.files.take(join(place, rel)) ?? new Uint8Array()];
@@ -19,14 +22,20 @@ const packed = (context: Context, place: string, own: readonly Said[], urls: Rea
   const pins = own.filter((l) => l.scope?.startsWith('uses/') && under(context.lock, 'place/compiled', l.needs)).map((l) => ((source) => ({ source, pin: l.value!, needs: l.needs!, lines: linesOf(held(l.needs!)), laid: context.files.read.laidOf(context, place, source) }))(l.scope!.slice('uses/'.length)));
   const declares = new Map(pins.flatMap((p) => (fieldsOf(p.lines, `${v.region}/${p.source}`)[v.issuers] ?? []).map((issuer) => [issuer, p.source] as const)));
   const rested = pins.map((p) => ({ ...p, rests: [...new Set(p.lines.filter((l) => l.measure === 'issuer').flatMap((l) => declares.get(l.value ?? '') ?? []))].filter((s) => s !== p.source).sort() })), sources = orderOf(rested) ?? rested;
-  return { names: sources.map((s) => s.source), files: sources.flatMap((s) => [...s.laid, [s.needs, held(s.needs)] as const]), lines: [...own.filter((l) => members(word('world/adopts')).some((w) => l.scope === `uses/${w}`)).flatMap((l) => row(l.scope!, l.value!)),
+  return { names: sources.map((s) => s.source), files: sources.flatMap((s) => [...s.laid, [s.needs, held(s.needs)] as const]), lines: [...own.filter((l) => l.scope?.startsWith('uses/') && l.value === word(`world/${l.scope.slice(5)}/standing`)).flatMap((l) => row(l.scope!, l.value!)),
     ...sources.flatMap((s) => [...s.laid.flatMap(([rel, bytes]) => row(/\.overlay\.[^.]+$/.test(rel) ? `sources/${s.source}/overlay` : `sources/${s.source}`, digest(bytes), { needs: rel })),
       ...row(`uses/${s.source}`, s.pin, { needs: s.needs, ...(s.rests.length ? { restsOn: s.rests.map((r) => `uses/${r}`).join('|') } : {}) })])] };
 };
 /** A place packed as its published lock would name it, into a folder inside it or one the client shares, apart from what head and bound keep: each world its sources were compiled under, and each source — document, overlay, and compiled pin resting on the sources whose issuers it names — by digest, beside the bytes those digests name, and where the person says they are also published, at that encrypted address. No line of access, key or grant: a package grants nothing, and nothing is asked, signed or landed. */
 export const shared = (asked: Asked, context: Context): Promise<readonly string[]> => inPlace(asked, context, async (place) => {
-  const [say, to, held] = [sayIn(context.lock), asked['to'] ?? '', await standingOr(context, place, context.policy)], [rel, there] = [relative(place, to), linesOf(context.files.take(join(to, LOCK)) ?? new Uint8Array())];
-  if (!(await within(context, place, to)) || (!rel.startsWith('..') && (rel === '' || rel.startsWith('.') || [valueOf(context.lock, 'place/connected'), ...members(valueOf(context.lock, 'place/compiled')), valueOf(context.lock, 'walk/context/file'), valueOf(context.lock, 'place/worlds')].some((at) => rel.split(sep)[0] === at.split('/')[0]))) || foreignIn(there)) return [say('share-to', { place, to })];
+  const bundled = await shareBundle({ ...asked, place }, context, async () => {
+    const own = await standingOr(context, place, context.policy); if ('said' in own) throw Error('bundle/standing');
+    const pack = packed(context, place, own.lines, {}), v = vocabOf(context.lock);
+    return { files: new Map([...pack.files, [LOCK, Buffer.from(pack.lines.join('\n') + '\n')] as const]), sources: pack.names.map(name => { const pin = own.lines.find(line => line.scope === `uses/${name}`)!; const doc = linesOf(Buffer.from(pack.lines.join('\n'))).find(line => line.scope === `sources/${name}` && line.measure === 'digest')!; return { name, kind: 'compiled', document: doc.value!, pin: pin.value!, offers: [...new Set(linesOf(context.files.take(join(place, pin.needs!))!).filter(line => line.scope?.startsWith(`${v.offers}/${name}/`)).map(line => line.scope!.split('/')[2]!))] }; }) };
+  });
+  if (bundled !== undefined) return bundled;
+  const [say, to, held] = [sayIn(context.lock), asked['to'] ?? '', await standingOr(context, place, context.policy)], there = linesOf(context.files.take(join(to, LOCK)) ?? new Uint8Array());
+  if (!await sharePath(context, place, to) || foreignIn(there)) return [say('share-to', { place, to })];
   if ('said' in held) return held.said;
   const urls = ((u) => (u && typeof u === 'object' ? u : {}))((() => { try { return JSON.parse(asked['urls'] || '{}') as Record<string, string>; } catch { return {}; } })()), pack = packed(context, place, held.lines, urls), bytes = new TextEncoder().encode(`${pack.lines.join('\n')}\n`);
   const birth = sharedBirth(context, to, held.lines);
