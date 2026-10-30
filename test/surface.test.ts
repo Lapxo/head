@@ -57,10 +57,10 @@ const lines = (f: string): number => text(f).split('\n').length - 1;
 const lock = declaredOf(text('TARGET.bound'));
 
 test('a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing', () => {
-  const red = redIn(declaredOf(text('TARGET.bound')));
-  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, 2999), red('answer/kept', 'answer/s/op', 0, 999), red('connect/seconds', 'connect/s', 0, 10_999)], [[], [], []]);
-  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, 3000), red('answer/kept', 'answer/s/op', 0, 1000)],
-    [[sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: '3', scope: 'answer/seconds', ceiling: '0..2' })], [sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: '1', scope: 'answer/kept', ceiling: '0..0' })]]);
+  const red = redIn(lock), ceiling = valueOf(lock, 'answer/seconds'), seconds = Number(ceiling.split('..')[1]) + 1;
+  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, seconds * 1000 - 1), red('answer/kept', 'answer/s/op', 0, 999), red('connect/seconds', 'connect/s', 0, 10_999)], [[], [], []]);
+  deepStrictEqual([red('answer/seconds', 'answer/s/op', 0, seconds * 1000), red('answer/kept', 'answer/s/op', 0, 1000)],
+    [[sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: String(seconds), scope: 'answer/seconds', ceiling })], [sayIn(declaredOf(text('TARGET.bound')))('red', { coordinate: 'answer/s/op', seconds: '1', scope: 'answer/kept', ceiling: '0..0' })]]);
 });
 
 test('a host the lock does not name is refused by name, every call, nothing done; the one it names is not', () => {

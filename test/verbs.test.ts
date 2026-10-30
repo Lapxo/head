@@ -68,7 +68,7 @@ test('a place that signs no view of cells answers its card as cells, never a sen
 });
 
 test('person-words: no cell of ask carries a resolution number or a ledger epoch, a red included; the offers a person reads and the ones why explains are the lock-s resolutions', async () => {
-  const slow = createServer((_request, response) => { setTimeout(() => { response.writeHead(200, { 'content-type': 'application/json' }); response.end('{}'); }, 3100); });
+  const slow = createServer((_request, response) => { setTimeout(() => { response.writeHead(200, { 'content-type': 'application/json' }); response.end('{}'); }, (Number(valueOf(lock, 'answer/seconds').split('..')[1]) + 1) * 1000); });
   await new Promise<void>((resolve) => slow.listen(0, '127.0.0.1', resolve));
   const { place, keychain } = born(`http://127.0.0.1:${(slow.address() as AddressInfo).port}`);
   const answers = await ask([listing(place), listing(place, { why: true }), call('ask', { place, source: 'tracker' }), call('ask', { place, source: 'tracker', why: true }), call('ask', { place, view: valueOf(lock, 'bound/standing') }), call('ask', {}), call('ask', { place, card: true })], [], keychain.env);

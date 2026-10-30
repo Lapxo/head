@@ -779,32 +779,45 @@
       "sha256": "sha256:6ba84bbfc01bfdc79839bbbc8a61c3407aab0cb8a40dceca080234ea9eab3e48"
     },
     {
+      "path": "test/protocol-surface.ts",
+      "sha256": "sha256:4326d090e230170b44b9c28176390f753d748f65c2c4db0b8ce0d0c9eb44b0ea"
+    },
+    {
+      "path": "test/scheduled.ts",
+      "sha256": "sha256:42dc6f0a1d325d23f41a973172f329c7d41444b405f7db9f9ba107ac85d87219"
+    },
+    {
       "path": "test/share-bundle.test.ts",
       "sha256": "sha256:5fec72d858839264e7694372272fa4babc24028ae126060e92117baacb42de4f"
+    },
+    {
+      "path": "test/surface.test.ts",
+      "sha256": "sha256:e5a9fe364e7e4af7adfca1e2b99a6006f92e8803f44457b2dbaca9deacb029ce"
     },
     {
       "path": "vectors/share-runtime.json",
       "sha256": "sha256:250484c533ffc90d8dd1c76443de5da54c3ab2fc0e099509c146093f52611747"
     }
   ],
-  "policy": "sha256:336701df94af93baa99c5ddd6c6a340adfab49f9dff373fbc5ecd804600d92ed",
+  "policy": "sha256:34cb21ea162000df8e7e46696516b1b71c63d4c1eef802d39d243649c279c06b",
   "runtimeInventory": "sha256:f20d82a86d78a47086e5d043def1be3799d9132922c6227cfbc6186fdd6233cc",
   "baseArtifact": {
-    "kind": "Unsigned isolated regional runtime fixture, not final release",
-    "sha256": "sha256:d6212d1e3791e0708b2d6d37363cd466f53bbacd19c75242e42684ee3962eabc",
+    "kind": "Unsigned isolated regional sender-runtime fixture; not final release",
+    "sha256": "sha256:60b51da5677a561f4c1507bd323bcf001e4deaa33a90de1bb07b0c93cad6e8ed",
     "members": 4804,
-    "bytes": 13147138,
-    "runtimeInventory": "sha256:f20d82a86d78a47086e5d043def1be3799d9132922c6227cfbc6186fdd6233cc",
-    "policy": "sha256:7d9d49dddac5477e91a0ff10877e3940ca40ed56ccec37018a79ed6acbee7478",
-    "version": "0.2.1",
-    "allInventoryMembersVerified": true
+    "bytes": 13147810,
+    "inventory": "sha256:f20d82a86d78a47086e5d043def1be3799d9132922c6227cfbc6186fdd6233cc",
+    "policy": "sha256:aeee6c3d9a4d41e58341fc5bf2eb5ecb9b50fb0405f277873bc5816e166a573e",
+    "allInventoryMembersVerified": true,
+    "productRuntimeChanged": false,
+    "priorArtifactsPreserved": true
   },
   "dependencyComparison": "sha256:c661b08345492cca368e2077108dcfe4d48d886eb6a1dd515ed17890015ad5ef",
   "runs": [
     {
       "node": "22",
       "units": "TAP version 13\n# Subtest: share bundle: empty base is a standard bundle without composition, sources or secret configuration\nok 1 - share bundle: empty base is a standard bundle without composition, sources or secret configuration\n  ---\n  duration_ms: 127.591833\n  type: 'test'\n  ...\n# Subtest: share bundle: selected public sources and distinct package identity use the standard packager\nok 2 - share bundle: selected public sources and distinct package identity use the standard packager\n  ---\n  duration_ms: 124.178625\n  type: 'test'\n  ...\n# Subtest: share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\nok 3 - share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\n  ---\n  duration_ms: 0.840625\n  type: 'test'\n  ...\n# Subtest: share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\nok 4 - share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\n  ---\n  duration_ms: 1.204916\n  type: 'test'\n  ...\n# Subtest: share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\nok 5 - share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\n  ---\n  duration_ms: 4300.806333\n  type: 'test'\n  ...\n# Subtest: share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\nok 6 - share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\n  ---\n  duration_ms: 1.085667\n  type: 'test'\n  ...\n# Subtest: share bundle: bundle and folder exports use the same destination boundary before any write\nok 7 - share bundle: bundle and folder exports use the same destination boundary before any write\n  ---\n  duration_ms: 0.3275\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 4870.286625\n",
-      "surface": "TAP version 13\n# Subtest: surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\nok 1 - surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\n  ---\n  duration_ms: 2.109458\n  type: 'test'\n  ...\n# Subtest: tools/visible: a client is offered no more tools than the ceiling allows\nok 2 - tools/visible: a client is offered no more tools than the ceiling allows\n  ---\n  duration_ms: 0.140208\n  type: 'test'\n  ...\n# Subtest: surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\nok 3 - surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\n  ---\n  duration_ms: 16.189958\n  type: 'test'\n  ...\n# Subtest: surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\nok 4 - surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\n  ---\n  duration_ms: 2.461\n  type: 'test'\n  ...\n# Subtest: surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\nok 5 - surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\n  ---\n  duration_ms: 12.714166\n  type: 'test'\n  ...\n# Subtest: surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\nok 6 - surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\n  ---\n  duration_ms: 12.923333\n  type: 'test'\n  ...\n# Subtest: a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\nok 7 - a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\n  ---\n  duration_ms: 14.343\n  type: 'test'\n  ...\n# Subtest: a host the lock does not name is refused by name, every call, nothing done; the one it names is not\nok 8 - a host the lock does not name is refused by name, every call, nothing done; the one it names is not\n  ---\n  duration_ms: 0.369084\n  type: 'test'\n  ...\n# Subtest: each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\nok 9 - each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\n  ---\n  duration_ms: 555.52225\n  type: 'test'\n  ...\n# Subtest: tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\nok 10 - tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\n  ---\n  duration_ms: 1.2425\n  type: 'test'\n  ...\n# Subtest: duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\nok 11 - duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\n  ---\n  duration_ms: 6.936917\n  type: 'test'\n  ...\n# Subtest: a prompt is read off its lines and filled only where it was asked\nok 12 - a prompt is read off its lines and filled only where it was asked\n  ---\n  duration_ms: 0.132458\n  type: 'test'\n  ...\n# Subtest: a resource URI gives its template the fields it names, query fields optional and in any order, decoded\nok 13 - a resource URI gives its template the fields it names, query fields optional and in any order, decoded\n  ---\n  duration_ms: 0.422125\n  type: 'test'\n  ...\n# Subtest: surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\nok 14 - surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\n  ---\n  duration_ms: 0.44125\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 971.992\n",
+      "surface": "TAP version 13\n# Subtest: surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\nok 1 - surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\n  ---\n  duration_ms: 1.542875\n  type: 'test'\n  ...\n# Subtest: tools/visible: a client is offered no more tools than the ceiling allows\nok 2 - tools/visible: a client is offered no more tools than the ceiling allows\n  ---\n  duration_ms: 0.088417\n  type: 'test'\n  ...\n# Subtest: surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\nok 3 - surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\n  ---\n  duration_ms: 15.311917\n  type: 'test'\n  ...\n# Subtest: surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\nok 4 - surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\n  ---\n  duration_ms: 2.128833\n  type: 'test'\n  ...\n# Subtest: surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\nok 5 - surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\n  ---\n  duration_ms: 13.14375\n  type: 'test'\n  ...\n# Subtest: surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\nok 6 - surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\n  ---\n  duration_ms: 12.161667\n  type: 'test'\n  ...\n# Subtest: a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\nok 7 - a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\n  ---\n  duration_ms: 9.654958\n  type: 'test'\n  ...\n# Subtest: a host the lock does not name is refused by name, every call, nothing done; the one it names is not\nok 8 - a host the lock does not name is refused by name, every call, nothing done; the one it names is not\n  ---\n  duration_ms: 0.293875\n  type: 'test'\n  ...\n# Subtest: each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\nok 9 - each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\n  ---\n  duration_ms: 585.725208\n  type: 'test'\n  ...\n# Subtest: tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\nok 10 - tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\n  ---\n  duration_ms: 1.479916\n  type: 'test'\n  ...\n# Subtest: duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\nok 11 - duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\n  ---\n  duration_ms: 7.727958\n  type: 'test'\n  ...\n# Subtest: a prompt is read off its lines and filled only where it was asked\nok 12 - a prompt is read off its lines and filled only where it was asked\n  ---\n  duration_ms: 0.141833\n  type: 'test'\n  ...\n# Subtest: a resource URI gives its template the fields it names, query fields optional and in any order, decoded\nok 13 - a resource URI gives its template the fields it names, query fields optional and in any order, decoded\n  ---\n  duration_ms: 0.409417\n  type: 'test'\n  ...\n# Subtest: surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\nok 14 - surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\n  ---\n  duration_ms: 0.463417\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 974.29125\n",
       "consumer": {
         "node": "22",
         "kind": "Actual default Head share route from a provisioned regional runtime; not Root admission or final release",
@@ -820,14 +833,14 @@
         "privateStateAbsent": true,
         "currentRuntimeByteCorruptionRefused": true,
         "emptyArtifact": {
-          "digest": "sha256:f97faba213619301c722de7cd9e30cd3894ea24facea52583a897bb7d8342da9",
-          "bytes": 13146324
+          "digest": "sha256:735025724874102df801612927fec73404d48e519d7fe1dc9e81f22d1a26bda5",
+          "bytes": 13146996
         },
         "customArtifact": {
-          "digest": "sha256:b4749fdd17197d846e0495b29125444ccc1f25c8d7f5ea19b5b93dd5c76c650e",
-          "bytes": 13148229
+          "digest": "sha256:8f343a8f9145de2679e30be5795d24b6daf8082987c1b21f7f983f45ed37211a",
+          "bytes": 13148901
         },
-        "runtime": "sha256:d6212d1e3791e0708b2d6d37363cd466f53bbacd19c75242e42684ee3962eabc",
+        "runtime": "sha256:60b51da5677a561f4c1507bd323bcf001e4deaa33a90de1bb07b0c93cad6e8ed",
         "mcpRemoteExecution": "pending",
         "recipientAutoAssociation": "independently covered by admitted receiver/runtime; this vector tests sender export only",
         "signed": false,
@@ -837,14 +850,14 @@
         "publicPayloadBytes": 3143,
         "selectionCount": 1,
         "maximumSelectionListItems": 1,
-        "customArtifact": "sha256:b4749fdd17197d846e0495b29125444ccc1f25c8d7f5ea19b5b93dd5c76c650e",
-        "parentSummaryDigest": "sha256:3a29e0924d80e219ef9b10b0bcf961df84f3433f2c13c4e220456e27082a0d5c"
+        "customArtifact": "sha256:8f343a8f9145de2679e30be5795d24b6daf8082987c1b21f7f983f45ed37211a",
+        "parentSummaryDigest": "sha256:71553511716f2f74189da15258f4a08f7510225160647cbbc8037da1c2f0517c"
       }
     },
     {
       "node": "24",
       "units": "✔ share bundle: empty base is a standard bundle without composition, sources or secret configuration (121.290375ms)\n✔ share bundle: selected public sources and distinct package identity use the standard packager (120.855ms)\n✔ share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse (0.796333ms)\n✔ share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate (1.201875ms)\n✔ share bundle: real existing Head closure starts without npm and keeps exactly the three public tools (4271.8565ms)\n✔ share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse (0.922917ms)\n✔ share bundle: bundle and folder exports use the same destination boundary before any write (0.259125ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 4829.459541\n",
-      "surface": "✔ surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is (1.467208ms)\n✔ tools/visible: a client is offered no more tools than the ceiling allows (0.091167ms)\n✔ surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling (10.98925ms)\n✔ surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling (2.111208ms)\n✔ surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares (10.671542ms)\n✔ surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each (11.581083ms)\n✔ a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing (13.491625ms)\n✔ a host the lock does not name is refused by name, every call, nothing done; the one it names is not (0.23325ms)\n✔ each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole (556.584833ms)\n✔ tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling (1.192959ms)\n✔ duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body (5.672875ms)\n✔ a prompt is read off its lines and filled only where it was asked (0.115292ms)\n✔ a resource URI gives its template the fields it names, query fields optional and in any order, decoded (0.440125ms)\n✔ surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses (0.473708ms)\nℹ tests 14\nℹ suites 0\nℹ pass 14\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 896.652833\n",
+      "surface": "✔ surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is (1.45875ms)\n✔ tools/visible: a client is offered no more tools than the ceiling allows (0.090916ms)\n✔ surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling (11.071ms)\n✔ surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling (2.136833ms)\n✔ surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares (12.932ms)\n✔ surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each (12.272458ms)\n✔ a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing (8.99075ms)\n✔ a host the lock does not name is refused by name, every call, nothing done; the one it names is not (0.245791ms)\n✔ each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole (600.111416ms)\n✔ tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling (1.258667ms)\n✔ duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body (7.145666ms)\n✔ a prompt is read off its lines and filled only where it was asked (0.157333ms)\n✔ a resource URI gives its template the fields it names, query fields optional and in any order, decoded (0.427625ms)\n✔ surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses (0.287291ms)\nℹ tests 14\nℹ suites 0\nℹ pass 14\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 941.324708\n",
       "consumer": {
         "node": "24",
         "kind": "Actual default Head share route from a provisioned regional runtime; not Root admission or final release",
@@ -860,14 +873,14 @@
         "privateStateAbsent": true,
         "currentRuntimeByteCorruptionRefused": true,
         "emptyArtifact": {
-          "digest": "sha256:ab687b94a31d34b26c1291ece09b4d2a0d88ccb1ed53ec79d216a9f04c40ce0b",
-          "bytes": 13146324
+          "digest": "sha256:fdd89b923743bd85c2117355cf9c3b604ffdc85d6baa37dced222fba281eb6dc",
+          "bytes": 13146996
         },
         "customArtifact": {
-          "digest": "sha256:76c9d964d6eefcada1dd51a133965e3c23b611057c70568631875bb7adb2887d",
-          "bytes": 13148229
+          "digest": "sha256:349041057a2637f96e93d4f34888f90ffaafa6a0af496843c4c9087bfcb6906b",
+          "bytes": 13148901
         },
-        "runtime": "sha256:d6212d1e3791e0708b2d6d37363cd466f53bbacd19c75242e42684ee3962eabc",
+        "runtime": "sha256:60b51da5677a561f4c1507bd323bcf001e4deaa33a90de1bb07b0c93cad6e8ed",
         "mcpRemoteExecution": "pending",
         "recipientAutoAssociation": "independently covered by admitted receiver/runtime; this vector tests sender export only",
         "signed": false,
@@ -877,23 +890,23 @@
         "publicPayloadBytes": 3143,
         "selectionCount": 1,
         "maximumSelectionListItems": 1,
-        "customArtifact": "sha256:76c9d964d6eefcada1dd51a133965e3c23b611057c70568631875bb7adb2887d",
-        "parentSummaryDigest": "sha256:49957c8eac4db9824cbba035d3181d9326174015d60056144731950e3e83aa91"
+        "customArtifact": "sha256:349041057a2637f96e93d4f34888f90ffaafa6a0af496843c4c9087bfcb6906b",
+        "parentSummaryDigest": "sha256:161f9d3ecd85b694466a61e1600f336b9af93ce560ec1ade19281191f1a0be29"
       }
     }
   ],
-  "status": "Fresh 0.2.1 empty and selected exports, with exact runtime members; unchanged unit and surface results retained by byte identity",
+  "status": "Fresh sender consumer execution with the admitted catalogue policy. Unchanged seven unit cases retained; fourteen surface cases executed again against the corrected fixture. Not final release or remote MCP evidence.",
   "predecessor": {
-    "sha256": "sha256:41e58041b3fbe090cb72d0de070d12dfd2808a8771ccc5be4da0076bacc4c45f",
-    "preserved": true
+    "sha256": "sha256:4e98506d901f0f54afeb36e5652b08b5ceb1c920d93592dbfc3f878699a2e910",
+    "status": "Historical capture retained byte for byte"
   },
   "fixture": "Pinned public world blobs verified by digest and seeded into the isolated sender before compilation; no new network permission or third-party connection",
   "policySnapshots": [
-    "sha256:336701df94af93baa99c5ddd6c6a340adfab49f9dff373fbc5ecd804600d92ed"
+    "sha256:34cb21ea162000df8e7e46696516b1b71c63d4c1eef802d39d243649c279c06b"
   ],
   "executionProfile": {
-    "sha256": "sha256:7d9d49dddac5477e91a0ff10877e3940ca40ed56ccec37018a79ed6acbee7478",
-    "kind": "Active 0.2.1 version/delivery selection; future acceptance bindings are separate"
+    "sha256": "sha256:aeee6c3d9a4d41e58341fc5bf2eb5ecb9b50fb0405f277873bc5816e166a573e",
+    "kind": "Public projection of actual admitted Root epoch143; later receipt bindings are separate"
   },
-  "unitResultReuse": "The seven unit cases and fourteen source-surface checks are retained unchanged; their programs and source/classifier bytes did not change. The runtime consumer below was executed again for the changed metadata."
+  "unitResultReuse": "Only the seven unchanged share-bundle unit cases are retained by exact producer input identity. The fourteen source/surface cases and sender runtime consumers were executed on Node22/24 for this policy."
 }

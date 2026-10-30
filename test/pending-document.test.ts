@@ -9,14 +9,15 @@ const lock = lockAt(process.cwd());
 const owed = { at: 'policy:fixture', by: 'target', form: 'alphabet', measure: 'id', role: 'demands', scope: `${valueOf(lock, 'place/needs')}/bytes/example`, value: 'https://example.invalid/openapi.json' };
 
 for (const failure of ['adoption', 'compilation'] as const) test(`a late document whose ${failure} refuses remains owed and cannot authorize an answer`, async () => {
-  const writes: string[][] = [];
+  const writes: string[][] = []; let policyReads = 0;
   const context = {
     lock: lock.map((line) => line.scope === 'world/adopts' ? { ...line, value: '' } : line),
     standing: async () => ({ lines: [owed] }),
-    keys: { read: () => 'unused fixture account', held: () => 'unused fixture account' },
-    files: { lay: () => undefined, drop: () => undefined, read: { documentOf: async () => ({ kind: 'json', bytes: new TextEncoder().encode('{}') }) } },
+    home: () => '/fixture/home',
+    keys: { read: () => 'unused fixture account', held: () => 'fixture-public-key' },
+    files: { has: () => false, lay: () => undefined, drop: () => undefined, read: { documentOf: async () => ({ kind: 'json', bytes: new TextEncoder().encode('{}') }) } },
     machine: () => 0,
-    policy: async () => failure === 'adoption' ? { refused: 'REFUSE·fixture adoption failed' } : { lines: [] },
+    policy: async () => ++policyReads === 1 ? { lines: [{ scope: valueOf(lock, 'founding/root'), measure: 'public-key', value: 'fixture-public-key' }] } : failure === 'adoption' ? { refused: 'REFUSE·fixture adoption failed' } : { lines: [] },
     world: async () => ({ refused: 'REFUSE·fixture compilation failed' }),
     landRoot: async (_place: string, lines: string[]) => { writes.push(lines); return { lines }; },
   } as unknown as Context;

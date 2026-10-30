@@ -579,7 +579,7 @@
     },
     {
       "path": "test/numbers.test.ts",
-      "sha256": "sha256:13da60f0ee771c1b10edb5132b4374ae0ef1e62891dd4fc5b7490d894e8e393d"
+      "sha256": "sha256:f4de510de88f2f82c48108dfef90da7451aad7db2cd1c3302df3b5afe264a3c2"
     },
     {
       "path": "test/observed.test.ts",
@@ -603,7 +603,7 @@
     },
     {
       "path": "test/pending-document.test.ts",
-      "sha256": "sha256:77583cf5d9217383d3dd40b014887511ae6a7f3d113cfdda08856eadbf48f7a0"
+      "sha256": "sha256:f96bf014a377111bc2784338e005fd1f7ce7819f85c1d37dda042e62d063534b"
     },
     {
       "path": "test/place-neutral.test.ts",
@@ -659,7 +659,7 @@
     },
     {
       "path": "test/release.test.ts",
-      "sha256": "sha256:dfdca92310a8e3b8b01deeefebbf01ad8e959f2ee635a9a79d91ebc8c072c1cb"
+      "sha256": "sha256:371b60a2f5bdbc1176f70043bb4c287df117eb3d56512d7f3df8ae5159a6c443"
     },
     {
       "path": "test/reuse.test.ts",
@@ -707,7 +707,7 @@
     },
     {
       "path": "test/share-runtime.ts",
-      "sha256": "sha256:a5c5347a22e2a750539eff7518f856d9c3d4665a1a1cd244ce6d644f858ec793"
+      "sha256": "sha256:923ae681c8cf3bfec6f87542c51c185d05125200c9e7f24a707328300b9f4efc"
     },
     {
       "path": "test/share.test.ts",
@@ -731,7 +731,7 @@
     },
     {
       "path": "test/surface.test.ts",
-      "sha256": "sha256:b6cbd28c0a61bcf80bd591c2cad2609c08b0fcf22b4f22a6c795d0686f2f5058"
+      "sha256": "sha256:e5a9fe364e7e4af7adfca1e2b99a6006f92e8803f44457b2dbaca9deacb029ce"
     },
     {
       "path": "test/time/clock.test.ts",
@@ -767,7 +767,7 @@
     },
     {
       "path": "test/verbs.test.ts",
-      "sha256": "sha256:2dec0839e2aa74cfdc2269b1a63008ca7e8b0da0658f0e841a498ecc89b7b005"
+      "sha256": "sha256:f00fd0813db20b8dea0422c29003dc21d503bb63e92b05844ca23ba8628dc6ad"
     },
     {
       "path": "test/walk.test.ts",
@@ -799,7 +799,7 @@
     },
     {
       "path": "test/world.test.ts",
-      "sha256": "sha256:d3c2d83419608b3ae4e3c51a5fa9014d3d77c6db9af81f81b4b0b3c17a4f3567"
+      "sha256": "sha256:017ef17382cfcc80c30c72bd58c06567cb10880ab02599e4352af7d090d14074"
     },
     {
       "path": "test/worlds.ts",
@@ -859,35 +859,21 @@
     }
   },
   "policy": "sha256:be7ae9fd0478d36919c9bb1268fcb1f5a7a2763ae5a41623842ba19dff036e47",
-  "status": "Historical regional producer runs retained. Only independent observation-reader hashes were rebound; production, producer tests and the selected regional policy remain unchanged.",
+  "status": "Observer-only binding successor: retain original regional executions and check current producer bytes.",
   "predecessor": {
-    "sha256": "sha256:e85ae1195751b055ca5decce8fbc01c1103e1c115da829b03d93243762105564",
+    "sha256": "sha256:4c8d070daa41bea87d942c2f3d625e7fc241b32360a9283dc823e956a82bfb28",
     "preserved": true
   },
   "observerRebinding": {
+    "reason": "Only the existing sender capture observer changed its embedded digest; its logic, all product source/runtime, regional vectors and selected regional policy remain identical.",
     "changedInputs": [
       {
-        "path": "test/composition-reading.ts",
-        "before": "sha256:d628763f1ad2d63eaef0150da07875f545a89296908a48fda7a86fdbc8468650",
-        "after": "sha256:67702909cc17fd4d2c79027f57f7bcb1f6d1f711e2a873deb9b908ebc06d2a7e"
-      },
-      {
-        "path": "test/mcp-receiver-reading.ts",
-        "before": "sha256:e32f7faccd11f1838a6b2fac56b670a43ec592a096f64b342c3472ac648fc1ee",
-        "after": "sha256:cdc04818dc6abf3c860467dffeb7c472ab9c3e8c2dcf5cb2e9e2361617645654"
-      },
-      {
-        "path": "test/receiver-runtime.ts",
-        "before": "sha256:9ed31b49139d2348c170df843f0d6102b7b9f223853ac481e15c146d6f254824",
-        "after": "sha256:86ac64eeb39dd244e0578c1135fd05f1e3cb3b2bf07a42110838586b7a3b2714"
-      },
-      {
         "path": "test/share-runtime.ts",
-        "before": "sha256:83da71292c04ec42b0b9556ade1d6a69825633f80e21f6e0a0b8d688f0561a29",
-        "after": "sha256:a5c5347a22e2a750539eff7518f856d9c3d4665a1a1cd244ce6d644f858ec793"
+        "before": "sha256:a5c5347a22e2a750539eff7518f856d9c3d4665a1a1cd244ce6d644f858ec793",
+        "after": "sha256:923ae681c8cf3bfec6f87542c51c185d05125200c9e7f24a707328300b9f4efc"
       }
     ],
-    "producerRunsUnchanged": true,
-    "producerMatrixRepeated": false
+    "originalRunsUnchanged": true,
+    "regionalMatricesRepeated": false
   }
 }
