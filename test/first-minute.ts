@@ -14,15 +14,15 @@ interface Timing { readonly scope: string; readonly ms: number }
  */
 export function observe(bytes: Uint8Array, coordinate = '') {
   const metadata: Record<string, readonly [string, string]> = {
-    'package.json': ['release/metadata/manifest', 'sha256:250bc601b4dd63d5367d8324804958597e452f054b64805e5964108d91ce7871'],
-    'package-lock.json': ['release/metadata/lock', 'sha256:dbc577e203b0080b162daaed55853e7bf96c1318d67a17087e2c2537a9f85a10'],
+    'package.json': ['release/metadata/manifest', 'sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f'],
+    'package-lock.json': ['release/metadata/lock', 'sha256:feb26c66dc045cc7af8ae184885956d0ecfa4e342a26caf14b215c8f2786076e'],
   };
   const selected = metadata[coordinate];
   if (selected) {
     if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== selected[1]) throw Error(`REFUSE·release changed metadata ${coordinate}`);
     return [{ scope: selected[0], role: 'writes', measure: 'defects', bound: { kind: 'interval', lo: 0, hi: 0 } }];
   }
-  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:7c38b30c15789b158aaad6b6bb8b12eba291acf4af96897d121abf125706619d') throw Error('REFUSE·first-minute capture digest');
+  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:28e0e314115c9eeeb9b2a3379e75826f00d7417a86fb174f4c4168651c00529b') throw Error('REFUSE·first-minute capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture;
   if (capture.protocol !== 'head-first-minute-capture@1' || !/^sha256:[0-9a-f]{64}$/.test(capture.artifact?.sha256)
     || !Array.isArray(capture.runs) || capture.runs.length !== 2) throw Error('REFUSE·first-minute capture protocol');
@@ -59,6 +59,7 @@ export function run(place: string) {
     for (const member of members) if (!current.includes(member.path) || digest(member.path) !== member.sha256) throw Error(`REFUSE·first-minute changed input ${member.path}`);
   };
   check('src', capture.inputs.sources);
+  check('dist/src', capture.inputs.runtime);
   if (digest('test/onboarding.test.ts') !== capture.inputs.onboarding) throw Error('REFUSE·first-minute producer input changed');
   if (place.replace(/\/$/, '') !== 'samples/first-minute/yes') return [{ scope: 'first-minute/current-inputs', role: 'writes', measure: 'defects', bound: { kind: 'interval', lo: 0, hi: 0 } }];
   const manifest = JSON.parse(readFileSync('package.json', 'utf8'));

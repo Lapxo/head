@@ -13,12 +13,12 @@ export async function homeService(base: string, home: string, expected: Readonly
   const names = homeServices(base, home);
   if (!expected) return names.primary;
   if (!expected.size) throw Error('home/identity');
-  const matches = (keys: KeyStore) => [...expected].every(([account, publicKey]) => keys.held?.(account) === publicKey);
+  const matches = async (keys: KeyStore) => { for (const [account, publicKey] of expected) if (await keys.held?.(account) !== publicKey) return false; return true; };
   const primary = store(names.primary);
-  if (matches(primary)) return names.primary;
-  if ([...expected.keys()].some(account => primary.held?.(account) !== undefined)) throw Error('home/identity');
+  if (await matches(primary)) return names.primary;
+  for (const account of expected.keys()) if (await primary.held?.(account) !== undefined) throw Error('home/identity');
   const legacy = store(names.legacy);
-  if (!matches(legacy)) throw Error('home/identity');
+  if (!await matches(legacy)) throw Error('home/identity');
   const marker = 'home-binding/v1', bound = legacy.read(marker);
   if (bound !== undefined && bound !== names.canonical) throw Error('home/namespace');
   if (bound === undefined) {

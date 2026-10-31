@@ -1,0 +1,22 @@
+{
+  "protocol": "head-system-node-vectors@1",
+  "deployment": "installed Node >=22.18 required under Electron; no embedded executable",
+  "positive": [
+    "normal Node runs unchanged",
+    "Electron with unusable execPath relays the entire entry once",
+    "signer, Bound host and packager work through that Node",
+    "two independent local API fixtures import and log in across processes using one recipient keychain"
+  ],
+  "negative": [
+    "missing or incompatible Node refuses before key lookup",
+    "relative PATH and Electron candidate ignored",
+    "runtime injection environment removed",
+    "private candidate error output excluded",
+    "altered required JavaScript member refuses",
+    "key lookup failure never permits replacement"
+  ],
+  "legacyScope": "runtime/standalone evaluates the explicitly declared system-Node deployment; its former no-system-Node guarantee remains historical",
+  "realDesktop": "pending",
+  "T2": "pending",
+  "L6": "pending"
+}

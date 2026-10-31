@@ -2,7 +2,7 @@
 
 Report vulnerabilities privately to hello@lapxo.com. Do not open public issues for security reports.
 
-We acknowledge reports within 7 days. There is no bug bounty or reward. We will credit you in a fix if you want.
+Reports are reviewed on a best-effort basis. We do not guarantee a response or remediation deadline. There is no bug bounty or reward. With your consent, we may credit a report in a published fix.
 
 ## What is trusted
 
@@ -38,7 +38,7 @@ Lineage marks report declared relationships and recognized source identity. They
 
 ## Supported environment and useful reports
 
-macOS desktop is the supported environment. Other platform adapters and tests are not evidence of a real Linux secret service, browser flow or unattended deployment. Multiple local processes do not establish distributed coordination over a shared object store.
+macOS desktop is the supported environment. Linux and Windows remain open as P1 and P2 in the [compatibility record](docs/compatibility.md). Other platform adapters and tests are not evidence of a real secret service, browser flow or unattended deployment. Multiple local processes do not establish distributed coordination over a shared object store.
 
 Useful reports include a reproducible action that obtains a key without coverage, lands without an admitted signer, bypasses a door or network policy, changes a refusal through a supported door, or treats received bytes or a stale card as permission. Include the version, expected boundary and a minimal reproducer. Redact credentials and personal paths; never send a signing key.
 

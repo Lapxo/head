@@ -1,6 +1,6 @@
 {
-  "protocol": "head-runtime-inventory-capture@1",
-  "inventory": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2",
+  "protocol": "head-runtime-inventory-capture@2",
+  "inventory": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05",
   "policy": "sha256:68c9631784e3b0e2b0e749c4f26be19ed214cb3e3204d208e7080b60f7d61f39",
   "runtimeChanges": [
     {
@@ -90,8 +90,8 @@
       },
       "after": {
         "path": "dist/src/doors/guard.js",
-        "bytes": 5164,
-        "digest": "sha256:2a5eb853db1237fdbedf9cd984821fd42687e52138478732983e301b121517bb"
+        "bytes": 5404,
+        "digest": "sha256:5f8a69c9a565e7ac774befcb77c3abbc55ab17053d016f8fec7c96a3da8fb973"
       }
     },
     {
@@ -103,8 +103,8 @@
       },
       "after": {
         "path": "dist/src/doors/head.js",
-        "bytes": 16783,
-        "digest": "sha256:6bec9950a028a45b15f0519876e5cc1f0f062930dc8a1dc55f35aab6e70b4c15"
+        "bytes": 17458,
+        "digest": "sha256:634159aa326548209e4fb0279448ccfa1f3d03fbdcee865a179231253fb1675b"
       }
     },
     {
@@ -116,8 +116,8 @@
       },
       "after": {
         "path": "dist/src/flows/device.js",
-        "bytes": 4430,
-        "digest": "sha256:96dee42aecd5f63ef760bfdf053b00f760aa5074a795d8c64df93ca9924f7ea7"
+        "bytes": 4442,
+        "digest": "sha256:9b2810c02e5a00d094a4fe0fd596188ff3b9624f98e5009cc32e373ff007d351"
       }
     },
     {
@@ -134,6 +134,19 @@
       }
     },
     {
+      "path": "dist/src/index.js",
+      "before": {
+        "path": "dist/src/index.js",
+        "bytes": 1376,
+        "digest": "sha256:331bb0e53e0964e8fdcbbbc43dd0cb874433e7db5f26ea98af6c92dfb6e7d3b8"
+      },
+      "after": {
+        "path": "dist/src/index.js",
+        "bytes": 1745,
+        "digest": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
+      }
+    },
+    {
       "path": "dist/src/places/found.js",
       "before": {
         "path": "dist/src/places/found.js",
@@ -142,8 +155,8 @@
       },
       "after": {
         "path": "dist/src/places/found.js",
-        "bytes": 4661,
-        "digest": "sha256:96c5b9d096f6b3dcbac9d221585e4468f09220e201b7ddc6af2c481dcb7b82be"
+        "bytes": 4685,
+        "digest": "sha256:216aa5db5f11e60e539f42750eb8702afd3f3b84cc7fe896b8b4f898102dae4f"
       }
     },
     {
@@ -155,8 +168,21 @@
       },
       "after": {
         "path": "dist/src/ports/adapters/bundle.js",
-        "bytes": 9893,
-        "digest": "sha256:bbe6b828fd5b2d4354c9fda34fa8192592b608ded1d6122654943e4546f82bc1"
+        "bytes": 7087,
+        "digest": "sha256:cd11ab807aabc1f22830de3aa22666d5c3c09bdadc47a19a86175f143ec81f93"
+      }
+    },
+    {
+      "path": "dist/src/ports/keychain.js",
+      "before": {
+        "path": "dist/src/ports/keychain.js",
+        "bytes": 2857,
+        "digest": "sha256:19dd7287b42593e9909206de14ea4547820435d32789b6896e79aeea2f8972e9"
+      },
+      "after": {
+        "path": "dist/src/ports/keychain.js",
+        "bytes": 4185,
+        "digest": "sha256:d57692418fa95e5d92ae5aadbe967c14b632255f9482281aa5a1c0050c61041c"
       }
     },
     {
@@ -170,6 +196,32 @@
         "path": "dist/src/ports/place.js",
         "bytes": 2335,
         "digest": "sha256:459c99204327b0bb040825475cef8f6d9659e2fe1fac17dc20cf220fa4dc5b15"
+      }
+    },
+    {
+      "path": "dist/src/ports/stores/keychain.js",
+      "before": {
+        "path": "dist/src/ports/stores/keychain.js",
+        "bytes": 811,
+        "digest": "sha256:6def454b36aecc483d3e0a693d3cf809a393d8e8d7d7285ca9af9cfe32f17004"
+      },
+      "after": {
+        "path": "dist/src/ports/stores/keychain.js",
+        "bytes": 1389,
+        "digest": "sha256:ffa34d3aaeb95f97b205340a108841bc4183f4e1b774311fe1d351c8d0a7ddbe"
+      }
+    },
+    {
+      "path": "dist/src/signer.js",
+      "before": {
+        "path": "dist/src/signer.js",
+        "bytes": 1029,
+        "digest": "sha256:bb0e1911ad75e5298effc2f1ea453cf588d6ce95c703e34622b7c6324adba2d9"
+      },
+      "after": {
+        "path": "dist/src/signer.js",
+        "bytes": 1503,
+        "digest": "sha256:06091e4a84b631c31a12692df6175fba1e0f119ebf0c8ee4937e9c3f88753bf4"
       }
     },
     {
@@ -212,6 +264,19 @@
       }
     },
     {
+      "path": "dist/src/tools/key.js",
+      "before": {
+        "path": "dist/src/tools/key.js",
+        "bytes": 634,
+        "digest": "sha256:8c4976d17f19a104292270642ba6b82238d3139fc758773235a94d55846d4c14"
+      },
+      "after": {
+        "path": "dist/src/tools/key.js",
+        "bytes": 640,
+        "digest": "sha256:89cfb05c3a37c1634367927a927addddd395a106d5379a51dcff967ea233b8a5"
+      }
+    },
+    {
       "path": "dist/src/verbs/ask.js",
       "before": {
         "path": "dist/src/verbs/ask.js",
@@ -246,8 +311,8 @@
       },
       "after": {
         "path": "package.json",
-        "bytes": 1029,
-        "digest": "sha256:250bc601b4dd63d5367d8324804958597e452f054b64805e5964108d91ce7871"
+        "bytes": 1057,
+        "digest": "sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f"
       }
     }
   ],
@@ -450,15 +515,15 @@
     },
     {
       "path": "dist/src/doors/guard.js",
-      "sha256": "sha256:2a5eb853db1237fdbedf9cd984821fd42687e52138478732983e301b121517bb"
+      "sha256": "sha256:5f8a69c9a565e7ac774befcb77c3abbc55ab17053d016f8fec7c96a3da8fb973"
     },
     {
       "path": "dist/src/doors/head.d.ts",
-      "sha256": "sha256:0a614a8238aa69b64e52d18904457b7bd39fbe5ebdbaa6e8d81bfa96dbf9d16b"
+      "sha256": "sha256:016e4852d3d0cc467705010f4c5d551dd9735a395c580787e28a7bc1355ad254"
     },
     {
       "path": "dist/src/doors/head.js",
-      "sha256": "sha256:6bec9950a028a45b15f0519876e5cc1f0f062930dc8a1dc55f35aab6e70b4c15"
+      "sha256": "sha256:634159aa326548209e4fb0279448ccfa1f3d03fbdcee865a179231253fb1675b"
     },
     {
       "path": "dist/src/doors/http.d.ts",
@@ -502,11 +567,11 @@
     },
     {
       "path": "dist/src/flows/device.d.ts",
-      "sha256": "sha256:ec75a449f8c1f57d0bcfa517d925336e9786ab03d8482d0c199f02dcee45bd55"
+      "sha256": "sha256:bcfeb6b517a930783b625aab558caa605fd4fa7e7aa087a854543e9143f1c5a5"
     },
     {
       "path": "dist/src/flows/device.js",
-      "sha256": "sha256:96dee42aecd5f63ef760bfdf053b00f760aa5074a795d8c64df93ca9924f7ea7"
+      "sha256": "sha256:9b2810c02e5a00d094a4fe0fd596188ff3b9624f98e5009cc32e373ff007d351"
     },
     {
       "path": "dist/src/flows/plan.d.ts",
@@ -538,7 +603,7 @@
     },
     {
       "path": "dist/src/index.js",
-      "sha256": "sha256:331bb0e53e0964e8fdcbbbc43dd0cb874433e7db5f26ea98af6c92dfb6e7d3b8"
+      "sha256": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
     },
     {
       "path": "dist/src/kept/kept.d.ts",
@@ -618,7 +683,7 @@
     },
     {
       "path": "dist/src/places/found.js",
-      "sha256": "sha256:96c5b9d096f6b3dcbac9d221585e4468f09220e201b7ddc6af2c481dcb7b82be"
+      "sha256": "sha256:216aa5db5f11e60e539f42750eb8702afd3f3b84cc7fe896b8b4f898102dae4f"
     },
     {
       "path": "dist/src/ports/access/authorizer.d.ts",
@@ -654,11 +719,11 @@
     },
     {
       "path": "dist/src/ports/adapters/bundle.d.ts",
-      "sha256": "sha256:a01c6a0a093c6da67731803140388017d7e837be0ab4fd25db3b314ded9f96ac"
+      "sha256": "sha256:578538c45add25b5e8041519642fb1f5d01550cc3ab9c7447dc9b0d925719c2b"
     },
     {
       "path": "dist/src/ports/adapters/bundle.js",
-      "sha256": "sha256:bbe6b828fd5b2d4354c9fda34fa8192592b608ded1d6122654943e4546f82bc1"
+      "sha256": "sha256:cd11ab807aabc1f22830de3aa22666d5c3c09bdadc47a19a86175f143ec81f93"
     },
     {
       "path": "dist/src/ports/adapters/configured.d.ts",
@@ -709,6 +774,14 @@
       "sha256": "sha256:2fa2b7be02252d4f518f13a1e4062578f4eec98b2a42473aa01ad39c387f9723"
     },
     {
+      "path": "dist/src/ports/adapters/runtime.d.ts",
+      "sha256": "sha256:ca623685c9b1ec2b7b3dc80d57b8b307fe44d029638e327f837edb484f1f4390"
+    },
+    {
+      "path": "dist/src/ports/adapters/runtime.js",
+      "sha256": "sha256:dd0259fc6d109678820d4c40eb1ad68dbfa4d050b28be09620f159d9f3c5401e"
+    },
+    {
       "path": "dist/src/ports/bound.d.ts",
       "sha256": "sha256:abd428da6603a1b919ff818c7076990e128a8a4112158ad20542e160ce363712"
     },
@@ -733,6 +806,14 @@
       "sha256": "sha256:094b4796a51ecd7fefd6b3404ab56db985497e954c4fcc181d993195d6faebc6"
     },
     {
+      "path": "dist/src/ports/executable.d.ts",
+      "sha256": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
+    },
+    {
+      "path": "dist/src/ports/executable.js",
+      "sha256": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
+    },
+    {
       "path": "dist/src/ports/export.d.ts",
       "sha256": "sha256:af99676aed1517c18a0bc624aad340c1a32a5d22aafc59aff01fe61f82f98cbf"
     },
@@ -746,7 +827,7 @@
     },
     {
       "path": "dist/src/ports/home.js",
-      "sha256": "sha256:4b969a4b6c6ec81a1dccd7e08a2a25fe6b45f4d528763c5aa2ac85b8775b9dc8"
+      "sha256": "sha256:d4c0a45568180dca6aa3fa1bea661ad67ff1804578f518f68f98342af4b2aebd"
     },
     {
       "path": "dist/src/ports/host.d.ts",
@@ -758,11 +839,11 @@
     },
     {
       "path": "dist/src/ports/keychain.d.ts",
-      "sha256": "sha256:d018ca5d9700c31eff4412e22b9418c3161c3cc4b077bcdda2087b49f5108070"
+      "sha256": "sha256:29741dc2a1ed4750409d44c20327d3525aa6bf9ad710ab836e14648dd651984a"
     },
     {
       "path": "dist/src/ports/keychain.js",
-      "sha256": "sha256:19dd7287b42593e9909206de14ea4547820435d32789b6896e79aeea2f8972e9"
+      "sha256": "sha256:d57692418fa95e5d92ae5aadbe967c14b632255f9482281aa5a1c0050c61041c"
     },
     {
       "path": "dist/src/ports/keys.d.ts",
@@ -810,7 +891,7 @@
     },
     {
       "path": "dist/src/ports/stores/keychain.js",
-      "sha256": "sha256:6def454b36aecc483d3e0a693d3cf809a393d8e8d7d7285ca9af9cfe32f17004"
+      "sha256": "sha256:ffa34d3aaeb95f97b205340a108841bc4183f4e1b774311fe1d351c8d0a7ddbe"
     },
     {
       "path": "dist/src/ports/stores/secret-tool.d.ts",
@@ -842,7 +923,7 @@
     },
     {
       "path": "dist/src/signer.js",
-      "sha256": "sha256:bb0e1911ad75e5298effc2f1ea453cf588d6ce95c703e34622b7c6324adba2d9"
+      "sha256": "sha256:06091e4a84b631c31a12692df6175fba1e0f119ebf0c8ee4937e9c3f88753bf4"
     },
     {
       "path": "dist/src/sources/access.d.ts",
@@ -938,7 +1019,7 @@
     },
     {
       "path": "dist/src/tools/key.js",
-      "sha256": "sha256:8c4976d17f19a104292270642ba6b82238d3139fc758773235a94d55846d4c14"
+      "sha256": "sha256:89cfb05c3a37c1634367927a927addddd395a106d5379a51dcff967ea233b8a5"
     },
     {
       "path": "dist/src/tools/land.d.ts",
@@ -1029,24 +1110,44 @@
       "sha256": "sha256:e7246c36fe37c839f8efd391c957435061f128c179d42f4e3bfca864434ec97e"
     },
     {
+      "path": "dist/test/standalone-runtime.js",
+      "sha256": "sha256:3063d89927f8b5d6aa6d42cba1486dc2a39b47e18abfaa8e854cab91a13e89c7"
+    },
+    {
+      "path": "docs/contracts/runtime-closure.json",
+      "sha256": "sha256:c08acfb2a91c4daa5ad319dfb5d7338fcbaa6692ad358c6b8d997bbfe7c68bc8"
+    },
+    {
       "path": "docs/contracts/runtime-inventory.json",
-      "sha256": "sha256:b18fb0a5f0a4a93558d0bb2be394ada6c2f81ebef5e3927c0b32350ba3436867"
+      "sha256": "sha256:6da2c4cce85ee0b5c4b8cac06df3babbf9acafd3a956d7da3acdd67c2eea36da"
+    },
+    {
+      "path": "docs/contracts/standalone-runtime.json",
+      "sha256": "sha256:628342931a787e17b4d6188719300380af1bb4c6b2d24a5e6f5723ac661c0aed"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "sha256:65b8744768f43be59c6355c71e012e83bd303f50d03ce964b64ef0508d765080"
     },
     {
       "path": "package-lock.json",
-      "sha256": "sha256:dbc577e203b0080b162daaed55853e7bf96c1318d67a17087e2c2537a9f85a10"
+      "sha256": "sha256:feb26c66dc045cc7af8ae184885956d0ecfa4e342a26caf14b215c8f2786076e"
     },
     {
       "path": "package.json",
-      "sha256": "sha256:250bc601b4dd63d5367d8324804958597e452f054b64805e5964108d91ce7871"
+      "sha256": "sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f"
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2"
+      "sha256": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05"
     },
     {
       "path": "samples/runtime-inventory/yes/original.json",
       "sha256": "sha256:f20d82a86d78a47086e5d043def1be3799d9132922c6227cfbc6186fdd6233cc"
+    },
+    {
+      "path": "samples/standalone-runtime/yes/client.json",
+      "sha256": "sha256:2d8559daeb1a85a93f0983778f3628c08d0a21be9d13825def954d8fca152a96"
     },
     {
       "path": "src/access/contract.ts",
@@ -1146,11 +1247,11 @@
     },
     {
       "path": "src/doors/guard.ts",
-      "sha256": "sha256:fce94ddaed87b52517d41341a2ae5d7e620c4d82069c687820de205c824f84ce"
+      "sha256": "sha256:5104efc1cbd4a36250fd7e0f5a375586e34da0c1b5ba98fafaca03f2c1bce06a"
     },
     {
       "path": "src/doors/head.ts",
-      "sha256": "sha256:49080fe5301decb0d8b68926e30f954ad78c06ecb6acb93c929fa2c11bc2e96e"
+      "sha256": "sha256:aaef67879a423346ab97a715356569450bac0b5dabc3e70c478ec6e1c5e50531"
     },
     {
       "path": "src/doors/http.ts",
@@ -1174,7 +1275,7 @@
     },
     {
       "path": "src/flows/device.ts",
-      "sha256": "sha256:de6a29c5f1f190ce7c5d5707bec4b0d89e6587864f502c155b6a191e0ec792bc"
+      "sha256": "sha256:26158c7afb68f3347d3df32093c6cd317328fab5eda84f53d94539f07264dbf7"
     },
     {
       "path": "src/flows/plan.ts",
@@ -1190,7 +1291,7 @@
     },
     {
       "path": "src/index.ts",
-      "sha256": "sha256:818c4434138ce280148c4ede768c7db815f850968d6866e63365f28993de173d"
+      "sha256": "sha256:bdc8af2fd4cb46a5571bb715da5228a0ebc9f05bb38af22df2ba482a95c3df5c"
     },
     {
       "path": "src/kept/kept.ts",
@@ -1230,7 +1331,7 @@
     },
     {
       "path": "src/places/found.ts",
-      "sha256": "sha256:e8fd8061dd9b242d80be04930b55a85622fce32e4b3caa22441318b6ac25441f"
+      "sha256": "sha256:71206dd75e12dead424e9730cdceb7b1216c218ec0b87855149f1ad0a28d266c"
     },
     {
       "path": "src/ports/access/authorizer.ts",
@@ -1250,7 +1351,7 @@
     },
     {
       "path": "src/ports/adapters/bundle.ts",
-      "sha256": "sha256:fd51124236fb74be6cd6e1608b17e60fd7f5ab19e4353990cd0f231f8dee6757"
+      "sha256": "sha256:83b1e78d2073d57145ffe855167409a002ef3fd3adfd4c4a0cb13b46aa2a9322"
     },
     {
       "path": "src/ports/adapters/configured.ts",
@@ -1277,6 +1378,10 @@
       "sha256": "sha256:b0b7f99df4571e4711bc2c25c2eca9409a33c0fce6127c42f1032ff32415ec76"
     },
     {
+      "path": "src/ports/adapters/runtime.ts",
+      "sha256": "sha256:ed7d65d5da12ccc5ab2142f671e3c9d5451650f451a5fff9468057c5850e428b"
+    },
+    {
       "path": "src/ports/bound.ts",
       "sha256": "sha256:df143e1880e1cb51d66ecb50f22e75106d60ce2473bc612f55da1f44f36590dd"
     },
@@ -1289,12 +1394,16 @@
       "sha256": "sha256:8be05f9171bf94d180dd4005369d6b63d08a98e469050fff844ea61d3b2b7b6f"
     },
     {
+      "path": "src/ports/executable.ts",
+      "sha256": "sha256:94369feefeb89a4c20bbbe9aee4082f8bfd8702769ba898a7a3a0b404508d6f1"
+    },
+    {
       "path": "src/ports/export.ts",
       "sha256": "sha256:8a024751f82d423546df2d4bae6dded5098611802a5753b612d29c92738c4503"
     },
     {
       "path": "src/ports/home.ts",
-      "sha256": "sha256:ec6c190aa864212dcaa160046c2c78e4fdb4e5f59452bc0378cbc50c815132e8"
+      "sha256": "sha256:5e889ab0d43f041d08c1c8ae19512891519136190b59e8624a788b4f4668cf2c"
     },
     {
       "path": "src/ports/host.ts",
@@ -1302,7 +1411,7 @@
     },
     {
       "path": "src/ports/keychain.ts",
-      "sha256": "sha256:8997394f3c30b140bbb153d420b62d41d69470279f4882dc25a434c58d206f31"
+      "sha256": "sha256:0df3bbcfb4e1399959ff7776f84e8193ca8b836c4634f49f5b3632e12e91f7a0"
     },
     {
       "path": "src/ports/keys.ts",
@@ -1326,7 +1435,7 @@
     },
     {
       "path": "src/ports/stores/keychain.ts",
-      "sha256": "sha256:d1f33f3470e54e37281bd9817f9fc95bbe15ebc88c03403062247e784f613d22"
+      "sha256": "sha256:4c7e730b2cba760e5fefc2fb191dc022a2e28b03688363ed6ebc184bc5cfdd9f"
     },
     {
       "path": "src/ports/stores/secret-tool.ts",
@@ -1342,7 +1451,7 @@
     },
     {
       "path": "src/signer.ts",
-      "sha256": "sha256:a0e8a0b7cd1f2082a6bb6f71529bfe43ba417731dc191950ba734e8f7a81cc20"
+      "sha256": "sha256:fd6175c61836d3bd2a9702fb36286937ee19938d0b699d783da312f7bf6ccb23"
     },
     {
       "path": "src/sources/access.ts",
@@ -1390,7 +1499,7 @@
     },
     {
       "path": "src/tools/key.ts",
-      "sha256": "sha256:6a1cfc669e5d30a7b5e30bc708dd58d05a1495f0cb1a03c39887cb2d7129fe58"
+      "sha256": "sha256:bd65423fcf40362423128c7654e85ec10488dc70822cfbac59ffc196dcbbda3f"
     },
     {
       "path": "src/tools/land.ts",
@@ -1441,34 +1550,94 @@
       "sha256": "sha256:bcd99ef55210210945824286e24d5b836abe28708bae77870b68d93a58deddac"
     },
     {
+      "path": "test/cli.ts",
+      "sha256": "sha256:fc295154f8dcf46c1b195088ae472ee489a9a551ab0d509dff1ac8d03e0ce7ae"
+    },
+    {
       "path": "test/client.ts",
-      "sha256": "sha256:e499093fb06ed0a8a427faba7525c0a3090f90eed414a00d6efb1afd00e88432"
+      "sha256": "sha256:4d6f7ccad44c0c513a0d0841099f5cb0cc4e47566a50345df790ba60b3c91596"
+    },
+    {
+      "path": "test/executable.test.ts",
+      "sha256": "sha256:e07be8882ff44b4dcd86bf4a86c260d00ab5d7aa1990e581d23e446de5e85b89"
     },
     {
       "path": "test/fake-keychain.ts",
-      "sha256": "sha256:168d57e6abd82493e16744f8b8d93d813953d185b5a6957a1fc732c28f736a51"
+      "sha256": "sha256:7377caa64cb3a9d47a419fd5396f7d5de4cfc2cced07b7c7c51d8913c376cef9"
     },
     {
       "path": "test/installed-share.ts",
       "sha256": "sha256:5b9581a3c416141c6ab7de58cfd0b0818f09d2e2ba2b763c91f1e81369e98327"
     },
     {
+      "path": "test/key-refusal.test.ts",
+      "sha256": "sha256:bfc886007287032ac4200c62f152c032317db5dbfb2fcfc860b15b46475ed38f"
+    },
+    {
+      "path": "test/keychain-bounds.test.ts",
+      "sha256": "sha256:66b0403dc36ce122d426198165acb61dc44f987ff4a09a4eb2cd90355cdeae6b"
+    },
+    {
+      "path": "test/keychain-failure.test.ts",
+      "sha256": "sha256:7fb0a1eda5d173bb07135652336030c896b9b38a4d3338647eb632f67fa95d89"
+    },
+    {
+      "path": "test/offline-worlds.ts",
+      "sha256": "sha256:403e49fc77e7477a55522d4fc9a5a1d0e4771f33885a9554777c304d4b7d2076"
+    },
+    {
+      "path": "test/place.ts",
+      "sha256": "sha256:d8ee819262bf9ac8a23c1d4690a2ed13f5c6f8894d96810a054ec3fe679d8e34"
+    },
+    {
+      "path": "test/platform-support.test.ts",
+      "sha256": "sha256:2dba2c010603e40c37f3549107b57210c7857d8b5bc4f7be7b9c5621cc7a0b67"
+    },
+    {
+      "path": "test/receiver-access.test.ts",
+      "sha256": "sha256:4fa6f5ca99eb6112435305e78429b91093cbf2045001a261ea7e2acc8b3a7aaf"
+    },
+    {
+      "path": "test/receiver-access.ts",
+      "sha256": "sha256:6664c92a9d41184ca3423071f10b96195a0fc418c8c302a71f98600697182117"
+    },
+    {
       "path": "test/root-path.test.ts",
       "sha256": "sha256:fb572d6ffd8256c7671e500f411eea164cdbc963f1eee603cbd50ce9c84b9720"
+    },
+    {
+      "path": "test/runtime-resolution.test.ts",
+      "sha256": "sha256:d9d4aae291e367c7c7e8661615e32db800bace94f139b12da78e0706b3e50e2b"
     },
     {
       "path": "test/share-bundle.test.ts",
       "sha256": "sha256:102e35d37c7be9b00de3d6f2162f7fd0ab7db1fd14461bca6ddd7f7bc53420fb"
     },
     {
+      "path": "test/standalone-bundle.test.ts",
+      "sha256": "sha256:5b528f52492497d41d68271a008053e74b8e97b76db32c5484cafb8d503cbcf3"
+    },
+    {
+      "path": "test/standalone-runtime.ts",
+      "sha256": "sha256:1ce2e7eb7588eba10041c7e544f0b80544cdaa4bb235eb8b7a6f09b5e65ac714"
+    },
+    {
+      "path": "test/worlds.ts",
+      "sha256": "sha256:45f61032ff57829b296f943ee2c3446ec86fb2e42e049fce55b85360d3d41d45"
+    },
+    {
       "path": "vectors/runtime-inventory.json",
-      "sha256": "sha256:8d8fc16506cb9c7b1638c928769488c3096301545ee565e6942d377734eab16f"
+      "sha256": "sha256:feeaacbb712fef4b62e4d00197179885305721f98618137d1dae63cd10eda9d5"
+    },
+    {
+      "path": "vectors/standalone-runtime.json",
+      "sha256": "sha256:6c8aeaed371f933d646084cca64cc054468a99be822f5704ef240e66ccafb1a3"
     }
   ],
   "runs": [
     {
       "node": "22",
-      "inventory": "sha256:ce7cc3dbdb306959deefc3884a9776699638bde8906f681ac1bd6b756c8aa018",
+      "inventory": "sha256:6fbeaeb1949c64f0f49236edb414706ceb1e6fe4bb02a3bc4ae5c4290e373233",
       "results": [
         {
           "domain": "records",
@@ -1476,14 +1645,14 @@
           "exportedTwice": true,
           "exportedReceiverBooted": true,
           "fixedInventoryUnchanged": true,
-          "allRuntimeMembersVerified": 4805,
+          "allRuntimeMembersVerified": 4809,
           "realRuntimeByteCorruptionRefused": true,
           "privateCanaryAbsent": true,
           "identicalMemberContents": true,
           "identicalContainerBytes": false,
           "artifacts": [
-            "sha256:cd387dfc7fb1084a885bfdab235534c7c691aca31d5b887b7aebbd09c5d13e81",
-            "sha256:efbdf36015878c872d12d150631dafe5cc2345e77ce624549b4050743d7af72e"
+            "sha256:18bf5bde698d5b1274b9722c81ac4df320225f4a6ce20339cefb0ced915e47e0",
+            "sha256:02b5328e108e74da89d8e3bf8ba62adfd2e4409073928c88a931b7338f865922"
           ]
         },
         {
@@ -1492,27 +1661,34 @@
           "exportedTwice": true,
           "exportedReceiverBooted": true,
           "fixedInventoryUnchanged": true,
-          "allRuntimeMembersVerified": 4805,
+          "allRuntimeMembersVerified": 4809,
           "realRuntimeByteCorruptionRefused": true,
           "privateCanaryAbsent": true,
           "identicalMemberContents": true,
           "identicalContainerBytes": false,
           "artifacts": [
-            "sha256:45751335c5427ca2940e3437b49f2ae42240929338e7c23d104dc14b06462d99",
-            "sha256:421e0347015e2d4cb2f2207523070c0c9d355905a17533e1bd051f1864ada6f7"
+            "sha256:dd4e005d405e8533b989ea297153e9bba85ecdcd604fa586d4b52772671f7047",
+            "sha256:68bdbb55f6fd074078a57066d40f9a02f951c803fb522da87cd36ccb86f4ec6c"
           ]
         }
       ],
       "credentialsUsed": false,
       "externalApiCalled": false,
       "noExpectedDigestsRegenerated": true,
-      "executedConsumerDigest": "sha256:83b83233e68cbc96a569ee4553584416c62d9de6924e7b8c2958aaa4570d923b",
-      "focused": "TAP version 13\n# Subtest: instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 1 - instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 7.968291\n  type: 'test'\n  ...\n# Subtest: instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 2 - instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 2.114625\n  type: 'test'\n  ...\n# Subtest: instruments: export publishes complete bytes without replacing targets or following child symlinks\nok 3 - instruments: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 2.979708\n  type: 'test'\n  ...\n# Subtest: documents: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 4 - documents: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 5.041375\n  type: 'test'\n  ...\n# Subtest: documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 5 - documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 1.178083\n  type: 'test'\n  ...\n# Subtest: documents: export publishes complete bytes without replacing targets or following child symlinks\nok 6 - documents: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 2.035375\n  type: 'test'\n  ...\n# Subtest: all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\nok 7 - all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\n  ---\n  duration_ms: 1.552583\n  type: 'test'\n  ...\n# Subtest: measurement: two export processes cannot replace each other's output\nok 8 - measurement: two export processes cannot replace each other's output\n  ---\n  duration_ms: 105.658542\n  type: 'test'\n  ...\n# Subtest: document: two export processes cannot replace each other's output\nok 9 - document: two export processes cannot replace each other's output\n  ---\n  duration_ms: 101.711708\n  type: 'test'\n  ...\n# Subtest: indexed root path aliases preserve authenticated identity: records\nok 10 - indexed root path aliases preserve authenticated identity: records\n  ---\n  duration_ms: 4766.588208\n  type: 'test'\n  ...\n# Subtest: indexed root path aliases preserve authenticated identity: readings\nok 11 - indexed root path aliases preserve authenticated identity: readings\n  ---\n  duration_ms: 4767.358583\n  type: 'test'\n  ...\n# Subtest: explicit dot aliases retain distinct selected place names for access accounts\nok 12 - explicit dot aliases retain distinct selected place names for access accounts\n  ---\n  duration_ms: 0.168708\n  type: 'test'\n  ...\n# Subtest: share bundle: empty base is a standard bundle without composition, sources or secret configuration\nok 13 - share bundle: empty base is a standard bundle without composition, sources or secret configuration\n  ---\n  duration_ms: 129.565417\n  type: 'test'\n  ...\n# Subtest: share bundle: selected public sources and distinct package identity use the standard packager\nok 14 - share bundle: selected public sources and distinct package identity use the standard packager\n  ---\n  duration_ms: 129.236584\n  type: 'test'\n  ...\n# Subtest: share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\nok 15 - share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\n  ---\n  duration_ms: 0.97075\n  type: 'test'\n  ...\n# Subtest: share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\nok 16 - share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\n  ---\n  duration_ms: 1.499208\n  type: 'test'\n  ...\n# Subtest: share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\nok 17 - share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\n  ---\n  duration_ms: 4749.596459\n  type: 'test'\n  ...\n# Subtest: share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\nok 18 - share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\n  ---\n  duration_ms: 1.265792\n  type: 'test'\n  ...\n# Subtest: share bundle: bundle and folder exports use the same destination boundary before any write\nok 19 - share bundle: bundle and folder exports use the same destination boundary before any write\n  ---\n  duration_ms: 0.456334\n  type: 'test'\n  ...\n# Subtest: surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\nok 20 - surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\n  ---\n  duration_ms: 1.544166\n  type: 'test'\n  ...\n# Subtest: tools/visible: a client is offered no more tools than the ceiling allows\nok 21 - tools/visible: a client is offered no more tools than the ceiling allows\n  ---\n  duration_ms: 0.088292\n  type: 'test'\n  ...\n# Subtest: surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\nok 22 - surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\n  ---\n  duration_ms: 11.481167\n  type: 'test'\n  ...\n# Subtest: surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\nok 23 - surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\n  ---\n  duration_ms: 2.266125\n  type: 'test'\n  ...\n# Subtest: surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\nok 24 - surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\n  ---\n  duration_ms: 12.731542\n  type: 'test'\n  ...\n# Subtest: surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\nok 25 - surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\n  ---\n  duration_ms: 11.571\n  type: 'test'\n  ...\n# Subtest: a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\nok 26 - a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\n  ---\n  duration_ms: 8.452459\n  type: 'test'\n  ...\n# Subtest: a host the lock does not name is refused by name, every call, nothing done; the one it names is not\nok 27 - a host the lock does not name is refused by name, every call, nothing done; the one it names is not\n  ---\n  duration_ms: 0.295667\n  type: 'test'\n  ...\n# Subtest: each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\nok 28 - each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\n  ---\n  duration_ms: 586.387959\n  type: 'test'\n  ...\n# Subtest: tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\nok 29 - tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\n  ---\n  duration_ms: 1.563083\n  type: 'test'\n  ...\n# Subtest: duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\nok 30 - duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\n  ---\n  duration_ms: 7.241834\n  type: 'test'\n  ...\n# Subtest: a prompt is read off its lines and filled only where it was asked\nok 31 - a prompt is read off its lines and filled only where it was asked\n  ---\n  duration_ms: 0.132917\n  type: 'test'\n  ...\n# Subtest: a resource URI gives its template the fields it names, query fields optional and in any order, decoded\nok 32 - a resource URI gives its template the fields it names, query fields optional and in any order, decoded\n  ---\n  duration_ms: 0.379625\n  type: 'test'\n  ...\n# Subtest: surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\nok 33 - surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\n  ---\n  duration_ms: 0.245625\n  type: 'test'\n  ...\n1..33\n# tests 33\n# suites 0\n# pass 33\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 16521.666291\n",
-      "focusedNarrowRevalidation": "TAP version 13\n# Subtest: instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 1 - instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 7.241083\n  type: 'test'\n  ...\n# Subtest: instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 2 - instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 2.003375\n  type: 'test'\n  ...\n# Subtest: instruments: export publishes complete bytes without replacing targets or following child symlinks\nok 3 - instruments: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 3.696125\n  type: 'test'\n  ...\n# Subtest: documents: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 4 - documents: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 5.076375\n  type: 'test'\n  ...\n# Subtest: documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 5 - documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 1.380084\n  type: 'test'\n  ...\n# Subtest: documents: export publishes complete bytes without replacing targets or following child symlinks\nok 6 - documents: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 2.383208\n  type: 'test'\n  ...\n# Subtest: all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\nok 7 - all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\n  ---\n  duration_ms: 1.885583\n  type: 'test'\n  ...\n# Subtest: measurement: two export processes cannot replace each other's output\nok 8 - measurement: two export processes cannot replace each other's output\n  ---\n  duration_ms: 104.7305\n  type: 'test'\n  ...\n# Subtest: document: two export processes cannot replace each other's output\nok 9 - document: two export processes cannot replace each other's output\n  ---\n  duration_ms: 95.394875\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 529.584792\n"
+      "executedConsumerDigest": "sha256:9e8d51223a1239977eab07ba78854ed25d2f6bd6015c631afa65a4d481af6214",
+      "focusedParts": {
+        "repairs": "TAP version 13\n# Subtest: instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 1 - instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 4.832125\n  type: 'test'\n  ...\n# Subtest: instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 2 - instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 1.880042\n  type: 'test'\n  ...\n# Subtest: instruments: export publishes complete bytes without replacing targets or following child symlinks\nok 3 - instruments: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 2.801125\n  type: 'test'\n  ...\n# Subtest: documents: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 4 - documents: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 1.558209\n  type: 'test'\n  ...\n# Subtest: documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 5 - documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 1.225\n  type: 'test'\n  ...\n# Subtest: documents: export publishes complete bytes without replacing targets or following child symlinks\nok 6 - documents: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 1.897\n  type: 'test'\n  ...\n# Subtest: all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\nok 7 - all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\n  ---\n  duration_ms: 1.474083\n  type: 'test'\n  ...\n# Subtest: measurement: two export processes cannot replace each other's output\nok 8 - measurement: two export processes cannot replace each other's output\n  ---\n  duration_ms: 90.812042\n  type: 'test'\n  ...\n# Subtest: document: two export processes cannot replace each other's output\nok 9 - document: two export processes cannot replace each other's output\n  ---\n  duration_ms: 89.720292\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 539.639584\n",
+        "share": "TAP version 13\n# Subtest: share bundle: empty base is a standard bundle without composition, sources or secret configuration\nok 1 - share bundle: empty base is a standard bundle without composition, sources or secret configuration\n  ---\n  duration_ms: 124.662167\n  type: 'test'\n  ...\n# Subtest: share bundle: selected public sources and distinct package identity use the standard packager\nok 2 - share bundle: selected public sources and distinct package identity use the standard packager\n  ---\n  duration_ms: 116.609709\n  type: 'test'\n  ...\n# Subtest: share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\nok 3 - share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\n  ---\n  duration_ms: 0.900583\n  type: 'test'\n  ...\n# Subtest: share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\nok 4 - share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\n  ---\n  duration_ms: 1.384542\n  type: 'test'\n  ...\n# Subtest: share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\nok 5 - share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\n  ---\n  duration_ms: 16771.260625\n  type: 'test'\n  ...\n# Subtest: share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\nok 6 - share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\n  ---\n  duration_ms: 1.378958\n  type: 'test'\n  ...\n# Subtest: share bundle: bundle and folder exports use the same destination boundary before any write\nok 7 - share bundle: bundle and folder exports use the same destination boundary before any write\n  ---\n  duration_ms: 0.48125\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 17390.783958\n",
+        "root": "TAP version 13\n# Subtest: indexed root path aliases preserve authenticated identity: records\nok 1 - indexed root path aliases preserve authenticated identity: records\n  ---\n  duration_ms: 4315.853083\n  type: 'test'\n  ...\n# Subtest: indexed root path aliases preserve authenticated identity: readings\nok 2 - indexed root path aliases preserve authenticated identity: readings\n  ---\n  duration_ms: 4449.895292\n  type: 'test'\n  ...\n# Subtest: explicit dot aliases retain distinct selected place names for access accounts\nok 3 - explicit dot aliases retain distinct selected place names for access accounts\n  ---\n  duration_ms: 0.189333\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 8980.910292\n",
+        "surface": "TAP version 13\n# Subtest: surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\nok 1 - surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\n  ---\n  duration_ms: 1.426916\n  type: 'test'\n  ...\n# Subtest: tools/visible: a client is offered no more tools than the ceiling allows\nok 2 - tools/visible: a client is offered no more tools than the ceiling allows\n  ---\n  duration_ms: 0.0855\n  type: 'test'\n  ...\n# Subtest: surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\nok 3 - surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\n  ---\n  duration_ms: 15.677459\n  type: 'test'\n  ...\n# Subtest: surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\nok 4 - surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\n  ---\n  duration_ms: 3.624292\n  type: 'test'\n  ...\n# Subtest: surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\nok 5 - surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\n  ---\n  duration_ms: 13.959875\n  type: 'test'\n  ...\n# Subtest: surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\nok 6 - surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\n  ---\n  duration_ms: 12.316875\n  type: 'test'\n  ...\n# Subtest: a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\nok 7 - a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\n  ---\n  duration_ms: 14.039041\n  type: 'test'\n  ...\n# Subtest: a host the lock does not name is refused by name, every call, nothing done; the one it names is not\nok 8 - a host the lock does not name is refused by name, every call, nothing done; the one it names is not\n  ---\n  duration_ms: 0.476708\n  type: 'test'\n  ...\n# Subtest: each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\nok 9 - each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\n  ---\n  duration_ms: 557.236875\n  type: 'test'\n  ...\n# Subtest: tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\nok 10 - tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\n  ---\n  duration_ms: 1.32075\n  type: 'test'\n  ...\n# Subtest: duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\nok 11 - duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\n  ---\n  duration_ms: 6.338417\n  type: 'test'\n  ...\n# Subtest: a prompt is read off its lines and filled only where it was asked\nok 12 - a prompt is read off its lines and filled only where it was asked\n  ---\n  duration_ms: 0.113\n  type: 'test'\n  ...\n# Subtest: a resource URI gives its template the fields it names, query fields optional and in any order, decoded\nok 13 - a resource URI gives its template the fields it names, query fields optional and in any order, decoded\n  ---\n  duration_ms: 0.33675\n  type: 'test'\n  ...\n# Subtest: surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\nok 14 - surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\n  ---\n  duration_ms: 1.0135\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 916.625167\n"
+      },
+      "surfaceContext": "Unchanged functional surface controls retained from their exact original execution; current admitted capacities match",
+      "historicalExecution": true,
+      "currentSystemNodeCompleteRegression": "sha256:3487d3fa10d241413db0ef2690f196ce9587fcdbe6950d925a05452b67cd34d6"
     },
     {
       "node": "24",
-      "inventory": "sha256:ce7cc3dbdb306959deefc3884a9776699638bde8906f681ac1bd6b756c8aa018",
+      "inventory": "sha256:6fbeaeb1949c64f0f49236edb414706ceb1e6fe4bb02a3bc4ae5c4290e373233",
       "results": [
         {
           "domain": "records",
@@ -1520,14 +1696,14 @@
           "exportedTwice": true,
           "exportedReceiverBooted": true,
           "fixedInventoryUnchanged": true,
-          "allRuntimeMembersVerified": 4805,
+          "allRuntimeMembersVerified": 4809,
           "realRuntimeByteCorruptionRefused": true,
           "privateCanaryAbsent": true,
           "identicalMemberContents": true,
           "identicalContainerBytes": false,
           "artifacts": [
-            "sha256:17a149ae6711542df09987027ba9d53ac80c2fb2851f341abb81b874df600701",
-            "sha256:254c03a2c45f3a61aed403c49be4e9a4391c8970ecfcb24cc6c18f9822b77fb0"
+            "sha256:3bfdb76f4537a34f768caa2964676e308882d70d40d9217c85c47ed1cddd9ab3",
+            "sha256:6728402bf5513dd3ecd6ac6fdfda33e4c435339463379615aeece9effee60e6b"
           ]
         },
         {
@@ -1536,34 +1712,51 @@
           "exportedTwice": true,
           "exportedReceiverBooted": true,
           "fixedInventoryUnchanged": true,
-          "allRuntimeMembersVerified": 4805,
+          "allRuntimeMembersVerified": 4809,
           "realRuntimeByteCorruptionRefused": true,
           "privateCanaryAbsent": true,
           "identicalMemberContents": true,
           "identicalContainerBytes": false,
           "artifacts": [
-            "sha256:bc2ac7705008d18f4223b6692cfd938afe8830c0d6e7b74277b6634b14eee577",
-            "sha256:3a220f6e1cfbd588173575e6fcf0d6db5e5d1e0ded3630b3f75d1f12fee76f92"
+            "sha256:41451c89f676717e479c4683342c6644f2b7a8ece875e615f85422944238df0f",
+            "sha256:5fb0e68703f2a62404089df1d3cd2a5cceaf34ccd8e9ef102c5852df86c89bae"
           ]
         }
       ],
       "credentialsUsed": false,
       "externalApiCalled": false,
       "noExpectedDigestsRegenerated": true,
-      "executedConsumerDigest": "sha256:3fd04b9be785ceed81488db94e6809d9bcb4fb678c54ecb8e9e6704203a65b67",
-      "focused": "TAP version 13\n# Subtest: instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 1 - instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 7.519458\n  type: 'test'\n  ...\n# Subtest: instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 2 - instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 1.520542\n  type: 'test'\n  ...\n# Subtest: instruments: export publishes complete bytes without replacing targets or following child symlinks\nok 3 - instruments: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 2.693291\n  type: 'test'\n  ...\n# Subtest: documents: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 4 - documents: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 4.463917\n  type: 'test'\n  ...\n# Subtest: documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 5 - documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 0.815375\n  type: 'test'\n  ...\n# Subtest: documents: export publishes complete bytes without replacing targets or following child symlinks\nok 6 - documents: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 2.439125\n  type: 'test'\n  ...\n# Subtest: all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\nok 7 - all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\n  ---\n  duration_ms: 1.556708\n  type: 'test'\n  ...\n# Subtest: measurement: two export processes cannot replace each other's output\nok 8 - measurement: two export processes cannot replace each other's output\n  ---\n  duration_ms: 108.491542\n  type: 'test'\n  ...\n# Subtest: document: two export processes cannot replace each other's output\nok 9 - document: two export processes cannot replace each other's output\n  ---\n  duration_ms: 105.7575\n  type: 'test'\n  ...\n# Subtest: indexed root path aliases preserve authenticated identity: records\nok 10 - indexed root path aliases preserve authenticated identity: records\n  ---\n  duration_ms: 4690.810083\n  type: 'test'\n  ...\n# Subtest: indexed root path aliases preserve authenticated identity: readings\nok 11 - indexed root path aliases preserve authenticated identity: readings\n  ---\n  duration_ms: 4761.408209\n  type: 'test'\n  ...\n# Subtest: explicit dot aliases retain distinct selected place names for access accounts\nok 12 - explicit dot aliases retain distinct selected place names for access accounts\n  ---\n  duration_ms: 0.18925\n  type: 'test'\n  ...\n# Subtest: share bundle: empty base is a standard bundle without composition, sources or secret configuration\nok 13 - share bundle: empty base is a standard bundle without composition, sources or secret configuration\n  ---\n  duration_ms: 129.075333\n  type: 'test'\n  ...\n# Subtest: share bundle: selected public sources and distinct package identity use the standard packager\nok 14 - share bundle: selected public sources and distinct package identity use the standard packager\n  ---\n  duration_ms: 131.598\n  type: 'test'\n  ...\n# Subtest: share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\nok 15 - share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\n  ---\n  duration_ms: 0.869958\n  type: 'test'\n  ...\n# Subtest: share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\nok 16 - share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\n  ---\n  duration_ms: 1.532917\n  type: 'test'\n  ...\n# Subtest: share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\nok 17 - share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\n  ---\n  duration_ms: 4610.401208\n  type: 'test'\n  ...\n# Subtest: share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\nok 18 - share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\n  ---\n  duration_ms: 1.164834\n  type: 'test'\n  ...\n# Subtest: share bundle: bundle and folder exports use the same destination boundary before any write\nok 19 - share bundle: bundle and folder exports use the same destination boundary before any write\n  ---\n  duration_ms: 0.45175\n  type: 'test'\n  ...\n# Subtest: surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\nok 20 - surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\n  ---\n  duration_ms: 1.477958\n  type: 'test'\n  ...\n# Subtest: tools/visible: a client is offered no more tools than the ceiling allows\nok 21 - tools/visible: a client is offered no more tools than the ceiling allows\n  ---\n  duration_ms: 0.087208\n  type: 'test'\n  ...\n# Subtest: surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\nok 22 - surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\n  ---\n  duration_ms: 15.5375\n  type: 'test'\n  ...\n# Subtest: surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\nok 23 - surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\n  ---\n  duration_ms: 2.17625\n  type: 'test'\n  ...\n# Subtest: surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\nok 24 - surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\n  ---\n  duration_ms: 11.577166\n  type: 'test'\n  ...\n# Subtest: surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\nok 25 - surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\n  ---\n  duration_ms: 11.307291\n  type: 'test'\n  ...\n# Subtest: a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\nok 26 - a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\n  ---\n  duration_ms: 14.228625\n  type: 'test'\n  ...\n# Subtest: a host the lock does not name is refused by name, every call, nothing done; the one it names is not\nok 27 - a host the lock does not name is refused by name, every call, nothing done; the one it names is not\n  ---\n  duration_ms: 0.293416\n  type: 'test'\n  ...\n# Subtest: each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\nok 28 - each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\n  ---\n  duration_ms: 587.08375\n  type: 'test'\n  ...\n# Subtest: tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\nok 29 - tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\n  ---\n  duration_ms: 1.152708\n  type: 'test'\n  ...\n# Subtest: duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\nok 30 - duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\n  ---\n  duration_ms: 6.110667\n  type: 'test'\n  ...\n# Subtest: a prompt is read off its lines and filled only where it was asked\nok 31 - a prompt is read off its lines and filled only where it was asked\n  ---\n  duration_ms: 0.123958\n  type: 'test'\n  ...\n# Subtest: a resource URI gives its template the fields it names, query fields optional and in any order, decoded\nok 32 - a resource URI gives its template the fields it names, query fields optional and in any order, decoded\n  ---\n  duration_ms: 0.417917\n  type: 'test'\n  ...\n# Subtest: surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\nok 33 - surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\n  ---\n  duration_ms: 0.966083\n  type: 'test'\n  ...\n1..33\n# tests 33\n# suites 0\n# pass 33\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 16367.781667\n",
-      "focusedNarrowRevalidation": "TAP version 13\n# Subtest: instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 1 - instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 16.161625\n  type: 'test'\n  ...\n# Subtest: instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 2 - instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 1.986791\n  type: 'test'\n  ...\n# Subtest: instruments: export publishes complete bytes without replacing targets or following child symlinks\nok 3 - instruments: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 3.197542\n  type: 'test'\n  ...\n# Subtest: documents: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 4 - documents: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 4.682459\n  type: 'test'\n  ...\n# Subtest: documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 5 - documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 1.206292\n  type: 'test'\n  ...\n# Subtest: documents: export publishes complete bytes without replacing targets or following child symlinks\nok 6 - documents: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 2.27675\n  type: 'test'\n  ...\n# Subtest: all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\nok 7 - all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\n  ---\n  duration_ms: 1.896792\n  type: 'test'\n  ...\n# Subtest: measurement: two export processes cannot replace each other's output\nok 8 - measurement: two export processes cannot replace each other's output\n  ---\n  duration_ms: 118.249292\n  type: 'test'\n  ...\n# Subtest: document: two export processes cannot replace each other's output\nok 9 - document: two export processes cannot replace each other's output\n  ---\n  duration_ms: 112.182958\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 1041.973083\n"
+      "executedConsumerDigest": "sha256:4fbc5fa0c3959414e6368871f6617137fdcf70220643a907556ba38d524138a8",
+      "focusedParts": {
+        "repairs": "TAP version 13\n# Subtest: instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 1 - instruments: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 5.298459\n  type: 'test'\n  ...\n# Subtest: instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 2 - instruments: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 1.492833\n  type: 'test'\n  ...\n# Subtest: instruments: export publishes complete bytes without replacing targets or following child symlinks\nok 3 - instruments: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 2.869917\n  type: 'test'\n  ...\n# Subtest: documents: access is retained only after its native receipt; bindings separate roots, origins and audience\nok 4 - documents: access is retained only after its native receipt; bindings separate roots, origins and audience\n  ---\n  duration_ms: 1.7805\n  type: 'test'\n  ...\n# Subtest: documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\nok 5 - documents: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys\n  ---\n  duration_ms: 1.028083\n  type: 'test'\n  ...\n# Subtest: documents: export publishes complete bytes without replacing targets or following child symlinks\nok 6 - documents: export publishes complete bytes without replacing targets or following child symlinks\n  ---\n  duration_ms: 2.176625\n  type: 'test'\n  ...\n# Subtest: all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\nok 7 - all-source share requires public metadata, never emits an empty base, and checks current bytes before publication\n  ---\n  duration_ms: 1.749375\n  type: 'test'\n  ...\n# Subtest: measurement: two export processes cannot replace each other's output\nok 8 - measurement: two export processes cannot replace each other's output\n  ---\n  duration_ms: 109.701792\n  type: 'test'\n  ...\n# Subtest: document: two export processes cannot replace each other's output\nok 9 - document: two export processes cannot replace each other's output\n  ---\n  duration_ms: 108.912\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 537.948459\n",
+        "share": "TAP version 13\n# Subtest: share bundle: empty base is a standard bundle without composition, sources or secret configuration\nok 1 - share bundle: empty base is a standard bundle without composition, sources or secret configuration\n  ---\n  duration_ms: 126.66\n  type: 'test'\n  ...\n# Subtest: share bundle: selected public sources and distinct package identity use the standard packager\nok 2 - share bundle: selected public sources and distinct package identity use the standard packager\n  ---\n  duration_ms: 125.717041\n  type: 'test'\n  ...\n# Subtest: share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\nok 3 - share bundle: modified/missing runtime, unsafe paths, secret-state paths, public budget and cancellation refuse\n  ---\n  duration_ms: 0.885042\n  type: 'test'\n  ...\n# Subtest: share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\nok 4 - share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate\n  ---\n  duration_ms: 1.632\n  type: 'test'\n  ...\n# Subtest: share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\nok 5 - share bundle: real existing Head closure starts without npm and keeps exactly the three public tools\n  ---\n  duration_ms: 17637.456958\n  type: 'test'\n  ...\n# Subtest: share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\nok 6 - share URL: an unconnected HTTPS document asks for the existing consented connect flow; credentials and secret locators refuse\n  ---\n  duration_ms: 2.467166\n  type: 'test'\n  ...\n# Subtest: share bundle: bundle and folder exports use the same destination boundary before any write\nok 7 - share bundle: bundle and folder exports use the same destination boundary before any write\n  ---\n  duration_ms: 0.422458\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 18248.223667\n",
+        "root": "TAP version 13\n# Subtest: indexed root path aliases preserve authenticated identity: records\nok 1 - indexed root path aliases preserve authenticated identity: records\n  ---\n  duration_ms: 4381.68125\n  type: 'test'\n  ...\n# Subtest: indexed root path aliases preserve authenticated identity: readings\nok 2 - indexed root path aliases preserve authenticated identity: readings\n  ---\n  duration_ms: 4457.942375\n  type: 'test'\n  ...\n# Subtest: explicit dot aliases retain distinct selected place names for access accounts\nok 3 - explicit dot aliases retain distinct selected place names for access accounts\n  ---\n  duration_ms: 0.217\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 9058.26825\n",
+        "surface": "TAP version 13\n# Subtest: surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\nok 1 - surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\n  ---\n  duration_ms: 1.492542\n  type: 'test'\n  ...\n# Subtest: tools/visible: a client is offered no more tools than the ceiling allows\nok 2 - tools/visible: a client is offered no more tools than the ceiling allows\n  ---\n  duration_ms: 0.10175\n  type: 'test'\n  ...\n# Subtest: surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\nok 3 - surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\n  ---\n  duration_ms: 12.240792\n  type: 'test'\n  ...\n# Subtest: surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\nok 4 - surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\n  ---\n  duration_ms: 4.595042\n  type: 'test'\n  ...\n# Subtest: surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\nok 5 - surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\n  ---\n  duration_ms: 11.615042\n  type: 'test'\n  ...\n# Subtest: surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\nok 6 - surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\n  ---\n  duration_ms: 14.334125\n  type: 'test'\n  ...\n# Subtest: a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\nok 7 - a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\n  ---\n  duration_ms: 14.030541\n  type: 'test'\n  ...\n# Subtest: a host the lock does not name is refused by name, every call, nothing done; the one it names is not\nok 8 - a host the lock does not name is refused by name, every call, nothing done; the one it names is not\n  ---\n  duration_ms: 0.399208\n  type: 'test'\n  ...\n# Subtest: each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\nok 9 - each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\n  ---\n  duration_ms: 593.150708\n  type: 'test'\n  ...\n# Subtest: tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\nok 10 - tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\n  ---\n  duration_ms: 1.315375\n  type: 'test'\n  ...\n# Subtest: duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\nok 11 - duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\n  ---\n  duration_ms: 7.662209\n  type: 'test'\n  ...\n# Subtest: a prompt is read off its lines and filled only where it was asked\nok 12 - a prompt is read off its lines and filled only where it was asked\n  ---\n  duration_ms: 0.199\n  type: 'test'\n  ...\n# Subtest: a resource URI gives its template the fields it names, query fields optional and in any order, decoded\nok 13 - a resource URI gives its template the fields it names, query fields optional and in any order, decoded\n  ---\n  duration_ms: 0.454792\n  type: 'test'\n  ...\n# Subtest: surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\nok 14 - surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\n  ---\n  duration_ms: 0.467917\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 948.632667\n"
+      },
+      "surfaceContext": "Unchanged functional surface controls retained from their exact original execution; current admitted capacities match",
+      "historicalExecution": true,
+      "currentSystemNodeCompleteRegression": "sha256:747c78c475790afaf8fcf04f752f861e0ef8f2765f6c1c0b2e59bbc10a4f5714"
     }
   ],
   "predecessor": {
-    "sha256": "sha256:1b3b3065471a293bd41f4893ba7e4c06ec334afb0d612934db765663def458bb",
-    "allOriginalRunsAndFailuresPreserved": true
+    "sha256": "sha256:f7de82767f1f51a38fb944d4ea65d588b38866029b5a862c1f7f210a937cdd38",
+    "allHistoricalRunsAndFailuresPreserved": true
   },
-  "artifactState": "Complete unsigned standard npm archive0.2.2 with199members; runtime inventory4805members; not final Root/CI artifact",
+  "artifactState": "No embedded Node; package members and runtime members are distinct. Complete installed Electron-relay regressions revalidate the new deployment, historical inventory executions remain labeled.",
   "containerByteReproducibility": "Open: unchanged packager uses current time; exact container reproducibility not claimed",
   "ownerPrivateDesktopAcceptance": "pending; outside repository",
-  "status": "CI repair successor; current byte bindings and named narrow revalidation; not final Root or CI acceptance",
+  "status": "Prepared system-Node successor; original runs retain their execution identity; not final release, Root admission or real Desktop acceptance",
   "runtimeAdditions": [
+    {
+      "path": "dist/src/ports/adapters/runtime.d.ts",
+      "bytes": 1667,
+      "digest": "sha256:ca623685c9b1ec2b7b3dc80d57b8b307fe44d029638e327f837edb484f1f4390"
+    },
+    {
+      "path": "dist/src/ports/adapters/runtime.js",
+      "bytes": 5347,
+      "digest": "sha256:dd0259fc6d109678820d4c40eb1ad68dbfa4d050b28be09620f159d9f3c5401e"
+    },
     {
       "path": "dist/src/ports/export.js",
       "bytes": 3455,
@@ -1571,1165 +1764,44 @@
     },
     {
       "path": "dist/src/ports/home.js",
-      "bytes": 1599,
-      "digest": "sha256:4b969a4b6c6ec81a1dccd7e08a2a25fe6b45f4d528763c5aa2ac85b8775b9dc8"
+      "bytes": 1696,
+      "digest": "sha256:d4c0a45568180dca6aa3fa1bea661ad67ff1804578f518f68f98342af4b2aebd"
+    },
+    {
+      "path": "dist/src/ports/executable.js",
+      "bytes": 2692,
+      "digest": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
+    },
+    {
+      "path": "dist/src/ports/executable.d.ts",
+      "bytes": 392,
+      "digest": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
     }
   ],
   "evidenceReuse": {
-    "kind": "Retained functional matrices plus named narrow revalidation; not freshly rerun historical matrices",
-    "executedSourceInventory": "sha256:46c3b8145a7f791c5b212a52c4a342482d51612fc1674532b5fb121f63fb00b5",
-    "executedRuntime": "sha256:ef08ce28c543fc18f6c4b130c6b542aa54d35e4227dc08c0d084c87040b2bafb",
-    "narrowSourceDelta": "sha256:4b8ba43e740c5a6f46a73650f418d9a5e8742d496d2bb26a85b78ba626d15509",
-    "description": "After those matrices only share metadata defaults were removed. Full explicit public metadata is now required; operations/sources remain optional. Current focused nine cases and installed two-domain export/access gates revalidate that delta. A and full MCP execute final bytes separately."
-  },
-  "ciRepair": {
-    "productionDelta": "Only accessIdentity: operational obtained/renewed/entered results are excluded from its own declared scheme digest; actual changed declarations remain detected.",
-    "changedInputs": [
-      {
-        "path": "dist/src/access/obtain.js",
-        "before": "sha256:309a734a9a4621bed5b9250103e43c1686f93f529c2cc6a036d8fa2e01916b77",
-        "after": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
-      },
-      {
-        "path": "runtime.bundle.json",
-        "before": "sha256:ce7cc3dbdb306959deefc3884a9776699638bde8906f681ac1bd6b756c8aa018",
-        "after": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2"
-      },
-      {
-        "path": "src/access/obtain.ts",
-        "before": "sha256:75eabc43e1f6784a3037bb064ea7cfb59eb4dd53ebf7191acf2d8f9e74b5af7c",
-        "after": "sha256:21c84db6a23bd0eb37cf713224a5370365d6f41dd202675c6565d53369de50bd"
-      },
-      {
-        "path": "test/fake-keychain.ts",
-        "before": "sha256:ee2d6ea2b1b58fca11f493ffeca514f7949a5892afef1862f3837b2fb0a694b8",
-        "after": "sha256:168d57e6abd82493e16744f8b8d93d813953d185b5a6957a1fc732c28f736a51"
-      }
+    "model": "Explicit system-Node deployment successor. Original domain/client vectors and measurements remain historical with their original artifact identities. Only current installed six-cell, current four MCP reads and complete Electron-relay export/login regressions are fresh.",
+    "changedProduction": [
+      "src/index.ts",
+      "src/ports/executable.ts",
+      "dist/src/index.js",
+      "dist/src/ports/executable.js",
+      "dist/src/ports/executable.d.ts"
     ],
-    "originalRunsNotRelabeledAsFresh": true,
-    "BoundChanged": false,
-    "dependenciesChanged": false,
-    "allOtherFunctionalMatricesRetained": true,
-    "narrowRevalidation": {
-      "protocol": "head-ci-repair-revalidation@1",
-      "productionChange": "accessIdentity excludes its own operational outcomes, while declared endpoint-byte changes remain binding",
-      "historicalMatrices": "All original complete regional vectors, timings and failures retained; no new full MCP or unrelated matrix claimed",
-      "currentInstalledRuntime": "4805 fixed members, 199-member unsigned regional npm archive; final CI delivery remains separate",
-      "executions": [
-        {
-          "log": "fixtures22-world-final.log",
-          "sha256": "sha256:89fcd58e9a4449035954bb125d504abd2754492f99ee2157d30081258e262cc1",
-          "tests": 33,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "fixtures24-world-final.log",
-          "sha256": "sha256:01b12e47441a8a448144cd958a8aff7b197dcdfc0a91a2c1fad19db4a08c3478",
-          "tests": 22,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "transport22-final.log",
-          "sha256": "sha256:4670cb3b9c5a8e9c2efb180fdc884bef13d218e9558cc408d685b4d5338afb3e",
-          "tests": 12,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "transport24-final.log",
-          "sha256": "sha256:e7cb56c40f81abb29b9b2bd07e1b993786004fe8c5cc756d13026590bea42886",
-          "tests": 12,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "repairs-node22.log",
-          "sha256": "sha256:c2505cf54c14ec6952b509538662c306dbbdde9386c1a7d43742bf632bf651d7",
-          "tests": 9,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "repairs-node24.log",
-          "sha256": "sha256:e562a2ea1619edda26c8bec651eb25e1acd09b069d19195e99f650273cc688b3",
-          "tests": 9,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "authorizer24.log",
-          "sha256": "sha256:9aed3916f21ee4771823d41ff6873525352d8393891f5ddf61d757d419323583",
-          "tests": 11,
-          "failed": 0,
-          "state": "Original passing OAuth/repair execution retained; consumed production module identical and helper functions used by these tests unchanged"
-        }
-      ],
-      "installed": [
-        {
-          "node": "22",
-          "kind": "access",
-          "sha256": "sha256:6e7a34d82b6671d522dd6f3af3b703e389f057d0d734859664080c52cd9c3557"
-        },
-        {
-          "node": "22",
-          "kind": "export",
-          "sha256": "sha256:4da90ffec825e109ff8cf316673337793324e24314d35ef67f2d67d2a8f50bb0"
-        },
-        {
-          "node": "24",
-          "kind": "access",
-          "sha256": "sha256:d58dea81d9ffa3ef4817cc28d29459efbe833a6b9e50eaf4e4f3bc8360dc78a3"
-        },
-        {
-          "node": "24",
-          "kind": "export",
-          "sha256": "sha256:7188c0753317ed70d4481000117e84edcd85e60ef57ba2faa267de1a38ab597a"
-        }
-      ],
-      "clock": "Only the subsequent A gate is a latency measurement; functional-suite wall times are not promoted to response latency",
-      "realAccountsUsed": false,
-      "externalAPIsUsed": false,
-      "BoundChanged": false
+    "originalNativeRuntime": "Embedded Node24.22.2 is historical, not reused as proof of installed Node.",
+    "RootChanged": false
+  },
+  "systemNodeRevalidation": [
+    {
+      "node": "22",
+      "output": "TAP version 13\n# Subtest: the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\nok 1 - the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\n  ---\n  duration_ms: 22409.973458\n  type: 'test'\n  ...\n# Subtest: the installed extension shares with its original pinned runtime inventory, independent of installer metadata\nok 2 - the installed extension shares with its original pinned runtime inventory, independent of installer metadata\n  ---\n  duration_ms: 55251.828042\n  type: 'test'\n  ...\n# Subtest: received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\nok 3 - received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\n  ---\n  duration_ms: 115860.513917\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 193996.165875\n",
+      "hostExecPath": "/unlaunchable/host-helper",
+      "newInstalledExecution": true
     },
-    "installedExport22": {
-      "node": "22.23.3",
-      "inventory": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2",
-      "results": [
-        {
-          "domain": "records",
-          "metadata": "changed",
-          "exportedTwice": true,
-          "exportedReceiverBooted": true,
-          "fixedInventoryUnchanged": true,
-          "allRuntimeMembersVerified": 4805,
-          "realRuntimeByteCorruptionRefused": true,
-          "privateCanaryAbsent": true,
-          "identicalMemberContents": true,
-          "identicalContainerBytes": false,
-          "artifacts": [
-            "sha256:cd387dfc7fb1084a885bfdab235534c7c691aca31d5b887b7aebbd09c5d13e81",
-            "sha256:efbdf36015878c872d12d150631dafe5cc2345e77ce624549b4050743d7af72e"
-          ]
-        },
-        {
-          "domain": "readings",
-          "metadata": "absent",
-          "exportedTwice": true,
-          "exportedReceiverBooted": true,
-          "fixedInventoryUnchanged": true,
-          "allRuntimeMembersVerified": 4805,
-          "realRuntimeByteCorruptionRefused": true,
-          "privateCanaryAbsent": true,
-          "identicalMemberContents": true,
-          "identicalContainerBytes": false,
-          "artifacts": [
-            "sha256:45751335c5427ca2940e3437b49f2ae42240929338e7c23d104dc14b06462d99",
-            "sha256:421e0347015e2d4cb2f2207523070c0c9d355905a17533e1bd051f1864ada6f7"
-          ]
-        }
-      ],
-      "calls": [
-        {
-          "name": "place",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/born state=done next=none next.why=\"done\" name=\"records\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\"\nbound-lock/1 at=policy:head/places by=root epoch=3 form=alphabet measure=id role=writes scope=places/records sig=\"ed25519:era1:79rRSI6QyErzo8UJZYMMpuso4VePF3jsok3JHrI9aM0M6pWVTd95Es+r72RQGTwTn6Hje/Hso4auQX5AnL4RBg==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\nsaid/head/card state=done next=do next.card=\"2248df0cf9215eb0\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" card=\"2248df0cf9215eb0\" from=\"do place\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [
-                  "bound-lock/1 at=policy:head/places by=root epoch=3 form=alphabet measure=id role=writes scope=places/records sig=\"ed25519:era1:79rRSI6QyErzo8UJZYMMpuso4VePF3jsok3JHrI9aM0M6pWVTd95Es+r72RQGTwTn6Hje/Hso4auQX5AnL4RBg==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
-                ],
-                "cells": [
-                  {
-                    "code": "head/born",
-                    "state": "done",
-                    "next": {
-                      "none": "done"
-                    },
-                    "fields": {
-                      "name": "records",
-                      "dir": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "2248df0cf9215eb0",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
-                      "card": "2248df0cf9215eb0",
-                      "from": "do place"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 12.390931875
-          }
-        },
-        {
-          "name": "connect",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/connected state=done next=ask next.source=\"records\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" source=\"records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" offers=\"1\" reads=\"1\" pin=\"sha256:32088fccf88f7b2e52ba8b222b978599b02be9900ae8b923e6723f0f9cdfe74e\"\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/records value=sha256:b6735257f3873ee43e3f9de3e8010682e227bf79f8f54c607325694069d88358\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/records value=https://records.example\nbound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/records value=keys/access/records/**|offers/records/**|read/**|region/records|write/**"
-                }
-              ],
-              "structuredContent": {
-                "lines": [
-                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/records value=sha256:b6735257f3873ee43e3f9de3e8010682e227bf79f8f54c607325694069d88358",
-                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/records value=https://records.example",
-                  "bound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/records value=keys/access/records/**|offers/records/**|read/**|region/records|write/**"
-                ],
-                "cells": [
-                  {
-                    "code": "head/connected",
-                    "state": "done",
-                    "next": {
-                      "tool": "ask",
-                      "args": {
-                        "source": "records",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "source": "records",
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
-                      "offers": "1",
-                      "reads": "1",
-                      "pin": "sha256:32088fccf88f7b2e52ba8b222b978599b02be9900ae8b923e6723f0f9cdfe74e"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 11.198832542000002
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records-1.mcpb\" digest=\"sha256:cd387dfc7fb1084a885bfdab235534c7c691aca31d5b887b7aebbd09c5d13e81\" sources=\"records\"\nsaid/head/card state=done next=do next.card=\"42cef4079981eb5d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" card=\"42cef4079981eb5d\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-shared",
-                    "state": "done",
-                    "next": {
-                      "none": "No action is authorized by this result."
-                    },
-                    "fields": {
-                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records-1.mcpb",
-                      "digest": "sha256:cd387dfc7fb1084a885bfdab235534c7c691aca31d5b887b7aebbd09c5d13e81",
-                      "sources": "records"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "42cef4079981eb5d",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
-                      "card": "42cef4079981eb5d",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 4.392782874999997
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records-2.mcpb\" digest=\"sha256:efbdf36015878c872d12d150631dafe5cc2345e77ce624549b4050743d7af72e\" sources=\"records\"\nsaid/head/card state=done next=do next.card=\"42cef4079981eb5d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" card=\"42cef4079981eb5d\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-shared",
-                    "state": "done",
-                    "next": {
-                      "none": "No action is authorized by this result."
-                    },
-                    "fields": {
-                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records-2.mcpb",
-                      "digest": "sha256:efbdf36015878c872d12d150631dafe5cc2345e77ce624549b4050743d7af72e",
-                      "sources": "records"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "42cef4079981eb5d",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
-                      "card": "42cef4079981eb5d",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 3.9852394159999966
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-refused state=refused next=none next.why=\"Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority.\" why=\"bundle/runtime-member\"\nsaid/head/card state=done next=do next.card=\"42cef4079981eb5d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" card=\"42cef4079981eb5d\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-refused",
-                    "state": "refused",
-                    "next": {
-                      "none": "Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority."
-                    },
-                    "fields": {
-                      "why": "bundle/runtime-member"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "42cef4079981eb5d",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
-                      "card": "42cef4079981eb5d",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 0.17662033299999894
-          }
-        },
-        {
-          "name": "place",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/born state=done next=none next.why=\"done\" name=\"readings\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\"\nbound-lock/1 at=policy:head/places by=root epoch=4 form=alphabet measure=id role=writes scope=places/readings sig=\"ed25519:era1:wBl5ydaOisfcKbHph2SDxJkVJKR/dCfWlQcWPlquA1Qld/R669HC0sWg+OicXSv1QzTa7Xzdx9MktbPYcOaFDA==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\nsaid/head/card state=done next=do next.card=\"8b8448503336ad1f\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" card=\"8b8448503336ad1f\" from=\"do place\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [
-                  "bound-lock/1 at=policy:head/places by=root epoch=4 form=alphabet measure=id role=writes scope=places/readings sig=\"ed25519:era1:wBl5ydaOisfcKbHph2SDxJkVJKR/dCfWlQcWPlquA1Qld/R669HC0sWg+OicXSv1QzTa7Xzdx9MktbPYcOaFDA==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
-                ],
-                "cells": [
-                  {
-                    "code": "head/born",
-                    "state": "done",
-                    "next": {
-                      "none": "done"
-                    },
-                    "fields": {
-                      "name": "readings",
-                      "dir": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "8b8448503336ad1f",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
-                      "card": "8b8448503336ad1f",
-                      "from": "do place"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 8.116216083
-          }
-        },
-        {
-          "name": "connect",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/connected state=done next=ask next.source=\"readings\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" source=\"readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" offers=\"1\" reads=\"1\" pin=\"sha256:3bccf2b62bea8c547a5dae337fc4f09e15372fdd68040ea32d05d9b9b73d42b5\"\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/readings value=sha256:5657ba5e28c01e5b75da46eb8c4f84718dd57bbeb5a62446e90f2d03e01efed4\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/readings value=https://readings.example\nbound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/readings value=keys/access/readings/**|offers/readings/**|read/**|region/readings|write/**"
-                }
-              ],
-              "structuredContent": {
-                "lines": [
-                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/readings value=sha256:5657ba5e28c01e5b75da46eb8c4f84718dd57bbeb5a62446e90f2d03e01efed4",
-                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/readings value=https://readings.example",
-                  "bound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/readings value=keys/access/readings/**|offers/readings/**|read/**|region/readings|write/**"
-                ],
-                "cells": [
-                  {
-                    "code": "head/connected",
-                    "state": "done",
-                    "next": {
-                      "tool": "ask",
-                      "args": {
-                        "source": "readings",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "source": "readings",
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
-                      "offers": "1",
-                      "reads": "1",
-                      "pin": "sha256:3bccf2b62bea8c547a5dae337fc4f09e15372fdd68040ea32d05d9b9b73d42b5"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 11.249358250000006
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings-1.mcpb\" digest=\"sha256:45751335c5427ca2940e3437b49f2ae42240929338e7c23d104dc14b06462d99\" sources=\"readings\"\nsaid/head/card state=done next=do next.card=\"35e95c4b039e5ff8\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" card=\"35e95c4b039e5ff8\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-shared",
-                    "state": "done",
-                    "next": {
-                      "none": "No action is authorized by this result."
-                    },
-                    "fields": {
-                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings-1.mcpb",
-                      "digest": "sha256:45751335c5427ca2940e3437b49f2ae42240929338e7c23d104dc14b06462d99",
-                      "sources": "readings"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "35e95c4b039e5ff8",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
-                      "card": "35e95c4b039e5ff8",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 4.279489916999999
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings-2.mcpb\" digest=\"sha256:421e0347015e2d4cb2f2207523070c0c9d355905a17533e1bd051f1864ada6f7\" sources=\"readings\"\nsaid/head/card state=done next=do next.card=\"35e95c4b039e5ff8\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" card=\"35e95c4b039e5ff8\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-shared",
-                    "state": "done",
-                    "next": {
-                      "none": "No action is authorized by this result."
-                    },
-                    "fields": {
-                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings-2.mcpb",
-                      "digest": "sha256:421e0347015e2d4cb2f2207523070c0c9d355905a17533e1bd051f1864ada6f7",
-                      "sources": "readings"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "35e95c4b039e5ff8",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
-                      "card": "35e95c4b039e5ff8",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 4.180381374999997
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-refused state=refused next=none next.why=\"Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority.\" why=\"bundle/runtime-member\"\nsaid/head/card state=done next=do next.card=\"35e95c4b039e5ff8\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" card=\"35e95c4b039e5ff8\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-refused",
-                    "state": "refused",
-                    "next": {
-                      "none": "Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority."
-                    },
-                    "fields": {
-                      "why": "bundle/runtime-member"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "35e95c4b039e5ff8",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
-                      "card": "35e95c4b039e5ff8",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 0.17005258400000456
-          }
-        }
-      ],
-      "credentialsUsed": false,
-      "externalApiCalled": false,
-      "noExpectedDigestsRegenerated": true
-    },
-    "installedExport24": {
-      "node": "24.14.1",
-      "inventory": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2",
-      "results": [
-        {
-          "domain": "records",
-          "metadata": "changed",
-          "exportedTwice": true,
-          "exportedReceiverBooted": true,
-          "fixedInventoryUnchanged": true,
-          "allRuntimeMembersVerified": 4805,
-          "realRuntimeByteCorruptionRefused": true,
-          "privateCanaryAbsent": true,
-          "identicalMemberContents": true,
-          "identicalContainerBytes": false,
-          "artifacts": [
-            "sha256:17a149ae6711542df09987027ba9d53ac80c2fb2851f341abb81b874df600701",
-            "sha256:254c03a2c45f3a61aed403c49be4e9a4391c8970ecfcb24cc6c18f9822b77fb0"
-          ]
-        },
-        {
-          "domain": "readings",
-          "metadata": "absent",
-          "exportedTwice": true,
-          "exportedReceiverBooted": true,
-          "fixedInventoryUnchanged": true,
-          "allRuntimeMembersVerified": 4805,
-          "realRuntimeByteCorruptionRefused": true,
-          "privateCanaryAbsent": true,
-          "identicalMemberContents": true,
-          "identicalContainerBytes": false,
-          "artifacts": [
-            "sha256:bc2ac7705008d18f4223b6692cfd938afe8830c0d6e7b74277b6634b14eee577",
-            "sha256:3a220f6e1cfbd588173575e6fcf0d6db5e5d1e0ded3630b3f75d1f12fee76f92"
-          ]
-        }
-      ],
-      "calls": [
-        {
-          "name": "place",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/born state=done next=none next.why=\"done\" name=\"records\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\"\nbound-lock/1 at=policy:head/places by=root epoch=3 form=alphabet measure=id role=writes scope=places/records sig=\"ed25519:era1:LySGB9QznoN1eHP/3S3aUP5b1XSgi1Iod44Kps3UvNtq1GSHNx21rLr8Q2kheB4UrB/5aMFntMPFm8rWP2M4Bg==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\nsaid/head/card state=done next=do next.card=\"c277facda5177b91\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" card=\"c277facda5177b91\" from=\"do place\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [
-                  "bound-lock/1 at=policy:head/places by=root epoch=3 form=alphabet measure=id role=writes scope=places/records sig=\"ed25519:era1:LySGB9QznoN1eHP/3S3aUP5b1XSgi1Iod44Kps3UvNtq1GSHNx21rLr8Q2kheB4UrB/5aMFntMPFm8rWP2M4Bg==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
-                ],
-                "cells": [
-                  {
-                    "code": "head/born",
-                    "state": "done",
-                    "next": {
-                      "none": "done"
-                    },
-                    "fields": {
-                      "name": "records",
-                      "dir": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "c277facda5177b91",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
-                      "card": "c277facda5177b91",
-                      "from": "do place"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 12.580735084
-          }
-        },
-        {
-          "name": "connect",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/connected state=done next=ask next.source=\"records\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" source=\"records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" offers=\"1\" reads=\"1\" pin=\"sha256:32088fccf88f7b2e52ba8b222b978599b02be9900ae8b923e6723f0f9cdfe74e\"\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/records value=sha256:b6735257f3873ee43e3f9de3e8010682e227bf79f8f54c607325694069d88358\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/records value=https://records.example\nbound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/records value=keys/access/records/**|offers/records/**|read/**|region/records|write/**"
-                }
-              ],
-              "structuredContent": {
-                "lines": [
-                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/records value=sha256:b6735257f3873ee43e3f9de3e8010682e227bf79f8f54c607325694069d88358",
-                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/records value=https://records.example",
-                  "bound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/records value=keys/access/records/**|offers/records/**|read/**|region/records|write/**"
-                ],
-                "cells": [
-                  {
-                    "code": "head/connected",
-                    "state": "done",
-                    "next": {
-                      "tool": "ask",
-                      "args": {
-                        "source": "records",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "source": "records",
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
-                      "offers": "1",
-                      "reads": "1",
-                      "pin": "sha256:32088fccf88f7b2e52ba8b222b978599b02be9900ae8b923e6723f0f9cdfe74e"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 10.707021583999998
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records-1.mcpb\" digest=\"sha256:17a149ae6711542df09987027ba9d53ac80c2fb2851f341abb81b874df600701\" sources=\"records\"\nsaid/head/card state=done next=do next.card=\"b4dcc243e40a1b32\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" card=\"b4dcc243e40a1b32\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-shared",
-                    "state": "done",
-                    "next": {
-                      "none": "No action is authorized by this result."
-                    },
-                    "fields": {
-                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records-1.mcpb",
-                      "digest": "sha256:17a149ae6711542df09987027ba9d53ac80c2fb2851f341abb81b874df600701",
-                      "sources": "records"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "b4dcc243e40a1b32",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
-                      "card": "b4dcc243e40a1b32",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 4.178960124999998
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records-2.mcpb\" digest=\"sha256:254c03a2c45f3a61aed403c49be4e9a4391c8970ecfcb24cc6c18f9822b77fb0\" sources=\"records\"\nsaid/head/card state=done next=do next.card=\"b4dcc243e40a1b32\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" card=\"b4dcc243e40a1b32\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-shared",
-                    "state": "done",
-                    "next": {
-                      "none": "No action is authorized by this result."
-                    },
-                    "fields": {
-                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records-2.mcpb",
-                      "digest": "sha256:254c03a2c45f3a61aed403c49be4e9a4391c8970ecfcb24cc6c18f9822b77fb0",
-                      "sources": "records"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "b4dcc243e40a1b32",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
-                      "card": "b4dcc243e40a1b32",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 4.527350458000001
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-refused state=refused next=none next.why=\"Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority.\" why=\"bundle/runtime-member\"\nsaid/head/card state=done next=do next.card=\"b4dcc243e40a1b32\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" card=\"b4dcc243e40a1b32\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-refused",
-                    "state": "refused",
-                    "next": {
-                      "none": "Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority."
-                    },
-                    "fields": {
-                      "why": "bundle/runtime-member"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "b4dcc243e40a1b32",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
-                      "card": "b4dcc243e40a1b32",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 0.18251666700000352
-          }
-        },
-        {
-          "name": "place",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/born state=done next=none next.why=\"done\" name=\"readings\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\"\nbound-lock/1 at=policy:head/places by=root epoch=4 form=alphabet measure=id role=writes scope=places/readings sig=\"ed25519:era1:ZMYuCWWKHtTm09lPiZ3SrPEurp0NcZlUBoNBJSkoWJYe6LYh0uM0uY2GbW2AFeX1f4X+ywOH0jUHrgxkzNZ3Bw==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\nsaid/head/card state=done next=do next.card=\"25d6cdc0059cfc77\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" card=\"25d6cdc0059cfc77\" from=\"do place\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [
-                  "bound-lock/1 at=policy:head/places by=root epoch=4 form=alphabet measure=id role=writes scope=places/readings sig=\"ed25519:era1:ZMYuCWWKHtTm09lPiZ3SrPEurp0NcZlUBoNBJSkoWJYe6LYh0uM0uY2GbW2AFeX1f4X+ywOH0jUHrgxkzNZ3Bw==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
-                ],
-                "cells": [
-                  {
-                    "code": "head/born",
-                    "state": "done",
-                    "next": {
-                      "none": "done"
-                    },
-                    "fields": {
-                      "name": "readings",
-                      "dir": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "25d6cdc0059cfc77",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
-                      "card": "25d6cdc0059cfc77",
-                      "from": "do place"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 8.203254624999994
-          }
-        },
-        {
-          "name": "connect",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/connected state=done next=ask next.source=\"readings\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" source=\"readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" offers=\"1\" reads=\"1\" pin=\"sha256:3bccf2b62bea8c547a5dae337fc4f09e15372fdd68040ea32d05d9b9b73d42b5\"\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/readings value=sha256:5657ba5e28c01e5b75da46eb8c4f84718dd57bbeb5a62446e90f2d03e01efed4\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/readings value=https://readings.example\nbound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/readings value=keys/access/readings/**|offers/readings/**|read/**|region/readings|write/**"
-                }
-              ],
-              "structuredContent": {
-                "lines": [
-                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/readings value=sha256:5657ba5e28c01e5b75da46eb8c4f84718dd57bbeb5a62446e90f2d03e01efed4",
-                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/readings value=https://readings.example",
-                  "bound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/readings value=keys/access/readings/**|offers/readings/**|read/**|region/readings|write/**"
-                ],
-                "cells": [
-                  {
-                    "code": "head/connected",
-                    "state": "done",
-                    "next": {
-                      "tool": "ask",
-                      "args": {
-                        "source": "readings",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "source": "readings",
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
-                      "offers": "1",
-                      "reads": "1",
-                      "pin": "sha256:3bccf2b62bea8c547a5dae337fc4f09e15372fdd68040ea32d05d9b9b73d42b5"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 10.868354375000003
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings-1.mcpb\" digest=\"sha256:bc2ac7705008d18f4223b6692cfd938afe8830c0d6e7b74277b6634b14eee577\" sources=\"readings\"\nsaid/head/card state=done next=do next.card=\"9bfd871d0c7e80f2\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" card=\"9bfd871d0c7e80f2\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-shared",
-                    "state": "done",
-                    "next": {
-                      "none": "No action is authorized by this result."
-                    },
-                    "fields": {
-                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings-1.mcpb",
-                      "digest": "sha256:bc2ac7705008d18f4223b6692cfd938afe8830c0d6e7b74277b6634b14eee577",
-                      "sources": "readings"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "9bfd871d0c7e80f2",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
-                      "card": "9bfd871d0c7e80f2",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 4.390421415999997
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings-2.mcpb\" digest=\"sha256:3a220f6e1cfbd588173575e6fcf0d6db5e5d1e0ded3630b3f75d1f12fee76f92\" sources=\"readings\"\nsaid/head/card state=done next=do next.card=\"9bfd871d0c7e80f2\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" card=\"9bfd871d0c7e80f2\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-shared",
-                    "state": "done",
-                    "next": {
-                      "none": "No action is authorized by this result."
-                    },
-                    "fields": {
-                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings-2.mcpb",
-                      "digest": "sha256:3a220f6e1cfbd588173575e6fcf0d6db5e5d1e0ded3630b3f75d1f12fee76f92",
-                      "sources": "readings"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "9bfd871d0c7e80f2",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
-                      "card": "9bfd871d0c7e80f2",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 4.204614375000005
-          }
-        },
-        {
-          "name": "share",
-          "result": {
-            "result": {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "said/head/bundle-refused state=refused next=none next.why=\"Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority.\" why=\"bundle/runtime-member\"\nsaid/head/card state=done next=do next.card=\"9bfd871d0c7e80f2\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" card=\"9bfd871d0c7e80f2\" from=\"do share\""
-                }
-              ],
-              "structuredContent": {
-                "lines": [],
-                "cells": [
-                  {
-                    "code": "head/bundle-refused",
-                    "state": "refused",
-                    "next": {
-                      "none": "Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority."
-                    },
-                    "fields": {
-                      "why": "bundle/runtime-member"
-                    }
-                  },
-                  {
-                    "code": "head/card",
-                    "state": "done",
-                    "next": {
-                      "tool": "do",
-                      "args": {
-                        "card": "9bfd871d0c7e80f2",
-                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
-                      }
-                    },
-                    "fields": {
-                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
-                      "card": "9bfd871d0c7e80f2",
-                      "from": "do share"
-                    }
-                  }
-                ]
-              }
-            },
-            "jsonrpc": "2.0",
-            "id": 1,
-            "seconds": 0.19789837499998975
-          }
-        }
-      ],
-      "credentialsUsed": false,
-      "externalApiCalled": false,
-      "noExpectedDigestsRegenerated": true
+    {
+      "node": "24",
+      "output": "✔ the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer (22637.910083ms)\n✔ the installed extension shares with its original pinned runtime inventory, independent of installer metadata (54979.253542ms)\n✔ received APIs use one persistent recipient keychain across import and access processes, without inheriting authority (116148.432875ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 194278.496542\n",
+      "hostExecPath": "/unlaunchable/host-helper",
+      "newInstalledExecution": true
     }
-  }
+  ]
 }

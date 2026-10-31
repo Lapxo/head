@@ -99,11 +99,11 @@
     },
     {
       "path": "src/doors/guard.ts",
-      "sha256": "sha256:fce94ddaed87b52517d41341a2ae5d7e620c4d82069c687820de205c824f84ce"
+      "sha256": "sha256:5104efc1cbd4a36250fd7e0f5a375586e34da0c1b5ba98fafaca03f2c1bce06a"
     },
     {
       "path": "src/doors/head.ts",
-      "sha256": "sha256:49080fe5301decb0d8b68926e30f954ad78c06ecb6acb93c929fa2c11bc2e96e"
+      "sha256": "sha256:aaef67879a423346ab97a715356569450bac0b5dabc3e70c478ec6e1c5e50531"
     },
     {
       "path": "src/doors/http.ts",
@@ -127,7 +127,7 @@
     },
     {
       "path": "src/flows/device.ts",
-      "sha256": "sha256:de6a29c5f1f190ce7c5d5707bec4b0d89e6587864f502c155b6a191e0ec792bc"
+      "sha256": "sha256:26158c7afb68f3347d3df32093c6cd317328fab5eda84f53d94539f07264dbf7"
     },
     {
       "path": "src/flows/plan.ts",
@@ -143,7 +143,7 @@
     },
     {
       "path": "src/index.ts",
-      "sha256": "sha256:818c4434138ce280148c4ede768c7db815f850968d6866e63365f28993de173d"
+      "sha256": "sha256:bdc8af2fd4cb46a5571bb715da5228a0ebc9f05bb38af22df2ba482a95c3df5c"
     },
     {
       "path": "src/kept/kept.ts",
@@ -183,7 +183,7 @@
     },
     {
       "path": "src/places/found.ts",
-      "sha256": "sha256:e8fd8061dd9b242d80be04930b55a85622fce32e4b3caa22441318b6ac25441f"
+      "sha256": "sha256:71206dd75e12dead424e9730cdceb7b1216c218ec0b87855149f1ad0a28d266c"
     },
     {
       "path": "src/ports/access/authorizer.ts",
@@ -203,7 +203,7 @@
     },
     {
       "path": "src/ports/adapters/bundle.ts",
-      "sha256": "sha256:fd51124236fb74be6cd6e1608b17e60fd7f5ab19e4353990cd0f231f8dee6757"
+      "sha256": "sha256:83b1e78d2073d57145ffe855167409a002ef3fd3adfd4c4a0cb13b46aa2a9322"
     },
     {
       "path": "src/ports/adapters/configured.ts",
@@ -230,6 +230,10 @@
       "sha256": "sha256:b0b7f99df4571e4711bc2c25c2eca9409a33c0fce6127c42f1032ff32415ec76"
     },
     {
+      "path": "src/ports/adapters/runtime.ts",
+      "sha256": "sha256:ed7d65d5da12ccc5ab2142f671e3c9d5451650f451a5fff9468057c5850e428b"
+    },
+    {
       "path": "src/ports/bound.ts",
       "sha256": "sha256:df143e1880e1cb51d66ecb50f22e75106d60ce2473bc612f55da1f44f36590dd"
     },
@@ -242,12 +246,16 @@
       "sha256": "sha256:8be05f9171bf94d180dd4005369d6b63d08a98e469050fff844ea61d3b2b7b6f"
     },
     {
+      "path": "src/ports/executable.ts",
+      "sha256": "sha256:94369feefeb89a4c20bbbe9aee4082f8bfd8702769ba898a7a3a0b404508d6f1"
+    },
+    {
       "path": "src/ports/export.ts",
       "sha256": "sha256:8a024751f82d423546df2d4bae6dded5098611802a5753b612d29c92738c4503"
     },
     {
       "path": "src/ports/home.ts",
-      "sha256": "sha256:ec6c190aa864212dcaa160046c2c78e4fdb4e5f59452bc0378cbc50c815132e8"
+      "sha256": "sha256:5e889ab0d43f041d08c1c8ae19512891519136190b59e8624a788b4f4668cf2c"
     },
     {
       "path": "src/ports/host.ts",
@@ -255,7 +263,7 @@
     },
     {
       "path": "src/ports/keychain.ts",
-      "sha256": "sha256:8997394f3c30b140bbb153d420b62d41d69470279f4882dc25a434c58d206f31"
+      "sha256": "sha256:0df3bbcfb4e1399959ff7776f84e8193ca8b836c4634f49f5b3632e12e91f7a0"
     },
     {
       "path": "src/ports/keys.ts",
@@ -279,7 +287,7 @@
     },
     {
       "path": "src/ports/stores/keychain.ts",
-      "sha256": "sha256:d1f33f3470e54e37281bd9817f9fc95bbe15ebc88c03403062247e784f613d22"
+      "sha256": "sha256:4c7e730b2cba760e5fefc2fb191dc022a2e28b03688363ed6ebc184bc5cfdd9f"
     },
     {
       "path": "src/ports/stores/secret-tool.ts",
@@ -295,7 +303,7 @@
     },
     {
       "path": "src/signer.ts",
-      "sha256": "sha256:a0e8a0b7cd1f2082a6bb6f71529bfe43ba417731dc191950ba734e8f7a81cc20"
+      "sha256": "sha256:fd6175c61836d3bd2a9702fb36286937ee19938d0b699d783da312f7bf6ccb23"
     },
     {
       "path": "src/sources/access.ts",
@@ -343,7 +351,7 @@
     },
     {
       "path": "src/tools/key.ts",
-      "sha256": "sha256:6a1cfc669e5d30a7b5e30bc708dd58d05a1495f0cb1a03c39887cb2d7129fe58"
+      "sha256": "sha256:bd65423fcf40362423128c7654e85ec10488dc70822cfbac59ffc196dcbbda3f"
     },
     {
       "path": "src/tools/land.ts",
@@ -467,11 +475,11 @@
     },
     {
       "path": "test/client.ts",
-      "sha256": "sha256:e499093fb06ed0a8a427faba7525c0a3090f90eed414a00d6efb1afd00e88432"
+      "sha256": "sha256:4d6f7ccad44c0c513a0d0841099f5cb0cc4e47566a50345df790ba60b3c91596"
     },
     {
       "path": "test/composition-reading.ts",
-      "sha256": "sha256:40fb31d2aae626a5c8bbce425fa1951254ce7bd0336d0ec70bb190fc245a0be7"
+      "sha256": "sha256:06b48966e31094d44e946377033b14a82664a063744b6c1757e8d6130b6d5648"
     },
     {
       "path": "test/composition.test.ts",
@@ -479,7 +487,7 @@
     },
     {
       "path": "test/configured-ports.ts",
-      "sha256": "sha256:fba31e3797e1d31936d5de0676b84f67cacb550ddb0ea1fb2f91a2b3e3a5968a"
+      "sha256": "sha256:250d3c923cd01b1153d370ed7e9b5acb917f3f3b23d8aa0242c7562f0c30e7f9"
     },
     {
       "path": "test/configured-receiver.test.ts",
@@ -506,8 +514,12 @@
       "sha256": "sha256:35b1664cab648b225216267971fcc5a484e51c6b58298f055378723f29a5c631"
     },
     {
+      "path": "test/executable.test.ts",
+      "sha256": "sha256:e07be8882ff44b4dcd86bf4a86c260d00ab5d7aa1990e581d23e446de5e85b89"
+    },
+    {
       "path": "test/fake-keychain.ts",
-      "sha256": "sha256:168d57e6abd82493e16744f8b8d93d813953d185b5a6957a1fc732c28f736a51"
+      "sha256": "sha256:7377caa64cb3a9d47a419fd5396f7d5de4cfc2cced07b7c7c51d8913c376cef9"
     },
     {
       "path": "test/fetch.test.ts",
@@ -515,7 +527,7 @@
     },
     {
       "path": "test/first-minute.test.ts",
-      "sha256": "sha256:5e1ea3fe5c8a1ab9046d36cc7f1f52161774c4355189ff7af4ae5811473bcfff"
+      "sha256": "sha256:84863987f4cd396fb85f4d3830a7cbb8186d7fe69206418c48c5503cb8a6f1d5"
     },
     {
       "path": "test/first-run.test.ts",
@@ -527,7 +539,7 @@
     },
     {
       "path": "test/functional-repairs-reading.ts",
-      "sha256": "sha256:2bf73aeaa7a7735d9474e185f36d6cdbcbe1dfad7d3023bb8ad2318bf60d2dd7"
+      "sha256": "sha256:ebf74771e240294930d7c5f7e8136f006f1779cdd7ce9c8cd596503397f5e06f"
     },
     {
       "path": "test/gestures.test.ts",
@@ -535,7 +547,7 @@
     },
     {
       "path": "test/implicit-root-reading.ts",
-      "sha256": "sha256:7a810f1f6b3aa65d6e6a16004c204bf017839da447171876f9b90238b267cab3"
+      "sha256": "sha256:79861cfeac3575d02de131e8b980095b7c9ace643f99ef1352785659e9d29fc5"
     },
     {
       "path": "test/implicit-root.test.ts",
@@ -560,6 +572,18 @@
     {
       "path": "test/kept.ts",
       "sha256": "sha256:146b900f38140c0c72d04acc3a291b88bb06de60c308da9a77e21619d5cd83ae"
+    },
+    {
+      "path": "test/key-refusal.test.ts",
+      "sha256": "sha256:bfc886007287032ac4200c62f152c032317db5dbfb2fcfc860b15b46475ed38f"
+    },
+    {
+      "path": "test/keychain-bounds.test.ts",
+      "sha256": "sha256:66b0403dc36ce122d426198165acb61dc44f987ff4a09a4eb2cd90355cdeae6b"
+    },
+    {
+      "path": "test/keychain-failure.test.ts",
+      "sha256": "sha256:7fb0a1eda5d173bb07135652336030c896b9b38a4d3338647eb632f67fa95d89"
     },
     {
       "path": "test/keys.test.ts",
@@ -591,7 +615,7 @@
     },
     {
       "path": "test/mcp-receiver-reading.ts",
-      "sha256": "sha256:27a8ef2f70c0493565925ac5ba19a6b5a146ac53165b4fec0641a4a6f61ebc9b"
+      "sha256": "sha256:ed7a17c2966f99d005470b50d608d23847cfdfe14e89e8638e11bb28af54023f"
     },
     {
       "path": "test/mcp-transport.test.ts",
@@ -623,7 +647,7 @@
     },
     {
       "path": "test/pack.test.ts",
-      "sha256": "sha256:b5fccead4ab90815e99dca2e870f1bc42839f4fe731a0a6a492f40b685106a1c"
+      "sha256": "sha256:93fc2ed33b7ffacc4fbbdf1bfaff312755bfaecc6ce92e9923e9d14491f0c781"
     },
     {
       "path": "test/pending-document.test.ts",
@@ -644,6 +668,10 @@
     {
       "path": "test/places.test.ts",
       "sha256": "sha256:3a95340fc9f23b8c82bde9b6714b8b828a9729cdf079cd96d31b414540411ede"
+    },
+    {
+      "path": "test/platform-support.test.ts",
+      "sha256": "sha256:2dba2c010603e40c37f3549107b57210c7857d8b5bc4f7be7b9c5621cc7a0b67"
     },
     {
       "path": "test/portable-birth.test.ts",
@@ -675,7 +703,7 @@
     },
     {
       "path": "test/receiver-access-reading.ts",
-      "sha256": "sha256:b3fba43b5835898a6a300185dd9c1161b5e154e477a6e7ca8a490f451f3e5762"
+      "sha256": "sha256:d1751475981852bc5ee1e84141535dd75978f9ec01c3e0ac04aaf47f24e201c0"
     },
     {
       "path": "test/receiver-access.test.ts",
@@ -687,7 +715,7 @@
     },
     {
       "path": "test/receiver-runtime.ts",
-      "sha256": "sha256:f60064e46207f6e5a7f1acfcfd66417aa0b93e3a71880f5c11de917237be34c6"
+      "sha256": "sha256:fa41689bfb25b380ca1d6acdd3c8bbd4770d52b1e7b57911aa7517256a8f4442"
     },
     {
       "path": "test/receiver.test.ts",
@@ -715,11 +743,11 @@
     },
     {
       "path": "test/runtime-inventory.ts",
-      "sha256": "sha256:3f0d60871e67d90720ab5d799663868c6486868aa37cf550955909c34cc55299"
+      "sha256": "sha256:0e225990ca8b2764583454378a905f854be4dfa0c78303e6234d6ccbe9266534"
     },
     {
       "path": "test/runtime-resolution.test.ts",
-      "sha256": "sha256:effc895776f4b3ece07b3905c74cb4a717699615e0b5fd954c82e0fe31163c47"
+      "sha256": "sha256:d9d4aae291e367c7c7e8661615e32db800bace94f139b12da78e0706b3e50e2b"
     },
     {
       "path": "test/scheduled.ts",
@@ -759,7 +787,7 @@
     },
     {
       "path": "test/share-runtime.ts",
-      "sha256": "sha256:b9779556300bcd7c05cbdff94082bd765743b93679a2ac7ce103cd2592c47725"
+      "sha256": "sha256:f5953fd1ba94a6281758307cec544b92b59a915c9e580d90f69d5bb97aa72ceb"
     },
     {
       "path": "test/share.test.ts",
@@ -767,7 +795,7 @@
     },
     {
       "path": "test/signer.test.ts",
-      "sha256": "sha256:746713f6355b9dbd5f68c30e876c9f85b978de0ddfbcd1def963a282e64acf0a"
+      "sha256": "sha256:a09b60f446242515059738cb16f3e17141109efe5b328ff249e689a24d237bb6"
     },
     {
       "path": "test/signers.ts",
@@ -778,12 +806,20 @@
       "sha256": "sha256:17dcda3d280c08cc569fd1cb5363a5e60e6370f3bf2b23740c31ac10cd4e0f42"
     },
     {
+      "path": "test/standalone-bundle.test.ts",
+      "sha256": "sha256:5b528f52492497d41d68271a008053e74b8e97b76db32c5484cafb8d503cbcf3"
+    },
+    {
+      "path": "test/standalone-runtime.ts",
+      "sha256": "sha256:1ce2e7eb7588eba10041c7e544f0b80544cdaa4bb235eb8b7a6f09b5e65ac714"
+    },
+    {
       "path": "test/stores.test.ts",
       "sha256": "sha256:27956c690b9e355c72db19ae115bea8a8f1bc4dda8bcfa63830d1db75a53c772"
     },
     {
       "path": "test/surface.test.ts",
-      "sha256": "sha256:e5a9fe364e7e4af7adfca1e2b99a6006f92e8803f44457b2dbaca9deacb029ce"
+      "sha256": "sha256:4eaae5f6b63990ae4afbc5b336abeb4805860e6f69b39318294ad3b6a316f97c"
     },
     {
       "path": "test/time/clock.test.ts",
@@ -861,11 +897,11 @@
   "runs": [
     {
       "node": "22",
-      "output": "TAP version 13\n# Subtest: without a location share names its content by the separate profile and declares its missing holder\nok 1 - without a location share names its content by the separate profile and declares its missing holder\n  ---\n  duration_ms: 8555.298916\n  type: 'test'\n  ...\n# Subtest: yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\nok 2 - yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\n  ---\n  duration_ms: 21972.675709\n  type: 'test'\n  ...\n# Subtest: no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\nok 3 - no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\n  ---\n  duration_ms: 21645.586167\n  type: 'test'\n  ...\n# Subtest: no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\nok 4 - no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\n  ---\n  duration_ms: 16532.420667\n  type: 'test'\n  ...\n# Subtest: no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\nok 5 - no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\n  ---\n  duration_ms: 9885.106083\n  type: 'test'\n  ...\n# Subtest: the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\nok 6 - the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\n  ---\n  duration_ms: 11224.731166\n  type: 'test'\n  ...\n# Subtest: portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\nok 7 - portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\n  ---\n  duration_ms: 4.328542\n  type: 'test'\n  ...\n# Subtest: portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\nok 8 - portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\n  ---\n  duration_ms: 1.618833\n  type: 'test'\n  ...\n# Subtest: a portable declaration is inert until a receiver makes its ordinary local admission under its own key\nok 9 - a portable declaration is inert until a receiver makes its ordinary local admission under its own key\n  ---\n  duration_ms: 1271.76475\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 114722.652792\n"
+      "output": "TAP version 13\n# Subtest: without a location share names its content by the separate profile and declares its missing holder\nok 1 - without a location share names its content by the separate profile and declares its missing holder\n  ---\n  duration_ms: 9437.191\n  type: 'test'\n  ...\n# Subtest: yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\nok 2 - yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\n  ---\n  duration_ms: 24688.364833\n  type: 'test'\n  ...\n# Subtest: no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\nok 3 - no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\n  ---\n  duration_ms: 23405.0985\n  type: 'test'\n  ...\n# Subtest: no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\nok 4 - no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\n  ---\n  duration_ms: 17969.741083\n  type: 'test'\n  ...\n# Subtest: no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\nok 5 - no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\n  ---\n  duration_ms: 10788.718417\n  type: 'test'\n  ...\n# Subtest: the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\nok 6 - the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\n  ---\n  duration_ms: 12195.976041\n  type: 'test'\n  ...\n# Subtest: portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\nok 7 - portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\n  ---\n  duration_ms: 3.81125\n  type: 'test'\n  ...\n# Subtest: portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\nok 8 - portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\n  ---\n  duration_ms: 1.347375\n  type: 'test'\n  ...\n# Subtest: a portable declaration is inert until a receiver makes its ordinary local admission under its own key\nok 9 - a portable declaration is inert until a receiver makes its ordinary local admission under its own key\n  ---\n  duration_ms: 1178.441333\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 125560.759083\n"
     },
     {
       "node": "24",
-      "output": "TAP version 13\n# Subtest: without a location share names its content by the separate profile and declares its missing holder\nok 1 - without a location share names its content by the separate profile and declares its missing holder\n  ---\n  duration_ms: 8487.1645\n  type: 'test'\n  ...\n# Subtest: yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\nok 2 - yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\n  ---\n  duration_ms: 21723.5305\n  type: 'test'\n  ...\n# Subtest: no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\nok 3 - no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\n  ---\n  duration_ms: 21575.732583\n  type: 'test'\n  ...\n# Subtest: no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\nok 4 - no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\n  ---\n  duration_ms: 16542.3595\n  type: 'test'\n  ...\n# Subtest: no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\nok 5 - no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\n  ---\n  duration_ms: 9883.401917\n  type: 'test'\n  ...\n# Subtest: the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\nok 6 - the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\n  ---\n  duration_ms: 11258.024417\n  type: 'test'\n  ...\n# Subtest: portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\nok 7 - portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\n  ---\n  duration_ms: 4.185667\n  type: 'test'\n  ...\n# Subtest: portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\nok 8 - portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\n  ---\n  duration_ms: 1.114875\n  type: 'test'\n  ...\n# Subtest: a portable declaration is inert until a receiver makes its ordinary local admission under its own key\nok 9 - a portable declaration is inert until a receiver makes its ordinary local admission under its own key\n  ---\n  duration_ms: 1259.921375\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 114589.60175\n"
+      "output": "TAP version 13\n# Subtest: without a location share names its content by the separate profile and declares its missing holder\nok 1 - without a location share names its content by the separate profile and declares its missing holder\n  ---\n  duration_ms: 9418.695\n  type: 'test'\n  ...\n# Subtest: yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\nok 2 - yes, over two places: a link to the package-s standing is inspected where it is connected — what it names, its digest, not authenticated, its sharer not shown — and nothing is connected or granted\n  ---\n  duration_ms: 24751.478917\n  type: 'test'\n  ...\n# Subtest: no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\nok 3 - no: what is published at the link-s address is not the document it names — the package-s files instead, or one byte altered — and it is refused by its integrity, nothing owed\n  ---\n  duration_ms: 23618.257333\n  type: 'test'\n  ...\n# Subtest: no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\nok 4 - no, then yes: bytes that do not arrive are owed by the link until they do; once they arrive, it is inspected and the debt is withdrawn\n  ---\n  duration_ms: 17926.583708\n  type: 'test'\n  ...\n# Subtest: no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\nok 5 - no: a place that admits no content transport for the link-s address inspects nothing and is handed the lines that admit one, to sign\n  ---\n  duration_ms: 10861.888\n  type: 'test'\n  ...\n# Subtest: the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\nok 6 - the historical bound profile keeps its codec bytes and remains inspectable without connecting or granting\n  ---\n  duration_ms: 12242.536875\n  type: 'test'\n  ...\n# Subtest: portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\nok 7 - portable birth is a separate unsigned declaration artifact in two unrelated contexts; inspection never installs authority\n  ---\n  duration_ms: 3.849\n  type: 'test'\n  ...\n# Subtest: portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\nok 8 - portable birth rejects authority material, consumer-specific grants, spoofed scopes, altered bytes and wrong profiles\n  ---\n  duration_ms: 0.9995\n  type: 'test'\n  ...\n# Subtest: a portable declaration is inert until a receiver makes its ordinary local admission under its own key\nok 9 - a portable declaration is inert until a receiver makes its ordinary local admission under its own key\n  ---\n  duration_ms: 1179.863916\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 125083.68525\n"
     }
   ],
   "inputPolicy": {
@@ -921,17 +957,22 @@
       "excludedObserversNotConsumed": true
     }
   },
-  "status": "CI repair successor; current byte bindings and named narrow revalidation; not final Root or CI acceptance",
+  "status": "Historical domain-client runs retain their original artifact and execution identity. Complete current installed Electron-relay regressions and fresh installed first-cell/MCP reads revalidate the explicitly changed deployment; not a fresh complete domain matrix.",
   "predecessor": {
-    "sha256": "sha256:dbd2262ecca739e5d97910246f3c77e5cca555b63c1f382b5afa86ed0de1ca05",
-    "allOriginalRunsAndFailuresPreserved": true
+    "sha256": "sha256:0dfc056b306edbb789ad3d60591b0af022e7f0c78380b2b9d7a7264fa2425b41",
+    "preserved": true
   },
   "evidenceReuse": {
-    "kind": "Retained functional matrices plus named narrow revalidation; not freshly rerun historical matrices",
-    "executedSourceInventory": "sha256:46c3b8145a7f791c5b212a52c4a342482d51612fc1674532b5fb121f63fb00b5",
-    "executedRuntime": "sha256:ef08ce28c543fc18f6c4b130c6b542aa54d35e4227dc08c0d084c87040b2bafb",
-    "narrowSourceDelta": "sha256:4b8ba43e740c5a6f46a73650f418d9a5e8742d496d2bb26a85b78ba626d15509",
-    "description": "After those matrices only share metadata defaults were removed. Full explicit public metadata is now required; operations/sources remain optional. Current focused nine cases and installed two-domain export/access gates revalidate that delta. A and full MCP execute final bytes separately."
+    "model": "Explicit system-Node deployment successor. Original domain/client vectors and measurements remain historical with their original artifact identities. Only current installed six-cell, current four MCP reads and complete Electron-relay export/login regressions are fresh.",
+    "changedProduction": [
+      "src/index.ts",
+      "src/ports/executable.ts",
+      "dist/src/index.js",
+      "dist/src/ports/executable.js",
+      "dist/src/ports/executable.d.ts"
+    ],
+    "originalNativeRuntime": "Embedded Node24.22.2 is historical, not reused as proof of installed Node.",
+    "RootChanged": false
   },
   "observerCorrection": {
     "changedInputs": [
@@ -1149,5 +1190,26 @@
       "externalAPIsUsed": false,
       "BoundChanged": false
     }
-  }
+  },
+  "testGuardRevalidation": {
+    "predecessor": "sha256:35c61da06e4ea614bd096286e3e90a5fe9b58e4094f4bd65110745f44f6dcb8a",
+    "changedInputs": [
+      "test/first-minute.test.ts"
+    ],
+    "originalRunsRetained": true,
+    "freshExecutionClaimed": false,
+    "reason": "Exact project npm and license badge destinations are documentation, not preconnected APIs; no runtime change."
+  },
+  "systemNodeRevalidation": [
+    {
+      "node": "22",
+      "output": "TAP version 13\n# Subtest: the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\nok 1 - the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\n  ---\n  duration_ms: 22409.973458\n  type: 'test'\n  ...\n# Subtest: the installed extension shares with its original pinned runtime inventory, independent of installer metadata\nok 2 - the installed extension shares with its original pinned runtime inventory, independent of installer metadata\n  ---\n  duration_ms: 55251.828042\n  type: 'test'\n  ...\n# Subtest: received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\nok 3 - received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\n  ---\n  duration_ms: 115860.513917\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 193996.165875\n",
+      "hostExecPath": "/unlaunchable/host-helper"
+    },
+    {
+      "node": "24",
+      "output": "✔ the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer (22637.910083ms)\n✔ the installed extension shares with its original pinned runtime inventory, independent of installer metadata (54979.253542ms)\n✔ received APIs use one persistent recipient keychain across import and access processes, without inheriting authority (116148.432875ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 194278.496542\n",
+      "hostExecPath": "/unlaunchable/host-helper"
+    }
+  ]
 }

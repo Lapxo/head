@@ -7,6 +7,6 @@ import { deviceKey } from '../flows/device.ts';
 export const answer: Answer = async (asked, context) => {
   const role = asked['who'] || undefined;
   if (!deviceOf(context.lock, role).account) return [aboutOf(context.lock, 'said/no-role')];
-  const key = deviceKey(context, role);
+  const key = await deviceKey(context, role);
   return key === undefined ? [aboutOf(context.lock, 'said/no-keychain')] : admissionOf(context.lock, key, role);
 };

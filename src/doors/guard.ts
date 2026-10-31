@@ -5,6 +5,7 @@ import { sayIn } from '../core/surface.ts';
 import { shapeOf } from '../ports/surface.ts';
 import { windowOf } from '../ahead/budget.ts';
 import type { headOf } from './head.ts';
+import { keyFailureOf } from '../ports/keychain.ts';
 
 type Asked = (verb: string, args: Record<string, unknown>) => Promise<readonly string[] | undefined>;
 
@@ -27,7 +28,7 @@ export const refusalsOf = (lock: readonly Said[], head: { readonly write: (place
 };
 /** What a door that shows no form asks first: a call carries its place's card, but the ask for that card, which only reads it, and the connect that founds head's first place; what head refuses is written by head's own refusals, and a refusal head wrote already is not written again. */
 export const guardOf = (lock: readonly Said[], head: ReturnType<typeof headOf>, asked: Asked) => {
-  const [say, word, { write, settle }] = [sayIn(lock), (k: string) => valueOf(lock, k), head.refusals], [no, written] = [word('said/door-uncarded/state'), shapeOf([say('signing-key-refused', {})]).cells[0]!.code];
+  const [say, word, { write, settle }] = [sayIn(lock), (k: string) => valueOf(lock, k), head.refusals], [no, written] = [word('said/door-uncarded/state'), new Set(['signing-key-refused', 'key-store-refused'].map(code => shapeOf([say(code, {})]).cells[0]!.code))];
   const call = async (verb: string, args: Readonly<Record<string, unknown>> | undefined): Promise<readonly string[] | undefined> => {
     const a: Record<string, unknown> = { ...args }, place = typeof a['place'] === 'string' ? a['place'] : undefined, digest = digestOf(verb, a);
     const refuse = async (cell: string, into = place): Promise<readonly string[]> => (await write(into ?? await head.placed(), verb, digest, shapeOf([cell]).cells[0]!.code), [cell]);
@@ -40,9 +41,9 @@ export const guardOf = (lock: readonly Said[], head: ReturnType<typeof headOf>, 
     if (typeof a['card'] !== 'string' || place === undefined) return refuse(say('door-uncarded', { place: place ?? '' }));
     if (!members(word('doors/checks')).includes(verb)) { const now = await head.cardOf(place); if (!('card' in now) || now.card !== a['card']) return refuse(say('card-stale', { action: verb, place, card: a['card'] })); delete a['card']; }
     if (verb === word('doors/carrier') && a['action'] === word('doors/claim') && a['origin'] !== word('claim/agent')) return refuse(say('door-unoriginated', { place }));
-    const lines = await asked(verb, a), refused = lines === undefined ? undefined : shapeOf(lines).cells.find((c) => c.state === no && c.code !== written);
+    const lines = await asked(verb, a), refused = lines === undefined ? undefined : shapeOf(lines).cells.find((c) => c.state === no && !written.has(c.code));
     if (refused !== undefined) await write(place, verb, digest, refused.code);
     return lines;
   };
-  return { call: async (...args: Parameters<typeof call>) => { try { return await call(...args); } catch (error) { if (error instanceof Error && /^home\/(identity|namespace|approval)$/.test(error.message)) return [say('home-refused', { why: error.message })]; throw error; } }, settle };
+  return { call: async (...args: Parameters<typeof call>) => { try { return await call(...args); } catch (error) { const reason = keyFailureOf(error); if (reason) return [say('key-store-refused', { reason })]; if (error instanceof Error && /^home\/(identity|namespace|approval)$/.test(error.message)) return [say('home-refused', { why: error.message })]; throw error; } }, settle };
 };

@@ -80,7 +80,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - name: Make the Desktop Extension from the approved archive, twice, repacked with fixed times and order, and require one digest
         run: |
           set -euo pipefail
@@ -93,9 +93,16 @@ jobs:
             stage="$RUNNER_TEMP/stage-$n"
             mkdir -p "$stage"
             tar -xzf "$RUNNER_TEMP/release/$ARCHIVE" -C "$stage" --strip-components 1
-            cp package-lock.json manifest.json .mcpbignore "$stage/"
-            (cd "$stage" && npm ci --omit=dev --ignore-scripts --no-audit --no-fund --loglevel=error)
-            npx --no-install mcpb pack "$stage" "$RUNNER_TEMP/packed-$n.mcpb"
+            STAGE="$stage" OUTPUT="$RUNNER_TEMP/packed-$n.mcpb" node --input-type=module <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          import { join } from 'node:path';
+          import { pathToFileURL } from 'node:url';
+          const root=process.env.STAGE;
+          const { bundleAt }=await import(pathToFileURL(join(root,'dist/src/ports/adapters/bundle.js')));
+          const { declaredOf }=await import(pathToFileURL(join(root,'dist/src/core/lock.js')));
+          const made=await bundleAt(root,declaredOf(readFileSync(join(root,'TARGET.bound'),'utf8')),undefined);
+          writeFileSync(process.env.OUTPUT,made.bytes);
+          NODE
             unpacked="$RUNNER_TEMP/unpacked-$n"
             mkdir -p "$unpacked"
             unzip -q "$RUNNER_TEMP/packed-$n.mcpb" -d "$unpacked"

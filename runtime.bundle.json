@@ -128,13 +128,13 @@
     },
     {
       "path": "dist/src/doors/guard.js",
-      "bytes": 5164,
-      "digest": "sha256:2a5eb853db1237fdbedf9cd984821fd42687e52138478732983e301b121517bb"
+      "bytes": 5404,
+      "digest": "sha256:5f8a69c9a565e7ac774befcb77c3abbc55ab17053d016f8fec7c96a3da8fb973"
     },
     {
       "path": "dist/src/doors/head.js",
-      "bytes": 16783,
-      "digest": "sha256:6bec9950a028a45b15f0519876e5cc1f0f062930dc8a1dc55f35aab6e70b4c15"
+      "bytes": 17458,
+      "digest": "sha256:634159aa326548209e4fb0279448ccfa1f3d03fbdcee865a179231253fb1675b"
     },
     {
       "path": "dist/src/doors/http.js",
@@ -163,8 +163,8 @@
     },
     {
       "path": "dist/src/flows/device.js",
-      "bytes": 4430,
-      "digest": "sha256:96dee42aecd5f63ef760bfdf053b00f760aa5074a795d8c64df93ca9924f7ea7"
+      "bytes": 4442,
+      "digest": "sha256:9b2810c02e5a00d094a4fe0fd596188ff3b9624f98e5009cc32e373ff007d351"
     },
     {
       "path": "dist/src/flows/plan.js",
@@ -183,8 +183,8 @@
     },
     {
       "path": "dist/src/index.js",
-      "bytes": 1376,
-      "digest": "sha256:331bb0e53e0964e8fdcbbbc43dd0cb874433e7db5f26ea98af6c92dfb6e7d3b8"
+      "bytes": 1745,
+      "digest": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
     },
     {
       "path": "dist/src/kept/kept.js",
@@ -233,8 +233,8 @@
     },
     {
       "path": "dist/src/places/found.js",
-      "bytes": 4661,
-      "digest": "sha256:96c5b9d096f6b3dcbac9d221585e4468f09220e201b7ddc6af2c481dcb7b82be"
+      "bytes": 4685,
+      "digest": "sha256:216aa5db5f11e60e539f42750eb8702afd3f3b84cc7fe896b8b4f898102dae4f"
     },
     {
       "path": "dist/src/ports/access/authorizer.js",
@@ -258,8 +258,8 @@
     },
     {
       "path": "dist/src/ports/adapters/bundle.js",
-      "bytes": 9893,
-      "digest": "sha256:bbe6b828fd5b2d4354c9fda34fa8192592b608ded1d6122654943e4546f82bc1"
+      "bytes": 7087,
+      "digest": "sha256:cd11ab807aabc1f22830de3aa22666d5c3c09bdadc47a19a86175f143ec81f93"
     },
     {
       "path": "dist/src/ports/adapters/configured.js",
@@ -292,6 +292,16 @@
       "digest": "sha256:2fa2b7be02252d4f518f13a1e4062578f4eec98b2a42473aa01ad39c387f9723"
     },
     {
+      "path": "dist/src/ports/adapters/runtime.d.ts",
+      "bytes": 1667,
+      "digest": "sha256:ca623685c9b1ec2b7b3dc80d57b8b307fe44d029638e327f837edb484f1f4390"
+    },
+    {
+      "path": "dist/src/ports/adapters/runtime.js",
+      "bytes": 5347,
+      "digest": "sha256:dd0259fc6d109678820d4c40eb1ad68dbfa4d050b28be09620f159d9f3c5401e"
+    },
+    {
       "path": "dist/src/ports/bound.js",
       "bytes": 9518,
       "digest": "sha256:d2b5102fe4ff19527319d0c5b2ae0dfa97b2123c2dbc1418ef8af034ad995296"
@@ -307,14 +317,24 @@
       "digest": "sha256:094b4796a51ecd7fefd6b3404ab56db985497e954c4fcc181d993195d6faebc6"
     },
     {
+      "path": "dist/src/ports/export.js",
+      "bytes": 3455,
+      "digest": "sha256:fab311ccb81c78ea317c46ba88fad5dd59b8c02802652aa75cf6c99adf5086cc"
+    },
+    {
+      "path": "dist/src/ports/home.js",
+      "bytes": 1696,
+      "digest": "sha256:d4c0a45568180dca6aa3fa1bea661ad67ff1804578f518f68f98342af4b2aebd"
+    },
+    {
       "path": "dist/src/ports/host.js",
       "bytes": 10954,
       "digest": "sha256:0e89cb452bc765d97ef70673e7062fdb6ffe6b155ccdc72521c0efc1435194c7"
     },
     {
       "path": "dist/src/ports/keychain.js",
-      "bytes": 2857,
-      "digest": "sha256:19dd7287b42593e9909206de14ea4547820435d32789b6896e79aeea2f8972e9"
+      "bytes": 4185,
+      "digest": "sha256:d57692418fa95e5d92ae5aadbe967c14b632255f9482281aa5a1c0050c61041c"
     },
     {
       "path": "dist/src/ports/keys.js",
@@ -343,8 +363,8 @@
     },
     {
       "path": "dist/src/ports/stores/keychain.js",
-      "bytes": 811,
-      "digest": "sha256:6def454b36aecc483d3e0a693d3cf809a393d8e8d7d7285ca9af9cfe32f17004"
+      "bytes": 1389,
+      "digest": "sha256:ffa34d3aaeb95f97b205340a108841bc4183f4e1b774311fe1d351c8d0a7ddbe"
     },
     {
       "path": "dist/src/ports/stores/secret-tool.js",
@@ -363,8 +383,8 @@
     },
     {
       "path": "dist/src/signer.js",
-      "bytes": 1029,
-      "digest": "sha256:bb0e1911ad75e5298effc2f1ea453cf588d6ce95c703e34622b7c6324adba2d9"
+      "bytes": 1503,
+      "digest": "sha256:06091e4a84b631c31a12692df6175fba1e0f119ebf0c8ee4937e9c3f88753bf4"
     },
     {
       "path": "dist/src/sources/access.js",
@@ -423,8 +443,8 @@
     },
     {
       "path": "dist/src/tools/key.js",
-      "bytes": 634,
-      "digest": "sha256:8c4976d17f19a104292270642ba6b82238d3139fc758773235a94d55846d4c14"
+      "bytes": 640,
+      "digest": "sha256:89cfb05c3a37c1634367927a927addddd395a106d5379a51dcff967ea233b8a5"
     },
     {
       "path": "dist/src/tools/land.js",
@@ -24013,19 +24033,19 @@
     },
     {
       "path": "package.json",
-      "bytes": 1029,
-      "digest": "sha256:250bc601b4dd63d5367d8324804958597e452f054b64805e5964108d91ce7871"
+      "bytes": 1057,
+      "digest": "sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f"
     },
     {
-      "path": "dist/src/ports/export.js",
-      "bytes": 3455,
-      "digest": "sha256:fab311ccb81c78ea317c46ba88fad5dd59b8c02802652aa75cf6c99adf5086cc"
+      "path": "dist/src/ports/executable.js",
+      "bytes": 2692,
+      "digest": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
     },
     {
-      "path": "dist/src/ports/home.js",
-      "bytes": 1599,
-      "digest": "sha256:4b969a4b6c6ec81a1dccd7e08a2a25fe6b45f4d528763c5aa2ac85b8775b9dc8"
+      "path": "dist/src/ports/executable.d.ts",
+      "bytes": 392,
+      "digest": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
     }
   ],
-  "bytes": 42551458
+  "bytes": 42562581
 }

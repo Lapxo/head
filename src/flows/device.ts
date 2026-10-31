@@ -9,7 +9,7 @@ import { fill, sayIn } from '../core/surface.ts';
 import { adoptsIn } from '../adopt/adopt.ts';
 
 /** A key of this device by its role: read from the keychain, or made there once; only its public half is ever handed on. */
-export const deviceKey = (context: Context, role?: string): string | undefined => context.keys.made?.(deviceOf(context.lock, role).account);
+export const deviceKey = async (context: Context, role?: string): Promise<string | undefined> => context.keys.made?.(deviceOf(context.lock, role).account);
 
 export { homeIndex } from '../core/answer.ts';
 
@@ -22,7 +22,7 @@ export const rootIn = async (context: Context, place: string): Promise<{ readonl
   const name = place === home ? valueOf(context.lock, 'home/name') : names[0] ?? placeNameOf(place), account = fill(valueOf(context.lock, 'founding/root-account'), { place: name });
   const held = await context.policy(place), key = 'refused' in held ? undefined : held.lines.find((l) => l.scope === valueOf(context.lock, 'founding/root') && l.measure === 'public-key')?.value;
   if (names.length > 1) return { said: [sayIn(context.lock)('place-ambiguous', { names: names.sort().join('|') })] };
-  return key === undefined || context.keys.held?.(account) !== key ? { said: [sayIn(context.lock)('no-root', { place })] } : { account };
+  return key === undefined || await context.keys.held?.(account) !== key ? { said: [sayIn(context.lock)('no-root', { place })] } : { account };
 };
 
 /**

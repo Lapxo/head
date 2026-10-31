@@ -199,15 +199,15 @@
     },
     {
       "path": "dist/src/doors/guard.js",
-      "sha256": "sha256:2a5eb853db1237fdbedf9cd984821fd42687e52138478732983e301b121517bb"
+      "sha256": "sha256:5f8a69c9a565e7ac774befcb77c3abbc55ab17053d016f8fec7c96a3da8fb973"
     },
     {
       "path": "dist/src/doors/head.d.ts",
-      "sha256": "sha256:0a614a8238aa69b64e52d18904457b7bd39fbe5ebdbaa6e8d81bfa96dbf9d16b"
+      "sha256": "sha256:016e4852d3d0cc467705010f4c5d551dd9735a395c580787e28a7bc1355ad254"
     },
     {
       "path": "dist/src/doors/head.js",
-      "sha256": "sha256:6bec9950a028a45b15f0519876e5cc1f0f062930dc8a1dc55f35aab6e70b4c15"
+      "sha256": "sha256:634159aa326548209e4fb0279448ccfa1f3d03fbdcee865a179231253fb1675b"
     },
     {
       "path": "dist/src/doors/http.d.ts",
@@ -251,11 +251,11 @@
     },
     {
       "path": "dist/src/flows/device.d.ts",
-      "sha256": "sha256:ec75a449f8c1f57d0bcfa517d925336e9786ab03d8482d0c199f02dcee45bd55"
+      "sha256": "sha256:bcfeb6b517a930783b625aab558caa605fd4fa7e7aa087a854543e9143f1c5a5"
     },
     {
       "path": "dist/src/flows/device.js",
-      "sha256": "sha256:96dee42aecd5f63ef760bfdf053b00f760aa5074a795d8c64df93ca9924f7ea7"
+      "sha256": "sha256:9b2810c02e5a00d094a4fe0fd596188ff3b9624f98e5009cc32e373ff007d351"
     },
     {
       "path": "dist/src/flows/plan.d.ts",
@@ -287,7 +287,7 @@
     },
     {
       "path": "dist/src/index.js",
-      "sha256": "sha256:331bb0e53e0964e8fdcbbbc43dd0cb874433e7db5f26ea98af6c92dfb6e7d3b8"
+      "sha256": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
     },
     {
       "path": "dist/src/kept/kept.d.ts",
@@ -367,7 +367,7 @@
     },
     {
       "path": "dist/src/places/found.js",
-      "sha256": "sha256:96c5b9d096f6b3dcbac9d221585e4468f09220e201b7ddc6af2c481dcb7b82be"
+      "sha256": "sha256:216aa5db5f11e60e539f42750eb8702afd3f3b84cc7fe896b8b4f898102dae4f"
     },
     {
       "path": "dist/src/ports/access/authorizer.d.ts",
@@ -403,11 +403,11 @@
     },
     {
       "path": "dist/src/ports/adapters/bundle.d.ts",
-      "sha256": "sha256:a01c6a0a093c6da67731803140388017d7e837be0ab4fd25db3b314ded9f96ac"
+      "sha256": "sha256:578538c45add25b5e8041519642fb1f5d01550cc3ab9c7447dc9b0d925719c2b"
     },
     {
       "path": "dist/src/ports/adapters/bundle.js",
-      "sha256": "sha256:bbe6b828fd5b2d4354c9fda34fa8192592b608ded1d6122654943e4546f82bc1"
+      "sha256": "sha256:cd11ab807aabc1f22830de3aa22666d5c3c09bdadc47a19a86175f143ec81f93"
     },
     {
       "path": "dist/src/ports/adapters/configured.d.ts",
@@ -458,6 +458,14 @@
       "sha256": "sha256:2fa2b7be02252d4f518f13a1e4062578f4eec98b2a42473aa01ad39c387f9723"
     },
     {
+      "path": "dist/src/ports/adapters/runtime.d.ts",
+      "sha256": "sha256:ca623685c9b1ec2b7b3dc80d57b8b307fe44d029638e327f837edb484f1f4390"
+    },
+    {
+      "path": "dist/src/ports/adapters/runtime.js",
+      "sha256": "sha256:dd0259fc6d109678820d4c40eb1ad68dbfa4d050b28be09620f159d9f3c5401e"
+    },
+    {
       "path": "dist/src/ports/bound.d.ts",
       "sha256": "sha256:abd428da6603a1b919ff818c7076990e128a8a4112158ad20542e160ce363712"
     },
@@ -482,6 +490,14 @@
       "sha256": "sha256:094b4796a51ecd7fefd6b3404ab56db985497e954c4fcc181d993195d6faebc6"
     },
     {
+      "path": "dist/src/ports/executable.d.ts",
+      "sha256": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
+    },
+    {
+      "path": "dist/src/ports/executable.js",
+      "sha256": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
+    },
+    {
       "path": "dist/src/ports/export.d.ts",
       "sha256": "sha256:af99676aed1517c18a0bc624aad340c1a32a5d22aafc59aff01fe61f82f98cbf"
     },
@@ -495,7 +511,7 @@
     },
     {
       "path": "dist/src/ports/home.js",
-      "sha256": "sha256:4b969a4b6c6ec81a1dccd7e08a2a25fe6b45f4d528763c5aa2ac85b8775b9dc8"
+      "sha256": "sha256:d4c0a45568180dca6aa3fa1bea661ad67ff1804578f518f68f98342af4b2aebd"
     },
     {
       "path": "dist/src/ports/host.d.ts",
@@ -507,11 +523,11 @@
     },
     {
       "path": "dist/src/ports/keychain.d.ts",
-      "sha256": "sha256:d018ca5d9700c31eff4412e22b9418c3161c3cc4b077bcdda2087b49f5108070"
+      "sha256": "sha256:29741dc2a1ed4750409d44c20327d3525aa6bf9ad710ab836e14648dd651984a"
     },
     {
       "path": "dist/src/ports/keychain.js",
-      "sha256": "sha256:19dd7287b42593e9909206de14ea4547820435d32789b6896e79aeea2f8972e9"
+      "sha256": "sha256:d57692418fa95e5d92ae5aadbe967c14b632255f9482281aa5a1c0050c61041c"
     },
     {
       "path": "dist/src/ports/keys.d.ts",
@@ -559,7 +575,7 @@
     },
     {
       "path": "dist/src/ports/stores/keychain.js",
-      "sha256": "sha256:6def454b36aecc483d3e0a693d3cf809a393d8e8d7d7285ca9af9cfe32f17004"
+      "sha256": "sha256:ffa34d3aaeb95f97b205340a108841bc4183f4e1b774311fe1d351c8d0a7ddbe"
     },
     {
       "path": "dist/src/ports/stores/secret-tool.d.ts",
@@ -591,7 +607,7 @@
     },
     {
       "path": "dist/src/signer.js",
-      "sha256": "sha256:bb0e1911ad75e5298effc2f1ea453cf588d6ce95c703e34622b7c6324adba2d9"
+      "sha256": "sha256:06091e4a84b631c31a12692df6175fba1e0f119ebf0c8ee4937e9c3f88753bf4"
     },
     {
       "path": "dist/src/sources/access.d.ts",
@@ -687,7 +703,7 @@
     },
     {
       "path": "dist/src/tools/key.js",
-      "sha256": "sha256:8c4976d17f19a104292270642ba6b82238d3139fc758773235a94d55846d4c14"
+      "sha256": "sha256:89cfb05c3a37c1634367927a927addddd395a106d5379a51dcff967ea233b8a5"
     },
     {
       "path": "dist/src/tools/land.d.ts",
@@ -783,15 +799,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "sha256:dbc577e203b0080b162daaed55853e7bf96c1318d67a17087e2c2537a9f85a10"
+      "sha256": "sha256:feb26c66dc045cc7af8ae184885956d0ecfa4e342a26caf14b215c8f2786076e"
     },
     {
       "path": "package.json",
-      "sha256": "sha256:250bc601b4dd63d5367d8324804958597e452f054b64805e5964108d91ce7871"
+      "sha256": "sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f"
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2"
+      "sha256": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05"
     },
     {
       "path": "src/access/contract.ts",
@@ -891,11 +907,11 @@
     },
     {
       "path": "src/doors/guard.ts",
-      "sha256": "sha256:fce94ddaed87b52517d41341a2ae5d7e620c4d82069c687820de205c824f84ce"
+      "sha256": "sha256:5104efc1cbd4a36250fd7e0f5a375586e34da0c1b5ba98fafaca03f2c1bce06a"
     },
     {
       "path": "src/doors/head.ts",
-      "sha256": "sha256:49080fe5301decb0d8b68926e30f954ad78c06ecb6acb93c929fa2c11bc2e96e"
+      "sha256": "sha256:aaef67879a423346ab97a715356569450bac0b5dabc3e70c478ec6e1c5e50531"
     },
     {
       "path": "src/doors/http.ts",
@@ -919,7 +935,7 @@
     },
     {
       "path": "src/flows/device.ts",
-      "sha256": "sha256:de6a29c5f1f190ce7c5d5707bec4b0d89e6587864f502c155b6a191e0ec792bc"
+      "sha256": "sha256:26158c7afb68f3347d3df32093c6cd317328fab5eda84f53d94539f07264dbf7"
     },
     {
       "path": "src/flows/plan.ts",
@@ -935,7 +951,7 @@
     },
     {
       "path": "src/index.ts",
-      "sha256": "sha256:818c4434138ce280148c4ede768c7db815f850968d6866e63365f28993de173d"
+      "sha256": "sha256:bdc8af2fd4cb46a5571bb715da5228a0ebc9f05bb38af22df2ba482a95c3df5c"
     },
     {
       "path": "src/kept/kept.ts",
@@ -975,7 +991,7 @@
     },
     {
       "path": "src/places/found.ts",
-      "sha256": "sha256:e8fd8061dd9b242d80be04930b55a85622fce32e4b3caa22441318b6ac25441f"
+      "sha256": "sha256:71206dd75e12dead424e9730cdceb7b1216c218ec0b87855149f1ad0a28d266c"
     },
     {
       "path": "src/ports/access/authorizer.ts",
@@ -995,7 +1011,7 @@
     },
     {
       "path": "src/ports/adapters/bundle.ts",
-      "sha256": "sha256:fd51124236fb74be6cd6e1608b17e60fd7f5ab19e4353990cd0f231f8dee6757"
+      "sha256": "sha256:83b1e78d2073d57145ffe855167409a002ef3fd3adfd4c4a0cb13b46aa2a9322"
     },
     {
       "path": "src/ports/adapters/configured.ts",
@@ -1022,6 +1038,10 @@
       "sha256": "sha256:b0b7f99df4571e4711bc2c25c2eca9409a33c0fce6127c42f1032ff32415ec76"
     },
     {
+      "path": "src/ports/adapters/runtime.ts",
+      "sha256": "sha256:ed7d65d5da12ccc5ab2142f671e3c9d5451650f451a5fff9468057c5850e428b"
+    },
+    {
       "path": "src/ports/bound.ts",
       "sha256": "sha256:df143e1880e1cb51d66ecb50f22e75106d60ce2473bc612f55da1f44f36590dd"
     },
@@ -1034,12 +1054,16 @@
       "sha256": "sha256:8be05f9171bf94d180dd4005369d6b63d08a98e469050fff844ea61d3b2b7b6f"
     },
     {
+      "path": "src/ports/executable.ts",
+      "sha256": "sha256:94369feefeb89a4c20bbbe9aee4082f8bfd8702769ba898a7a3a0b404508d6f1"
+    },
+    {
       "path": "src/ports/export.ts",
       "sha256": "sha256:8a024751f82d423546df2d4bae6dded5098611802a5753b612d29c92738c4503"
     },
     {
       "path": "src/ports/home.ts",
-      "sha256": "sha256:ec6c190aa864212dcaa160046c2c78e4fdb4e5f59452bc0378cbc50c815132e8"
+      "sha256": "sha256:5e889ab0d43f041d08c1c8ae19512891519136190b59e8624a788b4f4668cf2c"
     },
     {
       "path": "src/ports/host.ts",
@@ -1047,7 +1071,7 @@
     },
     {
       "path": "src/ports/keychain.ts",
-      "sha256": "sha256:8997394f3c30b140bbb153d420b62d41d69470279f4882dc25a434c58d206f31"
+      "sha256": "sha256:0df3bbcfb4e1399959ff7776f84e8193ca8b836c4634f49f5b3632e12e91f7a0"
     },
     {
       "path": "src/ports/keys.ts",
@@ -1071,7 +1095,7 @@
     },
     {
       "path": "src/ports/stores/keychain.ts",
-      "sha256": "sha256:d1f33f3470e54e37281bd9817f9fc95bbe15ebc88c03403062247e784f613d22"
+      "sha256": "sha256:4c7e730b2cba760e5fefc2fb191dc022a2e28b03688363ed6ebc184bc5cfdd9f"
     },
     {
       "path": "src/ports/stores/secret-tool.ts",
@@ -1087,7 +1111,7 @@
     },
     {
       "path": "src/signer.ts",
-      "sha256": "sha256:a0e8a0b7cd1f2082a6bb6f71529bfe43ba417731dc191950ba734e8f7a81cc20"
+      "sha256": "sha256:fd6175c61836d3bd2a9702fb36286937ee19938d0b699d783da312f7bf6ccb23"
     },
     {
       "path": "src/sources/access.ts",
@@ -1135,7 +1159,7 @@
     },
     {
       "path": "src/tools/key.ts",
-      "sha256": "sha256:6a1cfc669e5d30a7b5e30bc708dd58d05a1495f0cb1a03c39887cb2d7129fe58"
+      "sha256": "sha256:bd65423fcf40362423128c7654e85ec10488dc70822cfbac59ffc196dcbbda3f"
     },
     {
       "path": "src/tools/land.ts",
@@ -1187,11 +1211,15 @@
     },
     {
       "path": "test/client.ts",
-      "sha256": "sha256:e499093fb06ed0a8a427faba7525c0a3090f90eed414a00d6efb1afd00e88432"
+      "sha256": "sha256:4d6f7ccad44c0c513a0d0841099f5cb0cc4e47566a50345df790ba60b3c91596"
+    },
+    {
+      "path": "test/executable.test.ts",
+      "sha256": "sha256:e07be8882ff44b4dcd86bf4a86c260d00ab5d7aa1990e581d23e446de5e85b89"
     },
     {
       "path": "test/fake-keychain.ts",
-      "sha256": "sha256:168d57e6abd82493e16744f8b8d93d813953d185b5a6957a1fc732c28f736a51"
+      "sha256": "sha256:7377caa64cb3a9d47a419fd5396f7d5de4cfc2cced07b7c7c51d8913c376cef9"
     },
     {
       "path": "test/offline-worlds.ts",
@@ -1360,6 +1388,13 @@
   "policy": "sha256:961be0a8b753c209f2958dab40905bfff35acc6e5c3bddcaea239fda896d39d8",
   "runs": [
     {
+      "protocol": "head-standalone-recipient-preparation@1",
+      "archive": "sha256:b2e3088ac7f66da10a8c64b438f6318f47c8650ef503c82924925c19aa6ca77b",
+      "harnessNode": "v22.23.3",
+      "childRuntime": "v24.22.2",
+      "syntheticKeychain": true,
+      "desktopUIAcceptance": false,
+      "ownerAdmitted": false,
       "node": "22",
       "domains": [
         {
@@ -1435,7 +1470,7 @@
       "coverageWidened": false,
       "productModified": false,
       "identity": {
-        "node": "22",
+        "node": "v22.23.3",
         "matchingAuthenticatedNameUsesIndexedAccount": true,
         "ordinaryDocumentRootIsNotAPlace": true,
         "explicitPlacePreserved": true,
@@ -1445,9 +1480,18 @@
         "probeType": "Isolated port fixtures; not a native signature or real-keychain proof",
         "openFindings": []
       },
-      "identityEvidenceState": "Retained original authenticated-name and index vectors; their implementation is unchanged."
+      "executionState": "Fresh selected0.2.3 regional installed execution; original predecessor preserved",
+      "historicalExecution": true,
+      "currentSystemNodeCompleteRegression": "sha256:3487d3fa10d241413db0ef2690f196ce9587fcdbe6950d925a05452b67cd34d6"
     },
     {
+      "protocol": "head-standalone-recipient-preparation@1",
+      "archive": "sha256:b2e3088ac7f66da10a8c64b438f6318f47c8650ef503c82924925c19aa6ca77b",
+      "harnessNode": "v24.14.1",
+      "childRuntime": "v24.22.2",
+      "syntheticKeychain": true,
+      "desktopUIAcceptance": false,
+      "ownerAdmitted": false,
       "node": "24",
       "domains": [
         {
@@ -1523,7 +1567,7 @@
       "coverageWidened": false,
       "productModified": false,
       "identity": {
-        "node": "24",
+        "node": "v24.14.1",
         "matchingAuthenticatedNameUsesIndexedAccount": true,
         "ordinaryDocumentRootIsNotAPlace": true,
         "explicitPlacePreserved": true,
@@ -1533,7 +1577,9 @@
         "probeType": "Isolated port fixtures; not a native signature or real-keychain proof",
         "openFindings": []
       },
-      "identityEvidenceState": "Retained original authenticated-name and index vectors; their implementation is unchanged."
+      "executionState": "Fresh selected0.2.3 regional installed execution; original predecessor preserved",
+      "historicalExecution": true,
+      "currentSystemNodeCompleteRegression": "sha256:747c78c475790afaf8fcf04f752f861e0ef8f2765f6c1c0b2e59bbc10a4f5714"
     }
   ],
   "installedFixture": {
@@ -1547,126 +1593,35 @@
   "T2": "pending",
   "L6": "pending",
   "predecessor": {
-    "sha256": "sha256:5dc332a32529d0345923ac140b1b350600839581c2eb6931db956dfd8b7475c5",
-    "allOriginalRunsAndFailuresPreserved": true
+    "sha256": "sha256:e4a5fb3eedb39cb019a461f93489b6d27b26272b7205c06a7fe8fbb88b42ce50",
+    "allHistoricalRunsAndFailuresPreserved": true
   },
-  "status": "CI repair successor; current byte bindings and named narrow revalidation; not final Root or CI acceptance",
+  "status": "Prepared system-Node successor; original runs retain their execution identity; not final release, Root admission or real Desktop acceptance",
   "artifact": "sha256:0c36122a71f056a9c71267b5922b459a6c5dfd6b21e6fedb4d034a13583303d9",
-  "ciRepair": {
-    "productionDelta": "Only accessIdentity: operational obtained/renewed/entered results are excluded from its own declared scheme digest; actual changed declarations remain detected.",
-    "changedInputs": [
-      {
-        "path": "dist/src/access/obtain.js",
-        "before": "sha256:309a734a9a4621bed5b9250103e43c1686f93f529c2cc6a036d8fa2e01916b77",
-        "after": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
-      },
-      {
-        "path": "runtime.bundle.json",
-        "before": "sha256:ce7cc3dbdb306959deefc3884a9776699638bde8906f681ac1bd6b756c8aa018",
-        "after": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2"
-      },
-      {
-        "path": "src/access/obtain.ts",
-        "before": "sha256:75eabc43e1f6784a3037bb064ea7cfb59eb4dd53ebf7191acf2d8f9e74b5af7c",
-        "after": "sha256:21c84db6a23bd0eb37cf713224a5370365d6f41dd202675c6565d53369de50bd"
-      },
-      {
-        "path": "test/fake-keychain.ts",
-        "before": "sha256:ee2d6ea2b1b58fca11f493ffeca514f7949a5892afef1862f3837b2fb0a694b8",
-        "after": "sha256:168d57e6abd82493e16744f8b8d93d813953d185b5a6957a1fc732c28f736a51"
-      },
-      {
-        "path": "test/place.ts",
-        "before": "sha256:ee80515f0bbf6cce5978de8f75788af05830de8f601610a95d09fe6188d10c12",
-        "after": "sha256:d8ee819262bf9ac8a23c1d4690a2ed13f5c6f8894d96810a054ec3fe679d8e34"
-      }
+  "evidenceReuse": {
+    "model": "Explicit system-Node deployment successor. Original domain/client vectors and measurements remain historical with their original artifact identities. Only current installed six-cell, current four MCP reads and complete Electron-relay export/login regressions are fresh.",
+    "changedProduction": [
+      "src/index.ts",
+      "src/ports/executable.ts",
+      "dist/src/index.js",
+      "dist/src/ports/executable.js",
+      "dist/src/ports/executable.d.ts"
     ],
-    "originalRunsNotRelabeledAsFresh": true,
-    "BoundChanged": false,
-    "dependenciesChanged": false,
-    "allOtherFunctionalMatricesRetained": true,
-    "narrowRevalidation": {
-      "protocol": "head-ci-repair-revalidation@1",
-      "productionChange": "accessIdentity excludes its own operational outcomes, while declared endpoint-byte changes remain binding",
-      "historicalMatrices": "All original complete regional vectors, timings and failures retained; no new full MCP or unrelated matrix claimed",
-      "currentInstalledRuntime": "4805 fixed members, 199-member unsigned regional npm archive; final CI delivery remains separate",
-      "executions": [
-        {
-          "log": "fixtures22-world-final.log",
-          "sha256": "sha256:89fcd58e9a4449035954bb125d504abd2754492f99ee2157d30081258e262cc1",
-          "tests": 33,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "fixtures24-world-final.log",
-          "sha256": "sha256:01b12e47441a8a448144cd958a8aff7b197dcdfc0a91a2c1fad19db4a08c3478",
-          "tests": 22,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "transport22-final.log",
-          "sha256": "sha256:4670cb3b9c5a8e9c2efb180fdc884bef13d218e9558cc408d685b4d5338afb3e",
-          "tests": 12,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "transport24-final.log",
-          "sha256": "sha256:e7cb56c40f81abb29b9b2bd07e1b993786004fe8c5cc756d13026590bea42886",
-          "tests": 12,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "repairs-node22.log",
-          "sha256": "sha256:c2505cf54c14ec6952b509538662c306dbbdde9386c1a7d43742bf632bf651d7",
-          "tests": 9,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "repairs-node24.log",
-          "sha256": "sha256:e562a2ea1619edda26c8bec651eb25e1acd09b069d19195e99f650273cc688b3",
-          "tests": 9,
-          "failed": 0,
-          "state": "Fresh affected-case execution; no unrelated matrix repeated"
-        },
-        {
-          "log": "authorizer24.log",
-          "sha256": "sha256:9aed3916f21ee4771823d41ff6873525352d8393891f5ddf61d757d419323583",
-          "tests": 11,
-          "failed": 0,
-          "state": "Original passing OAuth/repair execution retained; consumed production module identical and helper functions used by these tests unchanged"
-        }
-      ],
-      "installed": [
-        {
-          "node": "22",
-          "kind": "access",
-          "sha256": "sha256:6e7a34d82b6671d522dd6f3af3b703e389f057d0d734859664080c52cd9c3557"
-        },
-        {
-          "node": "22",
-          "kind": "export",
-          "sha256": "sha256:4da90ffec825e109ff8cf316673337793324e24314d35ef67f2d67d2a8f50bb0"
-        },
-        {
-          "node": "24",
-          "kind": "access",
-          "sha256": "sha256:d58dea81d9ffa3ef4817cc28d29459efbe833a6b9e50eaf4e4f3bc8360dc78a3"
-        },
-        {
-          "node": "24",
-          "kind": "export",
-          "sha256": "sha256:7188c0753317ed70d4481000117e84edcd85e60ef57ba2faa267de1a38ab597a"
-        }
-      ],
-      "clock": "Only the subsequent A gate is a latency measurement; functional-suite wall times are not promoted to response latency",
-      "realAccountsUsed": false,
-      "externalAPIsUsed": false,
-      "BoundChanged": false
+    "originalNativeRuntime": "Embedded Node24.22.2 is historical, not reused as proof of installed Node.",
+    "RootChanged": false
+  },
+  "systemNodeRevalidation": [
+    {
+      "node": "22",
+      "output": "TAP version 13\n# Subtest: the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\nok 1 - the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\n  ---\n  duration_ms: 22409.973458\n  type: 'test'\n  ...\n# Subtest: the installed extension shares with its original pinned runtime inventory, independent of installer metadata\nok 2 - the installed extension shares with its original pinned runtime inventory, independent of installer metadata\n  ---\n  duration_ms: 55251.828042\n  type: 'test'\n  ...\n# Subtest: received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\nok 3 - received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\n  ---\n  duration_ms: 115860.513917\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 193996.165875\n",
+      "hostExecPath": "/unlaunchable/host-helper",
+      "newInstalledExecution": true
+    },
+    {
+      "node": "24",
+      "output": "✔ the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer (22637.910083ms)\n✔ the installed extension shares with its original pinned runtime inventory, independent of installer metadata (54979.253542ms)\n✔ received APIs use one persistent recipient keychain across import and access processes, without inheriting authority (116148.432875ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 194278.496542\n",
+      "hostExecPath": "/unlaunchable/host-helper",
+      "newInstalledExecution": true
     }
-  }
+  ]
 }
