@@ -5,7 +5,7 @@ const hash = (bytes: Uint8Array | string) => 'sha256:' + createHash('sha256').up
 /** A review receipt for persistent local identity; repaired lexical aliases and open root choice remain separate findings. */
 export function run(place: string) {
   const bytes = readFileSync('samples/receiver-access/yes/client.json');
-  if (hash(bytes) !== 'sha256:68f4dfafdcf99acd0a60f93e7f36fb966e83e189499876f2a68f29bcedef5ef2') throw Error('REFUSE·receiver-access/capture');
+  if (hash(bytes) !== 'sha256:fed375d86727b73075828cd0f8c6c28a10b4451f1ac0a8f7a328041dbcc3e3d5') throw Error('REFUSE·receiver-access/capture');
   const capture = JSON.parse(bytes.toString());
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·receiver-access/current-input');
   const fields = readFileSync('TARGET.bound', 'utf8').split('\n').filter(Boolean).map(line => parse(line)).flatMap(p => p.kind === 'fact' ? [p.value.fields] : []);

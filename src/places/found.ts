@@ -21,10 +21,10 @@ const birthOf = (lock: readonly Said[], root: string, head: string, person: stri
 const founded = async (context: Context, dir: string, name: string): Promise<{ readonly lines: readonly string[] } | { readonly refused: string; readonly why?: string }> => {
   if (context.files.has(dir, LOCK) || context.files.has(dir, '.bound')) return { refused: 'place-exists' };
   const account = fill(valueOf(context.lock, 'founding/root-account'), { place: name });
-  const [head, person] = [deviceKey(context, 'head'), deviceKey(context, 'person')];
+  const [head, person] = [await deviceKey(context, 'head'), await deviceKey(context, 'person')];
   if (head === undefined || person === undefined) return { refused: 'no-keychain' };
-  if (context.keys.held?.(account) !== undefined) return { refused: 'place-taken' };
-  const root = context.keys.made?.(account);
+  if (await context.keys.held?.(account) !== undefined) return { refused: 'place-taken' };
+  const root = await context.keys.made?.(account);
   if (root === undefined) return { refused: 'no-keychain' };
   context.files.lay(dir, LOCK, new TextEncoder().encode(`${birthOf(context.lock, root, head, person, name).join('\n')}\n`));
   const born = await context.found(dir, account);

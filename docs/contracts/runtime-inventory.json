@@ -1,5 +1,5 @@
 {
-  "contract": "head-runtime-inventory@1",
+  "contract": "head-runtime-inventory@2",
   "purpose": "Installed share preserves a previously pinned runtime inventory while excluding installer bookkeeping",
   "baseline": {
     "head": "0.2.1",
@@ -8,19 +8,20 @@
     "inventory": "sha256:f20d82a86d78a47086e5d043def1be3799d9132922c6227cfbc6186fdd6233cc"
   },
   "candidate": "Unsigned regional inventory successor; version selection and final release are separate",
-  "selection": "Remove exactly node_modules/.package-lock.json from the frozen original runtime inventory; retain every other path, byte count and digest unchanged. Do not regenerate expected member digests from installed files. Root dependency lock remains unchanged build provenance.",
+  "selection": "Keep the original signed inventory as immutable comparison evidence. Remove only node_modules/.package-lock.json, apply explicit before/after compiler and manifest records, and add only the reviewed runtime executable, its required license and public compiled runtime adapter. Mandatory members are compared as a unique path map, independent of JSON ordering.",
   "integrity": "Changing or removing an included module or asset still refuses bundle/runtime-member. Exclusion is not a dotfile wildcard or package-manifest exemption.",
   "consumer": "Unpacked official extension with only the candidate runtime inventory and profile pin, called through the existing public tools. Two unrelated OpenAPI fixtures, one persistent disposable keychain, explicit recipes, changed and absent installer metadata, repeat export and clean receiver startup.",
   "preservation": [
-    "No producer source-module change",
-    "No dependency or Bound change",
+    "All original runtime paths except installer bookkeeping remain declared; each changed member has explicit before/after evidence",
+    "No dependency versions, Bound code or pins change",
     "No authority or credential export",
-    "No source/lines or runtime ceiling change"
+    "No admitted ceiling is changed by this review"
   ],
   "evidence": "Native observer checks original and successor inventory, declared current producer bytes and reviewed installed-consumer captures. It does not rerun the consumer or claim a final signed release.",
   "reproducibility": "Repeat exports must preserve all member paths and bytes. Container-byte equality is recorded separately; no byte-reproducibility claim follows from content equality.",
-  "boundaries": "Inspection/import/access defects outside R1 are not repaired here. R2 not-covered is unestablished until a persistent-keychain vector. Real Claude Desktop/private API owner acceptance remains pending and outside this repository.",
+  "boundaries": "Regional consumer evidence, not a final release, real system keychain or Desktop acceptance. Capacity declarations and measured readings remain separate; a proposed capacity context is not an admitted widening.",
   "reviewedProductChanges": "Successor inventories may apply only explicitly frozen before/after member records from reviewed compiler output. Unlisted records stay byte-identical; installer metadata stays excluded. Installed sharing verifies the fixed successor and still refuses changed real members. A changed inventory never installs authority.",
-  "candidateDelta": "The original signed inventory is immutable. Exclude only node_modules/.package-lock.json; apply exact reviewed source/module/manifest changes and two explicitly reviewed public ports. No third-party dependency byte changes.",
-  "candidateMembers": 4805
+  "candidateDelta": "The standalone native gate separately binds the version-2 descriptor and actual installed consumer to the fixed original executable and license. Optional vendor development material is pinned separately and never copied into the executable MCPB closure. This review does not implement another runtime verifier.",
+  "candidateMembers": 4809,
+  "focusedEvidence": "Nine release-repair, seven sharing, three indexed-root and fourteen surface checks retain their separate execution records. Composition cases are extracted unchanged from the single complete configured-ports run, not rerun."
 }

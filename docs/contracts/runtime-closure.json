@@ -1,0 +1,10 @@
+{
+  "protocol": "head-runtime-closure@2",
+  "identity": "The profile pins the exact descriptor bytes by digest; every present declared member is checked against current bytes.",
+  "execution": "The fixed universal macOS Node executable, its version, safe mode and required license are part of the executable closure.",
+  "files": "Required runtime and legal members. Missing or changed bytes refuse. The original canonical output paths are retained in every exported extension.",
+  "auxiliary": "Optional pinned third-party development sources, types, maps and documentation present in the npm distribution. They are not used by the packaged Head runtime and are not copied into a personalized extension. A present member with changed bytes refuses. Executable JavaScript cannot be assigned this role. Required licenses remain in files.",
+  "distribution": "The npm archive carries its dependency tree through standard bundleDependencies. No dependency installation or runtime download occurs when the extension launches or exports.",
+  "authority": "Member hashes, publisher references and package metadata grant no permission to connect, read an API, sign or land.",
+  "legacy": "head-runtime-closure@1 retains its separate Node-client interpretation; execution and auxiliary metadata cannot be introduced under that version."
+}

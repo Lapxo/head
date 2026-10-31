@@ -12,7 +12,7 @@ export const policyOf = (bytes: string) => digest(publicationOf(bytes.split('\n'
   .map(({ at: _at, by: _by, sig: _sig, epoch: _epoch, ...f }) => canonical(f)).sort().join('\n') + '\n');
 /** Project reviewed Head client vectors only. Current source and policy bytes are checked separately before reuse. */
 export function observe(bytes: Uint8Array) {
-  if (digest(bytes) !== 'sha256:539127cdfb12dcfc56d4b3d642a14a134cc46a029bb78b64703847a45477f944') throw Error('REFUSE·foundation capture digest');
+  if (digest(bytes) !== 'sha256:fae52c17151bd7e558c085e0485c67807ede63ded21dc749af5d0af3e2145215') throw Error('REFUSE·foundation capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture, nodes = new Set<string>();
   if (capture.protocol !== 'head-foundation-readings@1' || capture.runs.length !== 2) throw Error('REFUSE·foundation capture protocol');
   const vectors = ['places \\(weather\\)', 'places \\(climate\\)', 'first run \\(URL\\)', 'first run \\(shared documents\\)', 'foundation: a raw do/place', 'a place head founds is a point at birth'];

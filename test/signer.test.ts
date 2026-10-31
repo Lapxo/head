@@ -44,10 +44,10 @@ test('the signer makes a key once and says whether one is kept, printing its pub
   ok(fake.held('head', service) && !made.stdout.includes(fake.held('head', service)) && /^[A-Za-z0-9+/=]{40,}$/.test(made.stdout), 'a public half, never the secret');
 });
 
-test('the store head-s long process is handed refuses every signing account by name before any command starts; an access account is read as before; a key is made and its public half read by the signer alone', () => {
+test('the store head-s long process is handed refuses every signing account by name before any command starts; an access account is read as before; a key is made and its public half read by the signer alone', async () => {
   const fake = fakeKeychain({ head: newKey().secret, person: newKey().secret, 'place/shop/root': newKey().secret });
   process.env['PATH'] = fake.env.PATH;
-  const keys = keychain(service, kind, signingOf(lock)), before = fake.argv();
+  const keys = keychain(service, kind, signingOf(lock), { wait: 15000, most: 1 << 20 }), before = fake.argv();
   for (const [account, key] of [[valueOf(lock, 'device/head/account'), 'device/head/account'], [valueOf(lock, 'device/person/account'), 'device/person/account'], ['place/shop/root', 'founding/root-account']] as const) {
     throws(() => keys.read(account), (e: Error) => e.message === `REFUSE·keychain ${key} names a signing key: only head's signer reads it`, 'named by the lock-s line, never by the account asked for');
     throws(() => keys.write(account, 'anything'), (e: Error) => e.message.startsWith(`REFUSE·keychain ${key} names a signing key`));
@@ -55,7 +55,7 @@ test('the store head-s long process is handed refuses every signing account by n
   deepStrictEqual(fake.argv(), before, 'no keychain command started for a refused account');
   deepStrictEqual(keys.read('access/forecast'), undefined);
   ok(fake.argv().length > before.length, 'the control: an access account is read through the keychain command');
-  const half = keys.held!('head');
+  const half = await keys.held!('head');
   ok(half && !half.includes(fake.held('head')), 'the public half, from the signer');
   deepStrictEqual(fake.callers().filter((c) => signingAccount(c.account)).map((c) => c.by.includes(signer)), [true]);
 });

@@ -86,5 +86,5 @@ test('first-minute/connects: head-s own lock names no API for a person to connec
   const own = /^https:\/\/(github\.com\/Lapxo\/|registry\.npmjs\.org\/@(lapxo|modelcontextprotocol)\/)/;
   const named = lock.filter((l) => l.scope?.startsWith('sources/') && URL.canParse(l.value ?? '') && !own.test(l.value!)).map((l) => l.scope);
   ok(named.length <= Number(valueOf(lock, 'first-minute/connects').split('..')[1]), named.join(' '));
-  deepStrictEqual(lock.filter((l) => /^(prose\/en\/(readme|idea|page\/)|prompt\/[^/]+\/text$)/.test(l.scope ?? '') && /https?:\/\/(?!github\.com\/Lapxo\/)[a-z0-9.-]+/.test(l.about ?? '')).map((l) => l.scope), [], 'no page or prompt points at an API to connect');
+  deepStrictEqual(lock.filter((l) => /^(prose\/en\/(readme|idea|page\/)|prompt\/[^/]+\/text$)/.test(l.scope ?? '') && /https?:\/\/(?!github\.com\/Lapxo\/|img\.shields\.io\/(?:npm\/v\/@lapxo\/head|badge\/license-MIT-blue)(?:[)\s]|$)|www\.npmjs\.com\/package\/@lapxo\/head(?:[)\s]|$))[a-z0-9.-]+/.test(l.about ?? '')).map((l) => l.scope), [], 'no page or prompt points at an API to connect');
 });

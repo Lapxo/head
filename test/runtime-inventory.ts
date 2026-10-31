@@ -1,3 +1,4 @@
+import { run as verifyStandalone } from './standalone-runtime.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { canonical, parse } from '@lapxo/topos/wire';
@@ -5,10 +6,11 @@ const hash = (bytes: Uint8Array | string) => 'sha256:' + createHash('sha256').up
 const rows = (text: string) => text.split('\n').filter(Boolean).map(line => parse(line)).flatMap(p => p.kind === 'fact' ? [p.value.fields] : []);
 /** Verify current declared bytes and an executed installed-consumer receipt; no expected runtime digest is learned from an installation. */
 export function run(place: string) {
+  verifyStandalone('dependency/standalone-runtime');
   const capture = readFileSync('samples/runtime-inventory/yes/client.json');
-  if (hash(capture) !== 'sha256:d14418032a534f976c0814c32adc66fabfd26166edfe752d36e46232f426fd27') throw Error('REFUSE·runtime-inventory/capture');
+  if (hash(capture) !== 'sha256:8b0de7645748da782c3834956ceb677bbb45c84a7add3390d202a421ff2ac8ce') throw Error('REFUSE·runtime-inventory/capture');
   const receipt = JSON.parse(capture.toString());
-  if (receipt.protocol !== 'head-runtime-inventory-capture@1' || receipt.runs.length !== 2 || receipt.runs.map((r: { node: string }) => r.node).sort().join('|') !== '22|24') throw Error('REFUSE·runtime-inventory/runtimes');
+  if (receipt.protocol !== 'head-runtime-inventory-capture@2' || receipt.runs.length !== 2 || receipt.runs.map((r: { node: string }) => r.node).sort().join('|') !== '22|24') throw Error('REFUSE·runtime-inventory/runtimes');
   for (const input of receipt.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·runtime-inventory/current-input');
   const original = readFileSync('samples/runtime-inventory/yes/original.json'), current = readFileSync('runtime.bundle.json');
   if (hash(original) !== 'sha256:f20d82a86d78a47086e5d043def1be3799d9132922c6227cfbc6186fdd6233cc' || hash(current) !== receipt.inventory) throw Error('REFUSE·runtime-inventory/pin');
@@ -23,13 +25,14 @@ export function run(place: string) {
     applied++; expectedBytes += change.after.bytes - member.bytes; return change.after;
   });
   const additions = receipt.runtimeAdditions as { path: string; bytes: number; digest: string }[];
-  if (!Array.isArray(additions) || new Set(additions.map(m => m.path)).size !== additions.length || additions.some(m => !/^dist\/src\/[a-z0-9/-]+\.js$/.test(m.path) || expected.some((old: { path: string }) => old.path === m.path) || !Number.isSafeInteger(m.bytes) || m.bytes < 0 || !/^sha256:[a-f0-9]{64}$/.test(m.digest))) throw Error('REFUSE·runtime-inventory/additions');
+  if (!Array.isArray(additions) || new Set(additions.map(m => m.path)).size !== additions.length || additions.some(m => !(/^(?:dist\/src\/[a-z0-9/-]+(?:\.js|\.d\.ts)|runtime\/(?:node|LICENSE))$/.test(m.path)) || expected.some((old: { path: string }) => old.path === m.path) || !Number.isSafeInteger(m.bytes) || m.bytes < 0 || !/^sha256:[a-f0-9]{64}$/.test(m.digest))) throw Error('REFUSE·runtime-inventory/additions');
   expected.push(...additions); expectedBytes += additions.reduce((n, m) => n + m.bytes, 0);
-  if (before.protocol !== 'head-runtime-closure@1' || before.files.length !== 4804 || removed.length !== 1 || after.protocol !== before.protocol || applied !== changes.length || after.bytes !== expectedBytes || JSON.stringify(after.files) !== JSON.stringify(expected)) throw Error('REFUSE·runtime-inventory/delta');
+  if (before.protocol !== 'head-runtime-closure@1' || before.files.length !== 4804 || removed.length !== 1 || after.protocol !== 'head-runtime-closure@1' || applied !== changes.length || after.bytes !== expectedBytes || JSON.stringify([...after.files].sort((a: { path: string }, b: { path: string }) => a.path.localeCompare(b.path, 'en'))) !== JSON.stringify(expected.sort((a: { path: string }, b: { path: string }) => a.path.localeCompare(b.path, 'en')))) throw Error('REFUSE·runtime-inventory/delta');
+  if (!Array.isArray(receipt.systemNodeRevalidation) || receipt.systemNodeRevalidation.length !== 2 || receipt.systemNodeRevalidation.some((r: { node: string; output: string; hostExecPath: string }) => !['22','24'].includes(r.node) || r.hostExecPath !== '/unlaunchable/host-helper' || !/^(?:# |ℹ )pass 3$/m.test(r.output) || !/^(?:# |ℹ )fail 0$/m.test(r.output))) throw Error('REFUSE·runtime-inventory/system-node-revalidation');
   const policy = rows(readFileSync('TARGET.bound', 'utf8'));
   if (policy.filter(f => f.scope === 'dep/runtime-bundle' && f.value === hash(current)).length !== 1 || hash(policy.filter(f => f.form === 'interval' && ['share/bundle-bytes', 'share/bundle-selections', 'bound/wait', 'bound/printed'].includes(f.scope ?? '')).map(({ sig, epoch, by, at, ...f }) => canonical(f)).sort().join('\n')) !== receipt.policy) throw Error('REFUSE·runtime-inventory/policy');
   for (const r of receipt.runs) {
-    if (!/^(?:# |ℹ )pass 33$/m.test(r.focused) || !/^(?:# |ℹ )fail 0$/m.test(r.focused)) throw Error('REFUSE·runtime-inventory/root-path-tests');
+    for (const [name, count] of [['repairs', 9], ['share', 7], ['root', 3], ['surface', 14]] as const) if (!new RegExp('^(?:# |ℹ )pass ' + count + '$', 'm').test(r.focusedParts[name]) || !/^(?:# |ℹ )fail 0$/m.test(r.focusedParts[name])) throw Error('REFUSE·runtime-inventory/root-path-tests');
     if (r.noExpectedDigestsRegenerated !== true || r.credentialsUsed !== false || r.externalApiCalled !== false || r.results.length !== 2 || r.results.map((c: { metadata: string }) => c.metadata).sort().join('|') !== 'absent|changed') throw Error('REFUSE·runtime-inventory/consumer');
     for (const c of r.results) if (!c.exportedTwice || !c.exportedReceiverBooted || !c.fixedInventoryUnchanged || !c.realRuntimeByteCorruptionRefused || !c.privateCanaryAbsent || !c.identicalMemberContents || c.allRuntimeMembersVerified !== after.files.length || c.artifacts.length !== 2) throw Error('REFUSE·runtime-inventory/vector');
   }

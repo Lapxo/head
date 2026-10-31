@@ -1,0 +1,27 @@
+{
+  "protocol": "head-system-node-vectors@1",
+  "deployment": "installed Node >=22.18 required under Electron; no embedded executable",
+  "positive": [
+    "normal Node runs unchanged",
+    "Electron with unusable execPath relays the entire entry once",
+    "JavaScript MessagePort stdin/stdout bridge carries byte-exact MCP initialization and EOF without physical-descriptor output",
+    "signer, Bound host and packager work through that Node",
+    "two independent local API fixtures import and log in across processes using one recipient keychain",
+    "real utilityProcess with RunAsNode disabled carries initialize, tool calls and installed sender/recipient flows over MessagePort",
+    "unlinked Homebrew and user manager discovery; greatest compatible non-Electron version independent of candidate order",
+    "no compatible Node: MCP initializes, all three tools return one runtime-required cell, no OS call or HOME write"
+  ],
+  "negative": [
+    "relative PATH and Electron candidate ignored",
+    "runtime injection environment removed",
+    "private candidate error output excluded",
+    "altered required JavaScript member refuses",
+    "key lookup failure never permits replacement",
+    "probe budget exhaustion never silently selects a lower unverified runtime",
+    "missing runtime never instantiates operational handlers, reads keychain, founds a place or connects a source"
+  ],
+  "legacyScope": "runtime/standalone evaluates the explicitly declared system-Node deployment; its former no-system-Node guarantee remains historical",
+  "realDesktop": "pending",
+  "T2": "pending",
+  "L6": "pending"
+}

@@ -1,12 +1,12 @@
 {
-  "protocol": "head-runtime-inventory-vectors@1",
+  "protocol": "head-runtime-inventory-vectors@2",
   "domains": [
     "records lookup",
     "instrument readings"
   ],
   "cases": [
     "Use unchanged original inventory to reproduce official installer-metadata mismatch",
-    "Retain all 4803 remaining inventory entries exactly",
+    "Retain every original non-installer path, explicitly recording each changed compiler or manifest member and each added runtime executable/license/adapter member",
     "Installed public share succeeds with changed hidden lock",
     "Installed public share succeeds with absent hidden lock",
     "Repeat export preserves every member path and byte",
@@ -26,6 +26,6 @@
     "expected": "Only the exact declared compiler-output records change; hidden installer metadata remains excluded",
     "negative": "Any unlisted mutation to a real runtime member refuses bundle/runtime-member; no expected digest is learned from installation"
   },
-  "candidateDelta": "The original signed inventory is immutable. Exclude only node_modules/.package-lock.json; apply exact reviewed source/module/manifest changes and two explicitly reviewed public ports. No third-party dependency byte changes.",
-  "candidateMembers": 4805
+  "candidateDelta": "Immutable original comparison plus the already reviewed version-2 standalone runtime; mandatory member digests are never learned from installed output. Optional pinned development material is not an executable MCPB member.",
+  "candidateMembers": 4809
 }

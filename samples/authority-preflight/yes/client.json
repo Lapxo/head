@@ -103,11 +103,11 @@
     },
     {
       "path": "src/doors/guard.ts",
-      "sha256": "sha256:fce94ddaed87b52517d41341a2ae5d7e620c4d82069c687820de205c824f84ce"
+      "sha256": "sha256:5104efc1cbd4a36250fd7e0f5a375586e34da0c1b5ba98fafaca03f2c1bce06a"
     },
     {
       "path": "src/doors/head.ts",
-      "sha256": "sha256:49080fe5301decb0d8b68926e30f954ad78c06ecb6acb93c929fa2c11bc2e96e"
+      "sha256": "sha256:aaef67879a423346ab97a715356569450bac0b5dabc3e70c478ec6e1c5e50531"
     },
     {
       "path": "src/doors/http.ts",
@@ -131,7 +131,7 @@
     },
     {
       "path": "src/flows/device.ts",
-      "sha256": "sha256:de6a29c5f1f190ce7c5d5707bec4b0d89e6587864f502c155b6a191e0ec792bc"
+      "sha256": "sha256:26158c7afb68f3347d3df32093c6cd317328fab5eda84f53d94539f07264dbf7"
     },
     {
       "path": "src/flows/plan.ts",
@@ -147,7 +147,7 @@
     },
     {
       "path": "src/index.ts",
-      "sha256": "sha256:818c4434138ce280148c4ede768c7db815f850968d6866e63365f28993de173d"
+      "sha256": "sha256:9960dc9b5e76456241d056249a07916cfe94ebaebada36ad35ed6ab7b1fc3db5"
     },
     {
       "path": "src/kept/kept.ts",
@@ -187,7 +187,7 @@
     },
     {
       "path": "src/places/found.ts",
-      "sha256": "sha256:e8fd8061dd9b242d80be04930b55a85622fce32e4b3caa22441318b6ac25441f"
+      "sha256": "sha256:71206dd75e12dead424e9730cdceb7b1216c218ec0b87855149f1ad0a28d266c"
     },
     {
       "path": "src/ports/access/authorizer.ts",
@@ -207,7 +207,7 @@
     },
     {
       "path": "src/ports/adapters/bundle.ts",
-      "sha256": "sha256:fd51124236fb74be6cd6e1608b17e60fd7f5ab19e4353990cd0f231f8dee6757"
+      "sha256": "sha256:83b1e78d2073d57145ffe855167409a002ef3fd3adfd4c4a0cb13b46aa2a9322"
     },
     {
       "path": "src/ports/adapters/configured.ts",
@@ -223,7 +223,7 @@
     },
     {
       "path": "src/ports/adapters/protocol.ts",
-      "sha256": "sha256:013197b3aa669ec7dfe3ca1af0e43d8e3c6ac3eb99467307984dbff3867a2c6c"
+      "sha256": "sha256:135ca4ac4cd3513618a6269cbb7161ab5e56ab03b28f8ee26336670d623321bc"
     },
     {
       "path": "src/ports/adapters/remote.ts",
@@ -232,6 +232,10 @@
     {
       "path": "src/ports/adapters/request.ts",
       "sha256": "sha256:b0b7f99df4571e4711bc2c25c2eca9409a33c0fce6127c42f1032ff32415ec76"
+    },
+    {
+      "path": "src/ports/adapters/runtime.ts",
+      "sha256": "sha256:ed7d65d5da12ccc5ab2142f671e3c9d5451650f451a5fff9468057c5850e428b"
     },
     {
       "path": "src/ports/bound.ts",
@@ -246,12 +250,16 @@
       "sha256": "sha256:8be05f9171bf94d180dd4005369d6b63d08a98e469050fff844ea61d3b2b7b6f"
     },
     {
+      "path": "src/ports/executable.ts",
+      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
+    },
+    {
       "path": "src/ports/export.ts",
       "sha256": "sha256:8a024751f82d423546df2d4bae6dded5098611802a5753b612d29c92738c4503"
     },
     {
       "path": "src/ports/home.ts",
-      "sha256": "sha256:ec6c190aa864212dcaa160046c2c78e4fdb4e5f59452bc0378cbc50c815132e8"
+      "sha256": "sha256:5e889ab0d43f041d08c1c8ae19512891519136190b59e8624a788b4f4668cf2c"
     },
     {
       "path": "src/ports/host.ts",
@@ -259,7 +267,7 @@
     },
     {
       "path": "src/ports/keychain.ts",
-      "sha256": "sha256:8997394f3c30b140bbb153d420b62d41d69470279f4882dc25a434c58d206f31"
+      "sha256": "sha256:0df3bbcfb4e1399959ff7776f84e8193ca8b836c4634f49f5b3632e12e91f7a0"
     },
     {
       "path": "src/ports/keys.ts",
@@ -283,7 +291,7 @@
     },
     {
       "path": "src/ports/stores/keychain.ts",
-      "sha256": "sha256:d1f33f3470e54e37281bd9817f9fc95bbe15ebc88c03403062247e784f613d22"
+      "sha256": "sha256:4c7e730b2cba760e5fefc2fb191dc022a2e28b03688363ed6ebc184bc5cfdd9f"
     },
     {
       "path": "src/ports/stores/secret-tool.ts",
@@ -299,7 +307,7 @@
     },
     {
       "path": "src/signer.ts",
-      "sha256": "sha256:a0e8a0b7cd1f2082a6bb6f71529bfe43ba417731dc191950ba734e8f7a81cc20"
+      "sha256": "sha256:fd6175c61836d3bd2a9702fb36286937ee19938d0b699d783da312f7bf6ccb23"
     },
     {
       "path": "src/sources/access.ts",
@@ -347,7 +355,7 @@
     },
     {
       "path": "src/tools/key.ts",
-      "sha256": "sha256:6a1cfc669e5d30a7b5e30bc708dd58d05a1495f0cb1a03c39887cb2d7129fe58"
+      "sha256": "sha256:bd65423fcf40362423128c7654e85ec10488dc70822cfbac59ffc196dcbbda3f"
     },
     {
       "path": "src/tools/land.ts",
@@ -471,11 +479,11 @@
     },
     {
       "path": "test/client.ts",
-      "sha256": "sha256:e499093fb06ed0a8a427faba7525c0a3090f90eed414a00d6efb1afd00e88432"
+      "sha256": "sha256:4d6f7ccad44c0c513a0d0841099f5cb0cc4e47566a50345df790ba60b3c91596"
     },
     {
       "path": "test/composition-reading.ts",
-      "sha256": "sha256:40fb31d2aae626a5c8bbce425fa1951254ce7bd0336d0ec70bb190fc245a0be7"
+      "sha256": "sha256:81da73783c122ce2a0fa0d25964ef86d83fff6dd40b9fad6eab1a43bfc42adff"
     },
     {
       "path": "test/composition.test.ts",
@@ -483,7 +491,7 @@
     },
     {
       "path": "test/configured-ports.ts",
-      "sha256": "sha256:fba31e3797e1d31936d5de0676b84f67cacb550ddb0ea1fb2f91a2b3e3a5968a"
+      "sha256": "sha256:3b1fe25f83a57c4858687fa2081615e7d68b4880677ac6ca3180d964bfea4a15"
     },
     {
       "path": "test/configured-receiver.test.ts",
@@ -510,8 +518,16 @@
       "sha256": "sha256:35b1664cab648b225216267971fcc5a484e51c6b58298f055378723f29a5c631"
     },
     {
+      "path": "test/electron-host/runtime.test.ts",
+      "sha256": "sha256:f2616ad1cfc9f097f250b39c975ea5fd4c5afea850ddf2e9b94a702365247cde"
+    },
+    {
+      "path": "test/executable.test.ts",
+      "sha256": "sha256:f793bb69e751177f4474f0cb5831754b7d7c378f73107984643f272e9f933e8d"
+    },
+    {
       "path": "test/fake-keychain.ts",
-      "sha256": "sha256:168d57e6abd82493e16744f8b8d93d813953d185b5a6957a1fc732c28f736a51"
+      "sha256": "sha256:7377caa64cb3a9d47a419fd5396f7d5de4cfc2cced07b7c7c51d8913c376cef9"
     },
     {
       "path": "test/fetch.test.ts",
@@ -519,7 +535,7 @@
     },
     {
       "path": "test/first-minute.test.ts",
-      "sha256": "sha256:5e1ea3fe5c8a1ab9046d36cc7f1f52161774c4355189ff7af4ae5811473bcfff"
+      "sha256": "sha256:84863987f4cd396fb85f4d3830a7cbb8186d7fe69206418c48c5503cb8a6f1d5"
     },
     {
       "path": "test/first-run.test.ts",
@@ -531,7 +547,7 @@
     },
     {
       "path": "test/functional-repairs-reading.ts",
-      "sha256": "sha256:2bf73aeaa7a7735d9474e185f36d6cdbcbe1dfad7d3023bb8ad2318bf60d2dd7"
+      "sha256": "sha256:7f94f307411fef39eed6921e64855aa5f3d38c9c17a40334c937af78a6065c2a"
     },
     {
       "path": "test/gestures.test.ts",
@@ -539,7 +555,7 @@
     },
     {
       "path": "test/implicit-root-reading.ts",
-      "sha256": "sha256:7a810f1f6b3aa65d6e6a16004c204bf017839da447171876f9b90238b267cab3"
+      "sha256": "sha256:db081f9dc2c98affab3a7356a4119feb5180684c7f8a077eef7f5adde179d015"
     },
     {
       "path": "test/implicit-root.test.ts",
@@ -564,6 +580,18 @@
     {
       "path": "test/kept.ts",
       "sha256": "sha256:146b900f38140c0c72d04acc3a291b88bb06de60c308da9a77e21619d5cd83ae"
+    },
+    {
+      "path": "test/key-refusal.test.ts",
+      "sha256": "sha256:bfc886007287032ac4200c62f152c032317db5dbfb2fcfc860b15b46475ed38f"
+    },
+    {
+      "path": "test/keychain-bounds.test.ts",
+      "sha256": "sha256:66b0403dc36ce122d426198165acb61dc44f987ff4a09a4eb2cd90355cdeae6b"
+    },
+    {
+      "path": "test/keychain-failure.test.ts",
+      "sha256": "sha256:7fb0a1eda5d173bb07135652336030c896b9b38a4d3338647eb632f67fa95d89"
     },
     {
       "path": "test/keys.test.ts",
@@ -595,7 +623,7 @@
     },
     {
       "path": "test/mcp-receiver-reading.ts",
-      "sha256": "sha256:27a8ef2f70c0493565925ac5ba19a6b5a146ac53165b4fec0641a4a6f61ebc9b"
+      "sha256": "sha256:22a6d7d282d22f41abd47df627d080c48a360651bf9a621c477990a7bce63caa"
     },
     {
       "path": "test/mcp-transport.test.ts",
@@ -627,7 +655,7 @@
     },
     {
       "path": "test/pack.test.ts",
-      "sha256": "sha256:b5fccead4ab90815e99dca2e870f1bc42839f4fe731a0a6a492f40b685106a1c"
+      "sha256": "sha256:93fc2ed33b7ffacc4fbbdf1bfaff312755bfaecc6ce92e9923e9d14491f0c781"
     },
     {
       "path": "test/pending-document.test.ts",
@@ -648,6 +676,10 @@
     {
       "path": "test/places.test.ts",
       "sha256": "sha256:3a95340fc9f23b8c82bde9b6714b8b828a9729cdf079cd96d31b414540411ede"
+    },
+    {
+      "path": "test/platform-support.test.ts",
+      "sha256": "sha256:2dba2c010603e40c37f3549107b57210c7857d8b5bc4f7be7b9c5621cc7a0b67"
     },
     {
       "path": "test/portable-birth.test.ts",
@@ -679,7 +711,7 @@
     },
     {
       "path": "test/receiver-access-reading.ts",
-      "sha256": "sha256:b3fba43b5835898a6a300185dd9c1161b5e154e477a6e7ca8a490f451f3e5762"
+      "sha256": "sha256:653963f63eb54479cb9c87b1768adf3ed8afc6b8636601a46d14952a2c664635"
     },
     {
       "path": "test/receiver-access.test.ts",
@@ -691,7 +723,7 @@
     },
     {
       "path": "test/receiver-runtime.ts",
-      "sha256": "sha256:f60064e46207f6e5a7f1acfcfd66417aa0b93e3a71880f5c11de917237be34c6"
+      "sha256": "sha256:780c939bdd04eaef4c272ee6f5d0e5be442feb8b2362a0032889d67263d9630d"
     },
     {
       "path": "test/receiver.test.ts",
@@ -719,11 +751,11 @@
     },
     {
       "path": "test/runtime-inventory.ts",
-      "sha256": "sha256:3f0d60871e67d90720ab5d799663868c6486868aa37cf550955909c34cc55299"
+      "sha256": "sha256:28ece321fa07df4ca0086526a749dce23399eed4ea9ea122ba2d3e7ab016e7e3"
     },
     {
       "path": "test/runtime-resolution.test.ts",
-      "sha256": "sha256:effc895776f4b3ece07b3905c74cb4a717699615e0b5fd954c82e0fe31163c47"
+      "sha256": "sha256:d9d4aae291e367c7c7e8661615e32db800bace94f139b12da78e0706b3e50e2b"
     },
     {
       "path": "test/scheduled.ts",
@@ -763,7 +795,7 @@
     },
     {
       "path": "test/share-runtime.ts",
-      "sha256": "sha256:b9779556300bcd7c05cbdff94082bd765743b93679a2ac7ce103cd2592c47725"
+      "sha256": "sha256:03c199e743c091f21065468513003c6a01b3a348aedeb76f9299e72b8a34c651"
     },
     {
       "path": "test/share.test.ts",
@@ -771,7 +803,7 @@
     },
     {
       "path": "test/signer.test.ts",
-      "sha256": "sha256:746713f6355b9dbd5f68c30e876c9f85b978de0ddfbcd1def963a282e64acf0a"
+      "sha256": "sha256:a09b60f446242515059738cb16f3e17141109efe5b328ff249e689a24d237bb6"
     },
     {
       "path": "test/signers.ts",
@@ -782,12 +814,20 @@
       "sha256": "sha256:17dcda3d280c08cc569fd1cb5363a5e60e6370f3bf2b23740c31ac10cd4e0f42"
     },
     {
+      "path": "test/standalone-bundle.test.ts",
+      "sha256": "sha256:5b528f52492497d41d68271a008053e74b8e97b76db32c5484cafb8d503cbcf3"
+    },
+    {
+      "path": "test/standalone-runtime.ts",
+      "sha256": "sha256:d69646f455c4e483bb13071846fd4249ea58353be43fb7ded0fd562728cb4cec"
+    },
+    {
       "path": "test/stores.test.ts",
       "sha256": "sha256:27956c690b9e355c72db19ae115bea8a8f1bc4dda8bcfa63830d1db75a53c772"
     },
     {
       "path": "test/surface.test.ts",
-      "sha256": "sha256:e5a9fe364e7e4af7adfca1e2b99a6006f92e8803f44457b2dbaca9deacb029ce"
+      "sha256": "sha256:4eaae5f6b63990ae4afbc5b336abeb4805860e6f69b39318294ad3b6a316f97c"
     },
     {
       "path": "test/time/clock.test.ts",
@@ -865,11 +905,11 @@
   "runs": [
     {
       "node": "22",
-      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 980.620416\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1511.844042\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 825.42825\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1429.803625\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1413.428625\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 5162.846375\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 4670.903458\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 385.323667\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 16631.197417\n"
+      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 1003.465292\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1527.399875\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 814.794375\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1475.043875\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1551.614125\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 5558.877583\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 4707.372083\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 344.598292\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 17214.047291\n"
     },
     {
       "node": "24",
-      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 920.146625\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1505.255917\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 783.7845\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1429.14575\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1447.658708\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 5095.894042\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 4327.098333\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 337.371417\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 16111.066208\n"
+      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 976.072125\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1496.387416\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 800.303875\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1467.53625\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1509.499916\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 5437.437542\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 4717.464625\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 365.074416\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 17037.424458\n"
     }
   ],
   "inputPolicy": {
@@ -913,17 +953,20 @@
     }
   },
   "Q4": "Domain permissions remain open; configuration preflight is not API action authorization.",
-  "status": "CI repair successor; current byte bindings and named narrow revalidation; not final Root or CI acceptance",
+  "status": "Fixture-only successor: original executions and all runtime bytes remain unchanged; no fresh domain or timing matrix claimed.",
   "predecessor": {
-    "sha256": "sha256:f4cb07093beb8924b824463310c0d73e6e87cbf0c97f0734faefce339b012142",
-    "allOriginalRunsAndFailuresPreserved": true
+    "sha256": "sha256:abaf57d5c35a733fdf9c09bb242dd14f5211dc701a2bb10a6a6c8de5bf4725b3",
+    "preserved": true
   },
   "evidenceReuse": {
-    "kind": "Retained functional matrices plus named narrow revalidation; not freshly rerun historical matrices",
-    "executedSourceInventory": "sha256:46c3b8145a7f791c5b212a52c4a342482d51612fc1674532b5fb121f63fb00b5",
-    "executedRuntime": "sha256:ef08ce28c543fc18f6c4b130c6b542aa54d35e4227dc08c0d084c87040b2bafb",
-    "narrowSourceDelta": "sha256:4b8ba43e740c5a6f46a73650f418d9a5e8742d496d2bb26a85b78ba626d15509",
-    "description": "After those matrices only share metadata defaults were removed. Full explicit public metadata is now required; operations/sources remain optional. Current focused nine cases and installed two-domain export/access gates revalidate that delta. A and full MCP execute final bytes separately."
+    "model": "Only factor two identical deadline checkpoints into one shared body. Previous first-cell, MCP and complete consumer runs retain their actual artifact identities. Inlining the helper restores the previously tested source byte for byte. Fresh installed-byte verification, focused controls, unchanged surface guard and two real Electron availability cases cover this refactor; no fresh timed or complete domain matrices are claimed.",
+    "changedProduction": [
+      "src/ports/executable.ts",
+      "dist/src/ports/executable.js"
+    ],
+    "historicalExecutionsRelabeled": false,
+    "fullElectronGateSha256": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
+    "RootChanged": false
   },
   "observerCorrection": {
     "changedInputs": [
@@ -1141,5 +1184,44 @@
       "externalAPIsUsed": false,
       "BoundChanged": false
     }
+  },
+  "testGuardRevalidation": {
+    "predecessor": "sha256:78d0169daacbe7b5df81f5e34041c1e6aa7f06dddfb476584f5ad99da1fea044",
+    "changedInputs": [
+      "test/first-minute.test.ts"
+    ],
+    "originalRunsRetained": true,
+    "freshExecutionClaimed": false,
+    "reason": "Exact project npm and license badge destinations are documentation, not preconnected APIs; no runtime change."
+  },
+  "systemNodeRevalidation": [
+    {
+      "node": "22",
+      "output": "TAP version 13\n# Subtest: the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\nok 1 - the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\n  ---\n  duration_ms: 22409.973458\n  type: 'test'\n  ...\n# Subtest: the installed extension shares with its original pinned runtime inventory, independent of installer metadata\nok 2 - the installed extension shares with its original pinned runtime inventory, independent of installer metadata\n  ---\n  duration_ms: 55251.828042\n  type: 'test'\n  ...\n# Subtest: received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\nok 3 - received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\n  ---\n  duration_ms: 115860.513917\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 193996.165875\n",
+      "hostExecPath": "/unlaunchable/host-helper"
+    },
+    {
+      "node": "24",
+      "output": "✔ the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer (22637.910083ms)\n✔ the installed extension shares with its original pinned runtime inventory, independent of installer metadata (54979.253542ms)\n✔ received APIs use one persistent recipient keychain across import and access processes, without inheriting authority (116148.432875ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 194278.496542\n",
+      "hostExecPath": "/unlaunchable/host-helper"
+    }
+  ],
+  "messagePortRevalidationDigest": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
+  "budgetGuardRefactor": {
+    "scope": "Only centralize two identical deadline checkpoints; no branch, budget, error, transport or version rule changed",
+    "beforeSource": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742",
+    "afterSource": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f",
+    "helper": "  const checkBudget = () => { if (performance.now() >= until) throw new RuntimeNodeRequired('budget', searched); };",
+    "callSites": 2,
+    "inliningRestoresPreviousSourceByteForByte": true,
+    "previousCI": "https://github.com/Lapxo/head/actions/runs/41247442620",
+    "previousCIResult": "9/10; only duplication guard failed; real Electron consumer passed",
+    "measuredDeltaLines": 1,
+    "normalNodeTimedConsumersExecuteChangedFunction": false,
+    "historicalRunsRetainTheirArtifactIdentities": true
+  },
+  "rankingFixture": {
+    "controlledProcessPortOnly": true,
+    "allRealProcessIntegrationCoverageRetained": true
   }
 }

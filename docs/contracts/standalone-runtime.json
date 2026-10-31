@@ -1,0 +1,15 @@
+{
+  "protocol": "head-system-node@1",
+  "scope": "A macOS MCP extension using a client runtime or an installed Node; no embedded Node executable.",
+  "execution": "Normal Node clients execute the existing entry directly. An Electron runtime relaunches the whole entry once with a locally discovered Node >=22.18, sanitized NODE_/UV_ environment, piped streams through the host JavaScript stdin/stdout/stderr bridge, EOF propagation, output draining and forwarded termination. Nothing downloads or installs code.",
+  "keySafety": "Only established absence permits signing-key creation. Creation is exclusive; a failed read, duplicate creation, cancellation or ambiguous outcome never authorizes replacement. Access credential updates remain separate.",
+  "support": "macOS13.5+ remains the target; Linux, Windows, real Desktop and independent Intel acceptance remain open.",
+  "receipt": "The preceding standalone-runtime capture is historical, not evidence for this system-Node deployment. Successor native receipts remain required before admission.",
+  "consumer": "The base and personalized MCPBs carry the declared public JavaScript dependency closure, not Node, credentials or authority. A recipient using Electron needs an installed compatible Node.",
+  "failures": "When no compatible Node is established, the existing MCP server still initializes and offers its tool metadata, without constructing the operational Head context. Every tool returns exactly one head/runtime-node-required cell with declared installation instructions and logical search locations. No keychain, place or connection is touched. Current required-member byte alterations still refuse by digest.",
+  "boundaries": "Synthetic stores and direct MCP clients do not establish real Desktop, quarantine, browser or system-keychain integration. Those remain separate acceptance gates. Existing latency and source budgets require their own current readings.",
+  "authority": "No runtime, digest, captured execution or review reading admits configuration or authorizes a connection. Owner admission and release approval remain separate acts.",
+  "legacyCoordinate": "runtime/standalone is retained as an existing review coordinate under this explicitly versioned external-Node deployment. Version1 no-system-Node execution is historical and is not claimed by version2.",
+  "discovery": "Search PATH, declared standard binaries, unlinked Homebrew versions, user Node managers and ProgramFiles on Windows; choose the greatest stable compatible version successfully probed without Electron. Directory enumeration and probing share a 2 s deadline. Incomplete selection refuses rather than claiming a greatest version; no shell or download.",
+  "evidence": "Acceptance distinguishes real Electron utilityProcess with RunAsNode disabled and MessagePort I/O from simulated Electron properties. Real installed desktop-client and OS-keychain acceptance remain separate."
+}
