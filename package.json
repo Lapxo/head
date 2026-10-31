@@ -19,8 +19,7 @@
     "dist/src",
     "TARGET.bound",
     "LICENSE",
-    "runtime.bundle.json",
-    "runtime"
+    "runtime.bundle.json"
   ],
   "scripts": {
     "build": "tsc -p . --incremental false --tsBuildInfoFile null",
@@ -39,11 +38,5 @@
   },
   "os": [
     "darwin"
-  ],
-  "bundleDependencies": [
-    "@lapxo/bound",
-    "@lapxo/topos",
-    "@modelcontextprotocol/sdk",
-    "@anthropic-ai/mcpb"
   ]
 }

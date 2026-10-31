@@ -1,6 +1,6 @@
 # Compatibility
 
-The desktop target for 0.2.3 is macOS 13.5 or later, the minimum encoded in both architecture slices of the selected Node executable. The self-contained extension is intended to carry its own verified Node runtime; a release is supported only after its exact artifact passes installed-consumer acceptance. A mock store or a successful CI job does not establish real system-keychain and browser integration.
+The desktop target for 0.2.3 remains macOS 13.5 or later. Node is not included in the package. A normal Node client runs Head directly. Under Electron, Head relaunches once with an installed Node >=22.18, inherited stdio, a sanitized environment and forwarded termination signals. If none is available, `runtime/node-required` refuses before key lookup or founding. There is no download or automatic installation.
 
 The command-line package and the desktop extension use the same algebra, signing protocol, permission checks and source ports. A client name does not select a security policy. A runtime version alone does not establish that the client permits child processes.
 
@@ -13,4 +13,4 @@ The command-line package and the desktop extension use the same algebra, signing
 
 The existing adapters can still be checked as command interfaces. Their presence does not advertise support, and credential update is never a substitute for exclusive signing-key creation. An unsupported environment refuses before key lookup or founding a place.
 
-Apple Silicon and Intel execution of the universal runtime require separate evidence. A runtime's original signature and both architecture slices can be checked without proving its integration on a second physical machine. Independent physical-machine and real-client acceptance remain separate from those checks.
+Real-client, system-keychain and independent Intel execution acceptance remain pending. Neither a simulated Electron process nor CI establishes those integrations.

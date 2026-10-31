@@ -288,7 +288,7 @@
     },
     {
       "path": "dist/src/index.js",
-      "sha256": "sha256:331bb0e53e0964e8fdcbbbc43dd0cb874433e7db5f26ea98af6c92dfb6e7d3b8"
+      "sha256": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
     },
     {
       "path": "dist/src/kept/kept.d.ts",
@@ -489,6 +489,14 @@
     {
       "path": "dist/src/ports/documents.js",
       "sha256": "sha256:094b4796a51ecd7fefd6b3404ab56db985497e954c4fcc181d993195d6faebc6"
+    },
+    {
+      "path": "dist/src/ports/executable.d.ts",
+      "sha256": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
+    },
+    {
+      "path": "dist/src/ports/executable.js",
+      "sha256": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -804,15 +812,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "sha256:2ab1cc6b48effc9dd394a78d6f27f19d65fd8e5761935ba463589e17b1a503d5"
+      "sha256": "sha256:feb26c66dc045cc7af8ae184885956d0ecfa4e342a26caf14b215c8f2786076e"
     },
     {
       "path": "package.json",
-      "sha256": "sha256:92c93af63e0da211cf223c8886bda29cfe5e8285a6c38ba062953af6af81e3ad"
+      "sha256": "sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f"
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:6fbeaeb1949c64f0f49236edb414706ceb1e6fe4bb02a3bc4ae5c4290e373233"
+      "sha256": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05"
     },
     {
       "path": "src/access/contract.ts",
@@ -956,7 +964,7 @@
     },
     {
       "path": "src/index.ts",
-      "sha256": "sha256:818c4434138ce280148c4ede768c7db815f850968d6866e63365f28993de173d"
+      "sha256": "sha256:bdc8af2fd4cb46a5571bb715da5228a0ebc9f05bb38af22df2ba482a95c3df5c"
     },
     {
       "path": "src/kept/kept.ts",
@@ -1057,6 +1065,10 @@
     {
       "path": "src/ports/documents.ts",
       "sha256": "sha256:8be05f9171bf94d180dd4005369d6b63d08a98e469050fff844ea61d3b2b7b6f"
+    },
+    {
+      "path": "src/ports/executable.ts",
+      "sha256": "sha256:94369feefeb89a4c20bbbe9aee4082f8bfd8702769ba898a7a3a0b404508d6f1"
     },
     {
       "path": "src/ports/export.ts",
@@ -1351,7 +1363,7 @@
       "freshCurrentRuntimeExecution": false,
       "localFixturesOnly": true,
       "concurrency": "One timed producer; two local unrelated domains in sequence",
-      "executionScope": "Retained original complete source-client execution, same production and compiled program bytes; original artifact digest retained"
+      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current system-Node bootstrap revalidated separately; original artifact digest retained"
     },
     {
       "node": "24",
@@ -1406,7 +1418,7 @@
       "freshCurrentRuntimeExecution": false,
       "localFixturesOnly": true,
       "concurrency": "One timed producer; two local unrelated domains in sequence",
-      "executionScope": "Retained original complete source-client execution, same production and compiled program bytes; original artifact digest retained"
+      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current system-Node bootstrap revalidated separately; original artifact digest retained"
     }
   ],
   "functionalChecks": [
@@ -1710,7 +1722,7 @@
     }
   },
   "predecessor": {
-    "sha256": "sha256:0f74c0058fdd66dfb25593e7afd0da4c2351cc90745cf561db8cbc55bc1306c8",
+    "sha256": "sha256:574f47b22b425b9ec3780e7d9cc7c34c101a868e7aee330bcdb9714a865785d5",
     "preserved": true,
     "originalExecutionsNotRelabeled": true
   },
@@ -1876,54 +1888,51 @@
   },
   "metadataRevalidation": {
     "selectedVersion": "0.2.3",
-    "regionalArtifact": "sha256:c95d658496341943459f168fcf3896d6bd67145eacc175670cfb1ff28c5d0b5e",
-    "runtimeDescriptor": "sha256:6fbeaeb1949c64f0f49236edb414706ceb1e6fe4bb02a3bc4ae5c4290e373233",
+    "regionalArtifact": "sha256:817580e87582186dfe18adc1d28bfd20682d5c669105c4d33f32739834ece545",
+    "runtimeDescriptor": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05",
     "freshIsolatedReadObservations": [
       {
         "node": "22",
         "domain": "sum",
-        "milliseconds": 4710.435708000001,
+        "milliseconds": 4766.921833,
         "textVisible": true,
         "withinBudget": true,
         "ceilingMilliseconds": 6000,
-        "rawCapture": "sha256:ff80bf250745b315108b42403bcfcdcb14580a82d617921b69c4b768dde66c08"
+        "rawCapture": "sha256:c107118a2bd61cc0d4ce95d3006caa45814574303e26b7b7913fecd93eb87120"
       },
       {
         "node": "22",
         "domain": "lookup",
-        "milliseconds": 4771.989291999998,
+        "milliseconds": 4906.030417000002,
         "textVisible": true,
         "withinBudget": true,
         "ceilingMilliseconds": 6000,
-        "rawCapture": "sha256:ff80bf250745b315108b42403bcfcdcb14580a82d617921b69c4b768dde66c08"
+        "rawCapture": "sha256:c107118a2bd61cc0d4ce95d3006caa45814574303e26b7b7913fecd93eb87120"
       },
       {
         "node": "24",
         "domain": "sum",
-        "milliseconds": 4618.215250000001,
+        "milliseconds": 4658.766042000001,
         "textVisible": true,
         "withinBudget": true,
         "ceilingMilliseconds": 6000,
-        "rawCapture": "sha256:4db9a46b41bdd159aa3a752f7fb16cdf453042955d3fe0efe3e483f27465b549"
+        "rawCapture": "sha256:d2797767ce245ca37d21b5d37d945df37a031409aa7ffa9e78782927828c3b3a"
       },
       {
         "node": "24",
         "domain": "lookup",
-        "milliseconds": 4698.791915999998,
+        "milliseconds": 4659.2933749999975,
         "textVisible": true,
         "withinBudget": true,
         "ceilingMilliseconds": 6000,
-        "rawCapture": "sha256:4db9a46b41bdd159aa3a752f7fb16cdf453042955d3fe0efe3e483f27465b549"
+        "rawCapture": "sha256:d2797767ce245ca37d21b5d37d945df37a031409aa7ffa9e78782927828c3b3a"
       }
     ],
     "oldFullFlowRunsAndVisibilityRetained": true,
     "newCompleteMCPMatrixRun": false,
-    "reuseAudit": "sha256:11819c08b4a98ea7998277ff4ec9085e3e05c4e3c7f52bb653eb79746981525c",
+    "reuseAudit": "sha256:1fc24044fb5e49b97a286ca94056e74acd86672a3823d3d5ea43a999049e2e9e",
     "genericExportReceiverAndLoginReexecuted": true,
     "all118IntervalsUnchanged": true
   },
-  "historicalPhysicalCapacityEvidence": {
-    "kind": "Fresh candidate native physical-line reading; widening prepared but not admitted to actual Root",
-    "witness": "sha256:1682920be26d9a994c28164b1fd58f6e155f328bffa94020d616613f1f6ffefe"
-  }
+  "historicalPhysicalCapacityEvidence": null
 }

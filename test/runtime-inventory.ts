@@ -8,7 +8,7 @@ const rows = (text: string) => text.split('\n').filter(Boolean).map(line => pars
 export function run(place: string) {
   verifyStandalone('dependency/standalone-runtime');
   const capture = readFileSync('samples/runtime-inventory/yes/client.json');
-  if (hash(capture) !== 'sha256:f7de82767f1f51a38fb944d4ea65d588b38866029b5a862c1f7f210a937cdd38') throw Error('REFUSE·runtime-inventory/capture');
+  if (hash(capture) !== 'sha256:3fcbb7c3ca2a476c1c371dcc57bbf9247ae00d64a7452dfe262120ac951a7bd7') throw Error('REFUSE·runtime-inventory/capture');
   const receipt = JSON.parse(capture.toString());
   if (receipt.protocol !== 'head-runtime-inventory-capture@2' || receipt.runs.length !== 2 || receipt.runs.map((r: { node: string }) => r.node).sort().join('|') !== '22|24') throw Error('REFUSE·runtime-inventory/runtimes');
   for (const input of receipt.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·runtime-inventory/current-input');
@@ -27,7 +27,8 @@ export function run(place: string) {
   const additions = receipt.runtimeAdditions as { path: string; bytes: number; digest: string }[];
   if (!Array.isArray(additions) || new Set(additions.map(m => m.path)).size !== additions.length || additions.some(m => !(/^(?:dist\/src\/[a-z0-9/-]+(?:\.js|\.d\.ts)|runtime\/(?:node|LICENSE))$/.test(m.path)) || expected.some((old: { path: string }) => old.path === m.path) || !Number.isSafeInteger(m.bytes) || m.bytes < 0 || !/^sha256:[a-f0-9]{64}$/.test(m.digest))) throw Error('REFUSE·runtime-inventory/additions');
   expected.push(...additions); expectedBytes += additions.reduce((n, m) => n + m.bytes, 0);
-  if (before.protocol !== 'head-runtime-closure@1' || before.files.length !== 4804 || removed.length !== 1 || after.protocol !== 'head-runtime-closure@2' || applied !== changes.length || after.bytes !== expectedBytes || JSON.stringify([...after.files].sort((a: { path: string }, b: { path: string }) => a.path.localeCompare(b.path, 'en'))) !== JSON.stringify(expected.sort((a: { path: string }, b: { path: string }) => a.path.localeCompare(b.path, 'en')))) throw Error('REFUSE·runtime-inventory/delta');
+  if (before.protocol !== 'head-runtime-closure@1' || before.files.length !== 4804 || removed.length !== 1 || after.protocol !== 'head-runtime-closure@1' || applied !== changes.length || after.bytes !== expectedBytes || JSON.stringify([...after.files].sort((a: { path: string }, b: { path: string }) => a.path.localeCompare(b.path, 'en'))) !== JSON.stringify(expected.sort((a: { path: string }, b: { path: string }) => a.path.localeCompare(b.path, 'en')))) throw Error('REFUSE·runtime-inventory/delta');
+  if (!Array.isArray(receipt.systemNodeRevalidation) || receipt.systemNodeRevalidation.length !== 2 || receipt.systemNodeRevalidation.some((r: { node: string; output: string; hostExecPath: string }) => !['22','24'].includes(r.node) || r.hostExecPath !== '/unlaunchable/host-helper' || !/^(?:# |ℹ )pass 3$/m.test(r.output) || !/^(?:# |ℹ )fail 0$/m.test(r.output))) throw Error('REFUSE·runtime-inventory/system-node-revalidation');
   const policy = rows(readFileSync('TARGET.bound', 'utf8'));
   if (policy.filter(f => f.scope === 'dep/runtime-bundle' && f.value === hash(current)).length !== 1 || hash(policy.filter(f => f.form === 'interval' && ['share/bundle-bytes', 'share/bundle-selections', 'bound/wait', 'bound/printed'].includes(f.scope ?? '')).map(({ sig, epoch, by, at, ...f }) => canonical(f)).sort().join('\n')) !== receipt.policy) throw Error('REFUSE·runtime-inventory/policy');
   for (const r of receipt.runs) {

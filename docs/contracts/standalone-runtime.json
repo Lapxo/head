@@ -1,12 +1,13 @@
 {
-  "protocol": "head-standalone-runtime@1",
-  "scope": "A self-contained macOS desktop extension, with the existing JavaScript entry, signer protocol and installed Bound instrument.",
-  "execution": "The standard binary manifest launches the fixed runtime/node executable. No system Node lookup, first-launch download, client-name exception or signing in the long process.",
+  "protocol": "head-system-node@1",
+  "scope": "A macOS MCP extension using a client runtime or an installed Node; no embedded Node executable.",
+  "execution": "Normal Node clients execute the existing entry directly. An Electron runtime relaunches the whole entry once with a locally discovered Node >=22.18, sanitized NODE_/UV_ environment, inherited stdio and forwarded termination. Nothing downloads or installs code.",
   "keySafety": "Only established absence permits signing-key creation. Creation is exclusive; a failed read, duplicate creation, cancellation or ambiguous outcome never authorizes replacement. Access credential updates remain separate.",
-  "support": "macOS 13.5 or later is the declared target. Linux and Windows remain open. Signature checks of two executable slices do not establish execution on two physical machines.",
-  "receipt": "A native review reading checks the exact captured executions and their current declared producer inputs. It does not rerun clients, certify a successor artifact or claim current installed executable bytes were read by that review.",
-  "consumer": "An unpacked extension and its personalized recipient use the executable from their manifest. Two unrelated local APIs use one persistent synthetic recipient keychain across processes. Import requires one consent and makes no API call; credentials and authority are not transferred.",
-  "failures": "Missing or changed required runtime members refuse. Altered optional development bytes refuse when present. Unsupported platforms refuse before key lookup or founding. Key failures expose bounded identifiers, not raw store output.",
+  "support": "macOS13.5+ remains the target; Linux, Windows, real Desktop and independent Intel acceptance remain open.",
+  "receipt": "The preceding standalone-runtime capture is historical, not evidence for this system-Node deployment. Successor native receipts remain required before admission.",
+  "consumer": "The base and personalized MCPBs carry the declared public JavaScript dependency closure, not Node, credentials or authority. A recipient using Electron needs an installed compatible Node.",
+  "failures": "Missing installed Node refuses as runtime/node-required before opening the keychain. Declared JavaScript byte alterations continue to refuse by digest.",
   "boundaries": "Synthetic stores and direct MCP clients do not establish real Desktop, quarantine, browser or system-keychain integration. Those remain separate acceptance gates. Existing latency and source budgets require their own current readings.",
-  "authority": "No runtime, digest, captured execution or review reading admits configuration or authorizes a connection. Owner admission and release approval remain separate acts."
+  "authority": "No runtime, digest, captured execution or review reading admits configuration or authorizes a connection. Owner admission and release approval remain separate acts.",
+  "legacyCoordinate": "runtime/standalone is retained as an existing review coordinate under this explicitly versioned external-Node deployment. Version1 no-system-Node execution is historical and is not claimed by version2."
 }

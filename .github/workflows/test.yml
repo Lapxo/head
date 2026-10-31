@@ -21,7 +21,7 @@ jobs:
       SHARD_3: test/marks.test.ts test/share-receive.test.ts test/authorizer.test.ts test/link-url.test.ts test/read.test.ts test/shape.test.ts test/release.test.ts test/device.test.ts test/surface.test.ts test/refusal-record.test.ts test/welcome.test.ts test/bound.test.ts test/warm-compact.test.ts test/pack.test.ts test/pending-document.test.ts test/keys.test.ts test/acts.test.ts test/bundle.test.ts test/onboarding.test.ts
       SHARD_4: test/issuer.test.ts test/fetch.test.ts test/connect.test.ts test/first-minute.test.ts test/use.test.ts test/places.test.ts test/warm.test.ts test/session.test.ts test/process.test.ts test/stores.test.ts test/signer.test.ts test/keychain-bounds.test.ts test/keychain-failure.test.ts test/key-refusal.test.ts
       SHARD_5: test/org.test.ts test/ahead-read.test.ts test/access.test.ts test/answered.test.ts test/world.test.ts test/named.test.ts test/first-run.test.ts test/place-neutral.test.ts test/composition.test.ts test/kind-boundary.test.ts test/protocol-surface.test.ts
-      SHARD_6: test/receiver-access.test.ts test/root-path.test.ts test/implicit-root.test.ts test/release-repairs.test.ts test/marks-lineage.test.ts test/share-refused.test.ts test/kept-zero-moved.test.ts test/observed.test.ts test/walk.test.ts test/kept-zero.test.ts test/adopt.test.ts test/asking.test.ts test/mcp-transport.test.ts test/runtime-resolution.test.ts test/share-bundle.test.ts test/source-policy.test.ts test/world-standing.test.ts test/standalone-bundle.test.ts test/platform-support.test.ts
+      SHARD_6: test/receiver-access.test.ts test/root-path.test.ts test/implicit-root.test.ts test/release-repairs.test.ts test/marks-lineage.test.ts test/share-refused.test.ts test/kept-zero-moved.test.ts test/observed.test.ts test/walk.test.ts test/kept-zero.test.ts test/adopt.test.ts test/asking.test.ts test/mcp-transport.test.ts test/runtime-resolution.test.ts test/executable.test.ts test/share-bundle.test.ts test/source-policy.test.ts test/world-standing.test.ts test/standalone-bundle.test.ts test/platform-support.test.ts
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,7 +32,6 @@ jobs:
       - name: Require every test file in exactly one shard
         run: diff <(printf '%s\n' $SHARD_1 $SHARD_2 $SHARD_3 $SHARD_4 $SHARD_5 $SHARD_6 | sort) <(ls test/*.test.ts | sort)
       - run: npm ci --ignore-scripts
-      - uses: ./.github/actions/verified-runtime
       - run: npm run build
       - name: Verify pinned compiler test fixtures without claiming producer publication
         run: |
@@ -67,7 +66,6 @@ jobs:
         with:
           node-version: 22
       - run: npm ci --ignore-scripts
-      - uses: ./.github/actions/verified-runtime
       - run: npm run build
       - name: Verify pinned compiler test fixtures without claiming producer publication
         run: |
@@ -90,7 +88,6 @@ jobs:
         with:
           node-version: 22
       - run: npm ci --ignore-scripts
-      - uses: ./.github/actions/verified-runtime
       - name: Verify pinned compiler test fixtures without claiming producer publication
         run: |
           set -euo pipefail
@@ -112,7 +109,8 @@ jobs:
             stage="$RUNNER_TEMP/stage-$n"
             mkdir -p "$stage"
             tar -xzf "$archive" -C "$stage" --strip-components 1
-            STAGE="$stage" OUTPUT="$RUNNER_TEMP/packed-$n.mcpb" "$stage/runtime/node" --input-type=module <<'NODE'
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$stage/node_modules"
+            STAGE="$stage" OUTPUT="$RUNNER_TEMP/packed-$n.mcpb" node --input-type=module <<'NODE'
           import { readFileSync, writeFileSync } from 'node:fs';
           import { join } from 'node:path';
           import { pathToFileURL } from 'node:url';

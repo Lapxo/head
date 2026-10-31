@@ -93,7 +93,7 @@ jobs:
             stage="$RUNNER_TEMP/stage-$n"
             mkdir -p "$stage"
             tar -xzf "$RUNNER_TEMP/release/$ARCHIVE" -C "$stage" --strip-components 1
-            STAGE="$stage" OUTPUT="$RUNNER_TEMP/packed-$n.mcpb" "$stage/runtime/node" --input-type=module <<'NODE'
+            STAGE="$stage" OUTPUT="$RUNNER_TEMP/packed-$n.mcpb" node --input-type=module <<'NODE'
           import { readFileSync, writeFileSync } from 'node:fs';
           import { join } from 'node:path';
           import { pathToFileURL } from 'node:url';

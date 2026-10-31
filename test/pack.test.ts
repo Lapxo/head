@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import { lock, root } from './place.ts';
 import { members, valueOf } from '../src/core/lock.ts';
-import { runtimePortAt, verifiedRuntime, digest } from '../src/ports/adapters/runtime.ts';
+import { runtimePortAt, verifiedRuntime } from '../src/ports/adapters/runtime.ts';
 import { canonical, parse } from '@lapxo/topos/wire';
 
 type File = { readonly path: string; readonly bytes: Uint8Array };
@@ -55,11 +55,10 @@ test('a pack carries no literal past the lock-s ceilings — no key or token, no
   finally { rmSync(cache, { recursive: true, force: true }); }
   const packed = read(names!);
   const port = runtimePortAt(root, valueOf(lock, 'dep/runtime-bundle')), selected = new Map(packed.map(file => [file.path, file.bytes]));
-  const verified = verifiedRuntime({ ...port, take: path => selected.get(path) ?? port.take(path) }), provenance = JSON.parse(readFileSync(join(root, 'runtime.lock.json'), 'utf8'));
-  ok(verified.execution && verified.execution.version === provenance.version, 'the packaged executable has a declared runtime version');
-  deepStrictEqual(packed.filter(file => file.path.startsWith('runtime/')).map(file => file.path).sort(), ['runtime/LICENSE', 'runtime/node']);
-  for (const member of [provenance.executable, provenance.license]) deepStrictEqual(digest(selected.get(member.path)!), 'sha256:' + member.sha256, 'third-party bytes match their fixed distribution provenance');
-  deepStrictEqual(statSync(join(root, 'runtime/node')).mode & 0o7777, 0o755, 'only the declared safe executable mode');
+  const verified = verifiedRuntime({ ...port, take: path => selected.get(path) ?? port.take(path) });
+  deepStrictEqual(verified.execution, undefined, 'the package uses a client or installed Node');
+  deepStrictEqual(packed.filter(file => file.path.startsWith('runtime/')), [], 'no Node binary or bundled runtime is delivered');
+  ok(!JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).bundleDependencies, 'npm resolves dependencies normally');
   for (const file of packed.filter(file => file.path.startsWith('node_modules/'))) ok(verified.files.has(file.path) || verified.auxiliary.has(file.path), `unselected third-party member ${file.path}`);
   const own = packed.filter(file => !file.path.startsWith('runtime/') && !file.path.startsWith('node_modules/'));
   const carried = [...own, ...read(['receipts.bound', ...entries(['src'])])];

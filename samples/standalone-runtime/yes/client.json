@@ -1,8 +1,18 @@
 {
-  "protocol": "head-standalone-runtime-capture@1",
-  "status": "Regional installed metadata successor for selected0.2.3; original key/runtime code checks retained separately; not final artifact or Desktop acceptance",
+  "protocol": "head-system-node-capture@1",
+  "deployment": "requires-compatible-installed-node",
   "desktopUIAcceptance": false,
   "ownerAdmitted": false,
+  "policyScopes": [
+    "platform/supported",
+    "dep/runtime-bundle",
+    "dep/bound",
+    "dep/bound/installed",
+    "sources/bound",
+    "bound/wait",
+    "bound/printed"
+  ],
+  "policy": "sha256:755523645bd8790e1b40b43ce4313a1c52e685fa5ae6c3227e11d820bdd55ef2",
   "inputs": [
     {
       "path": "dist/src/access/contract.d.ts",
@@ -290,7 +300,7 @@
     },
     {
       "path": "dist/src/index.js",
-      "sha256": "sha256:331bb0e53e0964e8fdcbbbc43dd0cb874433e7db5f26ea98af6c92dfb6e7d3b8"
+      "sha256": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
     },
     {
       "path": "dist/src/kept/kept.d.ts",
@@ -491,6 +501,14 @@
     {
       "path": "dist/src/ports/documents.js",
       "sha256": "sha256:094b4796a51ecd7fefd6b3404ab56db985497e954c4fcc181d993195d6faebc6"
+    },
+    {
+      "path": "dist/src/ports/executable.d.ts",
+      "sha256": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
+    },
+    {
+      "path": "dist/src/ports/executable.js",
+      "sha256": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -794,27 +812,23 @@
     },
     {
       "path": "docs/contracts/standalone-runtime.json",
-      "sha256": "sha256:baad8bab77a52a419c003ceb642f3d68fd9f1628ce48af9edbbc731d0faf0006"
+      "sha256": "sha256:628342931a787e17b4d6188719300380af1bb4c6b2d24a5e6f5723ac661c0aed"
     },
     {
       "path": "manifest.json",
-      "sha256": "sha256:b1d961b367537c85f726c037fb3f1d3d4847a33641f7056d777a928626633bf3"
+      "sha256": "sha256:65b8744768f43be59c6355c71e012e83bd303f50d03ce964b64ef0508d765080"
     },
     {
       "path": "package-lock.json",
-      "sha256": "sha256:2ab1cc6b48effc9dd394a78d6f27f19d65fd8e5761935ba463589e17b1a503d5"
+      "sha256": "sha256:feb26c66dc045cc7af8ae184885956d0ecfa4e342a26caf14b215c8f2786076e"
     },
     {
       "path": "package.json",
-      "sha256": "sha256:92c93af63e0da211cf223c8886bda29cfe5e8285a6c38ba062953af6af81e3ad"
+      "sha256": "sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f"
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:6fbeaeb1949c64f0f49236edb414706ceb1e6fe4bb02a3bc4ae5c4290e373233"
-    },
-    {
-      "path": "runtime.lock.json",
-      "sha256": "sha256:16e78bcdad0fb986288120009af93d55377e47cd95b3f638e540cb3ceb923bc5"
+      "sha256": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05"
     },
     {
       "path": "src/access/contract.ts",
@@ -958,7 +972,7 @@
     },
     {
       "path": "src/index.ts",
-      "sha256": "sha256:818c4434138ce280148c4ede768c7db815f850968d6866e63365f28993de173d"
+      "sha256": "sha256:bdc8af2fd4cb46a5571bb715da5228a0ebc9f05bb38af22df2ba482a95c3df5c"
     },
     {
       "path": "src/kept/kept.ts",
@@ -1059,6 +1073,10 @@
     {
       "path": "src/ports/documents.ts",
       "sha256": "sha256:8be05f9171bf94d180dd4005369d6b63d08a98e469050fff844ea61d3b2b7b6f"
+    },
+    {
+      "path": "src/ports/executable.ts",
+      "sha256": "sha256:94369feefeb89a4c20bbbe9aee4082f8bfd8702769ba898a7a3a0b404508d6f1"
     },
     {
       "path": "src/ports/export.ts",
@@ -1217,6 +1235,10 @@
       "sha256": "sha256:4d6f7ccad44c0c513a0d0841099f5cb0cc4e47566a50345df790ba60b3c91596"
     },
     {
+      "path": "test/executable.test.ts",
+      "sha256": "sha256:e07be8882ff44b4dcd86bf4a86c260d00ab5d7aa1990e581d23e446de5e85b89"
+    },
+    {
       "path": "test/fake-keychain.ts",
       "sha256": "sha256:7377caa64cb3a9d47a419fd5396f7d5de4cfc2cced07b7c7c51d8913c376cef9"
     },
@@ -1266,245 +1288,84 @@
     },
     {
       "path": "vectors/standalone-runtime.json",
-      "sha256": "sha256:b85cdc42c49c0d8651ff44328e8d0b6883d43bc5cf01d976ff77b61ef0e4bb83"
+      "sha256": "sha256:6c8aeaed371f933d646084cca64cc054468a99be822f5704ef240e66ccafb1a3"
     }
   ],
-  "policyScopes": [
-    "platform/supported",
-    "dep/runtime-bundle",
-    "dep/bound",
-    "dep/bound/installed",
-    "sources/bound",
-    "bound/wait",
-    "bound/printed"
-  ],
-  "policy": "sha256:b389a5de3d29323a48ae850203f930354d43544d1c9f2884dd33d2eea8f44d4c",
   "installed": {
-    "regionalPreview": true,
-    "releaseArtifact": false,
-    "ownerAdmitted": false,
-    "metadataVersion": "0.2.3",
+    "archiveSha256": "sha256:817580e87582186dfe18adc1d28bfd20682d5c669105c4d33f32739834ece545",
+    "archiveBytes": 435671,
+    "archiveMembers": 203,
     "cleanInstall": true,
     "offline": true,
     "installScripts": false,
+    "NodeBundled": false,
+    "preview": true,
+    "runtimeDescriptor": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05",
+    "allArchiveMembersIdentical": true,
+    "allRequiredRuntimeMembersVerified": true,
     "requiredMembersVerified": 4809,
-    "presentAuxiliaryVerified": 1920,
-    "executableMode": "0755",
-    "archiveSha256": "sha256:c95d658496341943459f168fcf3896d6bd67145eacc175670cfb1ff28c5d0b5e",
-    "archiveBytes": 91755302,
-    "archiveMembers": 6829,
-    "baseDigest": "sha256:b2e3088ac7f66da10a8c64b438f6318f47c8650ef503c82924925c19aa6ca77b",
-    "baseBytes": 94591240,
-    "formationMs": 12099.3145,
-    "processNode": "v24.22.2",
-    "desktopUIAcceptance": false,
-    "formationHarnessNode": "v24.14.1",
-    "bundledExecutableValidatedDirectly": true,
-    "formationRepeated": false,
-    "runtimeDescriptor": "sha256:6fbeaeb1949c64f0f49236edb414706ceb1e6fe4bb02a3bc4ae5c4290e373233"
+    "baseDigest": "sha256:54bf89942e559cd7f5c8fd93a0ba530efe51ab5f6546e878e859951a9f5429d1"
   },
   "runs": [
     {
       "node": "22",
-      "keyPlatform": "TAP version 13\n# Subtest: public key failures retain only their identifier, never raw exception output\nok 1 - public key failures retain only their identifier, never raw exception output\n  ---\n  duration_ms: 1.2055\n  type: 'test'\n  ...\n# Subtest: MCP and plain doors name a failed store without creating keys or retrying to sign the refusal\nok 2 - MCP and plain doors name a failed store without creating keys or retrying to sign the refusal\n  ---\n  duration_ms: 995.069917\n  type: 'test'\n  ...\n# Subtest: cancellation stops the signer and its hanging keychain child before returning\nok 3 - cancellation stops the signer and its hanging keychain child before returning\n  ---\n  duration_ms: 789.371583\n  type: 'test'\n  ...\n# Subtest: a public-key request is bounded by time and output, with no partial public result\nok 4 - a public-key request is bounded by time and output, with no partial public result\n  ---\n  duration_ms: 800.395\n  type: 'test'\n  ...\n# Subtest: signer launch reuses the native environment policy and does not execute inherited Node options\nok 5 - signer launch reuses the native environment policy and does not execute inherited Node options\n  ---\n  duration_ms: 588.832208\n  type: 'test'\n  ...\n# Subtest: an already cancelled public-key request never creates a key\nok 6 - an already cancelled public-key request never creates a key\n  ---\n  duration_ms: 1.042542\n  type: 'test'\n  ...\n# Subtest: an unavailable signing-key read never becomes absence or replaces a retained key\nok 7 - an unavailable signing-key read never becomes absence or replaces a retained key\n  ---\n  duration_ms: 934.516\n  type: 'test'\n  ...\n# Subtest: concurrent signer creation never overwrites the winner\nok 8 - concurrent signer creation never overwrites the winner\n  ---\n  duration_ms: 622.833959\n  type: 'test'\n  ...\n# Subtest: a store without create-if-absent refuses key creation rather than using credential update\nok 9 - a store without create-if-absent refuses key creation rather than using credential update\n  ---\n  duration_ms: 422.023791\n  type: 'test'\n  ...\n# Subtest: signing-key creation is create-if-absent while access credentials remain updateable\nok 10 - signing-key creation is create-if-absent while access credentials remain updateable\n  ---\n  duration_ms: 450.222875\n  type: 'test'\n  ...\n# Subtest: only an established missing account permits make; retained keys remain stable\nok 11 - only an established missing account permits make; retained keys remain stable\n  ---\n  duration_ms: 751.885\n  type: 'test'\n  ...\n# Subtest: the supported desktop platform is macOS; other platform ports do not imply supported operation\nok 12 - the supported desktop platform is macOS; other platform ports do not imply supported operation\n  ---\n  duration_ms: 1.66875\n  type: 'test'\n  ...\n# Subtest: an unsupported environment refuses before key lookup, elicitation, founding or card checks\nok 13 - an unsupported environment refuses before key lookup, elicitation, founding or card checks\n  ---\n  duration_ms: 19.547584\n  type: 'test'\n  ...\n1..13\n# tests 13\n# suites 0\n# pass 13\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 3401.138\n",
-      "runtime": "TAP version 13\n# Subtest: runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 1 - runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 145.270875\n  type: 'test'\n  ...\n# Subtest: runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 2 - runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 120.766417\n  type: 'test'\n  ...\n# Subtest: standalone container manifest uses its declared executable and preserves its executable mode\nok 3 - standalone container manifest uses its declared executable and preserves its executable mode\n  ---\n  duration_ms: 141.019\n  type: 'test'\n  ...\n# Subtest: standalone runtime refuses altered or absent bytes and execution-policy substitutions\nok 4 - standalone runtime refuses altered or absent bytes and execution-policy substitutions\n  ---\n  duration_ms: 0.982375\n  type: 'test'\n  ...\n# Subtest: optional development members are checked when present but are never executable runtime members\nok 5 - optional development members are checked when present but are never executable runtime members\n  ---\n  duration_ms: 0.505875\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 491.949834\n",
-      "recipient": {
-        "protocol": "head-standalone-recipient-preparation@1",
-        "archive": "sha256:b2e3088ac7f66da10a8c64b438f6318f47c8650ef503c82924925c19aa6ca77b",
-        "harnessNode": "v22.23.3",
-        "childRuntime": "v24.22.2",
-        "syntheticKeychain": true,
-        "desktopUIAcceptance": false,
-        "ownerAdmitted": false,
-        "node": "22.23.3",
-        "domains": [
-          {
-            "domain": "records",
-            "lexicalAliasCalls": true,
-            "returnedCardFresh": true,
-            "credentialMatchesOwnIssuer": true,
-            "importConsentCount": 1,
-            "importCalls": 0,
-            "restartedWithSameKeychain": true,
-            "admittedKeysUnchanged": true,
-            "rootAccountPublicMatches": true,
-            "senderDifferentNameAndFolderAuthenticated": true,
-            "accessOrder": [
-              "origin",
-              "email",
-              "otp",
-              "workspaceId"
-            ],
-            "selectedServerOnly": true,
-            "loginCalls": 3,
-            "accessReceiptObserved": true,
-            "accessReceiptScope": "access/session/obtained",
-            "accessReceiptKey": "head",
-            "credentialReusedAcrossProcesses": true,
-            "freshWrongKeychainRefused": true,
-            "wrongKeychainBlockedBeforeAuthority": true,
-            "credentialCanaryAbsentFromAnswers": true,
-            "credentialCanaryAbsentFromEvidence": true,
-            "localName": "bundle-records-desk",
-            "associationPackageName": "records-desk",
-            "associatedPlaceAndListedDirectoryAgree": true,
-            "packageNameIsNotPlaceName": true,
-            "consistentLocalPlaceName": true
-          },
-          {
-            "domain": "readings",
-            "lexicalAliasCalls": true,
-            "returnedCardFresh": true,
-            "credentialMatchesOwnIssuer": true,
-            "importConsentCount": 1,
-            "importCalls": 0,
-            "restartedWithSameKeychain": true,
-            "admittedKeysUnchanged": true,
-            "rootAccountPublicMatches": true,
-            "senderDifferentNameAndFolderAuthenticated": true,
-            "accessOrder": [
-              "origin",
-              "email",
-              "otp",
-              "workspaceId"
-            ],
-            "selectedServerOnly": true,
-            "loginCalls": 3,
-            "accessReceiptObserved": true,
-            "accessReceiptScope": "access/session/obtained",
-            "accessReceiptKey": "head",
-            "credentialReusedAcrossProcesses": true,
-            "freshWrongKeychainRefused": true,
-            "wrongKeychainBlockedBeforeAuthority": true,
-            "credentialCanaryAbsentFromAnswers": true,
-            "credentialCanaryAbsentFromEvidence": true,
-            "localName": "bundle-readings-desk",
-            "associationPackageName": "readings-desk",
-            "associatedPlaceAndListedDirectoryAgree": true,
-            "packageNameIsNotPlaceName": true,
-            "consistentLocalPlaceName": true
-          }
-        ],
-        "pathAliases": true,
-        "persistentKeychain": true,
-        "realAccountsUsed": false,
-        "coverageWidened": false,
-        "productModified": false
-      },
-      "metadataRevalidation": {
-        "freshRecipientCapture": "sha256:e7878ed5edbaa2b716cb5e125066efcb90135861d1fd1af62573db450bdc9020",
-        "originalKeyAndRuntimeTestsRetained": true,
-        "originalInputState": "sha256:924ff211248e8264a31a0b487fa5259906c48a425acf505a78f52e851998f409",
-        "producerSourceAndUnitTestsByteIdentical": true
-      }
+      "focused": "TAP version 13\n# Subtest: installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\nok 1 - installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\n  ---\n  duration_ms: 1750.297125\n  type: 'test'\n  ...\n# Subtest: whole-entry relaunch preserves exit status and strips runtime injection variables\nok 2 - whole-entry relaunch preserves exit status and strips runtime injection variables\n  ---\n  duration_ms: 77.866416\n  type: 'test'\n  ...\n# Subtest: public key failures retain only their identifier, never raw exception output\nok 3 - public key failures retain only their identifier, never raw exception output\n  ---\n  duration_ms: 2.041584\n  type: 'test'\n  ...\n# Subtest: MCP and plain doors name a failed store without creating keys or retrying to sign the refusal\nok 4 - MCP and plain doors name a failed store without creating keys or retrying to sign the refusal\n  ---\n  duration_ms: 947.73375\n  type: 'test'\n  ...\n# Subtest: cancellation stops the signer and its hanging keychain child before returning\nok 5 - cancellation stops the signer and its hanging keychain child before returning\n  ---\n  duration_ms: 631.508666\n  type: 'test'\n  ...\n# Subtest: a public-key request is bounded by time and output, with no partial public result\nok 6 - a public-key request is bounded by time and output, with no partial public result\n  ---\n  duration_ms: 1270.514375\n  type: 'test'\n  ...\n# Subtest: signer launch reuses the native environment policy and does not execute inherited Node options\nok 7 - signer launch reuses the native environment policy and does not execute inherited Node options\n  ---\n  duration_ms: 399.171917\n  type: 'test'\n  ...\n# Subtest: an already cancelled public-key request never creates a key\nok 8 - an already cancelled public-key request never creates a key\n  ---\n  duration_ms: 0.770166\n  type: 'test'\n  ...\n# Subtest: an unavailable signing-key read never becomes absence or replaces a retained key\nok 9 - an unavailable signing-key read never becomes absence or replaces a retained key\n  ---\n  duration_ms: 1147.917042\n  type: 'test'\n  ...\n# Subtest: concurrent signer creation never overwrites the winner\nok 10 - concurrent signer creation never overwrites the winner\n  ---\n  duration_ms: 908.610417\n  type: 'test'\n  ...\n# Subtest: a store without create-if-absent refuses key creation rather than using credential update\nok 11 - a store without create-if-absent refuses key creation rather than using credential update\n  ---\n  duration_ms: 519.862417\n  type: 'test'\n  ...\n# Subtest: signing-key creation is create-if-absent while access credentials remain updateable\nok 12 - signing-key creation is create-if-absent while access credentials remain updateable\n  ---\n  duration_ms: 278.456083\n  type: 'test'\n  ...\n# Subtest: only an established missing account permits make; retained keys remain stable\nok 13 - only an established missing account permits make; retained keys remain stable\n  ---\n  duration_ms: 755.865625\n  type: 'test'\n  ...\n# Subtest: a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest\nok 14 - a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest\n  ---\n  duration_ms: 746.347791\n  type: 'test'\n  ...\n# literal/org unread: this device keeps no private list (HEAD_PRIVATE_LITERALS)\n# read 303 files, 203 of them packed\n# Subtest: no: each literal a pack must not carry is found by name — a planted key, path, host, private name and world-s bytes each count once\nok 15 - no: each literal a pack must not carry is found by name — a planted key, path, host, private name and world-s bytes each count once\n  ---\n  duration_ms: 0.168417\n  type: 'test'\n  ...\n# Subtest: literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found\nok 16 - literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found\n  ---\n  duration_ms: 0.088791\n  type: 'test'\n  ...\n# Subtest: public document references grant no permission to place those origins in code or altered documents\nok 17 - public document references grant no permission to place those origins in code or altered documents\n  ---\n  duration_ms: 0.142584\n  type: 'test'\n  ...\n# Subtest: the supported desktop platform is macOS; other platform ports do not imply supported operation\nok 18 - the supported desktop platform is macOS; other platform ports do not imply supported operation\n  ---\n  duration_ms: 3.457208\n  type: 'test'\n  ...\n# Subtest: an unsupported environment refuses before key lookup, elicitation, founding or card checks\nok 19 - an unsupported environment refuses before key lookup, elicitation, founding or card checks\n  ---\n  duration_ms: 29.109417\n  type: 'test'\n  ...\n# Subtest: runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 20 - runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 230.179792\n  type: 'test'\n  ...\n# Subtest: runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 21 - runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 161.90525\n  type: 'test'\n  ...\n# Subtest: standalone container manifest uses its declared executable and preserves its executable mode\nok 22 - standalone container manifest uses its declared executable and preserves its executable mode\n  ---\n  duration_ms: 254.115\n  type: 'test'\n  ...\n# Subtest: standalone runtime refuses altered or absent bytes and execution-policy substitutions\nok 23 - standalone runtime refuses altered or absent bytes and execution-policy substitutions\n  ---\n  duration_ms: 1.60125\n  type: 'test'\n  ...\n# Subtest: optional development members are checked when present but are never executable runtime members\nok 24 - optional development members are checked when present but are never executable runtime members\n  ---\n  duration_ms: 0.983375\n  type: 'test'\n  ...\n1..24\n# tests 24\n# suites 0\n# pass 24\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 3939.57125\n",
+      "complete": "TAP version 13\n# Subtest: the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\nok 1 - the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\n  ---\n  duration_ms: 22409.973458\n  type: 'test'\n  ...\n# Subtest: the installed extension shares with its original pinned runtime inventory, independent of installer metadata\nok 2 - the installed extension shares with its original pinned runtime inventory, independent of installer metadata\n  ---\n  duration_ms: 55251.828042\n  type: 'test'\n  ...\n# Subtest: received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\nok 3 - received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\n  ---\n  duration_ms: 115860.513917\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 193996.165875\n",
+      "electronSimulated": true,
+      "hostExecPath": "/unlaunchable/host-helper",
+      "realDesktop": false,
+      "missingAndIncompatibleNodeRefused": true,
+      "privateErrorOutputExcluded": true,
+      "environmentSanitized": true
     },
     {
       "node": "24",
-      "keyPlatform": "✔ public key failures retain only their identifier, never raw exception output (1.013541ms)\n✔ MCP and plain doors name a failed store without creating keys or retrying to sign the refusal (496.654542ms)\n✔ cancellation stops the signer and its hanging keychain child before returning (325.672417ms)\n✔ a public-key request is bounded by time and output, with no partial public result (681.582541ms)\n✔ signer launch reuses the native environment policy and does not execute inherited Node options (270.567167ms)\n✔ an already cancelled public-key request never creates a key (0.725542ms)\n✔ an unavailable signing-key read never becomes absence or replaces a retained key (739.215666ms)\n✔ concurrent signer creation never overwrites the winner (494.034584ms)\n✔ a store without create-if-absent refuses key creation rather than using credential update (266.513042ms)\n✔ signing-key creation is create-if-absent while access credentials remain updateable (141.619291ms)\n✔ only an established missing account permits make; retained keys remain stable (700.872791ms)\n✔ the supported desktop platform is macOS; other platform ports do not imply supported operation (1.6785ms)\n✔ an unsupported environment refuses before key lookup, elicitation, founding or card checks (23.194667ms)\nℹ tests 13\nℹ suites 0\nℹ pass 13\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2604.662375\n",
-      "runtime": "✔ runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse (137.90525ms)\n✔ runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse (116.734792ms)\n✔ standalone container manifest uses its declared executable and preserves its executable mode (125.228125ms)\n✔ standalone runtime refuses altered or absent bytes and execution-policy substitutions (0.751792ms)\n✔ optional development members are checked when present but are never executable runtime members (0.441666ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 460.458125\n",
-      "recipient": {
-        "protocol": "head-standalone-recipient-preparation@1",
-        "archive": "sha256:b2e3088ac7f66da10a8c64b438f6318f47c8650ef503c82924925c19aa6ca77b",
-        "harnessNode": "v24.14.1",
-        "childRuntime": "v24.22.2",
-        "syntheticKeychain": true,
-        "desktopUIAcceptance": false,
-        "ownerAdmitted": false,
-        "node": "24.14.1",
-        "domains": [
-          {
-            "domain": "records",
-            "lexicalAliasCalls": true,
-            "returnedCardFresh": true,
-            "credentialMatchesOwnIssuer": true,
-            "importConsentCount": 1,
-            "importCalls": 0,
-            "restartedWithSameKeychain": true,
-            "admittedKeysUnchanged": true,
-            "rootAccountPublicMatches": true,
-            "senderDifferentNameAndFolderAuthenticated": true,
-            "accessOrder": [
-              "origin",
-              "email",
-              "otp",
-              "workspaceId"
-            ],
-            "selectedServerOnly": true,
-            "loginCalls": 3,
-            "accessReceiptObserved": true,
-            "accessReceiptScope": "access/session/obtained",
-            "accessReceiptKey": "head",
-            "credentialReusedAcrossProcesses": true,
-            "freshWrongKeychainRefused": true,
-            "wrongKeychainBlockedBeforeAuthority": true,
-            "credentialCanaryAbsentFromAnswers": true,
-            "credentialCanaryAbsentFromEvidence": true,
-            "localName": "bundle-records-desk",
-            "associationPackageName": "records-desk",
-            "associatedPlaceAndListedDirectoryAgree": true,
-            "packageNameIsNotPlaceName": true,
-            "consistentLocalPlaceName": true
-          },
-          {
-            "domain": "readings",
-            "lexicalAliasCalls": true,
-            "returnedCardFresh": true,
-            "credentialMatchesOwnIssuer": true,
-            "importConsentCount": 1,
-            "importCalls": 0,
-            "restartedWithSameKeychain": true,
-            "admittedKeysUnchanged": true,
-            "rootAccountPublicMatches": true,
-            "senderDifferentNameAndFolderAuthenticated": true,
-            "accessOrder": [
-              "origin",
-              "email",
-              "otp",
-              "workspaceId"
-            ],
-            "selectedServerOnly": true,
-            "loginCalls": 3,
-            "accessReceiptObserved": true,
-            "accessReceiptScope": "access/session/obtained",
-            "accessReceiptKey": "head",
-            "credentialReusedAcrossProcesses": true,
-            "freshWrongKeychainRefused": true,
-            "wrongKeychainBlockedBeforeAuthority": true,
-            "credentialCanaryAbsentFromAnswers": true,
-            "credentialCanaryAbsentFromEvidence": true,
-            "localName": "bundle-readings-desk",
-            "associationPackageName": "readings-desk",
-            "associatedPlaceAndListedDirectoryAgree": true,
-            "packageNameIsNotPlaceName": true,
-            "consistentLocalPlaceName": true
-          }
-        ],
-        "pathAliases": true,
-        "persistentKeychain": true,
-        "realAccountsUsed": false,
-        "coverageWidened": false,
-        "productModified": false
-      },
-      "metadataRevalidation": {
-        "freshRecipientCapture": "sha256:36b346864fc78998a88d3eb5af976e34011ca9d599a3394f5cf32b4b7aa530e3",
-        "originalKeyAndRuntimeTestsRetained": true,
-        "originalInputState": "sha256:924ff211248e8264a31a0b487fa5259906c48a425acf505a78f52e851998f409",
-        "producerSourceAndUnitTestsByteIdentical": true
-      }
+      "focused": "✔ installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output (1584.973875ms)\n✔ whole-entry relaunch preserves exit status and strips runtime injection variables (87.24025ms)\n✔ public key failures retain only their identifier, never raw exception output (4.432542ms)\n✔ MCP and plain doors name a failed store without creating keys or retrying to sign the refusal (1138.295666ms)\n✔ cancellation stops the signer and its hanging keychain child before returning (649.179125ms)\n✔ a public-key request is bounded by time and output, with no partial public result (1179.160375ms)\n✔ signer launch reuses the native environment policy and does not execute inherited Node options (414.956875ms)\n✔ an already cancelled public-key request never creates a key (0.951542ms)\n✔ an unavailable signing-key read never becomes absence or replaces a retained key (1148.961542ms)\n✔ concurrent signer creation never overwrites the winner (767.552625ms)\n✔ a store without create-if-absent refuses key creation rather than using credential update (451.305875ms)\n✔ signing-key creation is create-if-absent while access credentials remain updateable (286.430667ms)\n✔ only an established missing account permits make; retained keys remain stable (817.636625ms)\n✔ a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest (977.843792ms)\nℹ literal/org unread: this device keeps no private list (HEAD_PRIVATE_LITERALS)\nℹ read 303 files, 203 of them packed\n✔ no: each literal a pack must not carry is found by name — a planted key, path, host, private name and world-s bytes each count once (0.196334ms)\n✔ literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found (0.108334ms)\n✔ public document references grant no permission to place those origins in code or altered documents (0.179417ms)\n✔ the supported desktop platform is macOS; other platform ports do not imply supported operation (1.611542ms)\n✔ an unsupported environment refuses before key lookup, elicitation, founding or card checks (62.18625ms)\n✔ runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse (242.941208ms)\n✔ runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse (160.601958ms)\n✔ standalone container manifest uses its declared executable and preserves its executable mode (234.697417ms)\n✔ standalone runtime refuses altered or absent bytes and execution-policy substitutions (0.806666ms)\n✔ optional development members are checked when present but are never executable runtime members (0.472458ms)\nℹ tests 24\nℹ suites 0\nℹ pass 24\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 3909.722459\n",
+      "complete": "✔ the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer (22637.910083ms)\n✔ the installed extension shares with its original pinned runtime inventory, independent of installer metadata (54979.253542ms)\n✔ received APIs use one persistent recipient keychain across import and access processes, without inheriting authority (116148.432875ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 194278.496542\n",
+      "electronSimulated": true,
+      "hostExecPath": "/unlaunchable/host-helper",
+      "realDesktop": false,
+      "missingAndIncompatibleNodeRefused": true,
+      "privateErrorOutputExcluded": true,
+      "environmentSanitized": true
     }
   ],
   "open": [
-    "Real Desktop and OS keychain acceptance",
-    "Intel execution",
-    "Affected historical readers and first-minute successors",
-    "Owner Root admission",
-    "Final version and exact release artifact",
+    "Requires installed Node under Electron",
+    "Real Desktop and OS keychain",
+    "Intel",
     "T2",
     "L6"
   ],
+  "status": "Prepared system-Node successor; original runs retain their execution identity; not final release, Root admission or real Desktop acceptance",
   "predecessor": {
-    "sha256": "sha256:924ff211248e8264a31a0b487fa5259906c48a425acf505a78f52e851998f409",
-    "preserved": true,
-    "originalExecutionsNotRelabeled": true
+    "sha256": "sha256:37703c3eb08fd161ea5e7da602c9e54bceecf35d78cbb10c763d92cf45fa9ccf",
+    "allHistoricalRunsAndFailuresPreserved": true
+  },
+  "systemNodeRevalidation": [
+    {
+      "node": "22",
+      "output": "TAP version 13\n# Subtest: the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\nok 1 - the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\n  ---\n  duration_ms: 22409.973458\n  type: 'test'\n  ...\n# Subtest: the installed extension shares with its original pinned runtime inventory, independent of installer metadata\nok 2 - the installed extension shares with its original pinned runtime inventory, independent of installer metadata\n  ---\n  duration_ms: 55251.828042\n  type: 'test'\n  ...\n# Subtest: received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\nok 3 - received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\n  ---\n  duration_ms: 115860.513917\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 193996.165875\n",
+      "hostExecPath": "/unlaunchable/host-helper",
+      "newInstalledExecution": true
+    },
+    {
+      "node": "24",
+      "output": "✔ the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer (22637.910083ms)\n✔ the installed extension shares with its original pinned runtime inventory, independent of installer metadata (54979.253542ms)\n✔ received APIs use one persistent recipient keychain across import and access processes, without inheriting authority (116148.432875ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 194278.496542\n",
+      "hostExecPath": "/unlaunchable/host-helper",
+      "newInstalledExecution": true
+    }
+  ],
+  "evidenceReuse": {
+    "model": "Explicit system-Node deployment successor. Original domain/client vectors and measurements remain historical with their original artifact identities. Only current installed six-cell, current four MCP reads and complete Electron-relay export/login regressions are fresh.",
+    "changedProduction": [
+      "src/index.ts",
+      "src/ports/executable.ts",
+      "dist/src/index.js",
+      "dist/src/ports/executable.js",
+      "dist/src/ports/executable.d.ts"
+    ],
+    "originalNativeRuntime": "Embedded Node24.22.2 is historical, not reused as proof of installed Node.",
+    "RootChanged": false
   }
 }
