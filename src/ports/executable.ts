@@ -34,9 +34,10 @@ export function systemNode(directories?: readonly string[], options: NodeLocatio
   const until = performance.now() + 2000, seen = new Set<string>(), selected = directories ?? nodeDirectories(options, until);
   const platform = options.platform ?? process.platform;
   const searched = directories ? ['explicit runtime locations'] : ['PATH', ...(platform === 'darwin' ? ['/opt/homebrew/bin', '/usr/local/bin', '/opt/homebrew/opt/node*/bin', '/usr/local/opt/node*/bin'] : []), '~/.nvm/versions/node/*/bin', '~/.volta/bin', '~/.local/share/fnm/node-versions/*/installation/bin', '~/.asdf/shims', ...(platform === 'win32' ? ['%ProgramFiles%/nodejs'] : [])];
+  const checkBudget = () => { if (performance.now() >= until) throw new RuntimeNodeRequired('budget', searched); };
   let best: { path: string; version: number[] } | undefined;
   for (const directory of selected) {
-    if (performance.now() >= until) throw new RuntimeNodeRequired('budget', searched);
+    checkBudget();
     if (!isAbsolute(directory)) continue;
     try {
       const path = realpathSync(join(directory, (options.platform ?? process.platform) === 'win32' ? 'node.exe' : 'node'));
@@ -53,7 +54,7 @@ export function systemNode(directories?: readonly string[], options: NodeLocatio
       if (difference > 0) best = { path, version };
     } catch { /* Candidate exceptions and output never become diagnostic content. */ }
   }
-  if (performance.now() >= until) throw new RuntimeNodeRequired('budget', searched);
+  checkBudget();
   if (best) return best.path;
   throw new RuntimeNodeRequired('missing', searched);
 }

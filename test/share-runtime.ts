@@ -9,7 +9,7 @@ const policyOf = (bytes: string) => hash(fields(bytes).filter(f => f.scope?.star
 export function run(place: string) {
   verifyRuntimeInventory('dependency/runtime-inventory');
   const bytes = readFileSync('samples/share-runtime/yes/client.json');
-  if (hash(bytes) !== 'sha256:5c0af15d07eea40e10d8f6485e36fa8546f26847b0c3394318750b7ce7c4259f') throw Error('REFUSE·share-runtime capture digest');
+  if (hash(bytes) !== 'sha256:e2799a85414b3dae9fa1aee31b120bb0e0632dc505117d90c183934ce4653193') throw Error('REFUSE·share-runtime capture digest');
   const capture = JSON.parse(bytes.toString());
   if (capture.protocol !== 'head-share-runtime-capture@1' || capture.runs.length !== 2 || new Set(capture.runs.map((r: { node: string }) => r.node)).size !== 2) throw Error('REFUSE·share-runtime capture');
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·share-runtime current input ' + input.path);

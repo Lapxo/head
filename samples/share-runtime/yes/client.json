@@ -496,7 +496,7 @@
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:d414cc8cbf98afa73912c81cdee0cbde99a088f8511a9d6df03bbab9b43ffb8c"
+      "sha256": "sha256:5484bc04685e74d203aa156554acfbf6554236a0142d1bf8679154010f8a3362"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -1056,7 +1056,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742"
+      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
     },
     {
       "path": "src/ports/export.ts",
@@ -1235,8 +1235,8 @@
       "sha256": "sha256:250484c533ffc90d8dd1c76443de5da54c3ab2fc0e099509c146093f52611747"
     }
   ],
-  "policy": "sha256:a8decbdda3c14b87d01bcdc55b04f62fd9dbf1cfcd4448be5706ea867a3703fe",
-  "runtimeInventory": "sha256:205b3739d3d3a445e80fbdab53c30c6fbdd073750d618471b07c11e7cda604cc",
+  "policy": "sha256:4f3f8ccfbcd7e917ce7a5148f715e0e91d573ec686269dcb7f6c7f2ea29f5e48",
+  "runtimeInventory": "sha256:b1b951c1b257928d032badcea613ffcb7a3c7e77ea52cb19c47e30a277d6d47b",
   "baseArtifact": {
     "sha256": "sha256:54bf89942e559cd7f5c8fd93a0ba530efe51ab5f6546e878e859951a9f5429d1",
     "bytes": 13147775
@@ -1424,22 +1424,21 @@
       "currentMessagePortGate": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12"
     }
   ],
-  "status": "Prepared JavaScript-stream relay successor; original runs remain historical, fresh real Electron gate is separate; not final release, Root admission or Desktop acceptance",
+  "status": "Prepared deadline-guard factoring successor; original runs remain at their historical artifact identity. No new timed or full consumer matrix is claimed. Regional installed bytes and real Electron availability are newly verified; not Root admission or final delivery.",
   "predecessor": {
-    "sha256": "sha256:4ab3845286251ba80e0ed6b7f0c73c0f298872cd844c53c6d134773e949a7bcf",
+    "sha256": "sha256:5c0af15d07eea40e10d8f6485e36fa8546f26847b0c3394318750b7ce7c4259f",
     "allHistoricalRunsAndFailuresPreserved": true
   },
   "fixture": "Pinned public world blobs verified by digest and seeded into the isolated sender before compilation; no new network permission or third-party connection",
   "policySnapshots": [
-    "sha256:a8decbdda3c14b87d01bcdc55b04f62fd9dbf1cfcd4448be5706ea867a3703fe"
+    "sha256:4f3f8ccfbcd7e917ce7a5148f715e0e91d573ec686269dcb7f6c7f2ea29f5e48"
   ],
   "historicalRuntimeInventory": "sha256:f20d82a86d78a47086e5d043def1be3799d9132922c6227cfbc6186fdd6233cc",
   "evidenceReuse": {
-    "model": "MessagePort relay successor. Original domain matrices and simulated-host runs remain historical at their original artifact identities. Fresh installed first cells and isolated MCP reads, plus real Electron utilityProcess export/receive/login evidence, cover the changed deployment. No Desktop or new complete MCP matrix is claimed.",
+    "model": "Only factor two identical deadline checkpoints into one shared body. Previous first-cell, MCP and complete consumer runs retain their actual artifact identities. Inlining the helper restores the previously tested source byte for byte. Fresh installed-byte verification, focused controls, unchanged surface guard and two real Electron availability cases cover this refactor; no fresh timed or complete domain matrices are claimed.",
     "changedProduction": [
-      "src/index.ts",
       "src/ports/executable.ts",
-      "src/ports/adapters/protocol.ts"
+      "dist/src/ports/executable.js"
     ],
     "historicalExecutionsRelabeled": false,
     "fullElectronGateSha256": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
@@ -1487,11 +1486,11 @@
     "focused": [
       {
         "node": "22",
-        "output": "TAP version 13\n# Subtest: installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\nok 1 - installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\n  ---\n  duration_ms: 910.132334\n  type: 'test'\n  ...\n# Subtest: whole-entry relaunch preserves exit status and strips runtime injection variables\nok 2 - whole-entry relaunch preserves exit status and strips runtime injection variables\n  ---\n  duration_ms: 82.597\n  type: 'test'\n  ...\n# Subtest: relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\nok 3 - relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\n  ---\n  duration_ms: 258.901875\n  type: 'test'\n  ...\n# Subtest: runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\nok 4 - runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\n  ---\n  duration_ms: 859.569042\n  type: 'test'\n  ...\n# Subtest: a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest\nok 5 - a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest\n  ---\n  duration_ms: 427.95275\n  type: 'test'\n  ...\n# literal/org unread: this device keeps no private list (HEAD_PRIVATE_LITERALS)\n# read 303 files, 203 of them packed\n# Subtest: no: each literal a pack must not carry is found by name — a planted key, path, host, private name and world-s bytes each count once\nok 6 - no: each literal a pack must not carry is found by name — a planted key, path, host, private name and world-s bytes each count once\n  ---\n  duration_ms: 0.162334\n  type: 'test'\n  ...\n# Subtest: literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found\nok 7 - literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found\n  ---\n  duration_ms: 0.089708\n  type: 'test'\n  ...\n# Subtest: public document references grant no permission to place those origins in code or altered documents\nok 8 - public document references grant no permission to place those origins in code or altered documents\n  ---\n  duration_ms: 0.130625\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 2289.95325\n"
+        "output": "TAP version 13\n# Subtest: installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\nok 1 - installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\n  ---\n  duration_ms: 1102.321542\n  type: 'test'\n  ...\n# Subtest: whole-entry relaunch preserves exit status and strips runtime injection variables\nok 2 - whole-entry relaunch preserves exit status and strips runtime injection variables\n  ---\n  duration_ms: 77.2865\n  type: 'test'\n  ...\n# Subtest: relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\nok 3 - relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\n  ---\n  duration_ms: 235.70775\n  type: 'test'\n  ...\n# Subtest: runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\nok 4 - runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\n  ---\n  duration_ms: 956.252792\n  type: 'test'\n  ...\n# Subtest: the supported desktop platform is macOS; other platform ports do not imply supported operation\nok 5 - the supported desktop platform is macOS; other platform ports do not imply supported operation\n  ---\n  duration_ms: 1.432875\n  type: 'test'\n  ...\n# Subtest: an unsupported environment refuses before key lookup, elicitation, founding or card checks\nok 6 - an unsupported environment refuses before key lookup, elicitation, founding or card checks\n  ---\n  duration_ms: 17.957708\n  type: 'test'\n  ...\n# Subtest: runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 7 - runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 140.309125\n  type: 'test'\n  ...\n# Subtest: runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 8 - runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 120.761875\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 2580.48475\n"
       },
       {
         "node": "24",
-        "output": "✔ installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output (814.966333ms)\n✔ whole-entry relaunch preserves exit status and strips runtime injection variables (81.239375ms)\n✔ relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host (253.469083ms)\n✔ runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers (864.471041ms)\n✔ a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest (437.259041ms)\nℹ literal/org unread: this device keeps no private list (HEAD_PRIVATE_LITERALS)\nℹ read 303 files, 203 of them packed\n✔ no: each literal a pack must not carry is found by name — a planted key, path, host, private name and world-s bytes each count once (0.188625ms)\n✔ literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found (0.10525ms)\n✔ public document references grant no permission to place those origins in code or altered documents (0.167958ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2199.755208\n"
+        "output": "✔ installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output (845.153959ms)\n✔ whole-entry relaunch preserves exit status and strips runtime injection variables (83.811417ms)\n✔ relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host (242.458958ms)\n✔ runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers (863.189458ms)\n✔ the supported desktop platform is macOS; other platform ports do not imply supported operation (1.531334ms)\n✔ an unsupported environment refuses before key lookup, elicitation, founding or card checks (20.262291ms)\n✔ runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse (136.567875ms)\n✔ runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse (121.484958ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2229.490083\n"
       }
     ],
     "historicalInheritRegression": {
@@ -1522,5 +1521,18 @@
         "sha256": "sha256:41136c1b6a8ddeabed0933d01cbdc1f12a2528d1aa9dd7d2f2a13ec185d3e799"
       }
     ]
+  },
+  "budgetGuardRefactor": {
+    "scope": "Only centralize two identical deadline checkpoints; no branch, budget, error, transport or version rule changed",
+    "beforeSource": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742",
+    "afterSource": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f",
+    "helper": "  const checkBudget = () => { if (performance.now() >= until) throw new RuntimeNodeRequired('budget', searched); };",
+    "callSites": 2,
+    "inliningRestoresPreviousSourceByteForByte": true,
+    "previousCI": "https://github.com/Lapxo/head/actions/runs/41247442620",
+    "previousCIResult": "9/10; only duplication guard failed; real Electron consumer passed",
+    "measuredDeltaLines": 1,
+    "normalNodeTimedConsumersExecuteChangedFunction": false,
+    "historicalRunsRetainTheirArtifactIdentities": true
   }
 }

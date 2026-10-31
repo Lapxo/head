@@ -1,6 +1,6 @@
 {
   "protocol": "head-mcp-receiver-capture@1",
-  "status": "Historical full MCP flows and eight visibility cases retained at their original execution identity; four fresh isolated reads exercise selected0.2.3 metadata. No new complete-flow or Desktop acceptance is claimed.",
+  "status": "Budget checkpoint factoring only. Original transport and timing executions remain historical; the changed function is not executed by the normal-Node measured source clients. No new performance or full transport matrix is claimed.",
   "inputs": [
     {
       "path": "dist/src/access/contract.d.ts",
@@ -496,7 +496,7 @@
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:d414cc8cbf98afa73912c81cdee0cbde99a088f8511a9d6df03bbab9b43ffb8c"
+      "sha256": "sha256:5484bc04685e74d203aa156554acfbf6554236a0142d1bf8679154010f8a3362"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -820,7 +820,7 @@
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:205b3739d3d3a445e80fbdab53c30c6fbdd073750d618471b07c11e7cda604cc"
+      "sha256": "sha256:b1b951c1b257928d032badcea613ffcb7a3c7e77ea52cb19c47e30a277d6d47b"
     },
     {
       "path": "src/access/contract.ts",
@@ -1068,7 +1068,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742"
+      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
     },
     {
       "path": "src/ports/export.ts",
@@ -1722,9 +1722,8 @@
     }
   },
   "predecessor": {
-    "sha256": "sha256:ab81d21b60fcce2a0c4e474aad0b6461e8d9c96a82c35155add817bde9c5bc0a",
-    "preserved": true,
-    "originalExecutionsNotRelabeled": true
+    "sha256": "sha256:6f8d57279fc2ec0e8e51cd889a4cc35d5444c0613191214521395f1f9356c457",
+    "preserved": true
   },
   "actionWithCardDiagnostics": {
     "rows": [
@@ -1886,7 +1885,21 @@
       "BoundChanged": false
     }
   },
-  "metadataRevalidation": {
+  "historicalPhysicalCapacityEvidence": null,
+  "budgetGuardRefactor": {
+    "scope": "Only centralize two identical deadline checkpoints; no branch, budget, error, transport or version rule changed",
+    "beforeSource": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742",
+    "afterSource": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f",
+    "helper": "  const checkBudget = () => { if (performance.now() >= until) throw new RuntimeNodeRequired('budget', searched); };",
+    "callSites": 2,
+    "inliningRestoresPreviousSourceByteForByte": true,
+    "previousCI": "https://github.com/Lapxo/head/actions/runs/41247442620",
+    "previousCIResult": "9/10; only duplication guard failed; real Electron consumer passed",
+    "measuredDeltaLines": 1,
+    "normalNodeTimedConsumersExecuteChangedFunction": false,
+    "historicalRunsRetainTheirArtifactIdentities": true
+  },
+  "historicalMetadataRevalidation": {
     "selectedVersion": "0.2.3",
     "regionalArtifact": "sha256:d195b335cfd9594415073bfefa68674fb606f6f40cfba28a4410cea8441b32e8",
     "runtimeDescriptor": "sha256:205b3739d3d3a445e80fbdab53c30c6fbdd073750d618471b07c11e7cda604cc",
@@ -1934,5 +1947,14 @@
     "realUtilityProcessExportReceiverAndLoginReexecuted": true,
     "all118IntervalsUnchangedBeforeProposedSourceWidening": true
   },
-  "historicalPhysicalCapacityEvidence": null
+  "evidenceReuse": {
+    "model": "Only factor two identical deadline checkpoints into one shared body. Previous first-cell, MCP and complete consumer runs retain their actual artifact identities. Inlining the helper restores the previously tested source byte for byte. Fresh installed-byte verification, focused controls, unchanged surface guard and two real Electron availability cases cover this refactor; no fresh timed or complete domain matrices are claimed.",
+    "changedProduction": [
+      "src/ports/executable.ts",
+      "dist/src/ports/executable.js"
+    ],
+    "historicalExecutionsRelabeled": false,
+    "fullElectronGateSha256": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
+    "RootChanged": false
+  }
 }

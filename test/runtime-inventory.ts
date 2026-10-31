@@ -8,7 +8,7 @@ const rows = (text: string) => text.split('\n').filter(Boolean).map(line => pars
 export function run(place: string) {
   verifyStandalone('dependency/standalone-runtime');
   const capture = readFileSync('samples/runtime-inventory/yes/client.json');
-  if (hash(capture) !== 'sha256:ad9730b1aaa277cc8da821bb8c583592e1a3b577b9b9631c3de5b85cd272a982') throw Error('REFUSE·runtime-inventory/capture');
+  if (hash(capture) !== 'sha256:e8b431254741beee1d7e1f8f21424b49d09a9009ac9b607632407b99b5144394') throw Error('REFUSE·runtime-inventory/capture');
   const receipt = JSON.parse(capture.toString());
   if (receipt.protocol !== 'head-runtime-inventory-capture@2' || receipt.runs.length !== 2 || receipt.runs.map((r: { node: string }) => r.node).sort().join('|') !== '22|24') throw Error('REFUSE·runtime-inventory/runtimes');
   for (const input of receipt.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·runtime-inventory/current-input');

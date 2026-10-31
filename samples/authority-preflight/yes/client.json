@@ -251,7 +251,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742"
+      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
     },
     {
       "path": "src/ports/export.ts",
@@ -483,7 +483,7 @@
     },
     {
       "path": "test/composition-reading.ts",
-      "sha256": "sha256:067dd7c96e24f3e7ec612a42cdbfe6fdb4d14b67ad27649fcdb219308155bd48"
+      "sha256": "sha256:0f8f42dfffff28e2e2e4643e7dd8e672d8075b7ce0dedfa042fba0f23b957728"
     },
     {
       "path": "test/composition.test.ts",
@@ -491,7 +491,7 @@
     },
     {
       "path": "test/configured-ports.ts",
-      "sha256": "sha256:d503bb8475500118b99afa565d97c9018002ca15f7e18874b25d6ab6f816e6a3"
+      "sha256": "sha256:ebbde97d7d45c89aa9fecaa79cd9be3a46f21d471c54836c4ac3b9700343e066"
     },
     {
       "path": "test/configured-receiver.test.ts",
@@ -547,7 +547,7 @@
     },
     {
       "path": "test/functional-repairs-reading.ts",
-      "sha256": "sha256:d767349d72a8bd000a389274e2dcb530ef333302a611f6ee17e7a0b34eea582d"
+      "sha256": "sha256:12c06b17dfc79b1ae93eaa7ca3be6cc871043206dcede12d8704bbf79b829373"
     },
     {
       "path": "test/gestures.test.ts",
@@ -555,7 +555,7 @@
     },
     {
       "path": "test/implicit-root-reading.ts",
-      "sha256": "sha256:92a36f32287375389b3d091d9633ba5fc29a5239cc417d335da8be03d50d0f16"
+      "sha256": "sha256:fc6b442734b03b47b65776bff64e32e3fc7809fb064b0fbc8f3257bf91070a58"
     },
     {
       "path": "test/implicit-root.test.ts",
@@ -623,7 +623,7 @@
     },
     {
       "path": "test/mcp-receiver-reading.ts",
-      "sha256": "sha256:1cfaa0a95ed35c04cd2a645a6576f547289ec8192245a742a0b507971becc0ae"
+      "sha256": "sha256:22a6d7d282d22f41abd47df627d080c48a360651bf9a621c477990a7bce63caa"
     },
     {
       "path": "test/mcp-transport.test.ts",
@@ -711,7 +711,7 @@
     },
     {
       "path": "test/receiver-access-reading.ts",
-      "sha256": "sha256:5a12c44b6ce98b5053afdde6c84a64ee3fe4ebf194fd896f4f52297e8eb8590a"
+      "sha256": "sha256:9151057dc8f4fdda98804a0dd206a31599f11ded2a7fb8448ebfc3e398d5d169"
     },
     {
       "path": "test/receiver-access.test.ts",
@@ -723,7 +723,7 @@
     },
     {
       "path": "test/receiver-runtime.ts",
-      "sha256": "sha256:b0ba530e79648f3efd1a44444915db6becb9fce47587688869234ed0ae79711e"
+      "sha256": "sha256:1b6d08db241033299a3a2c0c75198af209e91faef2920aadff0c1da73a08c782"
     },
     {
       "path": "test/receiver.test.ts",
@@ -751,7 +751,7 @@
     },
     {
       "path": "test/runtime-inventory.ts",
-      "sha256": "sha256:ddd04f6238b7b500e992ae4606d0d21c1590b8eefca50f1858d7b05e1f1106e7"
+      "sha256": "sha256:194596b5944facc87cf7793bef66b44538d84867b84c88e9a6868876391a5b30"
     },
     {
       "path": "test/runtime-resolution.test.ts",
@@ -795,7 +795,7 @@
     },
     {
       "path": "test/share-runtime.ts",
-      "sha256": "sha256:c8d85bc6c4ba63459183f54d343a291ef30dfaa2da2ff328153f34bb4322432f"
+      "sha256": "sha256:aeeca713115f5c4fa2d06c5b0d5f59e9631fd0dd941d556fff7695d400bbdddb"
     },
     {
       "path": "test/share.test.ts",
@@ -819,7 +819,7 @@
     },
     {
       "path": "test/standalone-runtime.ts",
-      "sha256": "sha256:a79efe8b0d8ae0e68968f6272c49156533a3295773c766b3a5d4e15bafbd0242"
+      "sha256": "sha256:981d9c80f9e17f524d81bcc420442638e961c32c2f2fbbeda56ddc92aa0fbb29"
     },
     {
       "path": "test/stores.test.ts",
@@ -953,17 +953,16 @@
     }
   },
   "Q4": "Domain permissions remain open; configuration preflight is not API action authorization.",
-  "status": "Historical domain-client runs retain their original artifact and execution identity. Complete current real Electron utilityProcess regressions and fresh installed first-cell/MCP reads revalidate the explicitly changed deployment; not a fresh complete domain matrix.",
+  "status": "Only budget checkpoint factoring; original executions retain their artifact identities, no new timed or complete domain matrix is claimed. Current guard, installed bytes and Electron availability are rechecked.",
   "predecessor": {
-    "sha256": "sha256:ba8df992cbf045b3d0d59808409e88aec7aaa3818da56efea7633190f45c31e9",
+    "sha256": "sha256:00d741610f5b605c972f4fd7b72ba577046a272b9af889980322d1e1f8e5834b",
     "preserved": true
   },
   "evidenceReuse": {
-    "model": "MessagePort relay successor. Original domain matrices and simulated-host runs remain historical at their original artifact identities. Fresh installed first cells and isolated MCP reads, plus real Electron utilityProcess export/receive/login evidence, cover the changed deployment. No Desktop or new complete MCP matrix is claimed.",
+    "model": "Only factor two identical deadline checkpoints into one shared body. Previous first-cell, MCP and complete consumer runs retain their actual artifact identities. Inlining the helper restores the previously tested source byte for byte. Fresh installed-byte verification, focused controls, unchanged surface guard and two real Electron availability cases cover this refactor; no fresh timed or complete domain matrices are claimed.",
     "changedProduction": [
-      "src/index.ts",
       "src/ports/executable.ts",
-      "src/ports/adapters/protocol.ts"
+      "dist/src/ports/executable.js"
     ],
     "historicalExecutionsRelabeled": false,
     "fullElectronGateSha256": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
@@ -1207,5 +1206,18 @@
       "hostExecPath": "/unlaunchable/host-helper"
     }
   ],
-  "messagePortRevalidationDigest": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12"
+  "messagePortRevalidationDigest": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
+  "budgetGuardRefactor": {
+    "scope": "Only centralize two identical deadline checkpoints; no branch, budget, error, transport or version rule changed",
+    "beforeSource": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742",
+    "afterSource": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f",
+    "helper": "  const checkBudget = () => { if (performance.now() >= until) throw new RuntimeNodeRequired('budget', searched); };",
+    "callSites": 2,
+    "inliningRestoresPreviousSourceByteForByte": true,
+    "previousCI": "https://github.com/Lapxo/head/actions/runs/41247442620",
+    "previousCIResult": "9/10; only duplication guard failed; real Electron consumer passed",
+    "measuredDeltaLines": 1,
+    "normalNodeTimedConsumersExecuteChangedFunction": false,
+    "historicalRunsRetainTheirArtifactIdentities": true
+  }
 }
