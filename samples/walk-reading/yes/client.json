@@ -519,7 +519,7 @@
     },
     {
       "path": "test/first-minute.test.ts",
-      "sha256": "sha256:5e1ea3fe5c8a1ab9046d36cc7f1f52161774c4355189ff7af4ae5811473bcfff"
+      "sha256": "sha256:84863987f4cd396fb85f4d3830a7cbb8186d7fe69206418c48c5503cb8a6f1d5"
     },
     {
       "path": "test/first-run.test.ts",
@@ -890,12 +890,12 @@
     {
       "node": "22",
       "suitePasses": 2,
-      "output": "TAP version 13\n# Subtest: every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs — the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered\nok 1 - every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs — the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered\n  ---\n  duration_ms: 14572.430459\n  type: 'test'\n  ...\n# Subtest: a place that connected a source and granted a read can still be walked — its world-s blob pinned with its shape, the grant naming the person who witnessed it — and a member that connects the same document compiles the very pin the walk named\nok 2 - a place that connected a source and granted a read can still be walked — its world-s blob pinned with its shape, the grant naming the person who witnessed it — and a member that connects the same document compiles the very pin the walk named\n  ---\n  duration_ms: 45807.411958\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 60632.247041\n"
+      "output": "TAP version 13\n# Subtest: every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs \u2014 the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered\nok 1 - every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs \u2014 the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered\n  ---\n  duration_ms: 14572.430459\n  type: 'test'\n  ...\n# Subtest: a place that connected a source and granted a read can still be walked \u2014 its world-s blob pinned with its shape, the grant naming the person who witnessed it \u2014 and a member that connects the same document compiles the very pin the walk named\nok 2 - a place that connected a source and granted a read can still be walked \u2014 its world-s blob pinned with its shape, the grant naming the person who witnessed it \u2014 and a member that connects the same document compiles the very pin the walk named\n  ---\n  duration_ms: 45807.411958\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 60632.247041\n"
     },
     {
       "node": "24",
       "suitePasses": 2,
-      "output": "TAP version 13\n# Subtest: every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs — the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered\nok 1 - every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs — the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered\n  ---\n  duration_ms: 14515.949125\n  type: 'test'\n  ...\n# Subtest: a place that connected a source and granted a read can still be walked — its world-s blob pinned with its shape, the grant naming the person who witnessed it — and a member that connects the same document compiles the very pin the walk named\nok 2 - a place that connected a source and granted a read can still be walked — its world-s blob pinned with its shape, the grant naming the person who witnessed it — and a member that connects the same document compiles the very pin the walk named\n  ---\n  duration_ms: 44384.876167\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 59180.453083\n"
+      "output": "TAP version 13\n# Subtest: every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs \u2014 the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered\nok 1 - every place head founds can be walked by bound: an organisation and a member, paired by their contexts, exchange only what differs \u2014 the member lands the organisation-s policy with a receipt it signs, once, and refuses it altered\n  ---\n  duration_ms: 14515.949125\n  type: 'test'\n  ...\n# Subtest: a place that connected a source and granted a read can still be walked \u2014 its world-s blob pinned with its shape, the grant naming the person who witnessed it \u2014 and a member that connects the same document compiles the very pin the walk named\nok 2 - a place that connected a source and granted a read can still be walked \u2014 its world-s blob pinned with its shape, the grant naming the person who witnessed it \u2014 and a member that connects the same document compiles the very pin the walk named\n  ---\n  duration_ms: 44384.876167\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 59180.453083\n"
     }
   ],
   "inputPolicy": {
@@ -2357,5 +2357,14 @@
       "externalAPIsUsed": false,
       "BoundChanged": false
     }
+  },
+  "testGuardRevalidation": {
+    "predecessor": "sha256:854691bc558a4f78345382d62d8a207367059b7d963edee1776dd5c24eda8fa9",
+    "changedInputs": [
+      "test/first-minute.test.ts"
+    ],
+    "originalRunsRetained": true,
+    "freshExecutionClaimed": false,
+    "reason": "Exact project npm and license badge destinations are documentation, not preconnected APIs; no runtime change."
   }
 }

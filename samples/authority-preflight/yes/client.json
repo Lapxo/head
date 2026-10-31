@@ -523,7 +523,7 @@
     },
     {
       "path": "test/first-minute.test.ts",
-      "sha256": "sha256:5e1ea3fe5c8a1ab9046d36cc7f1f52161774c4355189ff7af4ae5811473bcfff"
+      "sha256": "sha256:84863987f4cd396fb85f4d3830a7cbb8186d7fe69206418c48c5503cb8a6f1d5"
     },
     {
       "path": "test/first-run.test.ts",
@@ -2359,5 +2359,14 @@
       "externalAPIsUsed": false,
       "BoundChanged": false
     }
+  },
+  "testGuardRevalidation": {
+    "predecessor": "sha256:78d0169daacbe7b5df81f5e34041c1e6aa7f06dddfb476584f5ad99da1fea044",
+    "changedInputs": [
+      "test/first-minute.test.ts"
+    ],
+    "originalRunsRetained": true,
+    "freshExecutionClaimed": false,
+    "reason": "Exact project npm and license badge destinations are documentation, not preconnected APIs; no runtime change."
   }
 }
