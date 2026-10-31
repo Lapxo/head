@@ -1,6 +1,21 @@
 # head
 
-Ask your APIs through an assistant. Keep who answered, what was read, and what you allowed.
+[![npm](https://img.shields.io/npm/v/@lapxo/head)](https://www.npmjs.com/package/@lapxo/head) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
+Turn API documents and MCP connections into your own MCP extension. Keep who answered, what was read, and what you allowed.
+
+Head starts empty. You choose the sources; the recipient uses their own credentials. Sharing public descriptions does not transfer your permissions, signing keys, tokens or API responses.
+
+```text
+API documents + MCP endpoints → Head → your custom .mcpb
+                                      → recipient approves and signs in
+```
+
+1. Connect the sources you want and approve each connection.
+2. Ask questions or use permitted operations, with receipts.
+3. Ask Head to package the connected place using `do` with `action: "share"`. Give the recipient the resulting `.mcpb`.
+
+[Export a connected place](#export-a-connected-place) · [Try a local example](docs/first-minute.md) · [Understand the boundaries](SECURITY.md)
 
 head is an MCP server. Give it an API document, approve the connection, and ask a question. It reads operations the document declares, returns typed fields when a schema is available, and keeps signed receipts of its reads. Without a usable schema, the answer is named as untyped.
 
@@ -20,12 +35,12 @@ This is an illustrative fixture, not a live forecast. [Run the local example](do
 For an assistant that starts MCP servers by command:
 
 ```sh
-npx -y @lapxo/head@0.2.2 run
+npx -y @lapxo/head@0.2.3 run
 ```
 
 The pin above names this release; the executable examples in this tree use the checkout. A client can also open a desktop extension from [releases](https://github.com/Lapxo/head/releases); check the artifact digests supplied with the release. Starting head alone prints help; `head run` starts the MCP server.
 
-macOS is the supported desktop environment. Node 22.18 or later is required. Linux, Windows and unattended cloud execution are not validated as supported environments here. A successful mock or CI job does not establish working system-keychain and browser integration.
+The desktop target is macOS 13.5 or later. The `.mcpb` includes its own verified Node runtime and does not require Node installed separately; the command-line installation requires Node 22.18 or later. Linux and Windows remain open as P1 and P2 in the [compatibility record](docs/compatibility.md), alongside independent real-client and Intel execution acceptance. Unattended cloud execution is unsupported. A successful mock or CI job does not establish working system-keychain and browser integration.
 
 ## What you do
 

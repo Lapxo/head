@@ -1,0 +1,18 @@
+{
+  "protocol": "head-neutral-vectors@1",
+  "fixtures": ["records", "readings"],
+  "vectors": [
+    {"id":"binary-launch","initial":"Empty recipient home; no system Node on child PATH","input":"Unpack the exact base extension and launch its declared command","expect":"MCP initializes with exactly the three public tools"},
+    {"id":"runtime-members","input":"Install the fixed npm archive offline without scripts","expect":"All required members retain original inventory digests; installer metadata is not runtime"},
+    {"id":"required-byte-changed","input":"Change one required runtime byte","expect":"bundle/runtime-member; no successful export"},
+    {"id":"optional-byte-changed","input":"Change a present pinned development member","expect":"bundle/runtime-member; executable JavaScript cannot be classified as optional development material"},
+    {"id":"key-read-fails","initial":"An existing signing key","input":"Fail its store read","expect":"Named refusal; no create or update; unchanged identity"},
+    {"id":"exclusive-create","input":"Two fresh signing-key creation attempts","expect":"One retained identity or safe refusal; no replacement"},
+    {"id":"cancel-and-environment","input":"Abort a hanging signer and supply inherited Node options","expect":"Owned child group exits; no partial result or inherited execution"},
+    {"id":"unsupported-platform","input":"A platform outside the declared set","expect":"Named refusal before key lookup, elicitation or founding"},
+    {"id":"recipient-access","initial":"Two unrelated local APIs with two servers and a synthetic login; separate sender and recipient stores","input":"Export, import with one consent, restart, access","expect":"No API calls at import; server then email then code then workspace; native access receipt; no transferred key, authority or token"},
+    {"id":"wrong-recipient-keychain","input":"Reuse the imported place with a fresh unrelated keychain","expect":"Refusal before login prompts or API calls"},
+    {"id":"native-current-inputs","input":"Change a declared producer, capture or selected policy field","expect":"Native review refuses; restoring exact bytes restores the reading"},
+    {"id":"non-executable-proof","input":"A capture missing a consumed source or an executed recipient result","expect":"Refusal; a stub does not pay the gate"}
+  ]
+}

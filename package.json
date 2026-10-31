@@ -1,6 +1,6 @@
 {
   "name": "@lapxo/head",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "description": "An MCP server that folds: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
   "license": "MIT",
@@ -19,7 +19,8 @@
     "dist/src",
     "TARGET.bound",
     "LICENSE",
-    "runtime.bundle.json"
+    "runtime.bundle.json",
+    "runtime"
   ],
   "scripts": {
     "build": "tsc -p . --incremental false --tsBuildInfoFile null",
@@ -35,5 +36,14 @@
   "devDependencies": {
     "@types/node": "22.20.5",
     "typescript": "5.9.3"
-  }
+  },
+  "os": [
+    "darwin"
+  ],
+  "bundleDependencies": [
+    "@lapxo/bound",
+    "@lapxo/topos",
+    "@modelcontextprotocol/sdk",
+    "@anthropic-ai/mcpb"
+  ]
 }

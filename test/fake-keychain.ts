@@ -17,7 +17,7 @@ export const fakeKeychain = (accounts: Readonly<Record<string, string | undefine
   const caller = `echo "$a	$(ps -ww -o command= -p $PPID)" >> "${join(dir, 'callers')}"`;
   writeFileSync(join(dir, 'security'), [
     '#!/bin/sh', `echo "$*" >> "${join(dir, 'argv')}"`,
-    `if [ "$1" = -i ]; then read cmd; s=$(printf '%s' "$cmd" | sed -n 's/.* -w \\([^ ]*\\).*/\\1/p'); a=$(printf '%s' "$cmd" | sed -n 's/.* -a \\([^ ]*\\) .*/\\1/p' | tr '/' '_'); v=$(printf '%s' "$cmd" | sed -n 's/.* -s \\([^ ]*\\) .*/\\1/p' | tr '/' '_'); ${caller}; [ -n "$a" ] && [ -n "$v" ] && printf '%s' "$s" > "${dir}/held-$v--$a" && exit 0; exit 45; fi`,
+    `if [ "$1" = -i ]; then read cmd; s=$(printf '%s' "$cmd" | sed -n 's/.* -w \\([^ ]*\\).*/\\1/p'); a=$(printf '%s' "$cmd" | sed -n 's/.* -a \\([^ ]*\\) .*/\\1/p' | tr '/' '_'); v=$(printf '%s' "$cmd" | sed -n 's/.* -s \\([^ ]*\\) .*/\\1/p' | tr '/' '_'); ${caller}; [ -n "$a" ] && [ -n "$v" ] || exit 45; case "$cmd" in *" -U "*) printf '%s' "$s" > "${dir}/held-$v--$a" && exit 0;; *) (set -C; printf '%s' "$s" > "${dir}/held-$v--$a") 2>/dev/null && exit 0;; esac; exit 45; fi`,
     `if [ "$1" = find-generic-password ]; then a=$(printf '%s' "$3" | tr '/' '_'); v=$(printf '%s' "$5" | tr '/' '_'); ${caller}; for f in "${dir}/held-$v--$a" "${dir}/held-ANY--$a"; do [ -s "$f" ] && cat "$f" && exit 0; done; fi`, 'exit 44', '',
   ].join('\n'));
   chmodSync(join(dir, 'security'), 0o755);

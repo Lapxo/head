@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "head",
   "display_name": "head",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "An MCP server that answers by its lines: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
   "author": {
     "name": "Lapxo"
@@ -14,10 +14,10 @@
   },
   "homepage": "https://github.com/Lapxo/head",
   "server": {
-    "type": "node",
-    "entry_point": "dist/src/index.js",
+    "type": "binary",
+    "entry_point": "runtime/node",
     "mcp_config": {
-      "command": "node",
+      "command": "${__dirname}/runtime/node",
       "args": [
         "${__dirname}/dist/src/index.js",
         "run"
@@ -32,7 +32,7 @@
     },
     {
       "name": "connect",
-      "description": "Connect a source to a place, once the person says yes: its document, and an overlay beside it, laid whatever its kind and compiled once by whichever world reads it \u2014 or open, with the line that pays it \u2014 into what the source offers and how access is proven, pinned by digest. Nothing is called. A document at an address may be read as a source the place connected, with the access it holds, and checked against its digest. A package another place shared is connected whole: its lock as the document, named by its digest. A site alone or a folder is looked for its document first, before anything is founded. With no place yet, the first connect founds the person's place on one yes that also lets head read the source."
+      "description": "Connect a source to a place, once the person says yes: its document, and an overlay beside it, laid whatever its kind and compiled once by whichever world reads it — or open, with the line that pays it — into what the source offers and how access is proven, pinned by digest. Nothing is called. A document at an address may be read as a source the place connected, with the access it holds, and checked against its digest. A package another place shared is connected whole: its lock as the document, named by its digest. A site alone or a folder is looked for its document first, before anything is founded. With no place yet, the first connect founds the person's place on one yes that also lets head read the source."
     },
     {
       "name": "do",
@@ -48,9 +48,6 @@
   "compatibility": {
     "platforms": [
       "darwin"
-    ],
-    "runtimes": {
-      "node": ">=22.18"
-    }
+    ]
   }
 }

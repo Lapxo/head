@@ -1,0 +1,12 @@
+{
+  "protocol": "head-standalone-runtime@1",
+  "scope": "A self-contained macOS desktop extension, with the existing JavaScript entry, signer protocol and installed Bound instrument.",
+  "execution": "The standard binary manifest launches the fixed runtime/node executable. No system Node lookup, first-launch download, client-name exception or signing in the long process.",
+  "keySafety": "Only established absence permits signing-key creation. Creation is exclusive; a failed read, duplicate creation, cancellation or ambiguous outcome never authorizes replacement. Access credential updates remain separate.",
+  "support": "macOS 13.5 or later is the declared target. Linux and Windows remain open. Signature checks of two executable slices do not establish execution on two physical machines.",
+  "receipt": "A native review reading checks the exact captured executions and their current declared producer inputs. It does not rerun clients, certify a successor artifact or claim current installed executable bytes were read by that review.",
+  "consumer": "An unpacked extension and its personalized recipient use the executable from their manifest. Two unrelated local APIs use one persistent synthetic recipient keychain across processes. Import requires one consent and makes no API call; credentials and authority are not transferred.",
+  "failures": "Missing or changed required runtime members refuse. Altered optional development bytes refuse when present. Unsupported platforms refuse before key lookup or founding. Key failures expose bounded identifiers, not raw store output.",
+  "boundaries": "Synthetic stores and direct MCP clients do not establish real Desktop, quarantine, browser or system-keychain integration. Those remain separate acceptance gates. Existing latency and source budgets require their own current readings.",
+  "authority": "No runtime, digest, captured execution or review reading admits configuration or authorizes a connection. Owner admission and release approval remain separate acts."
+}

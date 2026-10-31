@@ -65,7 +65,7 @@ test('a measure past its ceiling in head-s lock reads red, whole seconds, with t
 
 test('a host the lock does not name is refused by name, every call, nothing done; the one it names is not', () => {
   deepStrictEqual([refusedOn(lock, 'darwin'), refusedOn(lock, 'linux'), refusedOn(lock, 'win32'), refusedOn(lock, 'freebsd')],
-    [undefined, undefined, undefined, sayIn(lock)('platform', { platform: 'freebsd', supported: 'darwin|linux|win32' })]);
+    [undefined, ...['linux', 'win32', 'freebsd'].map(platform => sayIn(lock)('platform', { platform, supported: 'darwin' }))]);
 });
 
 /** The files of a region, as the lock's coordinates for it say: file paths follow the coordinates, never the other way. */
