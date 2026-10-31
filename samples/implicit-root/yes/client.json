@@ -1,6 +1,6 @@
 {
   "protocol": "head-implicit-root-capture@1",
-  "status": "Prepared deadline-guard factoring successor; original runs remain at their historical artifact identity. No new timed or full consumer matrix is claimed. Regional installed bytes and real Electron availability are newly verified; not Root admission or final delivery.",
+  "status": "Fixture-only successor: production, artifact identities, timing data and complete historical executions are unchanged. Real process probes remain real; only synthetic multi-version ranking now uses controlled process responses to avoid assuming cold script startup fits the probe deadline.",
   "inputs": [
     {
       "path": "dist/src/access/contract.d.ts",
@@ -1200,7 +1200,7 @@
     },
     {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:972b2ad10eaf5a2a7194653bb4a0b0b8b6865bb876c86d7581b275bb93a434a5"
+      "sha256": "sha256:f793bb69e751177f4474f0cb5831754b7d7c378f73107984643f272e9f933e8d"
     },
     {
       "path": "test/implicit-root.test.ts",
@@ -1453,8 +1453,8 @@
   "signed": false,
   "published": false,
   "predecessor": {
-    "sha256": "sha256:c4a8f72cc29ed29ab4bb8ee87f6a8b5186c7964471a1520dd193a862d6273d3a",
-    "allHistoricalRunsAndFailuresPreserved": true
+    "sha256": "sha256:e8a2bf38ba365c299a98d737b5e9fb44eab82cb99f29aa095d30912e2b8ab2d0",
+    "preserved": true
   },
   "evidenceReuse": {
     "model": "Only factor two identical deadline checkpoints into one shared body. Previous first-cell, MCP and complete consumer runs retain their actual artifact identities. Inlining the helper restores the previously tested source byte for byte. Fresh installed-byte verification, focused controls, unchanged surface guard and two real Electron availability cases cover this refactor; no fresh timed or complete domain matrices are claimed.",
@@ -1556,5 +1556,15 @@
     "measuredDeltaLines": 1,
     "normalNodeTimedConsumersExecuteChangedFunction": false,
     "historicalRunsRetainTheirArtifactIdentities": true
+  },
+  "rankingFixture": {
+    "realManagerProbeRetained": true,
+    "realNodeProbeRetained": true,
+    "realElectronGateRetained": true,
+    "controlledRankingResponses": 4,
+    "forwardAndReverseOrders": true,
+    "verifiedMockCalls": 8,
+    "productionBudgetChanged": false,
+    "fullMatricesRepeated": false
   }
 }

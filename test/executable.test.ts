@@ -1,4 +1,5 @@
-import { test } from 'node:test';
+import { test, mock } from 'node:test';
+import { createRequire, syncBuiltinESMExports } from 'node:module';
 import { strict as a } from 'node:assert';
 import { mkdtempSync, mkdirSync, symlinkSync, writeFileSync, chmodSync, realpathSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -55,10 +56,14 @@ test('runtime discovery chooses the greatest compatible version and finds unlink
     const found = nodeDirectories({ platform: 'darwin', path: [], home: join(root, 'home'), brew: [join(root, 'brew')] });
     for (const location of locations) a.ok(found.includes(join(root, location)), location);
     a.equal(systemNode([join(root, locations[0]!)]), process.execPath);
-    const candidates: string[] = [];
-    for (const [name, version, electron] of [['low', '22.18.0', false], ['highest', '26.1.2', false], ['middle', '24.22.0', false], ['electron', '99.0.0', true]] as const) { const dir = join(root, name); mkdirSync(dir); const path = join(dir, 'node'); writeFileSync(path, `#!/bin/sh\nprintf '%s' '${JSON.stringify({ node: version, ...(electron ? { electron: 'host' } : {}) })}'\n`); chmodSync(path, 0o755); candidates.push(dir); }
-    a.equal(systemNode(candidates), realpathSync(join(candidates[1]!, 'node')));
-    a.equal(systemNode([...candidates].reverse()), realpathSync(join(candidates[1]!, 'node')));
+    const candidates: string[] = [], versions = new Map<string, string>();
+    for (const [name, version, electron] of [['low', '22.18.0', false], ['highest', '26.1.2', false], ['middle', '24.22.0', false], ['electron', '99.0.0', true]] as const) { const dir = join(root, name); mkdirSync(dir); const path = join(dir, 'node'); writeFileSync(path, 'neutral executable fixture\n'); chmodSync(path, 0o755); candidates.push(dir); versions.set(realpathSync(path), JSON.stringify({ node: version, ...(electron ? { electron: 'host' } : {}) })); }
+    // Ranking uses controlled process responses; real installed probes above and the Electron gate remain real.
+    const processPort = createRequire(import.meta.url)('node:child_process');
+    const probe = mock.method(processPort, 'spawnSync', (file: string) => { a.ok(versions.has(file)); return { status: 0, stdout: versions.get(file), stderr: '' }; });
+    syncBuiltinESMExports();
+    try { a.equal(systemNode(candidates), realpathSync(join(candidates[1]!, 'node'))); a.equal(systemNode([...candidates].reverse()), realpathSync(join(candidates[1]!, 'node'))); a.equal(probe.mock.calls.length, 8); }
+    finally { probe.mock.restore(); syncBuiltinESMExports(); }
     const windows = nodeDirectories({ platform: 'win32', path: [], home: join(root, 'empty'), programFiles: join(root, 'program-files') });
     a.ok(windows.includes(join(root, 'program-files/nodejs')));
   } finally { rmSync(root, { recursive: true, force: true }); }

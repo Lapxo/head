@@ -10,7 +10,7 @@ interface Capture { readonly protocol: string; readonly policy: string; readonly
   readonly runs: readonly { node: string; suitePasses: number; output: string }[] }
 /** Read the existing consumer vectors, never implement the walk or infer a new grant. */
 export function observe(bytes: Uint8Array) {
-  if (hash(bytes) !== 'sha256:5546845ebfbb48b394cea7af2ec9ba969ae2fbc8e8d591c46d9acef93bc8dfc4') throw Error('REFUSE·walk capture digest');
+  if (hash(bytes) !== 'sha256:d97582677d546ca76da13a76fbb46e0a15029dbed70479fa07d55fb1bf236930') throw Error('REFUSE·walk capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture, nodes = new Set<string>();
   if (capture.protocol !== 'head-walk-reading@1' || capture.runs.length !== 2) throw Error('REFUSE·walk capture protocol');
   for (const run of capture.runs) {

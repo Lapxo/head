@@ -6,7 +6,7 @@ const files = (base: string): string[] => readdirSync(base, { withFileTypes: tru
 /** Version3 adds real utilityProcess/MessagePort evidence; prior simulated-host runs stay historical. */
 export function run(place: string) {
   const bytes = readFileSync('samples/standalone-runtime/yes/client.json');
-  if (hash(bytes) !== 'sha256:ec126def4f1cd572bd9940d8be729311ed9f3a2ff9cd58b4d5509099e9079464') throw Error('REFUSE·standalone/capture');
+  if (hash(bytes) !== 'sha256:4a98cca19788bb449a78f3df1c25580e47f89056f3b9dfbb4ef3eb660720b366') throw Error('REFUSE·standalone/capture');
   const capture = JSON.parse(bytes.toString());
   if (capture.protocol !== 'head-system-node-capture@1' || capture.desktopUIAcceptance !== false || capture.ownerAdmitted !== false || capture.deployment !== 'requires-compatible-installed-node') throw Error('REFUSE·standalone/protocol');
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·standalone/current-input');

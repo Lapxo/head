@@ -4,7 +4,7 @@ const digest = (bytes: Uint8Array) => 'sha256:' + createHash('sha256').update(by
 /** Project reviewed neutral tests only while their complete declared inputs remain byte-identical. */
 export function run(place: string) {
   const bytes = readFileSync('samples/functional-repairs/yes/client.json');
-  if (digest(bytes) !== 'sha256:474ed8c77bed505332bff568e6099a7687ebc299ae8df246662d77a17f5a6edc') throw Error('REFUSE·functional-repairs/capture');
+  if (digest(bytes) !== 'sha256:f7398408dccef069fd9cc06ea75f9788a83180e49e0f5fa6903077ddc4774cb3') throw Error('REFUSE·functional-repairs/capture');
   const receipt = JSON.parse(bytes.toString());
   if (receipt.protocol !== 'head-functional-repairs-capture@1' || receipt.runs.length !== 2 || receipt.runs.map((r: { node: string }) => r.node).sort().join('|') !== '22|24') throw Error('REFUSE·functional-repairs/runtimes');
   for (const input of receipt.inputs) if (digest(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·functional-repairs/current-input');

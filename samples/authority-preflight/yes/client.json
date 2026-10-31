@@ -483,7 +483,7 @@
     },
     {
       "path": "test/composition-reading.ts",
-      "sha256": "sha256:0f8f42dfffff28e2e2e4643e7dd8e672d8075b7ce0dedfa042fba0f23b957728"
+      "sha256": "sha256:81da73783c122ce2a0fa0d25964ef86d83fff6dd40b9fad6eab1a43bfc42adff"
     },
     {
       "path": "test/composition.test.ts",
@@ -491,7 +491,7 @@
     },
     {
       "path": "test/configured-ports.ts",
-      "sha256": "sha256:ebbde97d7d45c89aa9fecaa79cd9be3a46f21d471c54836c4ac3b9700343e066"
+      "sha256": "sha256:3b1fe25f83a57c4858687fa2081615e7d68b4880677ac6ca3180d964bfea4a15"
     },
     {
       "path": "test/configured-receiver.test.ts",
@@ -523,7 +523,7 @@
     },
     {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:972b2ad10eaf5a2a7194653bb4a0b0b8b6865bb876c86d7581b275bb93a434a5"
+      "sha256": "sha256:f793bb69e751177f4474f0cb5831754b7d7c378f73107984643f272e9f933e8d"
     },
     {
       "path": "test/fake-keychain.ts",
@@ -547,7 +547,7 @@
     },
     {
       "path": "test/functional-repairs-reading.ts",
-      "sha256": "sha256:12c06b17dfc79b1ae93eaa7ca3be6cc871043206dcede12d8704bbf79b829373"
+      "sha256": "sha256:7f94f307411fef39eed6921e64855aa5f3d38c9c17a40334c937af78a6065c2a"
     },
     {
       "path": "test/gestures.test.ts",
@@ -555,7 +555,7 @@
     },
     {
       "path": "test/implicit-root-reading.ts",
-      "sha256": "sha256:fc6b442734b03b47b65776bff64e32e3fc7809fb064b0fbc8f3257bf91070a58"
+      "sha256": "sha256:db081f9dc2c98affab3a7356a4119feb5180684c7f8a077eef7f5adde179d015"
     },
     {
       "path": "test/implicit-root.test.ts",
@@ -711,7 +711,7 @@
     },
     {
       "path": "test/receiver-access-reading.ts",
-      "sha256": "sha256:9151057dc8f4fdda98804a0dd206a31599f11ded2a7fb8448ebfc3e398d5d169"
+      "sha256": "sha256:653963f63eb54479cb9c87b1768adf3ed8afc6b8636601a46d14952a2c664635"
     },
     {
       "path": "test/receiver-access.test.ts",
@@ -723,7 +723,7 @@
     },
     {
       "path": "test/receiver-runtime.ts",
-      "sha256": "sha256:1b6d08db241033299a3a2c0c75198af209e91faef2920aadff0c1da73a08c782"
+      "sha256": "sha256:780c939bdd04eaef4c272ee6f5d0e5be442feb8b2362a0032889d67263d9630d"
     },
     {
       "path": "test/receiver.test.ts",
@@ -751,7 +751,7 @@
     },
     {
       "path": "test/runtime-inventory.ts",
-      "sha256": "sha256:194596b5944facc87cf7793bef66b44538d84867b84c88e9a6868876391a5b30"
+      "sha256": "sha256:28ece321fa07df4ca0086526a749dce23399eed4ea9ea122ba2d3e7ab016e7e3"
     },
     {
       "path": "test/runtime-resolution.test.ts",
@@ -795,7 +795,7 @@
     },
     {
       "path": "test/share-runtime.ts",
-      "sha256": "sha256:aeeca713115f5c4fa2d06c5b0d5f59e9631fd0dd941d556fff7695d400bbdddb"
+      "sha256": "sha256:03c199e743c091f21065468513003c6a01b3a348aedeb76f9299e72b8a34c651"
     },
     {
       "path": "test/share.test.ts",
@@ -819,7 +819,7 @@
     },
     {
       "path": "test/standalone-runtime.ts",
-      "sha256": "sha256:981d9c80f9e17f524d81bcc420442638e961c32c2f2fbbeda56ddc92aa0fbb29"
+      "sha256": "sha256:d69646f455c4e483bb13071846fd4249ea58353be43fb7ded0fd562728cb4cec"
     },
     {
       "path": "test/stores.test.ts",
@@ -953,9 +953,9 @@
     }
   },
   "Q4": "Domain permissions remain open; configuration preflight is not API action authorization.",
-  "status": "Only budget checkpoint factoring; original executions retain their artifact identities, no new timed or complete domain matrix is claimed. Current guard, installed bytes and Electron availability are rechecked.",
+  "status": "Fixture-only successor: original executions and all runtime bytes remain unchanged; no fresh domain or timing matrix claimed.",
   "predecessor": {
-    "sha256": "sha256:00d741610f5b605c972f4fd7b72ba577046a272b9af889980322d1e1f8e5834b",
+    "sha256": "sha256:abaf57d5c35a733fdf9c09bb242dd14f5211dc701a2bb10a6a6c8de5bf4725b3",
     "preserved": true
   },
   "evidenceReuse": {
@@ -1219,5 +1219,9 @@
     "measuredDeltaLines": 1,
     "normalNodeTimedConsumersExecuteChangedFunction": false,
     "historicalRunsRetainTheirArtifactIdentities": true
+  },
+  "rankingFixture": {
+    "controlledProcessPortOnly": true,
+    "allRealProcessIntegrationCoverageRetained": true
   }
 }

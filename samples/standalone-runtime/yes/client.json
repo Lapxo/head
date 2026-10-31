@@ -1271,7 +1271,7 @@
     },
     {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:972b2ad10eaf5a2a7194653bb4a0b0b8b6865bb876c86d7581b275bb93a434a5"
+      "sha256": "sha256:f793bb69e751177f4474f0cb5831754b7d7c378f73107984643f272e9f933e8d"
     },
     {
       "path": "test/fake-keychain.ts",
@@ -1374,10 +1374,10 @@
     "T2",
     "L6"
   ],
-  "status": "Prepared deadline-guard factoring successor; original runs remain at their historical artifact identity. No new timed or full consumer matrix is claimed. Regional installed bytes and real Electron availability are newly verified; not Root admission or final delivery.",
+  "status": "Fixture-only successor: production, artifact identities, timing data and complete historical executions are unchanged. Real process probes remain real; only synthetic multi-version ranking now uses controlled process responses to avoid assuming cold script startup fits the probe deadline.",
   "predecessor": {
-    "sha256": "sha256:b4daa93c751c8895c425e981a0cca1665ad79c60ca30d38e943ec8620b61792d",
-    "allHistoricalRunsAndFailuresPreserved": true
+    "sha256": "sha256:ec126def4f1cd572bd9940d8be729311ed9f3a2ff9cd58b4d5509099e9079464",
+    "preserved": true
   },
   "systemNodeRevalidation": [
     {
@@ -1421,11 +1421,11 @@
     "focused": [
       {
         "node": "22",
-        "output": "TAP version 13\n# Subtest: installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\nok 1 - installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\n  ---\n  duration_ms: 1102.321542\n  type: 'test'\n  ...\n# Subtest: whole-entry relaunch preserves exit status and strips runtime injection variables\nok 2 - whole-entry relaunch preserves exit status and strips runtime injection variables\n  ---\n  duration_ms: 77.2865\n  type: 'test'\n  ...\n# Subtest: relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\nok 3 - relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\n  ---\n  duration_ms: 235.70775\n  type: 'test'\n  ...\n# Subtest: runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\nok 4 - runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\n  ---\n  duration_ms: 956.252792\n  type: 'test'\n  ...\n# Subtest: the supported desktop platform is macOS; other platform ports do not imply supported operation\nok 5 - the supported desktop platform is macOS; other platform ports do not imply supported operation\n  ---\n  duration_ms: 1.432875\n  type: 'test'\n  ...\n# Subtest: an unsupported environment refuses before key lookup, elicitation, founding or card checks\nok 6 - an unsupported environment refuses before key lookup, elicitation, founding or card checks\n  ---\n  duration_ms: 17.957708\n  type: 'test'\n  ...\n# Subtest: runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 7 - runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 140.309125\n  type: 'test'\n  ...\n# Subtest: runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 8 - runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 120.761875\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 2580.48475\n"
+        "output": "TAP version 13\n# Subtest: installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\nok 1 - installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\n  ---\n  duration_ms: 1371.834375\n  type: 'test'\n  ...\n# Subtest: whole-entry relaunch preserves exit status and strips runtime injection variables\nok 2 - whole-entry relaunch preserves exit status and strips runtime injection variables\n  ---\n  duration_ms: 84.822083\n  type: 'test'\n  ...\n# Subtest: relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\nok 3 - relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\n  ---\n  duration_ms: 251.050709\n  type: 'test'\n  ...\n# Subtest: runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\nok 4 - runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\n  ---\n  duration_ms: 47.239708\n  type: 'test'\n  ...\n# Subtest: the supported desktop platform is macOS; other platform ports do not imply supported operation\nok 5 - the supported desktop platform is macOS; other platform ports do not imply supported operation\n  ---\n  duration_ms: 1.513208\n  type: 'test'\n  ...\n# Subtest: an unsupported environment refuses before key lookup, elicitation, founding or card checks\nok 6 - an unsupported environment refuses before key lookup, elicitation, founding or card checks\n  ---\n  duration_ms: 22.923\n  type: 'test'\n  ...\n# Subtest: runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 7 - runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 184.102375\n  type: 'test'\n  ...\n# Subtest: runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\nok 8 - runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse\n  ---\n  duration_ms: 128.800916\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 2014.941875\n"
       },
       {
         "node": "24",
-        "output": "✔ installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output (845.153959ms)\n✔ whole-entry relaunch preserves exit status and strips runtime injection variables (83.811417ms)\n✔ relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host (242.458958ms)\n✔ runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers (863.189458ms)\n✔ the supported desktop platform is macOS; other platform ports do not imply supported operation (1.531334ms)\n✔ an unsupported environment refuses before key lookup, elicitation, founding or card checks (20.262291ms)\n✔ runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse (136.567875ms)\n✔ runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse (121.484958ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2229.490083\n"
+        "output": "✔ installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output (1221.329167ms)\n✔ whole-entry relaunch preserves exit status and strips runtime injection variables (87.017791ms)\n✔ relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host (248.510459ms)\n✔ runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers (51.840834ms)\n✔ the supported desktop platform is macOS; other platform ports do not imply supported operation (1.771875ms)\n✔ an unsupported environment refuses before key lookup, elicitation, founding or card checks (22.517625ms)\n✔ runtime: parent and child resolve with closed root exports from a hoisted layout; altered bytes still refuse (170.330209ms)\n✔ runtime: @neutral/transport and @neutral/schema resolve with closed root exports from a hoisted layout; altered bytes still refuse (130.774625ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1861.406875\n"
       }
     ],
     "historicalInheritRegression": {
@@ -1479,5 +1479,15 @@
     "historicalExecutionsRelabeled": false,
     "fullElectronGateSha256": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
     "RootChanged": false
+  },
+  "rankingFixture": {
+    "realManagerProbeRetained": true,
+    "realNodeProbeRetained": true,
+    "realElectronGateRetained": true,
+    "controlledRankingResponses": 4,
+    "forwardAndReverseOrders": true,
+    "verifiedMockCalls": 8,
+    "productionBudgetChanged": false,
+    "fullMatricesRepeated": false
   }
 }
