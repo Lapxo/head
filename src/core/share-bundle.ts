@@ -17,8 +17,13 @@ export async function shareBundle(asked: Asked, context: Context, read: () => Pr
   if (!suffix || !to.endsWith(suffix)) return undefined;
   if (!context.bundle || !await sharePath(context, asked['place'] ?? '', to) || context.files.has(dirname(to), basename(to))) return [say('bundle-refused', { why: 'bundle/unavailable-or-destination' })];
   try {
-    const payload = asked['args'] ? JSON.parse(asked['args']) as Recipe : undefined;
-    let material = payload ? await read() : undefined;
+    const metadata = asked['args'] ? JSON.parse(asked['args']) : {};
+    if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) throw Error('bundle/recipe');
+    let material = await read();
+    if (!material.sources.length && !metadata.sources?.length) throw Error('bundle/no-sources');
+    if (![metadata.id, metadata.revision, metadata.title, metadata.description, metadata.author?.name].every(value => typeof value === 'string' && value.trim())) throw Error('bundle/metadata-required');
+    const payload: Recipe = { ...metadata, sources: metadata.sources ?? material.sources.map(source => ({ source: source.name, namespace: source.name, offers: source.offers })) };
+    const original = material; 
     if (material) {
       for (const choice of payload!.sources as readonly (Recipe['sources'][number] & { readonly document?: string; readonly protocol?: string })[]) if (!material.sources.some(source => source.name === choice.source)) {
         const url = choice.document && URL.canParse(choice.document) ? new URL(choice.document) : undefined;
@@ -40,8 +45,11 @@ export async function shareBundle(asked: Asked, context: Context, read: () => Pr
         if (!bytes || digestIn(context.lock)(bytes) !== line.value) throw Error('bundle/public-digest');
       }
     }
-    const got = await context.bundle(material && payload ? { recipe: payload, ...material } : undefined);
-    context.files.lay(dirname(to), basename(to), got.bytes);
+    const got = await context.bundle({ recipe: payload, ...material });
+    const fresh = await read(), same = (a: ReadonlyMap<string, Uint8Array>, b: ReadonlyMap<string, Uint8Array>) => a.size === b.size && [...a].every(([path, bytes]) => b.has(path) && Buffer.from(bytes).equals(Buffer.from(b.get(path)!)));
+    if (!same(original.files, fresh.files)) throw Error('bundle/source-changed');
+    if (!context.files.publish) throw Error('bundle/destination-unavailable');
+    await context.files.publish(asked['place'] ?? '', to, got.bytes);
     return [say('bundle-shared', { document: to, digest: got.digest, sources: got.sources.join(', ') })];
   } catch (error) { return bundleRefusal(context, error); }
 }

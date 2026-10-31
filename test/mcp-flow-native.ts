@@ -45,7 +45,7 @@ for (const domain of (process.env['MCP_NATIVE_DOMAINS'] ?? 'sum,lookup').split('
     if (process.env['MCP_NATIVE_MODE'] === 'read') { all.push({ domain, place, readTextVisible: true, milliseconds: calls.at(-1).milliseconds }); continue; }
     const changed = Buffer.from(raw); changed[changed.length - 2] = changed[changed.length - 2] === 32 ? 9 : 32; writeFileSync(join(place,'connected',domain+'.json'),changed);
     const stale = await call('ask', { place, source: domain, operation: domain, args: JSON.stringify({ value: 7 }) }); ok(stale.includes('mcp/document-pin'), stale.slice(0,2000)); equal(f.calls(),1); writeFileSync(join(place,'connected',domain+'.json'),raw);
-    const recipe = { id: domain+'-desk', revision:'1.0.0', title:domain+' desk', description:'Selected public catalogue', sources:[{source:domain,namespace:domain,offers:[domain, domain+'-change']}] };
+    const recipe = { id: domain+'-desk', revision:'1.0.0', title:domain+' desk', description:'Selected public catalogue', author:{name:'Neutral fixture author'}, sources:[{source:domain,namespace:domain,offers:[domain, domain+'-change']}] };
     const bundle = join(shared, domain+'.mcpb');
     const exported = await call('share', { place, to: bundle, args: JSON.stringify(recipe) }); ok(exported.includes('head/bundle-shared') && existsSync(bundle), exported.slice(0,2500)); equal(f.calls(),1);
     const installed = join(scratch, domain+'-installed'); execFileSync('unzip',['-q',bundle,'-d',installed]);

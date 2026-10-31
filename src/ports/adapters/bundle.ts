@@ -29,8 +29,9 @@ export async function bundle(port: BundlePort, payload: Payload | undefined, bud
   }
   if (size !== runtime.bytes || !files.has('dist/src/index.js') || !files.has('package.json') || !files.has('LICENSE')) throw Error('bundle/runtime-closure');
   files.set('runtime.bundle.json', port.runtime).set('TARGET.bound', port.profile).set('.mcpbignore', Buffer.from('!**\n*.mts\n*changelog*\n.env*\n.git/\n.bound/\nbirth.bound\n'));
-  let manifest: Record<string, unknown> = { manifest_version: '0.3', name: 'head', version: JSON.parse(new TextDecoder().decode(files.get('package.json'))).version, description: 'Head without connected sources', author: { name: 'Package author' } };
+  let manifest: Record<string, unknown> = { manifest_version: '0.3', name: 'head', version: JSON.parse(new TextDecoder().decode(files.get('package.json'))).version, description: 'Head without connected sources', author: { name: JSON.parse(new TextDecoder().decode(files.get('package.json'))).author } };
   if (payload) {
+    if (!payload.recipe.author?.name) throw Error('bundle/metadata-required');
     const made = compose(payload.recipe, payload.sources, budget.selections);
     let publicBytes = made.bytes.byteLength;
     for (const [path, bytes] of payload.files) {
@@ -41,7 +42,7 @@ export async function bundle(port: BundlePort, payload: Payload | undefined, bud
     }
     if (!payload.files.has('TARGET.bound')) throw Error('bundle/public-lock');
     files.set('composition/selection.json', made.bytes);
-    manifest = { ...manifest, name: payload.recipe.id, version: payload.recipe.revision, display_name: payload.recipe.title, description: payload.recipe.description };
+    manifest = { ...manifest, name: payload.recipe.id, version: payload.recipe.revision, display_name: payload.recipe.title, description: payload.recipe.description, author: JSON.parse(made.bytes.toString()).author };
   }
   manifest = { ...manifest, server: { type: 'node', entry_point: 'dist/src/index.js', mcp_config: { command: 'node', args: ['${__dirname}/dist/src/index.js', 'run'] } }, compatibility: { platforms: ['darwin'], runtimes: { node: '>=22.18' } } };
   VERSIONED_MANIFEST_SCHEMAS['0.3'].parse(manifest);

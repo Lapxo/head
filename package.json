@@ -1,6 +1,6 @@
 {
   "name": "@lapxo/head",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "description": "An MCP server that folds: it runs bound as a process, hands a model what bound printed, and lands what it read as receipts.",
   "license": "MIT",

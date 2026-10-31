@@ -1,0 +1,17 @@
+{
+  "contract": "head-implicit-root@1",
+  "selection": "An explicit place is resolved lexically. Without one, only a single active absolute place reference in the authenticated receiver index selects a place. Shared MCP roots authorize document access and never choose a place.",
+  "absence": "Only absence of both receiver lock and .bound is an unborn index. With no indexed place, existing first-run consent may found the declared default under the person's home.",
+  "refusals": {
+    "index-unread": "The index exists but is unfounded or its current bytes fail native authentication. No empty-index fallback, new index, prompt or foundation follows.",
+    "index-invalid": "An active place entry has an absent/nonabsolute path or a non-id measure. It is named, never normalized into a valid entry.",
+    "place-ambiguous": "Multiple active indexed identities prevent implicit selection. Explicit root-account lookup also refuses multiple indexed accounts for the same canonical path. Naming a place is not an authority grant."
+  },
+  "authentication": "Bound verifies the index and target place; an indexed account still must hold the public key admitted by the place. Head does not reimplement signature or authority checks.",
+  "birth": "Public place creation checks index integrity before consent; the internal birth path checks again before writes, including after an asynchronous consent boundary.",
+  "connection": "For a selected place, the existing root lookup precedes document discovery and its result is reused by connection. Rejected index state cannot start normal API/MCP discovery.",
+  "equivalence": "Lexical dot aliases only. No new symlink-equivalence, cross-home account namespace or issuer migration claim.",
+  "limits": "All existing intervals remain unchanged. Physical source excess blocks admission readiness until a separate owner capacity decision; no global acceptance closure is claimed.",
+  "T2": "pending",
+  "L6": "pending"
+}

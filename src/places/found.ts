@@ -5,7 +5,7 @@ import type { Asked, Context } from '../core/answer.ts';
 import { admissionOf } from '../core/device.ts';
 import { members, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
-import { deviceKey } from '../flows/device.ts';
+import { deviceKey, homeIndex } from '../flows/device.ts';
 import { walkable } from '../walk/context.ts';
 import { fill, sayIn } from '../core/surface.ts';
 
@@ -41,12 +41,14 @@ export const bornPlace = async (asked: Asked, context: Context): Promise<readonl
   if (!isAbsolute(dir)) return [say('place-absolute')];
   const name = (asked['name'] || basename(dir)).toLowerCase().replace(/[^a-z0-9-]+/g, '-');
   if (context.files.has(dir, LOCK) || context.files.has(dir, '.bound')) return [say('place-exists', { dir })];
+  const index = await homeIndex(context); if ('refused' in index) return [say(index.refused === 'index/invalid' ? 'index-invalid' : 'index-unread', { place: context.home() })];
   const refused = await unless(context, say('elicit-place', { name, dir }));
   return refused ?? bornAt(context, dir, name);
 };
 
 export const bornAt = async (context: Context, dir: string, name: string): Promise<readonly string[]> => {
-  const say = sayIn(context.lock), born = await founded(context, dir, name);
+  const index = await homeIndex(context), say = sayIn(context.lock); if ('refused' in index) return [say(index.refused === 'index/invalid' ? 'index-invalid' : 'index-unread', { place: context.home() })];
+  const born = await founded(context, dir, name);
   if ('refused' in born) return [say(born.refused, { name, dir, why: born.why ?? '' })];
   const home = context.home();
   const homed = context.files.has(home, LOCK) ? { lines: [] } : await founded(context, home, valueOf(context.lock, 'home/name'));

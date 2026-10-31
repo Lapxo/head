@@ -49,7 +49,7 @@ test('access belongs to its issuer: declared once and referred to across documen
     deepStrictEqual(server.seen.map((one) => [one.url, one.headers['authorization'] ?? '']), [['/login', ''], ['/jobs', 'Bearer t-org'], ['/people', 'Bearer t-org'], ['/timesheets', 'Bearer t-org'], ['/books-login', ''], ['/ledger', 'Bearer t-books']]);
     deepStrictEqual([JSON.parse(server.seen[0]!.body), JSON.parse(server.seen[4]!.body)], [{ email: 'email-of-ana' }, { user: 'user-of-ana' }]);
     deepStrictEqual(asked, ['email', 'yes', 'user'], 'one prompt per issuer and one grant for the place');
-    deepStrictEqual(['place/org/issuer/portal', 'place/org/issuer/books', ...['jobs', 'people', 'timesheets', 'ledger'].map((s) => `place/org/api/${s}`)].map((a) => keychain.held(a).length > 0), [true, true, false, false, false, false], 'one token per issuer, none per source');
+    deepStrictEqual(['place/org/issuer/portal', 'place/org/issuer/books', ...['jobs', 'people', 'timesheets', 'ledger'].map((s) => `place/org/api/${s}`)].map((a) => keychain.bound(a).length > 0), [true, true, false, false, false, false], 'one token per issuer, none per source');
     const journal = viewOf(dir, 'evidence');
     deepStrictEqual(['portal', 'books', 'jobs', 'ledger'].map((f) => journal.match(new RegExp(` scope=access/${f}/obtained `, 'g'))?.length ?? 0), [1, 1, 0, 0]);
     deepStrictEqual(lock().split('\n').filter((l) => / scope=allow\/read /.test(l) && / measure=sources /.test(l)).length, 1);

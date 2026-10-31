@@ -7,6 +7,10 @@ import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { canonical, parse } from '@lapxo/topos/wire';
+import { accessIdentity } from '../src/access/obtain.ts';
+import { planRead } from '../src/core/read.ts';
+import { factsOf } from '../src/core/lock.ts';
+import type { Context } from '../src/core/answer.ts';
 import { admissionOf } from '../src/core/device.ts';
 import { newKey } from '../src/ports/keys.ts';
 import { run } from './cli.ts';
@@ -70,9 +74,14 @@ export const born = (server: string | undefined, extra: readonly string[] = [], 
     ...(server === undefined ? [] : [line(`allow/origin/${source}`, 'id', server)]),
     ...(granted ? [line('allow/read', 'sources', source), line('allow/read', 'until', '2999-01-01')] : []),
   ].join('\n') + '\n');
+  let credential: Record<string,string> = {};
+  if (token !== null && server) {
+    const lines = factsOf(readFileSync(join(place, 'TARGET.bound'), 'utf8').trim().split('\n')), plan = planRead(lines, lock, source, 'issues/list-for-repo', basename(place));
+    if (plan.kind === 'call' && plan.access.account) { const identity = accessIdentity({lock} as Context, plan, lines)!; const at = '2026-01-01T00:00:00.000Z'; credential = { [identity.account]: Buffer.from(JSON.stringify({secret:token,at,binding:identity.binding,state:'ready'})).toString('base64url') }; writeFileSync(join(place,'TARGET.bound'), line('access/'+plan.access.flow+'/obtained','status','present',{at:'receipt:'+at,about:'access-binding:sha256:'+identity.binding})+'\n', {flag:'a'}); }
+  }
   const landed = run('@lapxo/bound', place, ['land', '--key-file', pem]);
   deepStrictEqual(landed?.code, 0, landed?.err.join('\n'));
-  return { place, root: pem, keychain: fakeKeychain({ head: head.secret, person: person.secret, ...(token === null ? {} : { [`place/${basename(place)}/api/${source}`]: Buffer.from(JSON.stringify({ secret: token, at: '2026-01-01T00:00:00.000Z' })).toString('base64url') }) }) };
+  return { place, root: pem, keychain: fakeKeychain({ head: head.secret, person: person.secret, ...credential }) };
 };
 
 /** What head says for a key, as a pattern of its whole template: every field it fills may be anything, every word around them must stand. */

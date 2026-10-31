@@ -1,3 +1,4 @@
+import { homeServices } from '../src/ports/home.ts';
 import { test } from 'node:test';
 import { deepStrictEqual, match, notStrictEqual, ok } from 'node:assert';
 import { createHash } from 'node:crypto';
@@ -25,7 +26,7 @@ const paired = async () => {
     const keychain = fakeKeychain({}), home = join(shared, `${name}-home`), dir = join(shared, name);
     const [born] = await ask([tool('place', { dir })], [], { ...keychain.env, HEAD_HOME: home }, yes);
     match(text(born), said('born'));
-    return { name, dir, head: { ...keychain.env, HEAD_HOME: home }, env: { ...keychain.env, BOUND_SIGNERS: registryFor('keychain', `@lapxo/head/${basename(home)}`, `place/${name}/root`, 'root', 'ed25519:era1', 'keychain') } };
+    return { name, dir, head: { ...keychain.env, HEAD_HOME: home }, env: { ...keychain.env, BOUND_SIGNERS: registryFor('keychain', homeServices('@lapxo/head', home).primary, `place/${name}/root`, 'root', 'ed25519:era1', 'keychain') } };
   }));
   const bound = (p: (typeof places)[number], args: readonly string[]) => run('@lapxo/bound', p.dir, [...args], p.env);
   const lot = (name: string, lines: readonly string[]) => ((at) => { writeFileSync(at, `${lines.join('\n')}\n`); return at; })(join(shared, `${name}.bound`));

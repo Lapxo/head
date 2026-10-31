@@ -1,11 +1,13 @@
+import { run as verifyRuntimeInventory } from './runtime-inventory.ts';
 import { readFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { declaredOf } from '../src/core/lock.ts';
 const hash = (bytes: Uint8Array) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
 /** Report the actual reviewed transport success and unresolved response/timing failures; never promote a partial flow to zero. */
 export function run(place: string) {
+  verifyRuntimeInventory('dependency/runtime-inventory');
   const bytes = readFileSync('samples/mcp-receiver/yes/client.json');
-  if (hash(bytes) !== 'sha256:32c21ca4a06694b78c998a86fdc33a06c1b1a29a620b5f648a491536621ced82') throw Error('REFUSE·mcp-receiver/capture');
+  if (hash(bytes) !== 'sha256:d4db30c5332eb3fc3452d2431ef551d6968041a8a783727998539250a898bd36') throw Error('REFUSE·mcp-receiver/capture');
   const capture = JSON.parse(bytes.toString());
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·mcp-receiver/current-input');
   const files = readdirSync('src', { recursive: true, withFileTypes: true }).filter(entry => entry.isFile() && entry.name.endsWith('.ts')).map(entry => entry.parentPath + '/' + entry.name).sort();

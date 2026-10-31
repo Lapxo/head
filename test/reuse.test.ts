@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { deepStrictEqual, doesNotMatch, match, ok } from 'node:assert';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, delimiter, join } from 'node:path';
 import { run } from './cli.ts';
@@ -14,9 +14,14 @@ const reusing = (seconds = '0..3600') => [line('allow/reuse/tracker', 'seconds',
 const served = async (body: (server: Awaited<ReturnType<typeof api>>) => Promise<void>, answer = '{}') => { const server = await api(() => answer); try { await body(server); } finally { await server.close(); } };
 
 test('no: what was read as one account is never answered to another — the token held now was obtained later, so the same request is called again with it', () => served(async (server) => {
-  const { place, keychain } = born(server.url, reusing());
+  const { place, root, keychain } = born(server.url, reusing());
   const [first] = await ask([look(place)], [], keychain.env);
-  writeFileSync(join(keychain.env.PATH.split(delimiter)[0]!, `held-ANY--place_${basename(place)}_api_tracker`), sealed('token-of-another', '2026-02-01T00:00:00.000Z'));
+  const dir = keychain.env.PATH.split(delimiter)[0]!, slot = join(dir, readdirSync(dir).find(name => name.startsWith(`held-ANY--place_${basename(place)}_api_tracker_`))!);
+  const previous = JSON.parse(Buffer.from(readFileSync(slot, 'utf8'), 'base64url').toString('utf8')), at = '2026-02-01T00:00:00.000Z';
+  const priorReceipt = readFileSync(join(place, 'TARGET.bound'), 'utf8').split('\n').find(row => row.includes('about=access-binding:sha256:' + previous.binding))!;
+  const scope = / scope=(access\/\S+)/.exec(priorReceipt)![1]!;
+  landing(place, root, [line(scope, 'status', 'present', {at: 'receipt:' + at, about: 'access-binding:sha256:' + previous.binding})]);
+  writeFileSync(slot, Buffer.from(JSON.stringify({...previous, secret: 'token-of-another', at})).toString('base64url'));
   const [second] = await ask([look(place)], [], keychain.env);
   match(text(first), said('untyped')); doesNotMatch(text(second), said('reread')); doesNotMatch(text(second), said('reused'));
   deepStrictEqual(server.seen.map((one) => one.headers['authorization']), ['Bearer token-for-tests', 'Bearer token-of-another']);

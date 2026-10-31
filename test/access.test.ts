@@ -12,7 +12,7 @@ import { api, born, line, lock, root, said, text, viewOf } from './place.ts';
 const look = (place: string, operation: string, args: Record<string, string> = {}) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', operation, args, at: '8' } } });
 const issue = (n: string) => ({ owner: 'o', repo: 'r', issue_number: n });
 const answers = (url: string, body = '') => (url === '/login' && body.includes('many') ? '{"selectionToken":"sel-1","shops":[{"id":"s1","name":"One"},{"id":"s2","name":"Two"}]}' : url === '/select-shop' && body.includes('sel-1') ? '{"token":"t-picked"}' : url === '/login' ? '{"token":"t-first"}' : url === '/select-shop' ? '{"token":"t-shop","expiresIn":3600}' : url === '/token' ? '{"access_token":"o-1","expires_in":60}' : '{}');
-const kept = (keychain: { held: (account: string) => string }, place: string, source = 'tracker') => ((sealed) => (sealed ? JSON.parse(Buffer.from(sealed, 'base64url').toString('utf8')) : undefined))(keychain.held(`place/${basename(place)}/api/${source}`));
+const kept = (keychain: { bound: (account: string) => string }, place: string, source = 'tracker') => ((sealed) => (sealed ? JSON.parse(Buffer.from(sealed, 'base64url').toString('utf8')) : undefined))(keychain.bound(`place/${basename(place)}/api/${source}`));
 const journal = (place: string) => viewOf(place, 'evidence');
 /** The place's root allowing a flow to ask the person this many secrets on head's page. */
 const secrets = (n: number) => line('access/secret-inputs', 'count', `0..${n}`, { form: 'interval' });

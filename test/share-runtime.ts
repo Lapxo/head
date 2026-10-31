@@ -1,3 +1,4 @@
+import { run as verifyRuntimeInventory } from './runtime-inventory.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { canonical, parse } from '@lapxo/topos/wire';
@@ -6,8 +7,9 @@ const fields = (bytes: string) => bytes.split('\n').filter(Boolean).map(line => 
 const policyOf = (bytes: string) => hash(fields(bytes).filter(f => f.scope?.startsWith('share/') || f.scope?.startsWith('tool/share') || f.scope?.startsWith('said/bundle-') || ['tool/do/to', 'bound/wait', 'bound/printed', 'dep/runtime-bundle'].includes(f.scope ?? '')).map(({ sig, epoch, by, at, ...f }) => canonical(f)).sort().join('\n') + '\n');
 /** Current producer bytes and reviewed real consumer receipts; no consumer execution or artifact re-read is implied. */
 export function run(place: string) {
+  verifyRuntimeInventory('dependency/runtime-inventory');
   const bytes = readFileSync('samples/share-runtime/yes/client.json');
-  if (hash(bytes) !== 'sha256:a1ead8412105b6da05acbb86163b213d8235c0109ce0543df4bc089a2e8de380') throw Error('REFUSE·share-runtime capture digest');
+  if (hash(bytes) !== 'sha256:dadf38bee5b9bf6b5b2901d972575c89f0a2d955d910e9acbbacfb048f9356ce') throw Error('REFUSE·share-runtime capture digest');
   const capture = JSON.parse(bytes.toString());
   if (capture.protocol !== 'head-share-runtime-capture@1' || capture.runs.length !== 2 || new Set(capture.runs.map((r: { node: string }) => r.node)).size !== 2) throw Error('REFUSE·share-runtime capture');
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·share-runtime current input ' + input.path);

@@ -1,4 +1,5 @@
-import { placeNameOf } from '../core/answer.ts';
+import { resolve } from 'node:path';
+import { placeNameOf, homeIndex } from '../core/answer.ts';
 import type { Context, Outcome } from '../core/answer.ts';
 import { canonical, parse, LOCK } from '@lapxo/topos/wire';
 import { deviceOf, idIn, uncoveredIn } from '../core/device.ts';
@@ -10,16 +11,18 @@ import { adoptsIn } from '../adopt/adopt.ts';
 /** A key of this device by its role: read from the keychain, or made there once; only its public half is ever handed on. */
 export const deviceKey = (context: Context, role?: string): string | undefined => context.keys.made?.(deviceOf(context.lock, role).account);
 
-/** Read the receiver index through its authenticated policy, or an empty index before its birth. */
-export const homeIndex = (context: Context) => context.files.has(context.home(), LOCK) ? context.policy(context.home()) : Promise.resolve({ lines: [] as readonly Said[] });
+export { homeIndex } from '../core/answer.ts';
 
-/** Resolve the account through the authenticated index; a legacy folder name only locates a key whose public half must match the authenticated root. */
+/** Resolve lexical path aliases through the authenticated index; a legacy folder name only locates a key whose public half must match the authenticated root. */
 export const rootIn = async (context: Context, place: string): Promise<{ readonly account: string } | { readonly said: readonly string[] }> => {
-  const home = context.home(), index = await homeIndex(context);
-  const names = 'refused' in index ? [] : [...new Set(index.lines.filter((l) => l.scope?.startsWith(`${valueOf(context.lock, 'home/family')}/`) && l.value === place).map((l) => l.scope!.slice(valueOf(context.lock, 'home/family').length + 1)))];
+  place = resolve(place);
+  const home = resolve(context.home()), index = await homeIndex(context);
+  if ('refused' in index) return { said: [sayIn(context.lock)(index.refused === 'index/invalid' ? 'index-invalid' : 'index-unread', { place: home })] };
+  const names = [...new Set(index.lines.filter((l) => l.scope?.startsWith(`${valueOf(context.lock, 'home/family')}/`) && l.value !== undefined && l.value !== 'withdraw' && resolve(l.value) === place).map((l) => l.scope!.slice(valueOf(context.lock, 'home/family').length + 1)))];
   const name = place === home ? valueOf(context.lock, 'home/name') : names[0] ?? placeNameOf(place), account = fill(valueOf(context.lock, 'founding/root-account'), { place: name });
   const held = await context.policy(place), key = 'refused' in held ? undefined : held.lines.find((l) => l.scope === valueOf(context.lock, 'founding/root') && l.measure === 'public-key')?.value;
-  return 'refused' in index || names.length > 1 || key === undefined || context.keys.held?.(account) !== key ? { said: [sayIn(context.lock)('no-root', { place })] } : { account };
+  if (names.length > 1) return { said: [sayIn(context.lock)('place-ambiguous', { names: names.sort().join('|') })] };
+  return key === undefined || context.keys.held?.(account) !== key ? { said: [sayIn(context.lock)('no-root', { place })] } : { account };
 };
 
 /**

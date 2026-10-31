@@ -21,7 +21,7 @@ jobs:
       SHARD_3: test/marks.test.ts test/share-receive.test.ts test/authorizer.test.ts test/link-url.test.ts test/read.test.ts test/shape.test.ts test/release.test.ts test/device.test.ts test/surface.test.ts test/refusal-record.test.ts test/welcome.test.ts test/bound.test.ts test/warm-compact.test.ts test/pack.test.ts test/pending-document.test.ts test/keys.test.ts test/acts.test.ts test/bundle.test.ts test/onboarding.test.ts
       SHARD_4: test/issuer.test.ts test/fetch.test.ts test/connect.test.ts test/first-minute.test.ts test/use.test.ts test/places.test.ts test/warm.test.ts test/session.test.ts test/process.test.ts test/stores.test.ts test/signer.test.ts
       SHARD_5: test/org.test.ts test/ahead-read.test.ts test/access.test.ts test/answered.test.ts test/world.test.ts test/named.test.ts test/first-run.test.ts test/place-neutral.test.ts test/composition.test.ts test/kind-boundary.test.ts test/protocol-surface.test.ts
-      SHARD_6: test/marks-lineage.test.ts test/share-refused.test.ts test/kept-zero-moved.test.ts test/observed.test.ts test/walk.test.ts test/kept-zero.test.ts test/adopt.test.ts test/asking.test.ts test/mcp-transport.test.ts test/runtime-resolution.test.ts test/share-bundle.test.ts test/source-policy.test.ts test/world-standing.test.ts
+      SHARD_6: test/receiver-access.test.ts test/root-path.test.ts test/implicit-root.test.ts test/release-repairs.test.ts test/marks-lineage.test.ts test/share-refused.test.ts test/kept-zero-moved.test.ts test/observed.test.ts test/walk.test.ts test/kept-zero.test.ts test/adopt.test.ts test/asking.test.ts test/mcp-transport.test.ts test/runtime-resolution.test.ts test/share-bundle.test.ts test/source-policy.test.ts test/world-standing.test.ts
     steps:
       - uses: actions/checkout@v4
         with:
@@ -125,7 +125,7 @@ jobs:
           printf 'BUNDLE sha256:%s · made again sha256:%s · from %s\n' "$one" "$two" "$(shasum -a 256 "$archive" | cut -d' ' -f1)"
           test "$one" = "$two"
       - name: Run it as a host would, from the unpacked bundle in a fresh home
-        run: HEAD_BUNDLE="$RUNNER_TEMP/head-1.mcpb" node --test test/bundle.test.ts
+        run: HEAD_BUNDLE="$RUNNER_TEMP/head-1.mcpb" HEAD_RECEIVER_ACCESS_BUNDLE="$RUNNER_TEMP/head-1.mcpb" node --test --test-concurrency=1 test/bundle.test.ts test/receiver-access.test.ts
       - uses: actions/upload-artifact@v4
         if: always()
         with:

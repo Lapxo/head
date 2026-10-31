@@ -1,3 +1,4 @@
+import { run as verifyRuntimeInventory } from './runtime-inventory.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -8,7 +9,7 @@ const digest = (bytes: Uint8Array) => `sha256:${createHash('sha256').update(byte
 
 /** Read the preserved regional client runs against their exact current inputs. This is no release or source-budget verdict. */
 export function observe(bytes: Uint8Array) {
-  if (digest(bytes) !== 'sha256:ab37d9ab5a7a2572f455e59a2d4ac884b65b5c6e949a7aff6e1dbf267b347fa9') throw Error('REFUSE·share-inspect capture digest');
+  if (digest(bytes) !== 'sha256:dbd2262ecca739e5d97910246f3c77e5cca555b63c1f382b5afa86ed0de1ca05') throw Error('REFUSE·share-inspect capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture;
   if (capture.protocol !== 'head-share-inspect-capture@1' || capture.runs.length !== 2) throw Error('REFUSE·share-inspect protocol');
   const nodes = new Set<string>();
@@ -21,6 +22,7 @@ export function observe(bytes: Uint8Array) {
 }
 
 export function run(place: string) {
+  verifyRuntimeInventory('dependency/runtime-inventory');
   const bytes = readFileSync('samples/share-inspect/yes/client.json'), capture = JSON.parse(bytes.toString()) as Capture;
   const files = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? files(join(dir, entry.name)) : entry.name.endsWith('.ts') ? [join(dir, entry.name)] : []);
   const selected = [...files('src'), ...files('test').filter(path => !["test/first-minute.ts","test/share-inspect.ts","test/authority-preflight-reader.ts","test/walk-reading.ts","test/foundation-reading.ts","test/source-lines.ts"].includes(path))].sort();

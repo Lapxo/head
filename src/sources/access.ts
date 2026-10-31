@@ -18,11 +18,13 @@ import { standingFor } from '../flows/world.ts';
  * attaches is what a fetch made as that source carries, to that source's own origin alone.
  */
 export const accessed = (asked: Asked, context: Context): Promise<readonly string[]> => inPlace(asked, context, async (place) => {
-  const got = await attachedFor(context, place, asked['source'] ?? '', asked['operation']);
+  let retry = false;
+  if (asked['args']) { try { const args = JSON.parse(asked['args']); if (!args || Array.isArray(args) || typeof args !== 'object' || Object.keys(args).some(key => key !== 'retry') || (args.retry !== undefined && typeof args.retry !== 'boolean')) throw Error(); retry = args.retry === true; } catch { return [sayIn(context.lock)('access-arguments')]; } }
+  const got = await attachedFor(context, place, asked['source'] ?? '', asked['operation'], retry);
   return 'said' in got ? got.said : [sayIn(context.lock)(got.plan.access.account === undefined ? 'access-anonymous' : 'access-kept', { source: got.plan.source })];
 });
 
-export const attachedFor = async (context: Context, place: string, source: string, asked?: string): Promise<{ readonly plan: Call; readonly attachment: Attachment | undefined } | { readonly said: readonly string[] }> => {
+export const attachedFor = async (context: Context, place: string, source: string, asked?: string, retry = false): Promise<{ readonly plan: Call; readonly attachment: Attachment | undefined } | { readonly said: readonly string[] }> => {
   const [say, v] = [sayIn(context.lock), vocabOf(context.lock)];
   const held = await standingFor(context, place);
   if ('unsettled' in held) return { said: [say('unsettled', { source, why: held.unsettled })] };
@@ -34,6 +36,6 @@ export const attachedFor = async (context: Context, place: string, source: strin
   if (plan.kind === 'said') return { said: [say(plan.key, plan.fields)] };
   const stopped = uncoveredIn(context.lock, held.lines, context.device('head'), place, [], [`${valueOf(context.lock, 'access/family')}/${source}/${plan.access.scheme || v.anonymous}/obtained`]);
   if (stopped) return { said: stopped };
-  const got = await attachmentFor(context, place, picked.lines, plan);
+  const got = await attachmentFor(context, place, picked.lines, plan, retry);
   return 'said' in got ? { said: [say(got.said, { source, operation, kinds: plan.access.kind, input: got.input })] } : { plan, attachment: got.attachment };
 };

@@ -15,14 +15,14 @@ import type { Context } from '../src/core/answer.ts';
 import type { Recipe, Source } from '../src/core/composition.ts';
 
 const hash = (b: Uint8Array) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
-const fixture = { 'dist/src/index.js': Buffer.from('process.exit(0);\n'), 'package.json': Buffer.from('{"name":"@lapxo/head","version":"0.2.0","type":"module"}'), LICENSE: Buffer.from('MIT\n') };
+const fixture = { 'dist/src/index.js': Buffer.from('process.exit(0);\n'), 'package.json': Buffer.from('{"name":"@lapxo/head","version":"0.2.0","type":"module","author":"Neutral runtime author"}'), LICENSE: Buffer.from('MIT\n') };
 const runtime = (files: Record<string, Buffer> = fixture): BundlePort => {
   const value: Runtime = { protocol: 'head-runtime-closure@1', files: Object.entries(files).map(([path, b]) => ({ path, bytes: b.length, digest: hash(b) })), bytes: Object.values(files).reduce((n, b) => n + b.length, 0) };
   const bytes = Buffer.from(JSON.stringify(value)); return { runtime: bytes, expected: hash(bytes), take: p => files[p], profile: Buffer.from('') };
 };
 const document = Buffer.from('{"openapi":"3.0.3"}'), pin = Buffer.from('public compiled fixture\n');
 const source: Source = { name: 'records', kind: 'compiled', document: hash(document), pin: hash(pin), offers: ['lookup'] };
-const recipe: Recipe = { id: 'my-desk', revision: '1.0.0', title: 'My desk', description: 'Selected public sources', sources: [{ source: source.name, namespace: 'records', offers: ['lookup'] }] };
+const recipe: Recipe = { id: 'my-desk', revision: '1.0.0', title: 'My desk', description: 'Selected public sources', author: { name: 'Neutral fixture author' }, sources: [{ source: source.name, namespace: 'records', offers: ['lookup'] }] };
 const line = (scope: string, bytes: Buffer, needs: string) => canonical({ at: 'policy:head/share', by: 'target', form: 'alphabet', measure: 'digest', role: 'writes', scope, needs, value: hash(bytes) });
 const material = () => ({ sources: [source], files: new Map([['connected/records.json', document], ['compiled/records.bound', pin], ['TARGET.bound', Buffer.from([line('sources/records', document, 'connected/records.json'), line('uses/records', pin, 'compiled/records.bound')].join('\n') + '\n')]]) });
 const unpack = (bytes: Buffer) => { const dir = mkdtempSync(join(tmpdir(), 'head-bundle-test-')); const file = join(dir, 'test.mcpb'); requireWrite(file, bytes); return { file, dir, read: (name: string) => execFileSync('unzip', ['-p', file, name]) }; };
@@ -48,7 +48,7 @@ test('share bundle: modified/missing runtime, unsafe paths, secret-state paths, 
 });
 test('share bundle: action selects only named sources; invalid bytes refuse before output; existing folder share remains separate', async () => {
   const writes: [string, Uint8Array][] = [], rows = [...lock, ...['bundle-refused', 'bundle-shared', 'bundle-source-needed', 'bundle-mcp-needed'].map(key => ({ scope: `said/${key}`, about: key + ' {why}{document}{digest}{sources}', value: 'lock' }))];
-  const context = { lock: rows, roots: async () => ['/shared'], files: { has: () => false, lay: (_: string, p: string, b: Uint8Array) => writes.push([p, b]) }, bundle: async (payload: any) => { ok(payload.files.has('connected/records.json')); ok(!payload.files.has('connected/other.json')); return { bytes: Buffer.from('archive'), digest: hash(Buffer.from('archive')), sources: ['records'] }; } } as unknown as Context;
+  const context = { lock: rows, roots: async () => ['/shared'], files: { has: () => false, publish: async (_: string, p: string, b: Uint8Array) => { writes.push([p.split('/').at(-1)!, b]); } }, bundle: async (payload: any) => { ok(payload.files.has('connected/records.json')); ok(!payload.files.has('connected/other.json')); return { bytes: Buffer.from('archive'), digest: hash(Buffer.from('archive')), sources: ['records'] }; } } as unknown as Context;
   const extra = Buffer.from('unselected public document'); const read = async () => { const m = material(); m.files.set('connected/other.json', extra); const own = declaredOf(m.files.get('TARGET.bound')!.toString()); m.files.set('TARGET.bound', Buffer.from([...own.map(l => canonical(l)), line('sources/other', extra, 'connected/other.json'), line('uses/other', pin, 'compiled/records.bound')].join('\n') + '\n')); m.sources.push({ ...source, name: 'other', document: hash(extra) }); return m; };
   const result = await shareBundle({ place: '/place', to: '/shared/desk.mcpb', args: JSON.stringify(recipe) }, context, read); ok(result?.[0]?.includes('bundle-shared')); deepStrictEqual(writes.map(([p]) => p), ['desk.mcpb']);
   const changed = async () => { const m = material(); m.files.set('connected/records.json', Buffer.from('altered')); return m; };
@@ -61,8 +61,10 @@ test('share bundle: real existing Head closure starts without npm and keeps exac
   try {
     const input = join(scratch, 'input'); execFileSync('unzip', ['-q', process.env['HEAD_BASE_BUNDLE']!, '-d', input]);
     const paths = (dir: string, rel = ''): string[] => readdirSync(join(dir, rel), { withFileTypes: true }).flatMap(e => e.isDirectory() ? paths(dir, join(rel, e.name)) : [join(rel, e.name)]);
-    const files = Object.fromEntries(paths(input).filter(path => /^(dist\/src\/|node_modules\/|package\.json$|LICENSE$)/.test(path)).map(path => [path, readFileSync(join(input, path))]));
-    const port = { ...runtime(files), profile: readFileSync(join(input, 'TARGET.bound')) };
+    const fixed = readFileSync(join(input, 'runtime.bundle.json')), profile = readFileSync(join(input, 'TARGET.bound'));
+    const expected = declaredOf(profile.toString()).find(line => line.scope === 'dep/runtime-bundle')?.value;
+    ok(expected && hash(fixed) === expected, 'use the installed pinned inventory unchanged, never derive expected hashes from observed files');
+    const port: BundlePort = { runtime: fixed, expected, profile, take: path => { try { return readFileSync(join(input, path)); } catch { return undefined; } } };
     const made = await bundle(port, { recipe, ...material() }, { ...budget, bytes: 16777216 });
     const zip = unpack(made.bytes), destination = join(scratch, 'receiver');
     try {

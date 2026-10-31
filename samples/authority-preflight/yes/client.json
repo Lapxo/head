@@ -11,7 +11,7 @@
     },
     {
       "path": "src/access/obtain.ts",
-      "sha256": "sha256:5eb69ec2d57ae10cdd3f9aad9304919efa9c977662d12d684a4ed39f17462a97"
+      "sha256": "sha256:75eabc43e1f6784a3037bb064ea7cfb59eb4dd53ebf7191acf2d8f9e74b5af7c"
     },
     {
       "path": "src/adopt/adopt.ts",
@@ -51,7 +51,7 @@
     },
     {
       "path": "src/core/answer.ts",
-      "sha256": "sha256:8c6e81a9959c559b816fd14edbe090e8f5c1c425c3ceefe8271c49d641bf2870"
+      "sha256": "sha256:d4feb204a359952d9d249beedb5f538e4dd0d3e1f630a873021fedd7e1fd6306"
     },
     {
       "path": "src/core/association.ts",
@@ -59,7 +59,7 @@
     },
     {
       "path": "src/core/composition.ts",
-      "sha256": "sha256:508fc458d9875ea2febf293f780da3924d2c2476994639c85e6065be4ee8a0c0"
+      "sha256": "sha256:ed3167dfce490431847c769e40a78d62d3db832f3effc76029ed2321ca2544d0"
     },
     {
       "path": "src/core/device.ts",
@@ -71,7 +71,7 @@
     },
     {
       "path": "src/core/package.ts",
-      "sha256": "sha256:a516caa4f6a5578cd97e0061b50e40cce006fe0ba3b5841b06e45f3ae7b517f6"
+      "sha256": "sha256:f8c117688dd2c3e27173786da5f4fd2668cde90ff8b7fb983abc2ef7f96f8147"
     },
     {
       "path": "src/core/read.ts",
@@ -83,11 +83,11 @@
     },
     {
       "path": "src/core/receiver.ts",
-      "sha256": "sha256:6bc29cf7c4ce0d5f5a7c9b434eb9c735e5f1c443f7af1cea944992d8e8367322"
+      "sha256": "sha256:a38eb00e734e5a89b44e37c6d5f84f0d5c1f364a45eb8c71f3b5d0467d85c51f"
     },
     {
       "path": "src/core/share-bundle.ts",
-      "sha256": "sha256:21f870076cd11e8584f86963777cddd158c271cb76b8e840084e788d8e5b5bc8"
+      "sha256": "sha256:32ee7a59e5f6bc3b8319406a8ba21213c2dc2b72bf5a779be591e459d43f74a5"
     },
     {
       "path": "src/core/surface.ts",
@@ -103,11 +103,11 @@
     },
     {
       "path": "src/doors/guard.ts",
-      "sha256": "sha256:d9970c5129f3aeaa5777063220770fe40bb55727710c2434a6a912e2e1598cbd"
+      "sha256": "sha256:fce94ddaed87b52517d41341a2ae5d7e620c4d82069c687820de205c824f84ce"
     },
     {
       "path": "src/doors/head.ts",
-      "sha256": "sha256:89bbd796396bd078e00ed32ea4bde074be37eb74aca9c85c0b01814d92e731e8"
+      "sha256": "sha256:49080fe5301decb0d8b68926e30f954ad78c06ecb6acb93c929fa2c11bc2e96e"
     },
     {
       "path": "src/doors/http.ts",
@@ -131,7 +131,7 @@
     },
     {
       "path": "src/flows/device.ts",
-      "sha256": "sha256:6477d2c90b5265e39c6064867efe0c78079a53cd870b56ac460464826e73c142"
+      "sha256": "sha256:de6a29c5f1f190ce7c5d5707bec4b0d89e6587864f502c155b6a191e0ec792bc"
     },
     {
       "path": "src/flows/plan.ts",
@@ -139,7 +139,7 @@
     },
     {
       "path": "src/flows/read.ts",
-      "sha256": "sha256:c537f1441e237dc0228d3066a888fbf919bd194ac616d7d48e3d4f11e8ab9d83"
+      "sha256": "sha256:19683a6da53978f8b726bc7a125abf51809f231d10dc2ddbd86ba388c220fde2"
     },
     {
       "path": "src/flows/world.ts",
@@ -187,7 +187,7 @@
     },
     {
       "path": "src/places/found.ts",
-      "sha256": "sha256:d41a434d869d39dbf5156094c16ff14e3ef9783df47736678d37a3f9cf7a306c"
+      "sha256": "sha256:e8fd8061dd9b242d80be04930b55a85622fce32e4b3caa22441318b6ac25441f"
     },
     {
       "path": "src/ports/access/authorizer.ts",
@@ -207,7 +207,7 @@
     },
     {
       "path": "src/ports/adapters/bundle.ts",
-      "sha256": "sha256:d3b84d56766ce9f5d63f53c1a6562b0eec96c56cce5a789678e44c75ec8de24d"
+      "sha256": "sha256:fd51124236fb74be6cd6e1608b17e60fd7f5ab19e4353990cd0f231f8dee6757"
     },
     {
       "path": "src/ports/adapters/configured.ts",
@@ -246,6 +246,14 @@
       "sha256": "sha256:8be05f9171bf94d180dd4005369d6b63d08a98e469050fff844ea61d3b2b7b6f"
     },
     {
+      "path": "src/ports/export.ts",
+      "sha256": "sha256:8a024751f82d423546df2d4bae6dded5098611802a5753b612d29c92738c4503"
+    },
+    {
+      "path": "src/ports/home.ts",
+      "sha256": "sha256:ec6c190aa864212dcaa160046c2c78e4fdb4e5f59452bc0378cbc50c815132e8"
+    },
+    {
       "path": "src/ports/host.ts",
       "sha256": "sha256:45ace2ce71c074471f9ecc4b5ced609967e4900274ced6a51e88fa9360751975"
     },
@@ -259,7 +267,7 @@
     },
     {
       "path": "src/ports/place.ts",
-      "sha256": "sha256:1e9899ab0a20e9bb2012680500c48943a803e8c2e0d8dcb4d5c772c37093dea3"
+      "sha256": "sha256:0d5922b820a020f9c217c7f15a3e1dd53e2163da431ca60e9cd9b67074944e3f"
     },
     {
       "path": "src/ports/process.ts",
@@ -295,15 +303,15 @@
     },
     {
       "path": "src/sources/access.ts",
-      "sha256": "sha256:65433aa239e869dc432a8635b155c111f3894d92ed1e4eb90c51f761910ad8bf"
+      "sha256": "sha256:c1e412a3dbcd181731f08c09cec3aa445de05c91e6d87317df2c7d04618d3f18"
     },
     {
       "path": "src/sources/connect.ts",
-      "sha256": "sha256:ec91c8b2018035c083ad8a65f8d9ab187774698058d8dc45b49d718a082a0d50"
+      "sha256": "sha256:1cf0dd45b215482a36cb0a94e585ca7e2750cbbd84741f4072a6ca497738d314"
     },
     {
       "path": "src/sources/refused.ts",
-      "sha256": "sha256:5ce4eaf7e299e78d8c63bf65007f8d23f504832dfbd65af284b5ce5d9af58d6b"
+      "sha256": "sha256:1fad33f08642007b71e43fee202dd914df413981665c0612b03663210e6e1781"
     },
     {
       "path": "src/tools/access.ts",
@@ -371,7 +379,7 @@
     },
     {
       "path": "src/verbs/ask.ts",
-      "sha256": "sha256:6bf593752bd673a2ce853d22be1bf1c2380263a284114082ac0990144144ded1"
+      "sha256": "sha256:f8dcb6e239fa249145e4e78e714b40a1a5d35d346f8437ff03a726f3541ce65b"
     },
     {
       "path": "src/verbs/card.ts",
@@ -379,7 +387,7 @@
     },
     {
       "path": "src/verbs/do.ts",
-      "sha256": "sha256:6d95196a0e92a0ec205068dfbdc8173f271b0e9f0ee9da8885d74863990d99bf"
+      "sha256": "sha256:8fe17c2e200f63920a5cb4e14e859ce52bf2f2b2b2c02834fcc77f42b9580d0e"
     },
     {
       "path": "src/walk/context.ts",
@@ -387,7 +395,7 @@
     },
     {
       "path": "test/access.test.ts",
-      "sha256": "sha256:46303cec0698ad8dcc94c2ba5183e20de4114fad195d63d41fa1ef19002d91e1"
+      "sha256": "sha256:7392f398f7607d1afb1b0a883e0e91c451ce35de12fe9f882a6c2761d5c513a5"
     },
     {
       "path": "test/act.test.ts",
@@ -407,7 +415,7 @@
     },
     {
       "path": "test/ahead-read.test.ts",
-      "sha256": "sha256:2e229d8e56e015a007bb9fc680593010cd4c961b590d374b342ceb38e647e6fa"
+      "sha256": "sha256:78ceb21095ee21dd7fa6f7b931fac33f57bf637465da3f0fc0ddf77ac19fbd40"
     },
     {
       "path": "test/answer-model.test.ts",
@@ -447,7 +455,7 @@
     },
     {
       "path": "test/bundle.test.ts",
-      "sha256": "sha256:85e4f72b8bb544854669872e26ab21a5af1bbf9ffbc7a7a8be9376eb9f28224c"
+      "sha256": "sha256:bcd99ef55210210945824286e24d5b836abe28708bae77870b68d93a58deddac"
     },
     {
       "path": "test/channels.test.ts",
@@ -467,7 +475,7 @@
     },
     {
       "path": "test/composition-reading.ts",
-      "sha256": "sha256:67702909cc17fd4d2c79027f57f7bcb1f6d1f711e2a873deb9b908ebc06d2a7e"
+      "sha256": "sha256:8b2e559fedf128a9497920c036b26228a27ae3b2cd77a676250882cd302acecf"
     },
     {
       "path": "test/composition.test.ts",
@@ -475,7 +483,7 @@
     },
     {
       "path": "test/configured-ports.ts",
-      "sha256": "sha256:c931b7bf9257ffcd647ba32d0900346b64e363cb28c38ed690087a754b8bb834"
+      "sha256": "sha256:e26d12b2e5027d26cfef04899aec26c76160fc34df2e2bd080138478661e0364"
     },
     {
       "path": "test/configured-receiver.test.ts",
@@ -487,7 +495,7 @@
     },
     {
       "path": "test/connected-person.ts",
-      "sha256": "sha256:19249d6635fb4ac99772f15dc9636f51aefdb751c4218aea2c4d7845617e9cbe"
+      "sha256": "sha256:b7f386b4ec1cc45d4db7c1712859a2c904ccca8c1ae017ed0068e91ab6a69baf"
     },
     {
       "path": "test/consent.test.ts",
@@ -503,7 +511,7 @@
     },
     {
       "path": "test/fake-keychain.ts",
-      "sha256": "sha256:6b8fb8c7e6cf2bc4173347fc98f7484552612d62fc3168ddbe602373aec021df"
+      "sha256": "sha256:ee2d6ea2b1b58fca11f493ffeca514f7949a5892afef1862f3837b2fb0a694b8"
     },
     {
       "path": "test/fetch.test.ts",
@@ -522,12 +530,28 @@
       "sha256": "sha256:a20c5224aa5f177fbea3c79fe0559b1547c4f28de49bf9361161cc340043d7f0"
     },
     {
+      "path": "test/functional-repairs-reading.ts",
+      "sha256": "sha256:92797fa6965ada9d0e1068d7f3854590282d48324ce4eb879508e16abe7d7fc3"
+    },
+    {
       "path": "test/gestures.test.ts",
       "sha256": "sha256:6fa934dcdb5dedbd635b3afed6ecdfed5a9808e1c478077d2d7e380d01ea7a0e"
     },
     {
+      "path": "test/implicit-root-reading.ts",
+      "sha256": "sha256:d97c56716aaeb05f6a078cdc32b87cec103d17301a1f8ad6e2db29ef96a4d2ff"
+    },
+    {
+      "path": "test/implicit-root.test.ts",
+      "sha256": "sha256:726fcc36f21f32cda33eed004421432336b237646d9bc2e43581f3bf2aec6537"
+    },
+    {
+      "path": "test/installed-share.ts",
+      "sha256": "sha256:5b9581a3c416141c6ab7de58cfd0b0818f09d2e2ba2b763c91f1e81369e98327"
+    },
+    {
       "path": "test/issuer.test.ts",
-      "sha256": "sha256:0e52d9361fb1de6dd9360858815a10e8b958776aa4021868735c0f8f7af1595c"
+      "sha256": "sha256:ad90e9341e7d92862c08ad5157ad59ff83b80c5885d3530b6b1422247ede639d"
     },
     {
       "path": "test/kept-zero-moved.test.ts",
@@ -551,7 +575,7 @@
     },
     {
       "path": "test/link-url.test.ts",
-      "sha256": "sha256:76d45a8c0d6e660fda3764e9ae05bd15c978e5b2e810560ebc6c2d6e184dbd00"
+      "sha256": "sha256:7888c635cb2d7b140ecb4768c077f85bf3c02f9ca0ae0ae6f3b051f6dbeeeee9"
     },
     {
       "path": "test/marks-lineage.test.ts",
@@ -567,11 +591,11 @@
     },
     {
       "path": "test/mcp-flow-native.ts",
-      "sha256": "sha256:363861962e74aa4038369329906283f8d82ea4a91bfdd3f6837bb4cdf7f1788b"
+      "sha256": "sha256:93e868d3d341c6e34aaaa1cf29ec619f2a561b598fca1097f11b6a88b9f96f01"
     },
     {
       "path": "test/mcp-receiver-reading.ts",
-      "sha256": "sha256:cdc04818dc6abf3c860467dffeb7c472ab9c3e8c2dcf5cb2e9e2361617645654"
+      "sha256": "sha256:32449a26a30d37850e9ec246cf780065a6b0f592332d02ea95ea97acd5eb9943"
     },
     {
       "path": "test/mcp-transport.test.ts",
@@ -599,7 +623,7 @@
     },
     {
       "path": "test/org.test.ts",
-      "sha256": "sha256:8df6d34dbde1279b0fb0fac8d981ffffba5f3668b4c0e7f60c1e6e31a1e2c0ca"
+      "sha256": "sha256:efe87eaf4f09c2887da885b471659a87948a3bc7d99223b61aaa0888f7804dca"
     },
     {
       "path": "test/pack.test.ts",
@@ -610,12 +634,16 @@
       "sha256": "sha256:f96bf014a377111bc2784338e005fd1f7ce7819f85c1d37dda042e62d063534b"
     },
     {
+      "path": "test/place-identity-probes.ts",
+      "sha256": "sha256:3e1051e08d2ae6017f084a3b0df09bddc13069f8ce5af6b74e6fc7eca1d4cda6"
+    },
+    {
       "path": "test/place-neutral.test.ts",
       "sha256": "sha256:14139f8421f2fa862857840f40251ce7cc44531dc1308546e52421f6b495ec69"
     },
     {
       "path": "test/place.ts",
-      "sha256": "sha256:20a6452df91da65a429259ffc132f45e6df2edb08a0d3ac1264939009adcd6c5"
+      "sha256": "sha256:ee80515f0bbf6cce5978de8f75788af05830de8f601610a95d09fe6188d10c12"
     },
     {
       "path": "test/places.test.ts",
@@ -650,8 +678,20 @@
       "sha256": "sha256:c3810f2dc474da1257e128ab38e6d2715c8dd89045d330a3c679bee97d3498b4"
     },
     {
+      "path": "test/receiver-access-reading.ts",
+      "sha256": "sha256:23282449d3c5312eae025b98967a323084cd7920efb5b4ae4be9fed736200f3e"
+    },
+    {
+      "path": "test/receiver-access.test.ts",
+      "sha256": "sha256:4fa6f5ca99eb6112435305e78429b91093cbf2045001a261ea7e2acc8b3a7aaf"
+    },
+    {
+      "path": "test/receiver-access.ts",
+      "sha256": "sha256:6664c92a9d41184ca3423071f10b96195a0fc418c8c302a71f98600697182117"
+    },
+    {
       "path": "test/receiver-runtime.ts",
-      "sha256": "sha256:86ac64eeb39dd244e0578c1135fd05f1e3cb3b2bf07a42110838586b7a3b2714"
+      "sha256": "sha256:7064b235a7442e9cf4682154d65f1262e2b48f005d43feb284ab9b53a61fe314"
     },
     {
       "path": "test/receiver.test.ts",
@@ -662,16 +702,28 @@
       "sha256": "sha256:ac5c7caf7eda111645257497113407f614e5852371be8ae655cc0e05ba9ba3c8"
     },
     {
+      "path": "test/release-repairs.test.ts",
+      "sha256": "sha256:c38f797fac1eec3249be54e23490a13dfe162210cc549a158d96804347800476"
+    },
+    {
       "path": "test/release.test.ts",
       "sha256": "sha256:371b60a2f5bdbc1176f70043bb4c287df117eb3d56512d7f3df8ae5159a6c443"
     },
     {
       "path": "test/reuse.test.ts",
-      "sha256": "sha256:e1883e0eec3546985aa5dcbd554c845f1724c769b91edb28eaf96405fe90c824"
+      "sha256": "sha256:2adbc5f721b5b25d016f2931b45fbe1c9a6b765210b2f2f3a821577ae69cf87e"
+    },
+    {
+      "path": "test/root-path.test.ts",
+      "sha256": "sha256:fb572d6ffd8256c7671e500f411eea164cdbc963f1eee603cbd50ce9c84b9720"
+    },
+    {
+      "path": "test/runtime-inventory.ts",
+      "sha256": "sha256:149154dcf6ec7d3097a1e4309d2e97b377923f6bc5bbec483865434bb9cbdc9c"
     },
     {
       "path": "test/runtime-resolution.test.ts",
-      "sha256": "sha256:bce5b50edd9386371999f325b7824a06eb8f3f44bc59b4b18d105a980baf7587"
+      "sha256": "sha256:effc895776f4b3ece07b3905c74cb4a717699615e0b5fd954c82e0fe31163c47"
     },
     {
       "path": "test/scheduled.ts",
@@ -695,7 +747,7 @@
     },
     {
       "path": "test/share-bundle.test.ts",
-      "sha256": "sha256:5fec72d858839264e7694372272fa4babc24028ae126060e92117baacb42de4f"
+      "sha256": "sha256:102e35d37c7be9b00de3d6f2162f7fd0ab7db1fd14461bca6ddd7f7bc53420fb"
     },
     {
       "path": "test/share-fixture.ts",
@@ -711,11 +763,11 @@
     },
     {
       "path": "test/share-runtime.ts",
-      "sha256": "sha256:923ae681c8cf3bfec6f87542c51c185d05125200c9e7f24a707328300b9f4efc"
+      "sha256": "sha256:853c1eee8d555760a78e2414f48e14184187ad41afbf1d0e63a951c0f937835e"
     },
     {
       "path": "test/share.test.ts",
-      "sha256": "sha256:af62f4bac8dd7c14286d643eb2b9e72b896daa8bccfc3b5ec16f46d63bbcc26f"
+      "sha256": "sha256:86b9341e6ca2b4908da27e96c7478adb67ad74394dc4dd54149949043396d9fb"
     },
     {
       "path": "test/signer.test.ts",
@@ -763,7 +815,7 @@
     },
     {
       "path": "test/two-sources.ts",
-      "sha256": "sha256:1dffe5fdfc8d6d68b16cad4646c04cbfa0a044ad44d9dbe2ee84affba5cedfac"
+      "sha256": "sha256:b21bda7d69654ef77ffa2e84a16707bd0fe6aa4ad60d52c688bbec6b20a37621"
     },
     {
       "path": "test/use.test.ts",
@@ -771,11 +823,11 @@
     },
     {
       "path": "test/verbs.test.ts",
-      "sha256": "sha256:f00fd0813db20b8dea0422c29003dc21d503bb63e92b05844ca23ba8628dc6ad"
+      "sha256": "sha256:f9fe0006ff4334d1b3984b2cd19a0e572cc622772c91ac345094ff53425a5a1e"
     },
     {
       "path": "test/walk.test.ts",
-      "sha256": "sha256:a2821aaf6114a6a56100b4d48ba962cfa97fe68d5f625c80dc7f0f49c53ebf87"
+      "sha256": "sha256:cf991abfdc1edcedaa44538f6ec1191f6090b4dafeee8839982c8faa14362c63"
     },
     {
       "path": "test/warm-compact.test.ts",
@@ -813,11 +865,11 @@
   "runs": [
     {
       "node": "22",
-      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 992.231833\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1443.464417\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 846.495291\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1443.414375\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1362.512417\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 5629.730292\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 4754.819583\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 414.129042\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 17122.380875\n"
+      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 980.620416\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1511.844042\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 825.42825\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1429.803625\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1413.428625\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 5162.846375\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 4670.903458\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 385.323667\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 16631.197417\n"
     },
     {
       "node": "24",
-      "output": "✔ configuration preflight is read only, exact and separate from Q4: catalog (936.314042ms)\n✔ native epoch, changed coverage and independent admission remain Bound's: catalog (1467.611334ms)\n✔ configuration preflight is read only, exact and separate from Q4: route-notes (777.207542ms)\n✔ native epoch, changed coverage and independent admission remain Bound's: route-notes (1483.611875ms)\n✔ the public ask/card carrier exposes a configuration observation, never a new grant (1360.682292ms)\n✔ a real Root plan is observed before consent, signed only after recheck, and admitted independently (5403.841084ms)\n✔ a policy change during consent cannot authorize landing against the old base (4665.039583ms)\n✔ cancelled or unknown-key observations fail closed without persisted output (390.229708ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 16752.236833\n"
+      "output": "TAP version 13\n# Subtest: configuration preflight is read only, exact and separate from Q4: catalog\nok 1 - configuration preflight is read only, exact and separate from Q4: catalog\n  ---\n  duration_ms: 920.146625\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: catalog\nok 2 - native epoch, changed coverage and independent admission remain Bound's: catalog\n  ---\n  duration_ms: 1505.255917\n  type: 'test'\n  ...\n# Subtest: configuration preflight is read only, exact and separate from Q4: route-notes\nok 3 - configuration preflight is read only, exact and separate from Q4: route-notes\n  ---\n  duration_ms: 783.7845\n  type: 'test'\n  ...\n# Subtest: native epoch, changed coverage and independent admission remain Bound's: route-notes\nok 4 - native epoch, changed coverage and independent admission remain Bound's: route-notes\n  ---\n  duration_ms: 1429.14575\n  type: 'test'\n  ...\n# Subtest: the public ask/card carrier exposes a configuration observation, never a new grant\nok 5 - the public ask/card carrier exposes a configuration observation, never a new grant\n  ---\n  duration_ms: 1447.658708\n  type: 'test'\n  ...\n# Subtest: a real Root plan is observed before consent, signed only after recheck, and admitted independently\nok 6 - a real Root plan is observed before consent, signed only after recheck, and admitted independently\n  ---\n  duration_ms: 5095.894042\n  type: 'test'\n  ...\n# Subtest: a policy change during consent cannot authorize landing against the old base\nok 7 - a policy change during consent cannot authorize landing against the old base\n  ---\n  duration_ms: 4327.098333\n  type: 'test'\n  ...\n# Subtest: cancelled or unknown-key observations fail closed without persisted output\nok 8 - cancelled or unknown-key observations fail closed without persisted output\n  ---\n  duration_ms: 337.371417\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 16111.066208\n"
     }
   ],
   "inputPolicy": {
@@ -861,21 +913,31 @@
     }
   },
   "Q4": "Domain permissions remain open; configuration preflight is not API action authorization.",
-  "status": "Observer-only binding successor: retain original regional executions and check current producer bytes.",
+  "status": "Observer-only successor: one duplicate output removed from receiver-access; the implicit-root producer alone owns root-choice. Original functional matrices retained.",
   "predecessor": {
-    "sha256": "sha256:0610c67b4101de9b4fe5a1bd45a4b11e2de5148097e6650981e2a92010992e1d",
-    "preserved": true
+    "sha256": "sha256:789405d3716757ff25d38a67ee64ad883414ae8db219c0112e50c28443ac3062",
+    "allOriginalExecutionsAndFailuresPreserved": true
   },
-  "observerRebinding": {
-    "reason": "Only the existing sender capture observer changed its embedded digest; its logic, all product source/runtime, regional vectors and selected regional policy remain identical.",
+  "evidenceReuse": {
+    "kind": "Retained functional matrices plus named narrow revalidation; not freshly rerun historical matrices",
+    "executedSourceInventory": "sha256:46c3b8145a7f791c5b212a52c4a342482d51612fc1674532b5fb121f63fb00b5",
+    "executedRuntime": "sha256:ef08ce28c543fc18f6c4b130c6b542aa54d35e4227dc08c0d084c87040b2bafb",
+    "narrowSourceDelta": "sha256:4b8ba43e740c5a6f46a73650f418d9a5e8742d496d2bb26a85b78ba626d15509",
+    "description": "After those matrices only share metadata defaults were removed. Full explicit public metadata is now required; operations/sources remain optional. Current focused nine cases and installed two-domain export/access gates revalidate that delta. A and full MCP execute final bytes separately."
+  },
+  "observerCorrection": {
     "changedInputs": [
       {
-        "path": "test/share-runtime.ts",
-        "before": "sha256:a5c5347a22e2a750539eff7518f856d9c3d4665a1a1cd244ce6d644f858ec793",
-        "after": "sha256:923ae681c8cf3bfec6f87542c51c185d05125200c9e7f24a707328300b9f4efc"
+        "path": "test/receiver-access-reading.ts",
+        "before": "sha256:90a9206c866ffbfe70f8d91127cc35199d948ad3444ec928bb4426e519879b25",
+        "after": "sha256:23282449d3c5312eae025b98967a323084cd7920efb5b4ae4be9fed736200f3e"
       }
     ],
-    "originalRunsUnchanged": true,
-    "regionalMatricesRepeated": false
+    "removedProjection": "receiver/root-choice-defects",
+    "remainingProducer": "test/implicit-root-reading.ts",
+    "allCaptureValidationAssertionsPreserved": true,
+    "productionChanged": false,
+    "BoundChanged": false,
+    "matricesRepeated": false
   }
 }

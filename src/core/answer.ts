@@ -10,6 +10,7 @@ import type * as Documents from '../ports/documents.ts';
 import type { Call } from './read.ts';
 import type { AccessAdapter, Answered, Attachment, Choice, Field, Held } from '../access/contract.ts';
 import { basename, isAbsolute, resolve, sep } from 'node:path';
+import { canonicalPath } from '../ports/place.ts';
 import { sayIn } from './surface.ts';
 
 export type Asked = Readonly<Record<string, string | undefined>>;
@@ -24,12 +25,12 @@ export interface Context {
   readonly device: (role: string) => string | undefined;
   readonly standing: (place: string) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
   readonly authority: (place: string, key: string, kind: string, records: readonly string[], presented?: string) => ReturnType<typeof authorityAt>;
-  readonly policy: (place: string) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
+  readonly policy: (place: string, fresh?: boolean) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
   readonly world: (place: string, view: string) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
   readonly adapter: (origin: string) => Promise<{ readonly prepare: (call: Call, args: Readonly<Record<string, unknown>>, lock: readonly Said[]) => Prepared; readonly post: (url: string, body: Readonly<Record<string, unknown>>, most: number, wait: number, as?: 'form' | 'json') => Promise<Answered>; readonly published: (url: string, digest: string, most: number, wait: number) => Promise<Uint8Array | undefined>; readonly fetched: (url: string, attachment: Attachment | undefined, accept: string | undefined, most: number, wait: number) => Promise<Fetched>; readonly get: (url: string, wait: number) => Promise<{ readonly bytes: Uint8Array; readonly type: string } | undefined> } | undefined>;
   readonly access: (kind: string) => Promise<AccessAdapter | undefined>;
   readonly person: { readonly consent: (message: string, word: string) => Promise<'yes' | 'no' | 'none'>; readonly enter: (title: string, fields: readonly Field[]) => Promise<Held | undefined>; readonly choose: (message: string, choices: readonly Choice[]) => Promise<Held | undefined>; readonly visit: (message: string, to: (back: string) => string | undefined | Promise<string | undefined>) => Promise<Held | undefined> };
-  readonly files: { readonly lay: (place: string, rel: string, bytes: Uint8Array) => void; readonly drop: (place: string, rel: string) => void; readonly has: (place: string, rel: string) => boolean; readonly list: (place: string, rel: string) => readonly string[]; readonly read: typeof Documents; readonly take: (path: string) => Uint8Array | undefined; readonly own: (rel: string) => Uint8Array | undefined };
+  readonly files: { readonly publish?: (place: string, to: string, bytes: Uint8Array) => Promise<void>; readonly publishFolder?: (place: string, to: string, files: ReadonlyMap<string, Uint8Array>) => Promise<void>; readonly lay: (place: string, rel: string, bytes: Uint8Array) => void; readonly drop: (place: string, rel: string) => void; readonly has: (place: string, rel: string) => boolean; readonly list: (place: string, rel: string) => readonly string[]; readonly read: typeof Documents; readonly take: (path: string) => Uint8Array | undefined; readonly own: (rel: string) => Uint8Array | undefined };
   readonly home: () => string;
   readonly personal: () => string;
   readonly found: (place: string, account: string) => Promise<Outcome>;
@@ -54,10 +55,20 @@ export type Answer = (asked: Asked, context: Context) => Promise<readonly string
 export const answerOf = async (family: 'tools' | 'resources', name: string): Promise<Answer> =>
   ((await import(new URL(`../${family}/${name}${import.meta.url.slice(import.meta.url.lastIndexOf('.'))}`, import.meta.url).href)) as { answer: Answer }).answer;
 
-export const placeOf = async (asked: Asked, context: Context): Promise<string | undefined> => asked['place'] || (await context.roots()).find((root) => context.files.has(root, LOCK) || context.files.has(root, '.bound')) || ((held) => ('refused' in held ? undefined
-  : ((named) => (named.length === 1 ? named[0] : undefined))(held.lines.filter((l) => l.scope?.startsWith(`${valueOf(context.lock, 'home/family')}/`) && l.value !== 'withdraw').map((l) => l.value!))))(context.files.has(context.home(), LOCK) ? await context.policy(context.home()) : { refused: '' });
+/** Shared roots grant document access; only the authenticated receiver index selects an implicit place. */
+export const homeIndex = async (context: Context) => {
+  const home = context.home(), held = context.files.has(home, LOCK) ? await context.policy(home) : context.files.has(home, '.bound') ? { refused: 'index/unfounded' } : { lines: [] as readonly Said[] };
+  return 'refused' in held || !held.lines.some(l => l.scope?.startsWith(`${valueOf(context.lock, 'home/family')}/`) && l.value !== 'withdraw' && (l.measure !== 'id' || !l.value || !isAbsolute(l.value))) ? held : { refused: 'index/invalid' };
+};
+export const placeOf = async (asked: Asked, context: Context): Promise<string | undefined | { readonly said: readonly string[] }> => {
+  if (asked['place']) return resolve(asked['place']);
+  const index = await homeIndex(context), say = sayIn(context.lock);
+  if ('refused' in index) return { said: [say(index.refused === 'index/invalid' ? 'index-invalid' : 'index-unread', { place: context.home() })] };
+  const places = index.lines.filter(l => l.scope?.startsWith(`${valueOf(context.lock, 'home/family')}/`) && l.value !== 'withdraw');
+  return places.length > 1 ? { said: [say('place-ambiguous', { names: places.map(l => l.scope!).sort().join('|') })] } : places[0]?.value && resolve(places[0].value);
+};
 export const inPlace = async (asked: Asked, context: Context, then: (place: string) => Promise<readonly string[]>): Promise<readonly string[]> =>
-  ((place) => (place === undefined ? [sayIn(context.lock)('no-place')] : then(place)))(await placeOf(asked, context));
+  ((place) => (typeof place === 'object' ? place.said : place === undefined ? [sayIn(context.lock)('no-place')] : then(place)))(await placeOf(asked, context));
 /** The person's yes to exactly what a message says; anything else is what head says of it, and nothing is done. */
 export const unless = async (context: Context, message: string): Promise<readonly string[] | undefined> => ((consent) => (consent === 'yes' ? undefined : [sayIn(context.lock)(consent === 'none' ? 'cannot-ask' : 'no-yes')]))(await context.elicit(message));
 export const printedOr = (context: Context, printed: Printed | undefined): readonly string[] => (printed === undefined ? [sayIn(context.lock)('unreachable')] : [...printed.out, ...printed.err]);
@@ -70,4 +81,6 @@ export const inStanding = (asked: Asked, context: Context, then: (place: string,
 export const baseOf = (lines: readonly Said[]): string => createHash('sha256').update(lines.map((l) => canonical(l)).sort().join('\n')).digest('hex').slice(0, 16);
 
 export const placeNameOf = (place: string): string => basename(place);
-export const within = async (context: Context, place: string, at: string): Promise<boolean> => isAbsolute(at) && [place, ...(await context.roots())].some((root) => resolve(at).startsWith(`${resolve(root)}${sep}`));
+export const within = async (context: Context, place: string, at: string): Promise<boolean> => {
+  try { return isAbsolute(at) && [place, ...(await context.roots())].some(root => canonicalPath(at).startsWith(`${canonicalPath(root)}${sep}`)); } catch { return false; }
+};

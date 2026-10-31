@@ -21,7 +21,8 @@ async function material(context: Context) {
   if (!port || !selection) return undefined;
   const selected = JSON.parse(Buffer.from(selection).toString()), manifest = JSON.parse(Buffer.from(port.read('manifest.json') ?? []).toString());
   if (selected.protocol !== 'head-composition@1' || !Array.isArray(selected.sources) || manifest.name !== selected.id || manifest.version !== selected.revision) throw Error('bundle/identity');
-  const recipe: Recipe = { id: selected.id, revision: selected.revision, title: selected.title, description: selected.description, sources: selected.sources.map((s: any) => ({ source: s.source, namespace: s.namespace, offers: s.offers })) };
+  const recipe: Recipe = { id: selected.id, revision: selected.revision, title: selected.title, description: selected.description, ...(selected.author ? { author: selected.author } : {}), sources: selected.sources.map((s: any) => ({ source: s.source, namespace: s.namespace, offers: s.offers })) };
+  if (selected.author && JSON.stringify(manifest.author) !== JSON.stringify(selected.author)) throw Error('bundle/identity');
   const sources: Source[] = selected.sources.map((s: any) => ({ name: s.source, kind: s.kind, document: s.document, pin: s.pin, offers: s.offers }));
   const made = compose(recipe, sources, Number(valueOf(context.lock, 'share/bundle-selections').split('..')[1]));
   if (!Buffer.from(made.bytes).equals(Buffer.from(selection))) throw Error('bundle/selection');
@@ -39,6 +40,13 @@ async function associated(context: Context, payload: NonNullable<Awaited<ReturnT
   if ('refused' in index) throw Error('bundle/index-unread');
   return { index: index.lines, plan: associationFor(valueOf(context.lock, 'bundle/association-family'), payload.identity, index.lines) };
 }
+const localName = async (context: Context, place: string, fallback: string) => {
+  const index = await homeIndex(context); if ('refused' in index) throw Error('bundle/index-unread');
+  const family = valueOf(context.lock, 'home/family') + '/';
+  const names = [...new Set(index.lines.filter(l => l.scope?.startsWith(family) && l.value === place).map(l => l.scope!.slice(family.length)))];
+  if (names.length > 1) throw Error('bundle/place-ambiguous');
+  return names[0] ?? fallback;
+};
 const validPins = async (context: Context, place: string, sources: readonly Source[]) => {
   if (!context.files.has(place, LOCK)) return false;
   const held = await context.policy(place);
@@ -62,7 +70,7 @@ export async function receiverConnect(asked: Asked, context: Context): Promise<r
     if (asked['digest'] !== payload.lockDigest) throw Error('bundle/document-digest');
     const { plan } = await associated(context, payload); if (plan.state === 'collision') throw Error('bundle/revision-collision');
     const place = asked['place'] || plan.place || join(context.personal(), valueOf(context.lock, 'bundle/receiver-folder'), payload.identity.id);
-    if (plan.state === 'same' && plan.place === place && await validPins(context, place, payload.sources)) return [say('bundle-associated', { place, name: payload.identity.id, revision: payload.identity.revision })];
+    if (plan.state === 'same' && plan.place === place && await validPins(context, place, payload.sources)) return [say('bundle-associated', { place, name: await localName(context, place, `bundle-${payload.identity.id}`), package: payload.identity.id, revision: payload.identity.revision })];
     const refused = await unless(context, say('elicit-bundle-receive', { name: payload.identity.id, revision: payload.identity.revision, place, sources: payload.sources.map(s => { const doc = payload.documents.find(doc => doc.configuration.name === s.name); return doc ? `${s.name} (${doc.configuration.endpoint})` : s.name; }).join(', ') }));
     if (refused) return refused;
     if (!context.files.has(place, LOCK)) { const born = await bornAt(context, place, `bundle-${payload.identity.id}`); if (!context.files.has(place, LOCK)) return born; }
@@ -73,7 +81,7 @@ export async function receiverConnect(asked: Asked, context: Context): Promise<r
     const current = await context.policy(context.home()); if ('refused' in current) throw Error('bundle/index-unread');
     const fresh = associationFor(valueOf(context.lock, 'bundle/association-family'), payload.identity, current.lines);
     const lot = associationLines(fresh, place, true, `policy:head/bundle/${payload.identity.id}/${baseOf(current.lines)}`), landed = lot.length ? await context.landRoot(context.home(), lot, home.account) : undefined;
-    return landed && 'refused' in landed ? [...imported, say('not-landed', { why: landed.refused })] : [...imported, say('bundle-associated', { place, name: payload.identity.id, revision: payload.identity.revision })];
+    return landed && 'refused' in landed ? [...imported, say('not-landed', { why: landed.refused })] : [...imported, say('bundle-associated', { place, name: await localName(context, place, `bundle-${payload.identity.id}`), package: payload.identity.id, revision: payload.identity.revision })];
   } catch (error) { return bundleRefusal(context, error); }
 }
 /** Selection narrows this packaged surface; it never grants a call or replaces Bound's authority checks. */

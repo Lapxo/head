@@ -1,3 +1,4 @@
+import { run as verifyRuntimeInventory } from './runtime-inventory.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -9,7 +10,7 @@ interface Capture { readonly protocol: string; readonly policy: string; readonly
   readonly runs: readonly { node: string; suitePasses: number; output: string }[] }
 /** Read the existing consumer vectors, never implement the walk or infer a new grant. */
 export function observe(bytes: Uint8Array) {
-  if (hash(bytes) !== 'sha256:c6cca891c755ebdc06279e37bb9cb924a281cfff9ef181595f89a8af6cc3d1a3') throw Error('REFUSE·walk capture digest');
+  if (hash(bytes) !== 'sha256:771415d9d973b8cb6824b015b3424465ac8774e057f54993247097993fceff3a') throw Error('REFUSE·walk capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture, nodes = new Set<string>();
   if (capture.protocol !== 'head-walk-reading@1' || capture.runs.length !== 2) throw Error('REFUSE·walk capture protocol');
   for (const run of capture.runs) {
@@ -23,6 +24,7 @@ export function observe(bytes: Uint8Array) {
 }
 /** Bind those runs to fresh source bytes and the declared birth, walk, host and instrument contract. */
 export function run(place: string) {
+  verifyRuntimeInventory('dependency/runtime-inventory');
   const bytes = readFileSync('samples/walk-reading/yes/client.json'), capture = JSON.parse(bytes.toString()) as Capture;
   const files = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(join(dir, e.name)) : e.name.endsWith('.ts') ? [join(dir, e.name)] : []);
   const selected = [...files('src'), ...files('test').filter(path => !independent.includes(path))].sort();

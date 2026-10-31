@@ -12,6 +12,7 @@ import { members, valueOf } from '../src/core/lock.ts';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 import { lock } from './place.ts';
+import { installedShare } from './installed-share.ts';
 
 const bundle = process.env['HEAD_BUNDLE'];
 const tool = (name: string, args: Record<string, string>) => ({ method: 'tools/call', params: { name, arguments: args } });
@@ -43,4 +44,13 @@ test('the Desktop Extension as a host runs it: unpacked in a folder of its own, 
     server.close();
     if (before === undefined) delete process.env['HEAD_ENTRY']; else process.env['HEAD_ENTRY'] = before;
   }
+});
+
+test('the installed extension shares with its original pinned runtime inventory, independent of installer metadata', { skip: bundle ? false : 'HEAD_BUNDLE names no bundle' }, async () => {
+  const installed = mkdtempSync(join(tmpdir(), 'head-export-installed-'));
+  try {
+    execFileSync('unzip', ['-q', bundle!, '-d', installed]);
+    const result = await installedShare(installed);
+    ok(result.noExpectedDigestsRegenerated && result.results.length === 2);
+  } finally { (await import('node:fs')).rmSync(installed, { recursive: true, force: true }); }
 });

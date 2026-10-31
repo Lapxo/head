@@ -1,0 +1,31 @@
+{
+  "contract": "head-receiver-persistent-access@1",
+  "scope": "Candidate conformance for recipient-owned import/access, authenticated indexed selection and local display identity; final Root/CI/Desktop acceptance remains separate.",
+  "baseline": "Head 0.2.2 candidate over actual Root158, with Bound 0.2.8 unchanged.",
+  "positive": [
+    "Two unrelated local OpenAPI sources with two servers and a declared address/code/workspace flow",
+    "One explicit import yes, no API calls while importing",
+    "Same authenticated device/person/root identities after restart",
+    "Server selection precedes address/code/workspace input",
+    "Three login steps only at the selected fixture server",
+    "A native signed access obtained receipt exists; credential absent from answers and evidence",
+    "Retained credential reused by a later process using the same fake keychain",
+    "A custom place name resolves its authenticated root account despite a different folder name",
+    "Dot-segment aliases in public connect/share/access select the same authenticated place and distinct places keep distinct credential accounts"
+  ],
+  "negative": [
+    "An unrelated persistent keychain refuses before identity/authority acquisition, with no input prompt or API call. The original no-coverage observation remains historical harness evidence.",
+    "A later foreign keychain cannot reuse the retained credential or change admitted keys"
+  ],
+  "identity": "bundle-associated and place-held use the same authenticated local name and folder; package ID/revision are separate fields. Existing keychain accounts are not renamed.",
+  "openFindings": [],
+  "claimsExcluded": [
+    "No coverage widening or imported authority",
+    "No private API or real Desktop acceptance",
+    "No independent-machine or latency guarantee",
+    "No migration or copying of signing keys"
+  ],
+  "native": "The reader checks exact current inputs and two installed neutral domains per runtime; old identity findings and attempts remain in their predecessor evidence. Root own zeros are required before conditioned demands.",
+  "T2": "pending",
+  "L6": "pending"
+}

@@ -1,4 +1,4 @@
-import { basename, join } from 'node:path';
+import { join } from 'node:path';
 import { answerOf, placeOf } from '../core/answer.ts';
 import type { Asked, Context, Outcome } from '../core/answer.ts';
 import { LOCK, parse } from '@lapxo/topos/wire';
@@ -9,6 +9,8 @@ import { birth, closing, founded, land, landAct, limits, pinnedAt, policyAt, run
 import { configureHost, authorityAt } from '../ports/host.ts';
 import { held, keep } from '../ports/cache.ts';
 import { dropAt, hasAt, layAt, listAt, takeAt } from '../ports/place.ts';
+import { homeService, homeServices } from '../ports/home.ts';
+import { publishFile, publishFolder } from '../ports/export.ts';
 import * as documents from '../ports/documents.ts';
 import { keychain, portOf } from '../ports/keychain.ts';
 import { deviceOf, idIn, signingOf } from '../core/device.ts';
@@ -27,7 +29,7 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
   configureHost(lock, limits);
   /** One call at a time, each after the one before it and never on a timer, so one asked while another lands sees its receipt; a place's reads go to its fold host, which outlives the call and never holds a signer. */
   let [last, ahead]: [Promise<unknown>, AbortController] = [Promise.resolve(), new AbortController()];
-  const turn = <T>(act: () => Promise<T>): Promise<T> => ((next) => { last = next.catch(() => undefined); return next; })(last.then(act));
+  const turn = <T>(act: () => Promise<T>): Promise<T> => ((next) => { last = next.catch(() => undefined); return next; })(last.then(async () => { await initialize(); return act(); }));
   /** What head refuses through this door, written as every door writes it; a door that reaches for a signing key is one such refusal, named by the lock's line for that key and never by what the door asked. */
   const [refusals, keyRefused] = [refusalsOf(lock, { write: (place, lot) => write(place, lot), now: () => Date.now() }, door.name), shapeOf([sayIn(lock)('signing-key-refused', {})]).cells[0]!.code];
   for (const end of ['SIGTERM', 'SIGINT'] as const) process.once(end, () => void last.then(refusals.settle).finally(() => process.exit(0)));
@@ -38,9 +40,24 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
   const person = { consent: timed(asked.consent), enter: timed(asked.enter), choose: timed(asked.choose), visit: timed(asked.visit) };
   /** head is its home: the folder of its index of places, and the keychain service its keys live under, one per home, so two heads on one keychain never share a key. A place's root is told to bound by the key id its lock names, its secret kept there under the place's account. */
   const home = process.env[valueOf(lock, 'home/env')] || join(process.env[valueOf(lock, `platform/${process.platform}/home`)] ?? '', valueOf(lock, 'home/folder'));
-  const service = `${deviceOf(lock).service}/${basename(home).replace(/[^\w.-]+/g, '-')}`;
+  let service = homeServices(deviceOf(lock).service, home).primary;
   const store = valueOf(lock, `platform/${process.platform}/store`);
-  const keys = keychain(service, store, signingOf(lock));
+  let keys = keychain(service, store, signingOf(lock)), initialized = false;
+  const initialize = async () => {
+    if (initialized) return;
+    let expected: Map<string, string> | undefined;
+    if (hasAt(home, LOCK) || hasAt(home, '.bound')) {
+      const standing = await policyAt(runs, home);
+      if ('refused' in standing) throw Error('home/identity');
+      const account = valueOf(lock, 'founding/root-account').replace('{place}', valueOf(lock, 'home/name'));
+      const rootKey = standing.lines.find(l => l.scope === valueOf(lock, 'founding/root') && l.measure === 'public-key')?.value;
+      if (!rootKey) throw Error('home/identity');
+      expected = new Map([[account, rootKey]]);
+      for (const role of ['head', 'person']) { const one = deviceOf(lock, role), key = standing.lines.find(l => l.scope === `keys/${one.account}` && l.measure === 'public-key')?.value; if (key) expected.set(one.account, key); }
+    }
+    service = await homeService(deviceOf(lock).service, home, expected, name => keychain(name, store, signingOf(lock)), () => person.consent('Bind this existing, authenticated Head home to its legacy keychain namespace? No signing key will be copied.', aboutOf(lock, 'said/elicit/yes')));
+    keys = keychain(service, store, signingOf(lock)); initialized = true;
+  };
   const devices = new Map<string, string>();
   const device = (role: string): string | undefined => devices.get(role) ?? ((key) => (key === undefined ? undefined : (devices.set(role, key), key)))(keys.held?.(deviceOf(lock, role).account));
   const asRoot = (account: string) => ((device, key) => [key, device.signer, portOf(service, account, store, limits.wait)] as const)(deviceOf(lock), valueOf(lock, 'founding/root').split('/')[1]!);
@@ -64,10 +81,10 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
       bound: (cwd, args) => run(runs, cwd, args, {}, signal),
       standing: (place) => once('standing', place, () => standingAt(runs, place, (lines) => ['head', 'person'].flatMap((role) => ((id) => (id === undefined ? [] : [id]))(idIn(lines, device(role)))), (line) => read(line.at), signal)),
       authority: (place, key, kind, records, presented) => authorityAt(place, key, kind, records, Date.now(), signal, presented),
-      policy: (place) => once('policy', place, () => policyAt(runs, place, signal)),
+      policy: (place, fresh) => { if (fresh) forget(place); return once('policy', place, () => policyAt(runs, place, signal)); },
       world: (place, view) => once(`world/${view}`, place, () => settledView(runs, place, view, signal)),
       adapter: async (origin) => ((name) => (!/^[a-z-]+$/.test(name) ? undefined : import(new URL(`../ports/adapters/${name}${ext}`, import.meta.url).href)))(URL.canParse(origin) ? valueOf(lock, `adapter/${new URL(origin).protocol.slice(0, -1)}`) : ''),
-      files: { lay: (place, rel, bytes) => { forget(place); layAt(place, rel, bytes); }, drop: (place, rel) => { forget(place); dropAt(place, rel); }, has: hasAt, list: listAt, read: documents, take: takeAt, own: (rel) => takeAt(join(root, rel)) },
+      files: { publish: async (place, to, bytes) => { signal?.throwIfAborted(); publishFile([place, ...await door.roots()], to, bytes); }, publishFolder: async (place, to, files) => { signal?.throwIfAborted(); publishFolder([place, ...await door.roots()], to, files, LOCK); }, lay: (place, rel, bytes) => { forget(place); layAt(place, rel, bytes); }, drop: (place, rel) => { forget(place); dropAt(place, rel); }, has: hasAt, list: listAt, read: documents, take: takeAt, own: (rel) => takeAt(join(root, rel)) },
       home: () => home,
       personal: () => process.env[valueOf(lock, `platform/${process.platform}/home`)] ?? '',
       found: (place, account) => acted(place, true, founded(runs, place, ...asRoot(account), signal)),
@@ -98,7 +115,7 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
     const context = contextOf(signal), answer = refused !== undefined ? [refused] : signal.aborted ? [] : [...await (await answerOf('tools', tool.name))(askedOf(args), context).catch(keyed), ...await context.settle()];
     void ((early) => turn(() => readAhead(shapeOf(answer).cells, contextOf(), early.signal)))(ahead = new AbortController());
     return answer;
-  }).then(async (answer) => { if (answer !== undefined && shapeOf(answer).cells.some((c) => c.code === keyRefused)) await refusals.write(typeof args?.['place'] === 'string' ? args['place'] : await placed(), name, digestOf(name, args ?? {}), keyRefused); return answer; }));
+  }).catch(error => { if (error instanceof Error && /^home\/(identity|namespace|approval)$/.test(error.message)) return [sayIn(lock)('home-refused', { why: error.message, place: home })]; throw error; }).then(async (answer) => { if (answer !== undefined && shapeOf(answer).cells.some((c) => c.code === keyRefused)) await refusals.write(typeof args?.['place'] === 'string' ? args['place'] : await placed(), name, digestOf(name, args ?? {}), keyRefused); return answer; }));
   const resource = (uri: string, signal: AbortSignal): Promise<{ readonly mime: string; readonly lines: readonly string[] } | undefined> => turn(async () => {
     const found = surface.resources.flatMap((r) => ((vars) => (vars === undefined ? [] : [{ r, vars }]))(matchTemplate(r.template, uri)))[0];
     if (found === undefined) return undefined;
@@ -106,9 +123,9 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
     return { mime: found.r.mime, lines: await (await answerOf('resources', found.r.name))(askedOf(found.vars), contextOf(signal)) };
   });
   /** A place's card now, as do reads it; whether head's index names a place yet, and the one it names; lines head's own key lands in a place, on its standing. */
-  const [cardOf, placed] = [(place: string) => turn(() => cardAt(contextOf(), place)), () => turn(() => placeOf({}, contextOf()))];
+  const [cardOf, placed] = [(place: string) => turn(() => cardAt(contextOf(), place)), () => turn(async () => { const place = await placeOf({}, contextOf()); return typeof place === 'string' ? place : undefined; })];
   const hasPlace = () => turn(async () => ((c) => (!c.files.has(home, LOCK) ? false : c.policy(home).then((held) => !('refused' in held) && held.lines.some((l) => l.scope?.startsWith(`${valueOf(lock, 'home/family')}/`) && l.value !== 'withdraw'))))(contextOf()));
-  const write = (place: string, lot: readonly string[]) => turn(async () => ((c) => c.standing(place).then((held) => ('refused' in held ? held : c.landAs(place, lot, 'head', held.lines))))(contextOf()));
+  const write = (place: string, lot: readonly string[]) => turn(async () => ((c) => c.standing(place).then((held) => ('refused' in held ? held : c.landAs(place, lot, 'head', held.lines))))(contextOf())).catch(error => { if (error instanceof Error && /^home\/(identity|namespace|approval)$/.test(error.message)) return { refused: error.message }; throw error; });
   return { surface, call, resource, idle: () => last, cardOf, placed, hasPlace, write, refusals, now: () => contextOf().now() };
 };
 /** A door that shows no form: its verbs, each answered by its tool through the guard every such door asks, a verb that is no tool carried as its carrier's action; undefined for a verb it lacks. */

@@ -5,7 +5,7 @@ interface Capture { protocol: string; inputs: { path: string; sha256: string }[]
 /** Retain the reviewed regional matrix only while every producer input still has its reviewed bytes. */
 export function run(place: string) {
   const bytes = readFileSync('samples/composition/yes/client.json');
-  if (digest(bytes) !== 'sha256:ff823082358cf7d8b83f91e76a6396b8dee0acdff1e07b2a1dcef609807e7ab4') throw Error('REFUSE·composition capture');
+  if (digest(bytes) !== 'sha256:915ecb0d6d454966e5efa90b7eccace9f01dd915b0bed886c9e47f77e7607280') throw Error('REFUSE·composition capture');
   const capture = JSON.parse(bytes.toString()) as Capture;
   if (capture.protocol !== 'head-composition-reviewed-vectors@1' || capture.runs.length !== 2) throw Error('REFUSE·composition protocol');
   const nodes = new Set<string>();

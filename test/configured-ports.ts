@@ -3,7 +3,7 @@ import{parse}from'@lapxo/topos/wire';
 const hash=(bytes:Uint8Array)=>'sha256:'+createHash('sha256').update(bytes).digest('hex');
 /** Reviewed local prerequisite evidence only; no live remote connection or full recipient integration is certified. */
 export function run(place:string){
- const bytes=readFileSync('samples/configured-ports/yes/client.json');if(hash(bytes)!=='sha256:097426cc2a0a3b6923baf1e0461687bdb094880e2906afd8c73285359b85de85')throw Error('REFUSE·configured capture');const capture=JSON.parse(bytes.toString());
+ const bytes=readFileSync('samples/configured-ports/yes/client.json');if(hash(bytes)!=='sha256:397d562182f29f7fef1f2e0ca6ff1c73aab89dd01e2b5e6462cfd0e179c9561a')throw Error('REFUSE·configured capture');const capture=JSON.parse(bytes.toString());
  for(const input of capture.inputs)if(hash(readFileSync(input.path))!==input.sha256)throw Error('REFUSE·configured current input '+input.path);
  const current=readdirSync('src',{recursive:true,withFileTypes:true}).filter(e=>e.isFile()&&e.name.endsWith('.ts')).map(e=>e.parentPath+'/'+e.name).sort(),held=capture.inputs.filter((i:{path:string})=>i.path.startsWith('src/')).map((i:{path:string})=>i.path).sort();if(JSON.stringify(current)!==JSON.stringify(held))throw Error('REFUSE·configured source inventory');
  if(capture.protocol!=='head-configured-ports-capture@1'||capture.runs.length!==2||new Set(capture.runs.map((r:{node:string})=>r.node)).size!==2)throw Error('REFUSE·configured runtimes');

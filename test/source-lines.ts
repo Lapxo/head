@@ -11,7 +11,7 @@ export function run(place: string) {
   const files = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(join(dir, e.name)) : e.name.endsWith('.ts') ? [join(dir, e.name)] : []);
   const lock = declaredOf(readFileSync('TARGET.bound', 'utf8'));
   const rows = files('src').sort().map(name => { const bytes = readFileSync(name); if (bytes.length && bytes.at(-1) !== 10) throw Error(`REFUSE·source-lines non-LF-terminated source ${name}`); return { name, bytes, digest: digest(bytes) }; });
-  const regions = ['source', 'core', 'doors'].map(name => ({ scope: `${name}/lines`, selectors: valueOf(lock, `region/${name}`).split('|') }));
+  const regions = ['source', 'core', 'doors', 'sources', 'access'].map(name => ({ scope: `${name}/lines`, selectors: valueOf(lock, `region/${name}`).split('|') }));
   const result = readPhysicalLines({ profile: PHYSICAL_LINES_PROFILE, snapshot: digest(Buffer.from(JSON.stringify(rows.map(({ name, digest }) => ({ name, digest }))))), files: rows, regions, policy: { byteBudget: '16777216', rowBudget: '1000000' } }, digest);
   if (result.status !== 'read') throw Error(`REFUSE·source-lines ${result.cause}`);
   return result.regions.map(region => {
