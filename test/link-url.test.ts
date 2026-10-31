@@ -1,3 +1,4 @@
+import { homeServices } from '../src/ports/home.ts';
 import { test } from 'node:test';
 import { deepStrictEqual, ok } from 'node:assert';
 import { existsSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
@@ -34,7 +35,7 @@ const rooted = (to: { place: string; env: Record<string, string> }, lines: reado
   const lot = join(mkdtempSync(join(tmpdir(), 'head-link-lot-')), 'lot.bound');
   writeFileSync(lot, `${lines.join('\n')}\n`);
   const [account, key, signer] = [fill(valueOf(lock, 'founding/root-account'), { place: basename(to.place) }), valueOf(lock, 'founding/root').split('/')[1]!, deviceOf(lock).signer];
-  const landed = run('@lapxo/bound', to.place, ['land', lot, '--key', key, '--signer', signer], { ...to.env, BOUND_SIGNERS: registryFor(signer, `${deviceOf(lock).service}/${basename(to.env['HEAD_HOME']!).replace(/[^\w.-]+/g, '-')}`, account, key, valueOf(lock, 'founding/algorithm'), valueOf(lock, `platform/${process.platform}/store`)) });
+  const landed = run('@lapxo/bound', to.place, ['land', lot, '--key', key, '--signer', signer], { ...to.env, BOUND_SIGNERS: registryFor(signer, homeServices(deviceOf(lock).service, to.env['HEAD_HOME']!).primary, account, key, valueOf(lock, 'founding/algorithm'), valueOf(lock, `platform/${process.platform}/store`)) });
   deepStrictEqual(landed?.code, 0, [...(landed?.out ?? []), ...(landed?.err ?? [])].join('\n'));
 };
 /** A receiver with an explicitly bound fixture transport. Real HTTPS receiver policy is tested in warm-compact;
@@ -57,7 +58,8 @@ process.stdout.write(bytes);
 };
 const from = await sender();
 /** The sender's package shared again, its standing document's address given: the link it prints. */
-const linkAt = async (url: string) => { const [packed] = await ask([tool('share', { place: from.place, to: from.pkg, urls: JSON.stringify({ [name]: url }) })], [from.shared], from.env); return cells(packed).find((c) => c.code === 'head/shared-link')?.fields.link as string; };
+let exportedLinks = 0;
+const linkAt = async (url: string) => { const [packed] = await ask([tool('share', { place: from.place, to: from.pkg + '-link-' + (++exportedLinks), urls: JSON.stringify({ [name]: url }) })], [from.shared], from.env); return cells(packed).find((c) => c.code === 'head/shared-link')?.fields.link as string; };
 const inspect = (to: { place: string; env: Record<string, string> }, link: string) => ask([tool('connect', { place: to.place, document: link })], [], to.env).then((got) => got[0]);
 
 test('without a location share names its content by the separate profile and declares its missing holder', async () => {

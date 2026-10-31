@@ -1,0 +1,17 @@
+{
+  "protocol": "head-functional-repairs@1",
+  "version": "0.2.2",
+  "authority": "Only the recipient's authenticated place and admitted keys authorize local actions. Public package identity and authorship grant nothing.",
+  "checks": [
+    "A refused or absent credential receipt cannot yield an attachment or silently retry a login.",
+    "Credential reuse binds the authenticated root, selected origin and declared access context.",
+    "Fresh homes with equal folder basenames use different keychain namespaces.",
+    "Compatible legacy public keys require explicit namespace binding; no signing key is copied or deleted.",
+    "A connected place export selects all declared offers only with public metadata; missing metadata or no sources refuses without an output.",
+    "Exports use a fresh snapshot, retain explicit subsets and reject changed selected bytes.",
+    "Destination files and folders are exclusive; child symlink escapes refuse and competing export processes cannot overwrite each other.",
+    "A plain authenticated card request does not implicitly query the cells view.",
+    "The installed receiver imports on one consent, preserves its own keys across restarts and starts its own declared login."
+  ],
+  "boundary": "Filesystem checks are not operating-system isolation against a compromised process running as the same user. The owner's real Desktop/private-API acceptance is separate and remains pending."
+}

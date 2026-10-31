@@ -44,5 +44,5 @@ export const guardOf = (lock: readonly Said[], head: ReturnType<typeof headOf>, 
     if (refused !== undefined) await write(place, verb, digest, refused.code);
     return lines;
   };
-  return { call, settle };
+  return { call: async (...args: Parameters<typeof call>) => { try { return await call(...args); } catch (error) { if (error instanceof Error && /^home\/(identity|namespace|approval)$/.test(error.message)) return [say('home-refused', { why: error.message })]; throw error; } }, settle };
 };

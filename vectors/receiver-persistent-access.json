@@ -1,0 +1,42 @@
+{
+  "protocol": "head-receiver-persistent-access-vectors@1",
+  "domains": [
+    "records",
+    "readings"
+  ],
+  "cases": [
+    "Persistent keychain import, process restart, server choice and multi-step access",
+    "An unrelated keychain refuses before access, with no API call or privilege fallback",
+    "Authenticated indexed account differs from folder basename",
+    "Ordinary shared document root is not a place",
+    "Explicit place wins over inferred roots",
+    "Native obtained receipt and credential-canary absence",
+    "Equivalent lexical paths select the indexed identity; multiple indexed places refuse by name independent of shared-root order"
+  ],
+  "realAccountsUsed": false,
+  "authorityTransferred": false,
+  "productionChanges": true,
+  "lexicalAliasVector": {
+    "places": [
+      "records",
+      "readings"
+    ],
+    "calls": [
+      "connect",
+      "share",
+      "access"
+    ],
+    "spellings": [
+      "absolute",
+      "trailing-slash",
+      "dot",
+      "parent-and-basename"
+    ],
+    "sameAuthenticatedKeys": true,
+    "independentLoginPerPlace": true,
+    "wrongKeyAndRefusedIndexStillRefused": true,
+    "ambiguityStillOpen": false,
+    "ambiguityNamedAndRefused": true
+  },
+  "candidateDelta": "Explicit reviewed candidate; authority and coverage are not widened."
+}

@@ -1,0 +1,31 @@
+{
+  "protocol": "head-runtime-inventory-vectors@1",
+  "domains": [
+    "records lookup",
+    "instrument readings"
+  ],
+  "cases": [
+    "Use unchanged original inventory to reproduce official installer-metadata mismatch",
+    "Retain all 4803 remaining inventory entries exactly",
+    "Installed public share succeeds with changed hidden lock",
+    "Installed public share succeeds with absent hidden lock",
+    "Repeat export preserves every member path and byte",
+    "Boot each exported personalized extension in clean receiver HOME without npm installation",
+    "One actual included module byte changed refuses and produces no output",
+    "Existing unit cases retain missing member, unsafe path, budget and cancellation negatives",
+    "Native input tampering or absent capture cannot produce an own zero"
+  ],
+  "notClaimed": [
+    "General access repair",
+    "Real private API acceptance",
+    "Final artifact signature",
+    "Physical independent construction",
+    "Container-byte reproducibility from content equality"
+  ],
+  "reviewedProductDelta": {
+    "expected": "Only the exact declared compiler-output records change; hidden installer metadata remains excluded",
+    "negative": "Any unlisted mutation to a real runtime member refuses bundle/runtime-member; no expected digest is learned from installation"
+  },
+  "candidateDelta": "The original signed inventory is immutable. Exclude only node_modules/.package-lock.json; apply exact reviewed source/module/manifest changes and two explicitly reviewed public ports. No third-party dependency byte changes.",
+  "candidateMembers": 4805
+}

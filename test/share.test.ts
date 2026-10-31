@@ -18,7 +18,7 @@ test('share packs a place into lines and the bytes they name, its pins resting o
   match(lines.find((l) => l.includes(' scope=uses/jobs '))!, / restsOn=uses\/auth /);
   for (const l of lines.filter((one) => / needs=/.test(one))) deepStrictEqual(digestOf(readFileSync(join(from.pkg, / needs=(\S+)/.exec(l)![1]!))), / value=(\S+)$/.exec(l)![1], 'every byte beside the lock hashes to its line');
   ok(lines.every((l) => / by=target /.test(l) && !/ sig=/.test(l) && / measure=digest /.test(l)), 'lines by digest, unsigned: the package is authenticated by its digest, sent apart');
-  const [again] = await ask([tool('share', { place: from.place, to: from.pkg })], [from.shared], from.env);
+  const [again] = await ask([tool('share', { place: from.place, to: from.pkg + '-repeat' })], [from.shared], from.env);
   deepStrictEqual(/sha256:[0-9a-f]{64}/.exec(text(again))?.[0], from.digest, 'shared twice, the same bytes');
 
   const to = await receiver(), asked: string[] = [];
@@ -33,13 +33,13 @@ test('share packs a place into lines and the bytes they name, its pins resting o
 });
 
 test('the same place shares the same bytes twice; a change to one source changes only that source-s lines', async () => {
-  const from = await sender(), linesAt = () => readFileSync(join(from.pkg, 'TARGET.bound'), 'utf8').trimEnd().split('\n');
+  const from = await sender(); let current = from.pkg; const linesAt = () => readFileSync(join(current, 'TARGET.bound'), 'utf8').trimEnd().split('\n');
   const before = linesAt();
-  const [again] = await ask([tool('share', { place: from.place, to: from.pkg })], [from.shared], from.env);
+  const [again] = await ask([tool('share', { place: from.place, to: from.pkg + '-repeat' })], [from.shared], from.env); current = from.pkg + '-repeat';
   deepStrictEqual([linesAt(), /sha256:[0-9a-f]{64}/.exec(text(again))?.[0]], [before, from.digest], 'shared twice, the same bytes and the same digest');
   writeFileSync(join(from.shared, 'jobs.json'), jobs.replace('"/jobs"', '"/jobs/all"'));
   await ask([tool('connect', { place: from.place, source: 'jobs', document: join(from.shared, 'jobs.json'), overlay: join(from.shared, 'jobs.overlay.yaml') })], [from.shared], from.env, yes([]));
-  const [changed] = await ask([tool('share', { place: from.place, to: from.pkg })], [from.shared], from.env), after = linesAt();
+  const [changed] = await ask([tool('share', { place: from.place, to: from.pkg + '-changed' })], [from.shared], from.env); current = from.pkg + '-changed'; const after = linesAt();
   const scopeOf = (l: string) => / scope=(\S+)/.exec(l)![1]!, moved = before.filter((l) => !after.includes(l)).map(scopeOf).sort();
   deepStrictEqual(moved, ['sources/jobs', 'uses/jobs'], 'only the changed source-s document and pin');
   deepStrictEqual(after.map(scopeOf), before.map(scopeOf), 'in the same order');
@@ -53,7 +53,7 @@ test('a package carries no byte a source answered: after the source answered a r
   const mine = mkdtempSync(join(tmpdir(), 'head-c10-')), env = { ...fakeKeychain({}).env, HEAD_HOME: join(mine, '.config', 'head'), HOME: mine, USERPROFILE: mine };
   const place = join(mine, valueOf(lock, 'first-run/folder')), to = join(place, 'package'), question = { source: 'forecast', operation: 'get-forecast', args: { city: 'lima' } };
   const files = (at: string): string[] => readdirSync(at).flatMap((n) => (statSync(join(at, n)).isDirectory() ? files(join(at, n)) : [join(at, n)]));
-  const [, , packed] = await ask([tool('connect', { ...question, document: `${origin}/openapi.json` } as never), { method: 'tools/call', params: { name: 'ask', arguments: { ...question, place } } }, { method: 'between', params: () => mkdirSync(to) }, tool('share', { place, to })], [], env, yes([])).finally(() => source.close());
+  const [, , packed] = await ask([tool('connect', { ...question, document: `${origin}/openapi.json` } as never), { method: 'tools/call', params: { name: 'ask', arguments: { ...question, place } } }, tool('share', { place, to })], [], env, yes([])).finally(() => source.close());
   match(text(packed), said('shared'));
   ok(source.seen.some((one) => one.url?.startsWith('/forecast')), 'the source answered the read: there was an answer to leak');
   deepStrictEqual(readFileSync(join(to, 'TARGET.bound'), 'utf8').trimEnd().split('\n').map((l) => / scope=(\S+)/.exec(l)![1]!).filter((s) => !/^(uses|sources)\//.test(s)), []);

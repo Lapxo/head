@@ -94,13 +94,15 @@ test('a door that reaches for a signing key, by MCP, lines and http: the same na
   cpSync(join(root, 'package.json'), join(twin, 'package.json'));
   symlinkSync(join(root, 'node_modules'), join(twin, 'node_modules'));
   writeFileSync(join(twin, 'TARGET.bound'), readFileSync(join(root, 'TARGET.bound'), 'utf8').replace(/( scope=access\/account value=)\S+/, `$1${valueOf(lock, 'device/head/account')}`));
+  const obtain = join(twin,'src/access/obtain.ts');
+  writeFileSync(obtain,readFileSync(obtain,'utf8').replaceAll('context.keys.read(identity.account)', "context.keys.read(valueOf(context.lock, 'device/head/account'))"));
   const entry = join(twin, 'src/index.ts'), [run, doors] = [valueOf(lock, 'cli/run'), members(valueOf(lock, 'cli/run/doors'))];
-  const source = await api(() => '[{"number":1}]'), { place, keychain } = born(source.url), env = { ...process.env, ...offline(), ...keychain.env };
+  const source = await api(() => '[{"number":1}]'), { place, keychain } = born(source.url), isolated = {...keychain.env,HEAD_HOME:join(twin,'home')}, env = { ...process.env, ...offline(), ...isolated };
   const question = { place, source: 'tracker', operation: 'issues/list-for-repo', args: { owner: 'lapxo', repo: 'demo' } };
   const started = (door: string, input: string) => new Promise<string>((done) => { const child = spawn(process.execPath, [entry, run, door], { stdio: ['pipe', 'pipe', 'inherit'], env }); let out = ''; child.stdout.on('data', (c) => { out += c; }); child.once('exit', () => done(out)); child.stdin.end(input); });
-  const card = (await ask([{ method: 'tools/call', params: { name: 'ask', arguments: { place, card: 'true' } } }], [], keychain.env))[0].result.structuredContent.cells.find((c: any) => c.code === 'head/card').fields.card;
+  const card = (await ask([{ method: 'tools/call', params: { name: 'ask', arguments: { place, card: 'true' } } }], [], isolated))[0].result.structuredContent.cells.find((c: any) => c.code === 'head/card').fields.card;
   process.env['HEAD_ENTRY'] = entry;
-  const [byMcp] = await ask([{ method: 'tools/call', params: { name: 'ask', arguments: question } }], [], keychain.env).finally(() => { delete process.env['HEAD_ENTRY']; });
+  const [byMcp] = await ask([{ method: 'tools/call', params: { name: 'ask', arguments: question } }], [], isolated).finally(() => { delete process.env['HEAD_ENTRY']; });
   const byLines = JSON.parse((await started(doors[1]!, `${JSON.stringify({ id: 1, verb: 'ask', args: { ...question, card } })}\n`)).split('\n')[0]!);
   const byHttp = await new Promise<any>((done) => { const child = spawn(process.execPath, [entry, run, doors[2]!], { stdio: ['pipe', 'pipe', 'inherit'], env }); let out = '';
     child.stdout.on('data', (c) => { out += c; if (out.includes('\n') && !out.includes('"cells"')) { const { port } = JSON.parse(out.split('\n')[0]!), body = JSON.stringify({ ...question, card });

@@ -11,6 +11,7 @@ test('one address, one yes: a package published at signed addresses — each byt
   try {
     const paths = readFileSync(join(from.pkg, 'TARGET.bound'), 'utf8').trimEnd().split('\n').flatMap((l) => / needs=(\S+)/.exec(l)?.[1] ?? []);
     paths.forEach((p, n) => objects.set(`/blob/${n}`, readFileSync(join(from.pkg, p), 'utf8')));
+    from.pkg = join(from.shared,'package-with-public-locations');
     const [resaid] = await ask([tool('share', { place: from.place, to: from.pkg, urls: JSON.stringify(Object.fromEntries(paths.map((p, n) => [p, `${store.url}/signed/${n}?sig=s${n}&expires=2999`]))) })], [from.shared], from.env);
     const lock = readFileSync(join(from.pkg, 'TARGET.bound'), 'utf8'), digest = /sha256:[0-9a-f]{64}/.exec(text(resaid).split('\n')[0]!)![0];
     deepStrictEqual([digestOf(lock), lock.split('\n').filter((l) => / measure=id /.test(l)).length], [digest, paths.length], 'beside every digest that names bytes, the address they are read at');

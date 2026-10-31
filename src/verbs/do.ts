@@ -15,7 +15,8 @@ export const done: Answer = async (asked, context) => {
   const [say, word] = [sayIn(context.lock), (scope: string) => valueOf(context.lock, scope)];
   const action = asked['action'] ?? '';
   if (!members(word('do/actions')).includes(action)) return [say('unknown-action', { action, actions: word('do/actions') })];
-  const place = asked['place'] || asked['dir'] || await placeOf(asked, context), held = await cardAt(context, place);
+  const place = await placeOf({ ...asked, place: asked['place'] || asked['dir'] }, context); if (typeof place === 'object') return place.said;
+  const held = await cardAt(context, place);
   if ('said' in held) return held.said;
   if (held.card !== asked['card'] && !(action === 'place' && place !== undefined && !context.files.has(place, LOCK) && !context.files.has(place, '.bound'))) return [say('card-stale', { action, place: place ?? '', card: asked['card'] ?? '' })];
   const answer = await (await answerOf('tools', action))(asked, context);

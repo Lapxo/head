@@ -3,11 +3,11 @@ import { standingOr, type Context } from '../core/answer.ts';
 import { valueOf, type Said } from '../core/lock.ts';
 import type { Call } from '../core/read.ts';
 import { sayIn } from '../core/surface.ts';
-import { opened, sealed } from '../access/obtain.ts';
+import { accessIdentity, opened, sealed } from '../access/obtain.ts';
 
 /** A read refused with the access head attached: its secret kept marked spent, never in a line, so the next call obtains it once; the refusal lands as a receipt without it. */
 export const refusedAccess = async (context: Context, place: string, lines: readonly Said[], plan: Call, operation: string): Promise<readonly string[]> => {
-  const [account, word] = [plan.access.account ?? '', (k: string) => valueOf(context.lock, k)], kept = opened(context.keys.read(account));
+  const [account, word] = [accessIdentity(context, plan, lines)?.account ?? '', (k: string) => valueOf(context.lock, k)], kept = opened(context.keys.read(account));
   if (kept !== undefined) context.keys.write(account, sealed({ ...kept, expires: 0 }));
   const landed = await context.landAs(place, [canonical({ at: `${word('receipt/at')}:${new Date(context.now()).toISOString()}`, by: 'target', form: 'alphabet', measure: 'status', role: 'writes', scope: `${word('access/family')}/${plan.access.flow}/refused`, value: 'present' })], 'head', lines);
   return [sayIn(context.lock)('access-refused', { source: plan.source, operation, place }), ...('lines' in landed ? landed.lines : [])];

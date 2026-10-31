@@ -1,3 +1,4 @@
+import { run as verifyRuntimeInventory } from './runtime-inventory.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -6,7 +7,7 @@ interface Capture { readonly protocol: string; readonly inputs: readonly { path:
 const hash = (bytes: Uint8Array) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 /** Project complete, reviewed source-client runs. This does not certify source budgets, Q4 completeness or an installed release. */
 export function observe(bytes: Uint8Array) {
-  if (hash(bytes) !== 'sha256:1ff9d628ca14e1db144da9659565c0e9c9bdad6aef5093557fc2f6b9361464ad') throw Error('REFUSE·authority-preflight capture digest');
+  if (hash(bytes) !== 'sha256:6593a416c981383b31f5ff4203f53ff8b1ba3a6e042f2105ff8eb356aa58a4eb') throw Error('REFUSE·authority-preflight capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture;
   if (capture.protocol !== 'head-authority-preflight-capture@1' || !Array.isArray(capture.runs) || capture.runs.length !== 2) throw Error('REFUSE·authority-preflight capture protocol');
   const nodes = new Set<string>();
@@ -17,6 +18,7 @@ export function observe(bytes: Uint8Array) {
   return [{ scope: 'authority-preflight/configuration', role: 'writes', measure: 'defects', bound: { kind: 'interval', lo: 0, hi: 0 } }];
 }
 export function run(place: string) {
+  verifyRuntimeInventory('dependency/runtime-inventory');
   const bytes = readFileSync('samples/authority-preflight/yes/client.json'), capture = JSON.parse(bytes.toString()) as Capture;
   const files = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? files(join(dir, entry.name)) : entry.name.endsWith('.ts') ? [join(dir, entry.name)] : []);
   const expected = [...files('src'), ...files('test').filter(path => !["test/first-minute.ts","test/share-inspect.ts","test/authority-preflight-reader.ts","test/walk-reading.ts","test/foundation-reading.ts","test/source-lines.ts"].includes(path)), 'docs/contracts/authority-preflight.json'].sort();

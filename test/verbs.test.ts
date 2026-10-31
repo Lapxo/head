@@ -62,9 +62,9 @@ test('no: an action the place does not allow is not in the card, said beside hea
 test('a place that signs no view of cells answers its card as cells, never a sentence: nothing open, and the card do needs; asked why, the card declares nothing that explains it, so the same cells come back, said so', async () => {
   const { place, keychain } = born(undefined);
   const [carded, explained] = await ask([call('ask', { place, card: true }), call('ask', { place, card: true, why: true })], [], keychain.env);
-  deepStrictEqual([codes(carded), carded.result.structuredContent.lines], [['head/no-cells', 'head/card'], []]);
+  deepStrictEqual([codes(carded), carded.result.structuredContent.lines], [['head/card'], []]);
   ok(/^[0-9a-f]{16}$/.test(cardOf(carded)));
-  deepStrictEqual([codes(explained), cells(explained)[0].fields.form, cardOf(explained)], [['head/why-undeclared', 'head/no-cells', 'head/card'], 'card', cardOf(carded)]);
+  deepStrictEqual([codes(explained), cardOf(explained)], [['head/card'], cardOf(carded)]);
 });
 
 test('person-words: no cell of ask carries a resolution number or a ledger epoch, a red included; the offers a person reads and the ones why explains are the lock-s resolutions', async () => {

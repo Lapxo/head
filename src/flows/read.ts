@@ -31,12 +31,12 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
   const keeping = (kept: string, answer: readonly string[]): readonly string[] => (answer.length > 1 ? [draftOf(word('receipt/kept'), at, kept, (asked['ahead'] === 'true' ? String : hand)(context.cache.keep(Buffer.from(answer.join('\n')))), when)] : []);
   const allowed = (key: string, measure: string) => (lines.find((l) => l.scope === `${word(key)}/${source}` && l.measure === measure) ?? lines.find((l) => l.scope === word(key) && l.measure === measure))?.value;
   if (asked['why'] === 'true') {
-    const asOf = principalOf(context, plan, false), [newest] = asOf === undefined ? [] : receiptsOf(lines, at, scopes(asOf)[0]), pin = lines.find((l) => l.scope === `uses/${source}`);
+    const asOf = principalOf(context, plan, false, lines), [newest] = asOf === undefined ? [] : receiptsOf(lines, at, scopes(asOf)[0]), pin = lines.find((l) => l.scope === `uses/${source}`);
     const signed = newest && lines.find((l) => l.scope === newest.scope && l.value === newest.digest && l.at === `${at}:${newest.at}`), worlds = lines.filter((l) => l.scope?.startsWith('uses/') && (!l.needs || under(context.lock, 'place/worlds', l.needs))).map((l) => `${l.scope!.slice('uses/'.length)} ${l.value}`);
     return newest === undefined ? say('why-none', { source, operation }) : say('why', { source, operation, origin: plan.origin, at: newest.at, by: signed?.by ?? '', epoch: signed?.epoch ?? '', digest: newest.digest, pin: pin?.value ?? '', pinned: pin?.epoch ?? '', worlds: worlds.join(', ') });
   }
   if (asked['history'] === 'true') {
-    const asOf = principalOf(context, plan, false);
+    const asOf = principalOf(context, plan, false, lines);
     if (allowed('history/family', 'status') !== 'present') return [...say('history-undeclared', { place, source }), canonical({ at: 'policy:person/history', by: 'target', form: 'alphabet', measure: 'status', role: 'writes', scope: `${word('history/family')}/${source}`, value: 'present' })];
     const [newest, ...earlier] = asOf === undefined ? [] : receiptsOf(lines, at, scopes(asOf)[0]);
     if (newest === undefined) return say('history-none', { source, operation });
@@ -45,7 +45,7 @@ export const readSource = (asked: Asked, context: Context): Promise<readonly str
     return [...say('history', { source, operation, at: newest.at, digest: newest.digest }), ...(typedThen ? new TextDecoder().decode(typedThen.bytes).split('\n') : say(keptThen ? 'history-gone' : 'history-untyped')),
       ...earlier.flatMap((r) => say('history-earlier', { source, at: r.at, digest: r.digest }))];
   }
-  const principal = principalOf(context, plan);
+  const principal = principalOf(context, plan, true, lines);
   const stopped = uncovered('head', scopes(principal ?? ''));
   if (stopped) return stopped;
   if (!grantedOf(lines, word('grant/family'), source, context.now())) {

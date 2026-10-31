@@ -8,7 +8,7 @@ import { bundleAt } from '../src/ports/adapters/bundle.ts';
 const hash = (b: Uint8Array) => 'sha256:' + createHash('sha256').update(b).digest('hex');
 test('runtime: pinned nested members resolve from a hoisted npm layout and altered bytes still refuse', async () => {
   const root = mkdtempSync(join(tmpdir(), 'head-layout-'));
-  const files = { 'dist/src/index.js': 'process.exit(0);', 'package.json': '{"name":"@lapxo/head","version":"0.2.0","type":"module"}', LICENSE: 'MIT',
+  const files = { 'dist/src/index.js': 'process.exit(0);', 'package.json': '{"name":"@lapxo/head","version":"0.2.0","type":"module","author":"Neutral runtime author"}', LICENSE: 'MIT',
     'node_modules/parent/package.json': '{"name":"parent","version":"1.0.0"}',
     'node_modules/parent/node_modules/child/package.json': '{"name":"child","version":"1.0.0"}' };
   const runtime = Buffer.from(JSON.stringify({ protocol: 'head-runtime-closure@1', files: Object.entries(files).map(([path, text]) => ({ path, bytes: Buffer.byteLength(text), digest: hash(Buffer.from(text)) })), bytes: Object.values(files).reduce((n, t) => n + Buffer.byteLength(t), 0) }));

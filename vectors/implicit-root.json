@@ -1,0 +1,19 @@
+{
+  "protocol": "head-implicit-root-vectors@1",
+  "domains": ["catalogue", "telemetry"],
+  "cases": [
+    {"id":"shared-roots-are-not-places","expect":"No index plus shared authenticated/ordinary folders selects none; first-run uses the declared personal default only after yes"},
+    {"id":"unique-authenticated-index","expect":"One indexed place is selected independently of shared-root ordering"},
+    {"id":"ambiguous-index","expect":"Multiple indexed identities refuse as place-ambiguous; explicit place remains usable"},
+    {"id":"corrupt-anchor","expect":"Native verification rejects current index bytes as index-unread; no fallback or foundation"},
+    {"id":"orphan-index","expect":".bound without receiver lock refuses index-unread"},
+    {"id":"invalid-entry","expect":"A relative or malformed active reference refuses index-invalid"},
+    {"id":"withdrawn-entry","expect":"A withdrawn reference never selects a place"},
+    {"id":"duplicate-account","expect":"Two indexed accounts for one canonical place refuse place-ambiguous"},
+    {"id":"no-work-after-refusal","expect":"No discovery, consent, key access, write or internal birth after the integrity refusal; public place creation also refuses before consent"},
+    {"id":"current-runtime-integrity","expect":"Every regional runtime member matches its fixed inventory; changed or absent executable bytes cannot satisfy the reader"}
+  ],
+  "authority": "No transferred authority, replacement anchor, private credential or owner key in the artifact",
+  "network": "Local documents and verified public-world cache only; no external API or MCP connection",
+  "publication": "Regional unsigned candidate only"
+}

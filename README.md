@@ -20,7 +20,7 @@ This is an illustrative fixture, not a live forecast. [Run the local example](do
 For an assistant that starts MCP servers by command:
 
 ```sh
-npx -y @lapxo/head@0.2.1 run
+npx -y @lapxo/head@0.2.2 run
 ```
 
 The pin above names this release; the executable examples in this tree use the checkout. A client can also open a desktop extension from [releases](https://github.com/Lapxo/head/releases); check the artifact digests supplied with the release. Starting head alone prints help; `head run` starts the MCP server.
@@ -49,3 +49,17 @@ Signing keys stay behind a short-lived signer port in the supported flow. Tokens
 A digest is not network permission or proof that an answer is true. Received bytes install no authority. Configuration preflight does not replace API permission, access or secret-consent checks. See the [threat model and reporting policy](SECURITY.md), and [connect an API](docs/connect-any-api.md) for access options.
 
 The three public MCP tools are `ask`, `connect` and `do`. Examples reuse the existing client and fixtures; they add no provider-specific behavior to head.
+
+### Export a connected place
+
+Head's base extension contains no connected sources. Sharing a place never silently creates an empty extension. Provide explicit public package identity, revision, title, description and author; Head selects all currently connected sources and their declared operations when `sources` is omitted:
+
+```json
+{"action":"share","place":"/your/place","to":"/your/shared/team.mcpb","args":{"id":"team","revision":"1.0.0","title":"Team sources","description":"Selected public documents","author":{"name":"Your public name"}}}
+```
+
+An explicit `sources` selection narrows that snapshot. Source and operation budgets still apply; nothing is silently truncated. Missing public package metadata produces `bundle/metadata-required`. The metadata grants no authority. The recipient accepts the named package, chooses an origin where needed, and supplies their own credentials. Export only documents and overlays you intend to make public.
+
+Repeat exports preserve member paths and content under identical inputs. The standard MCPB packager includes ZIP timestamps; identical container bytes across different times are not promised. Each release approval identifies one exact archive.
+
+Access credentials are bound to the authenticated place, origin and declared access context. Receipt rejection returns no usable attachment. An interrupted or unrecorded attempt is not automatically retried: inspect it first, then explicitly request `access` with `args: {"retry":true}` if appropriate. Existing signing keys are never migrated. A compatible legacy home namespace requires explicit local approval after its public keys match the authenticated home.

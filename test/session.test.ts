@@ -23,8 +23,8 @@ test('a client is offered exactly the lock-s tools, with their words and hints, 
 });
 
 test('look over a root preserves every byte bound printed, followed only by Head status and its card', async (t) => {
-  const { place } = born(undefined);
-  const [looked] = await ask([{ method: 'tools/call', params: { name: 'look', arguments: {} } }], [place]);
+  const { place, keychain } = born(undefined);
+  const [looked] = await ask([{ method: 'tools/call', params: { name: 'look', arguments: {place} } }], [place], keychain.env);
   const printed = run('@lapxo/bound', place, ['fold', '--as', 'lines'])!;
   const answer = looked.result.content[0].text.split('\n'), expected = [...printed.out, ...printed.err];
   deepStrictEqual(answer.slice(0, expected.length), expected);

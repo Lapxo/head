@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { registryFor } from './signers.ts';
 import { run } from './cli.ts';
 import { ask } from './client.ts';
-import { api, born, line, lock, said, text, viewOf } from './place.ts';
+import { api, born, line, lock, said, text, viewOf, seedAccess } from './place.ts';
 import { aboutOf, members, valueOf } from '../src/core/lock.ts';
 
 const look = (place: string, operation: string, args: Record<string, string> = {}) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', operation, args, at: '8' } } });
@@ -47,7 +47,8 @@ test('ten reads across three places ask nothing; one write asks once, and the ye
 
 test('a source declaring several origins has one picked, once, by the person, among them alone; none is a default and the next read asks nothing', async () => {
   const [one, two] = [await api(() => '{}'), await api(() => '{}')];
-  const { place, keychain } = born(undefined, [line('region/tracker', 'origins', `${one.url}|${two.url}`)]);
+  const { place, root, keychain } = born(undefined, [line('region/tracker', 'origins', `${one.url}|${two.url}`)]);
+  await seedAccess(place,keychain,'tracker','issues/get','token-for-tests',{root,origin:two.url});
   const asked: string[] = [];
   const [first, second] = await ask([look(place, 'issues/get', issue('1')), look(place, 'issues/get', issue('2'))], [], keychain.env, counting(asked));
   await one.close(); await two.close();

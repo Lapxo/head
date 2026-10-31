@@ -1,3 +1,4 @@
+import { homeServices } from '../src/ports/home.ts';
 import { test } from 'node:test';
 import { deepStrictEqual, match, notStrictEqual, ok } from 'node:assert';
 import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -59,7 +60,7 @@ test('two heads on one keychain never share a key: each is its home, its keys ke
   match(text(a), said('born')); match(text(b), said('born'));
   const [ka, kb] = [await ask([tool('key', { who: 'head' })], [], first), await ask([tool('key', { who: 'head' })], [], second)].map(([one]) => / measure=public-key .*value=(\S+)/.exec(text(one))?.[1]);
   ok(ka && kb); notStrictEqual(ka, kb);
-  deepStrictEqual(['@lapxo/head/org-head', '@lapxo/head/my-head'].map((service) => keychain.held('place/shop/root', service).length > 0), [true, true]);
+  deepStrictEqual([first, second].map(env => homeServices('@lapxo/head', env.HEAD_HOME).primary).map((service) => keychain.held('place/shop/root', service).length > 0), [true, true]);
   ok(readdirSync(join(shared, 'org-head')).includes('TARGET.bound') && readdirSync(join(shared, 'my-head')).includes('TARGET.bound'));
 });
 
@@ -76,7 +77,7 @@ test('a place born before its wire named a witness gets it by one lot head propo
     const older = join(mkdtempSync(join(tmpdir(), 'head-lot-')), 'older.bound');
     const bare = Object.fromEntries(Object.entries(wire).filter(([k]) => !['sig', 'epoch'].includes(k)));
     writeFileSync(older, `${[canonical({ ...bare, by: 'target', value: 'withdraw' }), canonical({ ...bare, by: 'target', at: 'policy:fixture/older', value: wire['value']!.replace('|witness', '') })].join('\n')}\n`);
-    const signers = registryFor('keychain', `@lapxo/head/${basename(env.HEAD_HOME)}`, 'place/old/root', 'root', 'ed25519:era1');
+    const signers = registryFor('keychain', homeServices('@lapxo/head', env.HEAD_HOME).primary, 'place/old/root', 'root', 'ed25519:era1');
     deepStrictEqual(run('@lapxo/bound', dir, ['land', older, '--key', 'root', '--signer', 'keychain'], { ...env, BOUND_SIGNERS: signers })?.code, 0);
     const look = tool('look', { place: dir, source: 'things', operation: 'listThings', at: '8' });
     const [unwitnessed] = await ask([look], [], env, yes);

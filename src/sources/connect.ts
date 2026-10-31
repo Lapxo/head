@@ -30,16 +30,23 @@ import type { Read } from '../ports/documents.ts';
  * its pins rest in, its pin held to the package's; one that differs is refused by name, and the place holds what it
  * compiled. Nothing the sharing place was granted comes with it: access is asked here, issuer by issuer.
  */
-export const connected = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (await receiverConnect(asked, context)) ?? (await receivedBirth(asked, context)) ?? (members(valueOf(context.lock, 'link/prefixes')).some(prefix => (asked['document'] ?? '').startsWith(prefix)) ? linked(asked, context)
-  : ((got) => ('said' in got ? got.said : connectedAs(got.asked, context, covered)))(asked['protocol'] === configuredProtocol.id ? { asked } : await resolved(asked, context)));
-const connectedAs = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => (asked['source'] && !(await placeOf(asked, context)) ? firstRun(asked, context, (dir, covered) => connected({ ...asked, place: dir }, context, covered))
+export const connected = async (asked: Asked, context: Context, covered = false): Promise<readonly string[]> => {
+  const received = (await receiverConnect(asked, context)) ?? (await receivedBirth(asked, context));
+  if (received) return received;
+  if (members(valueOf(context.lock, 'link/prefixes')).some(prefix => (asked['document'] ?? '').startsWith(prefix))) return linked(asked, context);
+  const selected = await placeOf(asked, context); if (typeof selected === 'object') return selected.said;
+  const root = selected ? await rootIn(context, selected) : undefined; if (root && 'said' in root) return root.said;
+  const got = asked['protocol'] === configuredProtocol.id ? { asked } : await resolved(asked, context);
+  return 'said' in got ? got.said : connectedAs({ ...got.asked, ...(selected ? { place: selected } : {}) }, context, covered, root);
+};
+const connectedAs = async (asked: Asked, context: Context, covered = false, selectedRoot?: Awaited<ReturnType<typeof rootIn>>): Promise<readonly string[]> => (asked['source'] && !(await placeOf(asked, context)) ? firstRun(asked, context, (dir, covered) => connected({ ...asked, place: dir }, context, covered))
   : ((started) => inPlace(asked, context, async (place) => {
   const say = sayIn(context.lock), digest = digestIn(context.lock), { documentOf, fetchedAs, kindOf } = context.files.read;
   const [source, document] = [(asked['source'] ?? '').toLowerCase().replace(/[^a-z0-9-]+/g, '-'), asked['document'] ?? ''];
   const [via, named, accept, lock] = [asked['via'] ?? '', asked['digest'] ?? '', /^[\w.+-]+\/[\w.+-]+$/.test(asked['accept'] ?? '') ? asked['accept'] : undefined, `.${kindOf(document)}` === EXTENSION];
   if (lock && !named) return [say('parent-lock', { place, parent: source || document })];
   if (!source && !lock) return [say('missing-param', { operation: 'connect', param: 'source' })];
-  const root = await rootIn(context, place);
+  const root = selectedRoot ?? await rootIn(context, place);
   if ('said' in root) return root.said;
   if (named && !/^sha256:[0-9a-f]{64}$/.test(named)) return [say('document-digest', { document, digest: named, got: '' })];
   if (lock) return ((read) => (read === undefined ? [say('document-unread', { document })] : digest(read.bytes) !== named ? [say('document-digest', { document, digest: named, got: digest(read.bytes) })]

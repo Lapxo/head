@@ -9,7 +9,7 @@ import { ask } from './client.ts';
 import { published } from '../src/ports/adapters/request.ts';
 import { digestOf } from '../src/ports/cache.ts';
 import { worldBytes } from './worlds.ts';
-import { api, born, line, lock, root, said, text } from './place.ts';
+import { api, born, line, lock, root, said, text, seedAccess } from './place.ts';
 
 const word = (scope: string) => lock.find((l) => l.scope === scope)!.value!;
 const pinned = { standing: word('world/topos-openapi/standing'), blob: word('world/topos-openapi/blob') };
@@ -80,8 +80,9 @@ test('head reads a source through the place bound compiled it to: an offer of cl
   const server = await api(() => '[{"id":1,"name":"one","extra":"held back"}]');
   let listed: unknown, added: unknown, again: unknown, past: unknown;
   try {
-    const { place, keychain } = adopting(server.url, pinned.blob, 'demo', 'token-for-tests', [line('allow/reuse/demo', 'seconds', '0..3600', { form: 'interval' }), line('allow/history/demo', 'status', 'present')]);
+    const { place, root: owner, keychain } = adopting(server.url, pinned.blob, 'demo', 'token-for-tests', [line('allow/reuse/demo', 'seconds', '0..3600', { form: 'interval' }), line('allow/history/demo', 'status', 'present')]);
     document(place, v1);
+    await seedAccess(place,keychain,'demo','listThings','token-for-tests',{root:owner});
     const look = (operation: string) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'demo', operation, args: {}, at: '8' } } });
     [listed] = await ask([look('listThings')], [], keychain.env);
     [added, again, past] = await ask([look('addThing'), look('listThings'), { method: 'tools/call', params: { name: 'look', arguments: { place, source: 'demo', operation: 'listThings', args: {}, history: true } } }], [], keychain.env);

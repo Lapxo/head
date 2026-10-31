@@ -1,22 +1,782 @@
 {
   "protocol": "head-configured-ports-capture@1",
-  "status": "Current reviewed regional vectors passed; surface/kind-words is zero. This is not actual Root or release closure.",
+  "status": "CI repair successor; current byte bindings and named narrow revalidation; not final Root or CI acceptance",
   "inputs": [
+    {
+      "path": "dist/src/access/contract.d.ts",
+      "sha256": "sha256:26eb731ea163a2c14980968d75ab3b0671f956f49803030efb06902e5e30da42"
+    },
+    {
+      "path": "dist/src/access/contract.js",
+      "sha256": "sha256:59f529d848b18dffc330c207edb9686e5d573c73a21cdb600563266e73b18764"
+    },
+    {
+      "path": "dist/src/access/obtain.d.ts",
+      "sha256": "sha256:c3981308034f52dcc1963daac298baafe3ef1e14e2f78b1cb31ec123bbb798a1"
+    },
+    {
+      "path": "dist/src/access/obtain.js",
+      "sha256": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
+    },
+    {
+      "path": "dist/src/adopt/adopt.d.ts",
+      "sha256": "sha256:ed08c57d693138ad1ea2472582396f670a450ca197cb2093a0cf8e25eda4073d"
+    },
+    {
+      "path": "dist/src/adopt/adopt.js",
+      "sha256": "sha256:9540284c55e6d15ef2407a8d951fb015416fdc050de5d5f9f7bc94f488245ccf"
+    },
+    {
+      "path": "dist/src/ahead/budget.d.ts",
+      "sha256": "sha256:881003a2375159a031695e96ae1b4f2bdfd505dcc95249d8874bfa7566158618"
+    },
+    {
+      "path": "dist/src/ahead/budget.js",
+      "sha256": "sha256:8ab774dabcc2ec64b42cb8e271e7bfd8d3cbd41e9c3c1e61d44587274ee44322"
+    },
+    {
+      "path": "dist/src/ahead/fold.d.ts",
+      "sha256": "sha256:293825a39eb4c8481dce1b5adfa9b1d32a6fa599e59dcb0d26ae573dfdad912a"
+    },
+    {
+      "path": "dist/src/ahead/fold.js",
+      "sha256": "sha256:d532020d8d789341e3daff7ee755eeb5af5e47cd669df21d5018d26b83dca57f"
+    },
+    {
+      "path": "dist/src/ahead/read.d.ts",
+      "sha256": "sha256:a1efdfc27613ee4a50b29ee347b9400810be5bdc3c7d22d6cb707e5fa8d5206a"
+    },
+    {
+      "path": "dist/src/ahead/read.js",
+      "sha256": "sha256:d35f88d17b74b300d7af1b098269a0fcb0ccb988b860e32ed17c73309eacf23e"
+    },
+    {
+      "path": "dist/src/answers/answered.d.ts",
+      "sha256": "sha256:91cc8fef08b19b032738861265dc765be0fa80ec3768ad4a605f1906e1064db2"
+    },
+    {
+      "path": "dist/src/answers/answered.js",
+      "sha256": "sha256:8fe30f1b7953bfce637cb040616bc888091d7bbe9e6b1c618a6b3cc79c8b2f18"
+    },
+    {
+      "path": "dist/src/claims/claim.d.ts",
+      "sha256": "sha256:b928249069815027ba841c5f62b44244b0e907b4a55ee497e27a1598b805c06b"
+    },
+    {
+      "path": "dist/src/claims/claim.js",
+      "sha256": "sha256:19a6a554a1152c2239003bfd603f7350de0222f78ae0f73ec3550af59b94d0d3"
+    },
+    {
+      "path": "dist/src/claims/view.d.ts",
+      "sha256": "sha256:fcc2ccb108cc7cdb2c35ad402d1feb29eacdd5c708ed069ad7badd8b96b29534"
+    },
+    {
+      "path": "dist/src/claims/view.js",
+      "sha256": "sha256:fa3307c14e8f5003a2d92340733296ed63387af5f08da3fa013fd5298181ade5"
+    },
+    {
+      "path": "dist/src/compile/pin.d.ts",
+      "sha256": "sha256:04c7233b80e9e0e83e9aeebcc171ef7c2d7995596c9a7fe21f42e35216d60917"
+    },
+    {
+      "path": "dist/src/compile/pin.js",
+      "sha256": "sha256:55edb4261fec4f20d014fb654f69f3a6bffec07d0f1793c82399ee6eeaf25f54"
+    },
+    {
+      "path": "dist/src/core/act.d.ts",
+      "sha256": "sha256:58fe6f1574af3006d0e6ab6b43d06fb0dc95b6f2780adfe38776b736dafbb2c7"
+    },
+    {
+      "path": "dist/src/core/act.js",
+      "sha256": "sha256:dcf55dee4a82cc70ee1b36a1ef4a307aa4fd676b2eda8c65de81500d1e0d4e56"
+    },
+    {
+      "path": "dist/src/core/answer.d.ts",
+      "sha256": "sha256:87c60580ebd505ba5bd1bcd5527dd00ee582bac2275444e852d105852e65d2a1"
+    },
+    {
+      "path": "dist/src/core/answer.js",
+      "sha256": "sha256:105c3a33e73386b7a4b9c7285a12e8ffeadee5ba426e2df459a28530ad5b7e24"
+    },
+    {
+      "path": "dist/src/core/association.d.ts",
+      "sha256": "sha256:8bc3ff5fdb74a712b6e13163f76c3572a5ccef9bf4298a4c1fb162f7bb488011"
+    },
     {
       "path": "dist/src/core/association.js",
       "sha256": "sha256:8a033a13c51a75a1ac3395135ffda3700d9f42f6e1839bee0fa7a135f1f54deb"
+    },
+    {
+      "path": "dist/src/core/composition.d.ts",
+      "sha256": "sha256:0def3289bf33c5775188e7524c2b9efe3b3ec8573a116512dce9337db8f74383"
+    },
+    {
+      "path": "dist/src/core/composition.js",
+      "sha256": "sha256:f53d73b014dba8468d0652c87fc5d9c48c83db1c143c179f95f8239299e3ed4b"
+    },
+    {
+      "path": "dist/src/core/device.d.ts",
+      "sha256": "sha256:25ba96ca901e2295ebffcccebaa9c5531c33e2fd5b6c4b12445ada1977a8843a"
+    },
+    {
+      "path": "dist/src/core/device.js",
+      "sha256": "sha256:8af13310d4658e3116f6571cb64b96c0795bd76a40d694c4f02149b7793cd860"
+    },
+    {
+      "path": "dist/src/core/lock.d.ts",
+      "sha256": "sha256:3494be68e39d2b1f89f50e31539291240102aa5126bf5567db79469476d082af"
+    },
+    {
+      "path": "dist/src/core/lock.js",
+      "sha256": "sha256:387158402305b24d4ba77dc4a50be11972dde5b73a55db0f97925abc39faa92c"
+    },
+    {
+      "path": "dist/src/core/package.d.ts",
+      "sha256": "sha256:716768afbbeb5682d80d3119413f613bd737c41c1714e0373bd8d812d6bc17a0"
+    },
+    {
+      "path": "dist/src/core/package.js",
+      "sha256": "sha256:d96053d8121d080f32b814e021b29ca4fc92103e6cd11d9996b0fe0f56cb344a"
+    },
+    {
+      "path": "dist/src/core/read.d.ts",
+      "sha256": "sha256:9f9654ea1670f424e324b091751d47ed5d890dbb7f966ae54f5549609b2d3fc0"
+    },
+    {
+      "path": "dist/src/core/read.js",
+      "sha256": "sha256:8236bca85c98e470dce7e9d7457b91f631883e1b84056ec9413451a877b34109"
+    },
+    {
+      "path": "dist/src/core/receipt.d.ts",
+      "sha256": "sha256:df004cdf82582d3abb85de2e981bdab0c04f8ceff9d846f54132529682c25029"
+    },
+    {
+      "path": "dist/src/core/receipt.js",
+      "sha256": "sha256:da2b2bc844fc104da0b16276f10e101badd8bfa3b38255e85ac31cbea3437349"
+    },
+    {
+      "path": "dist/src/core/receiver.d.ts",
+      "sha256": "sha256:aeb5f10beeb5fc362edcf884f32046e1f3abae6f1a2dd21b7216fd77eeeb208b"
+    },
+    {
+      "path": "dist/src/core/receiver.js",
+      "sha256": "sha256:45a133f3f1db56d98a5e5ad8a1eeddb84e2e92344a5ec4a23c8a639d8fd4637d"
+    },
+    {
+      "path": "dist/src/core/share-bundle.d.ts",
+      "sha256": "sha256:4258ec1dfb958e8653e10b120f35adb0e5fd9b42bbca175bd0f254e9dca24e2e"
+    },
+    {
+      "path": "dist/src/core/share-bundle.js",
+      "sha256": "sha256:2590d26ecb90124be857b6bb85dba5636805f5e7ba0ff690ec001c723b018c2f"
+    },
+    {
+      "path": "dist/src/core/surface.d.ts",
+      "sha256": "sha256:15d5edc0dc65e49b65443f7a63d8a921875f4b7f9dc6951d87d0bb1ea966619c"
+    },
+    {
+      "path": "dist/src/core/surface.js",
+      "sha256": "sha256:b32b0ee752a0f0d3c1cf693afdb30e3cad0c9952da56e91f2ebe90f91abadee6"
+    },
+    {
+      "path": "dist/src/core/trust.d.ts",
+      "sha256": "sha256:8ae2d1bbe68006cfd8324b1b548c86ffe8495d8f0246e2283bc9b073de3edd23"
+    },
+    {
+      "path": "dist/src/core/trust.js",
+      "sha256": "sha256:b2fd369d2a2345ce55c3717473054bf13655b737cd462abf50177712d235d54a"
+    },
+    {
+      "path": "dist/src/core/worlds.d.ts",
+      "sha256": "sha256:8423a7755d28ae5125d631c0d17fb58e140cc9cbb307975c2ec39dc8386a57fe"
+    },
+    {
+      "path": "dist/src/core/worlds.js",
+      "sha256": "sha256:5987da9b517c1b4229eda2c2bc7871d64b610e267ed0f8817bf05ad864d3bf92"
+    },
+    {
+      "path": "dist/src/doors/guard.d.ts",
+      "sha256": "sha256:d8469b7fee10d86b5779b7134390278c5d7b96324e99abebe908c12e591cf095"
+    },
+    {
+      "path": "dist/src/doors/guard.js",
+      "sha256": "sha256:2a5eb853db1237fdbedf9cd984821fd42687e52138478732983e301b121517bb"
+    },
+    {
+      "path": "dist/src/doors/head.d.ts",
+      "sha256": "sha256:0a614a8238aa69b64e52d18904457b7bd39fbe5ebdbaa6e8d81bfa96dbf9d16b"
+    },
+    {
+      "path": "dist/src/doors/head.js",
+      "sha256": "sha256:6bec9950a028a45b15f0519876e5cc1f0f062930dc8a1dc55f35aab6e70b4c15"
+    },
+    {
+      "path": "dist/src/doors/http.d.ts",
+      "sha256": "sha256:fbaf4d1713ef0b836e26693b36bd1a0b0482e1fa4c506a5ec087504fb40c87fb"
+    },
+    {
+      "path": "dist/src/doors/http.js",
+      "sha256": "sha256:8cdae0a24dc17382e862a3bbcf897911abbc8ebdabcdf14acc1d85ca1d067a37"
+    },
+    {
+      "path": "dist/src/doors/lines.d.ts",
+      "sha256": "sha256:cde8342c76b2ce38d643eee3831ee3d397089c4fb40a23c35e98c4dd4347ce20"
+    },
+    {
+      "path": "dist/src/doors/lines.js",
+      "sha256": "sha256:ebd5ed0f24c6a3bdf5587a52b3f6b0c9d82aa902b8e5db1bdf3316dabd9994be"
+    },
+    {
+      "path": "dist/src/flows/act.d.ts",
+      "sha256": "sha256:4000d95e0cc785baa8867f7b1d476adfcb63130dddd6a413d407d56f47032a50"
+    },
+    {
+      "path": "dist/src/flows/act.js",
+      "sha256": "sha256:dc90e02f6473f56b8cdf781f1999c196f69527380974c87c8f0e52d5890cb256"
+    },
+    {
+      "path": "dist/src/flows/answer.d.ts",
+      "sha256": "sha256:c673e5f009c78662c338f9254266d4958013a88f4217500147add7830bfc64d4"
+    },
+    {
+      "path": "dist/src/flows/answer.js",
+      "sha256": "sha256:9fe73bce26e754cfcc2c88ece28aeaf6ab4a17cc08e51aa2fdc28ac547203497"
+    },
+    {
+      "path": "dist/src/flows/call.d.ts",
+      "sha256": "sha256:40f245c98b3df243ac818ca7a6b11e3c13dd5da09429a78e5f0e97fd0a7e542d"
+    },
+    {
+      "path": "dist/src/flows/call.js",
+      "sha256": "sha256:ad7c80650944a1048a87f1e594e8488d423efaa9e037711530d1c24eb5199494"
+    },
+    {
+      "path": "dist/src/flows/device.d.ts",
+      "sha256": "sha256:ec75a449f8c1f57d0bcfa517d925336e9786ab03d8482d0c199f02dcee45bd55"
+    },
+    {
+      "path": "dist/src/flows/device.js",
+      "sha256": "sha256:96dee42aecd5f63ef760bfdf053b00f760aa5074a795d8c64df93ca9924f7ea7"
+    },
+    {
+      "path": "dist/src/flows/plan.d.ts",
+      "sha256": "sha256:4793d1b1b46600b05531f859211249380ecadfd32d2ea104eeaafd8a366937aa"
+    },
+    {
+      "path": "dist/src/flows/plan.js",
+      "sha256": "sha256:628b5c2a0ae323b28200e93e779593ae5f84ec53901789e12548f8885980f375"
+    },
+    {
+      "path": "dist/src/flows/read.d.ts",
+      "sha256": "sha256:5d07c8bbb37e54e9521fb9155e9f66ec71c5460f1f46403fc5c2b7b659332db1"
+    },
+    {
+      "path": "dist/src/flows/read.js",
+      "sha256": "sha256:d92f2d906cf04cc82bede7bd2c4399722dc3df8c1cc29fb89217b2ff2cbcdc49"
+    },
+    {
+      "path": "dist/src/flows/world.d.ts",
+      "sha256": "sha256:941b9727cb7f6073af362843d9749ff89b8a3528650a26de6a35626660f8e16c"
+    },
+    {
+      "path": "dist/src/flows/world.js",
+      "sha256": "sha256:9e8ed631d3bb60b7310ed1d99979a6081de0c0e8ff8738335c922039666eaaa2"
+    },
+    {
+      "path": "dist/src/index.d.ts",
+      "sha256": "sha256:43e818adf60173644896298637f47b01d5819b17eda46eaa32d0c7d64724d012"
     },
     {
       "path": "dist/src/index.js",
       "sha256": "sha256:331bb0e53e0964e8fdcbbbc43dd0cb874433e7db5f26ea98af6c92dfb6e7d3b8"
     },
     {
+      "path": "dist/src/kept/kept.d.ts",
+      "sha256": "sha256:62937a24885bdf0b975bfe37083e9b2910ace7d95c84a82ec135a65b53bed1d5"
+    },
+    {
+      "path": "dist/src/kept/kept.js",
+      "sha256": "sha256:cf961d836785e41f034a2f93a2426c3c27282537f8e8689e678cf63b93cebef9"
+    },
+    {
+      "path": "dist/src/links/birth.d.ts",
+      "sha256": "sha256:92e1e520ea4bfa555ff9d36ccf1db0f837e925bfc9031cd6734e36784f2f4d22"
+    },
+    {
+      "path": "dist/src/links/birth.js",
+      "sha256": "sha256:f09eea1204e0a72dc053e63221a8e53e3632e267037bf7342df7d7dd0fb9b4b4"
+    },
+    {
+      "path": "dist/src/links/inspect.d.ts",
+      "sha256": "sha256:d2b8873da968158d91bfe23cf7ce2b51f7501c820c65c00bc3ef4edd3b209bc1"
+    },
+    {
+      "path": "dist/src/links/inspect.js",
+      "sha256": "sha256:62852b18c57a0ec840f8fe7f5318f694bf65b33dc84a647d4537310e9d90401b"
+    },
+    {
+      "path": "dist/src/links/link.d.ts",
+      "sha256": "sha256:2a31d2230915ce1a6bf15b37318021c4df44f107354dd5ed92b73657988e6a15"
+    },
+    {
+      "path": "dist/src/links/link.js",
+      "sha256": "sha256:7dc98901d9ec734e53da275109454b43d5aae5653ef5beee9a5642225e7cf49d"
+    },
+    {
+      "path": "dist/src/marks/compare.d.ts",
+      "sha256": "sha256:9b9d113384fa0be3856e2f45dafe7b4cabf3635a56a32da01876b64f048ea59f"
+    },
+    {
+      "path": "dist/src/marks/compare.js",
+      "sha256": "sha256:0b0fb2a7b632b9d73e8019be064cc5d79632082cd68c75bbf4acc0fb4d1c24f2"
+    },
+    {
+      "path": "dist/src/onboard/first.d.ts",
+      "sha256": "sha256:066a366edf322b92578a341dc9c1290096213abce033d7ca1d2aea3893e4fc3d"
+    },
+    {
+      "path": "dist/src/onboard/first.js",
+      "sha256": "sha256:9c7fe3ed8b8f52995fe0231109f24225139150f1f83081144df95cecf0bda778"
+    },
+    {
+      "path": "dist/src/onboard/owed.d.ts",
+      "sha256": "sha256:56edc083cdb621a4d9c8a71d0ff43d8af827afa90dbbacf3b372c80800f0f968"
+    },
+    {
+      "path": "dist/src/onboard/owed.js",
+      "sha256": "sha256:d6887b93841a2f810310e5de76e9bd7cb60c2df233816aca60fdf5e0491d5b9f"
+    },
+    {
+      "path": "dist/src/onboard/site.d.ts",
+      "sha256": "sha256:3b7b35060244571059e46e6092ca9964de67419eae9572a929098f6c16fa1396"
+    },
+    {
+      "path": "dist/src/onboard/site.js",
+      "sha256": "sha256:0f89dc279ec16d17126a8b495ebcca5b4be8cf05949ac3093000f0c86b31c19f"
+    },
+    {
+      "path": "dist/src/places/admit.d.ts",
+      "sha256": "sha256:49aa51456314192ff0ce75f38bdb2f986d63c92eac12846892f747b620f0f7ee"
+    },
+    {
+      "path": "dist/src/places/admit.js",
+      "sha256": "sha256:f2ca2e6579002809dd8c4a0c3d51366fcc05d7d2f8bc89210666fea5cef723ec"
+    },
+    {
+      "path": "dist/src/places/found.d.ts",
+      "sha256": "sha256:530dda31345125c75a5460553bd673912816d07414a77220286192f52652de6c"
+    },
+    {
+      "path": "dist/src/places/found.js",
+      "sha256": "sha256:96c5b9d096f6b3dcbac9d221585e4468f09220e201b7ddc6af2c481dcb7b82be"
+    },
+    {
+      "path": "dist/src/ports/access/authorizer.d.ts",
+      "sha256": "sha256:14a7d9ec44958db0be690ead6fef31da076f11da4bdeaf7b25eb69b4091f09a6"
+    },
+    {
+      "path": "dist/src/ports/access/authorizer.js",
+      "sha256": "sha256:e2228414e2f2170f80c4df83b96b5fbd3445a53befee60c5a07c741927044d13"
+    },
+    {
+      "path": "dist/src/ports/access/flow.d.ts",
+      "sha256": "sha256:1997744c1611ef000b2f9e8f9e030b4cba6975b818da4cb0f135b5c04b8655a5"
+    },
+    {
+      "path": "dist/src/ports/access/flow.js",
+      "sha256": "sha256:1f21e6a6c00307d135bf2ea8ef26b73a7456b52a94b29dcff88cee79047da4a7"
+    },
+    {
+      "path": "dist/src/ports/access/page.d.ts",
+      "sha256": "sha256:78f5d58baaf05aff07eaf0c5ead14cd334c1c50b5151628c83e77a7a4f7d5042"
+    },
+    {
+      "path": "dist/src/ports/access/page.js",
+      "sha256": "sha256:c9c2c0cb835f2f240ed61f55cde7dd1a7cf82fdedc79a6864cecda2c18c3821d"
+    },
+    {
+      "path": "dist/src/ports/access/person.d.ts",
+      "sha256": "sha256:9e6d90e7c06e481eb9ef24813831a6323165bd7dad0918b343f0fb105d8eebd5"
+    },
+    {
+      "path": "dist/src/ports/access/person.js",
+      "sha256": "sha256:3fa1a8fedc04d1b84053f551146fd2f065d82772a46c03b710a83908e2f8a07a"
+    },
+    {
+      "path": "dist/src/ports/adapters/bundle.d.ts",
+      "sha256": "sha256:a01c6a0a093c6da67731803140388017d7e837be0ab4fd25db3b314ded9f96ac"
+    },
+    {
+      "path": "dist/src/ports/adapters/bundle.js",
+      "sha256": "sha256:bbe6b828fd5b2d4354c9fda34fa8192592b608ded1d6122654943e4546f82bc1"
+    },
+    {
+      "path": "dist/src/ports/adapters/configured.d.ts",
+      "sha256": "sha256:e0d6056a8650ea83cffa9b531d955da73a8b3d12cc9ead4f4c992e1a16d10ce3"
+    },
+    {
+      "path": "dist/src/ports/adapters/configured.js",
+      "sha256": "sha256:469a84e541d1c4c533276bd5e09f260887c67e7fc2252fd674324d4c6cf97386"
+    },
+    {
+      "path": "dist/src/ports/adapters/mcp.d.ts",
+      "sha256": "sha256:94ab20ec7421acc1778eaec1376b63cbaeb6cc2b13df7231a26a7e054339309b"
+    },
+    {
       "path": "dist/src/ports/adapters/mcp.js",
       "sha256": "sha256:7e18db8700b379408db2b8b1e3aee49e6da69069f088412a61e47790573b065e"
     },
     {
+      "path": "dist/src/ports/adapters/network.d.ts",
+      "sha256": "sha256:02ee36b338738359555df3773e9b9ba60a7b547dace0f98ea8d5d307b44cea04"
+    },
+    {
+      "path": "dist/src/ports/adapters/network.js",
+      "sha256": "sha256:61abcd40082a0521967a7dbb917cff367a5ac15404f2dc8449586c8423fe6110"
+    },
+    {
+      "path": "dist/src/ports/adapters/protocol.d.ts",
+      "sha256": "sha256:9df31f7f589175874b4e1c8f9022e71e2b9bcf72874520d597a3c32a96c85cb3"
+    },
+    {
       "path": "dist/src/ports/adapters/protocol.js",
       "sha256": "sha256:28f4bd9cd3b7921517ea2f466989a94f6184eea48d4835591f6aabea7c9f7755"
+    },
+    {
+      "path": "dist/src/ports/adapters/remote.d.ts",
+      "sha256": "sha256:35a7b794f27e326f985fa6a4cc4093d977760a499a37c54a4b68de1294354f84"
+    },
+    {
+      "path": "dist/src/ports/adapters/remote.js",
+      "sha256": "sha256:71fded7dbe6137ec9a6527a6745bdc5be4c36256ea0bbd8647699ee7f59de340"
+    },
+    {
+      "path": "dist/src/ports/adapters/request.d.ts",
+      "sha256": "sha256:016b2be3cd469525f614ac5d4aac90cff769f2ede4442454983a1132427e5eb1"
+    },
+    {
+      "path": "dist/src/ports/adapters/request.js",
+      "sha256": "sha256:2fa2b7be02252d4f518f13a1e4062578f4eec98b2a42473aa01ad39c387f9723"
+    },
+    {
+      "path": "dist/src/ports/bound.d.ts",
+      "sha256": "sha256:abd428da6603a1b919ff818c7076990e128a8a4112158ad20542e160ce363712"
+    },
+    {
+      "path": "dist/src/ports/bound.js",
+      "sha256": "sha256:d2b5102fe4ff19527319d0c5b2ae0dfa97b2123c2dbc1418ef8af034ad995296"
+    },
+    {
+      "path": "dist/src/ports/cache.d.ts",
+      "sha256": "sha256:bb381bd508f9e180fd9078f722cc9b9706bd8a17df3c0508d42a9331f6a0dac8"
+    },
+    {
+      "path": "dist/src/ports/cache.js",
+      "sha256": "sha256:ae01a0b568658fa5c309b8c061545c903d7a313a2f63e72f0d55d60ebf4d5d9c"
+    },
+    {
+      "path": "dist/src/ports/documents.d.ts",
+      "sha256": "sha256:6206e0f0116326dac2d62ec3ca31658e68e8ae3595b1f18d147f2d1ec142add1"
+    },
+    {
+      "path": "dist/src/ports/documents.js",
+      "sha256": "sha256:094b4796a51ecd7fefd6b3404ab56db985497e954c4fcc181d993195d6faebc6"
+    },
+    {
+      "path": "dist/src/ports/export.d.ts",
+      "sha256": "sha256:af99676aed1517c18a0bc624aad340c1a32a5d22aafc59aff01fe61f82f98cbf"
+    },
+    {
+      "path": "dist/src/ports/export.js",
+      "sha256": "sha256:fab311ccb81c78ea317c46ba88fad5dd59b8c02802652aa75cf6c99adf5086cc"
+    },
+    {
+      "path": "dist/src/ports/home.d.ts",
+      "sha256": "sha256:1793c7141d4584c1b98c802e52221c8fe479e8ae610178bb9726736c84230520"
+    },
+    {
+      "path": "dist/src/ports/home.js",
+      "sha256": "sha256:4b969a4b6c6ec81a1dccd7e08a2a25fe6b45f4d528763c5aa2ac85b8775b9dc8"
+    },
+    {
+      "path": "dist/src/ports/host.d.ts",
+      "sha256": "sha256:c3d6bea06dc4f10c301ee8138520f826db29bbb41c5798534b9702eb828f210e"
+    },
+    {
+      "path": "dist/src/ports/host.js",
+      "sha256": "sha256:0e89cb452bc765d97ef70673e7062fdb6ffe6b155ccdc72521c0efc1435194c7"
+    },
+    {
+      "path": "dist/src/ports/keychain.d.ts",
+      "sha256": "sha256:d018ca5d9700c31eff4412e22b9418c3161c3cc4b077bcdda2087b49f5108070"
+    },
+    {
+      "path": "dist/src/ports/keychain.js",
+      "sha256": "sha256:19dd7287b42593e9909206de14ea4547820435d32789b6896e79aeea2f8972e9"
+    },
+    {
+      "path": "dist/src/ports/keys.d.ts",
+      "sha256": "sha256:3fa05adcf37370e9433a98f86d0e068bf2b64835dd41bf52736a6310e17d8e86"
+    },
+    {
+      "path": "dist/src/ports/keys.js",
+      "sha256": "sha256:fe2aeb45bbcbf8e610d176520cbf5ac2785831b123d15ed104af511650906fd1"
+    },
+    {
+      "path": "dist/src/ports/place.d.ts",
+      "sha256": "sha256:f0416ed5d5ea14719f6690ecfb6223bb2815a44219035764beb893446feec179"
+    },
+    {
+      "path": "dist/src/ports/place.js",
+      "sha256": "sha256:459c99204327b0bb040825475cef8f6d9659e2fe1fac17dc20cf220fa4dc5b15"
+    },
+    {
+      "path": "dist/src/ports/process.d.ts",
+      "sha256": "sha256:1d99a7b58cf98e608ad7b5999ac26e06522a2c0c19f4d3016a2d73301041250b"
+    },
+    {
+      "path": "dist/src/ports/process.js",
+      "sha256": "sha256:bd4c10bd17fa7ef71f07df713c3f69682d7dbd2c25f710f827f3f4c33f57ae09"
+    },
+    {
+      "path": "dist/src/ports/scratch.d.ts",
+      "sha256": "sha256:d4aeb93a88f80f62d9be6210a716abd8daa9f770dbf299044297b31cbc65f60d"
+    },
+    {
+      "path": "dist/src/ports/scratch.js",
+      "sha256": "sha256:e9327030c0c5d4aad9195e071d2b73f5bf6e254175cafef5c56022903a5449ce"
+    },
+    {
+      "path": "dist/src/ports/stores/credential-manager.d.ts",
+      "sha256": "sha256:0efb8938e1c7711eb18e76734b38f7da7723be2b1ff418ba63bcea0a946ed89b"
+    },
+    {
+      "path": "dist/src/ports/stores/credential-manager.js",
+      "sha256": "sha256:2859ee878f2c1985d39c32d91bc6d572543bb7f9a4229af6c33f2d5afdd013dd"
+    },
+    {
+      "path": "dist/src/ports/stores/keychain.d.ts",
+      "sha256": "sha256:001d6acdeb5abb46465d6cc0af1629697073bb185c76f52afd038d7f58734c09"
+    },
+    {
+      "path": "dist/src/ports/stores/keychain.js",
+      "sha256": "sha256:6def454b36aecc483d3e0a693d3cf809a393d8e8d7d7285ca9af9cfe32f17004"
+    },
+    {
+      "path": "dist/src/ports/stores/secret-tool.d.ts",
+      "sha256": "sha256:00edc00b7333cbcb71d20fd6f014371cd79feda8d5cb184b364ef0b868c512e2"
+    },
+    {
+      "path": "dist/src/ports/stores/secret-tool.js",
+      "sha256": "sha256:b0801d3b668a37d3185106957a9f5b1e53686d0869046a72e9cbcb3068cc77de"
+    },
+    {
+      "path": "dist/src/ports/surface.d.ts",
+      "sha256": "sha256:8dbf57058db4b3bed700a5877df3ae74252282325ee2051ea3bc66dbc3569a7a"
+    },
+    {
+      "path": "dist/src/ports/surface.js",
+      "sha256": "sha256:fca2053fe061c42f6289e29f9fdeab2a1f4fb954e3059a003e574d37b53182cc"
+    },
+    {
+      "path": "dist/src/resources/view.d.ts",
+      "sha256": "sha256:bcbf5a3dcaddf4b04e69b9281b3c574857b8508278471a6abbdf87b8730a6d03"
+    },
+    {
+      "path": "dist/src/resources/view.js",
+      "sha256": "sha256:b885ace0c9ff5e6cbce349df1aef1bdce3bbfafaa33abcd8cd97dd4414e44743"
+    },
+    {
+      "path": "dist/src/signer.d.ts",
+      "sha256": "sha256:43e818adf60173644896298637f47b01d5819b17eda46eaa32d0c7d64724d012"
+    },
+    {
+      "path": "dist/src/signer.js",
+      "sha256": "sha256:bb0e1911ad75e5298effc2f1ea453cf588d6ce95c703e34622b7c6324adba2d9"
+    },
+    {
+      "path": "dist/src/sources/access.d.ts",
+      "sha256": "sha256:1d1307f4877dfb9d5596a9a708b3755e5ead2c5c92002b902c127544da7897f8"
+    },
+    {
+      "path": "dist/src/sources/access.js",
+      "sha256": "sha256:842a1a6128eb25ceb3334bd356b3cd5801c09d7728fb07332e5a4c70e5fceb26"
+    },
+    {
+      "path": "dist/src/sources/connect.d.ts",
+      "sha256": "sha256:b2d0b81d82fb872f9536b8ff73ca26cef20feaba9e6510e191e5ab31bf41fa67"
+    },
+    {
+      "path": "dist/src/sources/connect.js",
+      "sha256": "sha256:e4e786f099412b7777e9f341c3975d3f5d98f5cb72a887f6a13f22769af13f37"
+    },
+    {
+      "path": "dist/src/sources/refused.d.ts",
+      "sha256": "sha256:a2e525bbc409b66e9ac12bbbac05c32fff2d1d9c381e2e21fd39c2edd4086845"
+    },
+    {
+      "path": "dist/src/sources/refused.js",
+      "sha256": "sha256:5e70aa79ee8ed257f708189358fb57cfadc58a74a66cfdfbc3e734b41d628837"
+    },
+    {
+      "path": "dist/src/tools/access.d.ts",
+      "sha256": "sha256:1a49011fd33bcfc215b3fd67d928d452dbc19e7e49d8d4289c49a3bdfe281d4d"
+    },
+    {
+      "path": "dist/src/tools/access.js",
+      "sha256": "sha256:3c9220d22060e496abd47a49ca75440aef0b9b5e7dc51e56090d2875d541def5"
+    },
+    {
+      "path": "dist/src/tools/act.d.ts",
+      "sha256": "sha256:6f626e7c5dec2782efe51a51fc1aafdbaad0ce74c035fb8f85433be7de6693fd"
+    },
+    {
+      "path": "dist/src/tools/act.js",
+      "sha256": "sha256:e65b5e442bd10504b7b937d2db161df3c54531684c8487bd9348dad77b341ae6"
+    },
+    {
+      "path": "dist/src/tools/admit.d.ts",
+      "sha256": "sha256:44fccddc8648d3a19b8a601997e46bad95a326ea7f9aa82f8d4f2a8aaf934296"
+    },
+    {
+      "path": "dist/src/tools/admit.js",
+      "sha256": "sha256:17e07e1a2bda648d86a0b1318b833bbe42d5ec022e81a1b1b4c99cbfec22b5e2"
+    },
+    {
+      "path": "dist/src/tools/ask.d.ts",
+      "sha256": "sha256:9ffd433b0e1dab29de3e647a6167cd9f08942148b2ac3f29d5becb12cc5d038b"
+    },
+    {
+      "path": "dist/src/tools/ask.js",
+      "sha256": "sha256:803b1add5bfda54d692bf44510a7715a46092d8f02ef4573ad1bd9aee09f3e32"
+    },
+    {
+      "path": "dist/src/tools/card.d.ts",
+      "sha256": "sha256:7d1d67f1dd6b54499fb1fd00621c334d110e7098cbc016a6a1668c332ad52b49"
+    },
+    {
+      "path": "dist/src/tools/card.js",
+      "sha256": "sha256:671bd805512d27941496e1092386ad333f49fd0e1237c6e2396f7822901d02fe"
+    },
+    {
+      "path": "dist/src/tools/claim.d.ts",
+      "sha256": "sha256:2d47826e495c92ff825c78604c2f9107f7e17ccd79fe4a8b0bba0733d8d609f6"
+    },
+    {
+      "path": "dist/src/tools/claim.js",
+      "sha256": "sha256:c8864d6ec5968883062d6524176e0b3f19961561b5cb9bfefc02adb16e0f9aa6"
+    },
+    {
+      "path": "dist/src/tools/connect.d.ts",
+      "sha256": "sha256:42094de3060bfd135ab4841bcc0b89a20f320e7b3e6225ab3df7f69a88980629"
+    },
+    {
+      "path": "dist/src/tools/connect.js",
+      "sha256": "sha256:37037296e9ccf6a168478eaf78f8222660e2c66bfbad1fb7d08493eb4b2c03ff"
+    },
+    {
+      "path": "dist/src/tools/do.d.ts",
+      "sha256": "sha256:f9b38a68f09b35a0288d50a6e48ac83c2b135038eed2612856bb5eb883361fc8"
+    },
+    {
+      "path": "dist/src/tools/do.js",
+      "sha256": "sha256:db00fb70faefb364e0aaa6edb08246c1a55385f01e073c8c9216f36d828ab513"
+    },
+    {
+      "path": "dist/src/tools/key.d.ts",
+      "sha256": "sha256:82fac8c02aae79f0199c41fef97c09978a2007cf581d921a446ad61b00c34682"
+    },
+    {
+      "path": "dist/src/tools/key.js",
+      "sha256": "sha256:8c4976d17f19a104292270642ba6b82238d3139fc758773235a94d55846d4c14"
+    },
+    {
+      "path": "dist/src/tools/land.d.ts",
+      "sha256": "sha256:349b2d87cb2c3d33d58da09267126cc40de037da8b7351da31c92ce1c5ac10be"
+    },
+    {
+      "path": "dist/src/tools/land.js",
+      "sha256": "sha256:49390f51990a6437210abf2ac0c8b3ff4c66d738c21fca3a52afce66a52e1795"
+    },
+    {
+      "path": "dist/src/tools/look.d.ts",
+      "sha256": "sha256:20d336657e2f93a7295bd5f5ff9ed26f67f21e4bfab827b1ac7b766e25edeee7"
+    },
+    {
+      "path": "dist/src/tools/look.js",
+      "sha256": "sha256:e2f96c34a0144204e8ec64a2031032c473b5c9772c234610f178e32a5196f87b"
+    },
+    {
+      "path": "dist/src/tools/place.d.ts",
+      "sha256": "sha256:85af1570d97dd11d146834886b7a24de244c442684c9626aa2f16cfbf5306942"
+    },
+    {
+      "path": "dist/src/tools/place.js",
+      "sha256": "sha256:88a8315ec1c49af213510bb0869365c6e8c974de005ce723f23898581a255332"
+    },
+    {
+      "path": "dist/src/tools/places.d.ts",
+      "sha256": "sha256:9b720f4a2fe48175113c4b30de6bb3d7a249ee72d3488156c5d0033c8c42413c"
+    },
+    {
+      "path": "dist/src/tools/places.js",
+      "sha256": "sha256:52e94404999de2ba9efb4bc8ca3cfbbb996855f8033e61ea757277052f875e93"
+    },
+    {
+      "path": "dist/src/tools/plan.d.ts",
+      "sha256": "sha256:df3dfd6c4c51a28030b6301b69711778d11b4f53618738cff2c98200cc9bd3cd"
+    },
+    {
+      "path": "dist/src/tools/plan.js",
+      "sha256": "sha256:344b383e86d6343d2aa16c6e9b59b84d7de681e7cc34480517a3b66cd1431eb8"
+    },
+    {
+      "path": "dist/src/tools/share.d.ts",
+      "sha256": "sha256:abbfd208bfd1825ce574383315bd13d32bdae5230e516183e405e360999f038c"
+    },
+    {
+      "path": "dist/src/tools/share.js",
+      "sha256": "sha256:1e804b6bd08fc619c2ec73c36d37450ff44b83b7bb4f73459152bd70bec4201c"
+    },
+    {
+      "path": "dist/src/use/named.d.ts",
+      "sha256": "sha256:d6feceae88bb0889b02ad1a1e067d89f62c19b277ce0dd90f7f6ad47f977566f"
+    },
+    {
+      "path": "dist/src/use/named.js",
+      "sha256": "sha256:30cfdbf645549403abcdbce6247e80bab013e7395f9a9c716649c5d0988ec899"
+    },
+    {
+      "path": "dist/src/verbs/ask.d.ts",
+      "sha256": "sha256:69297606397f6f719a3752aa1359e04732fda5216b315e780fe2aece338dabdf"
+    },
+    {
+      "path": "dist/src/verbs/ask.js",
+      "sha256": "sha256:a372b29063a22852dec80eddb7ad4e2002c7c72fc8f270aae0a9bbd68d28123c"
+    },
+    {
+      "path": "dist/src/verbs/card.d.ts",
+      "sha256": "sha256:bbfcf39bcae92eeabc6770426570dfec997443600e28bffdcc5a0d940fe7be2d"
+    },
+    {
+      "path": "dist/src/verbs/card.js",
+      "sha256": "sha256:ad9583d4706cc7bcfb457eb4139ed7ab31dbfde4a6b29907f89755aaece5f823"
+    },
+    {
+      "path": "dist/src/verbs/do.d.ts",
+      "sha256": "sha256:153cb8369d35514c4e76f79733dd9b6a7d645a976fecfaa9638c9bb9ebe33e69"
+    },
+    {
+      "path": "dist/src/verbs/do.js",
+      "sha256": "sha256:1f1038987aba3a157eb5988dec8c237d32b9fc70eb98667e6646b68179e46d58"
+    },
+    {
+      "path": "dist/src/walk/context.d.ts",
+      "sha256": "sha256:b87a5e1e1d2a29cb531b087a1edc33e1467041450700f8ec864c868392944856"
+    },
+    {
+      "path": "dist/src/walk/context.js",
+      "sha256": "sha256:e7246c36fe37c839f8efd391c957435061f128c179d42f4e3bfca864434ec97e"
     },
     {
       "path": "docs/contracts/configured-receiver.json",
@@ -32,7 +792,7 @@
     },
     {
       "path": "src/access/obtain.ts",
-      "sha256": "sha256:5eb69ec2d57ae10cdd3f9aad9304919efa9c977662d12d684a4ed39f17462a97"
+      "sha256": "sha256:21c84db6a23bd0eb37cf713224a5370365d6f41dd202675c6565d53369de50bd"
     },
     {
       "path": "src/adopt/adopt.ts",
@@ -72,7 +832,7 @@
     },
     {
       "path": "src/core/answer.ts",
-      "sha256": "sha256:8c6e81a9959c559b816fd14edbe090e8f5c1c425c3ceefe8271c49d641bf2870"
+      "sha256": "sha256:d4feb204a359952d9d249beedb5f538e4dd0d3e1f630a873021fedd7e1fd6306"
     },
     {
       "path": "src/core/association.ts",
@@ -80,7 +840,7 @@
     },
     {
       "path": "src/core/composition.ts",
-      "sha256": "sha256:508fc458d9875ea2febf293f780da3924d2c2476994639c85e6065be4ee8a0c0"
+      "sha256": "sha256:ed3167dfce490431847c769e40a78d62d3db832f3effc76029ed2321ca2544d0"
     },
     {
       "path": "src/core/device.ts",
@@ -92,7 +852,7 @@
     },
     {
       "path": "src/core/package.ts",
-      "sha256": "sha256:a516caa4f6a5578cd97e0061b50e40cce006fe0ba3b5841b06e45f3ae7b517f6"
+      "sha256": "sha256:f8c117688dd2c3e27173786da5f4fd2668cde90ff8b7fb983abc2ef7f96f8147"
     },
     {
       "path": "src/core/read.ts",
@@ -104,11 +864,11 @@
     },
     {
       "path": "src/core/receiver.ts",
-      "sha256": "sha256:6bc29cf7c4ce0d5f5a7c9b434eb9c735e5f1c443f7af1cea944992d8e8367322"
+      "sha256": "sha256:a38eb00e734e5a89b44e37c6d5f84f0d5c1f364a45eb8c71f3b5d0467d85c51f"
     },
     {
       "path": "src/core/share-bundle.ts",
-      "sha256": "sha256:21f870076cd11e8584f86963777cddd158c271cb76b8e840084e788d8e5b5bc8"
+      "sha256": "sha256:32ee7a59e5f6bc3b8319406a8ba21213c2dc2b72bf5a779be591e459d43f74a5"
     },
     {
       "path": "src/core/surface.ts",
@@ -124,11 +884,11 @@
     },
     {
       "path": "src/doors/guard.ts",
-      "sha256": "sha256:d9970c5129f3aeaa5777063220770fe40bb55727710c2434a6a912e2e1598cbd"
+      "sha256": "sha256:fce94ddaed87b52517d41341a2ae5d7e620c4d82069c687820de205c824f84ce"
     },
     {
       "path": "src/doors/head.ts",
-      "sha256": "sha256:89bbd796396bd078e00ed32ea4bde074be37eb74aca9c85c0b01814d92e731e8"
+      "sha256": "sha256:49080fe5301decb0d8b68926e30f954ad78c06ecb6acb93c929fa2c11bc2e96e"
     },
     {
       "path": "src/doors/http.ts",
@@ -152,7 +912,7 @@
     },
     {
       "path": "src/flows/device.ts",
-      "sha256": "sha256:6477d2c90b5265e39c6064867efe0c78079a53cd870b56ac460464826e73c142"
+      "sha256": "sha256:de6a29c5f1f190ce7c5d5707bec4b0d89e6587864f502c155b6a191e0ec792bc"
     },
     {
       "path": "src/flows/plan.ts",
@@ -160,7 +920,7 @@
     },
     {
       "path": "src/flows/read.ts",
-      "sha256": "sha256:c537f1441e237dc0228d3066a888fbf919bd194ac616d7d48e3d4f11e8ab9d83"
+      "sha256": "sha256:19683a6da53978f8b726bc7a125abf51809f231d10dc2ddbd86ba388c220fde2"
     },
     {
       "path": "src/flows/world.ts",
@@ -208,7 +968,7 @@
     },
     {
       "path": "src/places/found.ts",
-      "sha256": "sha256:d41a434d869d39dbf5156094c16ff14e3ef9783df47736678d37a3f9cf7a306c"
+      "sha256": "sha256:e8fd8061dd9b242d80be04930b55a85622fce32e4b3caa22441318b6ac25441f"
     },
     {
       "path": "src/ports/access/authorizer.ts",
@@ -228,7 +988,7 @@
     },
     {
       "path": "src/ports/adapters/bundle.ts",
-      "sha256": "sha256:d3b84d56766ce9f5d63f53c1a6562b0eec96c56cce5a789678e44c75ec8de24d"
+      "sha256": "sha256:fd51124236fb74be6cd6e1608b17e60fd7f5ab19e4353990cd0f231f8dee6757"
     },
     {
       "path": "src/ports/adapters/configured.ts",
@@ -267,6 +1027,14 @@
       "sha256": "sha256:8be05f9171bf94d180dd4005369d6b63d08a98e469050fff844ea61d3b2b7b6f"
     },
     {
+      "path": "src/ports/export.ts",
+      "sha256": "sha256:8a024751f82d423546df2d4bae6dded5098611802a5753b612d29c92738c4503"
+    },
+    {
+      "path": "src/ports/home.ts",
+      "sha256": "sha256:ec6c190aa864212dcaa160046c2c78e4fdb4e5f59452bc0378cbc50c815132e8"
+    },
+    {
       "path": "src/ports/host.ts",
       "sha256": "sha256:45ace2ce71c074471f9ecc4b5ced609967e4900274ced6a51e88fa9360751975"
     },
@@ -280,7 +1048,7 @@
     },
     {
       "path": "src/ports/place.ts",
-      "sha256": "sha256:1e9899ab0a20e9bb2012680500c48943a803e8c2e0d8dcb4d5c772c37093dea3"
+      "sha256": "sha256:0d5922b820a020f9c217c7f15a3e1dd53e2163da431ca60e9cd9b67074944e3f"
     },
     {
       "path": "src/ports/process.ts",
@@ -316,15 +1084,15 @@
     },
     {
       "path": "src/sources/access.ts",
-      "sha256": "sha256:65433aa239e869dc432a8635b155c111f3894d92ed1e4eb90c51f761910ad8bf"
+      "sha256": "sha256:c1e412a3dbcd181731f08c09cec3aa445de05c91e6d87317df2c7d04618d3f18"
     },
     {
       "path": "src/sources/connect.ts",
-      "sha256": "sha256:ec91c8b2018035c083ad8a65f8d9ab187774698058d8dc45b49d718a082a0d50"
+      "sha256": "sha256:1cf0dd45b215482a36cb0a94e585ca7e2750cbbd84741f4072a6ca497738d314"
     },
     {
       "path": "src/sources/refused.ts",
-      "sha256": "sha256:5ce4eaf7e299e78d8c63bf65007f8d23f504832dfbd65af284b5ce5d9af58d6b"
+      "sha256": "sha256:1fad33f08642007b71e43fee202dd914df413981665c0612b03663210e6e1781"
     },
     {
       "path": "src/tools/access.ts",
@@ -392,7 +1160,7 @@
     },
     {
       "path": "src/verbs/ask.ts",
-      "sha256": "sha256:6bf593752bd673a2ce853d22be1bf1c2380263a284114082ac0990144144ded1"
+      "sha256": "sha256:f8dcb6e239fa249145e4e78e714b40a1a5d35d346f8437ff03a726f3541ce65b"
     },
     {
       "path": "src/verbs/card.ts",
@@ -400,7 +1168,7 @@
     },
     {
       "path": "src/verbs/do.ts",
-      "sha256": "sha256:6d95196a0e92a0ec205068dfbdc8173f271b0e9f0ee9da8885d74863990d99bf"
+      "sha256": "sha256:8fe17c2e200f63920a5cb4e14e859ce52bf2f2b2b2c02834fcc77f42b9580d0e"
     },
     {
       "path": "src/walk/context.ts",
@@ -436,16 +1204,16 @@
     }
   ],
   "policy": {
-    "sourceLines": "0..3252",
-    "coreLines": "0..1003",
+    "sourceLines": "0..3594",
+    "coreLines": "0..1071",
     "SDKImporters": "0..1"
   },
   "runs": [
     {
       "node": "22",
-      "ports": "TAP version 13\n# Manifest schema validation passes!\n# Manifest schema validation passes!\n# Subtest: composition: independent API and MCP domains select existing pins, namespaces and offers deterministically\nok 1 - composition: independent API and MCP domains select existing pins, namespaces and offers deterministically\n  ---\n  duration_ms: 2.087\n  type: 'test'\n  ...\n# Subtest: composition: collision, unknown offer/source, duplicate selection, missing pin and budget refuse\nok 2 - composition: collision, unknown offer/source, duplicate selection, missing pin and budget refuse\n  ---\n  duration_ms: 0.255375\n  type: 'test'\n  ...\n# Subtest: MCP sum: pinned discovery and explicit authorization; hints grant nothing; closes on completion\nok 3 - MCP sum: pinned discovery and explicit authorization; hints grant nothing; closes on completion\n  ---\n  duration_ms: 9.67775\n  type: 'test'\n  ...\n# Subtest: MCP lookup: pinned discovery and explicit authorization; hints grant nothing; closes on completion\nok 4 - MCP lookup: pinned discovery and explicit authorization; hints grant nothing; closes on completion\n  ---\n  duration_ms: 1.560625\n  type: 'test'\n  ...\n# Subtest: MCP: metadata drift, unknown tool and catalogue collision refuse before invocation\nok 5 - MCP: metadata drift, unknown tool and catalogue collision refuse before invocation\n  ---\n  duration_ms: 1.858833\n  type: 'test'\n  ...\n# Subtest: MCP: cyclic pagination, page/tool/byte budgets, cancellation and cleanup\nok 6 - MCP: cyclic pagination, page/tool/byte budgets, cancellation and cleanup\n  ---\n  duration_ms: 3.038292\n  type: 'test'\n  ...\n# Subtest: mcpb: standard packager preserves a composition and source data; distinct identities, no secret configuration\nok 7 - mcpb: standard packager preserves a composition and source data; distinct identities, no secret configuration\n  ---\n  duration_ms: 46.795875\n  type: 'test'\n  ...\n# Subtest: configured remote sum: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\nok 8 - configured remote sum: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\n  ---\n  duration_ms: 99.474417\n  type: 'test'\n  ...\n# Subtest: configured remote lookup: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\nok 9 - configured remote lookup: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\n  ---\n  duration_ms: 58.341958\n  type: 'test'\n  ...\n# Subtest: recipient association: inert inspection, decline, restart, coexistence, revision and immutable revision collision\nok 10 - recipient association: inert inspection, decline, restart, coexistence, revision and immutable revision collision\n  ---\n  duration_ms: 1.767708\n  type: 'test'\n  ...\n1..10\n# tests 10\n# suites 0\n# pass 10\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 546.330209\n",
-      "binding": "TAP version 13\n# Subtest: protocol SDK ownership: one physical owner, incoming/outgoing roles and no extra or hidden SDK references\nok 1 - protocol SDK ownership: one physical owner, incoming/outgoing roles and no extra or hidden SDK references\n  ---\n  duration_ms: 5.527708\n  type: 'test'\n  ...\n# Subtest: protocol pagination: aliases and standard SDK labels are allowed only in their exact adapter and call/result context\nok 2 - protocol pagination: aliases and standard SDK labels are allowed only in their exact adapter and call/result context\n  ---\n  duration_ms: 2.704167\n  type: 'test'\n  ...\n# Subtest: protocol forbidden products: every other forbidden word remains forbidden in either SDK role\nok 3 - protocol forbidden products: every other forbidden word remains forbidden in either SDK role\n  ---\n  duration_ms: 0.264458\n  type: 'test'\n  ...\n# Subtest: SDK boundary: the existing incoming catalogue frames and CLI help remain byte-identical\nok 4 - SDK boundary: the existing incoming catalogue frames and CLI help remain byte-identical\n  ---\n  duration_ms: 957.240791\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 1086.41025\n",
-      "surface": "TAP version 13\n# Subtest: surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\nok 1 - surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\n  ---\n  duration_ms: 2.109458\n  type: 'test'\n  ...\n# Subtest: tools/visible: a client is offered no more tools than the ceiling allows\nok 2 - tools/visible: a client is offered no more tools than the ceiling allows\n  ---\n  duration_ms: 0.140208\n  type: 'test'\n  ...\n# Subtest: surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\nok 3 - surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\n  ---\n  duration_ms: 16.189958\n  type: 'test'\n  ...\n# Subtest: surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\nok 4 - surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\n  ---\n  duration_ms: 2.461\n  type: 'test'\n  ...\n# Subtest: surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\nok 5 - surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\n  ---\n  duration_ms: 12.714166\n  type: 'test'\n  ...\n# Subtest: surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\nok 6 - surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\n  ---\n  duration_ms: 12.923333\n  type: 'test'\n  ...\n# Subtest: a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\nok 7 - a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\n  ---\n  duration_ms: 14.343\n  type: 'test'\n  ...\n# Subtest: a host the lock does not name is refused by name, every call, nothing done; the one it names is not\nok 8 - a host the lock does not name is refused by name, every call, nothing done; the one it names is not\n  ---\n  duration_ms: 0.369084\n  type: 'test'\n  ...\n# Subtest: each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\nok 9 - each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\n  ---\n  duration_ms: 555.52225\n  type: 'test'\n  ...\n# Subtest: tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\nok 10 - tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\n  ---\n  duration_ms: 1.2425\n  type: 'test'\n  ...\n# Subtest: duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\nok 11 - duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\n  ---\n  duration_ms: 6.936917\n  type: 'test'\n  ...\n# Subtest: a prompt is read off its lines and filled only where it was asked\nok 12 - a prompt is read off its lines and filled only where it was asked\n  ---\n  duration_ms: 0.132458\n  type: 'test'\n  ...\n# Subtest: a resource URI gives its template the fields it names, query fields optional and in any order, decoded\nok 13 - a resource URI gives its template the fields it names, query fields optional and in any order, decoded\n  ---\n  duration_ms: 0.422125\n  type: 'test'\n  ...\n# Subtest: surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\nok 14 - surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\n  ---\n  duration_ms: 0.44125\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 971.992\n",
+      "ports": "TAP version 13\n# Manifest schema validation passes!\n# Manifest schema validation passes!\n# Subtest: composition: independent API and MCP domains select existing pins, namespaces and offers deterministically\nok 1 - composition: independent API and MCP domains select existing pins, namespaces and offers deterministically\n  ---\n  duration_ms: 5.898625\n  type: 'test'\n  ...\n# Subtest: composition: collision, unknown offer/source, duplicate selection, missing pin and budget refuse\nok 2 - composition: collision, unknown offer/source, duplicate selection, missing pin and budget refuse\n  ---\n  duration_ms: 0.707292\n  type: 'test'\n  ...\n# Subtest: MCP sum: pinned discovery and explicit authorization; hints grant nothing; closes on completion\nok 3 - MCP sum: pinned discovery and explicit authorization; hints grant nothing; closes on completion\n  ---\n  duration_ms: 20.059333\n  type: 'test'\n  ...\n# Subtest: MCP lookup: pinned discovery and explicit authorization; hints grant nothing; closes on completion\nok 4 - MCP lookup: pinned discovery and explicit authorization; hints grant nothing; closes on completion\n  ---\n  duration_ms: 3.423458\n  type: 'test'\n  ...\n# Subtest: MCP: metadata drift, unknown tool and catalogue collision refuse before invocation\nok 5 - MCP: metadata drift, unknown tool and catalogue collision refuse before invocation\n  ---\n  duration_ms: 3.562792\n  type: 'test'\n  ...\n# Subtest: MCP: cyclic pagination, page/tool/byte budgets, cancellation and cleanup\nok 6 - MCP: cyclic pagination, page/tool/byte budgets, cancellation and cleanup\n  ---\n  duration_ms: 7.86725\n  type: 'test'\n  ...\n# Subtest: mcpb: standard packager preserves a composition and source data; distinct identities, no secret configuration\nok 7 - mcpb: standard packager preserves a composition and source data; distinct identities, no secret configuration\n  ---\n  duration_ms: 68.080167\n  type: 'test'\n  ...\n# Subtest: configured remote sum: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\nok 8 - configured remote sum: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\n  ---\n  duration_ms: 319.459209\n  type: 'test'\n  ...\n# Subtest: configured remote lookup: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\nok 9 - configured remote lookup: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\n  ---\n  duration_ms: 254.740166\n  type: 'test'\n  ...\n# Subtest: recipient association: inert inspection, decline, restart, coexistence, revision and immutable revision collision\nok 10 - recipient association: inert inspection, decline, restart, coexistence, revision and immutable revision collision\n  ---\n  duration_ms: 3.713334\n  type: 'test'\n  ...\n1..10\n# tests 10\n# suites 0\n# pass 10\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 2210.373792\n",
+      "binding": "TAP version 13\n# Subtest: protocol SDK ownership: one physical owner, incoming/outgoing roles and no extra or hidden SDK references\nok 1 - protocol SDK ownership: one physical owner, incoming/outgoing roles and no extra or hidden SDK references\n  ---\n  duration_ms: 15.422416\n  type: 'test'\n  ...\n# Subtest: protocol pagination: aliases and standard SDK labels are allowed only in their exact adapter and call/result context\nok 2 - protocol pagination: aliases and standard SDK labels are allowed only in their exact adapter and call/result context\n  ---\n  duration_ms: 7.701084\n  type: 'test'\n  ...\n# Subtest: protocol forbidden products: every other forbidden word remains forbidden in either SDK role\nok 3 - protocol forbidden products: every other forbidden word remains forbidden in either SDK role\n  ---\n  duration_ms: 0.8425\n  type: 'test'\n  ...\n# Subtest: SDK boundary: the existing incoming catalogue frames and CLI help remain byte-identical\nok 4 - SDK boundary: the existing incoming catalogue frames and CLI help remain byte-identical\n  ---\n  duration_ms: 2953.199667\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 3309.271542\n",
+      "surface": "TAP version 13\n# Subtest: surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\nok 20 - surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\n  ---\n  duration_ms: 1.544166\n  type: 'test'\n  ...\n# Subtest: tools/visible: a client is offered no more tools than the ceiling allows\nok 21 - tools/visible: a client is offered no more tools than the ceiling allows\n  ---\n  duration_ms: 0.088292\n  type: 'test'\n  ...\n# Subtest: surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\nok 22 - surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\n  ---\n  duration_ms: 11.481167\n  type: 'test'\n  ...\n# Subtest: surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\nok 23 - surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\n  ---\n  duration_ms: 2.266125\n  type: 'test'\n  ...\n# Subtest: surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\nok 24 - surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\n  ---\n  duration_ms: 12.731542\n  type: 'test'\n  ...\n# Subtest: surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\nok 25 - surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\n  ---\n  duration_ms: 11.571\n  type: 'test'\n  ...\n# Subtest: a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\nok 26 - a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\n  ---\n  duration_ms: 8.452459\n  type: 'test'\n  ...\n# Subtest: a host the lock does not name is refused by name, every call, nothing done; the one it names is not\nok 27 - a host the lock does not name is refused by name, every call, nothing done; the one it names is not\n  ---\n  duration_ms: 0.295667\n  type: 'test'\n  ...\n# Subtest: each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\nok 28 - each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\n  ---\n  duration_ms: 586.387959\n  type: 'test'\n  ...\n# Subtest: tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\nok 29 - tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\n  ---\n  duration_ms: 1.563083\n  type: 'test'\n  ...\n# Subtest: duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\nok 30 - duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\n  ---\n  duration_ms: 7.241834\n  type: 'test'\n  ...\n# Subtest: a prompt is read off its lines and filled only where it was asked\nok 31 - a prompt is read off its lines and filled only where it was asked\n  ---\n  duration_ms: 0.132917\n  type: 'test'\n  ...\n# Subtest: a resource URI gives its template the fields it names, query fields optional and in any order, decoded\nok 32 - a resource URI gives its template the fields it names, query fields optional and in any order, decoded\n  ---\n  duration_ms: 0.379625\n  type: 'test'\n  ...\n# Subtest: surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\nok 33 - surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\n  ---\n  duration_ms: 0.245625\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n",
       "native": [
         {
           "subject": "records-desk",
@@ -475,9 +1243,9 @@
     },
     {
       "node": "24",
-      "ports": "Manifest schema validation passes!\nManifest schema validation passes!\n✔ composition: independent API and MCP domains select existing pins, namespaces and offers deterministically (1.783458ms)\n✔ composition: collision, unknown offer/source, duplicate selection, missing pin and budget refuse (0.30575ms)\n✔ MCP sum: pinned discovery and explicit authorization; hints grant nothing; closes on completion (13.511292ms)\n✔ MCP lookup: pinned discovery and explicit authorization; hints grant nothing; closes on completion (2.592959ms)\n✔ MCP: metadata drift, unknown tool and catalogue collision refuse before invocation (2.215583ms)\n✔ MCP: cyclic pagination, page/tool/byte budgets, cancellation and cleanup (3.147333ms)\n✔ mcpb: standard packager preserves a composition and source data; distinct identities, no secret configuration (38.426584ms)\n✔ configured remote sum: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection (139.790625ms)\n✔ configured remote lookup: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection (45.039542ms)\n✔ recipient association: inert inspection, decline, restart, coexistence, revision and immutable revision collision (1.7185ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 515.3175\n",
-      "binding": "✔ protocol SDK ownership: one physical owner, incoming/outgoing roles and no extra or hidden SDK references (5.518834ms)\n✔ protocol pagination: aliases and standard SDK labels are allowed only in their exact adapter and call/result context (2.160458ms)\n✔ protocol forbidden products: every other forbidden word remains forbidden in either SDK role (0.969208ms)\n✔ SDK boundary: the existing incoming catalogue frames and CLI help remain byte-identical (964.909792ms)\nℹ tests 4\nℹ suites 0\nℹ pass 4\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1120.190084\n",
-      "surface": "✔ surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is (1.467208ms)\n✔ tools/visible: a client is offered no more tools than the ceiling allows (0.091167ms)\n✔ surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling (10.98925ms)\n✔ surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling (2.111208ms)\n✔ surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares (10.671542ms)\n✔ surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each (11.581083ms)\n✔ a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing (13.491625ms)\n✔ a host the lock does not name is refused by name, every call, nothing done; the one it names is not (0.23325ms)\n✔ each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole (556.584833ms)\n✔ tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling (1.192959ms)\n✔ duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body (5.672875ms)\n✔ a prompt is read off its lines and filled only where it was asked (0.115292ms)\n✔ a resource URI gives its template the fields it names, query fields optional and in any order, decoded (0.440125ms)\n✔ surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses (0.473708ms)\nℹ tests 14\nℹ suites 0\nℹ pass 14\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 896.652833\n",
+      "ports": "TAP version 13\n# Manifest schema validation passes!\n# Manifest schema validation passes!\n# Subtest: composition: independent API and MCP domains select existing pins, namespaces and offers deterministically\nok 1 - composition: independent API and MCP domains select existing pins, namespaces and offers deterministically\n  ---\n  duration_ms: 4.27575\n  type: 'test'\n  ...\n# Subtest: composition: collision, unknown offer/source, duplicate selection, missing pin and budget refuse\nok 2 - composition: collision, unknown offer/source, duplicate selection, missing pin and budget refuse\n  ---\n  duration_ms: 0.657375\n  type: 'test'\n  ...\n# Subtest: MCP sum: pinned discovery and explicit authorization; hints grant nothing; closes on completion\nok 3 - MCP sum: pinned discovery and explicit authorization; hints grant nothing; closes on completion\n  ---\n  duration_ms: 24.215917\n  type: 'test'\n  ...\n# Subtest: MCP lookup: pinned discovery and explicit authorization; hints grant nothing; closes on completion\nok 4 - MCP lookup: pinned discovery and explicit authorization; hints grant nothing; closes on completion\n  ---\n  duration_ms: 2.408542\n  type: 'test'\n  ...\n# Subtest: MCP: metadata drift, unknown tool and catalogue collision refuse before invocation\nok 5 - MCP: metadata drift, unknown tool and catalogue collision refuse before invocation\n  ---\n  duration_ms: 2.164833\n  type: 'test'\n  ...\n# Subtest: MCP: cyclic pagination, page/tool/byte budgets, cancellation and cleanup\nok 6 - MCP: cyclic pagination, page/tool/byte budgets, cancellation and cleanup\n  ---\n  duration_ms: 4.145625\n  type: 'test'\n  ...\n# Subtest: mcpb: standard packager preserves a composition and source data; distinct identities, no secret configuration\nok 7 - mcpb: standard packager preserves a composition and source data; distinct identities, no secret configuration\n  ---\n  duration_ms: 76.468667\n  type: 'test'\n  ...\n# Subtest: configured remote sum: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\nok 8 - configured remote sum: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\n  ---\n  duration_ms: 204.477583\n  type: 'test'\n  ...\n# Subtest: configured remote lookup: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\nok 9 - configured remote lookup: exact endpoint, pinned catalogue, separate invocation consent and no third-party connection\n  ---\n  duration_ms: 126.427833\n  type: 'test'\n  ...\n# Subtest: recipient association: inert inspection, decline, restart, coexistence, revision and immutable revision collision\nok 10 - recipient association: inert inspection, decline, restart, coexistence, revision and immutable revision collision\n  ---\n  duration_ms: 2.918833\n  type: 'test'\n  ...\n1..10\n# tests 10\n# suites 0\n# pass 10\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 2014.489167\n",
+      "binding": "TAP version 13\n# Subtest: protocol SDK ownership: one physical owner, incoming/outgoing roles and no extra or hidden SDK references\nok 1 - protocol SDK ownership: one physical owner, incoming/outgoing roles and no extra or hidden SDK references\n  ---\n  duration_ms: 14.952666\n  type: 'test'\n  ...\n# Subtest: protocol pagination: aliases and standard SDK labels are allowed only in their exact adapter and call/result context\nok 2 - protocol pagination: aliases and standard SDK labels are allowed only in their exact adapter and call/result context\n  ---\n  duration_ms: 7.055458\n  type: 'test'\n  ...\n# Subtest: protocol forbidden products: every other forbidden word remains forbidden in either SDK role\nok 3 - protocol forbidden products: every other forbidden word remains forbidden in either SDK role\n  ---\n  duration_ms: 6.627708\n  type: 'test'\n  ...\n# Subtest: SDK boundary: the existing incoming catalogue frames and CLI help remain byte-identical\nok 4 - SDK boundary: the existing incoming catalogue frames and CLI help remain byte-identical\n  ---\n  duration_ms: 2798.51275\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 3181.725875\n",
+      "surface": "TAP version 13\n# Subtest: surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\nok 20 - surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is\n  ---\n  duration_ms: 1.477958\n  type: 'test'\n  ...\n# Subtest: tools/visible: a client is offered no more tools than the ceiling allows\nok 21 - tools/visible: a client is offered no more tools than the ceiling allows\n  ---\n  duration_ms: 0.087208\n  type: 'test'\n  ...\n# Subtest: surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\nok 22 - surface/sdk-importers: declared incoming/outgoing roles and the admitted file-count ceiling\n  ---\n  duration_ms: 15.5375\n  type: 'test'\n  ...\n# Subtest: surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\nok 23 - surface/scheduled: no timer, no worker, no resident process but a place-s fold host, its one timer its idle close, under the lock-s ceiling\n  ---\n  duration_ms: 2.17625\n  type: 'test'\n  ...\n# Subtest: surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\nok 24 - surface/client-words: no client is named anywhere in head, adapters included — a channel is chosen by what the client declares\n  ---\n  duration_ms: 11.577166\n  type: 'test'\n  ...\n# Subtest: surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\nok 25 - surface/kind-words: no kind of source and no scheme is named outside the adapters; those words live in worlds and in one adapter each\n  ---\n  duration_ms: 11.307291\n  type: 'test'\n  ...\n# Subtest: a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\nok 26 - a measure past its ceiling in head-s lock reads red, whole seconds, with the coordinate it ran at; within it, nothing\n  ---\n  duration_ms: 14.228625\n  type: 'test'\n  ...\n# Subtest: a host the lock does not name is refused by name, every call, nothing done; the one it names is not\nok 27 - a host the lock does not name is refused by name, every call, nothing done; the one it names is not\n  ---\n  duration_ms: 0.293416\n  type: 'test'\n  ...\n# Subtest: each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\nok 28 - each region the lock gives a lines ceiling stays under it — together, or file by file where it measures the lines of a file — every source file lives in exactly one, and all of them under the ceiling of the whole\n  ---\n  duration_ms: 587.08375\n  type: 'test'\n  ...\n# Subtest: tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\nok 29 - tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling\n  ---\n  duration_ms: 1.152708\n  type: 'test'\n  ...\n# Subtest: duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\nok 30 - duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body\n  ---\n  duration_ms: 6.110667\n  type: 'test'\n  ...\n# Subtest: a prompt is read off its lines and filled only where it was asked\nok 31 - a prompt is read off its lines and filled only where it was asked\n  ---\n  duration_ms: 0.123958\n  type: 'test'\n  ...\n# Subtest: a resource URI gives its template the fields it names, query fields optional and in any order, decoded\nok 32 - a resource URI gives its template the fields it names, query fields optional and in any order, decoded\n  ---\n  duration_ms: 0.417917\n  type: 'test'\n  ...\n# Subtest: surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\nok 33 - surface/scheduled native reader: one classifier and one unit; an unregistered scheduler refuses\n  ---\n  duration_ms: 0.966083\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n",
       "native": [
         {
           "subject": "records-desk",
@@ -507,20 +1275,135 @@
     }
   ],
   "predecessor": {
-    "sha256": "sha256:987c67905a364db53e8fb6b35b376195649662e922e00f0e257c31809b6e8b75",
-    "preserved": true
+    "sha256": "sha256:397d562182f29f7fef1f2e0ca6ff1c73aab89dd01e2b5e6462cfd0e179c9561a",
+    "allOriginalRunsAndFailuresPreserved": true
   },
   "policySnapshots": [
     {
-      "sourceLines": "0..3252",
-      "coreLines": "0..1003",
+      "sourceLines": "0..3445",
+      "coreLines": "0..1071",
       "SDKImporters": "0..1"
     },
     {
-      "sourceLines": "0..3421",
+      "sourceLines": "0..3592",
+      "coreLines": "0..1071",
+      "SDKImporters": "0..1"
+    },
+    {
+      "sourceLines": "0..3594",
       "coreLines": "0..1071",
       "SDKImporters": "0..1"
     }
   ],
-  "policySnapshotMeaning": "Exact before/after physical policies only. Matching a snapshot never admits a ceiling; current native physical reader judges counts separately."
+  "policySnapshotMeaning": "Exact before/after physical policies only. Matching a snapshot never admits a ceiling; current native physical reader judges counts separately.",
+  "evidenceReuse": {
+    "kind": "Retained functional matrices plus named narrow revalidation; not freshly rerun historical matrices",
+    "executedSourceInventory": "sha256:46c3b8145a7f791c5b212a52c4a342482d51612fc1674532b5fb121f63fb00b5",
+    "executedRuntime": "sha256:ef08ce28c543fc18f6c4b130c6b542aa54d35e4227dc08c0d084c87040b2bafb",
+    "narrowSourceDelta": "sha256:4b8ba43e740c5a6f46a73650f418d9a5e8742d496d2bb26a85b78ba626d15509",
+    "description": "After those matrices only share metadata defaults were removed. Full explicit public metadata is now required; operations/sources remain optional. Current focused nine cases and installed two-domain export/access gates revalidate that delta. A and full MCP execute final bytes separately."
+  },
+  "capacityTransition": "The old admitted policy may report red until the measured widening is owner-admitted; neither snapshot changes a ceiling.",
+  "ciRepair": {
+    "productionDelta": "Only accessIdentity: operational obtained/renewed/entered results are excluded from its own declared scheme digest; actual changed declarations remain detected.",
+    "changedInputs": [
+      {
+        "path": "dist/src/access/obtain.js",
+        "before": "sha256:309a734a9a4621bed5b9250103e43c1686f93f529c2cc6a036d8fa2e01916b77",
+        "after": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
+      },
+      {
+        "path": "src/access/obtain.ts",
+        "before": "sha256:75eabc43e1f6784a3037bb064ea7cfb59eb4dd53ebf7191acf2d8f9e74b5af7c",
+        "after": "sha256:21c84db6a23bd0eb37cf713224a5370365d6f41dd202675c6565d53369de50bd"
+      }
+    ],
+    "originalRunsNotRelabeledAsFresh": true,
+    "BoundChanged": false,
+    "dependenciesChanged": false,
+    "allOtherFunctionalMatricesRetained": true,
+    "narrowRevalidation": {
+      "protocol": "head-ci-repair-revalidation@1",
+      "productionChange": "accessIdentity excludes its own operational outcomes, while declared endpoint-byte changes remain binding",
+      "historicalMatrices": "All original complete regional vectors, timings and failures retained; no new full MCP or unrelated matrix claimed",
+      "currentInstalledRuntime": "4805 fixed members, 199-member unsigned regional npm archive; final CI delivery remains separate",
+      "executions": [
+        {
+          "log": "fixtures22-world-final.log",
+          "sha256": "sha256:89fcd58e9a4449035954bb125d504abd2754492f99ee2157d30081258e262cc1",
+          "tests": 33,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "fixtures24-world-final.log",
+          "sha256": "sha256:01b12e47441a8a448144cd958a8aff7b197dcdfc0a91a2c1fad19db4a08c3478",
+          "tests": 22,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "transport22-final.log",
+          "sha256": "sha256:4670cb3b9c5a8e9c2efb180fdc884bef13d218e9558cc408d685b4d5338afb3e",
+          "tests": 12,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "transport24-final.log",
+          "sha256": "sha256:e7cb56c40f81abb29b9b2bd07e1b993786004fe8c5cc756d13026590bea42886",
+          "tests": 12,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "repairs-node22.log",
+          "sha256": "sha256:c2505cf54c14ec6952b509538662c306dbbdde9386c1a7d43742bf632bf651d7",
+          "tests": 9,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "repairs-node24.log",
+          "sha256": "sha256:e562a2ea1619edda26c8bec651eb25e1acd09b069d19195e99f650273cc688b3",
+          "tests": 9,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "authorizer24.log",
+          "sha256": "sha256:9aed3916f21ee4771823d41ff6873525352d8393891f5ddf61d757d419323583",
+          "tests": 11,
+          "failed": 0,
+          "state": "Original passing OAuth/repair execution retained; consumed production module identical and helper functions used by these tests unchanged"
+        }
+      ],
+      "installed": [
+        {
+          "node": "22",
+          "kind": "access",
+          "sha256": "sha256:6e7a34d82b6671d522dd6f3af3b703e389f057d0d734859664080c52cd9c3557"
+        },
+        {
+          "node": "22",
+          "kind": "export",
+          "sha256": "sha256:4da90ffec825e109ff8cf316673337793324e24314d35ef67f2d67d2a8f50bb0"
+        },
+        {
+          "node": "24",
+          "kind": "access",
+          "sha256": "sha256:d58dea81d9ffa3ef4817cc28d29459efbe833a6b9e50eaf4e4f3bc8360dc78a3"
+        },
+        {
+          "node": "24",
+          "kind": "export",
+          "sha256": "sha256:7188c0753317ed70d4481000117e84edcd85e60ef57ba2faa267de1a38ab597a"
+        }
+      ],
+      "clock": "Only the subsequent A gate is a latency measurement; functional-suite wall times are not promoted to response latency",
+      "realAccountsUsed": false,
+      "externalAPIsUsed": false,
+      "BoundChanged": false
+    }
+  }
 }

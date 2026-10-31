@@ -1,3 +1,4 @@
+import { homeServices } from '../src/ports/home.ts';
 import { deepStrictEqual } from 'node:assert';
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
@@ -33,7 +34,7 @@ export const person = async () => {
     const lot = join(mkdtempSync(join(tmpdir(), 'head-kept-lot-')), 'lot.bound');
     writeFileSync(lot, `${lines.join('\n')}\n`);
     const account = fill(valueOf(lock, 'founding/root-account'), { place: 'place' }), key = valueOf(lock, 'founding/root').split('/')[1]!;
-    const landed = run('@lapxo/bound', place, ['land', lot, '--key', key, '--signer', deviceOf(lock).signer], { ...env, BOUND_SIGNERS: registryFor(deviceOf(lock).signer, `${deviceOf(lock).service}/head`, account, key, valueOf(lock, 'founding/algorithm'), valueOf(lock, `platform/${process.platform}/store`)) });
+    const landed = run('@lapxo/bound', place, ['land', lot, '--key', key, '--signer', deviceOf(lock).signer], { ...env, BOUND_SIGNERS: registryFor(deviceOf(lock).signer, homeServices(deviceOf(lock).service, env.HEAD_HOME).primary, account, key, valueOf(lock, 'founding/algorithm'), valueOf(lock, `platform/${process.platform}/store`)) });
     deepStrictEqual(landed?.code, 0, [...(landed?.out ?? []), ...(landed?.err ?? [])].join('\n'));
   };
   return { place, asking, rooted, reads: () => reads, close: () => server.close() };

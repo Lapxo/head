@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
-import { said, text } from './place.ts';
+import { seedAccess, said, text } from './place.ts';
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
 
@@ -37,6 +37,7 @@ const shop = async (held = true) => {
     components: { securitySchemes: { bearer: { type: 'http', scheme: 'bearer' } } }, paths: { '/items': { get: { operationId: 'listItems', responses: { 200: { description: 'ok' } } } } } }));
   await ask([tool('place', { dir })], [], env, yes);
   match(text((await ask([tool('connect', { place: dir, source: 'store', document: join(at, 'store.json') })], [at], env, yes))[0]), said('connected'));
+  if (held) await seedAccess(dir,keychain,'store','listItems','tok',{home:env.HEAD_HOME});
   const connect = async (args: Record<string, string>) => text((await ask([tool('connect', { place: dir, source: 'auth', via: 'store', ...args })], [], env, yes))[0]);
   const pinned = () => / scope=uses\/auth /.test(readFileSync(join(dir, 'TARGET.bound'), 'utf8'));
   return { server, elsewhere, connect, pinned, close: async () => { await server.close(); await elsewhere.close(); } };
