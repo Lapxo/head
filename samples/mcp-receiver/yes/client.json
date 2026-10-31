@@ -288,7 +288,7 @@
     },
     {
       "path": "dist/src/index.js",
-      "sha256": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
+      "sha256": "sha256:aaac61a16699b743fefcf69ea26f9d3f47740b0318c4bddcfb60e3a07692be6b"
     },
     {
       "path": "dist/src/kept/kept.d.ts",
@@ -436,11 +436,11 @@
     },
     {
       "path": "dist/src/ports/adapters/protocol.d.ts",
-      "sha256": "sha256:9df31f7f589175874b4e1c8f9022e71e2b9bcf72874520d597a3c32a96c85cb3"
+      "sha256": "sha256:dd0bacad1d4d25c94bea73c4bfa38f9947d6a9370d493719848aa1b50dfe40dc"
     },
     {
       "path": "dist/src/ports/adapters/protocol.js",
-      "sha256": "sha256:28f4bd9cd3b7921517ea2f466989a94f6184eea48d4835591f6aabea7c9f7755"
+      "sha256": "sha256:06c6b8628b377736cefc2d855835a682f7cd37ee4cbd1fcaad9f66f044e8d4f2"
     },
     {
       "path": "dist/src/ports/adapters/remote.d.ts",
@@ -492,11 +492,11 @@
     },
     {
       "path": "dist/src/ports/executable.d.ts",
-      "sha256": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
+      "sha256": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
+      "sha256": "sha256:d414cc8cbf98afa73912c81cdee0cbde99a088f8511a9d6df03bbab9b43ffb8c"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -820,7 +820,7 @@
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05"
+      "sha256": "sha256:205b3739d3d3a445e80fbdab53c30c6fbdd073750d618471b07c11e7cda604cc"
     },
     {
       "path": "src/access/contract.ts",
@@ -964,7 +964,7 @@
     },
     {
       "path": "src/index.ts",
-      "sha256": "sha256:bdc8af2fd4cb46a5571bb715da5228a0ebc9f05bb38af22df2ba482a95c3df5c"
+      "sha256": "sha256:9960dc9b5e76456241d056249a07916cfe94ebaebada36ad35ed6ab7b1fc3db5"
     },
     {
       "path": "src/kept/kept.ts",
@@ -1040,7 +1040,7 @@
     },
     {
       "path": "src/ports/adapters/protocol.ts",
-      "sha256": "sha256:013197b3aa669ec7dfe3ca1af0e43d8e3c6ac3eb99467307984dbff3867a2c6c"
+      "sha256": "sha256:135ca4ac4cd3513618a6269cbb7161ab5e56ab03b28f8ee26336670d623321bc"
     },
     {
       "path": "src/ports/adapters/remote.ts",
@@ -1068,7 +1068,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:94369feefeb89a4c20bbbe9aee4082f8bfd8702769ba898a7a3a0b404508d6f1"
+      "sha256": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742"
     },
     {
       "path": "src/ports/export.ts",
@@ -1363,7 +1363,7 @@
       "freshCurrentRuntimeExecution": false,
       "localFixturesOnly": true,
       "concurrency": "One timed producer; two local unrelated domains in sequence",
-      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current system-Node bootstrap revalidated separately; original artifact digest retained"
+      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current JavaScript-stream relay revalidated separately in real Electron; original artifact digest retained"
     },
     {
       "node": "24",
@@ -1418,7 +1418,7 @@
       "freshCurrentRuntimeExecution": false,
       "localFixturesOnly": true,
       "concurrency": "One timed producer; two local unrelated domains in sequence",
-      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current system-Node bootstrap revalidated separately; original artifact digest retained"
+      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current JavaScript-stream relay revalidated separately in real Electron; original artifact digest retained"
     }
   ],
   "functionalChecks": [
@@ -1589,7 +1589,7 @@
     "transportDefects": 0,
     "responseVisibilityDefects": 0,
     "maximumRedAnswerSeconds": 0,
-    "maximumIsolatedMillisecondsRoundedUp": 4969,
+    "maximumIsolatedMillisecondsRoundedUp": 5004,
     "core/lines": 1059,
     "doors/lines": 228,
     "source/lines": 3645
@@ -1722,7 +1722,7 @@
     }
   },
   "predecessor": {
-    "sha256": "sha256:574f47b22b425b9ec3780e7d9cc7c34c101a868e7aee330bcdb9714a865785d5",
+    "sha256": "sha256:ab81d21b60fcce2a0c4e474aad0b6461e8d9c96a82c35155add817bde9c5bc0a",
     "preserved": true,
     "originalExecutionsNotRelabeled": true
   },
@@ -1888,51 +1888,51 @@
   },
   "metadataRevalidation": {
     "selectedVersion": "0.2.3",
-    "regionalArtifact": "sha256:817580e87582186dfe18adc1d28bfd20682d5c669105c4d33f32739834ece545",
-    "runtimeDescriptor": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05",
+    "regionalArtifact": "sha256:d195b335cfd9594415073bfefa68674fb606f6f40cfba28a4410cea8441b32e8",
+    "runtimeDescriptor": "sha256:205b3739d3d3a445e80fbdab53c30c6fbdd073750d618471b07c11e7cda604cc",
     "freshIsolatedReadObservations": [
       {
         "node": "22",
         "domain": "sum",
-        "milliseconds": 4766.921833,
+        "milliseconds": 4866.027875,
         "textVisible": true,
         "withinBudget": true,
         "ceilingMilliseconds": 6000,
-        "rawCapture": "sha256:c107118a2bd61cc0d4ce95d3006caa45814574303e26b7b7913fecd93eb87120"
+        "rawCapture": "sha256:3d107532644347c6734999de681381449cc08f01ff7e9837fb4075039c369426"
       },
       {
         "node": "22",
         "domain": "lookup",
-        "milliseconds": 4906.030417000002,
+        "milliseconds": 4777.993040999998,
         "textVisible": true,
         "withinBudget": true,
         "ceilingMilliseconds": 6000,
-        "rawCapture": "sha256:c107118a2bd61cc0d4ce95d3006caa45814574303e26b7b7913fecd93eb87120"
+        "rawCapture": "sha256:3d107532644347c6734999de681381449cc08f01ff7e9837fb4075039c369426"
       },
       {
         "node": "24",
         "domain": "sum",
-        "milliseconds": 4658.766042000001,
+        "milliseconds": 5003.972791,
         "textVisible": true,
         "withinBudget": true,
         "ceilingMilliseconds": 6000,
-        "rawCapture": "sha256:d2797767ce245ca37d21b5d37d945df37a031409aa7ffa9e78782927828c3b3a"
+        "rawCapture": "sha256:2f60d111e7d979cf59c3a751c1bd781931c68591368631ef8959b98c1fa2fbc4"
       },
       {
         "node": "24",
         "domain": "lookup",
-        "milliseconds": 4659.2933749999975,
+        "milliseconds": 4732.304083999996,
         "textVisible": true,
         "withinBudget": true,
         "ceilingMilliseconds": 6000,
-        "rawCapture": "sha256:d2797767ce245ca37d21b5d37d945df37a031409aa7ffa9e78782927828c3b3a"
+        "rawCapture": "sha256:2f60d111e7d979cf59c3a751c1bd781931c68591368631ef8959b98c1fa2fbc4"
       }
     ],
     "oldFullFlowRunsAndVisibilityRetained": true,
     "newCompleteMCPMatrixRun": false,
-    "reuseAudit": "sha256:1fc24044fb5e49b97a286ca94056e74acd86672a3823d3d5ea43a999049e2e9e",
-    "genericExportReceiverAndLoginReexecuted": true,
-    "all118IntervalsUnchanged": true
+    "reuseAudit": "sha256:3510dc682edf629e2144315f82852954c9c56ab22555f8086409ca4bb953fd0d",
+    "realUtilityProcessExportReceiverAndLoginReexecuted": true,
+    "all118IntervalsUnchangedBeforeProposedSourceWidening": true
   },
   "historicalPhysicalCapacityEvidence": null
 }

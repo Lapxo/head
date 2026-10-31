@@ -1,6 +1,6 @@
 {
   "protocol": "head-runtime-inventory-capture@2",
-  "inventory": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05",
+  "inventory": "sha256:205b3739d3d3a445e80fbdab53c30c6fbdd073750d618471b07c11e7cda604cc",
   "policy": "sha256:68c9631784e3b0e2b0e749c4f26be19ed214cb3e3204d208e7080b60f7d61f39",
   "runtimeChanges": [
     {
@@ -142,8 +142,8 @@
       },
       "after": {
         "path": "dist/src/index.js",
-        "bytes": 1745,
-        "digest": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
+        "bytes": 1991,
+        "digest": "sha256:aaac61a16699b743fefcf69ea26f9d3f47740b0318c4bddcfb60e3a07692be6b"
       }
     },
     {
@@ -170,6 +170,19 @@
         "path": "dist/src/ports/adapters/bundle.js",
         "bytes": 7087,
         "digest": "sha256:cd11ab807aabc1f22830de3aa22666d5c3c09bdadc47a19a86175f143ec81f93"
+      }
+    },
+    {
+      "path": "dist/src/ports/adapters/protocol.js",
+      "before": {
+        "path": "dist/src/ports/adapters/protocol.js",
+        "bytes": 5268,
+        "digest": "sha256:28f4bd9cd3b7921517ea2f466989a94f6184eea48d4835591f6aabea7c9f7755"
+      },
+      "after": {
+        "path": "dist/src/ports/adapters/protocol.js",
+        "bytes": 5393,
+        "digest": "sha256:06c6b8628b377736cefc2d855835a682f7cd37ee4cbd1fcaad9f66f044e8d4f2"
       }
     },
     {
@@ -603,7 +616,7 @@
     },
     {
       "path": "dist/src/index.js",
-      "sha256": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
+      "sha256": "sha256:aaac61a16699b743fefcf69ea26f9d3f47740b0318c4bddcfb60e3a07692be6b"
     },
     {
       "path": "dist/src/kept/kept.d.ts",
@@ -751,11 +764,11 @@
     },
     {
       "path": "dist/src/ports/adapters/protocol.d.ts",
-      "sha256": "sha256:9df31f7f589175874b4e1c8f9022e71e2b9bcf72874520d597a3c32a96c85cb3"
+      "sha256": "sha256:dd0bacad1d4d25c94bea73c4bfa38f9947d6a9370d493719848aa1b50dfe40dc"
     },
     {
       "path": "dist/src/ports/adapters/protocol.js",
-      "sha256": "sha256:28f4bd9cd3b7921517ea2f466989a94f6184eea48d4835591f6aabea7c9f7755"
+      "sha256": "sha256:06c6b8628b377736cefc2d855835a682f7cd37ee4cbd1fcaad9f66f044e8d4f2"
     },
     {
       "path": "dist/src/ports/adapters/remote.d.ts",
@@ -807,11 +820,11 @@
     },
     {
       "path": "dist/src/ports/executable.d.ts",
-      "sha256": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
+      "sha256": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
+      "sha256": "sha256:d414cc8cbf98afa73912c81cdee0cbde99a088f8511a9d6df03bbab9b43ffb8c"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -1111,7 +1124,7 @@
     },
     {
       "path": "dist/test/standalone-runtime.js",
-      "sha256": "sha256:3063d89927f8b5d6aa6d42cba1486dc2a39b47e18abfaa8e854cab91a13e89c7"
+      "sha256": "sha256:8916bde5c24d7a9fb52d9cae9d7bc93a5d6458112e1020367becb97376949269"
     },
     {
       "path": "docs/contracts/runtime-closure.json",
@@ -1123,7 +1136,7 @@
     },
     {
       "path": "docs/contracts/standalone-runtime.json",
-      "sha256": "sha256:628342931a787e17b4d6188719300380af1bb4c6b2d24a5e6f5723ac661c0aed"
+      "sha256": "sha256:2fef4b530cbf3af680ec49d2c22e7cda598dfde248a075ceaa91b64cfa722032"
     },
     {
       "path": "manifest.json",
@@ -1139,7 +1152,7 @@
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:67a0e2f53519302d1f6fb75b17de3f71f59e5818cf0a8658a0612895ea551f05"
+      "sha256": "sha256:205b3739d3d3a445e80fbdab53c30c6fbdd073750d618471b07c11e7cda604cc"
     },
     {
       "path": "samples/runtime-inventory/yes/original.json",
@@ -1147,7 +1160,7 @@
     },
     {
       "path": "samples/standalone-runtime/yes/client.json",
-      "sha256": "sha256:2d8559daeb1a85a93f0983778f3628c08d0a21be9d13825def954d8fca152a96"
+      "sha256": "sha256:b4daa93c751c8895c425e981a0cca1665ad79c60ca30d38e943ec8620b61792d"
     },
     {
       "path": "src/access/contract.ts",
@@ -1291,7 +1304,7 @@
     },
     {
       "path": "src/index.ts",
-      "sha256": "sha256:bdc8af2fd4cb46a5571bb715da5228a0ebc9f05bb38af22df2ba482a95c3df5c"
+      "sha256": "sha256:9960dc9b5e76456241d056249a07916cfe94ebaebada36ad35ed6ab7b1fc3db5"
     },
     {
       "path": "src/kept/kept.ts",
@@ -1367,7 +1380,7 @@
     },
     {
       "path": "src/ports/adapters/protocol.ts",
-      "sha256": "sha256:013197b3aa669ec7dfe3ca1af0e43d8e3c6ac3eb99467307984dbff3867a2c6c"
+      "sha256": "sha256:135ca4ac4cd3513618a6269cbb7161ab5e56ab03b28f8ee26336670d623321bc"
     },
     {
       "path": "src/ports/adapters/remote.ts",
@@ -1395,7 +1408,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:94369feefeb89a4c20bbbe9aee4082f8bfd8702769ba898a7a3a0b404508d6f1"
+      "sha256": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742"
     },
     {
       "path": "src/ports/export.ts",
@@ -1559,7 +1572,7 @@
     },
     {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:e07be8882ff44b4dcd86bf4a86c260d00ab5d7aa1990e581d23e446de5e85b89"
+      "sha256": "sha256:972b2ad10eaf5a2a7194653bb4a0b0b8b6865bb876c86d7581b275bb93a434a5"
     },
     {
       "path": "test/fake-keychain.ts",
@@ -1619,7 +1632,7 @@
     },
     {
       "path": "test/standalone-runtime.ts",
-      "sha256": "sha256:1ce2e7eb7588eba10041c7e544f0b80544cdaa4bb235eb8b7a6f09b5e65ac714"
+      "sha256": "sha256:a79efe8b0d8ae0e68968f6272c49156533a3295773c766b3a5d4e15bafbd0242"
     },
     {
       "path": "test/worlds.ts",
@@ -1631,7 +1644,7 @@
     },
     {
       "path": "vectors/standalone-runtime.json",
-      "sha256": "sha256:6c8aeaed371f933d646084cca64cc054468a99be822f5704ef240e66ccafb1a3"
+      "sha256": "sha256:33a8fc846e29872c01d014a483356906caf9644752d60e6fb26ffc8653f0742a"
     }
   ],
   "runs": [
@@ -1684,7 +1697,9 @@
       },
       "surfaceContext": "Unchanged functional surface controls retained from their exact original execution; current admitted capacities match",
       "historicalExecution": true,
-      "currentSystemNodeCompleteRegression": "sha256:3487d3fa10d241413db0ef2690f196ce9587fcdbe6950d925a05452b67cd34d6"
+      "currentSystemNodeCompleteRegression": "sha256:3487d3fa10d241413db0ef2690f196ce9587fcdbe6950d925a05452b67cd34d6",
+      "historicalSystemNodeCompleteRegression": "sha256:3487d3fa10d241413db0ef2690f196ce9587fcdbe6950d925a05452b67cd34d6",
+      "currentMessagePortGate": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12"
     },
     {
       "node": "24",
@@ -1735,17 +1750,19 @@
       },
       "surfaceContext": "Unchanged functional surface controls retained from their exact original execution; current admitted capacities match",
       "historicalExecution": true,
-      "currentSystemNodeCompleteRegression": "sha256:747c78c475790afaf8fcf04f752f861e0ef8f2765f6c1c0b2e59bbc10a4f5714"
+      "currentSystemNodeCompleteRegression": "sha256:747c78c475790afaf8fcf04f752f861e0ef8f2765f6c1c0b2e59bbc10a4f5714",
+      "historicalSystemNodeCompleteRegression": "sha256:747c78c475790afaf8fcf04f752f861e0ef8f2765f6c1c0b2e59bbc10a4f5714",
+      "currentMessagePortGate": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12"
     }
   ],
   "predecessor": {
-    "sha256": "sha256:f7de82767f1f51a38fb944d4ea65d588b38866029b5a862c1f7f210a937cdd38",
+    "sha256": "sha256:3fcbb7c3ca2a476c1c371dcc57bbf9247ae00d64a7452dfe262120ac951a7bd7",
     "allHistoricalRunsAndFailuresPreserved": true
   },
   "artifactState": "No embedded Node; package members and runtime members are distinct. Complete installed Electron-relay regressions revalidate the new deployment, historical inventory executions remain labeled.",
   "containerByteReproducibility": "Open: unchanged packager uses current time; exact container reproducibility not claimed",
   "ownerPrivateDesktopAcceptance": "pending; outside repository",
-  "status": "Prepared system-Node successor; original runs retain their execution identity; not final release, Root admission or real Desktop acceptance",
+  "status": "Prepared JavaScript-stream relay successor; original runs remain historical, fresh real Electron gate is separate; not final release, Root admission or Desktop acceptance",
   "runtimeAdditions": [
     {
       "path": "dist/src/ports/adapters/runtime.d.ts",
@@ -1769,25 +1786,24 @@
     },
     {
       "path": "dist/src/ports/executable.js",
-      "bytes": 2692,
-      "digest": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
+      "bytes": 6493,
+      "digest": "sha256:d414cc8cbf98afa73912c81cdee0cbde99a088f8511a9d6df03bbab9b43ffb8c"
     },
     {
       "path": "dist/src/ports/executable.d.ts",
-      "bytes": 392,
-      "digest": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
+      "bytes": 1067,
+      "digest": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
     }
   ],
   "evidenceReuse": {
-    "model": "Explicit system-Node deployment successor. Original domain/client vectors and measurements remain historical with their original artifact identities. Only current installed six-cell, current four MCP reads and complete Electron-relay export/login regressions are fresh.",
+    "model": "MessagePort relay successor. Original domain matrices and simulated-host runs remain historical at their original artifact identities. Fresh installed first cells and isolated MCP reads, plus real Electron utilityProcess export/receive/login evidence, cover the changed deployment. No Desktop or new complete MCP matrix is claimed.",
     "changedProduction": [
       "src/index.ts",
       "src/ports/executable.ts",
-      "dist/src/index.js",
-      "dist/src/ports/executable.js",
-      "dist/src/ports/executable.d.ts"
+      "src/ports/adapters/protocol.ts"
     ],
-    "originalNativeRuntime": "Embedded Node24.22.2 is historical, not reused as proof of installed Node.",
+    "historicalExecutionsRelabeled": false,
+    "fullElectronGateSha256": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
     "RootChanged": false
   },
   "systemNodeRevalidation": [
@@ -1803,5 +1819,69 @@
       "hostExecPath": "/unlaunchable/host-helper",
       "newInstalledExecution": true
     }
-  ]
+  ],
+  "messagePortRevalidation": {
+    "protocol": "head-messageport-evidence@1",
+    "electron": "44.9.3",
+    "RunAsNodeDisabled": true,
+    "realUtilityProcess": true,
+    "MessagePort": true,
+    "realDesktop": false,
+    "physicalOutputEvents": 0,
+    "fullFlowTests": 3,
+    "fullFlowFailures": 0,
+    "fullFlowOutput": "TAP version 13\n# Subtest: the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\nok 1 - the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer\n  ---\n  duration_ms: 24702.162375\n  type: 'test'\n  ...\n# Subtest: the installed extension shares with its original pinned runtime inventory, independent of installer metadata\nok 2 - the installed extension shares with its original pinned runtime inventory, independent of installer metadata\n  ---\n  duration_ms: 52243.743875\n  type: 'test'\n  ...\n# Subtest: received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\nok 3 - received APIs use one persistent recipient keychain across import and access processes, without inheriting authority\n  ---\n  duration_ms: 109212.619917\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 186696.087458\n",
+    "presence": {
+      "initialized": true,
+      "unlinkedHomebrewOnly": true,
+      "exit": 0
+    },
+    "missing": {
+      "initialized": true,
+      "toolResponses": 3,
+      "cellsPerTool": 1,
+      "childProcessCalls": 0,
+      "writes": 0,
+      "HOMEUnchanged": true,
+      "exit": 0
+    },
+    "focused": [
+      {
+        "node": "22",
+        "output": "TAP version 13\n# Subtest: installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\nok 1 - installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output\n  ---\n  duration_ms: 910.132334\n  type: 'test'\n  ...\n# Subtest: whole-entry relaunch preserves exit status and strips runtime injection variables\nok 2 - whole-entry relaunch preserves exit status and strips runtime injection variables\n  ---\n  duration_ms: 82.597\n  type: 'test'\n  ...\n# Subtest: relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\nok 3 - relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host\n  ---\n  duration_ms: 258.901875\n  type: 'test'\n  ...\n# Subtest: runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\nok 4 - runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers\n  ---\n  duration_ms: 859.569042\n  type: 'test'\n  ...\n# Subtest: a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest\nok 5 - a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest\n  ---\n  duration_ms: 427.95275\n  type: 'test'\n  ...\n# literal/org unread: this device keeps no private list (HEAD_PRIVATE_LITERALS)\n# read 303 files, 203 of them packed\n# Subtest: no: each literal a pack must not carry is found by name — a planted key, path, host, private name and world-s bytes each count once\nok 6 - no: each literal a pack must not carry is found by name — a planted key, path, host, private name and world-s bytes each count once\n  ---\n  duration_ms: 0.162334\n  type: 'test'\n  ...\n# Subtest: literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found\nok 7 - literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found\n  ---\n  duration_ms: 0.089708\n  type: 'test'\n  ...\n# Subtest: public document references grant no permission to place those origins in code or altered documents\nok 8 - public document references grant no permission to place those origins in code or altered documents\n  ---\n  duration_ms: 0.130625\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 2289.95325\n"
+      },
+      {
+        "node": "24",
+        "output": "✔ installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output (814.966333ms)\n✔ whole-entry relaunch preserves exit status and strips runtime injection variables (81.239375ms)\n✔ relay uses virtual JavaScript streams: MessagePort input, byte-exact output, diagnostics and EOF never bypass the host (253.469083ms)\n✔ runtime discovery chooses the greatest compatible version and finds unlinked Homebrew and home managers (864.471041ms)\n✔ a pack carries no literal past the lock-s ceilings — no key or token, no machine-s path, no host but loopback and the lock-s own sources, no private organisation — and no world-s bytes, every world being pinned by its URL and digest (437.259041ms)\nℹ literal/org unread: this device keeps no private list (HEAD_PRIVATE_LITERALS)\nℹ read 303 files, 203 of them packed\n✔ no: each literal a pack must not carry is found by name — a planted key, path, host, private name and world-s bytes each count once (0.188625ms)\n✔ literal hosts: receiver origins are admitted by the lock, and an unrelated origin is still found (0.10525ms)\n✔ public document references grant no permission to place those origins in code or altered documents (0.167958ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2199.755208\n"
+      }
+    ],
+    "historicalInheritRegression": {
+      "expectedOutputBytes": 262218,
+      "actualOutputBytes": 0,
+      "refused": true,
+      "rawDigest": "sha256:c04dc54b259200eb2ca5232860aefd1df5bf9966f53e386dbc0a05a2f659b710"
+    },
+    "rawEvidenceDigests": [
+      {
+        "name": "full-electron.log",
+        "sha256": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12"
+      },
+      {
+        "name": "full-electron-audit.jsonl",
+        "sha256": "sha256:62249a2b5b4338e315b0014b1ac7f53695f409674ec5b49a61a3a9d9bd9af830"
+      },
+      {
+        "name": "electron-keg.json",
+        "sha256": "sha256:49d54c302bcc52956b9388c033af0d36f59ce073ecd400d857dd2d60aa73561a"
+      },
+      {
+        "name": "electron-missing.json",
+        "sha256": "sha256:4736165b5bcb0fb35f49aec4185a48edfd3ce09b6053c8ac4f75b9eeccfbabb3"
+      },
+      {
+        "name": "electron-gate.log",
+        "sha256": "sha256:41136c1b6a8ddeabed0933d01cbdc1f12a2528d1aa9dd7d2f2a13ec185d3e799"
+      }
+    ]
+  }
 }

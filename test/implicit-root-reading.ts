@@ -5,7 +5,7 @@ const hash = (x: Uint8Array | string) => 'sha256:' + createHash('sha256').update
 /** Current-byte projection of reviewed native index/selection vectors; authority remains Bound's judgment. */
 export function run(place: string) {
   const bytes = readFileSync('samples/implicit-root/yes/client.json');
-  if (hash(bytes) !== 'sha256:65d056e3cf45da5a0ef1218d7b18a8cbe32366e2ed190c5d5fd9580d6d527377') throw Error('REFUSE·implicit-root/capture');
+  if (hash(bytes) !== 'sha256:c4a8f72cc29ed29ab4bb8ee87f6a8b5186c7964471a1520dd193a862d6273d3a') throw Error('REFUSE·implicit-root/capture');
   const c = JSON.parse(bytes.toString());
   for (const i of c.inputs) if (hash(readFileSync(i.path)) !== i.sha256) throw Error('REFUSE·implicit-root/current-input ' + i.path);
   const fields = readFileSync('TARGET.bound', 'utf8').split('\n').map(line => parse(line)).flatMap(p => p.kind === 'fact' ? [p.value.fields] : []);

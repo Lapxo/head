@@ -183,8 +183,8 @@
     },
     {
       "path": "dist/src/index.js",
-      "bytes": 1745,
-      "digest": "sha256:bdbcc89c1423480f263b00f581dc08999d2ab009a26bc46a79c37efa6b0dfe01"
+      "bytes": 1991,
+      "digest": "sha256:aaac61a16699b743fefcf69ea26f9d3f47740b0318c4bddcfb60e3a07692be6b"
     },
     {
       "path": "dist/src/kept/kept.js",
@@ -278,8 +278,8 @@
     },
     {
       "path": "dist/src/ports/adapters/protocol.js",
-      "bytes": 5268,
-      "digest": "sha256:28f4bd9cd3b7921517ea2f466989a94f6184eea48d4835591f6aabea7c9f7755"
+      "bytes": 5393,
+      "digest": "sha256:06c6b8628b377736cefc2d855835a682f7cd37ee4cbd1fcaad9f66f044e8d4f2"
     },
     {
       "path": "dist/src/ports/adapters/remote.js",
@@ -24038,14 +24038,14 @@
     },
     {
       "path": "dist/src/ports/executable.js",
-      "bytes": 2692,
-      "digest": "sha256:d420d10b4ef4421bcdaa281da195d16f08613255dca448f7f25e8e60dd938a70"
+      "bytes": 6493,
+      "digest": "sha256:d414cc8cbf98afa73912c81cdee0cbde99a088f8511a9d6df03bbab9b43ffb8c"
     },
     {
       "path": "dist/src/ports/executable.d.ts",
-      "bytes": 392,
-      "digest": "sha256:26ee18bf0d6d355b6f7335feabd9cfc5ad8976a541b66a7db345d5e858275be9"
+      "bytes": 1067,
+      "digest": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
     }
   ],
-  "bytes": 42562581
+  "bytes": 42567428
 }

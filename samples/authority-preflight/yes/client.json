@@ -147,7 +147,7 @@
     },
     {
       "path": "src/index.ts",
-      "sha256": "sha256:bdc8af2fd4cb46a5571bb715da5228a0ebc9f05bb38af22df2ba482a95c3df5c"
+      "sha256": "sha256:9960dc9b5e76456241d056249a07916cfe94ebaebada36ad35ed6ab7b1fc3db5"
     },
     {
       "path": "src/kept/kept.ts",
@@ -223,7 +223,7 @@
     },
     {
       "path": "src/ports/adapters/protocol.ts",
-      "sha256": "sha256:013197b3aa669ec7dfe3ca1af0e43d8e3c6ac3eb99467307984dbff3867a2c6c"
+      "sha256": "sha256:135ca4ac4cd3513618a6269cbb7161ab5e56ab03b28f8ee26336670d623321bc"
     },
     {
       "path": "src/ports/adapters/remote.ts",
@@ -251,7 +251,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:94369feefeb89a4c20bbbe9aee4082f8bfd8702769ba898a7a3a0b404508d6f1"
+      "sha256": "sha256:24bbe901616258968b3fe768ac11bcb963e1bcb1fb3cba8879c8c5094e589742"
     },
     {
       "path": "src/ports/export.ts",
@@ -483,7 +483,7 @@
     },
     {
       "path": "test/composition-reading.ts",
-      "sha256": "sha256:06b48966e31094d44e946377033b14a82664a063744b6c1757e8d6130b6d5648"
+      "sha256": "sha256:067dd7c96e24f3e7ec612a42cdbfe6fdb4d14b67ad27649fcdb219308155bd48"
     },
     {
       "path": "test/composition.test.ts",
@@ -491,7 +491,7 @@
     },
     {
       "path": "test/configured-ports.ts",
-      "sha256": "sha256:250d3c923cd01b1153d370ed7e9b5acb917f3f3b23d8aa0242c7562f0c30e7f9"
+      "sha256": "sha256:d503bb8475500118b99afa565d97c9018002ca15f7e18874b25d6ab6f816e6a3"
     },
     {
       "path": "test/configured-receiver.test.ts",
@@ -518,8 +518,12 @@
       "sha256": "sha256:35b1664cab648b225216267971fcc5a484e51c6b58298f055378723f29a5c631"
     },
     {
+      "path": "test/electron-host/runtime.test.ts",
+      "sha256": "sha256:f2616ad1cfc9f097f250b39c975ea5fd4c5afea850ddf2e9b94a702365247cde"
+    },
+    {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:e07be8882ff44b4dcd86bf4a86c260d00ab5d7aa1990e581d23e446de5e85b89"
+      "sha256": "sha256:972b2ad10eaf5a2a7194653bb4a0b0b8b6865bb876c86d7581b275bb93a434a5"
     },
     {
       "path": "test/fake-keychain.ts",
@@ -543,7 +547,7 @@
     },
     {
       "path": "test/functional-repairs-reading.ts",
-      "sha256": "sha256:ebf74771e240294930d7c5f7e8136f006f1779cdd7ce9c8cd596503397f5e06f"
+      "sha256": "sha256:d767349d72a8bd000a389274e2dcb530ef333302a611f6ee17e7a0b34eea582d"
     },
     {
       "path": "test/gestures.test.ts",
@@ -551,7 +555,7 @@
     },
     {
       "path": "test/implicit-root-reading.ts",
-      "sha256": "sha256:79861cfeac3575d02de131e8b980095b7c9ace643f99ef1352785659e9d29fc5"
+      "sha256": "sha256:92a36f32287375389b3d091d9633ba5fc29a5239cc417d335da8be03d50d0f16"
     },
     {
       "path": "test/implicit-root.test.ts",
@@ -619,7 +623,7 @@
     },
     {
       "path": "test/mcp-receiver-reading.ts",
-      "sha256": "sha256:ed7a17c2966f99d005470b50d608d23847cfdfe14e89e8638e11bb28af54023f"
+      "sha256": "sha256:1cfaa0a95ed35c04cd2a645a6576f547289ec8192245a742a0b507971becc0ae"
     },
     {
       "path": "test/mcp-transport.test.ts",
@@ -707,7 +711,7 @@
     },
     {
       "path": "test/receiver-access-reading.ts",
-      "sha256": "sha256:d1751475981852bc5ee1e84141535dd75978f9ec01c3e0ac04aaf47f24e201c0"
+      "sha256": "sha256:5a12c44b6ce98b5053afdde6c84a64ee3fe4ebf194fd896f4f52297e8eb8590a"
     },
     {
       "path": "test/receiver-access.test.ts",
@@ -719,7 +723,7 @@
     },
     {
       "path": "test/receiver-runtime.ts",
-      "sha256": "sha256:fa41689bfb25b380ca1d6acdd3c8bbd4770d52b1e7b57911aa7517256a8f4442"
+      "sha256": "sha256:b0ba530e79648f3efd1a44444915db6becb9fce47587688869234ed0ae79711e"
     },
     {
       "path": "test/receiver.test.ts",
@@ -747,7 +751,7 @@
     },
     {
       "path": "test/runtime-inventory.ts",
-      "sha256": "sha256:0e225990ca8b2764583454378a905f854be4dfa0c78303e6234d6ccbe9266534"
+      "sha256": "sha256:ddd04f6238b7b500e992ae4606d0d21c1590b8eefca50f1858d7b05e1f1106e7"
     },
     {
       "path": "test/runtime-resolution.test.ts",
@@ -791,7 +795,7 @@
     },
     {
       "path": "test/share-runtime.ts",
-      "sha256": "sha256:f5953fd1ba94a6281758307cec544b92b59a915c9e580d90f69d5bb97aa72ceb"
+      "sha256": "sha256:c8d85bc6c4ba63459183f54d343a291ef30dfaa2da2ff328153f34bb4322432f"
     },
     {
       "path": "test/share.test.ts",
@@ -815,7 +819,7 @@
     },
     {
       "path": "test/standalone-runtime.ts",
-      "sha256": "sha256:1ce2e7eb7588eba10041c7e544f0b80544cdaa4bb235eb8b7a6f09b5e65ac714"
+      "sha256": "sha256:a79efe8b0d8ae0e68968f6272c49156533a3295773c766b3a5d4e15bafbd0242"
     },
     {
       "path": "test/stores.test.ts",
@@ -949,21 +953,20 @@
     }
   },
   "Q4": "Domain permissions remain open; configuration preflight is not API action authorization.",
-  "status": "Historical domain-client runs retain their original artifact and execution identity. Complete current installed Electron-relay regressions and fresh installed first-cell/MCP reads revalidate the explicitly changed deployment; not a fresh complete domain matrix.",
+  "status": "Historical domain-client runs retain their original artifact and execution identity. Complete current real Electron utilityProcess regressions and fresh installed first-cell/MCP reads revalidate the explicitly changed deployment; not a fresh complete domain matrix.",
   "predecessor": {
-    "sha256": "sha256:5ec4157017c2a4496ac1870e12f746e0830fc07dfaaaa8efa7524f2573a89165",
+    "sha256": "sha256:ba8df992cbf045b3d0d59808409e88aec7aaa3818da56efea7633190f45c31e9",
     "preserved": true
   },
   "evidenceReuse": {
-    "model": "Explicit system-Node deployment successor. Original domain/client vectors and measurements remain historical with their original artifact identities. Only current installed six-cell, current four MCP reads and complete Electron-relay export/login regressions are fresh.",
+    "model": "MessagePort relay successor. Original domain matrices and simulated-host runs remain historical at their original artifact identities. Fresh installed first cells and isolated MCP reads, plus real Electron utilityProcess export/receive/login evidence, cover the changed deployment. No Desktop or new complete MCP matrix is claimed.",
     "changedProduction": [
       "src/index.ts",
       "src/ports/executable.ts",
-      "dist/src/index.js",
-      "dist/src/ports/executable.js",
-      "dist/src/ports/executable.d.ts"
+      "src/ports/adapters/protocol.ts"
     ],
-    "originalNativeRuntime": "Embedded Node24.22.2 is historical, not reused as proof of installed Node.",
+    "historicalExecutionsRelabeled": false,
+    "fullElectronGateSha256": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
     "RootChanged": false
   },
   "observerCorrection": {
@@ -1203,5 +1206,6 @@
       "output": "✔ the Desktop Extension as a host runs it: unpacked in a folder of its own, the command its manifest names started in a fresh home, it offers the tools the lock-s surface names, founds a place, connects a document and reads one offer (22637.910083ms)\n✔ the installed extension shares with its original pinned runtime inventory, independent of installer metadata (54979.253542ms)\n✔ received APIs use one persistent recipient keychain across import and access processes, without inheriting authority (116148.432875ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 194278.496542\n",
       "hostExecPath": "/unlaunchable/host-helper"
     }
-  ]
+  ],
+  "messagePortRevalidationDigest": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12"
 }

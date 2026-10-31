@@ -142,6 +142,52 @@ jobs:
             ${{ runner.temp }}/release/
             ${{ runner.temp }}/head-1.mcpb
           if-no-files-found: error
+  electron-host:
+    needs: bundle
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - uses: actions/download-artifact@v4
+        with:
+          name: head-bundle
+          path: ${{ runner.temp }}/head-bundle
+      - name: Prepare the exact Electron test runtime outside the product closure
+        run: |
+          npm ci --prefix test/electron-host/tools --ignore-scripts --no-audit --no-fund
+          node test/electron-host/tools/node_modules/electron/install.js
+          node test/electron-host/prepare.cjs
+      - name: Seed the fixed compiler fixtures
+        run: |
+          set -euo pipefail
+          (cd test/fixtures/content && shasum -a 256 -c SHA256SUMS)
+          worlds="$(node -p "require('path').join(require('os').tmpdir(), 'head-worlds')")"
+          mkdir -p "$worlds"
+          while read -r digest file; do
+            cp "test/fixtures/content/$file" "$worlds/$digest"
+          done < test/fixtures/content/SHA256SUMS
+      - name: Require MessagePort transport and a useful missing-Node response
+        run: node --test test/electron-host/runtime.test.ts
+      - name: Run the exact extension and its recipients through a real utilityProcess
+        env:
+          HEAD_BUNDLE: ${{ runner.temp }}/head-bundle/head-1.mcpb
+          HEAD_RECEIVER_ACCESS_BUNDLE: ${{ runner.temp }}/head-bundle/head-1.mcpb
+          HEAD_EXECUTABLE: ${{ github.workspace }}/test/electron-host/launch.sh
+          HEAD_ELECTRON_CASE: normal
+          HEAD_ELECTRON_AUDIT: ${{ runner.temp }}/head-electron-audit.jsonl
+        run: node --test --test-concurrency=1 test/bundle.test.ts test/receiver-access.test.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: head-electron-host
+          path: ${{ runner.temp }}/head-electron-audit.jsonl
+          if-no-files-found: ignore
   tree:
     runs-on: ubuntu-latest
     steps:

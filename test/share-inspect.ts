@@ -9,7 +9,7 @@ const digest = (bytes: Uint8Array) => `sha256:${createHash('sha256').update(byte
 
 /** Read the preserved regional client runs against their exact current inputs. This is no release or source-budget verdict. */
 export function observe(bytes: Uint8Array) {
-  if (digest(bytes) !== 'sha256:d874480ec52a17ef54327760b61a1cbfa8b5a3e45bb678eab7a77240b63566c3') throw Error('REFUSE·share-inspect capture digest');
+  if (digest(bytes) !== 'sha256:4bd183c7a831d7947018018f1a7e6940457360d3c2c5b9f2ba08847ce8eca7d6') throw Error('REFUSE·share-inspect capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture;
   if (capture.protocol !== 'head-share-inspect-capture@1' || capture.runs.length !== 2) throw Error('REFUSE·share-inspect protocol');
   const nodes = new Set<string>();
