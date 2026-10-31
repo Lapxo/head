@@ -1,6 +1,6 @@
 {
   "protocol": "head-runtime-inventory-capture@1",
-  "inventory": "sha256:ce7cc3dbdb306959deefc3884a9776699638bde8906f681ac1bd6b756c8aa018",
+  "inventory": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2",
   "policy": "sha256:68c9631784e3b0e2b0e749c4f26be19ed214cb3e3204d208e7080b60f7d61f39",
   "runtimeChanges": [
     {
@@ -12,8 +12,8 @@
       },
       "after": {
         "path": "dist/src/access/obtain.js",
-        "bytes": 9182,
-        "digest": "sha256:309a734a9a4621bed5b9250103e43c1686f93f529c2cc6a036d8fa2e01916b77"
+        "bytes": 9581,
+        "digest": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
       }
     },
     {
@@ -266,7 +266,7 @@
     },
     {
       "path": "dist/src/access/obtain.js",
-      "sha256": "sha256:309a734a9a4621bed5b9250103e43c1686f93f529c2cc6a036d8fa2e01916b77"
+      "sha256": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
     },
     {
       "path": "dist/src/adopt/adopt.d.ts",
@@ -1042,7 +1042,7 @@
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:ce7cc3dbdb306959deefc3884a9776699638bde8906f681ac1bd6b756c8aa018"
+      "sha256": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2"
     },
     {
       "path": "samples/runtime-inventory/yes/original.json",
@@ -1054,7 +1054,7 @@
     },
     {
       "path": "src/access/obtain.ts",
-      "sha256": "sha256:75eabc43e1f6784a3037bb064ea7cfb59eb4dd53ebf7191acf2d8f9e74b5af7c"
+      "sha256": "sha256:21c84db6a23bd0eb37cf713224a5370365d6f41dd202675c6565d53369de50bd"
     },
     {
       "path": "src/adopt/adopt.ts",
@@ -1446,7 +1446,7 @@
     },
     {
       "path": "test/fake-keychain.ts",
-      "sha256": "sha256:ee2d6ea2b1b58fca11f493ffeca514f7949a5892afef1862f3837b2fb0a694b8"
+      "sha256": "sha256:168d57e6abd82493e16744f8b8d93d813953d185b5a6957a1fc732c28f736a51"
     },
     {
       "path": "test/installed-share.ts",
@@ -1482,8 +1482,8 @@
           "identicalMemberContents": true,
           "identicalContainerBytes": false,
           "artifacts": [
-            "sha256:6d6199602656151d0e46ebf0a974c393b9fec9f3af492274600e1c673322e0ad",
-            "sha256:d8b14d7827b18cda1045bbac932be55dfdf9a1fe9c5d9adfd46a5484c0ef4004"
+            "sha256:cd387dfc7fb1084a885bfdab235534c7c691aca31d5b887b7aebbd09c5d13e81",
+            "sha256:efbdf36015878c872d12d150631dafe5cc2345e77ce624549b4050743d7af72e"
           ]
         },
         {
@@ -1498,8 +1498,8 @@
           "identicalMemberContents": true,
           "identicalContainerBytes": false,
           "artifacts": [
-            "sha256:e5d16e2cc434dd34ec6be374550d21d81cabae2839d2307148fabc9a4f9aaa3f",
-            "sha256:335c3bb1559913b038095b5633f6b01de384bf4533bed065b5058840f4083510"
+            "sha256:45751335c5427ca2940e3437b49f2ae42240929338e7c23d104dc14b06462d99",
+            "sha256:421e0347015e2d4cb2f2207523070c0c9d355905a17533e1bd051f1864ada6f7"
           ]
         }
       ],
@@ -1526,8 +1526,8 @@
           "identicalMemberContents": true,
           "identicalContainerBytes": false,
           "artifacts": [
-            "sha256:7bcd002a17162d104779586259200a5ae840897aa38a2e33e5c4f0327e6ae5fd",
-            "sha256:6d6199602656151d0e46ebf0a974c393b9fec9f3af492274600e1c673322e0ad"
+            "sha256:17a149ae6711542df09987027ba9d53ac80c2fb2851f341abb81b874df600701",
+            "sha256:254c03a2c45f3a61aed403c49be4e9a4391c8970ecfcb24cc6c18f9822b77fb0"
           ]
         },
         {
@@ -1542,8 +1542,8 @@
           "identicalMemberContents": true,
           "identicalContainerBytes": false,
           "artifacts": [
-            "sha256:d717e572c448d2e7ad887ada5dd16edc94617a2ae078693a23bea8c072c6e9d0",
-            "sha256:e5d16e2cc434dd34ec6be374550d21d81cabae2839d2307148fabc9a4f9aaa3f"
+            "sha256:bc2ac7705008d18f4223b6692cfd938afe8830c0d6e7b74277b6634b14eee577",
+            "sha256:3a220f6e1cfbd588173575e6fcf0d6db5e5d1e0ded3630b3f75d1f12fee76f92"
           ]
         }
       ],
@@ -1556,13 +1556,13 @@
     }
   ],
   "predecessor": {
-    "sha256": "sha256:fb511c576ef704e8d7339d573c9e0727e1af388f33b6e777c2e4ac2bf56cd007",
-    "preserved": true
+    "sha256": "sha256:1b3b3065471a293bd41f4893ba7e4c06ec334afb0d612934db765663def458bb",
+    "allOriginalRunsAndFailuresPreserved": true
   },
   "artifactState": "Complete unsigned standard npm archive0.2.2 with199members; runtime inventory4805members; not final Root/CI artifact",
   "containerByteReproducibility": "Open: unchanged packager uses current time; exact container reproducibility not claimed",
   "ownerPrivateDesktopAcceptance": "pending; outside repository",
-  "status": "Reviewed functional successor; actual Root158 is unchanged; not final release or CI",
+  "status": "CI repair successor; current byte bindings and named narrow revalidation; not final Root or CI acceptance",
   "runtimeAdditions": [
     {
       "path": "dist/src/ports/export.js",
@@ -1581,5 +1581,1155 @@
     "executedRuntime": "sha256:ef08ce28c543fc18f6c4b130c6b542aa54d35e4227dc08c0d084c87040b2bafb",
     "narrowSourceDelta": "sha256:4b8ba43e740c5a6f46a73650f418d9a5e8742d496d2bb26a85b78ba626d15509",
     "description": "After those matrices only share metadata defaults were removed. Full explicit public metadata is now required; operations/sources remain optional. Current focused nine cases and installed two-domain export/access gates revalidate that delta. A and full MCP execute final bytes separately."
+  },
+  "ciRepair": {
+    "productionDelta": "Only accessIdentity: operational obtained/renewed/entered results are excluded from its own declared scheme digest; actual changed declarations remain detected.",
+    "changedInputs": [
+      {
+        "path": "dist/src/access/obtain.js",
+        "before": "sha256:309a734a9a4621bed5b9250103e43c1686f93f529c2cc6a036d8fa2e01916b77",
+        "after": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
+      },
+      {
+        "path": "runtime.bundle.json",
+        "before": "sha256:ce7cc3dbdb306959deefc3884a9776699638bde8906f681ac1bd6b756c8aa018",
+        "after": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2"
+      },
+      {
+        "path": "src/access/obtain.ts",
+        "before": "sha256:75eabc43e1f6784a3037bb064ea7cfb59eb4dd53ebf7191acf2d8f9e74b5af7c",
+        "after": "sha256:21c84db6a23bd0eb37cf713224a5370365d6f41dd202675c6565d53369de50bd"
+      },
+      {
+        "path": "test/fake-keychain.ts",
+        "before": "sha256:ee2d6ea2b1b58fca11f493ffeca514f7949a5892afef1862f3837b2fb0a694b8",
+        "after": "sha256:168d57e6abd82493e16744f8b8d93d813953d185b5a6957a1fc732c28f736a51"
+      }
+    ],
+    "originalRunsNotRelabeledAsFresh": true,
+    "BoundChanged": false,
+    "dependenciesChanged": false,
+    "allOtherFunctionalMatricesRetained": true,
+    "narrowRevalidation": {
+      "protocol": "head-ci-repair-revalidation@1",
+      "productionChange": "accessIdentity excludes its own operational outcomes, while declared endpoint-byte changes remain binding",
+      "historicalMatrices": "All original complete regional vectors, timings and failures retained; no new full MCP or unrelated matrix claimed",
+      "currentInstalledRuntime": "4805 fixed members, 199-member unsigned regional npm archive; final CI delivery remains separate",
+      "executions": [
+        {
+          "log": "fixtures22-world-final.log",
+          "sha256": "sha256:89fcd58e9a4449035954bb125d504abd2754492f99ee2157d30081258e262cc1",
+          "tests": 33,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "fixtures24-world-final.log",
+          "sha256": "sha256:01b12e47441a8a448144cd958a8aff7b197dcdfc0a91a2c1fad19db4a08c3478",
+          "tests": 22,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "transport22-final.log",
+          "sha256": "sha256:4670cb3b9c5a8e9c2efb180fdc884bef13d218e9558cc408d685b4d5338afb3e",
+          "tests": 12,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "transport24-final.log",
+          "sha256": "sha256:e7cb56c40f81abb29b9b2bd07e1b993786004fe8c5cc756d13026590bea42886",
+          "tests": 12,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "repairs-node22.log",
+          "sha256": "sha256:c2505cf54c14ec6952b509538662c306dbbdde9386c1a7d43742bf632bf651d7",
+          "tests": 9,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "repairs-node24.log",
+          "sha256": "sha256:e562a2ea1619edda26c8bec651eb25e1acd09b069d19195e99f650273cc688b3",
+          "tests": 9,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "authorizer24.log",
+          "sha256": "sha256:9aed3916f21ee4771823d41ff6873525352d8393891f5ddf61d757d419323583",
+          "tests": 11,
+          "failed": 0,
+          "state": "Original passing OAuth/repair execution retained; consumed production module identical and helper functions used by these tests unchanged"
+        }
+      ],
+      "installed": [
+        {
+          "node": "22",
+          "kind": "access",
+          "sha256": "sha256:6e7a34d82b6671d522dd6f3af3b703e389f057d0d734859664080c52cd9c3557"
+        },
+        {
+          "node": "22",
+          "kind": "export",
+          "sha256": "sha256:4da90ffec825e109ff8cf316673337793324e24314d35ef67f2d67d2a8f50bb0"
+        },
+        {
+          "node": "24",
+          "kind": "access",
+          "sha256": "sha256:d58dea81d9ffa3ef4817cc28d29459efbe833a6b9e50eaf4e4f3bc8360dc78a3"
+        },
+        {
+          "node": "24",
+          "kind": "export",
+          "sha256": "sha256:7188c0753317ed70d4481000117e84edcd85e60ef57ba2faa267de1a38ab597a"
+        }
+      ],
+      "clock": "Only the subsequent A gate is a latency measurement; functional-suite wall times are not promoted to response latency",
+      "realAccountsUsed": false,
+      "externalAPIsUsed": false,
+      "BoundChanged": false
+    },
+    "installedExport22": {
+      "node": "22.23.3",
+      "inventory": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2",
+      "results": [
+        {
+          "domain": "records",
+          "metadata": "changed",
+          "exportedTwice": true,
+          "exportedReceiverBooted": true,
+          "fixedInventoryUnchanged": true,
+          "allRuntimeMembersVerified": 4805,
+          "realRuntimeByteCorruptionRefused": true,
+          "privateCanaryAbsent": true,
+          "identicalMemberContents": true,
+          "identicalContainerBytes": false,
+          "artifacts": [
+            "sha256:cd387dfc7fb1084a885bfdab235534c7c691aca31d5b887b7aebbd09c5d13e81",
+            "sha256:efbdf36015878c872d12d150631dafe5cc2345e77ce624549b4050743d7af72e"
+          ]
+        },
+        {
+          "domain": "readings",
+          "metadata": "absent",
+          "exportedTwice": true,
+          "exportedReceiverBooted": true,
+          "fixedInventoryUnchanged": true,
+          "allRuntimeMembersVerified": 4805,
+          "realRuntimeByteCorruptionRefused": true,
+          "privateCanaryAbsent": true,
+          "identicalMemberContents": true,
+          "identicalContainerBytes": false,
+          "artifacts": [
+            "sha256:45751335c5427ca2940e3437b49f2ae42240929338e7c23d104dc14b06462d99",
+            "sha256:421e0347015e2d4cb2f2207523070c0c9d355905a17533e1bd051f1864ada6f7"
+          ]
+        }
+      ],
+      "calls": [
+        {
+          "name": "place",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/born state=done next=none next.why=\"done\" name=\"records\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\"\nbound-lock/1 at=policy:head/places by=root epoch=3 form=alphabet measure=id role=writes scope=places/records sig=\"ed25519:era1:79rRSI6QyErzo8UJZYMMpuso4VePF3jsok3JHrI9aM0M6pWVTd95Es+r72RQGTwTn6Hje/Hso4auQX5AnL4RBg==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\nsaid/head/card state=done next=do next.card=\"2248df0cf9215eb0\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" card=\"2248df0cf9215eb0\" from=\"do place\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [
+                  "bound-lock/1 at=policy:head/places by=root epoch=3 form=alphabet measure=id role=writes scope=places/records sig=\"ed25519:era1:79rRSI6QyErzo8UJZYMMpuso4VePF3jsok3JHrI9aM0M6pWVTd95Es+r72RQGTwTn6Hje/Hso4auQX5AnL4RBg==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
+                ],
+                "cells": [
+                  {
+                    "code": "head/born",
+                    "state": "done",
+                    "next": {
+                      "none": "done"
+                    },
+                    "fields": {
+                      "name": "records",
+                      "dir": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "2248df0cf9215eb0",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
+                      "card": "2248df0cf9215eb0",
+                      "from": "do place"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 12.390931875
+          }
+        },
+        {
+          "name": "connect",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/connected state=done next=ask next.source=\"records\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" source=\"records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" offers=\"1\" reads=\"1\" pin=\"sha256:32088fccf88f7b2e52ba8b222b978599b02be9900ae8b923e6723f0f9cdfe74e\"\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/records value=sha256:b6735257f3873ee43e3f9de3e8010682e227bf79f8f54c607325694069d88358\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/records value=https://records.example\nbound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/records value=keys/access/records/**|offers/records/**|read/**|region/records|write/**"
+                }
+              ],
+              "structuredContent": {
+                "lines": [
+                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/records value=sha256:b6735257f3873ee43e3f9de3e8010682e227bf79f8f54c607325694069d88358",
+                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/records value=https://records.example",
+                  "bound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/records value=keys/access/records/**|offers/records/**|read/**|region/records|write/**"
+                ],
+                "cells": [
+                  {
+                    "code": "head/connected",
+                    "state": "done",
+                    "next": {
+                      "tool": "ask",
+                      "args": {
+                        "source": "records",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "source": "records",
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
+                      "offers": "1",
+                      "reads": "1",
+                      "pin": "sha256:32088fccf88f7b2e52ba8b222b978599b02be9900ae8b923e6723f0f9cdfe74e"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 11.198832542000002
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records-1.mcpb\" digest=\"sha256:cd387dfc7fb1084a885bfdab235534c7c691aca31d5b887b7aebbd09c5d13e81\" sources=\"records\"\nsaid/head/card state=done next=do next.card=\"42cef4079981eb5d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" card=\"42cef4079981eb5d\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-shared",
+                    "state": "done",
+                    "next": {
+                      "none": "No action is authorized by this result."
+                    },
+                    "fields": {
+                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records-1.mcpb",
+                      "digest": "sha256:cd387dfc7fb1084a885bfdab235534c7c691aca31d5b887b7aebbd09c5d13e81",
+                      "sources": "records"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "42cef4079981eb5d",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
+                      "card": "42cef4079981eb5d",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 4.392782874999997
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records-2.mcpb\" digest=\"sha256:efbdf36015878c872d12d150631dafe5cc2345e77ce624549b4050743d7af72e\" sources=\"records\"\nsaid/head/card state=done next=do next.card=\"42cef4079981eb5d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" card=\"42cef4079981eb5d\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-shared",
+                    "state": "done",
+                    "next": {
+                      "none": "No action is authorized by this result."
+                    },
+                    "fields": {
+                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records-2.mcpb",
+                      "digest": "sha256:efbdf36015878c872d12d150631dafe5cc2345e77ce624549b4050743d7af72e",
+                      "sources": "records"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "42cef4079981eb5d",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
+                      "card": "42cef4079981eb5d",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 3.9852394159999966
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-refused state=refused next=none next.why=\"Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority.\" why=\"bundle/runtime-member\"\nsaid/head/card state=done next=do next.card=\"42cef4079981eb5d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records\" card=\"42cef4079981eb5d\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-refused",
+                    "state": "refused",
+                    "next": {
+                      "none": "Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority."
+                    },
+                    "fields": {
+                      "why": "bundle/runtime-member"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "42cef4079981eb5d",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/records",
+                      "card": "42cef4079981eb5d",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 0.17662033299999894
+          }
+        },
+        {
+          "name": "place",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/born state=done next=none next.why=\"done\" name=\"readings\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\"\nbound-lock/1 at=policy:head/places by=root epoch=4 form=alphabet measure=id role=writes scope=places/readings sig=\"ed25519:era1:wBl5ydaOisfcKbHph2SDxJkVJKR/dCfWlQcWPlquA1Qld/R669HC0sWg+OicXSv1QzTa7Xzdx9MktbPYcOaFDA==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\nsaid/head/card state=done next=do next.card=\"8b8448503336ad1f\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" card=\"8b8448503336ad1f\" from=\"do place\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [
+                  "bound-lock/1 at=policy:head/places by=root epoch=4 form=alphabet measure=id role=writes scope=places/readings sig=\"ed25519:era1:wBl5ydaOisfcKbHph2SDxJkVJKR/dCfWlQcWPlquA1Qld/R669HC0sWg+OicXSv1QzTa7Xzdx9MktbPYcOaFDA==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
+                ],
+                "cells": [
+                  {
+                    "code": "head/born",
+                    "state": "done",
+                    "next": {
+                      "none": "done"
+                    },
+                    "fields": {
+                      "name": "readings",
+                      "dir": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "8b8448503336ad1f",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
+                      "card": "8b8448503336ad1f",
+                      "from": "do place"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 8.116216083
+          }
+        },
+        {
+          "name": "connect",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/connected state=done next=ask next.source=\"readings\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" source=\"readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" offers=\"1\" reads=\"1\" pin=\"sha256:3bccf2b62bea8c547a5dae337fc4f09e15372fdd68040ea32d05d9b9b73d42b5\"\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/readings value=sha256:5657ba5e28c01e5b75da46eb8c4f84718dd57bbeb5a62446e90f2d03e01efed4\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/readings value=https://readings.example\nbound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/readings value=keys/access/readings/**|offers/readings/**|read/**|region/readings|write/**"
+                }
+              ],
+              "structuredContent": {
+                "lines": [
+                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/readings value=sha256:5657ba5e28c01e5b75da46eb8c4f84718dd57bbeb5a62446e90f2d03e01efed4",
+                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/readings value=https://readings.example",
+                  "bound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/readings value=keys/access/readings/**|offers/readings/**|read/**|region/readings|write/**"
+                ],
+                "cells": [
+                  {
+                    "code": "head/connected",
+                    "state": "done",
+                    "next": {
+                      "tool": "ask",
+                      "args": {
+                        "source": "readings",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "source": "readings",
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
+                      "offers": "1",
+                      "reads": "1",
+                      "pin": "sha256:3bccf2b62bea8c547a5dae337fc4f09e15372fdd68040ea32d05d9b9b73d42b5"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 11.249358250000006
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings-1.mcpb\" digest=\"sha256:45751335c5427ca2940e3437b49f2ae42240929338e7c23d104dc14b06462d99\" sources=\"readings\"\nsaid/head/card state=done next=do next.card=\"35e95c4b039e5ff8\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" card=\"35e95c4b039e5ff8\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-shared",
+                    "state": "done",
+                    "next": {
+                      "none": "No action is authorized by this result."
+                    },
+                    "fields": {
+                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings-1.mcpb",
+                      "digest": "sha256:45751335c5427ca2940e3437b49f2ae42240929338e7c23d104dc14b06462d99",
+                      "sources": "readings"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "35e95c4b039e5ff8",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
+                      "card": "35e95c4b039e5ff8",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 4.279489916999999
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings-2.mcpb\" digest=\"sha256:421e0347015e2d4cb2f2207523070c0c9d355905a17533e1bd051f1864ada6f7\" sources=\"readings\"\nsaid/head/card state=done next=do next.card=\"35e95c4b039e5ff8\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" card=\"35e95c4b039e5ff8\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-shared",
+                    "state": "done",
+                    "next": {
+                      "none": "No action is authorized by this result."
+                    },
+                    "fields": {
+                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings-2.mcpb",
+                      "digest": "sha256:421e0347015e2d4cb2f2207523070c0c9d355905a17533e1bd051f1864ada6f7",
+                      "sources": "readings"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "35e95c4b039e5ff8",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
+                      "card": "35e95c4b039e5ff8",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 4.180381374999997
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-refused state=refused next=none next.why=\"Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority.\" why=\"bundle/runtime-member\"\nsaid/head/card state=done next=do next.card=\"35e95c4b039e5ff8\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings\" card=\"35e95c4b039e5ff8\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-refused",
+                    "state": "refused",
+                    "next": {
+                      "none": "Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority."
+                    },
+                    "fields": {
+                      "why": "bundle/runtime-member"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "35e95c4b039e5ff8",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-ZDu8AL/documents/readings",
+                      "card": "35e95c4b039e5ff8",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 0.17005258400000456
+          }
+        }
+      ],
+      "credentialsUsed": false,
+      "externalApiCalled": false,
+      "noExpectedDigestsRegenerated": true
+    },
+    "installedExport24": {
+      "node": "24.14.1",
+      "inventory": "sha256:71204b2d14d22149e9bce8f7e1b75ad9195c9ab29dffa005f7baba40f41051b2",
+      "results": [
+        {
+          "domain": "records",
+          "metadata": "changed",
+          "exportedTwice": true,
+          "exportedReceiverBooted": true,
+          "fixedInventoryUnchanged": true,
+          "allRuntimeMembersVerified": 4805,
+          "realRuntimeByteCorruptionRefused": true,
+          "privateCanaryAbsent": true,
+          "identicalMemberContents": true,
+          "identicalContainerBytes": false,
+          "artifacts": [
+            "sha256:17a149ae6711542df09987027ba9d53ac80c2fb2851f341abb81b874df600701",
+            "sha256:254c03a2c45f3a61aed403c49be4e9a4391c8970ecfcb24cc6c18f9822b77fb0"
+          ]
+        },
+        {
+          "domain": "readings",
+          "metadata": "absent",
+          "exportedTwice": true,
+          "exportedReceiverBooted": true,
+          "fixedInventoryUnchanged": true,
+          "allRuntimeMembersVerified": 4805,
+          "realRuntimeByteCorruptionRefused": true,
+          "privateCanaryAbsent": true,
+          "identicalMemberContents": true,
+          "identicalContainerBytes": false,
+          "artifacts": [
+            "sha256:bc2ac7705008d18f4223b6692cfd938afe8830c0d6e7b74277b6634b14eee577",
+            "sha256:3a220f6e1cfbd588173575e6fcf0d6db5e5d1e0ded3630b3f75d1f12fee76f92"
+          ]
+        }
+      ],
+      "calls": [
+        {
+          "name": "place",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/born state=done next=none next.why=\"done\" name=\"records\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\"\nbound-lock/1 at=policy:head/places by=root epoch=3 form=alphabet measure=id role=writes scope=places/records sig=\"ed25519:era1:LySGB9QznoN1eHP/3S3aUP5b1XSgi1Iod44Kps3UvNtq1GSHNx21rLr8Q2kheB4UrB/5aMFntMPFm8rWP2M4Bg==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\nsaid/head/card state=done next=do next.card=\"c277facda5177b91\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" card=\"c277facda5177b91\" from=\"do place\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [
+                  "bound-lock/1 at=policy:head/places by=root epoch=3 form=alphabet measure=id role=writes scope=places/records sig=\"ed25519:era1:LySGB9QznoN1eHP/3S3aUP5b1XSgi1Iod44Kps3UvNtq1GSHNx21rLr8Q2kheB4UrB/5aMFntMPFm8rWP2M4Bg==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
+                ],
+                "cells": [
+                  {
+                    "code": "head/born",
+                    "state": "done",
+                    "next": {
+                      "none": "done"
+                    },
+                    "fields": {
+                      "name": "records",
+                      "dir": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "c277facda5177b91",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
+                      "card": "c277facda5177b91",
+                      "from": "do place"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 12.580735084
+          }
+        },
+        {
+          "name": "connect",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/connected state=done next=ask next.source=\"records\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" source=\"records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" offers=\"1\" reads=\"1\" pin=\"sha256:32088fccf88f7b2e52ba8b222b978599b02be9900ae8b923e6723f0f9cdfe74e\"\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/records value=sha256:b6735257f3873ee43e3f9de3e8010682e227bf79f8f54c607325694069d88358\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/records value=https://records.example\nbound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/records value=keys/access/records/**|offers/records/**|read/**|region/records|write/**"
+                }
+              ],
+              "structuredContent": {
+                "lines": [
+                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/records value=sha256:b6735257f3873ee43e3f9de3e8010682e227bf79f8f54c607325694069d88358",
+                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/records value=https://records.example",
+                  "bound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/records value=keys/access/records/**|offers/records/**|read/**|region/records|write/**"
+                ],
+                "cells": [
+                  {
+                    "code": "head/connected",
+                    "state": "done",
+                    "next": {
+                      "tool": "ask",
+                      "args": {
+                        "source": "records",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "source": "records",
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
+                      "offers": "1",
+                      "reads": "1",
+                      "pin": "sha256:32088fccf88f7b2e52ba8b222b978599b02be9900ae8b923e6723f0f9cdfe74e"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 10.707021583999998
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records-1.mcpb\" digest=\"sha256:17a149ae6711542df09987027ba9d53ac80c2fb2851f341abb81b874df600701\" sources=\"records\"\nsaid/head/card state=done next=do next.card=\"b4dcc243e40a1b32\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" card=\"b4dcc243e40a1b32\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-shared",
+                    "state": "done",
+                    "next": {
+                      "none": "No action is authorized by this result."
+                    },
+                    "fields": {
+                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records-1.mcpb",
+                      "digest": "sha256:17a149ae6711542df09987027ba9d53ac80c2fb2851f341abb81b874df600701",
+                      "sources": "records"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "b4dcc243e40a1b32",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
+                      "card": "b4dcc243e40a1b32",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 4.178960124999998
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records-2.mcpb\" digest=\"sha256:254c03a2c45f3a61aed403c49be4e9a4391c8970ecfcb24cc6c18f9822b77fb0\" sources=\"records\"\nsaid/head/card state=done next=do next.card=\"b4dcc243e40a1b32\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" card=\"b4dcc243e40a1b32\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-shared",
+                    "state": "done",
+                    "next": {
+                      "none": "No action is authorized by this result."
+                    },
+                    "fields": {
+                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records-2.mcpb",
+                      "digest": "sha256:254c03a2c45f3a61aed403c49be4e9a4391c8970ecfcb24cc6c18f9822b77fb0",
+                      "sources": "records"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "b4dcc243e40a1b32",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
+                      "card": "b4dcc243e40a1b32",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 4.527350458000001
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-refused state=refused next=none next.why=\"Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority.\" why=\"bundle/runtime-member\"\nsaid/head/card state=done next=do next.card=\"b4dcc243e40a1b32\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records\" card=\"b4dcc243e40a1b32\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-refused",
+                    "state": "refused",
+                    "next": {
+                      "none": "Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority."
+                    },
+                    "fields": {
+                      "why": "bundle/runtime-member"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "b4dcc243e40a1b32",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/records",
+                      "card": "b4dcc243e40a1b32",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 0.18251666700000352
+          }
+        },
+        {
+          "name": "place",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/born state=done next=none next.why=\"done\" name=\"readings\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\"\nbound-lock/1 at=policy:head/places by=root epoch=4 form=alphabet measure=id role=writes scope=places/readings sig=\"ed25519:era1:ZMYuCWWKHtTm09lPiZ3SrPEurp0NcZlUBoNBJSkoWJYe6LYh0uM0uY2GbW2AFeX1f4X+ywOH0jUHrgxkzNZ3Bw==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\nsaid/head/card state=done next=do next.card=\"25d6cdc0059cfc77\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" card=\"25d6cdc0059cfc77\" from=\"do place\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [
+                  "bound-lock/1 at=policy:head/places by=root epoch=4 form=alphabet measure=id role=writes scope=places/readings sig=\"ed25519:era1:ZMYuCWWKHtTm09lPiZ3SrPEurp0NcZlUBoNBJSkoWJYe6LYh0uM0uY2GbW2AFeX1f4X+ywOH0jUHrgxkzNZ3Bw==\" value=/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
+                ],
+                "cells": [
+                  {
+                    "code": "head/born",
+                    "state": "done",
+                    "next": {
+                      "none": "done"
+                    },
+                    "fields": {
+                      "name": "readings",
+                      "dir": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "25d6cdc0059cfc77",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
+                      "card": "25d6cdc0059cfc77",
+                      "from": "do place"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 8.203254624999994
+          }
+        },
+        {
+          "name": "connect",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/connected state=done next=ask next.source=\"readings\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" source=\"readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" offers=\"1\" reads=\"1\" pin=\"sha256:3bccf2b62bea8c547a5dae337fc4f09e15372fdd68040ea32d05d9b9b73d42b5\"\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/readings value=sha256:5657ba5e28c01e5b75da46eb8c4f84718dd57bbeb5a62446e90f2d03e01efed4\nbound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/readings value=https://readings.example\nbound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/readings value=keys/access/readings/**|offers/readings/**|read/**|region/readings|write/**"
+                }
+              ],
+              "structuredContent": {
+                "lines": [
+                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=documents role=writes scope=region/readings value=sha256:5657ba5e28c01e5b75da46eb8c4f84718dd57bbeb5a62446e90f2d03e01efed4",
+                  "bound-lock/1 at=place:openapi by=openapi form=alphabet measure=origins role=writes scope=region/readings value=https://readings.example",
+                  "bound-lock/1 at=policy:head/connect by=target form=alphabet measure=reads role=render scope=region/readings value=keys/access/readings/**|offers/readings/**|read/**|region/readings|write/**"
+                ],
+                "cells": [
+                  {
+                    "code": "head/connected",
+                    "state": "done",
+                    "next": {
+                      "tool": "ask",
+                      "args": {
+                        "source": "readings",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "source": "readings",
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
+                      "offers": "1",
+                      "reads": "1",
+                      "pin": "sha256:3bccf2b62bea8c547a5dae337fc4f09e15372fdd68040ea32d05d9b9b73d42b5"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 10.868354375000003
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings-1.mcpb\" digest=\"sha256:bc2ac7705008d18f4223b6692cfd938afe8830c0d6e7b74277b6634b14eee577\" sources=\"readings\"\nsaid/head/card state=done next=do next.card=\"9bfd871d0c7e80f2\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" card=\"9bfd871d0c7e80f2\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-shared",
+                    "state": "done",
+                    "next": {
+                      "none": "No action is authorized by this result."
+                    },
+                    "fields": {
+                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings-1.mcpb",
+                      "digest": "sha256:bc2ac7705008d18f4223b6692cfd938afe8830c0d6e7b74277b6634b14eee577",
+                      "sources": "readings"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "9bfd871d0c7e80f2",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
+                      "card": "9bfd871d0c7e80f2",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 4.390421415999997
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings-2.mcpb\" digest=\"sha256:3a220f6e1cfbd588173575e6fcf0d6db5e5d1e0ded3630b3f75d1f12fee76f92\" sources=\"readings\"\nsaid/head/card state=done next=do next.card=\"9bfd871d0c7e80f2\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" card=\"9bfd871d0c7e80f2\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-shared",
+                    "state": "done",
+                    "next": {
+                      "none": "No action is authorized by this result."
+                    },
+                    "fields": {
+                      "document": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings-2.mcpb",
+                      "digest": "sha256:3a220f6e1cfbd588173575e6fcf0d6db5e5d1e0ded3630b3f75d1f12fee76f92",
+                      "sources": "readings"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "9bfd871d0c7e80f2",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
+                      "card": "9bfd871d0c7e80f2",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 4.204614375000005
+          }
+        },
+        {
+          "name": "share",
+          "result": {
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "said/head/bundle-refused state=refused next=none next.why=\"Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority.\" why=\"bundle/runtime-member\"\nsaid/head/card state=done next=do next.card=\"9bfd871d0c7e80f2\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings\" card=\"9bfd871d0c7e80f2\" from=\"do share\""
+                }
+              ],
+              "structuredContent": {
+                "lines": [],
+                "cells": [
+                  {
+                    "code": "head/bundle-refused",
+                    "state": "refused",
+                    "next": {
+                      "none": "Resolve the named refusal before retrying. Public package metadata requires id, revision, title, description and author; metadata grants no authority."
+                    },
+                    "fields": {
+                      "why": "bundle/runtime-member"
+                    }
+                  },
+                  {
+                    "code": "head/card",
+                    "state": "done",
+                    "next": {
+                      "tool": "do",
+                      "args": {
+                        "card": "9bfd871d0c7e80f2",
+                        "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings"
+                      }
+                    },
+                    "fields": {
+                      "place": "/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-installed-share-t829fq/documents/readings",
+                      "card": "9bfd871d0c7e80f2",
+                      "from": "do share"
+                    }
+                  }
+                ]
+              }
+            },
+            "jsonrpc": "2.0",
+            "id": 1,
+            "seconds": 0.19789837499998975
+          }
+        }
+      ],
+      "credentialsUsed": false,
+      "externalApiCalled": false,
+      "noExpectedDigestsRegenerated": true
+    }
   }
 }

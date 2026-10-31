@@ -1,5 +1,5 @@
 import { deepStrictEqual } from 'node:assert';
-import { generateKeyPairSync } from 'node:crypto';
+import { createPrivateKey, generateKeyPairSync } from 'node:crypto';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
@@ -9,12 +9,19 @@ import { fileURLToPath } from 'node:url';
 import { canonical, parse } from '@lapxo/topos/wire';
 import { accessIdentity } from '../src/access/obtain.ts';
 import { planRead } from '../src/core/read.ts';
-import { factsOf } from '../src/core/lock.ts';
+import { factsOf, valueOf } from '../src/core/lock.ts';
+import { publicOf } from '../src/ports/keys.ts';
+import { idIn } from '../src/core/device.ts';
+import { standingAt, settledView, words, limits } from '../src/ports/bound.ts';
+import { configureHost, cooled } from '../src/ports/host.ts';
 import type { Context } from '../src/core/answer.ts';
 import { admissionOf } from '../src/core/device.ts';
 import { newKey } from '../src/ports/keys.ts';
 import { run } from './cli.ts';
-import { lockAt } from '../src/ports/place.ts';
+import { registryFor } from './signers.ts';
+import { homeServices } from '../src/ports/home.ts';
+import { lockAt, takeAt } from '../src/ports/place.ts';
+import { standingFor } from '../src/flows/world.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 
 export const root = fileURLToPath(new URL('..', import.meta.url));
@@ -92,3 +99,30 @@ export const said = (key: string) => (lock.find((l) => l.scope === `said/${key}/
 /** A cell of an answer from a source: its operation and the status it answered, whatever the code that said it. */
 export const answered = (operation: string, status: number) => new RegExp(`^said/head/\\S+ (?=[^\\n]*operation="${operation}")(?=[^\\n]*status="${status}")`, 'm');
 export const text = (answer: any): string => answer.result?.content?.[0]?.text ?? JSON.stringify(answer.error ?? answer);
+
+/** Synthetic fixture access uses the production identity and a native receipt, never a legacy-slot fallback. */
+export async function seedAccess(place: string, keychain: ReturnType<typeof fakeKeychain>, source: string, operation: string, secret: string, options: { root?: string; home?: string; origin?: string } = {}) {
+  Object.assign(words,Object.fromEntries(Object.keys(words).map(key=>[key,valueOf(lock,'bound/'+key)]))); Object.assign(limits,{wait:Number(valueOf(lock,'bound/wait').split('..')[1]),most:Number(valueOf(lock,'bound/printed').split('..')[1])});
+  configureHost(lock, limits);
+  const context = {lock, standing:(at:string)=>standingAt('@lapxo/bound',at,lines=>['head','person'].flatMap(role=>{const secret=keychain.held(role),id=secret?idIn(lines,publicOf(secret)):undefined;return id?[id]:[];}),line=>line.at?.startsWith(valueOf(lock,'receipt/at')+':')===true), world:(at:string,view:string)=>settledView('@lapxo/bound',at,view), files:{take:takeAt}} as unknown as Context;
+  const standing = await standingFor(context,place);
+  cooled();
+  if ('unsettled' in standing) throw Error(standing.unsettled); let lines = [...standing.lines];
+  if (options.origin) lines = [...lines.filter(l => l.scope !== 'allow/origin/' + source), {scope:'allow/origin/' + source, value:options.origin}];
+  const plan = planRead(lines, lock, source, operation, basename(place));
+  deepStrictEqual(plan.kind, 'call', 'fixture requires an actual declared access plan: '+JSON.stringify(plan));
+  if (plan.kind !== 'call') throw Error('fixture/access-plan');
+  const identity = accessIdentity({lock} as Context, plan, lines); if (!identity) throw Error('fixture/access-identity');
+  const at = '2026-01-01T00:00:00.000Z', lot = join(mkdtempSync(join(tmpdir(),'head-fixture-access-')),'receipt.bound');
+  writeFileSync(lot,line('access/'+plan.access.flow+'/obtained','status','present',{at:'receipt:'+at,about:'access-binding:sha256:'+identity.binding})+'\n');
+  const signer = options.root ? ['--key-file', options.root] : ['--key','head','--signer','keychain'];
+  const env = options.root ? keychain.env : {...keychain.env, BOUND_SIGNERS:registryFor('keychain',homeServices('@lapxo/head',options.home!).primary,'head','head','ed25519:era1',process.platform === 'linux' ? 'secret-tool' : 'keychain')};
+  const landed = run('@lapxo/bound',place,['land',lot,...signer],env); deepStrictEqual(landed?.code,0,landed?.err.join('\n'));
+  keychain.put(identity.account,Buffer.from(JSON.stringify({secret,at,binding:identity.binding,state:'ready'})).toString('base64url'));
+  return identity;
+}
+
+/** A configuration vector may explicitly retain its own synthetic founding key; read-only vectors do not. */
+export function holdRoot(made: {place:string;root:string;keychain:ReturnType<typeof fakeKeychain>}) {
+  made.keychain.put(valueOf(lock,'founding/root-account').replace('{place}',basename(made.place)),createPrivateKey(readFileSync(made.root)).export({type:'pkcs8',format:'der'}).toString('base64'));
+}

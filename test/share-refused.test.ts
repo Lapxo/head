@@ -46,6 +46,7 @@ test('no: what makes a place someone-s never travels — a place with its root, 
   const from = await sender(), to = await receiver(), member = { ...fakeKeychain({}).env, HEAD_HOME: mkdtempSync(join(tmpdir(), 'head-home-')) };
   const [key] = await ask([tool('key', { who: 'head' })], [], member);
   match(text((await ask([tool('admit', { place: from.place, key: text(key), name: 'ana' })], [], from.env, yes([])))[0]), said('admitted'));
+  from.pkg = join(from.shared,'package-after-admission');
   match(text((await ask([tool('share', { place: from.place, to: from.pkg })], [from.shared], from.env))[0]), said('shared'));
   const held = readFileSync(join(from.place, 'TARGET.bound'), 'utf8').split('\n'), own = (re: RegExp) => held.find((l) => re.test(l))!;
   const [publics, privates] = [held.flatMap((l) => (/ measure=public-key /.test(l) ? [/ value=(\S+)/.exec(l)![1]!] : [])), secretsOf(from.env)], identity = [...publics, ...privates];

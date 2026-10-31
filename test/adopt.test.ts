@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { canonical } from '@lapxo/topos/wire';
 import { run } from './cli.ts';
 import { ask } from './client.ts';
-import { api, born, line, said, text } from './place.ts';
+import { api, born, line, said, text, holdRoot } from './place.ts';
 
 const tool = (name: string, args: Record<string, string>) => ({ method: 'tools/call', params: { name, arguments: args } });
 const look = (place: string) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', operation: 'issues/list-for-repo', args: { owner: 'lapxo', repo: 'demo' }, at: '8' } } });
@@ -16,6 +16,7 @@ test('no: a lock is no source — adopting another place-s lock as a parent is r
   const server = await api(() => '{}');
   try {
     const [org, member] = [born(server.url), born(server.url)];
+    holdRoot(member);
     const asked: string[] = [];
     const before = readFileSync(join(member.place, 'TARGET.bound'), 'utf8');
     const [adopted] = await ask([tool('connect', { place: member.place, source: 'org', document: join(org.place, 'TARGET.bound') })], [org.place], member.keychain.env, (params) => { asked.push(params.message); return { action: 'accept', content: { yes: true } }; });

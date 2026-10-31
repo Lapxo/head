@@ -1,6 +1,6 @@
 {
   "protocol": "head-configured-ports-capture@1",
-  "status": "Executed ports/SDK/surface/association matrices retained with named delta revalidation; not independent-machine evidence",
+  "status": "CI repair successor; current byte bindings and named narrow revalidation; not final Root or CI acceptance",
   "inputs": [
     {
       "path": "dist/src/access/contract.d.ts",
@@ -16,7 +16,7 @@
     },
     {
       "path": "dist/src/access/obtain.js",
-      "sha256": "sha256:309a734a9a4621bed5b9250103e43c1686f93f529c2cc6a036d8fa2e01916b77"
+      "sha256": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
     },
     {
       "path": "dist/src/adopt/adopt.d.ts",
@@ -792,7 +792,7 @@
     },
     {
       "path": "src/access/obtain.ts",
-      "sha256": "sha256:75eabc43e1f6784a3037bb064ea7cfb59eb4dd53ebf7191acf2d8f9e74b5af7c"
+      "sha256": "sha256:21c84db6a23bd0eb37cf713224a5370365d6f41dd202675c6565d53369de50bd"
     },
     {
       "path": "src/adopt/adopt.ts",
@@ -1204,7 +1204,7 @@
     }
   ],
   "policy": {
-    "sourceLines": "0..3592",
+    "sourceLines": "0..3594",
     "coreLines": "0..1071",
     "SDKImporters": "0..1"
   },
@@ -1275,9 +1275,8 @@
     }
   ],
   "predecessor": {
-    "sha256": "sha256:91c6274d0386e2645d3bbf5569e36442815b3e04d6a9bf253b1bcb25097c4e76",
-    "allHistoricalExecutionsPreserved": true,
-    "notRelabeledAsCurrent": true
+    "sha256": "sha256:397d562182f29f7fef1f2e0ca6ff1c73aab89dd01e2b5e6462cfd0e179c9561a",
+    "allOriginalRunsAndFailuresPreserved": true
   },
   "policySnapshots": [
     {
@@ -1287,6 +1286,11 @@
     },
     {
       "sourceLines": "0..3592",
+      "coreLines": "0..1071",
+      "SDKImporters": "0..1"
+    },
+    {
+      "sourceLines": "0..3594",
       "coreLines": "0..1071",
       "SDKImporters": "0..1"
     }
@@ -1299,5 +1303,107 @@
     "narrowSourceDelta": "sha256:4b8ba43e740c5a6f46a73650f418d9a5e8742d496d2bb26a85b78ba626d15509",
     "description": "After those matrices only share metadata defaults were removed. Full explicit public metadata is now required; operations/sources remain optional. Current focused nine cases and installed two-domain export/access gates revalidate that delta. A and full MCP execute final bytes separately."
   },
-  "capacityTransition": "The old admitted policy may report red until the measured widening is owner-admitted; neither snapshot changes a ceiling."
+  "capacityTransition": "The old admitted policy may report red until the measured widening is owner-admitted; neither snapshot changes a ceiling.",
+  "ciRepair": {
+    "productionDelta": "Only accessIdentity: operational obtained/renewed/entered results are excluded from its own declared scheme digest; actual changed declarations remain detected.",
+    "changedInputs": [
+      {
+        "path": "dist/src/access/obtain.js",
+        "before": "sha256:309a734a9a4621bed5b9250103e43c1686f93f529c2cc6a036d8fa2e01916b77",
+        "after": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
+      },
+      {
+        "path": "src/access/obtain.ts",
+        "before": "sha256:75eabc43e1f6784a3037bb064ea7cfb59eb4dd53ebf7191acf2d8f9e74b5af7c",
+        "after": "sha256:21c84db6a23bd0eb37cf713224a5370365d6f41dd202675c6565d53369de50bd"
+      }
+    ],
+    "originalRunsNotRelabeledAsFresh": true,
+    "BoundChanged": false,
+    "dependenciesChanged": false,
+    "allOtherFunctionalMatricesRetained": true,
+    "narrowRevalidation": {
+      "protocol": "head-ci-repair-revalidation@1",
+      "productionChange": "accessIdentity excludes its own operational outcomes, while declared endpoint-byte changes remain binding",
+      "historicalMatrices": "All original complete regional vectors, timings and failures retained; no new full MCP or unrelated matrix claimed",
+      "currentInstalledRuntime": "4805 fixed members, 199-member unsigned regional npm archive; final CI delivery remains separate",
+      "executions": [
+        {
+          "log": "fixtures22-world-final.log",
+          "sha256": "sha256:89fcd58e9a4449035954bb125d504abd2754492f99ee2157d30081258e262cc1",
+          "tests": 33,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "fixtures24-world-final.log",
+          "sha256": "sha256:01b12e47441a8a448144cd958a8aff7b197dcdfc0a91a2c1fad19db4a08c3478",
+          "tests": 22,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "transport22-final.log",
+          "sha256": "sha256:4670cb3b9c5a8e9c2efb180fdc884bef13d218e9558cc408d685b4d5338afb3e",
+          "tests": 12,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "transport24-final.log",
+          "sha256": "sha256:e7cb56c40f81abb29b9b2bd07e1b993786004fe8c5cc756d13026590bea42886",
+          "tests": 12,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "repairs-node22.log",
+          "sha256": "sha256:c2505cf54c14ec6952b509538662c306dbbdde9386c1a7d43742bf632bf651d7",
+          "tests": 9,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "repairs-node24.log",
+          "sha256": "sha256:e562a2ea1619edda26c8bec651eb25e1acd09b069d19195e99f650273cc688b3",
+          "tests": 9,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "authorizer24.log",
+          "sha256": "sha256:9aed3916f21ee4771823d41ff6873525352d8393891f5ddf61d757d419323583",
+          "tests": 11,
+          "failed": 0,
+          "state": "Original passing OAuth/repair execution retained; consumed production module identical and helper functions used by these tests unchanged"
+        }
+      ],
+      "installed": [
+        {
+          "node": "22",
+          "kind": "access",
+          "sha256": "sha256:6e7a34d82b6671d522dd6f3af3b703e389f057d0d734859664080c52cd9c3557"
+        },
+        {
+          "node": "22",
+          "kind": "export",
+          "sha256": "sha256:4da90ffec825e109ff8cf316673337793324e24314d35ef67f2d67d2a8f50bb0"
+        },
+        {
+          "node": "24",
+          "kind": "access",
+          "sha256": "sha256:d58dea81d9ffa3ef4817cc28d29459efbe833a6b9e50eaf4e4f3bc8360dc78a3"
+        },
+        {
+          "node": "24",
+          "kind": "export",
+          "sha256": "sha256:7188c0753317ed70d4481000117e84edcd85e60ef57ba2faa267de1a38ab597a"
+        }
+      ],
+      "clock": "Only the subsequent A gate is a latency measurement; functional-suite wall times are not promoted to response latency",
+      "realAccountsUsed": false,
+      "externalAPIsUsed": false,
+      "BoundChanged": false
+    }
+  }
 }

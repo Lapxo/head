@@ -1,19 +1,19 @@
 {
   "protocol": "head-first-minute-capture@1",
-  "status": "Fresh strict six-cell execution against complete installed unsigned standard npm archive0.2.2; not final Root/CI delivery",
+  "status": "CI repair successor; current byte bindings and named narrow revalidation; not final Root or CI acceptance",
   "artifact": {
-    "kind": "Complete unsigned regional standard build; final Root/CI artifact remains separate",
-    "archive": "sha256:0c36122a71f056a9c71267b5922b459a6c5dfd6b21e6fedb4d034a13583303d9",
+    "kind": "Unsigned regional CI-repair consumer; not final delivery",
+    "archive": "sha256:8530799949141270fbcd4ecd3ef5d612eb66b4fd0c5cce261e2b206dd930d591",
     "version": "0.2.2",
     "members": 199,
     "declarations": 97,
-    "compressedBytes": 427788,
+    "compressedBytes": 428493,
     "allInstalledBytesIdentical": true,
     "dependencyInstall": "npm ci --ignore-scripts --omit=dev with pinned lock; dependencies unchanged",
     "scriptsRun": false,
     "signed": false,
     "published": false,
-    "sha256": "sha256:0c36122a71f056a9c71267b5922b459a6c5dfd6b21e6fedb4d034a13583303d9",
+    "sha256": "sha256:8530799949141270fbcd4ecd3ef5d612eb66b4fd0c5cce261e2b206dd930d591",
     "installedInventory": "sha256:c9b7da9f8b51959674f3a4dccee6b311201c37a934113bb3dd7cdbb2db0e0eab",
     "releaseSelection": "Regional acceptance only; signed0.2.1 conserved"
   },
@@ -25,7 +25,7 @@
       },
       {
         "path": "src/access/obtain.ts",
-        "sha256": "sha256:75eabc43e1f6784a3037bb064ea7cfb59eb4dd53ebf7191acf2d8f9e74b5af7c"
+        "sha256": "sha256:21c84db6a23bd0eb37cf713224a5370365d6f41dd202675c6565d53369de50bd"
       },
       {
         "path": "src/adopt/adopt.ts",
@@ -423,7 +423,7 @@
       },
       {
         "path": "dist/src/access/obtain.js",
-        "sha256": "sha256:309a734a9a4621bed5b9250103e43c1686f93f529c2cc6a036d8fa2e01916b77"
+        "sha256": "sha256:76491f98d0e4b7bbdef2bd50bf0c060541d231be77880ad13825ec759e9c0cab"
       },
       {
         "path": "dist/src/adopt/adopt.d.ts",
@@ -1188,23 +1188,22 @@
     ],
     "onboarding": "sha256:45d9229a9c08b85c87eecf7640d2910f7d9ac0e9aadcdfed3628d8d0b06c081d",
     "lockfile": "sha256:dbc577e203b0080b162daaed55853e7bf96c1318d67a17087e2c2537a9f85a10",
-    "target": "sha256:8e58cd9938beaa1a4b9f0d30671fd8277d514b65fe4c20ca621a762cba0905ff",
+    "target": "sha256:3de106a7202de886c0efc858b86eefd61740239454f92fd89b44e8e3c420b3b9",
     "installedBound": "sha256:b097566fcb246614d9ebe55642c2b5b2f8f0ca81b073efc9edef76a1de075008"
   },
   "sampling": "One serial strict six-cell run per runtime from a clean offline npm installation, all archive members verified byte for byte. Not a final release or a latency guarantee. Direct-entry, restricted-environment and historical failures preserved.",
   "predecessor": {
-    "sha256": "sha256:01e61458fd9c7d0bc764b2ef881f6e71e28a0d1440a2047ec061096df2595e4f",
-    "allHistoricalExecutionsPreserved": true,
-    "notRelabeledAsCurrent": true
+    "sha256": "sha256:f08bffcd82e94f2a35b458f795067fafdd7b8ae4b33a05ae8a60f53ce64db843",
+    "allOriginalRunsAndFailuresPreserved": true
   },
   "runs": [
     {
       "node": "22",
-      "output": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 36945.071083\n  type: 'test'\n  ...\n# ENVIRONMENT node=v22.23.3 platform=darwin cpus=10 load=4.3076171875,4.185546875,4.3076171875 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 0.09 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.66 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 1.99 s · new-with-source 2.66 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.72 s · repeated-with-receipt 0.07 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":1993.721125,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2655.081207999998,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":41.890707999998995,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":60.03745899999922,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2717.0807499999974,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":72.71395900000061,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 37112.245083\n"
+      "output": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 36968.851375\n  type: 'test'\n  ...\n# ENVIRONMENT node=v22.23.3 platform=darwin cpus=10 load=3.267578125,4.974609375,4.56396484375 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 0.07 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.64 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 2.04 s · new-with-source 2.64 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.72 s · repeated-with-receipt 0.08 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":2039.950083,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2639.7904579999995,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":40.00929199999882,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":64.17708400000265,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2718.5322499999966,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":76.65412500000093,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 37184.876875\n"
     },
     {
       "node": "24",
-      "output": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 37264.305125\n  type: 'test'\n  ...\n# ENVIRONMENT node=v24.14.1 platform=darwin cpus=10 load=3.81787109375,4.0703125,4.2587890625 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 0.04 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.93 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 1.98 s · new-with-source 2.93 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.69 s · repeated-with-receipt 0.08 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":1980.0212919999994,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2930.794582999999,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":42.85675000000265,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":62.102875000000495,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2692.664958000001,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":77.20108400000026,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 37431.93025\n"
+      "output": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 36411.342959\n  type: 'test'\n  ...\n# ENVIRONMENT node=v24.14.1 platform=darwin cpus=10 load=2.75732421875,4.63037109375,4.4560546875 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 0.04 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.60 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 1.95 s · new-with-source 2.60 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.63 s · repeated-with-receipt 0.07 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":1947.6300419999989,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2604.506708000001,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":43.42174999999952,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":63.7051250000004,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2629.8379580000037,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":74.87425000000076,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 36646.662541\n"
     }
   ],
   "history": {
@@ -1232,5 +1231,96 @@
     },
     "latestAcceptanceRun": "sha256:6af0b7a2334a92db06c823443f1e54d05f716480e8dc24e4a4721e27ac0f1d38",
     "previousAcceptedCapture": "sha256:20d7264cbd67069e4cfc297fef1c68ae281709e73250f6025eba93766bee6087"
+  },
+  "ciRepair": {
+    "productionDelta": "Only accessIdentity: operational obtained/renewed/entered results are excluded from its own declared scheme digest; actual changed declarations remain detected.",
+    "changedInputs": [],
+    "originalRunsNotRelabeledAsFresh": true,
+    "BoundChanged": false,
+    "dependenciesChanged": false,
+    "allOtherFunctionalMatricesRetained": true,
+    "narrowRevalidation": {
+      "protocol": "head-ci-repair-revalidation@1",
+      "productionChange": "accessIdentity excludes its own operational outcomes, while declared endpoint-byte changes remain binding",
+      "historicalMatrices": "All original complete regional vectors, timings and failures retained; no new full MCP or unrelated matrix claimed",
+      "currentInstalledRuntime": "4805 fixed members, 199-member unsigned regional npm archive; final CI delivery remains separate",
+      "executions": [
+        {
+          "log": "fixtures22-world-final.log",
+          "sha256": "sha256:89fcd58e9a4449035954bb125d504abd2754492f99ee2157d30081258e262cc1",
+          "tests": 33,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "fixtures24-world-final.log",
+          "sha256": "sha256:01b12e47441a8a448144cd958a8aff7b197dcdfc0a91a2c1fad19db4a08c3478",
+          "tests": 22,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "transport22-final.log",
+          "sha256": "sha256:4670cb3b9c5a8e9c2efb180fdc884bef13d218e9558cc408d685b4d5338afb3e",
+          "tests": 12,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "transport24-final.log",
+          "sha256": "sha256:e7cb56c40f81abb29b9b2bd07e1b993786004fe8c5cc756d13026590bea42886",
+          "tests": 12,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "repairs-node22.log",
+          "sha256": "sha256:c2505cf54c14ec6952b509538662c306dbbdde9386c1a7d43742bf632bf651d7",
+          "tests": 9,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "repairs-node24.log",
+          "sha256": "sha256:e562a2ea1619edda26c8bec651eb25e1acd09b069d19195e99f650273cc688b3",
+          "tests": 9,
+          "failed": 0,
+          "state": "Fresh affected-case execution; no unrelated matrix repeated"
+        },
+        {
+          "log": "authorizer24.log",
+          "sha256": "sha256:9aed3916f21ee4771823d41ff6873525352d8393891f5ddf61d757d419323583",
+          "tests": 11,
+          "failed": 0,
+          "state": "Original passing OAuth/repair execution retained; consumed production module identical and helper functions used by these tests unchanged"
+        }
+      ],
+      "installed": [
+        {
+          "node": "22",
+          "kind": "access",
+          "sha256": "sha256:6e7a34d82b6671d522dd6f3af3b703e389f057d0d734859664080c52cd9c3557"
+        },
+        {
+          "node": "22",
+          "kind": "export",
+          "sha256": "sha256:4da90ffec825e109ff8cf316673337793324e24314d35ef67f2d67d2a8f50bb0"
+        },
+        {
+          "node": "24",
+          "kind": "access",
+          "sha256": "sha256:d58dea81d9ffa3ef4817cc28d29459efbe833a6b9e50eaf4e4f3bc8360dc78a3"
+        },
+        {
+          "node": "24",
+          "kind": "export",
+          "sha256": "sha256:7188c0753317ed70d4481000117e84edcd85e60ef57ba2faa267de1a38ab597a"
+        }
+      ],
+      "clock": "Only the subsequent A gate is a latency measurement; functional-suite wall times are not promoted to response latency",
+      "realAccountsUsed": false,
+      "externalAPIsUsed": false,
+      "BoundChanged": false
+    }
   }
 }

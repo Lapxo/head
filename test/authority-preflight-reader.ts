@@ -7,7 +7,7 @@ interface Capture { readonly protocol: string; readonly inputs: readonly { path:
 const hash = (bytes: Uint8Array) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 /** Project complete, reviewed source-client runs. This does not certify source budgets, Q4 completeness or an installed release. */
 export function observe(bytes: Uint8Array) {
-  if (hash(bytes) !== 'sha256:f4cb07093beb8924b824463310c0d73e6e87cbf0c97f0734faefce339b012142') throw Error('REFUSE·authority-preflight capture digest');
+  if (hash(bytes) !== 'sha256:6593a416c981383b31f5ff4203f53ff8b1ba3a6e042f2105ff8eb356aa58a4eb') throw Error('REFUSE·authority-preflight capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture;
   if (capture.protocol !== 'head-authority-preflight-capture@1' || !Array.isArray(capture.runs) || capture.runs.length !== 2) throw Error('REFUSE·authority-preflight capture protocol');
   const nodes = new Set<string>();

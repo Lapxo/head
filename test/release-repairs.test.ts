@@ -28,6 +28,10 @@ for (const domain of ['instruments', 'documents']) {
     const other={...plan,origin:'https://two.example'};a.notEqual(accessIdentity(c,other,lines)!.account,identity.account);a.equal(principalOf(c,other,true,lines),undefined);a.notEqual(accessIdentity(c,{...plan,origin:'https://one.example/production'},lines)!.account,accessIdentity(c,{...plan,origin:'https://one.example/staging'},lines)!.account,'different server paths cannot silently share a credential');
     a.notEqual(accessIdentity(c,{...plan,access:{...plan.access,params:{audience:['two']}}},lines)!.binding,identity.binding);
     a.notEqual(accessIdentity(c,plan,[{...lines[0],value:'other-root'}])!.binding,identity.binding);
+    const observed = {...plan,access:{...plan.access,from:`${valueOf(lock,'access/family')}/${plan.access.flow}`}}, declaration = {scope:observed.access.from+'/steps/1',measure:'endpoint',value:'https://issuer.example/renew',at:'receipt:observation'};
+    const before = accessIdentity(c,observed,[lines[0]!,declaration])!, outcome = {scope:observed.access.from+'/obtained',measure:'status',value:'present',at:'receipt:2026-10-30',about:'access-binding:sha256:'+before.binding};
+    a.equal(accessIdentity(c,observed,[lines[0]!,declaration,outcome])!.binding,before.binding,'the outcome is not a new declared access context');
+    a.notEqual(accessIdentity(c,observed,[lines[0]!,{...declaration,value:declaration.value+'x'},outcome])!.binding,before.binding,'one changed declared endpoint byte remains binding, including observed declarations');
   });
   test(`${domain}: canonical home namespaces and explicitly approved compatible legacy lookup do not move keys`, async () => {
     const dir=mkdtempSync(join(tmpdir(),'head-home-scope-')), one=join(dir,'a/home'),two=join(dir,'b/home');mkdirSync(one,{recursive:true});mkdirSync(two,{recursive:true});

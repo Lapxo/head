@@ -14,7 +14,9 @@ type Kept = Obtained & { readonly at?: string; readonly binding?: string; readon
 export const accessIdentity = (context: Context, plan: Call, lines: readonly Said[]) => {
   const root = lines.find(l => l.scope === valueOf(context.lock, 'founding/root') && l.measure === 'public-key')?.value;
   if (!root || !plan.access.account || !URL.canParse(plan.origin)) return undefined;
-  const scheme = plan.access.from ?? `${vocabOf(context.lock).keys}/${plan.access.flow}`, declarations = lines.filter(l => l.scope === scheme || l.scope?.startsWith(scheme + '/')).map(({sig,epoch,at,by,...line}) => canonical(line)).sort();
+  const outcome = `${valueOf(context.lock, 'access/family')}/${plan.access.flow}/`, receiptAt = valueOf(context.lock, 'receipt/at') + ':';
+  const isOutcome = (l: Said) => ['obtained', 'renewed', 'entered'].some(event => l.scope === outcome + event) && l.measure === 'status' && l.value === 'present' && l.at?.startsWith(receiptAt) && l.about?.startsWith('access-binding:sha256:');
+  const scheme = plan.access.from ?? `${vocabOf(context.lock).keys}/${plan.access.flow}`, declarations = lines.filter(l => (l.scope === scheme || l.scope?.startsWith(scheme + '/')) && !isOutcome(l)).map(({sig,epoch,at,by,...line}) => canonical(line)).sort();
   const binding = createHash('sha256').update(JSON.stringify([root, new URL(plan.origin).href, plan.access.kind, plan.access.scheme, plan.access.flow, declarations, Object.entries(plan.access.params).sort(([a], [b]) => a.localeCompare(b))])).digest('hex');
   return { binding, account: `${plan.access.account}/${binding}` };
 };

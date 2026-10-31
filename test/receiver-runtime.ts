@@ -4,7 +4,7 @@ const hash=(x:Uint8Array)=>'sha256:'+createHash('sha256').update(x).digest('hex'
 /** Reuse reviewed regional observations only while every current declared input is byte-identical. Capacity remains independently judged. */
 export function run(place:string){
   verifyRuntimeInventory('dependency/runtime-inventory');
- const bytes=readFileSync('samples/receiver-runtime/yes/client.json');if(hash(bytes)!=='sha256:86ee8b14f7104d5ba4cb7c03f861be72f30c7785b9cfd63d984a13942a142bde')throw Error('REFUSE·receiver/capture');const c=JSON.parse(bytes.toString());
+ const bytes=readFileSync('samples/receiver-runtime/yes/client.json');if(hash(bytes)!=='sha256:f4b220e1b467c4c3a186162ff5a303241425b9c1ca918909433f107b6dc3461e')throw Error('REFUSE·receiver/capture');const c=JSON.parse(bytes.toString());
  for(const i of c.inputs)if(hash(readFileSync(i.path))!==i.sha256)throw Error('REFUSE·receiver/current-input');
  const current=readdirSync('src',{recursive:true,withFileTypes:true}).filter(e=>e.isFile()&&e.name.endsWith('.ts')).map(e=>e.parentPath+'/'+e.name).sort();if(JSON.stringify(current)!==JSON.stringify(c.inputs.filter((i:{path:string})=>i.path.startsWith('src/')).map((i:{path:string})=>i.path).sort()))throw Error('REFUSE·receiver/source-inventory');
  if(c.protocol!=='head-bundle-receiver-capture@1'||c.runs.length!==2||c.runs.map((r:{node:string})=>r.node).sort().join('|')!=='22|24')throw Error('REFUSE·receiver/runtimes');

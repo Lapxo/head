@@ -6,7 +6,7 @@ const rows = (text: string) => text.split('\n').filter(Boolean).map(line => pars
 /** Verify current declared bytes and an executed installed-consumer receipt; no expected runtime digest is learned from an installation. */
 export function run(place: string) {
   const capture = readFileSync('samples/runtime-inventory/yes/client.json');
-  if (hash(capture) !== 'sha256:1b3b3065471a293bd41f4893ba7e4c06ec334afb0d612934db765663def458bb') throw Error('REFUSE·runtime-inventory/capture');
+  if (hash(capture) !== 'sha256:d14418032a534f976c0814c32adc66fabfd26166edfe752d36e46232f426fd27') throw Error('REFUSE·runtime-inventory/capture');
   const receipt = JSON.parse(capture.toString());
   if (receipt.protocol !== 'head-runtime-inventory-capture@1' || receipt.runs.length !== 2 || receipt.runs.map((r: { node: string }) => r.node).sort().join('|') !== '22|24') throw Error('REFUSE·runtime-inventory/runtimes');
   for (const input of receipt.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·runtime-inventory/current-input');
