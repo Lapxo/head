@@ -1,11 +1,11 @@
 {
-  "from": "topos-mcp standing sha256:c472ae2856813c7e8cbc3dbd7e96884aa2e769dd5fa277fcb21d7061a81dda3e, case demo · place@1: compiled by the pinned producer response contract, not proof of public release availability",
+  "from": "topos-mcp standing sha256:58879780279c36294ca9819174e52605b336f4c3ac70c40db382c0f090003870, case demo · place@1: replayed from the exact published 0.1.3 capsule with vectors/mcp-demo.input.json; public release availability is verified separately",
   "lines": [
-    "bound-lock/1 about=\"a host calls the server at most this often for one person\" at=policy:topos/capsule by=target form=interval measure=calls-per-hour role=reads scope=read/rate value=0..60",
-    "bound-lock/1 about=\"a read answers with at most this many bytes; one that answers more is refused, not cut\" at=policy:topos/capsule by=target form=interval measure=bytes role=reads scope=read/response-bytes value=0..1048576",
-    "bound-lock/1 about=\"a read follows no page beyond the first\" at=policy:topos/capsule by=target form=interval measure=pages role=reads scope=read/pages value=0..1",
-    "bound-lock/1 about=\"a tool whose class is not read is listed and never called, until a person-s lock widens it\" at=policy:topos/capsule by=target form=interval measure=calls role=reads scope=write/calls value=0..0",
-    "bound-lock/1 about=\"an answer shows at most this many members of an array; the rest it counts, never passes\" at=policy:topos/capsule by=target form=interval measure=members role=reads scope=read/items value=0..50",
+    "bound-lock/1 about=\"a host calls the server at most this often for one person\" at=policy:topos/capsule form=interval measure=calls-per-hour role=reads scope=read/rate value=0..60",
+    "bound-lock/1 about=\"a read answers with at most this many bytes; one that answers more is refused, not cut\" at=policy:topos/capsule form=interval measure=bytes role=reads scope=read/response-bytes value=0..1048576",
+    "bound-lock/1 about=\"a read follows no page beyond the first\" at=policy:topos/capsule form=interval measure=pages role=reads scope=read/pages value=0..1",
+    "bound-lock/1 about=\"a tool whose class is not read is listed and never called, until a person-s lock widens it\" at=policy:topos/capsule form=interval measure=calls role=reads scope=write/calls value=0..0",
+    "bound-lock/1 about=\"an answer shows at most this many members of an array; the rest it counts, never passes\" at=policy:topos/capsule form=interval measure=members role=reads scope=read/items value=0..50",
     "bound-lock/1 at=place:mcp by=mcp form=alphabet measure=access role=writes scope=offers/demo/add_note value=authorization",
     "bound-lock/1 at=place:mcp by=mcp form=alphabet measure=access role=writes scope=offers/demo/drop_note value=authorization",
     "bound-lock/1 at=place:mcp by=mcp form=alphabet measure=access role=writes scope=offers/demo/list_notes value=authorization",

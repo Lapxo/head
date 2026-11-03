@@ -470,6 +470,10 @@
       "sha256": "sha256:f0bc7e307748ebb15dc3c56534bc6247ae045b43043645d21316ef3f4648de47"
     },
     {
+      "path": "test/ci-repair-reading.ts",
+      "sha256": "sha256:98051a2050573df593ead01ab94054f299f1aaf6706308ad23d2fe47c12aa259"
+    },
+    {
       "path": "test/claims.test.ts",
       "sha256": "sha256:3916e99710c40dad5b0aed77b112b14a4a32f5c442538aec6c804cfb6288c98c"
     },
@@ -635,7 +639,11 @@
     },
     {
       "path": "test/numbers.test.ts",
-      "sha256": "sha256:f4de510de88f2f82c48108dfef90da7451aad7db2cd1c3302df3b5afe264a3c2"
+      "sha256": "sha256:999cfda5529d8cbc0db9d8ff8cdcd1f4d976441021eeb3f408c4c25a81788bd7"
+    },
+    {
+      "path": "test/numeric-fields.ts",
+      "sha256": "sha256:c1c5cf4964ff091b5ee91e12fd538729ac02af2a0914b107c8d094c27417f5c9"
     },
     {
       "path": "test/observed.test.ts",
@@ -739,7 +747,7 @@
     },
     {
       "path": "test/receive-batch-lock.test.ts",
-      "sha256": "sha256:d23d2ae3178f5f357e18cf15c7bb76efbdd47901fdab5f67244e29446b776257"
+      "sha256": "sha256:1acfbf4deac4f0fb8251fd93f6ec88b804200366ca8d646b4ebc2f7c9bb0645f"
     },
     {
       "path": "test/receive-batch-mcpb.ts",
@@ -847,7 +855,7 @@
     },
     {
       "path": "test/security-reading.ts",
-      "sha256": "sha256:fcb374bb26ad86b0d1f6345a69d9b4267470ce45869462575b6ed63a999ef57d"
+      "sha256": "sha256:093200c84f1d88c4ae4d04c078baad2cd3faa25a3fefc82d437c3f29bf3d0844"
     },
     {
       "path": "test/serve-bytes.ts",
@@ -859,7 +867,7 @@
     },
     {
       "path": "test/shape.test.ts",
-      "sha256": "sha256:11e280d248aaedc40c2c4c9eaed3ad49f5cae0bb1264f7f1fe90073d7d303828"
+      "sha256": "sha256:e277ded69dd6d42577c5cc8e2e94de82a5882eaf64a4015a44453018dbba2c42"
     },
     {
       "path": "test/share-bundle.test.ts",
@@ -883,7 +891,7 @@
     },
     {
       "path": "test/share.test.ts",
-      "sha256": "sha256:86b9341e6ca2b4908da27e96c7478adb67ad74394dc4dd54149949043396d9fb"
+      "sha256": "sha256:883e168afc8ebc49cd03a6111c22c0ca0201f5814b296f618379ee0464d481d1"
     },
     {
       "path": "test/signer.test.ts",
@@ -987,7 +995,7 @@
     },
     {
       "path": "test/world-standing.test.ts",
-      "sha256": "sha256:4486a421158946b6c01ad7cb5f367af7067d223e06d68d241a6b7e955237f085"
+      "sha256": "sha256:da76248d768d4b16b626872af2a6dab67dfc39611d10af1e7fbb1511f7662ca9"
     },
     {
       "path": "test/world-standing.ts",
@@ -1067,7 +1075,7 @@
   },
   "status": "Independent observations retained; inventory reflects current readers and separately pinned current revalidation.",
   "predecessor": {
-    "sha256": "sha256:d7b9685315d0c632cd2283927a08ae75636cd2d7e47daf99ec918e1c5bf52a23",
+    "sha256": "sha256:a49c983336de0a4ac1353dad03d2a0cc6c77dacb0e9a988b5176ae353d3496c9",
     "historicalExecutionsPreserved": true
   },
   "evidenceReuse": {
@@ -1386,7 +1394,7 @@
   },
   "securityEvidence": {
     "path": "samples/security/yes/managed-egress.json",
-    "sha256": "sha256:bdb38103ed1a2edf91329dba37b4527de050364a2b3840ce8fa8f3e29c394d25",
+    "sha256": "sha256:116cde93954ccd9fbe4bf14e022f86315ee7125e05bc1e969fcb347530d311ed",
     "originalRunsRetained": true,
     "newFunctionalMatrix": false,
     "meaning": "Current security publication helpers and isolated focal fixtures have their own separate acceptance. This updates only the current consumed inputs; original complete consumers are not relabelled."

@@ -810,8 +810,16 @@
       "sha256": "sha256:e7246c36fe37c839f8efd391c957435061f128c179d42f4e3bfca864434ec97e"
     },
     {
+      "path": "dist/test/ci-repair-reading.js",
+      "sha256": "sha256:c434c3ef91869791904a5f2dc1557d9cce67dffc6066890255ff5907adee2ff4"
+    },
+    {
       "path": "dist/test/composition.test.js",
       "sha256": "sha256:a03abe6a98243bb0d927b9f27018c352a3a49ccff42d5912b5f668173e0fc293"
+    },
+    {
+      "path": "dist/test/numeric-fields.js",
+      "sha256": "sha256:75ab27fb85fb5d3db68752955ef8d10a0ec2c9f956f55884a8cff08ef1ad4bca"
     },
     {
       "path": "dist/test/pack-literals.js",
@@ -852,6 +860,10 @@
     {
       "path": "docs/contracts/bundle-receiver.json",
       "sha256": "sha256:4782fb3d7d11f5041589fc077f0cb51510ae8ead1a6be731e1efdef44a06a5db"
+    },
+    {
+      "path": "docs/contracts/ci-repair.json",
+      "sha256": "sha256:b815b130dba0431a1410cdc8e6d88cd2e8aa870b2c6c95b9f04f35338d4e8232"
     },
     {
       "path": "docs/contracts/composition-mcpb.json",
@@ -920,6 +932,10 @@
     {
       "path": "runtime.bundle.json",
       "sha256": "sha256:853c0446f407266d5ed5093bd4618a50c5b0bdc13cbc927fcce07f8ec44b2e0a"
+    },
+    {
+      "path": "samples/ci-repair/yes/results.json",
+      "sha256": "sha256:186f684d9f95f64176b0a711b10c52c4c66e0d4f3758f37a9235f6cbc9214650"
     },
     {
       "path": "samples/mcp-receiver/yes/timing-selection.json",
@@ -1402,6 +1418,10 @@
       "sha256": "sha256:f0bc7e307748ebb15dc3c56534bc6247ae045b43043645d21316ef3f4648de47"
     },
     {
+      "path": "test/ci-repair-reading.ts",
+      "sha256": "sha256:98051a2050573df593ead01ab94054f299f1aaf6706308ad23d2fe47c12aa259"
+    },
+    {
       "path": "test/claims.test.ts",
       "sha256": "sha256:3916e99710c40dad5b0aed77b112b14a4a32f5c442538aec6c804cfb6288c98c"
     },
@@ -1595,7 +1615,11 @@
     },
     {
       "path": "test/numbers.test.ts",
-      "sha256": "sha256:f4de510de88f2f82c48108dfef90da7451aad7db2cd1c3302df3b5afe264a3c2"
+      "sha256": "sha256:999cfda5529d8cbc0db9d8ff8cdcd1f4d976441021eeb3f408c4c25a81788bd7"
+    },
+    {
+      "path": "test/numeric-fields.ts",
+      "sha256": "sha256:c1c5cf4964ff091b5ee91e12fd538729ac02af2a0914b107c8d094c27417f5c9"
     },
     {
       "path": "test/observed.test.ts",
@@ -1699,7 +1723,7 @@
     },
     {
       "path": "test/receive-batch-lock.test.ts",
-      "sha256": "sha256:d23d2ae3178f5f357e18cf15c7bb76efbdd47901fdab5f67244e29446b776257"
+      "sha256": "sha256:1acfbf4deac4f0fb8251fd93f6ec88b804200366ca8d646b4ebc2f7c9bb0645f"
     },
     {
       "path": "test/receive-batch-mcpb.ts",
@@ -1815,7 +1839,7 @@
     },
     {
       "path": "test/shape.test.ts",
-      "sha256": "sha256:11e280d248aaedc40c2c4c9eaed3ad49f5cae0bb1264f7f1fe90073d7d303828"
+      "sha256": "sha256:e277ded69dd6d42577c5cc8e2e94de82a5882eaf64a4015a44453018dbba2c42"
     },
     {
       "path": "test/share-bundle.test.ts",
@@ -1839,7 +1863,7 @@
     },
     {
       "path": "test/share.test.ts",
-      "sha256": "sha256:86b9341e6ca2b4908da27e96c7478adb67ad74394dc4dd54149949043396d9fb"
+      "sha256": "sha256:883e168afc8ebc49cd03a6111c22c0ca0201f5814b296f618379ee0464d481d1"
     },
     {
       "path": "test/signer.test.ts",
@@ -1947,7 +1971,7 @@
     },
     {
       "path": "test/world-standing.test.ts",
-      "sha256": "sha256:4486a421158946b6c01ad7cb5f367af7067d223e06d68d241a6b7e955237f085"
+      "sha256": "sha256:da76248d768d4b16b626872af2a6dab67dfc39611d10af1e7fbb1511f7662ca9"
     },
     {
       "path": "test/world-standing.ts",
@@ -1976,6 +2000,14 @@
     {
       "path": "vectors/implicit-root.json",
       "sha256": "sha256:91c0a09114bf0fac79148c6e332fd9cf2f7e460ed089de1c898bf6a6b64199fa"
+    },
+    {
+      "path": "vectors/mcp-demo.input.json",
+      "sha256": "sha256:3681586ee198380ad15252220365b574853cbe1f2c8a685280962427f50f0ba2"
+    },
+    {
+      "path": "vectors/mcp-demo.json",
+      "sha256": "sha256:faaa1dd7b9f0786ef593800c8e5eaf796ca820a3fbefbcacb09ca31ac6eafce1"
     },
     {
       "path": "vectors/mcp-receiver-flow.json",
@@ -2110,7 +2142,7 @@
   "noPrivateInputs": true,
   "fullMCPMatrixRepeated": false,
   "predecessor": {
-    "sha256": "sha256:77235a395cc2262cb0e7ee448c214909de2c7fd25b6594ad5ad98c2bc3b7d629",
+    "sha256": "sha256:bdb38103ed1a2edf91329dba37b4527de050364a2b3840ce8fa8f3e29c394d25",
     "historicalExecutionsPreserved": true
   },
   "metadataSuccessor": {

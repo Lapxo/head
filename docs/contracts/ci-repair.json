@@ -1,0 +1,52 @@
+{
+  "protocol": "head-ci-repair-contract@1",
+  "meaning": "Eight focused assertions cover the six reported CI failures; this does not claim a green CI run.",
+  "testsPerRuntime": 8,
+  "numericRefreshTests": 2,
+  "requiredNames": [
+    "installed OS guard survives a killed Head",
+    "every said code has a state",
+    "receive refusal keeps the exact original connect",
+    "numbers: every number code",
+    "no: a number code",
+    "share packs a place into lines",
+    "topos-mcp is pinned, never adopted",
+    "world standing: declared payloads"
+  ],
+  "unchangedBounds": 120,
+  "decisions": {
+    "numericAudit": "String of a lexically resolved catch binding is diagnostic text. Non-catch String conversions, Number conversions and numeric expressions still require a declared kind; shadowed String is never exempt.",
+    "dependencyOrder": "Issuer epoch must not exceed dependent epoch. Equal epochs require two signed claims from one native Root actor and the original explicit restsOn dependency; one atomic act replaces separate sequential admissions.",
+    "receiveNext": "Declare the place, document and digest which the existing refusal callers already carry; next retains those exact values.",
+    "installedPort": "Default to the compiled current receiving adapter on a clean checkout; an explicit installed-port override remains available.",
+    "worldStanding": "Exact expected physical bytes follow the selected published standing: 45384, with the same 1048576 limit.",
+    "mcpVector": "Replay the exact pinned 0.1.3 producer using current provider forms; no pin or provider implementation changes."
+  },
+  "numericModels": [
+    {
+      "name": "warehouse",
+      "text": "try {} catch (diagnostic) { say('unsettled', { why: String(diagnostic), took: Number(diagnostic) }); }",
+      "expected": [
+        "unsettled.took"
+      ]
+    },
+    {
+      "name": "observatory",
+      "text": "const diagnostic=2; say('reading', { took: String(diagnostic), size: items.length, value: 7 });",
+      "expected": [
+        "reading.took",
+        "reading.size",
+        "reading.value"
+      ]
+    },
+    {
+      "name": "shadowed conversion",
+      "text": "function String(value:unknown){return 1;} try {} catch (diagnostic) { say('reading', { took: String(diagnostic) }); }",
+      "expected": [
+        "reading.took"
+      ]
+    }
+  ],
+  "actualCIStatus": "The original CI failure is preserved. Fresh CI remains pending the authorized repair.",
+  "noPrivateInputs": true
+}

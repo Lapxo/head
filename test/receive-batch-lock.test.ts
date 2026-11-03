@@ -4,9 +4,9 @@ import { spawn, spawnSync } from 'node:child_process';
 import { mkdtempSync, mkdirSync, symlinkSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 test('installed OS guard survives a killed Head and excludes another process with a different TMPDIR and canonical alias', async()=>{
- const entry=process.env['HEAD_BATCH_PORT'];assert.ok(entry,'installed receiving port required');
+ const entry=process.env['HEAD_BATCH_PORT'] ?? fileURLToPath(new URL('../dist/src/ports/receive.js',import.meta.url));assert.ok(entry,'compiled or explicitly installed receiving port required');
  const root=mkdtempSync(join(tmpdir(),'head-batch-lock-')), parent=join(root,'real'), alias=join(root,'alias');mkdirSync(parent);symlinkSync(parent,alias);const oneTmp=join(root,'one'),twoTmp=join(root,'two');mkdirSync(oneTmp);mkdirSync(twoTmp);
  const source=`import{receivingAt}from${JSON.stringify(pathToFileURL(entry).href)};await receivingAt(process.argv[1],async()=>{console.log('held');await new Promise(r=>process.stdin.once('data',r))},5000);`;
  const child=spawn(process.execPath,['--input-type=module','-e',source,join(parent,'place')],{stdio:['pipe','pipe','pipe'],env:{...process.env,TMPDIR:oneTmp}});

@@ -5,6 +5,7 @@ import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { join } from 'node:path';
 import { members, valueOf } from '../src/core/lock.ts';
+import { numericFields } from './numeric-fields.ts';
 import { cellOf } from '../src/ports/surface.ts';
 import { ask } from './client.ts';
 import { api, born, lock, root } from './place.ts';
@@ -12,15 +13,12 @@ import { api, born, lock, root } from './place.ts';
 const [measured, structural, reported, whyOnly] = ['measured', 'structural', 'reported', 'structural/why'].map((k) => members(valueOf(lock, `numbers/${k}`)));
 const abouts = lock.filter((l) => /^said\/[a-z0-9-]+$/.test(l.scope ?? '')).map((l) => ({ code: l.scope!.slice('said/'.length), held: new Set([...(l.about ?? '').matchAll(/\{(\w+)\}/g)].map((m) => m[1]!)) }));
 const sources = (dir: string): readonly string[] => readdirSync(join(root, dir), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? sources(`${dir}/${e.name}`) : e.name.endsWith('.ts') ? [`${dir}/${e.name}`] : []));
-/** The fields a cell is given a number in, as code says it: String(…) or Number(…) of something, a length, a fixed count. */
-const numbered = (text: string): readonly string[] => [...text.matchAll(/\(\s*'([a-z0-9-]+)',\s*\{((?:[^{}]|\{[^{}]*\})*)\}/g)]
-  .flatMap((m) => [...m[2]!.matchAll(/(\w+):\s*(?:String\(|Number\(|Math\.|[\w.]+\.length\b|[\w.()]+\.toFixed\()/g)].map((f) => `${m[1]}.${f[1]}`));
-const unkinded = (text: string) => numbered(text).filter((f) => ![...measured, ...structural, ...reported].includes(f.split('.')[1]!));
+const unkinded = (text: string) => numericFields({ 'fixture.ts': text }).filter((f) => ![...measured, ...structural, ...reported].includes(f.split('.')[1]!));
 const cells = (answer: any): any[] => answer.result.structuredContent.cells;
 const reading = (place: string) => ({ method: 'tools/call', params: { name: 'ask', arguments: { place, source: 'tracker', operation: 'issues/list-for-repo', args: { owner: 'lapxo', repo: 'demo' } } } });
 
 test('numbers: every number code gives a cell is measured, structural or reported; a measured one names its model and params, a reported one who said it and when, and a ledger epoch is said only where why is asked', () => {
-  deepStrictEqual(sources('src').flatMap((f) => unkinded(readFileSync(join(root, f), 'utf8'))), [], 'a number of no kind');
+  deepStrictEqual(numericFields(Object.fromEntries(sources('src').map(f => [f, readFileSync(join(root, f), 'utf8')]))).filter(f => ![...measured, ...structural, ...reported].includes(f.split('.')[1]!)), [], 'a number of no kind');
   deepStrictEqual([...measured, ...structural, ...reported].filter((f) => !abouts.some((a) => a.held.has(f))), [], 'a kind for a field no cell carries');
   deepStrictEqual(measured.filter((f) => !valueOf(lock, `numbers/${f}/model`) || !valueOf(lock, `numbers/${f}/params`)), [], 'a measured number without its model or params');
   deepStrictEqual(abouts.filter((a) => reported.some((f) => a.held.has(f)) && !(a.held.has('at') && (a.held.has('source') || a.held.has('document')))).map((a) => a.code), [], 'a reported number without who said it and when');
@@ -29,6 +27,10 @@ test('numbers: every number code gives a cell is measured, structural or reporte
 
 test('no: a number code gives a cell with no kind is named, and a value nothing measured is said unmeasured with what it waits on, with no digit for it', () => {
   deepStrictEqual(unkinded("say('slow', { source, took: String(spent.length) })"), ['slow.took']);
+  deepStrictEqual(numericFields({ 'math.ts': "say('reading', { first: Math.PI, second: Math.round(input), third: input.toFixed(2) });" }), ['reading.first','reading.second','reading.third']);
+  deepStrictEqual(numericFields({ 'scope.ts': "try {} catch (reason) { say('unsettled', { why: String(reason) }); } const reason = 3; say('reading', { value: String(reason), size: Number(input), length: items.length, literal: 7 });" }), ['reading.value','reading.size','reading.length','reading.literal']);
+  deepStrictEqual(numericFields({ 'first.ts': "try {} catch (diagnostic) { say('unsettled', { why: String(diagnostic), took: Number(diagnostic) }); }", 'second.ts': "const diagnostic=2; say('reading', { took: String(diagnostic) });" }), ['unsettled.took','reading.took']);
+  deepStrictEqual(numericFields({ 'shadow.ts': "function String(value:unknown){return 1;} try {} catch (diagnostic) { say('reading', { took: String(diagnostic) }); }" }), ['reading.took']);
   const cell = cellOf(lock, 'unmeasured', { what: 'the loss between two sources', needs: 'a world that measures it' });
   deepStrictEqual([cell.state, 'none' in cell.next, Object.values(cell.fields).some((v) => /\d/.test(String(v)))], ['open', true, false]);
 });
