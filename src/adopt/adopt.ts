@@ -2,7 +2,7 @@ import { EXTENSION } from '@lapxo/topos/wire';
 import type { Context, Outcome } from '../core/answer.ts';
 import { members, valueOf } from '../core/lock.ts';
 import type { Said } from '../core/lock.ts';
-import { linesOf } from '../core/worlds.ts';
+import { digestIn, linesOf } from '../core/worlds.ts';
 import type { Line } from '../compile/pin.ts';
 
 /**
@@ -14,7 +14,7 @@ const readersOf = (lock: readonly Said[], standing: readonly Said[]): readonly {
   const region = valueOf(lock, 'vocab/region');
   const reads = (view: string) => members(standing.find((l) => l.scope === `${region}/${valueOf(lock, view)}` && l.measure === 'reads')?.value ?? '');
   const answer = valueOf(standing, 'capsule/answer-region');
-  const [connected, answered] = [reads('place/view'), [...reads('place/answer'), ...members(standing.find(l => l.scope === `${region}/${answer}` && l.measure === 'reads')?.value ?? '')]];
+  const [connected, answered] = [[...reads('place/view'), ...members(standing.find(l => l.scope === `${region}/${valueOf(standing, 'capsule/compile-region')}` && l.measure === 'reads')?.value ?? '')], [...reads('place/answer'), ...members(standing.find(l => l.scope === `${region}/${answer}` && l.measure === 'reads')?.value ?? '')]];
   return standing.filter((l) => l.scope?.startsWith(`${region}/`) && l.measure === 'writes' && l.role === 'writes').flatMap((l) => ((coordinates) => (coordinates
     ? [{ scope: l.scope!, measure: 'coordinates', value: coordinates }, { scope: l.scope!, measure: 'receipts', value: l.value! }] : []))(
     connected.includes(l.scope!) || standing.some(input => input.scope === l.scope && input.measure === 'reads' && input.role === 'receipt') && members(l.value ?? '').some(output => connected.includes(output)) ? valueOf(lock, 'place/connected/coordinates') : answered.includes(l.scope!) || standing.some(input => input.scope === l.scope && input.measure === 'reads' && input.role === 'receipt') && members(l.value ?? '').some(output => answered.includes(output)) ? valueOf(lock, 'place/answers/coordinates') : ''));
@@ -41,6 +41,13 @@ export const adopted = async (context: Context, place: string, lands: (lot: read
     const answer = answers[0], selected = answer && word('birth/view/answer').replace(/^[^@]+/, answer);
     if (answer && own.some(l => l.scope === `view/${answer}` && (l.value !== selected || l.role !== 'demands'))) return { refused: 'REFUSE·world/answer-view' };
     if (answer && !own.some(l => l.scope === `view/${answer}`)) lot.push(line(`view/${answer}`, 'id', selected!, { role: 'demands' }));
+    let compilation: string | undefined;
+    try { compilation = compileRegion(provider); } catch { return { refused: 'REFUSE·world/compile-view' }; }
+    if (compilation) {
+      const selected = word('birth/view/place').replace(/^[^@]+/, compilation), scope = `view/${compilation}`, declared = [...own, ...lot.flatMap(l => linesOf(new TextEncoder().encode(l)))].filter(l => l.scope === scope);
+      if (declared.some(l => l.value !== selected || l.role !== 'demands')) return { refused: 'REFUSE·world/compile-view' };
+      if (!declared.length) lot.push(line(scope, 'id', selected, { role: 'demands' }));
+    }
     const laid = `${word('place/worlds')}/${w}${EXTENSION}`;
     context.files.lay(place, laid, bytes);
     lot.push(line(`uses/${w}`, 'digest', standing, { needs: laid }), line(`sources/${w}`, 'id', at), line(`dep/${w}-blob`, 'digest', blob, { shape: word('world/shape') }), line(`sources/${w}-blob`, 'id', blobAt),
@@ -52,3 +59,24 @@ export const adopted = async (context: Context, place: string, lands: (lot: read
 /** The name of a lock the place pins as its parent, when it pins one: composing a parent's policy with a child's is bound's, so head reads nothing of such a place and signs nothing for it. */
 export const adoptsIn = (lock: readonly Said[], lines: readonly Said[]): string | undefined =>
   lines.find((l) => l.scope?.startsWith('uses/') && l.needs?.startsWith(`${valueOf(lock, 'place/adopted')}/`))?.scope?.slice('uses/'.length);
+
+/** Resolve compilation names from authenticated adopted world bytes, never from a source or recipe. */
+export const compileViews = (context: Context, place: string, own: readonly Said[]): readonly string[] => {
+  const worlds = own.filter(l => l.scope?.startsWith('uses/') && l.needs?.startsWith(`${valueOf(context.lock, 'place/worlds')}/`));
+  const names = worlds.map(world => {
+    const bytes = context.files.take(`${place}/${world.needs}`);
+    if (!bytes || digestIn(context.lock)(bytes) !== world.value) throw Error('world/compile-standing');
+    const name = compileRegion(linesOf(bytes));
+    if (name && !own.some(l => l.scope === `view/${name}` && l.role === 'demands' && l.value === valueOf(context.lock, 'birth/view/place').replace(/^[^@]+/, name))) throw Error('world/compile-view');
+    return name;
+  });
+  if (names.length > 1 && (names.some(name => !name) || new Set(names).size !== names.length)) throw Error('world/compile-ambiguous');
+  return names.length ? names.map(name => name ?? valueOf(context.lock, 'place/view')) : [valueOf(context.lock, 'place/view')];
+};
+
+/** A compiler is declared once, with its own render reads and output contract. */
+const compileRegion = (standing: readonly Said[]): string | undefined => {
+  const declarations = standing.filter(l => l.scope === 'capsule/compile-region'), declaration = declarations[0];
+  if (declarations.length > 1 || declaration && (declaration.measure !== 'id' || declaration.role !== 'writes' || !/^[a-z][a-z0-9-]*$/.test(declaration.value ?? '') || !standing.some(l => l.scope === `region/${declaration.value}` && l.role === 'render' && l.measure === 'reads') || !standing.some(l => l.scope === `region/${declaration.value}` && l.role === 'writes' && l.measure === 'writes'))) throw Error('world/compile-view');
+  return declaration?.value;
+};

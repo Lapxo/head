@@ -8,9 +8,9 @@ import { shapeOf } from '../ports/surface.ts';
 import { sayIn } from './surface.ts';
 import { compose, type Recipe, type Source } from './composition.ts';
 import { digestIn, linesOf } from './worlds.ts';
-import { unpacked } from './package.ts';
+import { retainedIn, unpacked } from './package.ts';
 import { associationFor, associationLines } from './association.ts';
-import { received, laidIn } from '../sources/connect.ts';
+import { received } from '../sources/connect.ts';
 import { rootIn, homeIndex } from '../flows/device.ts';
 import { bundleRefusal } from './share-bundle.ts';
 import { bornAt } from '../places/found.ts';
@@ -33,7 +33,7 @@ async function material(context: Context) {
   const document = join(port.root, 'composition', LOCK), got = unpacked(context, document, bytes, files), digest = digestIn(context.lock);
   if (!got.sources || got.open.length || got.sources.length !== sources.length || sources.some(s => s.kind !== 'compiled' || !got.sources!.some(g => g.source === s.name && g.pin === s.pin && digest(g.document.bytes) === s.document))) throw Error('bundle/public-package');
   const identity = { id: recipe.id, revision: recipe.revision, digest: digest(Buffer.from(JSON.stringify([digest(selection), digest(bytes)]))) };
-  return { identity, document, lockDigest: digest(bytes), bytes, files, documents, sources, selection: made.entries };
+  return { identity, document, lockDigest: digest(bytes), bytes, files, documents, sources, sourceInputs: got.sources, packageLines: linesOf(bytes), selection: made.entries };
 }
 async function associated(context: Context, payload: NonNullable<Awaited<ReturnType<typeof material>>>) {
   const index = await homeIndex(context);
@@ -47,10 +47,10 @@ const localName = async (context: Context, place: string, fallback: string) => {
   if (names.length > 1) throw Error('bundle/place-ambiguous');
   return names[0] ?? fallback;
 };
-const validPins = async (context: Context, place: string, sources: readonly Source[]) => {
+const validPins = async (context: Context, place: string, payload: NonNullable<Awaited<ReturnType<typeof material>>>) => {
   if (!context.files.has(place, LOCK)) return false;
   const held = await context.policy(place);
-  return !('refused' in held) && sources.every(s => held.lines.some(l => l.scope === `uses/${s.name}` && l.value === s.pin));
+  return !('refused' in held) && retainedIn(context, place, held.lines, payload.sourceInputs, payload.packageLines).size === payload.sources.length;
 };
 /** Questions only describe the required connect, or route an already associated package; they never import or grant. */
 export async function receiverQuestion(asked: Asked, context: Context): Promise<{ place: string } | { said: readonly string[] } | undefined> {
@@ -58,7 +58,7 @@ export async function receiverQuestion(asked: Asked, context: Context): Promise<
     const payload = await material(context); if (!payload || asked['place']) return undefined;
     const { plan } = await associated(context, payload);
     if (plan.state === 'collision') throw Error('bundle/revision-collision');
-    if (plan.state === 'same' && plan.place && await validPins(context, plan.place, payload.sources)) return { place: plan.place };
+    if (plan.state === 'same' && plan.place && await validPins(context, plan.place, payload)) return { place: plan.place };
     return { said: [sayIn(context.lock)('bundle-receiver-ready', { document: payload.document, digest: payload.lockDigest, name: payload.identity.id, revision: payload.identity.revision, place: plan.place })] };
   } catch (error) { return { said: bundleRefusal(context, error) }; }
 }
@@ -70,23 +70,27 @@ export async function receiverConnect(asked: Asked, context: Context): Promise<r
     if (asked['digest'] !== payload.lockDigest) throw Error('bundle/document-digest');
     const { plan } = await associated(context, payload); if (plan.state === 'collision') throw Error('bundle/revision-collision');
     const place = asked['place'] || plan.place || join(context.personal(), valueOf(context.lock, 'bundle/receiver-folder'), payload.identity.id);
-    if (plan.state === 'same' && plan.place === place && await validPins(context, place, payload.sources)) return [say('bundle-associated', { place, name: await localName(context, place, `bundle-${payload.identity.id}`), package: payload.identity.id, revision: payload.identity.revision })];
+    if (plan.state === 'same' && plan.place === place && await validPins(context, place, payload)) { const closed = [...await context.settle(place), ...await context.settle(context.home())]; if (closed.length) return closed; return [say('bundle-associated', { place, name: await localName(context, place, `bundle-${payload.identity.id}`), package: payload.identity.id, revision: payload.identity.revision })]; }
+    return await context.receiving(place, async () => {
+    const freshPlan = (await associated(context, payload)).plan;
+    if (freshPlan.state === 'same' && freshPlan.place === place && await validPins(context, place, payload)) return [say('bundle-associated', { place, name: await localName(context, place, `bundle-${payload.identity.id}`), package: payload.identity.id, revision: payload.identity.revision })];
     const refused = await unless(context, say('elicit-bundle-receive', { name: payload.identity.id, revision: payload.identity.revision, place, sources: payload.sources.map(s => { const doc = payload.documents.find(doc => doc.configuration.name === s.name); return doc ? `${s.name} (${doc.configuration.endpoint})` : s.name; }).join(', ') }));
     if (refused) return refused;
     if (!context.files.has(place, LOCK)) { const born = await bornAt(context, place, `bundle-${payload.identity.id}`); if (!context.files.has(place, LOCK)) return born; }
     const root = await rootIn(context, place); if ('said' in root) return root.said;
-    const imported = await received(context, place, payload.document, payload.bytes, payload.lockDigest, laidIn(context, place, root.account), root.account, payload.files);
-    if (shapeOf(imported).cells.some(cell => ['refused', 'open'].includes(cell.state)) || !await validPins(context, place, payload.sources)) return imported;
+    const imported = await received(context, place, payload.document, payload.bytes, payload.lockDigest, root.account, payload.files, true);
+    if (shapeOf(imported).cells.some(cell => ['refused', 'open', 'red'].includes(cell.state)) || !await validPins(context, place, payload)) return imported;
     const home = await rootIn(context, context.home()); if ('said' in home) return [...imported, ...home.said];
     const current = await context.policy(context.home()); if ('refused' in current) throw Error('bundle/index-unread');
     const fresh = associationFor(valueOf(context.lock, 'bundle/association-family'), payload.identity, current.lines);
     const lot = associationLines(fresh, place, true, `policy:head/bundle/${payload.identity.id}/${baseOf(current.lines)}`), landed = lot.length ? await context.landRoot(context.home(), lot, home.account) : undefined;
     return landed && 'refused' in landed ? [...imported, say('not-landed', { why: landed.refused })] : [...imported, say('bundle-associated', { place, name: await localName(context, place, `bundle-${payload.identity.id}`), package: payload.identity.id, revision: payload.identity.revision })];
-  } catch (error) { return bundleRefusal(context, error); }
+    });
+  } catch (error) { return error instanceof Error && error.message.startsWith('receive/') ? [say('receive-refused', { place: asked['place'] ?? '', why: error.message, document: asked['document'], digest: asked['digest'] })] : bundleRefusal(context, error); }
 }
 /** Selection narrows this packaged surface; it never grants a call or replaces Bound's authority checks. */
 export async function receiverAllows(context: Context, place: string, source: string, operation: string): Promise<boolean> {
   const payload = await material(context); if (!payload) return true;
   const { plan } = await associated(context, payload);
-  return plan.state === 'same' && plan.place === place && await validPins(context, place, payload.sources) && payload.selection.some(s => s.source === source && s.offers.includes(operation));
+  return plan.state === 'same' && plan.place === place && await validPins(context, place, payload) && payload.selection.some(s => s.source === source && s.offers.includes(operation));
 }

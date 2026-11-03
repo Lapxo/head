@@ -14,15 +14,15 @@ interface Timing { readonly scope: string; readonly ms: number }
  */
 export function observe(bytes: Uint8Array, coordinate = '') {
   const metadata: Record<string, readonly [string, string]> = {
-    'package.json': ['release/metadata/manifest', 'sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f'],
-    'package-lock.json': ['release/metadata/lock', 'sha256:feb26c66dc045cc7af8ae184885956d0ecfa4e342a26caf14b215c8f2786076e'],
+    'package.json': ['release/metadata/manifest', 'sha256:aa7f1f4522ee3fb74f5b14d439d393de61c3776ad4e08b777b577d4637a75db3'],
+    'package-lock.json': ['release/metadata/lock', 'sha256:dade1cc4054d0997bd838b20f5bcfb42caf0900d20dbf9816acb0e139cdb758f'],
   };
   const selected = metadata[coordinate];
   if (selected) {
     if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== selected[1]) throw Error(`REFUSE·release changed metadata ${coordinate}`);
     return [{ scope: selected[0], role: 'writes', measure: 'defects', bound: { kind: 'interval', lo: 0, hi: 0 } }];
   }
-  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:d4b3132799032209bc73bf19696f199ed1ba2a5bf897d90fc5746bf6c4d5ac63') throw Error('REFUSE·first-minute capture digest');
+  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:e2aaece4f773365775eac2f8aaf50eee9f9047a65d7d6ee7a8017f7c6ec6e94a') throw Error('REFUSE·first-minute capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture;
   if (capture.protocol !== 'head-first-minute-capture@1' || !/^sha256:[0-9a-f]{64}$/.test(capture.artifact?.sha256)
     || !Array.isArray(capture.runs) || capture.runs.length !== 2) throw Error('REFUSE·first-minute capture protocol');

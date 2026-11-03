@@ -1,11 +1,13 @@
+import { verifyCurrentRevalidation } from './received-retention-reading.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 const digest = (bytes: Uint8Array) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 interface Capture { protocol: string; inputs: { path: string; sha256: string }[]; runs: { node: string; output: string }[] }
 /** Retain the reviewed regional matrix only while every producer input still has its reviewed bytes. */
 export function run(place: string) {
+  verifyCurrentRevalidation();
   const bytes = readFileSync('samples/composition/yes/client.json');
-  if (digest(bytes) !== 'sha256:c2de13afb62203aade879ded81436a6b65aa693938988a5eeed24410f96508be') throw Error('REFUSE·composition capture');
+  if (digest(bytes) !== 'sha256:6af305cee565d89654e3416e47f6f96fd0e22f3767dfe8a4492b01802be92845') throw Error('REFUSE·composition capture');
   const capture = JSON.parse(bytes.toString()) as Capture;
   if (capture.protocol !== 'head-composition-reviewed-vectors@1' || capture.runs.length !== 2) throw Error('REFUSE·composition protocol');
   const nodes = new Set<string>();

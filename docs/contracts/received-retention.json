@@ -1,0 +1,15 @@
+{
+  "protocol": "head-received-retention-contract@1",
+  "status": "contract; admission is recorded by signed receipts",
+  "scope": "Reuse complete locally received source copies during package reception and association.",
+  "requirements": [
+    "Receiver standing must authenticate exactly one current expected pin per source and world.",
+    "Current pin and world bytes must hash to those pins through safe admitted paths.",
+    "Connected document and overlay bytes and file sets must equal the received verified inputs.",
+    "Every ordered source dependency must independently pass the same validation.",
+    "Any failed validation prevents reuse; ordinary connect and consent rules continue to apply.",
+    "A package, progress marker or recorded success grants no receiver authority."
+  ],
+  "verification": "The native reader executes the same two-domain assertions as the test runner against current modules.",
+  "limits": ["No first-import latency guarantee", "No cross-call consent or crash recovery claim", "No private API data in vectors", "No change to Bound or authority coverage"]
+}

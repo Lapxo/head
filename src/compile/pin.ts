@@ -1,3 +1,4 @@
+import { compileViews } from '../adopt/adopt.ts';
 import { basename, join } from 'node:path';
 import { canonical, EXTENSION } from '@lapxo/topos/wire';
 import type { Context, Outcome } from '../core/answer.ts';
@@ -13,7 +14,16 @@ export type Pinned = { readonly pin: string; readonly lines: readonly Said[] } |
 /** Pin source declarations and read/write bounds; host output-presence facts are not source policy. */
 const compiledOf = async (context: Context, place: string, source: string, file: string): Promise<Pinned> => {
   const say = sayIn(context.lock), v = vocabOf(context.lock);
-  const compiled = await context.world(place, valueOf(context.lock, 'place/view'));
+  const held = await context.policy(place); if ('refused' in held) return { said: [say('unsettled', { source, why: held.refused })] };
+  let views: readonly string[];
+  try { views = compileViews(context, place, held.lines); } catch (error) { return { said: [say('unsettled', { source, why: String(error) })] }; }
+  const results = await Promise.all(views.map(view => context.world(place, view)));
+  const refusal = results.find(result => 'refused' in result); if (refusal && 'refused' in refusal) return { said: [say('unsettled', { source, why: refusal.refused })] };
+  const offers = results.filter(result => 'lines' in result && result.lines.some(l => l.scope?.startsWith(`${v.offers}/${source}/`) && l.measure === v.class));
+  const claims = offers.length ? offers : results.filter(result => 'lines' in result && result.lines.some(l => l.scope === `${v.region}/${source}`));
+  if (claims.length > 1) return { said: [say('unsettled', { source, why: 'world/compile-collision' })] };
+  const compiled = claims[0] ?? { lines: [] };
+
   if ('refused' in compiled) return { said: [say('unsettled', { source, why: compiled.refused })] };
   const issued = (fieldsOf(compiled.lines, `${v.region}/${source}`)[v.issuers] ?? []).map((issuer) => `${v.keys}/${issuer}`);
   const mine = compiled.lines.filter((l) => l.scope === `${v.region}/${source}` || l.scope?.startsWith(`${v.keys}/${source}/`) || l.scope?.startsWith(`${v.offers}/${source}/`) || (l.form === 'interval' && /^(read|write)\//.test(l.scope ?? ''))

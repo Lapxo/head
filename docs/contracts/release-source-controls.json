@@ -1,0 +1,40 @@
+{
+  "protocol": "head-release-source-controls@1",
+  "physicalLines": {
+    "provider": "published Topos readPhysicalLines; exact current source bytes",
+    "selection": "counter/source-lines/regions",
+    "aggregate": "sum physical lines in each admitted region",
+    "fileLines": "maximum individual physical file count; equivalent to all files within the admitted file ceiling",
+    "knownExcess": {
+      "scope": "adopt/lines",
+      "actual": 82,
+      "ceiling": 60,
+      "retained": true
+    }
+  },
+  "surface": {
+    "provider": "same helpers as surface.test.ts",
+    "unmatched": "sum multiset differences of catalogue, resources, offered tools and public/question/action partition",
+    "configuring": "count configuring modules, with exact declared identities required",
+    "duplicates": "original long normalized body-line and three-line window predicate"
+  },
+  "literal": {
+    "provider": "same scanner as pack.test.ts",
+    "selection": "current npm dry-run selected package members; own source; current receipts",
+    "measured": [],
+    "unmeasured": [
+      "literal/host",
+      "literal/key",
+      "literal/path",
+      "literal/org"
+    ],
+    "nativeLimitation": "A scoped native negative showed receipts.bound mutation retained the former audit. Therefore no literal zero from this provider is admitted; the original pack tests remain diagnostic only.",
+    "diagnostics": "never print matched token, private machine path or private dictionary word"
+  },
+  "unpaid": [
+    "literal/org: private external lexicon not configured",
+    "surface/secrets-out: source literal scan is not a proof of secret-free response channels",
+    "door/unreceipted: README claim-to-receipt coverage not supplied"
+  ],
+  "policy": "No ceiling, production, dependency, runtime-inventory or authority change. Previous executions remain historical; no full matrix rerun or Root full fold."
+}

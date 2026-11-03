@@ -1,0 +1,833 @@
+{
+  "protocol": "head-mcp-timing-selection@1",
+  "sources": [
+    {
+      "node": "22",
+      "sha256": "sha256:37a53fa77fdfb45a2c5b2c3cd3289b7b24a14d120a23bf375603c6500696f1f8"
+    },
+    {
+      "node": "24",
+      "sha256": "sha256:2401909fa3c57165eeed057e2fa5102da3188740b52ad5f64c1c6a6facc13292"
+    }
+  ],
+  "clock": "Original performance.now elapsed; includes the whole Head call, excludes subsequent idle cleanup. Not a new measurement.",
+  "rows": [
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 0,
+      "side": "sender",
+      "verb": "place",
+      "milliseconds": 6263.036375000001,
+      "lines": [
+        "said/head/born state=done next=none next.why=\"done\" name=\"sum-sender\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\"",
+        "said/head/card state=done next=do next.card=\"64c636a213e00e17\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" card=\"64c636a213e00e17\" from=\"do place\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 1,
+      "side": "sender",
+      "verb": "connect",
+      "milliseconds": 4581.279500000001,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"sum-api\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" source=\"sum-api\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" offers=\"1\" reads=\"1\" pin=\"sha256:6e0f683a0ed2d13640a8fee8229fabafcfbb52778f801933cea185187effa0c0\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 2,
+      "side": "sender",
+      "verb": "connect",
+      "milliseconds": 8073.812290999998,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"sum\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" source=\"sum\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" offers=\"3\" reads=\"1\" pin=\"sha256:9a3944492930c17097575e7224fa06cda75293f38c9aa2334dc7bc171739e74e\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 3,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 239.94337500000256,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"633e2f9620507918\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" card=\"633e2f9620507918\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 4,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 6323.703708000001,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"sum\" operation=\"sum\" status=\"200\" at=\"2026-11-03T05:36:09.382Z\"",
+        "said/head/card state=done next=do next.card=\"49566244a25c2eab\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" card=\"49566244a25c2eab\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 5,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 40.485624999997526,
+      "lines": [
+        "said/head/mcp-refused state=refused next=none next.why=\"Inspect the named refusal before preparing another request; no permission is granted.\" why=\"mcp/document-pin\"",
+        "said/head/card state=done next=do next.card=\"49566244a25c2eab\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" card=\"49566244a25c2eab\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 6,
+      "side": "sender",
+      "verb": "share",
+      "milliseconds": 5089.698166000002,
+      "lines": [
+        "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum.mcpb\" digest=\"sha256:3e964de37de4f0efd352c5ceaed59258871211fe5515e28c1834ed0165235326\" sources=\"sum-api, sum\"",
+        "said/head/card state=done next=do next.card=\"49566244a25c2eab\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/sum-sender\" card=\"49566244a25c2eab\" from=\"do share\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 7,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 314.28733400000056,
+      "lines": [
+        "said/head/bundle-receiver-ready state=open next=connect next.document=\"/private/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-installed/composition/TARGET.bound\" next.digest=\"sha256:e35bec5058ed00fc8a3d1928b8f24dd5de56ac0ae32628062abe1294adcd740e\" next.place=\"\" document=\"/private/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-installed/composition/TARGET.bound\" digest=\"sha256:e35bec5058ed00fc8a3d1928b8f24dd5de56ac0ae32628062abe1294adcd740e\" name=\"sum-desk\" revision=\"1.0.0\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 8,
+      "side": "receiver",
+      "verb": "connect",
+      "milliseconds": 44.72358299999905,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 9,
+      "side": "receiver",
+      "verb": "connect",
+      "milliseconds": 13654.030208,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"sum\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" source=\"sum\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" offers=\"3\" reads=\"1\" pin=\"sha256:9a3944492930c17097575e7224fa06cda75293f38c9aa2334dc7bc171739e74e\"",
+        "said/head/connected state=done next=ask next.source=\"sum-api\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" source=\"sum-api\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" offers=\"1\" reads=\"1\" pin=\"sha256:6e0f683a0ed2d13640a8fee8229fabafcfbb52778f801933cea185187effa0c0\"",
+        "said/head/received state=done next=none next.why=\"done\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" package=\"sha256:e35bec5058ed00fc8a3d1928b8f24dd5de56ac0ae32628062abe1294adcd740e\" sources=\"sum, sum-api\"",
+        "said/head/bundle-associated state=done next=ask next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" name=\"bundle-sum-desk\" package=\"sum-desk\" revision=\"1.0.0\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 10,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 813.5071669999961,
+      "lines": [
+        "said/head/place-held state=done next=none next.why=\"done\" name=\"bundle-sum-desk\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" sources=\"sum, sum-api\" grants=\"allow/reuse seconds 0..7776000\" last=\"—\"",
+        "said/head/card state=done next=do next.card=\"499a27efc00e59cf\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" card=\"499a27efc00e59cf\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 11,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 244.80825000000186,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"499a27efc00e59cf\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" card=\"499a27efc00e59cf\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 12,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 5751.5795,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"sum\" operation=\"sum\" status=\"200\" at=\"2026-11-03T05:36:36.586Z\"",
+        "said/head/card state=done next=do next.card=\"0357c133b52595a7\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" card=\"0357c133b52595a7\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 13,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 147.99604200000613,
+      "lines": [
+        "said/head/bundle-not-selected state=refused next=ask next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" source=\"sum\" operation=\"sum-unselected\"",
+        "said/head/card state=done next=do next.card=\"0357c133b52595a7\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" card=\"0357c133b52595a7\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 14,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 272.0684170000022,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"0357c133b52595a7\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" card=\"0357c133b52595a7\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 15,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 7764.176625,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"sum\" operation=\"sum-change\" status=\"200\" at=\"2026-11-03T05:36:45.436Z\"",
+        "said/head/card state=done next=do next.card=\"3ec9e25558f836b1\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" card=\"3ec9e25558f836b1\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "sum",
+      "callIndex": 16,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 3782.5307919999977,
+      "lines": [
+        "said/head/unreachable-source state=refused next=none next.why=\"the source answering\" source=\"sum\" why=\"mcp/catalogue-changed\"",
+        "said/head/card state=done next=do next.card=\"51f562c478bd394c\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/sum-receiver-place\" card=\"51f562c478bd394c\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 17,
+      "side": "sender",
+      "verb": "place",
+      "milliseconds": 6173.180500000002,
+      "lines": [
+        "said/head/born state=done next=none next.why=\"done\" name=\"lookup-sender\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\"",
+        "said/head/card state=done next=do next.card=\"eea9fafe963d588b\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" card=\"eea9fafe963d588b\" from=\"do place\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 18,
+      "side": "sender",
+      "verb": "connect",
+      "milliseconds": 4616.599917,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"lookup-api\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" source=\"lookup-api\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" offers=\"1\" reads=\"1\" pin=\"sha256:3b866674a0c4fcb048a7f0450c242637f53ae35250d457b86232cf7b2afa0f2c\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 19,
+      "side": "sender",
+      "verb": "connect",
+      "milliseconds": 8048.646292000005,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"lookup\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" source=\"lookup\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" offers=\"3\" reads=\"1\" pin=\"sha256:10121c36e777fed9a98b6779b149bb67bd7880428c402fffb3a077baea5a5a85\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 20,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 238.56020900000294,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"d3ca4c4e02227c21\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" card=\"d3ca4c4e02227c21\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 21,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 6360.525750000001,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"lookup\" operation=\"lookup\" status=\"200\" at=\"2026-11-03T05:37:13.739Z\"",
+        "said/head/card state=done next=do next.card=\"438b91bdca9d971d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" card=\"438b91bdca9d971d\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 22,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 39.862000000008265,
+      "lines": [
+        "said/head/mcp-refused state=refused next=none next.why=\"Inspect the named refusal before preparing another request; no permission is granted.\" why=\"mcp/document-pin\"",
+        "said/head/card state=done next=do next.card=\"438b91bdca9d971d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" card=\"438b91bdca9d971d\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 23,
+      "side": "sender",
+      "verb": "share",
+      "milliseconds": 2387.4452499999898,
+      "lines": [
+        "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup.mcpb\" digest=\"sha256:afd747fdd407593ccf8e688cb342ba510439706211d0b2b838a352e7b982f3f4\" sources=\"lookup-api, lookup\"",
+        "said/head/card state=done next=do next.card=\"438b91bdca9d971d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/shared/lookup-sender\" card=\"438b91bdca9d971d\" from=\"do share\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 24,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 316.260666999995,
+      "lines": [
+        "said/head/bundle-receiver-ready state=open next=connect next.document=\"/private/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-installed/composition/TARGET.bound\" next.digest=\"sha256:17260bec6e1db33bd6c52aa0cb59eabcd50f392dc32162e9203cb14940bb85fd\" next.place=\"\" document=\"/private/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-installed/composition/TARGET.bound\" digest=\"sha256:17260bec6e1db33bd6c52aa0cb59eabcd50f392dc32162e9203cb14940bb85fd\" name=\"lookup-desk\" revision=\"1.0.0\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 25,
+      "side": "receiver",
+      "verb": "connect",
+      "milliseconds": 49.11891600000672,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 26,
+      "side": "receiver",
+      "verb": "connect",
+      "milliseconds": 13772.374916999994,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"lookup\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" source=\"lookup\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" offers=\"3\" reads=\"1\" pin=\"sha256:10121c36e777fed9a98b6779b149bb67bd7880428c402fffb3a077baea5a5a85\"",
+        "said/head/connected state=done next=ask next.source=\"lookup-api\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" source=\"lookup-api\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" offers=\"1\" reads=\"1\" pin=\"sha256:3b866674a0c4fcb048a7f0450c242637f53ae35250d457b86232cf7b2afa0f2c\"",
+        "said/head/received state=done next=none next.why=\"done\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" package=\"sha256:17260bec6e1db33bd6c52aa0cb59eabcd50f392dc32162e9203cb14940bb85fd\" sources=\"lookup, lookup-api\"",
+        "said/head/bundle-associated state=done next=ask next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" name=\"bundle-lookup-desk\" package=\"lookup-desk\" revision=\"1.0.0\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 27,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 831.0053750000079,
+      "lines": [
+        "said/head/place-held state=done next=none next.why=\"done\" name=\"bundle-lookup-desk\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" sources=\"lookup, lookup-api\" grants=\"allow/reuse seconds 0..7776000\" last=\"—\"",
+        "said/head/card state=done next=do next.card=\"86df86ff14d7d05d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" card=\"86df86ff14d7d05d\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 28,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 254.9519159999909,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"86df86ff14d7d05d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" card=\"86df86ff14d7d05d\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 29,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 5770.681375,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"lookup\" operation=\"lookup\" status=\"200\" at=\"2026-11-03T05:37:38.452Z\"",
+        "said/head/card state=done next=do next.card=\"ac16fa99ee1c3358\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" card=\"ac16fa99ee1c3358\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 30,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 153.29366599999776,
+      "lines": [
+        "said/head/bundle-not-selected state=refused next=ask next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" source=\"lookup\" operation=\"lookup-unselected\"",
+        "said/head/card state=done next=do next.card=\"ac16fa99ee1c3358\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" card=\"ac16fa99ee1c3358\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 31,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 276.7977920000121,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"ac16fa99ee1c3358\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" card=\"ac16fa99ee1c3358\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 32,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 7838.876375000007,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"lookup\" operation=\"lookup-change\" status=\"200\" at=\"2026-11-03T05:37:47.385Z\"",
+        "said/head/card state=done next=do next.card=\"da4633ec719a7642\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" card=\"da4633ec719a7642\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "22",
+      "domain": "lookup",
+      "callIndex": 33,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 4037.879707999993,
+      "lines": [
+        "said/head/unreachable-source state=refused next=none next.why=\"the source answering\" source=\"lookup\" why=\"mcp/catalogue-changed\"",
+        "said/head/card state=done next=do next.card=\"f485666d68b0b963\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-gQq7n2/lookup-receiver-place\" card=\"f485666d68b0b963\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 0,
+      "side": "sender",
+      "verb": "place",
+      "milliseconds": 6249.105334,
+      "lines": [
+        "said/head/born state=done next=none next.why=\"done\" name=\"sum-sender\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\"",
+        "said/head/card state=done next=do next.card=\"7d023e88726c0e6d\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" card=\"7d023e88726c0e6d\" from=\"do place\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 1,
+      "side": "sender",
+      "verb": "connect",
+      "milliseconds": 4490.850792,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"sum-api\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" source=\"sum-api\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" offers=\"1\" reads=\"1\" pin=\"sha256:6e0f683a0ed2d13640a8fee8229fabafcfbb52778f801933cea185187effa0c0\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 2,
+      "side": "sender",
+      "verb": "connect",
+      "milliseconds": 7725.557833000003,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"sum\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" source=\"sum\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" offers=\"3\" reads=\"1\" pin=\"sha256:b1836b3664d50d9cacaecce1c264d9aa985ea97406e217dc1e208d71fdfa8474\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 3,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 253.09295799999745,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"aebc09e7862a8630\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" card=\"aebc09e7862a8630\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 4,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 6082.014874999997,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"sum\" operation=\"sum\" status=\"200\" at=\"2026-11-03T05:39:43.944Z\"",
+        "said/head/card state=done next=do next.card=\"b9c7bd568417dd96\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" card=\"b9c7bd568417dd96\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 5,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 39.980625000000146,
+      "lines": [
+        "said/head/mcp-refused state=refused next=none next.why=\"Inspect the named refusal before preparing another request; no permission is granted.\" why=\"mcp/document-pin\"",
+        "said/head/card state=done next=do next.card=\"b9c7bd568417dd96\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" card=\"b9c7bd568417dd96\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 6,
+      "side": "sender",
+      "verb": "share",
+      "milliseconds": 2377.5085830000025,
+      "lines": [
+        "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum.mcpb\" digest=\"sha256:e433a54277c2f024d926f172255606bb7bb7ce32152edfdffd20177fb0b48082\" sources=\"sum-api, sum\"",
+        "said/head/card state=done next=do next.card=\"b9c7bd568417dd96\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/sum-sender\" card=\"b9c7bd568417dd96\" from=\"do share\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 7,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 316.7992919999997,
+      "lines": [
+        "said/head/bundle-receiver-ready state=open next=connect next.document=\"/private/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-installed/composition/TARGET.bound\" next.digest=\"sha256:5150843d279e2a225f3c579d03ec7b0fd749d813b0d55c849673467f9cedbac1\" next.place=\"\" document=\"/private/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-installed/composition/TARGET.bound\" digest=\"sha256:5150843d279e2a225f3c579d03ec7b0fd749d813b0d55c849673467f9cedbac1\" name=\"sum-desk\" revision=\"1.0.0\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 8,
+      "side": "receiver",
+      "verb": "connect",
+      "milliseconds": 47.280917000000045,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 9,
+      "side": "receiver",
+      "verb": "connect",
+      "milliseconds": 13385.785499999998,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"sum\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" source=\"sum\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" offers=\"3\" reads=\"1\" pin=\"sha256:b1836b3664d50d9cacaecce1c264d9aa985ea97406e217dc1e208d71fdfa8474\"",
+        "said/head/connected state=done next=ask next.source=\"sum-api\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" source=\"sum-api\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" offers=\"1\" reads=\"1\" pin=\"sha256:6e0f683a0ed2d13640a8fee8229fabafcfbb52778f801933cea185187effa0c0\"",
+        "said/head/received state=done next=none next.why=\"done\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" package=\"sha256:5150843d279e2a225f3c579d03ec7b0fd749d813b0d55c849673467f9cedbac1\" sources=\"sum, sum-api\"",
+        "said/head/bundle-associated state=done next=ask next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" name=\"bundle-sum-desk\" package=\"sum-desk\" revision=\"1.0.0\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 10,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 882.8961249999993,
+      "lines": [
+        "said/head/place-held state=done next=none next.why=\"done\" name=\"bundle-sum-desk\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" sources=\"sum, sum-api\" grants=\"allow/reuse seconds 0..7776000\" last=\"—\"",
+        "said/head/card state=done next=do next.card=\"c4d03a1c425758ec\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" card=\"c4d03a1c425758ec\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 11,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 260.46224999999686,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"c4d03a1c425758ec\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" card=\"c4d03a1c425758ec\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 12,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 5514.675208000001,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"sum\" operation=\"sum\" status=\"200\" at=\"2026-11-03T05:40:08.053Z\"",
+        "said/head/card state=done next=do next.card=\"a9e989eeee8ed5f9\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" card=\"a9e989eeee8ed5f9\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 13,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 143.50995800000237,
+      "lines": [
+        "said/head/bundle-not-selected state=refused next=ask next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" source=\"sum\" operation=\"sum-unselected\"",
+        "said/head/card state=done next=do next.card=\"a9e989eeee8ed5f9\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" card=\"a9e989eeee8ed5f9\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 14,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 286.1441249999989,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"a9e989eeee8ed5f9\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" card=\"a9e989eeee8ed5f9\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 15,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 7457.655915999996,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"sum\" operation=\"sum-change\" status=\"200\" at=\"2026-11-03T05:40:16.625Z\"",
+        "said/head/card state=done next=do next.card=\"b0b98b10b4af51f0\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" card=\"b0b98b10b4af51f0\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "sum",
+      "callIndex": 16,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 3652.854416999995,
+      "lines": [
+        "said/head/unreachable-source state=refused next=none next.why=\"the source answering\" source=\"sum\" why=\"mcp/catalogue-changed\"",
+        "said/head/card state=done next=do next.card=\"5dd8fbc615b0b919\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/sum-receiver-place\" card=\"5dd8fbc615b0b919\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 17,
+      "side": "sender",
+      "verb": "place",
+      "milliseconds": 6207.878874999995,
+      "lines": [
+        "said/head/born state=done next=none next.why=\"done\" name=\"lookup-sender\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\"",
+        "said/head/card state=done next=do next.card=\"9b4c8c7eef6936f9\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" card=\"9b4c8c7eef6936f9\" from=\"do place\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 18,
+      "side": "sender",
+      "verb": "connect",
+      "milliseconds": 4508.707416999998,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"lookup-api\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" source=\"lookup-api\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" offers=\"1\" reads=\"1\" pin=\"sha256:3b866674a0c4fcb048a7f0450c242637f53ae35250d457b86232cf7b2afa0f2c\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 19,
+      "side": "sender",
+      "verb": "connect",
+      "milliseconds": 7785.658582999997,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"lookup\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" source=\"lookup\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" offers=\"3\" reads=\"1\" pin=\"sha256:516780920152c2527343389880364308cd268300dc0402f4e656a27d29c0782d\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 20,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 243.77504100000078,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"ca24789b05e7855b\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" card=\"ca24789b05e7855b\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 21,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 6152.5139590000035,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"lookup\" operation=\"lookup\" status=\"200\" at=\"2026-11-03T05:40:44.207Z\"",
+        "said/head/card state=done next=do next.card=\"058fb71fc5c7a0c9\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" card=\"058fb71fc5c7a0c9\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 22,
+      "side": "sender",
+      "verb": "ask",
+      "milliseconds": 40.32791699998779,
+      "lines": [
+        "said/head/mcp-refused state=refused next=none next.why=\"Inspect the named refusal before preparing another request; no permission is granted.\" why=\"mcp/document-pin\"",
+        "said/head/card state=done next=do next.card=\"058fb71fc5c7a0c9\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" card=\"058fb71fc5c7a0c9\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 23,
+      "side": "sender",
+      "verb": "share",
+      "milliseconds": 2370.2671659999905,
+      "lines": [
+        "said/head/bundle-shared state=done next=none next.why=\"No action is authorized by this result.\" document=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup.mcpb\" digest=\"sha256:f8aa70523ddc1027cdc09831634ed5cf723a6bfcea04d1bd500714238ca78a59\" sources=\"lookup-api, lookup\"",
+        "said/head/card state=done next=do next.card=\"058fb71fc5c7a0c9\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/shared/lookup-sender\" card=\"058fb71fc5c7a0c9\" from=\"do share\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 24,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 323.6546250000101,
+      "lines": [
+        "said/head/bundle-receiver-ready state=open next=connect next.document=\"/private/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-installed/composition/TARGET.bound\" next.digest=\"sha256:96f7a1cf82ce306222556a869f6a893ba5078f583ab6b4226461c902834b5454\" next.place=\"\" document=\"/private/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-installed/composition/TARGET.bound\" digest=\"sha256:96f7a1cf82ce306222556a869f6a893ba5078f583ab6b4226461c902834b5454\" name=\"lookup-desk\" revision=\"1.0.0\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 25,
+      "side": "receiver",
+      "verb": "connect",
+      "milliseconds": 46.81287500000326,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 26,
+      "side": "receiver",
+      "verb": "connect",
+      "milliseconds": 13296.910749999995,
+      "lines": [
+        "said/head/connected state=done next=ask next.source=\"lookup\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" source=\"lookup\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" offers=\"3\" reads=\"1\" pin=\"sha256:516780920152c2527343389880364308cd268300dc0402f4e656a27d29c0782d\"",
+        "said/head/connected state=done next=ask next.source=\"lookup-api\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" source=\"lookup-api\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" offers=\"1\" reads=\"1\" pin=\"sha256:3b866674a0c4fcb048a7f0450c242637f53ae35250d457b86232cf7b2afa0f2c\"",
+        "said/head/received state=done next=none next.why=\"done\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" package=\"sha256:96f7a1cf82ce306222556a869f6a893ba5078f583ab6b4226461c902834b5454\" sources=\"lookup, lookup-api\"",
+        "said/head/bundle-associated state=done next=ask next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" name=\"bundle-lookup-desk\" package=\"lookup-desk\" revision=\"1.0.0\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 27,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 857.5804999999964,
+      "lines": [
+        "said/head/place-held state=done next=none next.why=\"done\" name=\"bundle-lookup-desk\" dir=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" sources=\"lookup, lookup-api\" grants=\"allow/reuse seconds 0..7776000\" last=\"—\"",
+        "said/head/card state=done next=do next.card=\"2dc417a26b30b9ab\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" card=\"2dc417a26b30b9ab\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 28,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 264.41029099999287,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"2dc417a26b30b9ab\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" card=\"2dc417a26b30b9ab\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 29,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 5511.145417000007,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"lookup\" operation=\"lookup\" status=\"200\" at=\"2026-11-03T05:41:08.202Z\"",
+        "said/head/card state=done next=do next.card=\"4ec57248fdadd4f3\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" card=\"4ec57248fdadd4f3\" from=\"ask\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 30,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 143.3375420000084,
+      "lines": [
+        "said/head/bundle-not-selected state=refused next=ask next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" source=\"lookup\" operation=\"lookup-unselected\"",
+        "said/head/card state=done next=do next.card=\"4ec57248fdadd4f3\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" card=\"4ec57248fdadd4f3\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 31,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 291.3123750000086,
+      "lines": [
+        "said/head/no-yes state=refused next=none next.why=\"the person said no\"",
+        "said/head/card state=done next=do next.card=\"4ec57248fdadd4f3\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" card=\"4ec57248fdadd4f3\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 32,
+      "side": "receiver",
+      "verb": "act",
+      "milliseconds": 7462.13291700001,
+      "lines": [
+        "said/head/answered state=done next=none next.why=\"done\" source=\"lookup\" operation=\"lookup-change\" status=\"200\" at=\"2026-11-03T05:41:16.799Z\"",
+        "said/head/card state=done next=do next.card=\"6447672166716d4a\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" card=\"6447672166716d4a\" from=\"do act\""
+      ]
+    },
+    {
+      "node": "24",
+      "domain": "lookup",
+      "callIndex": 33,
+      "side": "receiver",
+      "verb": "ask",
+      "milliseconds": 3761.022749999989,
+      "lines": [
+        "said/head/unreachable-source state=refused next=none next.why=\"the source answering\" source=\"lookup\" why=\"mcp/catalogue-changed\"",
+        "said/head/card state=done next=do next.card=\"aac5dab22416cd25\" next.place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" place=\"/var/folders/tp/mb5pflh94rxbjrtbkvwpg8v00000gn/T/head-mcp-native-S1scsW/lookup-receiver-place\" card=\"aac5dab22416cd25\" from=\"ask\""
+      ]
+    }
+  ],
+  "result": {
+    "receiverMilliseconds": 5771,
+    "senderMilliseconds": 6361,
+    "redAnswerSeconds": 0,
+    "receiverReadCount": 4,
+    "senderReadCount": 4
+  },
+  "nativeRedMeaning": "Zero means no named answer/seconds red cell, not zero elapsed seconds.",
+  "scopeCorrection": "6361ms is a sender read; 5771ms is the actual recipient read. Both are preserved; no conversion to native whole-second red counters."
+}

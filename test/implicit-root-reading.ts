@@ -1,11 +1,13 @@
+import { verifyCurrentRevalidation } from './received-retention-reading.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { parse, canonical } from '@lapxo/topos/wire';
 const hash = (x: Uint8Array | string) => 'sha256:' + createHash('sha256').update(x).digest('hex');
 /** Current-byte projection of reviewed native index/selection vectors; authority remains Bound's judgment. */
 export function run(place: string) {
+  verifyCurrentRevalidation();
   const bytes = readFileSync('samples/implicit-root/yes/client.json');
-  if (hash(bytes) !== 'sha256:375260034f516e12502e210ab070d6292b8e7bbbf0da29c9a220350cf13e0c73') throw Error('REFUSE·implicit-root/capture');
+  if (hash(bytes) !== 'sha256:2e003d58ed4cfea5c0a2108c576df1f26b0bc86697e80a35bdfbda6c27c35ef5') throw Error('REFUSE·implicit-root/capture');
   const c = JSON.parse(bytes.toString());
   for (const i of c.inputs) if (hash(readFileSync(i.path)) !== i.sha256) throw Error('REFUSE·implicit-root/current-input ' + i.path);
   const fields = readFileSync('TARGET.bound', 'utf8').split('\n').map(line => parse(line)).flatMap(p => p.kind === 'fact' ? [p.value.fields] : []);

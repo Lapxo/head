@@ -1,3 +1,4 @@
+import { receivingAt } from '../ports/receive.ts';
 import { join } from 'node:path';
 import { answerOf, placeOf } from '../core/answer.ts';
 import type { Asked, Context, Outcome } from '../core/answer.ts';
@@ -5,7 +6,7 @@ import { LOCK, parse } from '@lapxo/topos/wire';
 import { aboutOf, members, valueOf, type Said } from '../core/lock.ts';
 import { sayIn } from '../core/surface.ts';
 import { matchTemplate, refusedOn, shapeOf, surfaceOf } from '../ports/surface.ts';
-import { birth, closing, founded, land, landAct, limits, pinnedAt, policyAt, run, settledView, sign, standingAt, told, words } from '../ports/bound.ts';
+import { birth, closing, founded, land, landAct, limits, pinnedAt, policyAt, run, nativeViews, settledView, sign, standingAt, told, words } from '../ports/bound.ts';
 import { configureHost, authorityAt } from '../ports/host.ts';
 import { held, keep } from '../ports/cache.ts';
 import { dropAt, hasAt, layAt, listAt, takeAt } from '../ports/place.ts';
@@ -76,6 +77,7 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
     };
     return {
       lock,
+      receiving: (place, work) => receivingAt(place, work, limits.wait, signal),
       remote: async () => (await import(new URL(`../ports/adapters/remote${ext}`, import.meta.url).href)).remoteAt({ pages: Number(valueOf(lock, 'share/bundle-selections').split('..')[1]), tools: Number(valueOf(lock, 'share/bundle-selections').split('..')[1]), bytes: Number(valueOf(lock, 'share/bundle-bytes').split('..')[1]), wireBytes: Number(valueOf(lock, 'share/bundle-bytes').split('..')[1]), milliseconds: limits.wait }, signal, door.network),
       packaged: async () => (await import(new URL(`../ports/adapters/bundle${ext}`, import.meta.url).href)).publicAt(root, Number(valueOf(lock, 'share/bundle-bytes').split('..')[1])),
       bundle: async payload => (await import(new URL(`../ports/adapters/bundle${ext}`, import.meta.url).href)).bundleAt(root, lock, payload, signal),
@@ -83,6 +85,7 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
       standing: (place) => once('standing', place, () => standingAt(runs, place, (lines) => ['head', 'person'].flatMap((role) => ((id) => (id === undefined ? [] : [id]))(idIn(lines, device(role)))), (line) => read(line.at), signal)),
       authority: (place, key, kind, records, presented) => authorityAt(place, key, kind, records, Date.now(), signal, presented),
       policy: (place, fresh) => { if (fresh) forget(place); return once('policy', place, () => policyAt(runs, place, signal)); },
+      worlds: (place, views) => nativeViews(runs, place, views, signal),
       world: (place, view) => once(`world/${view}`, place, () => settledView(runs, place, view, signal)),
       adapter: async (origin) => ((name) => (!/^[a-z-]+$/.test(name) ? undefined : import(new URL(`../ports/adapters/${name}${ext}`, import.meta.url).href)))(URL.canParse(origin) ? valueOf(lock, `adapter/${new URL(origin).protocol.slice(0, -1)}`) : ''),
       files: { publish: async (place, to, bytes) => { signal?.throwIfAborted(); publishFile([place, ...await door.roots()], to, bytes); }, publishFolder: async (place, to, files) => { signal?.throwIfAborted(); publishFolder([place, ...await door.roots()], to, files, LOCK); }, lay: (place, rel, bytes) => { forget(place); layAt(place, rel, bytes); }, drop: (place, rel) => { forget(place); dropAt(place, rel); }, has: hasAt, list: listAt, read: documents, take: takeAt, own: (rel) => takeAt(join(root, rel)) },
@@ -92,7 +95,7 @@ export const headOf = (lock: readonly Said[], root: string, ext: string, door: D
       signRoot: (place, lot, account) => covered(place, lot, () => sign(runs, place, lot, ...asRoot(account), signal)),
       landRoot: (place, lot, account) => acted(place, true, covered(place, lot, () => landAct(runs, place, lot, ...asRoot(account), signal))),
       moved: (place) => moved.has(place),
-      settle: async () => { const red: string[] = []; for (const place of touched) { const why = await closing(runs, place, signal); if (why !== undefined) red.push(sayIn(lock)('receipts-open', { place, why })); } touched.clear(); return red; },
+      settle: async (place) => { if (place) touched.add(place); const red: string[] = []; for (const place of touched) { const why = await closing(runs, place, signal); if (why !== undefined) red.push(sayIn(lock)('receipts-open', { place, why })); } touched.clear(); return red; },
       pinned: (place, file) => pinnedAt(runs, place, file, signal),
       access: async (kind) => (kind !== valueOf(lock, 'access/adapter') || !/^[a-z0-9-]+$/.test(kind) ? undefined : import(new URL(`../ports/access/${kind}${ext}`, import.meta.url).href).then((m: { adapter: never }) => m.adapter)),
       person,

@@ -15,6 +15,7 @@ import { sayIn } from './surface.ts';
 
 export type Asked = Readonly<Record<string, string | undefined>>;
 export interface Context {
+  readonly receiving: (place: string, work: () => Promise<readonly string[]>) => Promise<readonly string[]>;
   readonly remote?: () => Promise<import('../ports/adapters/remote.ts').RemotePort>;
   readonly packaged?: () => Promise<{ readonly root: string; readonly read: (path: string) => Uint8Array | undefined }>; 
   readonly bundle?: (payload: import('../ports/adapters/bundle.ts').Payload | undefined) => Promise<{ readonly bytes: Uint8Array; readonly digest: string; readonly sources: readonly string[] }>;
@@ -26,6 +27,7 @@ export interface Context {
   readonly standing: (place: string) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
   readonly authority: (place: string, key: string, kind: string, records: readonly string[], presented?: string) => ReturnType<typeof authorityAt>;
   readonly policy: (place: string, fresh?: boolean) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
+  readonly worlds?: (place: string, views: readonly string[]) => Promise<readonly ({ readonly lines: readonly Said[] } | { readonly refused: string })[]>;
   readonly world: (place: string, view: string) => Promise<{ readonly lines: readonly Said[] } | { readonly refused: string }>;
   readonly adapter: (origin: string) => Promise<{ readonly prepare: (call: Call, args: Readonly<Record<string, unknown>>, lock: readonly Said[]) => Prepared; readonly post: (url: string, body: Readonly<Record<string, unknown>>, most: number, wait: number, as?: 'form' | 'json') => Promise<Answered>; readonly published: (url: string, digest: string, most: number, wait: number) => Promise<Uint8Array | undefined>; readonly fetched: (url: string, attachment: Attachment | undefined, accept: string | undefined, most: number, wait: number) => Promise<Fetched>; readonly get: (url: string, wait: number) => Promise<{ readonly bytes: Uint8Array; readonly type: string } | undefined> } | undefined>;
   readonly access: (kind: string) => Promise<AccessAdapter | undefined>;
@@ -36,7 +38,7 @@ export interface Context {
   readonly found: (place: string, account: string) => Promise<Outcome>;
   readonly signRoot: (place: string, lot: readonly string[], account: string) => Promise<Outcome>;
   readonly landRoot: (place: string, lot: readonly string[], account: string) => Promise<Outcome>;
-  readonly settle: () => Promise<readonly string[]>;
+  readonly settle: (place?: string) => Promise<readonly string[]>;
   readonly moved: (place: string) => boolean;
   readonly pinned: (place: string, file: string) => Promise<{ readonly pin: string; readonly bytes: string; readonly lines: readonly Said[] } | { readonly refused: string } | undefined>;
   readonly cache: { readonly keep: (bytes: Uint8Array) => string; readonly held: (digest: string) => Uint8Array | undefined };

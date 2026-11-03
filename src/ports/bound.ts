@@ -36,7 +36,7 @@ const why = (printed: Printed | undefined): string | undefined => printed?.err.f
 export type Folded = { readonly lines: readonly Said[] } | { readonly refused: string };
 const readOf = (printed: Printed | undefined): Folded => (printed === undefined || printed.code !== 0 ? { refused: why(printed) ?? '' } : { lines: factsOf(printed.out) });
 /** Only the requested views are captured by Bound; every result binds its text to the actual current native identity. */
-const nativeViews = async (name: string, place: string, views: readonly string[], signal?: AbortSignal): Promise<Folded[]> => {
+export const nativeViews = async (name: string, place: string, views: readonly string[], signal?: AbortSignal): Promise<Folded[]> => {
   const captured = capturedViews(place, views, signal);
   if (captured?.kind === 'refuse' && captured.code === 'host/instrument-pin') return views.map(() => ({ refused: captured.diagnostic }));
   return Promise.all(views.map(async (view) => {

@@ -1,3 +1,4 @@
+import { surfaceMetrics, duplicateBodies } from './release-source-metrics.ts';
 import { sdkOwners, clientWords, kindWords, type ProtocolRules } from './protocol-surface.ts';
 import { test } from 'node:test';
 import { schedules, observe } from './scheduled.ts';
@@ -17,11 +18,7 @@ const text = (file: string): string => readFileSync(`${root}/${file}`, 'utf8');
 const modules = (family: string): readonly string[] => readdirSync(`${root}/src/${family}`).map((f) => f.replace(/\.ts$/, '')).sort();
 
 test('surface/unmatched: every tool and resource line has its module, and every module its line; every tool of the catalogue is offered or carried out by one that is', () => {
-  const word = (scope: string) => members(lock.find((l) => l.scope === scope)?.value ?? '');
-  deepStrictEqual(surface.catalogue.map((t) => t.name).sort(), modules('tools'));
-  deepStrictEqual(surface.resources.map((r) => r.name).sort(), modules('resources'));
-  deepStrictEqual(surface.tools.map((t) => t.name).sort(), [...word('surface/tools')].sort(), 'what is offered is what surface/tools names');
-  deepStrictEqual([...word('surface/tools'), ...word('ask/questions'), ...word('do/actions')].sort(), modules('tools'), 'each catalogue tool is offered, a question of ask or an action of do, once');
+  deepStrictEqual(surfaceMetrics(sourceBodies(), lock).unmatched, 0);
 });
 
 test('tools/visible: a client is offered no more tools than the ceiling allows', () => {
@@ -79,24 +76,12 @@ test('each region the lock gives a lines ceiling stays under it — together, or
 });
 
 test('tools/config: the tools that configure a place are the ones answered from the places or the sources region, the lock names each, and they stay under their ceiling', () => {
-  const declared = members(lock.find((l) => l.scope === 'tools/config' && l.measure === 'id')?.value ?? '');
-  const configuring = [...regionOf('places'), ...regionOf('sources')];
-  const answeredFrom = (name: string) => /from '(\.\.\/[^']+)'/.exec(text(`src/tools/${name}.ts`))?.[1]?.replace('../', 'src/') ?? '';
-  deepStrictEqual(modules('tools').filter((name) => configuring.includes(answeredFrom(name))).sort(), [...declared].sort());
-  ok(declared.length > 0 && declared.length <= Number(lock.find((l) => l.scope === 'tools/config' && l.measure === 'count')!.value!.split('..')[1]));
+  const count = surfaceMetrics(sourceBodies(), lock).configuring;
+  ok(count > 0 && count <= Number(lock.find(l => l.scope === 'tools/config' && l.measure === 'count')!.value!.split('..')[1]));
 });
 
 test('duplicate/src: no body is said twice — a code line of 60 characters or more, or three consecutive lines of 120, in two places; imports, comments and declaration headers are no body', () => {
-  const said = new Map<string, string[]>();
-  const body = (l: string) => l.length > 8 && !/^(import |export |\/\*\*|\*|\/\/)/.test(l);
-  for (const f of sources('src')) {
-    const held = text(f).split('\n').map((l) => l.trim().replace(/\s+/g, ' '));
-    held.forEach((l, i) => {
-      const window = held.slice(i, i + 3);
-      for (const key of [body(l) && l.length >= 60 ? l : '', window.length === 3 && window.every(body) && window.join(' ').length >= 120 ? window.join(' ⏎ ') : '']) if (key) (said.get(key) ?? said.set(key, []).get(key)!).push(`${f}:${i + 1}`);
-    });
-  }
-  deepStrictEqual([...said].filter(([, at]) => at.length > 1).map(([key, at]) => `${at.join(' ')} · ${key.slice(0, 80)}`), []);
+  deepStrictEqual(duplicateBodies(sourceBodies()).map(({locations,body}) => `${locations.join(' ')} · ${body.slice(0,80)}`), []);
 });
 
 test('a prompt is read off its lines and filled only where it was asked', () => {

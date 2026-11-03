@@ -1,0 +1,8 @@
+{
+  "world": "openapi",
+  "version": "0.1.2",
+  "capsule": "sha256:08bb4e646bbeb94ab6065453541f09353fc97722ccf981c7b58208650ebd4772",
+  "standing": "sha256:ff8adb870ff048f511d233e7ef594136f7b4e637bd12ed71ace622e68adbb687",
+  "runtime": "node",
+  "topos": "0.2.0"
+}
