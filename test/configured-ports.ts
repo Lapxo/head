@@ -5,7 +5,7 @@ const hash=(bytes:Uint8Array)=>'sha256:'+createHash('sha256').update(bytes).dige
 /** Reviewed local prerequisite evidence only; no live remote connection or full recipient integration is certified. */
 export function run(place:string){
   verifyCurrentRevalidation();
- const bytes=readFileSync('samples/configured-ports/yes/client.json');if(hash(bytes)!=='sha256:e61c9c94e6727b6177faee1319b981cbaf3c8f6488e44ad4959fdce3d8c0cc90')throw Error('REFUSE·configured capture');const capture=JSON.parse(bytes.toString());
+ const bytes=readFileSync('samples/configured-ports/yes/client.json');if(hash(bytes)!=='sha256:287351bb32af092f54964bf6417e9927b383f338c561ecdbc71352c240970274')throw Error('REFUSE·configured capture');const capture=JSON.parse(bytes.toString());
  for(const input of capture.inputs)if(hash(readFileSync(input.path))!==input.sha256)throw Error('REFUSE·configured current input '+input.path);
  const current=readdirSync('src',{recursive:true,withFileTypes:true}).filter(e=>e.isFile()&&e.name.endsWith('.ts')).map(e=>e.parentPath+'/'+e.name).sort(),held=capture.inputs.filter((i:{path:string})=>i.path.startsWith('src/')).map((i:{path:string})=>i.path).sort();if(JSON.stringify(current)!==JSON.stringify(held))throw Error('REFUSE·configured source inventory');
  if(capture.protocol!=='head-configured-ports-capture@1'||capture.runs.length!==2||new Set(capture.runs.map((r:{node:string})=>r.node)).size!==2)throw Error('REFUSE·configured runtimes');

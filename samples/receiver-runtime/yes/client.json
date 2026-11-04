@@ -1,6 +1,6 @@
 {
   "protocol": "head-bundle-receiver-capture@1",
-  "status": "Successor binds current bytes; historical full matrices retain their original identity. Current revalidation is separately identified.",
+  "status": "Current inputs and runtime-probe revalidation; original functional runs remain historical.",
   "inputs": [
     {
       "path": "dist/src/access/contract.d.ts",
@@ -492,11 +492,11 @@
     },
     {
       "path": "dist/src/ports/executable.d.ts",
-      "sha256": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
+      "sha256": "sha256:4dd626bd9fec3ac19349ff03be3bfada3c81316504d86c1504d7849941626a26"
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:5484bc04685e74d203aa156554acfbf6554236a0142d1bf8679154010f8a3362"
+      "sha256": "sha256:ece52891ef0c253db1f1ca67b264be1e235107c3d267273c793728701f7f3c29"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -804,7 +804,7 @@
     },
     {
       "path": "dist/test/received-retention-reading.js",
-      "sha256": "sha256:9f6e6bd63a8a8a43676051ca5ec8af0c163aad1260ee0eba1810232d9555e2e1"
+      "sha256": "sha256:6f5de5195452c15db4cbd2ab3c10dbef7158c4aa85bbedd318b0d8cab5b58f63"
     },
     {
       "path": "dist/test/retained-fixture.js",
@@ -816,11 +816,11 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "sha256:dade1cc4054d0997bd838b20f5bcfb42caf0900d20dbf9816acb0e139cdb758f"
+      "sha256": "sha256:977f4014e69f78ec10b5686b215252985ef8d192f95af874d5b5d4b501c772c0"
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:853c0446f407266d5ed5093bd4618a50c5b0bdc13cbc927fcce07f8ec44b2e0a"
+      "sha256": "sha256:86488b9c82e109d5225cd06cb45b4d249e80fa44291e1fb7cb4e0ab6caef6c68"
     },
     {
       "path": "src/access/contract.ts",
@@ -1068,7 +1068,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
+      "sha256": "sha256:4f0328a77564de9e59bb1359ea720dfea7be27e7bdc2938275cd17822b2ef91c"
     },
     {
       "path": "src/ports/export.ts",
@@ -1224,11 +1224,11 @@
     },
     {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:f793bb69e751177f4474f0cb5831754b7d7c378f73107984643f272e9f933e8d"
+      "sha256": "sha256:1f3d3078ca45b02054dde6c0c57a20a49927e678d86e57af2523e5d4864f5437"
     },
     {
       "path": "test/received-retention-reading.ts",
-      "sha256": "sha256:6bdeba009c2e8fc84e66b0c98a6237cc27e6e9b73184897c1a84f65a16c6cd77"
+      "sha256": "sha256:5eb014072fb4013e5cbcaa3a6321dd51377962b9724c712099b377027f3b689e"
     },
     {
       "path": "test/receiver.test.ts",
@@ -1498,7 +1498,7 @@
     "L6"
   ],
   "predecessor": {
-    "sha256": "sha256:9a2a82065d37903e0564d62d13f45e9d3fa8ced6f2b329b588431438c7a8dd81",
+    "sha256": "sha256:ff7648606c1d11e781c4ce30a5b254d68115bcd600cfcfa2b89622d1750d1854",
     "historicalCapturePreserved": true
   },
   "policySnapshots": [
@@ -1636,7 +1636,7 @@
   },
   "currentRevalidation": {
     "path": "samples/received-retention/yes/current.json",
-    "sha256": "sha256:5a1778e963df045632ee600905ee7094ed8cac38bac8a177c4500984eb86dd88",
+    "sha256": "sha256:05ee533f27b3956d21c9cbad28f61da3aaa52d172b4cb67a1eca8be623a68c12",
     "historicalMatricesRepeated": false
   },
   "metadataSuccessor": {
@@ -1647,5 +1647,63 @@
     "newFullMCPMatrix": false,
     "regionalConsumerOnly": true,
     "finalReleaseArtifact": false
+  },
+  "runtimeProbeSuccessor": {
+    "candidate": "Head 0.2.5 verified-runtime fallback correction",
+    "reason": "A verified compatible Node remains usable when another candidate times out. All probe, total, source and response ceilings unchanged. No assertion that unverified candidates are older or absent.",
+    "newFullFunctionalMatrix": false,
+    "priorRunsRemainHistorical": true,
+    "actualDesktop": false,
+    "finalArtifact": false,
+    "runtimeProbeCapture": {
+      "path": "samples/runtime-probes/yes/results.json",
+      "sha256": "sha256:f3a2b50c627450e7395876693d3229e3b60cf48ed1620bccf0dc5e474d7203d7"
+    },
+    "runtimeProbeReader": {
+      "path": "dist/test/runtime-probes-reading.js",
+      "sha256": "sha256:392f4bfa908572b9fd8638763cd38d7a5aee7fa19b0ef101a7575715567cbfd7"
+    }
+  },
+  "historicalMetadataSuccessor": {
+    "version": "0.2.5",
+    "onlyVersionMetadataChanged": true,
+    "codeAndDependencyPinsIdentical": true,
+    "originalExecutionArraysRetained": true,
+    "newTimingOrFunctionalExecutionClaim": false,
+    "newFullMcpMatrix": false,
+    "finalArtifact": false,
+    "physicalDirectoryVerification": "sha256:f3d4fd68d713171d52d399f405f58b93d1a1b28df995d959a1f47962ec2ca49b",
+    "startupRuns": [
+      {
+        "node": "22.23.3",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      },
+      {
+        "node": "24.14.1",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      }
+    ]
   }
 }

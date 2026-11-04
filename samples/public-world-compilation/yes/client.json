@@ -492,11 +492,11 @@
     },
     {
       "path": "dist/src/ports/executable.d.ts",
-      "sha256": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
+      "sha256": "sha256:4dd626bd9fec3ac19349ff03be3bfada3c81316504d86c1504d7849941626a26"
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:5484bc04685e74d203aa156554acfbf6554236a0142d1bf8679154010f8a3362"
+      "sha256": "sha256:ece52891ef0c253db1f1ca67b264be1e235107c3d267273c793728701f7f3c29"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -828,15 +828,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "sha256:dade1cc4054d0997bd838b20f5bcfb42caf0900d20dbf9816acb0e139cdb758f"
+      "sha256": "sha256:977f4014e69f78ec10b5686b215252985ef8d192f95af874d5b5d4b501c772c0"
     },
     {
       "path": "package.json",
-      "sha256": "sha256:aa7f1f4522ee3fb74f5b14d439d393de61c3776ad4e08b777b577d4637a75db3"
+      "sha256": "sha256:a74884a2a7e40ac91ae6f1c9336fa758591b58f350ccecaa9dc0c8c7861a5385"
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:853c0446f407266d5ed5093bd4618a50c5b0bdc13cbc927fcce07f8ec44b2e0a"
+      "sha256": "sha256:86488b9c82e109d5225cd06cb45b4d249e80fa44291e1fb7cb4e0ab6caef6c68"
     },
     {
       "path": "src/access/contract.ts",
@@ -1084,7 +1084,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
+      "sha256": "sha256:4f0328a77564de9e59bb1359ea720dfea7be27e7bdc2938275cd17822b2ef91c"
     },
     {
       "path": "src/ports/export.ts",
@@ -1361,7 +1361,7 @@
       "value": "https://github.com/Lapxo/topos-openapi/releases/download/v0.1.2/08bb4e646bbeb94ab6065453541f09353fc97722ccf981c7b58208650ebd4772.tar.gz"
     }
   ],
-  "runtime": "sha256:853c0446f407266d5ed5093bd4618a50c5b0bdc13cbc927fcce07f8ec44b2e0a",
+  "runtime": "sha256:86488b9c82e109d5225cd06cb45b4d249e80fa44291e1fb7cb4e0ab6caef6c68",
   "worlds": [
     {
       "name": "topos-mcp",
@@ -1997,5 +1997,68 @@
     "originalRunsRetained": true,
     "productionAndWorldPinsUnchanged": true,
     "newFullMixedMatrix": false
+  },
+  "predecessor": {
+    "sha256": "sha256:080919f37ab49c27a02bb766726731ff85fc5a80681a8d622f3162b16a3fbbe1",
+    "historicalCapturePreserved": true
+  },
+  "runtimeProbeSuccessor": {
+    "candidate": "Head 0.2.5 verified-runtime fallback correction",
+    "reason": "A verified compatible Node remains usable when another candidate times out. All probe, total, source and response ceilings unchanged. No assertion that unverified candidates are older or absent.",
+    "newFullFunctionalMatrix": false,
+    "priorRunsRemainHistorical": true,
+    "actualDesktop": false,
+    "finalArtifact": false,
+    "runtimeProbeCapture": {
+      "path": "samples/runtime-probes/yes/results.json",
+      "sha256": "sha256:f3a2b50c627450e7395876693d3229e3b60cf48ed1620bccf0dc5e474d7203d7"
+    },
+    "runtimeProbeReader": {
+      "path": "dist/test/runtime-probes-reading.js",
+      "sha256": "sha256:392f4bfa908572b9fd8638763cd38d7a5aee7fa19b0ef101a7575715567cbfd7"
+    }
+  },
+  "status": "Current inputs and runtime-probe revalidation; original functional runs remain historical.",
+  "historicalMetadataSuccessor": {
+    "version": "0.2.5",
+    "onlyVersionMetadataChanged": true,
+    "codeAndDependencyPinsIdentical": true,
+    "originalExecutionArraysRetained": true,
+    "newTimingOrFunctionalExecutionClaim": false,
+    "newFullMcpMatrix": false,
+    "finalArtifact": false,
+    "physicalDirectoryVerification": "sha256:f3d4fd68d713171d52d399f405f58b93d1a1b28df995d959a1f47962ec2ca49b",
+    "startupRuns": [
+      {
+        "node": "22.23.3",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      },
+      {
+        "node": "24.14.1",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      }
+    ]
   }
 }

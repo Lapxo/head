@@ -11,7 +11,7 @@ export function run(place: string) {
   verifyCurrentRevalidation();
   verifyRuntimeInventory('dependency/runtime-inventory');
   const bytes = readFileSync('samples/share-runtime/yes/client.json');
-  if (hash(bytes) !== 'sha256:001538ba9b3db78fa72fa6f3f97e4843d94a8e299d4ca00889324a66e18794bd') throw Error('REFUSE·share-runtime capture digest');
+  if (hash(bytes) !== 'sha256:edf1f598bb9ac274cb1823ee5f2cf052d143ff1bb5fd13bfc27a3386c3f282ba') throw Error('REFUSE·share-runtime capture digest');
   const capture = JSON.parse(bytes.toString());
   if (capture.protocol !== 'head-share-runtime-capture@1' || capture.runs.length !== 2 || new Set(capture.runs.map((r: { node: string }) => r.node)).size !== 2) throw Error('REFUSE·share-runtime capture');
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·share-runtime current input ' + input.path);

@@ -75,7 +75,7 @@
   },
   "readme": {
     "path": "README.md",
-    "sha256": "sha256:168d61d1570dfd8b426c35b1bcd6c704723bde191aa4038b9af6e9e5d3a4118c",
+    "sha256": "sha256:30559052d9d0de000891b5a4461aa45ec2979fd878446a9c6f521e1e07922033",
     "blocks": [
       {
         "text": "# head",
@@ -157,7 +157,7 @@
         "evidence": []
       },
       {
-        "text": "```sh\nnpx -y @lapxo/head@0.2.4 run\n```",
+        "text": "```sh\nnpx -y @lapxo/head@0.2.5 run\n```",
         "kind": "example",
         "evidence": []
       },

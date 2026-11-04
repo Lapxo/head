@@ -8,7 +8,7 @@ const files = (base: string): string[] => readdirSync(base, { withFileTypes: tru
 export function run(place: string) {
   verifyCurrentRevalidation();
   const bytes = readFileSync('samples/standalone-runtime/yes/client.json');
-  if (hash(bytes) !== 'sha256:0fb831f38a54b0f922d21ee1aa0402fd5b479e6de34a60d777bfea48fbe88b9a') throw Error('REFUSE·standalone/capture');
+  if (hash(bytes) !== 'sha256:c6220d7e668b141ecf937323a5731db1ffa668a3edf426a3f988e7d106b42b35') throw Error('REFUSE·standalone/capture');
   const capture = JSON.parse(bytes.toString());
   if (capture.protocol !== 'head-system-node-capture@1' || capture.desktopUIAcceptance !== false || capture.ownerAdmitted !== false || capture.deployment !== 'requires-compatible-installed-node') throw Error('REFUSE·standalone/protocol');
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·standalone/current-input');
@@ -18,7 +18,8 @@ export function run(place: string) {
   const inventory = JSON.parse(readFileSync('runtime.bundle.json', 'utf8')), manifest = JSON.parse(readFileSync('manifest.json', 'utf8')), pkg = JSON.parse(readFileSync('package.json', 'utf8'));
   if (existsSync('runtime/node') || inventory.protocol !== 'head-runtime-closure@1' || inventory.execution !== undefined || inventory.files.some((m: {path: string}) => m.path.startsWith('runtime/')) || pkg.bundleDependencies !== undefined || manifest.server.type !== 'node' || manifest.compatibility.runtimes.node !== '>=22.18') throw Error('REFUSE·standalone/external-runtime');
   const installed = capture.currentRuntimeVerification ?? capture.installed;
-  if (hash(readFileSync('runtime.bundle.json')) !== installed.runtimeDescriptor || !(capture.currentRuntimeVerification ? installed.allRuntimeMembersIdentical && installed.requiredMembersVerified === inventory.files.length : installed.allArchiveMembersIdentical) || !installed.allRequiredRuntimeMembersVerified || !installed.cleanInstall || !installed.offline || installed.installScripts || installed.NodeBundled) throw Error('REFUSE·standalone/installed');
+  const current = capture.currentRuntimeDirectory; if (current) { if (current.protocol!=='head-runtime-directory-check@1'||current.descriptor!==hash(readFileSync('runtime.bundle.json'))||current.members!==inventory.files.length||!current.allRequiredMembersVerified||current.archiveFormed||current.installationScripts||current.NodeBundled) throw Error('REFUSE·standalone/current-directory'); for (const f of inventory.files) if (hash(readFileSync(f.path))!==f.digest) throw Error('REFUSE·standalone/current-member'); }
+  if ((!current && hash(readFileSync('runtime.bundle.json')) !== installed.runtimeDescriptor) || !(capture.currentRuntimeVerification ? installed.allRuntimeMembersIdentical && installed.requiredMembersVerified === inventory.files.length : installed.allArchiveMembersIdentical) || !installed.allRequiredRuntimeMembersVerified || !installed.cleanInstall || !installed.offline || installed.installScripts || installed.NodeBundled) throw Error('REFUSE·standalone/installed');
   if (capture.runs.length !== 2 || capture.runs.map((r: {node:string}) => r.node).sort().join('|') !== '22|24') throw Error('REFUSE·standalone/runtimes');
   for (const run of capture.runs) {
     for (const [name, count] of [['focused',24],['complete',3]] as const) if (!new RegExp('^(?:# |ℹ )pass '+count+'$', 'm').test(run[name]) || !/^(?:# |ℹ )fail 0$/m.test(run[name])) throw Error('REFUSE·standalone/controls');

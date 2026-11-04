@@ -29,13 +29,13 @@ export function nodeDirectories(options: NodeLocations = {}, until = performance
   if (platform === 'win32' && programFiles && isAbsolute(programFiles)) directories.push(join(programFiles, 'nodejs'));
   return [...new Set(directories.filter(isAbsolute))];
 }
-/** Select the greatest verified stable version; exhaustion never silently selects a lower unproven candidate. */
+/** Select the greatest verified compatible version; an unverified candidate grants no runtime. */
 export function systemNode(directories?: readonly string[], options: NodeLocations = {}): string {
   const until = performance.now() + 2000, seen = new Set<string>(), selected = directories ?? nodeDirectories(options, until);
   const platform = options.platform ?? process.platform;
   const searched = directories ? ['explicit runtime locations'] : ['PATH', ...(platform === 'darwin' ? ['/opt/homebrew/bin', '/usr/local/bin', '/opt/homebrew/opt/node*/bin', '/usr/local/opt/node*/bin'] : []), '~/.nvm/versions/node/*/bin', '~/.volta/bin', '~/.local/share/fnm/node-versions/*/installation/bin', '~/.asdf/shims', ...(platform === 'win32' ? ['%ProgramFiles%/nodejs'] : [])];
   const checkBudget = () => { if (performance.now() >= until) throw new RuntimeNodeRequired('budget', searched); };
-  let best: { path: string; version: number[] } | undefined;
+  let best: { path: string; version: number[] } | undefined; let timedOut = false;
   for (const directory of selected) {
     checkBudget();
     if (!isAbsolute(directory)) continue;
@@ -44,7 +44,7 @@ export function systemNode(directories?: readonly string[], options: NodeLocatio
       if (seen.has(path)) continue;
       seen.add(path); accessSync(path, constants.X_OK);
       const got = spawnSync(path, ['-p', 'JSON.stringify(process.versions)'], { env: nativeHostEnvironment({ ...process.env }), encoding: 'utf8', timeout: Math.max(1, Math.min(250, Math.floor(until - performance.now()))), maxBuffer: 4096, windowsHide: true });
-      if (got.status !== 0 || got.stderr) continue;
+      if ((got.error as NodeJS.ErrnoException | undefined)?.code === 'ETIMEDOUT') timedOut = true; if (got.status !== 0 || got.stderr) continue;
       const versions = JSON.parse(got.stdout), match = /^(\d+)\.(\d+)\.(\d+)$/.exec(versions.node ?? '');
       if (versions.electron || !match) continue;
       const version = match.slice(1).map(Number);
@@ -54,7 +54,7 @@ export function systemNode(directories?: readonly string[], options: NodeLocatio
       if (difference > 0) best = { path, version };
     } catch { /* Candidate exceptions and output never become diagnostic content. */ }
   }
-  checkBudget();
+  checkBudget(); if (timedOut && !best) throw new RuntimeNodeRequired('budget', searched);
   if (best) return best.path;
   throw new RuntimeNodeRequired('missing', searched);
 }

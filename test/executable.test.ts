@@ -4,6 +4,7 @@ import { strict as a } from 'node:assert';
 import { mkdtempSync, mkdirSync, symlinkSync, writeFileSync, chmodSync, realpathSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { startupDiagnostic } from './installed-share.ts';
 import { systemNode, relayToNode } from '../src/ports/executable.ts';
 
 test('installed Node discovery: real executable, no relative PATH, missing/old/Electron candidates refuse without leaking output', () => {
@@ -67,4 +68,43 @@ test('runtime discovery chooses the greatest compatible version and finds unlink
     const windows = nodeDirectories({ platform: 'win32', path: [], home: join(root, 'empty'), programFiles: join(root, 'program-files') });
     a.ok(windows.includes(join(root, 'program-files/nodejs')));
   } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('a probe timeout cannot veto a verified compatible Node; without one it remains budget, never missing', () => {
+  const root = mkdtempSync(join(tmpdir(), 'head-node-incomplete-')), dirs: string[] = [];
+  try {
+    for (const name of ['slow', 'valid']) { const dir = join(root, name); mkdirSync(dir); writeFileSync(join(dir, 'node'), 'neutral probe fixture\n'); chmodSync(join(dir, 'node'), 0o755); dirs.push(dir); }
+    const processPort = createRequire(import.meta.url)('node:child_process');
+    const probe = mock.method(processPort, 'spawnSync', (file: string, _args: unknown, options: { timeout: number }) => {
+      a.ok(options.timeout > 0 && options.timeout <= 250);
+      return file === realpathSync(join(dirs[0]!, 'node')) ? { status: null, signal: 'SIGTERM', error: Object.assign(Error('private-error-canary'), { code: 'ETIMEDOUT' }), stdout: '', stderr: '' }
+        : { status: 0, stdout: JSON.stringify({ node: '22.18.0' }), stderr: '' };
+    });
+    syncBuiltinESMExports();
+    try { for (const order of [dirs, [...dirs].reverse()]) a.equal(systemNode(order), realpathSync(join(dirs[1]!, 'node'))); a.equal(probe.mock.calls.length, 4); a.throws(() => systemNode([dirs[0]!]), (e: any) => e.reason === 'budget' && !e.message.includes('private-error-canary')); }
+    finally { probe.mock.restore(); syncBuiltinESMExports(); }
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('Electron probe telemetry is bounded and excludes paths, output, environment and private errors', () => {
+  const { installProbeAudit } = createRequire(import.meta.url)('./electron-host/probe-audit.cjs');
+  const canary = 'synthetic-private-probe-canary', events: any[] = [], failure = Object.assign(Error(canary), { code: canary });
+  let throwing = false, invocations = 0;
+  const port = { spawnSync: (..._args: unknown[]) => { invocations++; if (throwing) throw failure; return { status: null, signal: canary, error: Object.assign(Error(canary), { code: 'ETIMEDOUT' }), stdout: canary, stderr: canary }; } };
+  const snapshot = installProbeAudit(port, (event: unknown) => events.push(event));
+  a.ok(port.spawnSync(canary, ['not-a-version-probe'], { env: { TOKEN: canary } })); a.equal(events.length, 0);
+  for (let i = 0; i < 40; i++) port.spawnSync(canary, ['-p', 'JSON.stringify(process.versions)'], { timeout: 250, env: { TOKEN: canary } });
+  a.equal(events.length, 33); a.equal(events.filter(e => e.type === 'runtime-probe').length, 32); a.deepEqual(events.at(-1), { type: 'runtime-probe-limit', limit: 32 }); a.deepEqual(snapshot(), { recorded: 32, omitted: 8 }); a.ok(!JSON.stringify(events).includes(canary));
+  throwing = true; a.throws(() => port.spawnSync(canary, ['-p', 'JSON.stringify(process.versions)'], {}), e => e === failure); a.equal(invocations, 42);
+  const thrownEvents: any[] = [], thrownPort = { spawnSync: (..._args: unknown[]) => { throw failure; } };
+  installProbeAudit(thrownPort, (event: unknown) => thrownEvents.push(event)); a.throws(() => thrownPort.spawnSync(canary, ['-p', 'JSON.stringify(process.versions)'], { timeout: 250 }), e => e === failure);
+  a.equal(thrownEvents[0].errorCode, 'other'); a.equal(thrownEvents[0].threw, true); a.ok(!JSON.stringify(thrownEvents).includes(canary));
+});
+
+
+test('failed installed startup preserves its declared code and reason without arbitrary reply fields', () => {
+  const canary = 'synthetic-private-reply-canary', profile = [{ scope: 'said/runtime-node-required', value: 'lock' }];
+  const response = { result: { structuredContent: { cells: Array.from({ length: 20 }, () => ({ code: 'head/runtime-node-required', fields: { reason: 'budget', token: canary, instruction: canary, path: canary } })) } }, error: { message: canary } };
+  const text = startupDiagnostic(response, profile); a.ok(!text.includes(canary)); a.ok(text.length <= 2000); const summary = JSON.parse(text); a.equal(summary.cells.length, 8); a.deepEqual(summary.cells[0], { code: 'head/runtime-node-required', reason: 'budget' }); a.equal(summary.rpcError, true);
+  a.deepEqual(JSON.parse(startupDiagnostic({ result: { structuredContent: { cells: [{ code: canary, fields: { reason: canary } }, null] } } }, profile)).cells, [{ code: 'other' }, { code: 'other' }]);
 });

@@ -10,7 +10,7 @@ export function run(place: string) {
   verifyCurrentRevalidation();
   verifyStandalone('dependency/standalone-runtime');
   const capture = readFileSync('samples/runtime-inventory/yes/client.json');
-  if (hash(capture) !== 'sha256:9ea4a4b03d83c947381a0077130a44ca1d7704c8a8160eebf976eca8eb11d54f') throw Error('REFUSE·runtime-inventory/capture');
+  if (hash(capture) !== 'sha256:c0dce0131fdd82b5b16401f4c275238bb53627ca5309fdbe04edd9e5858be0d2') throw Error('REFUSE·runtime-inventory/capture');
   const receipt = JSON.parse(capture.toString());
   if (receipt.protocol !== 'head-runtime-inventory-capture@2' || receipt.runs.length !== 2 || receipt.runs.map((r: { node: string }) => r.node).sort().join('|') !== '22|24') throw Error('REFUSE·runtime-inventory/runtimes');
   for (const input of receipt.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·runtime-inventory/current-input');

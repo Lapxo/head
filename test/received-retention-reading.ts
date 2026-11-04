@@ -1,3 +1,4 @@
+import {run as verifyRuntimeProbes} from './runtime-probes-reading.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
@@ -15,9 +16,10 @@ export function run(place: string) {
 
 /** Verify the reviewed fresh revalidation while its consumed production and fixture bytes remain current. */
 export function verifyCurrentRevalidation() {
+  if (!verifyRuntimeProbes('samples/runtime-probes/yes').some(r=>r.scope==='runtime/probe-selection')) throw Error('REFUSE·retention/runtime-probes');
   const bytes = readFileSync('samples/received-retention/yes/current.json');
   const digest = (value: Uint8Array) => 'sha256:' + createHash('sha256').update(value).digest('hex');
-  if (digest(bytes) !== 'sha256:5a1778e963df045632ee600905ee7094ed8cac38bac8a177c4500984eb86dd88') throw Error('REFUSE·retention/revalidation-pin');
+  if (digest(bytes) !== 'sha256:05ee533f27b3956d21c9cbad28f61da3aaa52d172b4cb67a1eca8be623a68c12') throw Error('REFUSE·retention/revalidation-pin');
   const c = JSON.parse(bytes.toString());
   if (c.protocol !== 'head-retention-revalidation@1' || c.runs.length !== 2 || c.runs.map((run: {node: string}) => run.node).sort().join('|') !== '22|24' || c.privateApiUsed || c.privateOpenAPIIncluded) throw Error('REFUSE·retention/revalidation');
   for (const input of c.inputs) if (digest(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·retention/revalidation-input');

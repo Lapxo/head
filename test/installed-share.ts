@@ -7,10 +7,15 @@ import { tmpdir } from 'node:os';
 import { ask } from './client.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 import { text } from './place.ts';
-import { declaredOf } from '../src/core/lock.ts';
+import { declaredOf, type Said } from '../src/core/lock.ts';
 import { worldBytes } from './worlds.ts';
 
 const digest = (bytes: Uint8Array) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+/** Bounded startup evidence contains declared codes and reasons, never arbitrary response fields. */
+export function startupDiagnostic(answer: any, profile: readonly Said[]): string {
+  const known = new Set(profile.filter(row => row.scope?.startsWith('said/')).map(row => 'head/' + row.scope!.slice(5))), cells = answer?.result?.structuredContent?.cells;
+  return JSON.stringify({ cells: (Array.isArray(cells) ? cells : []).slice(0, 8).map(cell => ({ code: known.has(cell?.code) ? cell.code : 'other', reason: ['missing', 'budget', 'launch'].includes(cell?.fields?.reason) ? cell.fields.reason : undefined })), rpcError: !!answer?.error }).slice(0, 2000);
+}
 /** Public tools in the installed extension; expected runtime digests come only from its pinned inventory. */
 export async function installedShare(installed: string) {
   const scratch = mkdtempSync(join(tmpdir(), 'head-installed-share-')), prior = process.env['HEAD_ENTRY'];
@@ -39,7 +44,8 @@ export async function installedShare(installed: string) {
     for (const [i, domain] of domains.entries()) {
       const place = join(shared, domain.source), document = join(shared, domain.source + '.json');
       writeFileSync(document, JSON.stringify({ openapi: '3.0.3', info: { title: domain.source, version: '1' }, servers: [{ url: `https://${domain.source}.example` }], paths: { [domain.path]: { get: { operationId: domain.operation, security: [], responses: { 200: { description: 'ok' } } } } } }));
-      ok(text(await call('place', { dir: place }, true)).includes('head/born'));
+      const founded = await call('place', { dir: place }, true);
+      ok(text(founded).includes('head/born'), 'installed startup ' + startupDiagnostic(founded, profile));
       for (const pin of profile.filter(line => /^world\/[^/]+\/blob$/.test(line.scope ?? ''))) {
         const bytes = readFileSync(worldBytes(pin.value!)); ok(digest(bytes) === pin.value);
         const store = join(place, '.bound/cas/blobs'); mkdirSync(store, { recursive: true });
