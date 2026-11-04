@@ -7,7 +7,7 @@ interface Capture { protocol: string; inputs: { path: string; sha256: string }[]
 export function run(place: string) {
   verifyCurrentRevalidation();
   const bytes = readFileSync('samples/composition/yes/client.json');
-  if (digest(bytes) !== 'sha256:bc0e9de80f25a9ddfdc42f1d8c0a0a35b395b891fbe25d5289314210ae0806df') throw Error('REFUSE·composition capture');
+  if (digest(bytes) !== 'sha256:d5617d371eaa6b00563ed3b88d14eaba6d27fee34a978a3de2b63e720c190fe4') throw Error('REFUSE·composition capture');
   const capture = JSON.parse(bytes.toString()) as Capture;
   if (capture.protocol !== 'head-composition-reviewed-vectors@1' || capture.runs.length !== 2) throw Error('REFUSE·composition protocol');
   const nodes = new Set<string>();

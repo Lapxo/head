@@ -8,7 +8,7 @@ const files = (base: string): string[] => readdirSync(base, { withFileTypes: tru
 export function run(place: string) {
   verifyCurrentRevalidation();
   const bytes = readFileSync('samples/standalone-runtime/yes/client.json');
-  if (hash(bytes) !== 'sha256:20e189d556450ef52f40dac3069f6582dc236c36be8ae8db4a4d245b3b02f90d') throw Error('REFUSE·standalone/capture');
+  if (hash(bytes) !== 'sha256:c6220d7e668b141ecf937323a5731db1ffa668a3edf426a3f988e7d106b42b35') throw Error('REFUSE·standalone/capture');
   const capture = JSON.parse(bytes.toString());
   if (capture.protocol !== 'head-system-node-capture@1' || capture.desktopUIAcceptance !== false || capture.ownerAdmitted !== false || capture.deployment !== 'requires-compatible-installed-node') throw Error('REFUSE·standalone/protocol');
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·standalone/current-input');

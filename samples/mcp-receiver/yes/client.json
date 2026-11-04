@@ -492,11 +492,11 @@
     },
     {
       "path": "dist/src/ports/executable.d.ts",
-      "sha256": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
+      "sha256": "sha256:4dd626bd9fec3ac19349ff03be3bfada3c81316504d86c1504d7849941626a26"
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:8ba63d6dbada27d295a28bb7d47ad994ada8b7c844b2970a76b64d7757de3d22"
+      "sha256": "sha256:ece52891ef0c253db1f1ca67b264be1e235107c3d267273c793728701f7f3c29"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -804,7 +804,7 @@
     },
     {
       "path": "dist/test/received-retention-reading.js",
-      "sha256": "sha256:6e05a1c57a4cdebc6ce14ed40d6ab089f40f1d4d9d7ce9316e3774ca3a4d1f87"
+      "sha256": "sha256:6f5de5195452c15db4cbd2ab3c10dbef7158c4aa85bbedd318b0d8cab5b58f63"
     },
     {
       "path": "dist/test/retained-fixture.js",
@@ -844,7 +844,7 @@
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:53f82c7b22796d5172a127541aeb4ba3161192c8acd7390519bfbd4d04385c26"
+      "sha256": "sha256:86488b9c82e109d5225cd06cb45b4d249e80fa44291e1fb7cb4e0ab6caef6c68"
     },
     {
       "path": "samples/mcp-receiver/yes/timing-selection.json",
@@ -1096,7 +1096,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:4c4ec70e77be9e16f64892f03515245e12d62ee80261b0f6278b7bcd627c0d34"
+      "sha256": "sha256:4f0328a77564de9e59bb1359ea720dfea7be27e7bdc2938275cd17822b2ef91c"
     },
     {
       "path": "src/ports/export.ts",
@@ -1272,7 +1272,7 @@
     },
     {
       "path": "test/received-retention-reading.ts",
-      "sha256": "sha256:698e23d9acf0387513f01715703bffddd2eea1dc5e63ed57fcb46ec412d4592a"
+      "sha256": "sha256:5eb014072fb4013e5cbcaa3a6321dd51377962b9724c712099b377027f3b689e"
     },
     {
       "path": "test/retained-fixture.ts",
@@ -1799,7 +1799,7 @@
     }
   },
   "predecessor": {
-    "sha256": "sha256:cba84a86817e68e61be7576d7459457dd5c3f147f6c6926455b434175ac0b832",
+    "sha256": "sha256:b90cc39c991798da828b36306cb6172a7337a6edac5bb4107e220b37c4986089",
     "historicalCapturePreserved": true
   },
   "actionWithCardDiagnostics": {
@@ -2294,7 +2294,7 @@
   },
   "currentRevalidation": {
     "path": "samples/received-retention/yes/current.json",
-    "sha256": "sha256:8bfb1cc30b5b7e53f42cf5f722907185c0e22392882763629732b462b2615ba3",
+    "sha256": "sha256:05ee533f27b3956d21c9cbad28f61da3aaa52d172b4cb67a1eca8be623a68c12",
     "historicalMatricesRepeated": false
   },
   "worldPolicyTransition": {
@@ -2451,22 +2451,22 @@
     "finalReleaseArtifact": false
   },
   "runtimeProbeSuccessor": {
-    "candidate": "Head 0.2.5 producer; selected version remains 0.2.4",
+    "candidate": "Head 0.2.5 verified-runtime fallback correction",
+    "reason": "A verified compatible Node remains usable when another candidate times out. All probe, total, source and response ceilings unchanged. No assertion that unverified candidates are older or absent.",
     "newFullFunctionalMatrix": false,
     "priorRunsRemainHistorical": true,
-    "reason": "Only three replacements in systemNode probe classification changed production; original flow matrices remain at their original producer identity. Current runtime probes are separately verified, not a new execution of old matrices.",
+    "actualDesktop": false,
+    "finalArtifact": false,
     "runtimeProbeCapture": {
       "path": "samples/runtime-probes/yes/results.json",
-      "sha256": "sha256:b1baf5c326d6e0725cb9e917217755a29bd600c0563d48e0b454fad990a0f438"
+      "sha256": "sha256:f3a2b50c627450e7395876693d3229e3b60cf48ed1620bccf0dc5e474d7203d7"
     },
     "runtimeProbeReader": {
       "path": "dist/test/runtime-probes-reading.js",
-      "sha256": "sha256:124e92a00e28ff0c87bcaca69f43f7554e8ffb6ef356ba3cb486f769ae950605"
-    },
-    "actualDesktop": false,
-    "finalArtifact": false
+      "sha256": "sha256:392f4bfa908572b9fd8638763cd38d7a5aee7fa19b0ef101a7575715567cbfd7"
+    }
   },
-  "metadataOnlySuccessor": {
+  "historicalMetadataSuccessor": {
     "version": "0.2.5",
     "onlyVersionMetadataChanged": true,
     "codeAndDependencyPinsIdentical": true,

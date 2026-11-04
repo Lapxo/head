@@ -10,7 +10,7 @@ export function run(place: string) {
   verifyCurrentRevalidation();
   verifyRuntimeInventory('dependency/runtime-inventory');
   const bytes = readFileSync('samples/mcp-receiver/yes/client.json');
-  if (hash(bytes) !== 'sha256:b90cc39c991798da828b36306cb6172a7337a6edac5bb4107e220b37c4986089') throw Error('REFUSE·mcp-receiver/capture');
+  if (hash(bytes) !== 'sha256:673dacc56e17110d2a46e6ce374155cc0809503807ad8c9b45273950676d936f') throw Error('REFUSE·mcp-receiver/capture');
   const capture = JSON.parse(bytes.toString());
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·mcp-receiver/current-input');
   const files = readdirSync('src', { recursive: true, withFileTypes: true }).filter(entry => entry.isFile() && entry.name.endsWith('.ts')).map(entry => entry.parentPath + '/' + entry.name).sort();

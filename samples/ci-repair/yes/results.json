@@ -491,11 +491,11 @@
     },
     {
       "path": "dist/src/ports/executable.d.ts",
-      "sha256": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
+      "sha256": "sha256:4dd626bd9fec3ac19349ff03be3bfada3c81316504d86c1504d7849941626a26"
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:8ba63d6dbada27d295a28bb7d47ad994ada8b7c844b2970a76b64d7757de3d22"
+      "sha256": "sha256:ece52891ef0c253db1f1ca67b264be1e235107c3d267273c793728701f7f3c29"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -827,7 +827,7 @@
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:53f82c7b22796d5172a127541aeb4ba3161192c8acd7390519bfbd4d04385c26"
+      "sha256": "sha256:86488b9c82e109d5225cd06cb45b4d249e80fa44291e1fb7cb4e0ab6caef6c68"
     },
     {
       "path": "src/access/contract.ts",
@@ -1075,7 +1075,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:4c4ec70e77be9e16f64892f03515245e12d62ee80261b0f6278b7bcd627c0d34"
+      "sha256": "sha256:4f0328a77564de9e59bb1359ea720dfea7be27e7bdc2938275cd17822b2ef91c"
     },
     {
       "path": "src/ports/export.ts",
@@ -1394,27 +1394,27 @@
   "RootChanged": false,
   "newFullMatrix": false,
   "predecessor": {
-    "sha256": "sha256:48eb41a57ca412f6ba9d8478a7eb5f7e2d1dc5018fc2965157b4bd1dda8ffca6",
+    "sha256": "sha256:9f6eedd8b3caec1739f00ccfdbdd01d2e5bbb9357756f774b630930c18bd55af",
     "historicalCapturePreserved": true
   },
   "runtimeProbeSuccessor": {
-    "candidate": "Head 0.2.5 producer; selected version remains 0.2.4",
+    "candidate": "Head 0.2.5 verified-runtime fallback correction",
+    "reason": "A verified compatible Node remains usable when another candidate times out. All probe, total, source and response ceilings unchanged. No assertion that unverified candidates are older or absent.",
     "newFullFunctionalMatrix": false,
     "priorRunsRemainHistorical": true,
-    "reason": "Only three replacements in systemNode probe classification changed production; original flow matrices remain at their original producer identity. Current runtime probes are separately verified, not a new execution of old matrices.",
+    "actualDesktop": false,
+    "finalArtifact": false,
     "runtimeProbeCapture": {
       "path": "samples/runtime-probes/yes/results.json",
-      "sha256": "sha256:b1baf5c326d6e0725cb9e917217755a29bd600c0563d48e0b454fad990a0f438"
+      "sha256": "sha256:f3a2b50c627450e7395876693d3229e3b60cf48ed1620bccf0dc5e474d7203d7"
     },
     "runtimeProbeReader": {
       "path": "dist/test/runtime-probes-reading.js",
-      "sha256": "sha256:124e92a00e28ff0c87bcaca69f43f7554e8ffb6ef356ba3cb486f769ae950605"
-    },
-    "actualDesktop": false,
-    "finalArtifact": false
+      "sha256": "sha256:392f4bfa908572b9fd8638763cd38d7a5aee7fa19b0ef101a7575715567cbfd7"
+    }
   },
   "status": "Current inputs and runtime-probe revalidation; original functional runs remain historical.",
-  "metadataOnlySuccessor": {
+  "historicalMetadataSuccessor": {
     "version": "0.2.5",
     "onlyVersionMetadataChanged": true,
     "codeAndDependencyPinsIdentical": true,

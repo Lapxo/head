@@ -29,7 +29,7 @@ export function nodeDirectories(options: NodeLocations = {}, until = performance
   if (platform === 'win32' && programFiles && isAbsolute(programFiles)) directories.push(join(programFiles, 'nodejs'));
   return [...new Set(directories.filter(isAbsolute))];
 }
-/** Select the greatest verified stable version; exhaustion never silently selects a lower unproven candidate. */
+/** Select the greatest verified compatible version; an unverified candidate grants no runtime. */
 export function systemNode(directories?: readonly string[], options: NodeLocations = {}): string {
   const until = performance.now() + 2000, seen = new Set<string>(), selected = directories ?? nodeDirectories(options, until);
   const platform = options.platform ?? process.platform;
@@ -54,7 +54,7 @@ export function systemNode(directories?: readonly string[], options: NodeLocatio
       if (difference > 0) best = { path, version };
     } catch { /* Candidate exceptions and output never become diagnostic content. */ }
   }
-  checkBudget(); if (timedOut) throw new RuntimeNodeRequired('budget', searched);
+  checkBudget(); if (timedOut && !best) throw new RuntimeNodeRequired('budget', searched);
   if (best) return best.path;
   throw new RuntimeNodeRequired('missing', searched);
 }

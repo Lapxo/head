@@ -7,7 +7,7 @@ const hash = (bytes: Uint8Array | string) => 'sha256:' + createHash('sha256').up
 export function run(place: string) {
   verifyCurrentRevalidation();
   const bytes = readFileSync('samples/receiver-access/yes/client.json');
-  if (hash(bytes) !== 'sha256:137f4b02208c197cc71d243df495013429e57fba082df040d31e2d0aad35f921') throw Error('REFUSE·receiver-access/capture');
+  if (hash(bytes) !== 'sha256:64eb0c974da6d6d545c978bf8145b1062cf53e64f498b277d88a00883fab064b') throw Error('REFUSE·receiver-access/capture');
   const capture = JSON.parse(bytes.toString());
   for (const input of capture.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·receiver-access/current-input');
   const fields = readFileSync('TARGET.bound', 'utf8').split('\n').filter(Boolean).map(line => parse(line)).flatMap(p => p.kind === 'fact' ? [p.value.fields] : []);

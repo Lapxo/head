@@ -70,7 +70,7 @@ test('runtime discovery chooses the greatest compatible version and finds unlink
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
 
-test('a probe timeout is incomplete discovery, never missing or a silent lower-version fallback', () => {
+test('a probe timeout cannot veto a verified compatible Node; without one it remains budget, never missing', () => {
   const root = mkdtempSync(join(tmpdir(), 'head-node-incomplete-')), dirs: string[] = [];
   try {
     for (const name of ['slow', 'valid']) { const dir = join(root, name); mkdirSync(dir); writeFileSync(join(dir, 'node'), 'neutral probe fixture\n'); chmodSync(join(dir, 'node'), 0o755); dirs.push(dir); }
@@ -81,7 +81,7 @@ test('a probe timeout is incomplete discovery, never missing or a silent lower-v
         : { status: 0, stdout: JSON.stringify({ node: '22.18.0' }), stderr: '' };
     });
     syncBuiltinESMExports();
-    try { for (const order of [dirs, [...dirs].reverse(), [dirs[0]!]]) a.throws(() => systemNode(order), (e: any) => e.reason === 'budget' && !e.message.includes('private-error-canary')); }
+    try { for (const order of [dirs, [...dirs].reverse()]) a.equal(systemNode(order), realpathSync(join(dirs[1]!, 'node'))); a.equal(probe.mock.calls.length, 4); a.throws(() => systemNode([dirs[0]!]), (e: any) => e.reason === 'budget' && !e.message.includes('private-error-canary')); }
     finally { probe.mock.restore(); syncBuiltinESMExports(); }
   } finally { rmSync(root, { recursive: true, force: true }); }
 });

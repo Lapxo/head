@@ -6,7 +6,7 @@ const hash=(x:Uint8Array)=>'sha256:'+createHash('sha256').update(x).digest('hex'
 export function run(place:string){
   verifyCurrentRevalidation();
   verifyRuntimeInventory('dependency/runtime-inventory');
- const bytes=readFileSync('samples/receiver-runtime/yes/client.json');if(hash(bytes)!=='sha256:ff7648606c1d11e781c4ce30a5b254d68115bcd600cfcfa2b89622d1750d1854')throw Error('REFUSE·receiver/capture');const c=JSON.parse(bytes.toString());
+ const bytes=readFileSync('samples/receiver-runtime/yes/client.json');if(hash(bytes)!=='sha256:2bcce72ecb3f305f658a87dfb015c2776b955552f19619c5d0e61eb5953863ef')throw Error('REFUSE·receiver/capture');const c=JSON.parse(bytes.toString());
  for(const i of c.inputs)if(hash(readFileSync(i.path))!==i.sha256)throw Error('REFUSE·receiver/current-input');
  const current=readdirSync('src',{recursive:true,withFileTypes:true}).filter(e=>e.isFile()&&e.name.endsWith('.ts')).map(e=>e.parentPath+'/'+e.name).sort();if(JSON.stringify(current)!==JSON.stringify(c.inputs.filter((i:{path:string})=>i.path.startsWith('src/')).map((i:{path:string})=>i.path).sort()))throw Error('REFUSE·receiver/source-inventory');
  if(c.protocol!=='head-bundle-receiver-capture@1'||c.runs.length!==2||c.runs.map((r:{node:string})=>r.node).sort().join('|')!=='22|24')throw Error('REFUSE·receiver/runtimes');

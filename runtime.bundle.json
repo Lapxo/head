@@ -24038,13 +24038,13 @@
     },
     {
       "path": "dist/src/ports/executable.js",
-      "bytes": 6648,
-      "digest": "sha256:8ba63d6dbada27d295a28bb7d47ad994ada8b7c844b2970a76b64d7757de3d22"
+      "bytes": 6642,
+      "digest": "sha256:ece52891ef0c253db1f1ca67b264be1e235107c3d267273c793728701f7f3c29"
     },
     {
       "path": "dist/src/ports/executable.d.ts",
-      "bytes": 1067,
-      "digest": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
+      "bytes": 1052,
+      "digest": "sha256:4dd626bd9fec3ac19349ff03be3bfada3c81316504d86c1504d7849941626a26"
     },
     {
       "path": "dist/src/ports/receive.js",
@@ -24057,5 +24057,5 @@
       "digest": "sha256:a62daa1552c3c4d772f43ea09965ea500f341b26f11ef462678f904a01ff6e17"
     }
   ],
-  "bytes": 42582840
+  "bytes": 42582819
 }

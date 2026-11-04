@@ -2,10 +2,10 @@
   "protocol": "head-first-minute-capture@1",
   "status": "Current inputs and runtime-probe revalidation; original functional runs remain historical.",
   "artifact": {
-    "sha256": "sha256:f3d4fd68d713171d52d399f405f58b93d1a1b28df995d959a1f47962ec2ca49b",
+    "sha256": "sha256:28bb74a3acc4e85046bd66defceb95676ae17e50df4caf179d41c1392d67338e",
     "version": "0.2.5",
-    "kind": "metadata-only-successor-of-verified-runtime-directory",
-    "runtimeDescriptor": "sha256:53f82c7b22796d5172a127541aeb4ba3161192c8acd7390519bfbd4d04385c26",
+    "kind": "verified-runtime-correction-directory",
+    "runtimeDescriptor": "sha256:86488b9c82e109d5225cd06cb45b4d249e80fa44291e1fb7cb4e0ab6caef6c68",
     "members": 4811,
     "regional": true,
     "finalReleaseArtifact": false
@@ -258,7 +258,7 @@
       },
       {
         "path": "src/ports/executable.ts",
-        "sha256": "sha256:4c4ec70e77be9e16f64892f03515245e12d62ee80261b0f6278b7bcd627c0d34"
+        "sha256": "sha256:4f0328a77564de9e59bb1359ea720dfea7be27e7bdc2938275cd17822b2ef91c"
       },
       {
         "path": "src/ports/export.ts",
@@ -904,11 +904,11 @@
       },
       {
         "path": "dist/src/ports/executable.d.ts",
-        "sha256": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
+        "sha256": "sha256:4dd626bd9fec3ac19349ff03be3bfada3c81316504d86c1504d7849941626a26"
       },
       {
         "path": "dist/src/ports/executable.js",
-        "sha256": "sha256:8ba63d6dbada27d295a28bb7d47ad994ada8b7c844b2970a76b64d7757de3d22"
+        "sha256": "sha256:ece52891ef0c253db1f1ca67b264be1e235107c3d267273c793728701f7f3c29"
       },
       {
         "path": "dist/src/ports/export.d.ts",
@@ -1482,17 +1482,17 @@
     ]
   },
   "predecessor": {
-    "sha256": "sha256:a534d4e42da7df65f24a0615996cfc78ab7ea8d31e6186d25134ad25ec0f1e10",
+    "sha256": "sha256:bc73a7402eb92f0dfb8cacce27961a33ce0343df12922ca5a5bf2813bb7dc26a",
     "historicalCapturePreserved": true
   },
   "runs": [
     {
       "node": "22",
-      "output": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 40950.188208\n  type: 'test'\n  ...\n# ENVIRONMENT node=v22.23.3 platform=darwin cpus=10 load=1.78076171875,1.7392578125,1.71923828125 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 3.43 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.70 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 1.97 s · new-with-source 2.70 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.68 s · repeated-with-receipt 0.07 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":1972.2150840000013,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2697.222666999998,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":38.42879199999879,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":57.543250000002445,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2679.0915000000023,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":66.13387499999953,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 41156.289875\n"
+      "output": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 42031.151417\n  type: 'test'\n  ...\n# ENVIRONMENT node=v22.23.3 platform=darwin cpus=10 load=2.39794921875,2.2587890625,2.18896484375 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 3.47 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.72 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 2.03 s · new-with-source 2.72 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.77 s · repeated-with-receipt 0.07 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":2034.1160419999994,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2719.032750000002,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":39.63658299999952,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":55.38266699999804,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2765.764916,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":67.75554099999863,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 42250.063958\n"
     },
     {
       "node": "24",
-      "output": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 37862.901542\n  type: 'test'\n  ...\n# ENVIRONMENT node=v24.14.1 platform=darwin cpus=10 load=2.03759765625,1.89306640625,1.78173828125 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 0.41 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.64 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 1.98 s · new-with-source 2.64 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.65 s · repeated-with-receipt 0.07 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":1977.5529999999999,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2640.2502909999985,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":41.46350000000166,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":61.36316599999918,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2652.148208999999,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":67.85562499999651,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 38075.543834\n"
+      "output": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 38568.741416\n  type: 'test'\n  ...\n# ENVIRONMENT node=v24.14.1 platform=darwin cpus=10 load=2.7158203125,2.44580078125,2.26806640625 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 0.56 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.68 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 1.98 s · new-with-source 2.68 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.05 s · new-with-source 2.70 s · repeated-with-receipt 0.07 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":1981.755083,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2680.827750000002,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":43.33037499999773,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":54.72204200000124,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2704.258459000004,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":71.11529099999461,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 38828.457917\n"
     }
   ],
   "history": {
@@ -1643,7 +1643,7 @@
   },
   "currentRevalidation": {
     "path": "samples/received-retention/yes/current.json",
-    "sha256": "sha256:8bfb1cc30b5b7e53f42cf5f722907185c0e22392882763629732b462b2615ba3",
+    "sha256": "sha256:05ee533f27b3956d21c9cbad28f61da3aaa52d172b4cb67a1eca8be623a68c12",
     "historicalMatricesRepeated": false
   },
   "metadataSuccessor": {
@@ -1656,31 +1656,31 @@
     "finalReleaseArtifact": false
   },
   "runtimeProbeSuccessor": {
-    "candidate": "Head 0.2.5 producer; selected version remains 0.2.4",
+    "candidate": "Head 0.2.5 verified-runtime fallback correction",
+    "reason": "A verified compatible Node remains usable when another candidate times out. All probe, total, source and response ceilings unchanged. No assertion that unverified candidates are older or absent.",
     "newFullFunctionalMatrix": false,
     "priorRunsRemainHistorical": true,
-    "reason": "Only three replacements in systemNode probe classification changed production; original flow matrices remain at their original producer identity. Current runtime probes are separately verified, not a new execution of old matrices.",
+    "actualDesktop": false,
+    "finalArtifact": false,
     "runtimeProbeCapture": {
       "path": "samples/runtime-probes/yes/results.json",
-      "sha256": "sha256:b1baf5c326d6e0725cb9e917217755a29bd600c0563d48e0b454fad990a0f438"
+      "sha256": "sha256:f3a2b50c627450e7395876693d3229e3b60cf48ed1620bccf0dc5e474d7203d7"
     },
     "runtimeProbeReader": {
       "path": "dist/test/runtime-probes-reading.js",
-      "sha256": "sha256:124e92a00e28ff0c87bcaca69f43f7554e8ffb6ef356ba3cb486f769ae950605"
-    },
-    "actualDesktop": false,
-    "finalArtifact": false
+      "sha256": "sha256:392f4bfa908572b9fd8638763cd38d7a5aee7fa19b0ef101a7575715567cbfd7"
+    }
   },
   "historicalArtifact": {
-    "sha256": "sha256:bb08e7c754fd472b26f3864de6573cf0a9785eed90fd0e810aebf8e448fc0aa7",
-    "version": "0.2.4",
-    "kind": "verified-public-runtime-directory",
-    "runtimeDescriptor": "sha256:14f848428107b5abef744fec24c43ba046afada17fd2feb7a8e818f988df9f59",
+    "sha256": "sha256:f3d4fd68d713171d52d399f405f58b93d1a1b28df995d959a1f47962ec2ca49b",
+    "version": "0.2.5",
+    "kind": "metadata-only-successor-of-verified-runtime-directory",
+    "runtimeDescriptor": "sha256:53f82c7b22796d5172a127541aeb4ba3161192c8acd7390519bfbd4d04385c26",
     "members": 4811,
     "regional": true,
     "finalReleaseArtifact": false
   },
-  "metadataOnlySuccessor": {
+  "historicalMetadataSuccessor": {
     "version": "0.2.5",
     "onlyVersionMetadataChanged": true,
     "codeAndDependencyPinsIdentical": true,

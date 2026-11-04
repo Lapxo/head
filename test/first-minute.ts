@@ -22,7 +22,7 @@ export function observe(bytes: Uint8Array, coordinate = '') {
     if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== selected[1]) throw Error(`REFUSE·release changed metadata ${coordinate}`);
     return [{ scope: selected[0], role: 'writes', measure: 'defects', bound: { kind: 'interval', lo: 0, hi: 0 } }];
   }
-  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:bc73a7402eb92f0dfb8cacce27961a33ce0343df12922ca5a5bf2813bb7dc26a') throw Error('REFUSE·first-minute capture digest');
+  if (`sha256:${createHash('sha256').update(bytes).digest('hex')}` !== 'sha256:4d8badf8847a1792b57cbddf232701df69c395525b03f12bfbc7d005cda8f890') throw Error('REFUSE·first-minute capture digest');
   const capture = JSON.parse(new TextDecoder().decode(bytes)) as Capture;
   if (capture.protocol !== 'head-first-minute-capture@1' || !/^sha256:[0-9a-f]{64}$/.test(capture.artifact?.sha256)
     || !Array.isArray(capture.runs) || capture.runs.length !== 2) throw Error('REFUSE·first-minute capture protocol');

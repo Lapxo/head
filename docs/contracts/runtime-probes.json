@@ -16,9 +16,10 @@
     "perProbeMs": 250,
     "timeoutReason": "budget",
     "absenceReason": "missing",
-    "incompleteSelectionMayChooseAnotherCandidate": false,
+    "incompleteSelectionMayChooseAnotherCandidate": true,
     "automaticRetryAdded": false,
-    "limitsChanged": false
+    "limitsChanged": false,
+    "selection": "Greatest compatible stable version among candidates actually verified within the unchanged budgets; no claim about an unverified candidate. If none is verified, a probe timeout remains budget, never missing."
   },
   "telemetry": {
     "testHostOnly": true,
@@ -54,7 +55,7 @@
   },
   "evidence": {
     "focalCasesPerRuntime": 21,
-    "electronCasesPerRuntime": 3,
+    "electronCasesPerRuntime": 5,
     "externalRuntimes": [
       "22",
       "24"
@@ -65,9 +66,10 @@
     "RunAsNodeDisabled": true,
     "candidateUnpackedLayout": true,
     "newArchiveFormed": false,
-    "fullMCPMatricesReplayed": false
+    "fullMCPMatricesReplayed": false,
+    "mixedCandidateOrders": 2
   },
   "noPrivateInputs": true,
   "authority": "Evidence grants no authority; owner admission and own Root observation remain separate.",
-  "historicalFailure": "The old no-launch failure and successful retry remain preserved. The exact historical cause is still unproved."
+  "historicalFailure": "CI 41768024193 is preserved: four of seven hosts verified one Node then timed out on another; three hosts verified both and launched. The older 0.2.4 failure remains unattributed."
 }
