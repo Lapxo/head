@@ -1,0 +1,9 @@
+{
+  "version": "0.1.3",
+  "world": "mcp",
+  "standing": "sha256:58879780279c36294ca9819174e52605b336f4c3ac70c40db382c0f090003870",
+  "capsule": "sha256:b66666f4d14e5506c8a72438626a7c71c787920b32f669b935d0a1588bdd5129",
+  "runtime": "node",
+  "topos": "0.2.0",
+  "status": "candidate; owner admission and release approval pending"
+}

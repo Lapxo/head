@@ -4,7 +4,7 @@ import { mkdirSync, mkdtempSync, readdirSync, readFileSync, statSync, writeFileS
 import { join } from 'node:path';
 import { ask } from './client.ts';
 import { tmpdir } from 'node:os';
-import { valueOf } from '../src/core/lock.ts';
+import { declaredOf, valueOf } from '../src/core/lock.ts';
 import { fakeKeychain } from './fake-keychain.ts';
 import { api, lock, said, text, viewOf } from './place.ts';
 import { tool, auth, jobs, overlay, digestOf, pinsOf, yes, sender, receiver, receive } from './share-fixture.ts';
@@ -27,7 +27,12 @@ test('share packs a place into lines and the bytes they name, its pins resting o
   deepStrictEqual(asked.length, 1, 'one yes for all the package names'); match(asked[0]!, said('elicit-receive')); match(asked[0]!, /auth, jobs/);
   deepStrictEqual(pinsOf(to.place), pinsOf(from.place), 'compiled here, the same pins');
   const order = (scope: string) => Number(/ epoch=(\d+)/.exec(readFileSync(join(to.place, 'TARGET.bound'), 'utf8').split('\n').find((l) => l.includes(` scope=${scope} `))!)![1]);
-  ok(order('uses/auth') < order('uses/jobs'), 'auth landed first');
+  ok(order('uses/auth') <= order('uses/jobs'), 'the issuer never lands after its dependent');
+  if (order('uses/auth') === order('uses/jobs')) {
+    const pins=declaredOf(readFileSync(join(to.place,'TARGET.bound'),'utf8')).filter(l=>['uses/auth','uses/jobs'].includes(l.scope??''));
+    deepStrictEqual(pins.length,2); ok(pins.every(l=>l.sig&&l.by===pins[0]!.by), 'same epoch is one authenticated native Root act, never two unauthenticated acknowledgments');
+    match(lines.find(l=>l.includes(' scope=uses/jobs '))!, / restsOn=uses\/auth /, 'the atomic lot retains the issuer dependency');
+  }
   deepStrictEqual(readFileSync(join(to.place, 'connected', 'jobs.overlay.yaml'), 'utf8'), overlay);
   deepStrictEqual([/ scope=access\//.test(viewOf(to.place, 'evidence')), / scope=(allow\/origin|access)\//.test(viewOf(to.place, 'lines'))], [false, false], 'no access, no origin allowed: nothing the sharing place held');
 });

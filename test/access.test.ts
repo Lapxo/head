@@ -7,7 +7,7 @@ import type { AddressInfo } from 'node:net';
 import { basename, join } from 'node:path';
 import { ask } from './client.ts';
 import { canonical, parse } from '@lapxo/topos/wire';
-import { api, born, line, lock, root, said, text, viewOf } from './place.ts';
+import { api, born, holdRoot, line, lock, root, said, text, viewOf } from './place.ts';
 
 const look = (place: string, operation: string, args: Record<string, string> = {}) => ({ method: 'tools/call', params: { name: 'look', arguments: { place, source: 'tracker', operation, args, at: '8' } } });
 const issue = (n: string) => ({ owner: 'o', repo: 'r', issue_number: n });
@@ -34,7 +34,8 @@ const person = (entered: Record<string, string>, chosen: Record<string, string> 
 
 test('a bearer the source declares and does not say how to obtain is a secret input: entered once on head-s page because the place-s root allows it, kept marked as entered by hand, never passing through the model', async () => {
   const server = await api(answers);
-  const { place, keychain } = born(server.url, [secrets(1)], null);
+  const fixture = born(server.url, [secrets(1)], null); holdRoot(fixture);
+  const { place, keychain } = fixture; Object.assign(keychain.env,{HEAD_HOME:join(place,'security-home'),HOME:join(place,'security-user'),USERPROFILE:join(place,'security-user')});
   const seen: string[] = [];
   const [first, second] = await ask([look(place, 'issues/get', issue('1')), look(place, 'status')], [], keychain.env, person({ token: 'secret-from-page' }, {}, seen));
   const [again] = await ask([look(place, 'issues/get', issue('2'))], [], keychain.env, person({ token: 'never-asked' }, {}, seen));
@@ -60,17 +61,20 @@ test('no: a secret the place-s root does not allow is never asked — refused na
 });
 
 test('a declared flow: each input asked as it says — a form, a secret on head-s page — sent once, its next step sent with the first token, and only the token it ends in is kept', async () => {
-  const server = await api(answers);
-  const { place, keychain } = born(server.url, [line('allow/origin/accounts', 'id', server.url), secrets(1)], null);
+  const intermediate = 'TEST-INTERMEDIATE-ACCESS-CANARY-8c12d064', final = 'TEST-FINAL-ACCESS-CANARY-a4037931';
+  const server = await api((url,body)=>answers(url,body).replaceAll('\"t-first\"',JSON.stringify(intermediate)).replaceAll('\"t-shop\"',JSON.stringify(final)));
+  const fixture = born(server.url, [line('allow/origin/accounts', 'id', server.url), secrets(1)], null); holdRoot(fixture);
+  const { place, keychain } = fixture; Object.assign(keychain.env,{HEAD_HOME:join(place,'security-home'),HOME:join(place,'security-user'),USERPROFILE:join(place,'security-user')});
   const seen: string[] = [];
   const [mine] = await ask([look(place, 'issues/mine')], [], keychain.env, person({ password: 'pw-never-kept' }, { email: 'ana@example.test', shopId: 's-1' }, seen));
   await server.close();
   ok(!said('entry-unfinished').test(text(mine)), text(mine));
   deepStrictEqual(seen, ['form email', 'page type="password"', 'form shopId']);
-  deepStrictEqual(server.seen.map((one) => [one.method, one.url, one.headers['authorization'] ?? '']), [['POST', '/login', ''], ['POST', '/select-shop', 'Bearer t-first'], ['GET', '/mine', 'Bearer t-shop']]);
+  deepStrictEqual(server.seen.map((one) => [one.method, one.url, one.headers['authorization'] ?? '']), [['POST', '/login', ''], ['POST', '/select-shop', 'Bearer '+intermediate], ['GET', '/mine', 'Bearer '+final]]);
   deepStrictEqual([JSON.parse(server.seen[0]!.body), JSON.parse(server.seen[1]!.body)], [{ email: 'ana@example.test', password: 'pw-never-kept' }, { shopId: 's-1' }]);
-  deepStrictEqual(kept(keychain, place)?.secret, 't-shop'); ok(kept(keychain, place)?.expires > Date.now());
+  deepStrictEqual(kept(keychain, place)?.secret, final); ok(kept(keychain, place)?.expires > Date.now());
   ok(!text(mine).includes('pw-never-kept') && !keychain.argv().includes('pw-never-kept') && !JSON.stringify(kept(keychain, place)).includes('pw-never-kept'));
+  for (const [i,secret] of ['pw-never-kept',intermediate,final].entries()) deepStrictEqual([['answer',text(mine)],['arguments',keychain.argv()],['evidence',journal(place)]].filter(([,output])=>output!.includes(secret)).map(([channel])=>channel),[], 'managed flow marker '+i+' never leaves its supported boundary');
 });
 
 test('a flow whose first answer calls for a next step: the step runs because its when holds, carries forward what the answer named, the person chooses among what it listed, and the token the step answers is kept', async () => {

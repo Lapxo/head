@@ -1,0 +1,13 @@
+World compilation views
+
+A world may declare one capsule/compile-region (alphabet, id, writes). The named region must declare render reads and output writes, and the executable offer must select its own provider inputs for that region. This declaration is authenticated as part of the world's pinned standing. Documents, overlays and recipes cannot choose it.
+
+Each world keeps its existing place renderer for single-world consumers. A host adopts the independently named compilation view using its existing place-view resolution. Two adopted compilers must have distinct names. Multiple legacy worlds without distinct declarations are ambiguous and must be refused, irrespective of adoption order.
+
+Head reads the requested native views without concatenating their policies. Offering operations claims a source; a foreign unrecognized-document diagnostic does not. Exactly one compiler may offer operations for a source. A source claimed by two views is refused even if their outputs happen to agree. A successful pin includes only the selected compiler's source declarations, issuer declarations and read/write bounds. No compiler's limits are replaced by another's.
+
+For a received set, Head prepares its native view identities together using the published Bound host port. It reads each distinct compilation view once for that set, then reuses each separate result during source preparation. One homogeneous compiler needs one render; a mixed set needs one render per distinct compiler. This does not promise one render for an arbitrary number of worlds.
+
+Current document, overlay, world and policy bytes are checked before source admission. Preparation is not admission or consent. Received files never transfer sender authority, keys, credentials, grants or responses.
+
+Status: Head implementation candidate, not owner-admitted. This candidate consumes the exact public releases Topos-MCP 0.1.3 and Topos-OpenAPI 0.1.2. Their publication is verified separately; it grants no consumer authority. Actual Root closure, measured capacity decisions and successor acceptances remain pending. The known pre-commit recovery-consent and external authority-edit concurrency gaps are not closed by this change. Desktop, Intel, T2/L6 and Q4 remain open.

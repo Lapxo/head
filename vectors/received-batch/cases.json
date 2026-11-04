@@ -1,0 +1,21 @@
+{
+  "protocol": "head-received-batch@1",
+  "cases": [
+    "warehouse: document cannot produce receive success from a stale prepared reading",
+    "warehouse: overlay cannot produce receive success from a stale prepared reading",
+    "warehouse: world cannot produce receive success from a stale prepared reading",
+    "warehouse: policy cannot produce receive success from a stale prepared reading",
+    "warehouse: refused-land cannot produce receive success from a stale prepared reading",
+    "observatory: document cannot produce receive success from a stale prepared reading",
+    "observatory: overlay cannot produce receive success from a stale prepared reading",
+    "observatory: world cannot produce receive success from a stale prepared reading",
+    "observatory: policy cannot produce receive success from a stale prepared reading",
+    "observatory: refused-land cannot produce receive success from a stale prepared reading"
+  ],
+  "notClosed": [
+    "Global capacity",
+    "One consent across a cut before the source commit",
+    "All affected historical acceptance successors",
+    "Desktop, Intel, T2/L6"
+  ]
+}

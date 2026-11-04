@@ -1,0 +1,21 @@
+{
+  "protocol": "world-compilation-views@1",
+  "status": "candidate; not owner-admitted; not published",
+  "cases": [
+    {"id":"legacy-single","worlds":[{"compileRegion":null}],"expected":"legacy place view"},
+    {"id":"mixed-forward","worlds":[{"compileRegion":"alpha-compile"},{"compileRegion":"beta-compile"}],"expected":"separate native results; one claiming compiler per source"},
+    {"id":"mixed-reverse","worlds":[{"compileRegion":"beta-compile"},{"compileRegion":"alpha-compile"}],"expected":"same source pins regardless of provider order"},
+    {"id":"ambiguous-legacy","worlds":[{"compileRegion":null},{"compileRegion":null}],"expected":"world/compile-ambiguous"},
+    {"id":"duplicate-name","worlds":[{"compileRegion":"same"},{"compileRegion":"same"}],"expected":"world/compile-ambiguous"},
+    {"id":"changed-standing","change":"one world byte","expected":"world/compile-standing"},
+    {"id":"missing-provider-inputs","change":"omit executable offer inputs for the dedicated region","expected":"no compilation without its authenticated provider channel"},
+    {"id":"source-collision","change":"two compilers offer operations for one source","expected":"world/compile-collision; no pin or source admission"},
+    {"id":"foreign-diagnostic","change":"one compiler offers operations; the other emits an unsupported-source diagnostic","expected":"select the offering compiler; retain only its bounds"},
+    {"id":"installed-mixed","inputs":"one neutral OpenAPI and one configured local HTTPS MCP per domain","expected":"share, inspect, decline without writes, receive, restart, read, selection and consent checks; record timing excesses separately"}
+  ],
+  "privateInputs":false,
+  "authorityTransferred":false,
+  "ceilingsChanged":false,
+  "BoundChanged":false,
+  "realDesktopAcceptance":false
+}

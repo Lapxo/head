@@ -1,3 +1,4 @@
+import { verifyCurrentRevalidation } from './received-retention-reading.ts';
 import { run as verifyStandalone } from './standalone-runtime.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -6,9 +7,10 @@ const hash = (bytes: Uint8Array | string) => 'sha256:' + createHash('sha256').up
 const rows = (text: string) => text.split('\n').filter(Boolean).map(line => parse(line)).flatMap(p => p.kind === 'fact' ? [p.value.fields] : []);
 /** Verify current declared bytes and an executed installed-consumer receipt; no expected runtime digest is learned from an installation. */
 export function run(place: string) {
+  verifyCurrentRevalidation();
   verifyStandalone('dependency/standalone-runtime');
   const capture = readFileSync('samples/runtime-inventory/yes/client.json');
-  if (hash(capture) !== 'sha256:8b0de7645748da782c3834956ceb677bbb45c84a7add3390d202a421ff2ac8ce') throw Error('REFUSE·runtime-inventory/capture');
+  if (hash(capture) !== 'sha256:9ea4a4b03d83c947381a0077130a44ca1d7704c8a8160eebf976eca8eb11d54f') throw Error('REFUSE·runtime-inventory/capture');
   const receipt = JSON.parse(capture.toString());
   if (receipt.protocol !== 'head-runtime-inventory-capture@2' || receipt.runs.length !== 2 || receipt.runs.map((r: { node: string }) => r.node).sort().join('|') !== '22|24') throw Error('REFUSE·runtime-inventory/runtimes');
   for (const input of receipt.inputs) if (hash(readFileSync(input.path)) !== input.sha256) throw Error('REFUSE·runtime-inventory/current-input');
@@ -33,8 +35,9 @@ export function run(place: string) {
   if (policy.filter(f => f.scope === 'dep/runtime-bundle' && f.value === hash(current)).length !== 1 || hash(policy.filter(f => f.form === 'interval' && ['share/bundle-bytes', 'share/bundle-selections', 'bound/wait', 'bound/printed'].includes(f.scope ?? '')).map(({ sig, epoch, by, at, ...f }) => canonical(f)).sort().join('\n')) !== receipt.policy) throw Error('REFUSE·runtime-inventory/policy');
   for (const r of receipt.runs) {
     for (const [name, count] of [['repairs', 9], ['share', 7], ['root', 3], ['surface', 14]] as const) if (!new RegExp('^(?:# |ℹ )pass ' + count + '$', 'm').test(r.focusedParts[name]) || !/^(?:# |ℹ )fail 0$/m.test(r.focusedParts[name])) throw Error('REFUSE·runtime-inventory/root-path-tests');
-    if (r.noExpectedDigestsRegenerated !== true || r.credentialsUsed !== false || r.externalApiCalled !== false || r.results.length !== 2 || r.results.map((c: { metadata: string }) => c.metadata).sort().join('|') !== 'absent|changed') throw Error('REFUSE·runtime-inventory/consumer');
-    for (const c of r.results) if (!c.exportedTwice || !c.exportedReceiverBooted || !c.fixedInventoryUnchanged || !c.realRuntimeByteCorruptionRefused || !c.privateCanaryAbsent || !c.identicalMemberContents || c.allRuntimeMembersVerified !== after.files.length || c.artifacts.length !== 2) throw Error('REFUSE·runtime-inventory/vector');
+    const consumer = receipt.currentRuntimeVerification?.runs.find((run: {node: string}) => run.node === r.node) ?? r;
+    if (consumer.noExpectedDigestsRegenerated !== true || consumer.credentialsUsed !== false || consumer.externalApiCalled !== false || consumer.results.length !== 2 || consumer.results.map((c: { metadata: string }) => c.metadata).sort().join('|') !== 'absent|changed') throw Error('REFUSE·runtime-inventory/consumer');
+    for (const c of consumer.results) if (!c.exportedTwice || !c.exportedReceiverBooted || !c.fixedInventoryUnchanged || !c.realRuntimeByteCorruptionRefused || !c.privateCanaryAbsent || !c.identicalMemberContents || c.allRuntimeMembersVerified !== after.files.length || c.artifacts.length !== 2) throw Error('REFUSE·runtime-inventory/vector');
   }
   return [{ scope: place.replace(/\/$/, '').includes('samples/runtime-inventory/yes') ? 'composition/runtime-inventory' : 'runtime-inventory/current-inputs', role: 'writes', measure: 'defects', bound: { kind: 'interval' as const, lo: 0, hi: 0 } }];
 }

@@ -18,8 +18,8 @@
     },
     {
       "path": "dist/src/adopt/adopt.js",
-      "bytes": 5167,
-      "digest": "sha256:9540284c55e6d15ef2407a8d951fb015416fdc050de5d5f9f7bc94f488245ccf"
+      "bytes": 7844,
+      "digest": "sha256:e7910b85cbdce7e85c6446e35a1b0500e92d978cfc429b735f9dd1b8a32eba15"
     },
     {
       "path": "dist/src/ahead/budget.js",
@@ -53,8 +53,8 @@
     },
     {
       "path": "dist/src/compile/pin.js",
-      "bytes": 5877,
-      "digest": "sha256:55edb4261fec4f20d014fb654f69f3a6bffec07d0f1793c82399ee6eeaf25f54"
+      "bytes": 6932,
+      "digest": "sha256:11acc0519b0d82d750e0d33ab07d56ad8f59244ddd748530ec4bd34c35766c22"
     },
     {
       "path": "dist/src/core/act.js",
@@ -88,8 +88,8 @@
     },
     {
       "path": "dist/src/core/package.js",
-      "bytes": 11434,
-      "digest": "sha256:d96053d8121d080f32b814e021b29ca4fc92103e6cd11d9996b0fe0f56cb344a"
+      "bytes": 13437,
+      "digest": "sha256:5390de2d6198d5cc0b008ab4f341383a0eb3dd8754312629e13e709300e9ff23"
     },
     {
       "path": "dist/src/core/read.js",
@@ -103,8 +103,8 @@
     },
     {
       "path": "dist/src/core/receiver.js",
-      "bytes": 8866,
-      "digest": "sha256:45a133f3f1db56d98a5e5ad8a1eeddb84e2e92344a5ec4a23c8a639d8fd4637d"
+      "bytes": 9823,
+      "digest": "sha256:1ddb558f3499c6c2f9e0f657d329fee51480e4cc46d08dd82f087bfef99dfdfa"
     },
     {
       "path": "dist/src/core/share-bundle.js",
@@ -133,8 +133,8 @@
     },
     {
       "path": "dist/src/doors/head.js",
-      "bytes": 17458,
-      "digest": "sha256:634159aa326548209e4fb0279448ccfa1f3d03fbdcee865a179231253fb1675b"
+      "bytes": 17740,
+      "digest": "sha256:e61fdc9df9f9267f1cdcf96ae6c56088ed614374f337364153f2c2d835d24bf7"
     },
     {
       "path": "dist/src/doors/http.js",
@@ -303,8 +303,8 @@
     },
     {
       "path": "dist/src/ports/bound.js",
-      "bytes": 9518,
-      "digest": "sha256:d2b5102fe4ff19527319d0c5b2ae0dfa97b2123c2dbc1418ef8af034ad995296"
+      "bytes": 9525,
+      "digest": "sha256:14098696c7284242f29839c372d81986179612e861336d1a229b77466e2a90ad"
     },
     {
       "path": "dist/src/ports/cache.js",
@@ -393,8 +393,8 @@
     },
     {
       "path": "dist/src/sources/connect.js",
-      "bytes": 11050,
-      "digest": "sha256:e4e786f099412b7777e9f341c3975d3f5d98f5cb72a887f6a13f22769af13f37"
+      "bytes": 17123,
+      "digest": "sha256:e73ca4ec4cfef2ea341a76977073b7b61be9b16dbfd4f61601a159626f148a3e"
     },
     {
       "path": "dist/src/sources/refused.js",
@@ -24034,7 +24034,7 @@
     {
       "path": "package.json",
       "bytes": 1057,
-      "digest": "sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f"
+      "digest": "sha256:aa7f1f4522ee3fb74f5b14d439d393de61c3776ad4e08b777b577d4637a75db3"
     },
     {
       "path": "dist/src/ports/executable.js",
@@ -24045,7 +24045,17 @@
       "path": "dist/src/ports/executable.d.ts",
       "bytes": 1067,
       "digest": "sha256:5253404d4bea9d50cb292d4cbe19d9bbacd4702e536bdbc34677c4f4b19d8824"
+    },
+    {
+      "path": "dist/src/ports/receive.js",
+      "bytes": 1960,
+      "digest": "sha256:4e1511fc61e5677f4437b694fb6d40f08173f00bb5ebe6a54cfaa8ad4084dae4"
+    },
+    {
+      "path": "dist/src/ports/receive.d.ts",
+      "bytes": 243,
+      "digest": "sha256:a62daa1552c3c4d772f43ea09965ea500f341b26f11ef462678f904a01ff6e17"
     }
   ],
-  "bytes": 42567398
+  "bytes": 42582655
 }

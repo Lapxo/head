@@ -24,6 +24,14 @@ test('every said code has a state from the lock-s alphabet and a next — a tool
   }
 });
 
+test('receive refusal keeps the exact original connect coordinates in two unrelated places', () => {
+  for (const [place,document,digest] of [['/warehouse','/documents/stock.bound','sha256:'+'a'.repeat(64)],['/observatory','/documents/events.bound','sha256:'+'b'.repeat(64)]]) {
+    const cell=cellOf(lock,'receive-refused',{place,document,digest,why:'receive/busy'});
+    deepStrictEqual(cell.next,{tool:'connect',args:{place,document,digest}});
+    deepStrictEqual(cell.state,'refused');
+  }
+});
+
 test('a cell-s next carries the real arguments from its fields; a bound refusal keeps bound-s code with head-s beside it; a red is the state of the cell it measured, beside a done one in the same answer', () => {
   deepStrictEqual(cellOf(lock, 'not-covered', { place: '/p', coverage: 'read/**', scope: 'act/x' }).next, { tool: 'ask', args: { place: '/p', lines: '' } }, 'lines the person signs are asked with lines, which the model drafts');
   deepStrictEqual(cellOf(lock, 'is-read', { source: 'weather', operation: 'getForecast' }).next, { tool: 'ask', args: { source: 'weather', operation: 'getForecast' } }, 'a read is asked with no resolution');

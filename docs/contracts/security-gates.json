@@ -1,0 +1,305 @@
+{
+  "protocol": "head-security-gates@1",
+  "scope": "Regional security acceptance over current producers and reviewed public material. Final delivery must undergo a fresh scan of its exact selected bytes; this is not final0.2.4 artifact approval.",
+  "numericCeilings": "All six remain0..0. No other ceiling changes.",
+  "admittedMeanings": {
+    "literal/org": "Named semantic replacement: zero unselected or reserved managed-state publication members under security/contract, including existing installed-export private-state exclusions. No private-name dictionary and no claim to infer confidentiality of arbitrary owner-selected descriptions.",
+    "surface/secrets-out": "Zero managed-secret egress regressions in the explicit supported flows/channels of security/contract and SECURITY.md. Arbitrary malicious source bodies, crash dumps and same-user OS compromise remain outside the claimed boundary."
+  },
+  "namedSemanticDecisions": {
+    "literal/org": {
+      "previous": "Private organisation word detection depended on an unavailable private denylist.",
+      "proposed": "Count unselected or reserved managed-state publication members; reuse the real installed-export private-state/canary exclusions. Public names and intentionally selected descriptions are not forbidden words. No private dictionary, upload or unknown-word confidentiality claim."
+    },
+    "surface/secrets-out": {
+      "previous": "Epoch1 text said no answer carries a secret without a named threat boundary.",
+      "proposed": "Count regressions of managed credential/signing-secret egress in the explicitly named supported flows and channels below, as already bounded by SECURITY.md. Arbitrary malicious source bodies, crash dumps and same-user compromised processes are not claimed safe."
+    }
+  },
+  "literalInputs": {
+    "current": "Fresh standard npm dry-run selection plus all current own TypeScript sources. Existing shared literal scanner, declared origins and exact prose exemptions remain unchanged.",
+    "receiptProjection": {
+      "path": "samples/security/yes/public-receipt-projection.json",
+      "sha256": "sha256:1bb177a23a26c7c0807b849d76f36c23a5cf882bd1fc171e5470f8b6a047eb37",
+      "meaning": "Sealed public projection from closedRoot192, not imported authority or a live generated-file dependency. Mutating this ordinary input must invalidate/refuse its native reading."
+    },
+    "freshFinalRequirement": "After materializing public receipts, the shared pack test scans the current generated receipt file without memoization; native fold--check must also pass. Final tarball/MCPB bytes must be independently verified before owner approval. The retained regional projection does not certify changed final bytes."
+  },
+  "publicationCases": {
+    "tests": 7,
+    "fail": 0,
+    "skipped": 0,
+    "meaning": "Shared scan and structural predicates, exact README inventory, fresh generated-receipt mutation, unreviewed npm-config refusal and source-link refusal."
+  },
+  "managedEgress": {
+    "groups": {
+      "signer": {
+        "tests": 4,
+        "names": [
+          "the signer program answers a lot",
+          "with no key in the keychain",
+          "the signer makes a key once",
+          "the store head-s long process"
+        ]
+      },
+      "key-refusal": {
+        "tests": 2,
+        "names": [
+          "public key failures retain only their identifier, never raw exception output",
+          "MCP and plain doors name a failed store without creating keys or retrying to sign the refusal"
+        ]
+      },
+      "access": {
+        "tests": 2,
+        "names": [
+          "a bearer the source declares",
+          "a declared flow: each input"
+        ]
+      },
+      "hijack": {
+        "tests": 1,
+        "names": [
+          "the hijack:"
+        ]
+      }
+    },
+    "channels": [
+      "MCP/tool result",
+      "plain door result",
+      "HTTP door result",
+      "access page to declared transport",
+      "keychain command arguments",
+      "signed evidence/refusal history"
+    ],
+    "qualification": "Fresh focused cases, actual local processes and loopback fixtures with synthetic credentials. Complete historical MCP matrices and real-client acceptance remain separate."
+  },
+  "readme": {
+    "path": "README.md",
+    "sha256": "sha256:168d61d1570dfd8b426c35b1bcd6c704723bde191aa4038b9af6e9e5d3a4118c",
+    "blocks": [
+      {
+        "text": "# head",
+        "kind": "instruction",
+        "evidence": []
+      },
+      {
+        "text": "[![npm](https://img.shields.io/npm/v/@lapxo/head)](https://www.npmjs.com/package/@lapxo/head) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)",
+        "kind": "instruction",
+        "evidence": []
+      },
+      {
+        "text": "Turn API documents and MCP connections into your own MCP extension. Keep who answered, what was read, and what you allowed.",
+        "kind": "claim",
+        "evidence": [
+          "composition",
+          "share-runtime"
+        ]
+      },
+      {
+        "text": "Head starts empty. You choose the sources; the recipient uses their own credentials. Sharing public descriptions does not transfer your permissions, signing keys, tokens or API responses.",
+        "kind": "claim",
+        "evidence": [
+          "share-runtime",
+          "receiver-access",
+          "runtime-inventory"
+        ]
+      },
+      {
+        "text": "```text\nAPI documents + MCP endpoints → Head → your custom .mcpb\n                                      → recipient approves and signs in\n```",
+        "kind": "example",
+        "evidence": []
+      },
+      {
+        "text": "1. Connect the sources you want and approve each connection.\n2. Ask questions or use permitted operations, with receipts.\n3. Ask Head to package the connected place using `do` with `action: \"share\"`. Give the recipient the resulting `.mcpb`.",
+        "kind": "claim",
+        "evidence": [
+          "first-minute",
+          "share-runtime"
+        ]
+      },
+      {
+        "text": "[Export a connected place](#export-a-connected-place) · [Try a local example](docs/first-minute.md) · [Understand the boundaries](SECURITY.md)",
+        "kind": "instruction",
+        "evidence": []
+      },
+      {
+        "text": "head is an MCP server. Give it an API document, approve the connection, and ask a question. It reads operations the document declares, returns typed fields when a schema is available, and keeps signed receipts of its reads. Without a usable schema, the answer is named as untyped.",
+        "kind": "claim",
+        "evidence": [
+          "first-minute",
+          "mcp-receiver"
+        ]
+      },
+      {
+        "text": "```text\nYou: Connect this API as forecast.\n     [give its OpenAPI document; approve the connection]\nYou: What is the forecast in Lima?",
+        "kind": "example",
+        "evidence": []
+      },
+      {
+        "text": "forecast: temperature 21, sky clear\nreceipt: sha256:…\n```",
+        "kind": "example",
+        "evidence": []
+      },
+      {
+        "text": "This is an illustrative fixture, not a live forecast. [Run the local example](docs/first-minute.md) without an account or a real secret.",
+        "kind": "instruction",
+        "evidence": [],
+        "limitation": "Illustrative fixture, not an actual API claim."
+      },
+      {
+        "text": "## Start",
+        "kind": "instruction",
+        "evidence": []
+      },
+      {
+        "text": "For an assistant that starts MCP servers by command:",
+        "kind": "instruction",
+        "evidence": []
+      },
+      {
+        "text": "```sh\nnpx -y @lapxo/head@0.2.4 run\n```",
+        "kind": "example",
+        "evidence": []
+      },
+      {
+        "text": "The pin above names this release; the executable examples in this tree use the checkout. A client can also open a desktop extension from [releases](https://github.com/Lapxo/head/releases); check the artifact digests supplied with the release. Starting head alone prints help; `head run` starts the MCP server.",
+        "kind": "claim",
+        "evidence": [
+          "first-minute",
+          "standalone-runtime"
+        ]
+      },
+      {
+        "text": "The desktop target is macOS 13.5 or later. Head does not bundle Node. The extension uses the client runtime; when that runtime is Electron, Head relaunches once using an installed Node 22.18 or later so its signer and child processes work. Without a compatible installed Node, its three tools explain what is missing with `head/runtime-node-required`; no place, keychain or connection is opened. The command-line installation also requires Node 22.18 or later. Linux and Windows remain open as P1 and P2 in the [compatibility record](docs/compatibility.md), alongside independent real-client and Intel execution acceptance. Unattended cloud execution is unsupported. A successful mock or CI job does not establish working system-keychain and browser integration.",
+        "kind": "claim",
+        "evidence": [
+          "standalone-runtime"
+        ],
+        "limitation": "Declared desktop target; real Desktop/Intel, Linux/Windows, system keychain and independent-machine acceptance remain open."
+      },
+      {
+        "text": "## What you do",
+        "kind": "instruction",
+        "evidence": []
+      },
+      {
+        "text": "- **Connect** a document, optionally with an overlay. head pins the compiled description by digest. With no place yet, the first approved connection creates `~/place`.\n- **Ask** for one operation or compare the same question across sources. Receipts keep the source and time. A missing answer stays owed; an empty answer is not a missing answer.\n- **Act** within the place's permissions and consent rules. A suggested next step is not authorization. Writes do not become allowed because a model asked for them.\n- **Share and inspect** public material. A reference identifies content; a separate holder location says where to obtain it. Inspection checks the selected contract and grants nothing. [Try sharing and verification](docs/sharing.md).",
+        "kind": "claim",
+        "evidence": [
+          "foundation",
+          "first-minute",
+          "authority-preflight",
+          "share-inspect"
+        ]
+      },
+      {
+        "text": "Your place keeps its declarations as text. `birth.bound` separates your local declarations from head's profile. Keep it private unless you have reviewed what you are sharing: it is not the portable public `birth.topos` artifact.",
+        "kind": "claim",
+        "evidence": [
+          "share-inspect",
+          "receiver-runtime"
+        ],
+        "limitation": "Local birth.bound is private and not the portable public profile."
+      },
+      {
+        "text": "## Two names are not two independent sources",
+        "kind": "instruction",
+        "evidence": []
+      },
+      {
+        "text": "If `mirror` shares `forecast`'s declared lineage, agreement is shown as `●○`. Both sources and their receipts remain visible. `●●` does not prove independence; it only reports what the declared lineage and source identity establish. Disagreement keeps each source's value instead of choosing a winner.",
+        "kind": "claim",
+        "evidence": [
+          "share-inspect"
+        ],
+        "limitation": "Lineage is declared provenance, not statistical independence."
+      },
+      {
+        "text": "[Run the lineage example](docs/lineage.md), including withdrawal of the lineage declaration without erasing earlier receipts.",
+        "kind": "claim",
+        "evidence": [
+          "share-inspect"
+        ]
+      },
+      {
+        "text": "## Boundaries you can check",
+        "kind": "instruction",
+        "evidence": []
+      },
+      {
+        "text": "Signing keys stay behind a short-lived signer port in the supported flow. Tokens go to the declared transport, not into model arguments. A compromised process running as your user is outside that code boundary: it can invoke the keychain itself.",
+        "kind": "claim",
+        "evidence": [
+          "managed-egress",
+          "standalone-runtime"
+        ],
+        "limitation": "Supported signer and credential paths only; same-user OS compromise remains outside the boundary."
+      },
+      {
+        "text": "A digest is not network permission or proof that an answer is true. Received bytes install no authority. Configuration preflight does not replace API permission, access or secret-consent checks. See the [threat model and reporting policy](SECURITY.md), and [connect an API](docs/connect-any-api.md) for access options.",
+        "kind": "claim",
+        "evidence": [
+          "authority-preflight",
+          "receiver-runtime",
+          "configured-ports"
+        ],
+        "limitation": "Configuration preflight is not API permission; content/digests are not authority."
+      },
+      {
+        "text": "The three public MCP tools are `ask`, `connect` and `do`. Examples reuse the existing client and fixtures; they add no provider-specific behavior to head.",
+        "kind": "claim",
+        "evidence": [
+          "share-runtime"
+        ]
+      },
+      {
+        "text": "### Export a connected place",
+        "kind": "instruction",
+        "evidence": []
+      },
+      {
+        "text": "Head's base extension contains no connected sources. Sharing a place never silently creates an empty extension. Provide explicit public package identity, revision, title, description and author; Head selects all currently connected sources and their declared operations when `sources` is omitted:",
+        "kind": "claim",
+        "evidence": [
+          "share-runtime",
+          "functional-repairs"
+        ]
+      },
+      {
+        "text": "```json\n{\"action\":\"share\",\"place\":\"/your/place\",\"to\":\"/your/shared/team.mcpb\",\"args\":{\"id\":\"team\",\"revision\":\"1.0.0\",\"title\":\"Team sources\",\"description\":\"Selected public documents\",\"author\":{\"name\":\"Your public name\"}}}\n```",
+        "kind": "example",
+        "evidence": []
+      },
+      {
+        "text": "An explicit `sources` selection narrows that snapshot. Source and operation budgets still apply; nothing is silently truncated. Missing public package metadata produces `bundle/metadata-required`. The metadata grants no authority. The recipient accepts the named package, chooses an origin where needed, and supplies their own credentials. Export only documents and overlays you intend to make public.",
+        "kind": "claim",
+        "evidence": [
+          "share-runtime",
+          "receiver-access",
+          "implicit-root"
+        ]
+      },
+      {
+        "text": "Repeat exports preserve member paths and content under identical inputs. The standard MCPB packager includes ZIP timestamps; identical container bytes across different times are not promised. Each release approval identifies one exact archive.",
+        "kind": "claim",
+        "evidence": [
+          "runtime-inventory"
+        ],
+        "limitation": "Content/member equality only; ZIP container timestamps may differ."
+      },
+      {
+        "text": "Access credentials are bound to the authenticated place, origin and declared access context. Receipt rejection returns no usable attachment. An interrupted or unrecorded attempt is not automatically retried: inspect it first, then explicitly request `access` with `args: {\"retry\":true}` if appropriate. Existing signing keys are never migrated. A compatible legacy home namespace requires explicit local approval after its public keys match the authenticated home.",
+        "kind": "claim",
+        "evidence": [
+          "receiver-access",
+          "functional-repairs",
+          "implicit-root"
+        ]
+      }
+    ],
+    "rule": "Every exact admitted README prose block is inventoried from its authenticated configuration. Promises require current checked supporting captures, not a generic suite pass. Fresh prepack checks the physical README too; native materialization check is mandatory. Edited or added claims refuse; external/platform limitations stay explicit."
+  },
+  "publicDescriptions": "The owner must still review deliberately shared descriptions. A positive inventory cannot infer the confidentiality of arbitrary text selected by its owner.",
+  "noBoundChanges": true,
+  "noPrivateInputs": true
+}

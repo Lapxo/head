@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { ok, equal } from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { headOf } from '../src/doors/head.ts';
+const { headOf } = await import(process.env['MCP_NATIVE_HEAD_SOURCE'] ?? new URL('../src/doors/head.ts', import.meta.url).href);
 import { lockAt } from '../src/ports/place.ts';
 import { declaredOf, valueOf } from '../src/core/lock.ts';
 import { networkFor } from '../src/ports/adapters/network.ts';
@@ -15,6 +15,7 @@ import { fakeKeychain } from './fake-keychain.ts';
 import { keep } from '../src/ports/cache.ts';
 import { cooled } from '../src/ports/host.ts';
 
+const mixed = process.env['MCP_NATIVE_MIXED'] === '1';
 const candidate = process.env['MCP_NATIVE_RUNTIME'] ?? new URL('..', import.meta.url).pathname, lock = lockAt(candidate), hash = (bytes: Uint8Array) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
 const scratch = mkdtempSync(join(tmpdir(), 'head-mcp-native-')), shared = join(scratch, 'shared'); mkdirSync(shared);
 const output = process.env['MCP_NATIVE_OUTPUT'];
@@ -27,7 +28,7 @@ for (const domain of (process.env['MCP_NATIVE_DOMAINS'] ?? 'sum,lookup').split('
   const fake = fakeKeychain({}), home = join(scratch, domain + '-index'), place = join(shared, domain + '-sender'); Object.assign(process.env, fake.env, { HEAD_HOME: home });
   let allow = true; const prompts: any[] = [];
   const door = { can: () => ({ url: false, form: true }), elicit: async (params: any) => { prompts.push(params); return allow ? { action: 'accept', content: { yes: true } } : { action: 'decline' }; }, roots: async () => [shared], client: () => 'native-vector@1', name: 'mcp', network };
-  const head = headOf(lock, candidate, '.ts', door);
+  const head = headOf(lock, candidate, process.env['MCP_NATIVE_HEAD_SOURCE']?.endsWith('.js') ? '.js' : '.ts', door);
   const call = async (verb: string, args: Record<string,string> = {}) => {
     const began = performance.now();
     let result: readonly string[] | undefined;
@@ -37,6 +38,7 @@ for (const domain of (process.env['MCP_NATIVE_DOMAINS'] ?? 'sum,lookup').split('
   };
   try {
     const born = await call('place', { dir: place }); ok(born.includes('head/born'), born.slice(0,2000)); seed(place); seed(home);
+    if (mixed) { const document = join(shared, domain + '-api.json'); writeFileSync(document, JSON.stringify({ openapi: '3.0.3', info: { title: 'Neutral companion', version: '1' }, servers: [{ url: 'https://records.example' }], paths: { '/records': { get: { operationId: 'listRecords', security: [], responses: { 200: { description: 'ok' } } } } } })); const api = await call('connect', { place, source: domain + '-api', document }); ok(api.includes('head/connected'), api.slice(0,2000)); }
     const connected = await call('connect', { place, source: domain, document: f.endpoint, protocol: 'mcp' }); ok(connected.includes('head/connected'), connected.slice(0,3000)); equal(f.calls(), 0);
     const raw = readFileSync(join(place, 'connected', domain + '.json')); const doc = JSON.parse(raw.toString()); equal(doc.configuration.endpoint, f.endpoint);
     const pinBefore = readFileSync(join(place, 'TARGET.bound')); allow = false;
@@ -45,7 +47,7 @@ for (const domain of (process.env['MCP_NATIVE_DOMAINS'] ?? 'sum,lookup').split('
     if (process.env['MCP_NATIVE_MODE'] === 'read') { all.push({ domain, place, readTextVisible: true, milliseconds: calls.at(-1).milliseconds }); continue; }
     const changed = Buffer.from(raw); changed[changed.length - 2] = changed[changed.length - 2] === 32 ? 9 : 32; writeFileSync(join(place,'connected',domain+'.json'),changed);
     const stale = await call('ask', { place, source: domain, operation: domain, args: JSON.stringify({ value: 7 }) }); ok(stale.includes('mcp/document-pin'), stale.slice(0,2000)); equal(f.calls(),1); writeFileSync(join(place,'connected',domain+'.json'),raw);
-    const recipe = { id: domain+'-desk', revision:'1.0.0', title:domain+' desk', description:'Selected public catalogue', author:{name:'Neutral fixture author'}, sources:[{source:domain,namespace:domain,offers:[domain, domain+'-change']}] };
+    const recipe = { id: domain+'-desk', revision:'1.0.0', title:domain+' desk', description:'Selected public catalogue', author:{name:'Neutral fixture author'}, sources:[...(mixed ? [{source:domain+'-api',namespace:domain+'-api',offers:['listRecords']}] : []),{source:domain,namespace:domain,offers:[domain, domain+'-change']}] };
     const bundle = join(shared, domain+'.mcpb');
     const exported = await call('share', { place, to: bundle, args: JSON.stringify(recipe) }); ok(exported.includes('head/bundle-shared') && existsSync(bundle), exported.slice(0,2500)); equal(f.calls(),1);
     const installed = join(scratch, domain+'-installed'); execFileSync('unzip',['-q',bundle,'-d',installed]);
@@ -62,7 +64,7 @@ for (const domain of (process.env['MCP_NATIVE_DOMAINS'] ?? 'sum,lookup').split('
       const declined=await receivedCall('connect',receive);ok(declined.includes('head/no-yes'),declined);ok(!existsSync(receiverHome));ok(!existsSync(receiverPlace));equal(f.calls(),1);
       receiverAllow=true;
       // Fixture-only cache preload: after native foundation, supply the exact already-verified public world blobs. No receipts or policy are injected.
-      const seeded=new Set<string>(), preload=setInterval(()=>{for(const at of [receiverPlace,receiverHome])if(!seeded.has(at)&&existsSync(join(at,'.bound'))){seed(at);seeded.add(at);}},5);
+      const seeded=new Set<string>(), preload=setInterval(()=>{for(const at of [receiverPlace,receiverHome])if(!seeded.has(at)&&existsSync(join(at,'.bound/bound.keys'))){seed(at);seeded.add(at);}},5);
       let associated:string;try{associated=await receivedCall('connect',receive);}finally{clearInterval(preload);}
       ok(associated.includes('head/bundle-associated'),associated.slice(0,4000));equal(f.calls(),1,'recipient import invokes no tool');
       await receiverHost.cooled();receiver=receiverModule.headOf(receiverLock,installed,'.js',receiverDoor);
@@ -74,7 +76,7 @@ for (const domain of (process.env['MCP_NATIVE_DOMAINS'] ?? 'sum,lookup').split('
       receiverAllow=true;const action=await receivedCall('act',{place:receiverPlace,source:domain,operation:domain+'-change',args:JSON.stringify({value:3})});ok(action.includes('head/answered') && action.includes(domain+':3'),action.slice(0,3500));equal(f.calls(),before+1);
       f.drift(); const drift=await receivedCall('ask',{place:receiverPlace,source:domain,operation:domain,args:JSON.stringify({value:11})});ok(drift.includes('mcp/catalogue-changed'),drift.slice(0,2200));equal(f.calls(),before+1);
       const timeFailures = calls.filter(c => c.domain === domain).flatMap(c => (c.result ?? []).filter((line: string) => line.includes(' state=red ')).map((line: string) => ({side:c.receiver?'receiver':'sender',verb:c.verb,line})));
-      all.push({timeFailures,withinExistingTimeCeilings:timeFailures.length===0,domain,place,receiverPlace,connected:true,denied:true,normalRead:true,currentByteRefusal:true,noCallDuringConnect:true,exportedMcpb:true,recipientInspectionInert:true,recipientDeclineNoWrites:true,recipientNativeFoundation:true,recipientImportNoInvocation:true,receiverOwnedAssociation:true,restartReusesAssociation:true,selectedRead:true,unselectedActionRefused:true,selectedActionConsent:true,catalogueDriftRefused:true,runtimeInventory:hash(readFileSync(join(installed,'runtime.bundle.json'))),artifact:hash(readFileSync(bundle)),worldCachePreloadedAfterFoundation:seeded.size,realDesktopInstall:false});
+      all.push({mixedApiAndMcp: mixed,timeFailures,withinExistingTimeCeilings:timeFailures.length===0,domain,place,receiverPlace,connected:true,denied:true,normalRead:true,currentByteRefusal:true,noCallDuringConnect:true,exportedMcpb:true,recipientInspectionInert:true,recipientDeclineNoWrites:true,recipientNativeFoundation:true,recipientImportNoInvocation:true,receiverOwnedAssociation:true,restartReusesAssociation:true,selectedRead:true,unselectedActionRefused:true,selectedActionConsent:true,catalogueDriftRefused:true,runtimeInventory:hash(readFileSync(join(installed,'runtime.bundle.json'))),artifact:hash(readFileSync(bundle)),worldCachePreloadedAfterFoundation:seeded.size,realDesktopInstall:false});
     } finally { receiverHost.cooled(); }
   } finally { cooled(); await head.idle(); await f.close(); }
 }

@@ -1,0 +1,28 @@
+{
+  "protocol": "head-pinned-mcp-vector-input@1",
+  "provenance": "Existing neutral demo observations from the public Topos-MCP conformance case; world forms and limits come only from the currently pinned standing",
+  "request": {
+    "region": "place",
+    "at": 1
+  },
+  "lines": [
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/issuer/demo value=https://auth.notes.example",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/authorize/demo value=https://auth.notes.example/authorize",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/token-url/demo value=https://auth.notes.example/token",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/registration/demo value=https://auth.notes.example/register",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/challenge/demo value=S256",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/resource/demo value=https://notes.example/mcp",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/authorization-servers/demo value=https://auth.notes.example",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/scopes/demo value=notes.read|notes.write",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/hint/demo/list_notes value=read-only",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/params/demo/list_notes value=folder",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/hint/demo/add_note value=unhinted",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/params/demo/add_note value=body|title",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/required/demo/add_note value=title",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/hint/demo/drop_note value=destructive",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/params/demo/drop_note value=id",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/required/demo/drop_note value=id",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/hint/demo/whoami value=unhinted",
+    "bound-lock/1 at=place:server by=reader:mcp form=alphabet measure=id role=reads scope=mcp/documents/demo value=sha256:1157d80007b4ad9bd0839febfcde4cd2608bd38e34b2f78ce8534897fdc42753|sha256:47893374950123706c791b977d42066f0a94b24c4cd20824a3693519e48b5099|sha256:8d871677ef39b0559ca5da09cff7aafac05a367911180af94e31483192a91d4d"
+  ]
+}

@@ -8,6 +8,7 @@ import { digestIn, linesOf } from './worlds.ts';
 import { sharedBirth } from '../links/birth.ts';
 import { shareBundle } from './share-bundle.ts';
 import { linkOf } from '../links/link.ts';
+import type { Read } from '../ports/documents.ts';
 
 /** A line no package carries: one that is not a world, or a source's document, overlay or pin, said once by digest — with, beside a digest that names bytes, the encrypted address they are read at. */
 export const foreignIn = (lines: readonly Said[]): Said | undefined => lines.find((l) => !/^(sources\/[a-z0-9-]+(\/overlay)?|uses\/[a-z0-9-]+)$/.test(l.scope ?? '') || lines.some((o) => o !== l && o.scope === l.scope && o.measure === l.measure)
@@ -62,6 +63,25 @@ export const unpacked = (context: Context, document: string, bytes: Uint8Array, 
   return { sources: order.filter((s) => !open.has(s.source)).map((s) => ({ source: s.source, pin: s.pin, document: of(`sources/${s.source}`)!, ...((o) => (o ? { overlay: o } : {}))(of(`sources/${s.source}/overlay`)) })),
     open: order.filter((s) => open.has(s.source)).map((s) => ({ source: s.source, owed: missing(s.source).map((l) => l.value!).join('|') || s.rests.filter((r) => open.has(r)).map((r) => `uses/${r}`).join('|'), waits: missing(s.source).map((l) => `${l.value} at ${where(l)}`).join(', ') || s.rests.filter((r) => open.has(r)).join(', ') })) };
 };
+/** Current receiver-owned copies only: check the authenticated pin, its bytes, documents, overlays and ordered dependencies. A package or progress marker grants nothing. */
+export const retainedIn = (context: Context, place: string, own: readonly Said[], sources: readonly { readonly source: string; readonly pin: string; readonly document: Read; readonly overlay?: Read }[], published: readonly Said[]): ReadonlySet<string> => {
+  const digest = digestIn(context.lock), retained = new Set<string>();
+  const current = (scope: string, pin: string, world = false): boolean => {
+    const entries = own.filter(l => l.scope === scope && l.measure === 'digest' && l.value !== 'withdraw'), held = entries[0], path = held?.needs;
+    if (entries.length !== 1 || held?.value !== pin || !path || path.includes('\\') || path.split('/').some(part => !part || part === '.' || part === '..') || !(world ? path.startsWith(valueOf(context.lock, 'place/worlds') + '/') : under(context.lock, 'place/compiled', path))) return false;
+    const bytes = context.files.take(join(place, path));
+    return bytes !== undefined && digest(bytes) === pin;
+  };
+  if (published.some(l => l.scope?.startsWith('uses/') && l.measure === 'digest' && !l.needs && !current(l.scope, l.value!, true))) return retained;
+  for (const source of sources) {
+    const parents = published.find(l => l.scope === `uses/${source.source}` && l.measure === 'digest')?.restsOn?.split('|').filter(Boolean) ?? [];
+    if (!parents.every(parent => retained.has(parent.slice('uses/'.length))) || !current(`uses/${source.source}`, source.pin)) continue;
+    const prefix = `${valueOf(context.lock, 'place/connected')}/${source.source}`, wanted = [[`${prefix}.${source.document.kind}`, source.document.bytes] as const, ...(source.overlay ? [[`${prefix}.overlay.${source.overlay.kind}`, source.overlay.bytes] as const] : [])], actual = context.files.read.laidOf(context, place, source.source);
+    if (actual.length === wanted.length && wanted.every(([path, bytes]) => actual.some(([at, held]) => at === path && Buffer.from(bytes).equals(held)))) retained.add(source.source);
+  }
+  return retained;
+};
+
 /** Whether the person-s yes to a package already covers what arrives now: every source either pinned as the package names it, or owed by a demand that yes to this same package landed. */
 export const coveredIn = (context: Context, held: readonly Said[], arrived: readonly { readonly source: string; readonly pin: string }[], named: string): boolean => arrived.length > 0 && arrived.every((s) => held.some((l) => l.value !== 'withdraw'
   && ((l.scope === `uses/${s.source}` && l.value === s.pin) || (l.scope === `${valueOf(context.lock, 'place/needs')}/bytes/${s.source}` && l.role === 'demands' && l.at === `policy:head/receive/${named.slice(7, 23)}`))));

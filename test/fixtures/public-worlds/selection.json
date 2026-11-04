@@ -1,0 +1,18 @@
+[
+  {
+    "name": "topos-mcp",
+    "version": "0.1.3",
+    "blob": "sha256:b66666f4d14e5506c8a72438626a7c71c787920b32f669b935d0a1588bdd5129",
+    "standing": "sha256:58879780279c36294ca9819174e52605b336f4c3ac70c40db382c0f090003870",
+    "approval": "sha256:19bdab3414410020fc8b022495d76751490f193285c11755f69f61ac6274adfd",
+    "source": "https://github.com/Lapxo/topos-mcp/releases/download/v0.1.3/"
+  },
+  {
+    "name": "topos-openapi",
+    "version": "0.1.2",
+    "blob": "sha256:08bb4e646bbeb94ab6065453541f09353fc97722ccf981c7b58208650ebd4772",
+    "standing": "sha256:ff8adb870ff048f511d233e7ef594136f7b4e637bd12ed71ace622e68adbb687",
+    "approval": "sha256:d140c82ef2e28d717c3899f296558c0bc7289ff64ece66442fcdc0499dd91dc3",
+    "source": "https://github.com/Lapxo/topos-openapi/releases/download/v0.1.2/"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "protocol": "head-received-retention@1",
+  "domains": [
+    "warehouse",
+    "observatory"
+  ],
+  "cases": [
+    "warehouse: retained sources require current receiver pins, bytes, overlays and dependency closure",
+    "warehouse: missing or altered connected/first.overlay.json cannot reuse dependent pins",
+    "warehouse: missing or altered pins/first/source.bound cannot reuse dependent pins",
+    "warehouse: missing or altered worlds/world.bound cannot reuse dependent pins",
+    "warehouse: a package digest and its bytes confer no receiver authority",
+    "warehouse: unexpected overlays and changed dependency pins invalidate reuse",
+    "warehouse: duplicate pins and escaping paths are not eligible for reuse",
+    "observatory: retained sources require current receiver pins, bytes, overlays and dependency closure",
+    "observatory: missing or altered connected/first.overlay.json cannot reuse dependent pins",
+    "observatory: missing or altered pins/first/source.bound cannot reuse dependent pins",
+    "observatory: missing or altered worlds/world.bound cannot reuse dependent pins",
+    "observatory: a package digest and its bytes confer no receiver authority",
+    "observatory: unexpected overlays and changed dependency pins invalidate reuse",
+    "observatory: duplicate pins and escaping paths are not eligible for reuse"
+  ]
+}

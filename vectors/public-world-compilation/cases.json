@@ -1,0 +1,34 @@
+{
+  "protocol": "head-public-world-compilation@1",
+  "domains": [
+    "sum",
+    "lookup"
+  ],
+  "sourceKinds": [
+    "OpenAPI document",
+    "configured local HTTPS MCP"
+  ],
+  "cases": [
+    "select independent declared compiler views",
+    "refuse ambiguous compilers",
+    "refuse changed world bytes",
+    "preserve selected compiler bounds",
+    "connect without invoking an operation",
+    "share only selected operations",
+    "inspect and decline without writes",
+    "receive with recipient-owned authority",
+    "reuse receiver association after restart",
+    "require consent for selected actions",
+    "refuse unselected actions and catalogue drift"
+  ],
+  "evidence": "Record functional outcomes and emitted timing excesses separately. No private API, provider-specific behavior, authority transfer or ceiling change.",
+  "open": [
+    "global capacity",
+    "fifteen affected acceptance successors",
+    "pre-commit recovery consent",
+    "external authority-edit concurrency",
+    "Q4",
+    "Desktop/Intel",
+    "T2/L6"
+  ]
+}

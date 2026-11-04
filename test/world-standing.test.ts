@@ -27,7 +27,7 @@ const judge = (rows: ReturnType<typeof observe>, measure = MEASURE, ownBytes = 1
 
 test('world standing: declared payloads are read by pin, independently of Root byte totals', () => {
   const rows = run('samples/world-standing/yes'), sizes = rows.filter(row => row.measure === MEASURE);
-  deepStrictEqual(sizes.map(row => row.bound.hi).sort((a, b) => a - b), [24627]);
+  deepStrictEqual(sizes.map(row => row.bound.hi).sort((a, b) => a - b), [45384]);
   const old = judge(rows, 'bytes'); ok(old.over.some((row: { ceiling: string }) => row.ceiling === 'world/standing-bytes'));
   const corrected = judge(rows); deepStrictEqual(corrected.over, []); deepStrictEqual(corrected.unread, []);
   deepStrictEqual(judge(rows, MEASURE, 500_000_000).over, []);

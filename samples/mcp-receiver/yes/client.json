@@ -1,6 +1,6 @@
 {
   "protocol": "head-mcp-receiver-capture@1",
-  "status": "Budget checkpoint factoring only. Original transport and timing executions remain historical; the changed function is not executed by the normal-Node measured source clients. No new performance or full transport matrix is claimed.",
+  "status": "Successor binds current bytes; historical full matrices retain their original identity. Current revalidation is separately identified.",
   "inputs": [
     {
       "path": "dist/src/access/contract.d.ts",
@@ -20,11 +20,11 @@
     },
     {
       "path": "dist/src/adopt/adopt.d.ts",
-      "sha256": "sha256:ed08c57d693138ad1ea2472582396f670a450ca197cb2093a0cf8e25eda4073d"
+      "sha256": "sha256:99f39ce53421ae503f72e7c72caa1e6406b308c64bb4a15cdfb46d94bd895388"
     },
     {
       "path": "dist/src/adopt/adopt.js",
-      "sha256": "sha256:9540284c55e6d15ef2407a8d951fb015416fdc050de5d5f9f7bc94f488245ccf"
+      "sha256": "sha256:e7910b85cbdce7e85c6446e35a1b0500e92d978cfc429b735f9dd1b8a32eba15"
     },
     {
       "path": "dist/src/ahead/budget.d.ts",
@@ -80,7 +80,7 @@
     },
     {
       "path": "dist/src/compile/pin.js",
-      "sha256": "sha256:55edb4261fec4f20d014fb654f69f3a6bffec07d0f1793c82399ee6eeaf25f54"
+      "sha256": "sha256:11acc0519b0d82d750e0d33ab07d56ad8f59244ddd748530ec4bd34c35766c22"
     },
     {
       "path": "dist/src/core/act.d.ts",
@@ -92,7 +92,7 @@
     },
     {
       "path": "dist/src/core/answer.d.ts",
-      "sha256": "sha256:87c60580ebd505ba5bd1bcd5527dd00ee582bac2275444e852d105852e65d2a1"
+      "sha256": "sha256:357a4fded5d1201889956994e7bd49bfe13ea3564f51c6bb9dbc8109ff5efb14"
     },
     {
       "path": "dist/src/core/answer.js",
@@ -132,11 +132,11 @@
     },
     {
       "path": "dist/src/core/package.d.ts",
-      "sha256": "sha256:716768afbbeb5682d80d3119413f613bd737c41c1714e0373bd8d812d6bc17a0"
+      "sha256": "sha256:2f71e1e57a80039ce558ebfc178d2572a6b55dfbad9491fdc30c80c158f92aa3"
     },
     {
       "path": "dist/src/core/package.js",
-      "sha256": "sha256:d96053d8121d080f32b814e021b29ca4fc92103e6cd11d9996b0fe0f56cb344a"
+      "sha256": "sha256:5390de2d6198d5cc0b008ab4f341383a0eb3dd8754312629e13e709300e9ff23"
     },
     {
       "path": "dist/src/core/read.d.ts",
@@ -160,7 +160,7 @@
     },
     {
       "path": "dist/src/core/receiver.js",
-      "sha256": "sha256:45a133f3f1db56d98a5e5ad8a1eeddb84e2e92344a5ec4a23c8a639d8fd4637d"
+      "sha256": "sha256:1ddb558f3499c6c2f9e0f657d329fee51480e4cc46d08dd82f087bfef99dfdfa"
     },
     {
       "path": "dist/src/core/share-bundle.d.ts",
@@ -208,7 +208,7 @@
     },
     {
       "path": "dist/src/doors/head.js",
-      "sha256": "sha256:634159aa326548209e4fb0279448ccfa1f3d03fbdcee865a179231253fb1675b"
+      "sha256": "sha256:e61fdc9df9f9267f1cdcf96ae6c56088ed614374f337364153f2c2d835d24bf7"
     },
     {
       "path": "dist/src/doors/http.d.ts",
@@ -468,11 +468,11 @@
     },
     {
       "path": "dist/src/ports/bound.d.ts",
-      "sha256": "sha256:abd428da6603a1b919ff818c7076990e128a8a4112158ad20542e160ce363712"
+      "sha256": "sha256:fa9733344275bbdf3429b532e1afb5d6effd560fedc24469cf34b75f010c81b2"
     },
     {
       "path": "dist/src/ports/bound.js",
-      "sha256": "sha256:d2b5102fe4ff19527319d0c5b2ae0dfa97b2123c2dbc1418ef8af034ad995296"
+      "sha256": "sha256:14098696c7284242f29839c372d81986179612e861336d1a229b77466e2a90ad"
     },
     {
       "path": "dist/src/ports/cache.d.ts",
@@ -555,6 +555,14 @@
       "sha256": "sha256:bd4c10bd17fa7ef71f07df713c3f69682d7dbd2c25f710f827f3f4c33f57ae09"
     },
     {
+      "path": "dist/src/ports/receive.d.ts",
+      "sha256": "sha256:a62daa1552c3c4d772f43ea09965ea500f341b26f11ef462678f904a01ff6e17"
+    },
+    {
+      "path": "dist/src/ports/receive.js",
+      "sha256": "sha256:4e1511fc61e5677f4437b694fb6d40f08173f00bb5ebe6a54cfaa8ad4084dae4"
+    },
+    {
       "path": "dist/src/ports/scratch.d.ts",
       "sha256": "sha256:d4aeb93a88f80f62d9be6210a716abd8daa9f770dbf299044297b31cbc65f60d"
     },
@@ -620,11 +628,11 @@
     },
     {
       "path": "dist/src/sources/connect.d.ts",
-      "sha256": "sha256:b2d0b81d82fb872f9536b8ff73ca26cef20feaba9e6510e191e5ab31bf41fa67"
+      "sha256": "sha256:10232d9c541ed9fad72095bb230100cfc28cbe372f64f62aa7125e4acaf52c19"
     },
     {
       "path": "dist/src/sources/connect.js",
-      "sha256": "sha256:e4e786f099412b7777e9f341c3975d3f5d98f5cb72a887f6a13f22769af13f37"
+      "sha256": "sha256:e73ca4ec4cfef2ea341a76977073b7b61be9b16dbfd4f61601a159626f148a3e"
     },
     {
       "path": "dist/src/sources/refused.d.ts",
@@ -795,6 +803,22 @@
       "sha256": "sha256:e7246c36fe37c839f8efd391c957435061f128c179d42f4e3bfca864434ec97e"
     },
     {
+      "path": "dist/test/received-retention-reading.js",
+      "sha256": "sha256:9f6e6bd63a8a8a43676051ca5ec8af0c163aad1260ee0eba1810232d9555e2e1"
+    },
+    {
+      "path": "dist/test/retained-fixture.js",
+      "sha256": "sha256:d94539b94153e3e9361db42b0b12077b5f0191ed4f11bc9911bff58dc7eade6c"
+    },
+    {
+      "path": "dist/test/timing-selection.js",
+      "sha256": "sha256:7e5d07263dafc607535079d72e377a9f20769108ab2ee9132413afc3bf636e74"
+    },
+    {
+      "path": "dist/test/timing-selection.test.js",
+      "sha256": "sha256:9b5a27bc94178e8d542d6089a52452688db1ecc189645e35e802d36e9de7d3d8"
+    },
+    {
       "path": "docs/contracts/bundle-receiver.json",
       "sha256": "sha256:4782fb3d7d11f5041589fc077f0cb51510ae8ead1a6be731e1efdef44a06a5db"
     },
@@ -812,15 +836,19 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "sha256:feb26c66dc045cc7af8ae184885956d0ecfa4e342a26caf14b215c8f2786076e"
+      "sha256": "sha256:dade1cc4054d0997bd838b20f5bcfb42caf0900d20dbf9816acb0e139cdb758f"
     },
     {
       "path": "package.json",
-      "sha256": "sha256:b3e6bd4df2c8e23bba9124d477065b44b0e5a3f0bbea9ca81a240a6f4750e82f"
+      "sha256": "sha256:aa7f1f4522ee3fb74f5b14d439d393de61c3776ad4e08b777b577d4637a75db3"
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:b1b951c1b257928d032badcea613ffcb7a3c7e77ea52cb19c47e30a277d6d47b"
+      "sha256": "sha256:853c0446f407266d5ed5093bd4618a50c5b0bdc13cbc927fcce07f8ec44b2e0a"
+    },
+    {
+      "path": "samples/mcp-receiver/yes/timing-selection.json",
+      "sha256": "sha256:5d547c208101963db74f96fe9b15a3478d7088ec813b02b39ac2a89cdb21692d"
     },
     {
       "path": "src/access/contract.ts",
@@ -832,7 +860,7 @@
     },
     {
       "path": "src/adopt/adopt.ts",
-      "sha256": "sha256:53dcf9dbd7f1a67ae371593666a424e71e0441fffa7f65adbed48923031fe57b"
+      "sha256": "sha256:6d5cb85d7a33ddc81baaba8a955e1a6320b9b7ca092dd11de592212c79f85357"
     },
     {
       "path": "src/ahead/budget.ts",
@@ -860,7 +888,7 @@
     },
     {
       "path": "src/compile/pin.ts",
-      "sha256": "sha256:81b2dcfc9a367b3c5796f92c2c8bb0f7558581c6cdf5604d2d2a14637c7ffd7b"
+      "sha256": "sha256:df61f9d227e6cded10fa0493156b95f7d78e23364100e9537c537ef42d56cfb0"
     },
     {
       "path": "src/core/act.ts",
@@ -868,7 +896,7 @@
     },
     {
       "path": "src/core/answer.ts",
-      "sha256": "sha256:d4feb204a359952d9d249beedb5f538e4dd0d3e1f630a873021fedd7e1fd6306"
+      "sha256": "sha256:a821ed3b0a0ca25a136443ba51bbc9eb085d870a8c513d6d3342338cc16bed4f"
     },
     {
       "path": "src/core/association.ts",
@@ -888,7 +916,7 @@
     },
     {
       "path": "src/core/package.ts",
-      "sha256": "sha256:f8c117688dd2c3e27173786da5f4fd2668cde90ff8b7fb983abc2ef7f96f8147"
+      "sha256": "sha256:4288a38ba44a09cd1c3d69ffbcb01952b32197744000081a39c31b207f802a6c"
     },
     {
       "path": "src/core/read.ts",
@@ -900,7 +928,7 @@
     },
     {
       "path": "src/core/receiver.ts",
-      "sha256": "sha256:a38eb00e734e5a89b44e37c6d5f84f0d5c1f364a45eb8c71f3b5d0467d85c51f"
+      "sha256": "sha256:7fb078d85166f4f4903f3e641598a3728db3bca75b9cb90cad773e7e51a297ca"
     },
     {
       "path": "src/core/share-bundle.ts",
@@ -924,7 +952,7 @@
     },
     {
       "path": "src/doors/head.ts",
-      "sha256": "sha256:aaef67879a423346ab97a715356569450bac0b5dabc3e70c478ec6e1c5e50531"
+      "sha256": "sha256:16b6ef1269a8dc3f8809b96735d2038cb4d1bc85b6dd9a3b590f29f187a469b1"
     },
     {
       "path": "src/doors/http.ts",
@@ -1056,7 +1084,7 @@
     },
     {
       "path": "src/ports/bound.ts",
-      "sha256": "sha256:df143e1880e1cb51d66ecb50f22e75106d60ce2473bc612f55da1f44f36590dd"
+      "sha256": "sha256:8dca702d0e703bcc7735919f1f2ff340900c2ca1066a22ddd8895f7dc55fb189"
     },
     {
       "path": "src/ports/cache.ts",
@@ -1099,6 +1127,10 @@
       "sha256": "sha256:3996f92795e7cd6a7a3f079d9aa80920389bfc2ada6abd0600938a1397173386"
     },
     {
+      "path": "src/ports/receive.ts",
+      "sha256": "sha256:7c14fb0aff0079f41967af9d7a44ab78681b17660c1b422f2c3e55bb68c3e27d"
+    },
+    {
       "path": "src/ports/scratch.ts",
       "sha256": "sha256:f4c584b19bcdffc276c759642ce28c51811ef143a0e48769948f775c5e069354"
     },
@@ -1132,7 +1164,7 @@
     },
     {
       "path": "src/sources/connect.ts",
-      "sha256": "sha256:1cf0dd45b215482a36cb0a94e585ca7e2750cbbd84741f4072a6ca497738d314"
+      "sha256": "sha256:53bfb8ab297b398ff07a64ddfe2bc8e87a9c86be107ffcaf90bc36c91e55c431"
     },
     {
       "path": "src/sources/refused.ts",
@@ -1232,19 +1264,39 @@
     },
     {
       "path": "test/mcp-flow-native.ts",
-      "sha256": "sha256:93e868d3d341c6e34aaaa1cf29ec619f2a561b598fca1097f11b6a88b9f96f01"
+      "sha256": "sha256:dc3abe2eb673598c8038c8b14ee51a89437cbf77faf456a1fa2b3f070617994f"
     },
     {
       "path": "test/mcp-transport.test.ts",
       "sha256": "sha256:ef6cee6ae8db85d6ca496781abb4dabb8c0b5f8be70de8e23ceedd2099f54b0b"
     },
     {
+      "path": "test/received-retention-reading.ts",
+      "sha256": "sha256:6bdeba009c2e8fc84e66b0c98a6237cc27e6e9b73184897c1a84f65a16c6cd77"
+    },
+    {
+      "path": "test/retained-fixture.ts",
+      "sha256": "sha256:215fa6c5c7c05acacb1836ba100c61f3014eb58bed0f92d3b718d38f5fadbe88"
+    },
+    {
       "path": "test/root-path.test.ts",
       "sha256": "sha256:fb572d6ffd8256c7671e500f411eea164cdbc963f1eee603cbd50ce9c84b9720"
     },
     {
+      "path": "test/timing-selection.test.ts",
+      "sha256": "sha256:2688f7592c422bee479bf19f68409e050748f6944ca75d86a375a4421b2948c1"
+    },
+    {
+      "path": "test/timing-selection.ts",
+      "sha256": "sha256:86d5b3702a46e96c64297eca931d3410431d0b2b2c33ac90b38c4c92eb0f242e"
+    },
+    {
       "path": "vectors/mcp-receiver-flow.json",
       "sha256": "sha256:335b2f28f4537cd1bf3dcf267d773eff7bf9e5366dc640889175da11f0a56565"
+    },
+    {
+      "path": "vectors/received-retention/cases.json",
+      "sha256": "sha256:c10f16fac871d7840b0d4527f7ea187455a108e516b70e225d848cd9893e4bc6"
     }
   ],
   "policy": [
@@ -1270,19 +1322,19 @@
     },
     {
       "scope": "world/topos-mcp/standing",
-      "value": "sha256:c472ae2856813c7e8cbc3dbd7e96884aa2e769dd5fa277fcb21d7061a81dda3e"
+      "value": "sha256:58879780279c36294ca9819174e52605b336f4c3ac70c40db382c0f090003870"
     },
     {
       "scope": "world/topos-mcp/blob",
-      "value": "sha256:1c3c9326e89aabe3a43bf074d0e06b5bbebd1fdb6e06423b957dc03914de051d"
+      "value": "sha256:b66666f4d14e5506c8a72438626a7c71c787920b32f669b935d0a1588bdd5129"
     },
     {
       "scope": "sources/topos-mcp",
-      "value": "https://github.com/Lapxo/topos-mcp/releases/download/v0.1.2/standing.bound"
+      "value": "https://github.com/Lapxo/topos-mcp/releases/download/v0.1.3/standing.bound"
     },
     {
       "scope": "sources/topos-mcp-blob",
-      "value": "https://github.com/Lapxo/topos-mcp/releases/download/v0.1.2/1c3c9326e89aabe3a43bf074d0e06b5bbebd1fdb6e06423b957dc03914de051d.tar.gz"
+      "value": "https://github.com/Lapxo/topos-mcp/releases/download/v0.1.3/b66666f4d14e5506c8a72438626a7c71c787920b32f669b935d0a1588bdd5129.tar.gz"
     },
     {
       "scope": "vocab/documents",
@@ -1363,7 +1415,9 @@
       "freshCurrentRuntimeExecution": false,
       "localFixturesOnly": true,
       "concurrency": "One timed producer; two local unrelated domains in sequence",
-      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current JavaScript-stream relay revalidated separately in real Electron; original artifact digest retained"
+      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current JavaScript-stream relay revalidated separately in real Electron; original artifact digest retained",
+      "historicalExecution": true,
+      "consumerExecutionCurrent": false
     },
     {
       "node": "24",
@@ -1418,7 +1472,9 @@
       "freshCurrentRuntimeExecution": false,
       "localFixturesOnly": true,
       "concurrency": "One timed producer; two local unrelated domains in sequence",
-      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current JavaScript-stream relay revalidated separately in real Electron; original artifact digest retained"
+      "executionScope": "Retained original complete source-client execution, unchanged MCP/Bound domain logic; current JavaScript-stream relay revalidated separately in real Electron; original artifact digest retained",
+      "historicalExecution": true,
+      "consumerExecutionCurrent": false
     }
   ],
   "functionalChecks": [
@@ -1589,10 +1645,31 @@
     "transportDefects": 0,
     "responseVisibilityDefects": 0,
     "maximumRedAnswerSeconds": 0,
-    "maximumIsolatedMillisecondsRoundedUp": 5004,
+    "maximumIsolatedMillisecondsRoundedUp": 5771,
     "core/lines": 1059,
     "doors/lines": 228,
-    "source/lines": 3645
+    "source/lines": 3645,
+    "currentFreshReadMilliseconds": [
+      4806.014207999999,
+      4755.056791999999,
+      4772.857333,
+      4722.567250000007,
+      4824.887666999999,
+      4596.462750000002,
+      4656.935584000006,
+      4680.290667000008
+    ],
+    "reusedMatchingMixedReadMilliseconds": [
+      6323.703708000001,
+      5751.5795,
+      6360.525750000001,
+      5770.681375,
+      6082.014874999997,
+      5514.675208000001,
+      6152.5139590000035,
+      5511.145417000007
+    ],
+    "senderWholeCallMilliseconds": 6361
   },
   "history": {
     "predecessorCapture": "sha256:1d68733dce8e79affe627639c8bdee6fb6fe2954b2940e3022c73b3dad89e08d",
@@ -1722,8 +1799,8 @@
     }
   },
   "predecessor": {
-    "sha256": "sha256:6f8d57279fc2ec0e8e51cd889a4cc35d5444c0613191214521395f1f9356c457",
-    "preserved": true
+    "sha256": "sha256:a14df7304fb7cb3f0a3414a5aa46fb733a9416037c6259dbab660ec7b4428615",
+    "historicalCapturePreserved": true
   },
   "actionWithCardDiagnostics": {
     "rows": [
@@ -1956,5 +2033,421 @@
     "historicalExecutionsRelabeled": false,
     "fullElectronGateSha256": "sha256:624b359602b0cbec9904b82098111ca50004d75945be4b7666c2b11021722b12",
     "RootChanged": false
+  },
+  "freshFullFlows": [
+    {
+      "protocol": "head-mcp-native-flow@1",
+      "node": "22.23.3",
+      "runs": [
+        {
+          "timeFailures": [],
+          "withinExistingTimeCeilings": true,
+          "domain": "sum",
+          "connected": true,
+          "denied": true,
+          "normalRead": true,
+          "currentByteRefusal": true,
+          "noCallDuringConnect": true,
+          "exportedMcpb": true,
+          "recipientInspectionInert": true,
+          "recipientDeclineNoWrites": true,
+          "recipientNativeFoundation": true,
+          "recipientImportNoInvocation": true,
+          "receiverOwnedAssociation": true,
+          "restartReusesAssociation": true,
+          "selectedRead": true,
+          "unselectedActionRefused": true,
+          "selectedActionConsent": true,
+          "catalogueDriftRefused": true,
+          "runtimeInventory": "sha256:48f8ad7b8c190d6eadc6190e71ff1e854175d948a3856920ae3cf4bff1441fed",
+          "artifact": "sha256:d772693dad8a0d50818e323afb495f923ca48c273122180061cadbe1b77ea44b",
+          "worldCachePreloadedAfterFoundation": 2,
+          "realDesktopInstall": false
+        },
+        {
+          "timeFailures": [],
+          "withinExistingTimeCeilings": true,
+          "domain": "lookup",
+          "connected": true,
+          "denied": true,
+          "normalRead": true,
+          "currentByteRefusal": true,
+          "noCallDuringConnect": true,
+          "exportedMcpb": true,
+          "recipientInspectionInert": true,
+          "recipientDeclineNoWrites": true,
+          "recipientNativeFoundation": true,
+          "recipientImportNoInvocation": true,
+          "receiverOwnedAssociation": true,
+          "restartReusesAssociation": true,
+          "selectedRead": true,
+          "unselectedActionRefused": true,
+          "selectedActionConsent": true,
+          "catalogueDriftRefused": true,
+          "runtimeInventory": "sha256:48f8ad7b8c190d6eadc6190e71ff1e854175d948a3856920ae3cf4bff1441fed",
+          "artifact": "sha256:7fc22a3808e6075b0d3f6571d5fd22d2fe4792b8332c9876f7ff21862c5f269e",
+          "worldCachePreloadedAfterFoundation": 2,
+          "realDesktopInstall": false
+        }
+      ]
+    },
+    {
+      "protocol": "head-mcp-native-flow@1",
+      "node": "24.14.1",
+      "runs": [
+        {
+          "timeFailures": [],
+          "withinExistingTimeCeilings": true,
+          "domain": "sum",
+          "connected": true,
+          "denied": true,
+          "normalRead": true,
+          "currentByteRefusal": true,
+          "noCallDuringConnect": true,
+          "exportedMcpb": true,
+          "recipientInspectionInert": true,
+          "recipientDeclineNoWrites": true,
+          "recipientNativeFoundation": true,
+          "recipientImportNoInvocation": true,
+          "receiverOwnedAssociation": true,
+          "restartReusesAssociation": true,
+          "selectedRead": true,
+          "unselectedActionRefused": true,
+          "selectedActionConsent": true,
+          "catalogueDriftRefused": true,
+          "runtimeInventory": "sha256:48f8ad7b8c190d6eadc6190e71ff1e854175d948a3856920ae3cf4bff1441fed",
+          "artifact": "sha256:89ed57fca0c05a28a801d98c63d5b35b0b038921912b9efec44ccaa9f953b3ff",
+          "worldCachePreloadedAfterFoundation": 2,
+          "realDesktopInstall": false
+        },
+        {
+          "timeFailures": [],
+          "withinExistingTimeCeilings": true,
+          "domain": "lookup",
+          "connected": true,
+          "denied": true,
+          "normalRead": true,
+          "currentByteRefusal": true,
+          "noCallDuringConnect": true,
+          "exportedMcpb": true,
+          "recipientInspectionInert": true,
+          "recipientDeclineNoWrites": true,
+          "recipientNativeFoundation": true,
+          "recipientImportNoInvocation": true,
+          "receiverOwnedAssociation": true,
+          "restartReusesAssociation": true,
+          "selectedRead": true,
+          "unselectedActionRefused": true,
+          "selectedActionConsent": true,
+          "catalogueDriftRefused": true,
+          "runtimeInventory": "sha256:48f8ad7b8c190d6eadc6190e71ff1e854175d948a3856920ae3cf4bff1441fed",
+          "artifact": "sha256:daf93a29e8f90f42a88b1a56ffb0ab8910ea95adac9626a3a4a4578a23116a16",
+          "worldCachePreloadedAfterFoundation": 2,
+          "realDesktopInstall": false
+        }
+      ]
+    }
+  ],
+  "retentionRevalidation": {
+    "path": "samples/received-retention/yes/current.json",
+    "sha256": "sha256:1a2bc7e929a8c6ea3f156425143218506424f96d7ada1b7941478c0b99ec9c97",
+    "historicalFullMatricesRepeated": false
+  },
+  "readerIsolation": {
+    "sharedTestsReused": true,
+    "childStdioPrivate": true,
+    "childTimeoutMilliseconds": 5000,
+    "originalEAGAINRetained": true,
+    "productionCodeChanged": false
+  },
+  "matchingMixedFlows": [
+    {
+      "protocol": "head-mcp-native-flow@1",
+      "node": "22.23.3",
+      "runs": [
+        {
+          "mixedApiAndMcp": true,
+          "timeFailures": [],
+          "withinExistingTimeCeilings": true,
+          "domain": "sum",
+          "connected": true,
+          "denied": true,
+          "normalRead": true,
+          "currentByteRefusal": true,
+          "noCallDuringConnect": true,
+          "exportedMcpb": true,
+          "recipientInspectionInert": true,
+          "recipientDeclineNoWrites": true,
+          "recipientNativeFoundation": true,
+          "recipientImportNoInvocation": true,
+          "receiverOwnedAssociation": true,
+          "restartReusesAssociation": true,
+          "selectedRead": true,
+          "unselectedActionRefused": true,
+          "selectedActionConsent": true,
+          "catalogueDriftRefused": true,
+          "runtimeInventory": "sha256:fdbc3990f1fe4fd96d44a3aa6a01d9b6dea10c8678450568bf299bfb1e5b801f",
+          "artifact": "sha256:3e964de37de4f0efd352c5ceaed59258871211fe5515e28c1834ed0165235326",
+          "worldCachePreloadedAfterFoundation": 2,
+          "realDesktopInstall": false
+        },
+        {
+          "mixedApiAndMcp": true,
+          "timeFailures": [],
+          "withinExistingTimeCeilings": true,
+          "domain": "lookup",
+          "connected": true,
+          "denied": true,
+          "normalRead": true,
+          "currentByteRefusal": true,
+          "noCallDuringConnect": true,
+          "exportedMcpb": true,
+          "recipientInspectionInert": true,
+          "recipientDeclineNoWrites": true,
+          "recipientNativeFoundation": true,
+          "recipientImportNoInvocation": true,
+          "receiverOwnedAssociation": true,
+          "restartReusesAssociation": true,
+          "selectedRead": true,
+          "unselectedActionRefused": true,
+          "selectedActionConsent": true,
+          "catalogueDriftRefused": true,
+          "runtimeInventory": "sha256:fdbc3990f1fe4fd96d44a3aa6a01d9b6dea10c8678450568bf299bfb1e5b801f",
+          "artifact": "sha256:afd747fdd407593ccf8e688cb342ba510439706211d0b2b838a352e7b982f3f4",
+          "worldCachePreloadedAfterFoundation": 2,
+          "realDesktopInstall": false
+        }
+      ],
+      "RootChanged": false,
+      "ceilingsChanged": false,
+      "signed": false,
+      "published": false,
+      "reuse": "Previously executed exact production bytes and public world pins; not rerun in this successor preparation."
+    },
+    {
+      "protocol": "head-mcp-native-flow@1",
+      "node": "24.14.1",
+      "runs": [
+        {
+          "mixedApiAndMcp": true,
+          "timeFailures": [],
+          "withinExistingTimeCeilings": true,
+          "domain": "sum",
+          "connected": true,
+          "denied": true,
+          "normalRead": true,
+          "currentByteRefusal": true,
+          "noCallDuringConnect": true,
+          "exportedMcpb": true,
+          "recipientInspectionInert": true,
+          "recipientDeclineNoWrites": true,
+          "recipientNativeFoundation": true,
+          "recipientImportNoInvocation": true,
+          "receiverOwnedAssociation": true,
+          "restartReusesAssociation": true,
+          "selectedRead": true,
+          "unselectedActionRefused": true,
+          "selectedActionConsent": true,
+          "catalogueDriftRefused": true,
+          "runtimeInventory": "sha256:fdbc3990f1fe4fd96d44a3aa6a01d9b6dea10c8678450568bf299bfb1e5b801f",
+          "artifact": "sha256:e433a54277c2f024d926f172255606bb7bb7ce32152edfdffd20177fb0b48082",
+          "worldCachePreloadedAfterFoundation": 2,
+          "realDesktopInstall": false
+        },
+        {
+          "mixedApiAndMcp": true,
+          "timeFailures": [],
+          "withinExistingTimeCeilings": true,
+          "domain": "lookup",
+          "connected": true,
+          "denied": true,
+          "normalRead": true,
+          "currentByteRefusal": true,
+          "noCallDuringConnect": true,
+          "exportedMcpb": true,
+          "recipientInspectionInert": true,
+          "recipientDeclineNoWrites": true,
+          "recipientNativeFoundation": true,
+          "recipientImportNoInvocation": true,
+          "receiverOwnedAssociation": true,
+          "restartReusesAssociation": true,
+          "selectedRead": true,
+          "unselectedActionRefused": true,
+          "selectedActionConsent": true,
+          "catalogueDriftRefused": true,
+          "runtimeInventory": "sha256:fdbc3990f1fe4fd96d44a3aa6a01d9b6dea10c8678450568bf299bfb1e5b801f",
+          "artifact": "sha256:f8aa70523ddc1027cdc09831634ed5cf723a6bfcea04d1bd500714238ca78a59",
+          "worldCachePreloadedAfterFoundation": 2,
+          "realDesktopInstall": false
+        }
+      ],
+      "RootChanged": false,
+      "ceilingsChanged": false,
+      "signed": false,
+      "published": false,
+      "reuse": "Previously executed exact production bytes and public world pins; not rerun in this successor preparation."
+    }
+  ],
+  "mixedFlowReuse": {
+    "historicalPureMcpFullFlowRetained": true,
+    "currentMixedFlowProducerBytesIdentical": true
+  },
+  "currentRevalidation": {
+    "path": "samples/received-retention/yes/current.json",
+    "sha256": "sha256:5a1778e963df045632ee600905ee7094ed8cac38bac8a177c4500984eb86dd88",
+    "historicalMatricesRepeated": false
+  },
+  "worldPolicyTransition": {
+    "previous": [
+      {
+        "scope": "surface/sdk-importers",
+        "value": "0..1"
+      },
+      {
+        "scope": "share/bundle-selections",
+        "value": "0..64"
+      },
+      {
+        "scope": "share/bundle-bytes",
+        "value": "0..16777216"
+      },
+      {
+        "scope": "bound/wait",
+        "value": "60000..60000"
+      },
+      {
+        "scope": "dep/bound/installed",
+        "value": "sha256:b097566fcb246614d9ebe55642c2b5b2f8f0ca81b073efc9edef76a1de075008"
+      },
+      {
+        "scope": "world/topos-mcp/standing",
+        "value": "sha256:c472ae2856813c7e8cbc3dbd7e96884aa2e769dd5fa277fcb21d7061a81dda3e"
+      },
+      {
+        "scope": "world/topos-mcp/blob",
+        "value": "sha256:1c3c9326e89aabe3a43bf074d0e06b5bbebd1fdb6e06423b957dc03914de051d"
+      },
+      {
+        "scope": "sources/topos-mcp",
+        "value": "https://github.com/Lapxo/topos-mcp/releases/download/v0.1.2/standing.bound"
+      },
+      {
+        "scope": "sources/topos-mcp-blob",
+        "value": "https://github.com/Lapxo/topos-mcp/releases/download/v0.1.2/1c3c9326e89aabe3a43bf074d0e06b5bbebd1fdb6e06423b957dc03914de051d.tar.gz"
+      },
+      {
+        "scope": "vocab/documents",
+        "value": "documents"
+      },
+      {
+        "scope": "place/connected",
+        "value": "connected"
+      },
+      {
+        "scope": "tool/connect",
+        "value": "protocol|place|source|document|overlay|digest|via|accept|operation|args"
+      },
+      {
+        "scope": "tool/connect/protocol",
+        "value": "string"
+      },
+      {
+        "scope": "said/elicit-mcp-call",
+        "value": "lock"
+      },
+      {
+        "scope": "answer/seconds",
+        "value": "0..6"
+      }
+    ],
+    "current": [
+      {
+        "scope": "surface/sdk-importers",
+        "value": "0..1"
+      },
+      {
+        "scope": "share/bundle-selections",
+        "value": "0..64"
+      },
+      {
+        "scope": "share/bundle-bytes",
+        "value": "0..16777216"
+      },
+      {
+        "scope": "bound/wait",
+        "value": "60000..60000"
+      },
+      {
+        "scope": "dep/bound/installed",
+        "value": "sha256:b097566fcb246614d9ebe55642c2b5b2f8f0ca81b073efc9edef76a1de075008"
+      },
+      {
+        "scope": "world/topos-mcp/standing",
+        "value": "sha256:58879780279c36294ca9819174e52605b336f4c3ac70c40db382c0f090003870"
+      },
+      {
+        "scope": "world/topos-mcp/blob",
+        "value": "sha256:b66666f4d14e5506c8a72438626a7c71c787920b32f669b935d0a1588bdd5129"
+      },
+      {
+        "scope": "sources/topos-mcp",
+        "value": "https://github.com/Lapxo/topos-mcp/releases/download/v0.1.3/standing.bound"
+      },
+      {
+        "scope": "sources/topos-mcp-blob",
+        "value": "https://github.com/Lapxo/topos-mcp/releases/download/v0.1.3/b66666f4d14e5506c8a72438626a7c71c787920b32f669b935d0a1588bdd5129.tar.gz"
+      },
+      {
+        "scope": "vocab/documents",
+        "value": "documents"
+      },
+      {
+        "scope": "place/connected",
+        "value": "connected"
+      },
+      {
+        "scope": "tool/connect",
+        "value": "protocol|place|source|document|overlay|digest|via|accept|operation|args"
+      },
+      {
+        "scope": "tool/connect/protocol",
+        "value": "string"
+      },
+      {
+        "scope": "said/elicit-mcp-call",
+        "value": "lock"
+      },
+      {
+        "scope": "answer/seconds",
+        "value": "0..6"
+      }
+    ],
+    "meaning": "Public compiler-view pins and the current runtime pin are explicit changes. Shared mixed-flow evidence uses these published versions and identical current producer bytes; prior pure-MCP matrices retain their original identity."
+  },
+  "timingCorrection": {
+    "path": "samples/mcp-receiver/yes/timing-selection.json",
+    "sha256": "sha256:5d547c208101963db74f96fe9b15a3478d7088ec813b02b39ac2a89cdb21692d",
+    "historicalMeasurementsRetained": true,
+    "newExecution": false,
+    "previous": {
+      "maximumIsolatedMillisecondsRoundedUp": 6361,
+      "maximumRedAnswerSeconds": 7
+    },
+    "result": {
+      "receiverMilliseconds": 5771,
+      "senderMilliseconds": 6361,
+      "redAnswerSeconds": 0,
+      "receiverReadCount": 4,
+      "senderReadCount": 4
+    }
+  },
+  "metadataSuccessor": {
+    "version": "0.2.4",
+    "currentRuntimeDescriptor": "sha256:853c0446f407266d5ed5093bd4618a50c5b0bdc13cbc927fcce07f8ec44b2e0a",
+    "productionIdenticalToPredecessor": true,
+    "originalRunsRetained": true,
+    "newFullMCPMatrix": false,
+    "regionalConsumerOnly": true,
+    "finalReleaseArtifact": false
   }
 }
