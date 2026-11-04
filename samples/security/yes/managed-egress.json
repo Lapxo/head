@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "README.md",
-      "sha256": "sha256:168d61d1570dfd8b426c35b1bcd6c704723bde191aa4038b9af6e9e5d3a4118c"
+      "sha256": "sha256:30559052d9d0de000891b5a4461aa45ec2979fd878446a9c6f521e1e07922033"
     },
     {
       "path": "SECURITY.md",
@@ -503,7 +503,7 @@
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:5484bc04685e74d203aa156554acfbf6554236a0142d1bf8679154010f8a3362"
+      "sha256": "sha256:8ba63d6dbada27d295a28bb7d47ad994ada8b7c844b2970a76b64d7757de3d22"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -811,7 +811,7 @@
     },
     {
       "path": "dist/test/ci-repair-reading.js",
-      "sha256": "sha256:c434c3ef91869791904a5f2dc1557d9cce67dffc6066890255ff5907adee2ff4"
+      "sha256": "sha256:876ad65e14a969a4949e10a59ce2254c8d6aef0b3b887a82e93d939b5d606d2c"
     },
     {
       "path": "dist/test/composition.test.js",
@@ -827,7 +827,7 @@
     },
     {
       "path": "dist/test/received-retention-reading.js",
-      "sha256": "sha256:9f6e6bd63a8a8a43676051ca5ec8af0c163aad1260ee0eba1810232d9555e2e1"
+      "sha256": "sha256:6e05a1c57a4cdebc6ce14ed40d6ab089f40f1d4d9d7ce9316e3774ca3a4d1f87"
     },
     {
       "path": "dist/test/retained-fixture.js",
@@ -843,7 +843,7 @@
     },
     {
       "path": "dist/test/standalone-runtime.js",
-      "sha256": "sha256:fc733b081371b871c043d9e1b43c6abb78160d28ea2cfa22e304d8fb1a58209e"
+      "sha256": "sha256:065dfe62e1847701a05aa8d422f27887310e7851ac1ff4f146159e94df447d10"
     },
     {
       "path": "dist/test/timing-selection.js",
@@ -903,7 +903,7 @@
     },
     {
       "path": "docs/contracts/security-gates.json",
-      "sha256": "sha256:31ff5de1082449c5c1f8a7ba50c6438b17f03bc439e09b3ccaf676307705be2d"
+      "sha256": "sha256:c4111b77fc03de5b077f879a02be3c46b84c7ae9c09b0e2eafc8c3e49e996e37"
     },
     {
       "path": "docs/contracts/share-bundle.json",
@@ -915,27 +915,27 @@
     },
     {
       "path": "docs/contracts/standalone-runtime.json",
-      "sha256": "sha256:2fef4b530cbf3af680ec49d2c22e7cda598dfde248a075ceaa91b64cfa722032"
+      "sha256": "sha256:09e5387dbeb6e069d1ef82e16bac04f47af087c589347491a2f13593ad3e8016"
     },
     {
       "path": "manifest.json",
-      "sha256": "sha256:a4e356dfb12133c08e50bd0d277047cff1a40373c1469ea38181673153c34aea"
+      "sha256": "sha256:0a4aa4c1e3a36bf1510b50870f6ff4172b1f670f78b6c399175ffb9c97b69baf"
     },
     {
       "path": "package-lock.json",
-      "sha256": "sha256:dade1cc4054d0997bd838b20f5bcfb42caf0900d20dbf9816acb0e139cdb758f"
+      "sha256": "sha256:977f4014e69f78ec10b5686b215252985ef8d192f95af874d5b5d4b501c772c0"
     },
     {
       "path": "package.json",
-      "sha256": "sha256:aa7f1f4522ee3fb74f5b14d439d393de61c3776ad4e08b777b577d4637a75db3"
+      "sha256": "sha256:a74884a2a7e40ac91ae6f1c9336fa758591b58f350ccecaa9dc0c8c7861a5385"
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:853c0446f407266d5ed5093bd4618a50c5b0bdc13cbc927fcce07f8ec44b2e0a"
+      "sha256": "sha256:53f82c7b22796d5172a127541aeb4ba3161192c8acd7390519bfbd4d04385c26"
     },
     {
       "path": "samples/ci-repair/yes/results.json",
-      "sha256": "sha256:186f684d9f95f64176b0a711b10c52c4c66e0d4f3758f37a9235f6cbc9214650"
+      "sha256": "sha256:9f6eedd8b3caec1739f00ccfdbdd01d2e5bbb9357756f774b630930c18bd55af"
     },
     {
       "path": "samples/mcp-receiver/yes/timing-selection.json",
@@ -947,7 +947,7 @@
     },
     {
       "path": "samples/standalone-runtime/yes/client.json",
-      "sha256": "sha256:0fb831f38a54b0f922d21ee1aa0402fd5b479e6de34a60d777bfea48fbe88b9a"
+      "sha256": "sha256:20e189d556450ef52f40dac3069f6582dc236c36be8ae8db4a4d245b3b02f90d"
     },
     {
       "path": "src/access/contract.ts",
@@ -1195,7 +1195,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
+      "sha256": "sha256:4c4ec70e77be9e16f64892f03515245e12d62ee80261b0f6278b7bcd627c0d34"
     },
     {
       "path": "src/ports/export.ts",
@@ -1419,7 +1419,7 @@
     },
     {
       "path": "test/ci-repair-reading.ts",
-      "sha256": "sha256:98051a2050573df593ead01ab94054f299f1aaf6706308ad23d2fe47c12aa259"
+      "sha256": "sha256:a97af3f827ae3c8786499197014a6871b8cc6cdffe45291b39a8d07e3549f426"
     },
     {
       "path": "test/claims.test.ts",
@@ -1435,7 +1435,7 @@
     },
     {
       "path": "test/composition-reading.ts",
-      "sha256": "sha256:829b9d8a35620fec34bf2be74dd6e059f740fb88fffca6d5ee6f42df75d3ee33"
+      "sha256": "sha256:b398349e9c1953ef8f229438ad57fc0d3831d64911b29aba807fb7242fad9282"
     },
     {
       "path": "test/composition.test.ts",
@@ -1443,7 +1443,7 @@
     },
     {
       "path": "test/configured-ports.ts",
-      "sha256": "sha256:9e461b71f71979b957465f3d9e5cba7cf16a24c4e9f39e817d9b7a8e8871fc12"
+      "sha256": "sha256:4c5bc46006e7a9c17612315a4364d1cf96d6485f43032b6a8f5b64c4d45514f2"
     },
     {
       "path": "test/configured-receiver.test.ts",
@@ -1479,7 +1479,7 @@
     },
     {
       "path": "test/electron-host/node-host.cjs",
-      "sha256": "sha256:7a64143a13b6eae749900df5dfd7158a826cabeadd52b039dfe6567c30705eed"
+      "sha256": "sha256:b66769f0170cd276bdcdb9539505e02119094907101f8749e1222a88d4b9e25c"
     },
     {
       "path": "test/electron-host/package.json",
@@ -1491,7 +1491,7 @@
     },
     {
       "path": "test/electron-host/runtime.test.ts",
-      "sha256": "sha256:f2616ad1cfc9f097f250b39c975ea5fd4c5afea850ddf2e9b94a702365247cde"
+      "sha256": "sha256:00403769225f03c28526044a7b27bf7edfbeefee293d8f9feba63b7ec568bfcd"
     },
     {
       "path": "test/electron-host/tools/package-lock.json",
@@ -1503,7 +1503,7 @@
     },
     {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:f793bb69e751177f4474f0cb5831754b7d7c378f73107984643f272e9f933e8d"
+      "sha256": "sha256:189d1f2757384cd9988d1092faac1bf4f76793a05ddf5d21b180e942e81c2d57"
     },
     {
       "path": "test/fake-keychain.ts",
@@ -1527,7 +1527,7 @@
     },
     {
       "path": "test/functional-repairs-reading.ts",
-      "sha256": "sha256:9b055a83a2c8e8747b30db7cd8f510aebcf43d2f36e86bc0dba4745a6700326b"
+      "sha256": "sha256:f5f3c3d49d49077ff86f92c2018c4a2b7b64d3e368892e6dba9dac497513fc42"
     },
     {
       "path": "test/gestures.test.ts",
@@ -1535,7 +1535,7 @@
     },
     {
       "path": "test/implicit-root-reading.ts",
-      "sha256": "sha256:6d11a4c80cab97e5cee57003703e8741a6e37c14c1eebf0cebd4a543798a73c5"
+      "sha256": "sha256:87749419e87ff30da6d94a759bba52e14ad46d25c2e99a71018147f11decf5d7"
     },
     {
       "path": "test/implicit-root.test.ts",
@@ -1543,7 +1543,7 @@
     },
     {
       "path": "test/installed-share.ts",
-      "sha256": "sha256:5b9581a3c416141c6ab7de58cfd0b0818f09d2e2ba2b763c91f1e81369e98327"
+      "sha256": "sha256:f6d8698a194c58a6e2292277cd2caa48d6d85feb2b6861c082770af9ebb0e8a5"
     },
     {
       "path": "test/issuer.test.ts",
@@ -1603,7 +1603,7 @@
     },
     {
       "path": "test/mcp-receiver-reading.ts",
-      "sha256": "sha256:05a5d71ee22231fcfcb985bc3e3442867a52ab6b4b21be3bcfbe033192ce58bb"
+      "sha256": "sha256:619ff210ef567d3cbbdb97874114b0457d939d70ce73aa5f5a3b9bab00de549c"
     },
     {
       "path": "test/mcp-transport.test.ts",
@@ -1691,7 +1691,7 @@
     },
     {
       "path": "test/public-worlds-reading.ts",
-      "sha256": "sha256:40c559fd0bc585935e125cc637b982a61428897ee7a54c361dfad2871f1ce7fd"
+      "sha256": "sha256:b1b3a85b92f23506b9965fdaead08a4bb38d81c740c9a77f22190f7551fe259c"
     },
     {
       "path": "test/public-worlds.test.ts",
@@ -1739,7 +1739,7 @@
     },
     {
       "path": "test/received-retention-reading.ts",
-      "sha256": "sha256:6bdeba009c2e8fc84e66b0c98a6237cc27e6e9b73184897c1a84f65a16c6cd77"
+      "sha256": "sha256:698e23d9acf0387513f01715703bffddd2eea1dc5e63ed57fcb46ec412d4592a"
     },
     {
       "path": "test/received-retention.test.ts",
@@ -1747,7 +1747,7 @@
     },
     {
       "path": "test/receiver-access-reading.ts",
-      "sha256": "sha256:07e937d104d0ea3753aec5ee024e72a397bfedf7b37d71dc0d26f08b297eeffb"
+      "sha256": "sha256:f1fa7a56f8527cb120fb8e7f42b69487bbcd7bcabab3b511c10f820a9ecabd47"
     },
     {
       "path": "test/receiver-access.test.ts",
@@ -1759,7 +1759,7 @@
     },
     {
       "path": "test/receiver-runtime.ts",
-      "sha256": "sha256:8058ef4d3ed0a22262a39a5f1b22e8a26d6a20d089389a8f28b7137e457cd1ee"
+      "sha256": "sha256:bf6d121979fa17727dc8cb9228b333c9ff863debeef890335adbb8dde5262322"
     },
     {
       "path": "test/receiver.test.ts",
@@ -1803,7 +1803,7 @@
     },
     {
       "path": "test/runtime-inventory.ts",
-      "sha256": "sha256:19f7a74739a402d49afa43251b7faf90b8966b767b2978e754cf97e155bb4b00"
+      "sha256": "sha256:25f12ee14d210ff68906fc1fa34ec6b61d87d4eecc419b775d55552cca6e62c4"
     },
     {
       "path": "test/runtime-resolution.test.ts",
@@ -1859,7 +1859,7 @@
     },
     {
       "path": "test/share-runtime.ts",
-      "sha256": "sha256:4f8428fd81291dd7cf0c3ad3887f849bc02e430bed6fae707aafff66af097755"
+      "sha256": "sha256:fd891c3074e05ab9c65e464ebc34beb76c58694971eda0b9d17992132098ff84"
     },
     {
       "path": "test/share.test.ts",
@@ -1891,7 +1891,7 @@
     },
     {
       "path": "test/standalone-runtime.ts",
-      "sha256": "sha256:ced618291b5a074090bea6a683b3d66fd3afa7b2dc084398ec705737fcb5a80e"
+      "sha256": "sha256:2ffc2a495a0cd5735d9acadbb2b08aeacb90e645337c2a9b7a9434dcd62d4aae"
     },
     {
       "path": "test/stores.test.ts",
@@ -2142,8 +2142,8 @@
   "noPrivateInputs": true,
   "fullMCPMatrixRepeated": false,
   "predecessor": {
-    "sha256": "sha256:bdb38103ed1a2edf91329dba37b4527de050364a2b3840ce8fa8f3e29c394d25",
-    "historicalExecutionsPreserved": true
+    "sha256": "sha256:45a5dd141a5c4df69e644426496c49198b23a4c55cc59bc0d6416153336be4c9",
+    "historicalCapturePreserved": true
   },
   "metadataSuccessor": {
     "version": "0.2.4",
@@ -2162,5 +2162,64 @@
     "omittedWorldObserverRebound": true,
     "originalManagedExecutionsUnchanged": true,
     "RootFullClosureNotClaimed": true
+  },
+  "runtimeProbeSuccessor": {
+    "candidate": "Head 0.2.5 producer; selected version remains 0.2.4",
+    "newFullFunctionalMatrix": false,
+    "priorRunsRemainHistorical": true,
+    "reason": "Only three replacements in systemNode probe classification changed production; original flow matrices remain at their original producer identity. Current runtime probes are separately verified, not a new execution of old matrices.",
+    "runtimeProbeCapture": {
+      "path": "samples/runtime-probes/yes/results.json",
+      "sha256": "sha256:b1baf5c326d6e0725cb9e917217755a29bd600c0563d48e0b454fad990a0f438"
+    },
+    "runtimeProbeReader": {
+      "path": "dist/test/runtime-probes-reading.js",
+      "sha256": "sha256:124e92a00e28ff0c87bcaca69f43f7554e8ffb6ef356ba3cb486f769ae950605"
+    },
+    "actualDesktop": false,
+    "finalArtifact": false
+  },
+  "status": "Current inputs and runtime-probe revalidation; original functional runs remain historical.",
+  "metadataOnlySuccessor": {
+    "version": "0.2.5",
+    "onlyVersionMetadataChanged": true,
+    "codeAndDependencyPinsIdentical": true,
+    "originalExecutionArraysRetained": true,
+    "newTimingOrFunctionalExecutionClaim": false,
+    "newFullMcpMatrix": false,
+    "finalArtifact": false,
+    "physicalDirectoryVerification": "sha256:f3d4fd68d713171d52d399f405f58b93d1a1b28df995d959a1f47962ec2ca49b",
+    "startupRuns": [
+      {
+        "node": "22.23.3",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      },
+      {
+        "node": "24.14.1",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      }
+    ]
   }
 }

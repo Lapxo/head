@@ -15,7 +15,7 @@
     "said/runtime-node-required/state",
     "said/runtime-node-required/next"
   ],
-  "policy": "sha256:191c0e17a969391679eac4dd774548d33d367e9589cf52cd2155e35b82bbc101",
+  "policy": "sha256:cbe368ee9d3617cb5c4e774b98977dd26679ec7af09da2d17d4030e05092d9ba",
   "inputs": [
     {
       "path": "dist/src/access/contract.d.ts",
@@ -511,7 +511,7 @@
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:5484bc04685e74d203aa156554acfbf6554236a0142d1bf8679154010f8a3362"
+      "sha256": "sha256:8ba63d6dbada27d295a28bb7d47ad994ada8b7c844b2970a76b64d7757de3d22"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -819,7 +819,7 @@
     },
     {
       "path": "dist/test/received-retention-reading.js",
-      "sha256": "sha256:9f6e6bd63a8a8a43676051ca5ec8af0c163aad1260ee0eba1810232d9555e2e1"
+      "sha256": "sha256:6e05a1c57a4cdebc6ce14ed40d6ab089f40f1d4d9d7ce9316e3774ca3a4d1f87"
     },
     {
       "path": "dist/test/retained-fixture.js",
@@ -831,23 +831,23 @@
     },
     {
       "path": "docs/contracts/standalone-runtime.json",
-      "sha256": "sha256:2fef4b530cbf3af680ec49d2c22e7cda598dfde248a075ceaa91b64cfa722032"
+      "sha256": "sha256:09e5387dbeb6e069d1ef82e16bac04f47af087c589347491a2f13593ad3e8016"
     },
     {
       "path": "manifest.json",
-      "sha256": "sha256:a4e356dfb12133c08e50bd0d277047cff1a40373c1469ea38181673153c34aea"
+      "sha256": "sha256:0a4aa4c1e3a36bf1510b50870f6ff4172b1f670f78b6c399175ffb9c97b69baf"
     },
     {
       "path": "package-lock.json",
-      "sha256": "sha256:dade1cc4054d0997bd838b20f5bcfb42caf0900d20dbf9816acb0e139cdb758f"
+      "sha256": "sha256:977f4014e69f78ec10b5686b215252985ef8d192f95af874d5b5d4b501c772c0"
     },
     {
       "path": "package.json",
-      "sha256": "sha256:aa7f1f4522ee3fb74f5b14d439d393de61c3776ad4e08b777b577d4637a75db3"
+      "sha256": "sha256:a74884a2a7e40ac91ae6f1c9336fa758591b58f350ccecaa9dc0c8c7861a5385"
     },
     {
       "path": "runtime.bundle.json",
-      "sha256": "sha256:853c0446f407266d5ed5093bd4618a50c5b0bdc13cbc927fcce07f8ec44b2e0a"
+      "sha256": "sha256:53f82c7b22796d5172a127541aeb4ba3161192c8acd7390519bfbd4d04385c26"
     },
     {
       "path": "src/access/contract.ts",
@@ -1095,7 +1095,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
+      "sha256": "sha256:4c4ec70e77be9e16f64892f03515245e12d62ee80261b0f6278b7bcd627c0d34"
     },
     {
       "path": "src/ports/export.ts",
@@ -1267,7 +1267,7 @@
     },
     {
       "path": "test/electron-host/node-host.cjs",
-      "sha256": "sha256:7a64143a13b6eae749900df5dfd7158a826cabeadd52b039dfe6567c30705eed"
+      "sha256": "sha256:b66769f0170cd276bdcdb9539505e02119094907101f8749e1222a88d4b9e25c"
     },
     {
       "path": "test/electron-host/package.json",
@@ -1279,7 +1279,7 @@
     },
     {
       "path": "test/electron-host/runtime.test.ts",
-      "sha256": "sha256:f2616ad1cfc9f097f250b39c975ea5fd4c5afea850ddf2e9b94a702365247cde"
+      "sha256": "sha256:00403769225f03c28526044a7b27bf7edfbeefee293d8f9feba63b7ec568bfcd"
     },
     {
       "path": "test/electron-host/tools/package-lock.json",
@@ -1291,7 +1291,7 @@
     },
     {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:f793bb69e751177f4474f0cb5831754b7d7c378f73107984643f272e9f933e8d"
+      "sha256": "sha256:189d1f2757384cd9988d1092faac1bf4f76793a05ddf5d21b180e942e81c2d57"
     },
     {
       "path": "test/fake-keychain.ts",
@@ -1323,7 +1323,7 @@
     },
     {
       "path": "test/received-retention-reading.ts",
-      "sha256": "sha256:6bdeba009c2e8fc84e66b0c98a6237cc27e6e9b73184897c1a84f65a16c6cd77"
+      "sha256": "sha256:698e23d9acf0387513f01715703bffddd2eea1dc5e63ed57fcb46ec412d4592a"
     },
     {
       "path": "test/receiver-access.test.ts",
@@ -1411,9 +1411,9 @@
     "T2",
     "L6"
   ],
-  "status": "Successor binds current bytes; historical full matrices retain their original identity. Current revalidation is separately identified.",
+  "status": "Current inputs and runtime-probe revalidation; original functional runs remain historical.",
   "predecessor": {
-    "sha256": "sha256:fbed66ab3832aeeb578686d70fcb414cb4477315ba5ec28e42ada7447f912968",
+    "sha256": "sha256:a22f95eef8d5d376f63cecd41aec342ea559b9d138073e111567f875560ecd21",
     "historicalCapturePreserved": true
   },
   "systemNodeRevalidation": [
@@ -1555,7 +1555,7 @@
   },
   "currentRevalidation": {
     "path": "samples/received-retention/yes/current.json",
-    "sha256": "sha256:5a1778e963df045632ee600905ee7094ed8cac38bac8a177c4500984eb86dd88",
+    "sha256": "sha256:8bfb1cc30b5b7e53f42cf5f722907185c0e22392882763629732b462b2615ba3",
     "historicalMatricesRepeated": false
   },
   "metadataSuccessor": {
@@ -1566,5 +1566,76 @@
     "newFullMCPMatrix": false,
     "regionalConsumerOnly": true,
     "finalReleaseArtifact": false
+  },
+  "currentRuntimeDirectory": {
+    "protocol": "head-runtime-directory-check@1",
+    "descriptor": "sha256:53f82c7b22796d5172a127541aeb4ba3161192c8acd7390519bfbd4d04385c26",
+    "members": 4811,
+    "version": "0.2.5",
+    "allRequiredMembersVerified": true,
+    "archiveFormed": false,
+    "installationScripts": false,
+    "NodeBundled": false,
+    "metadataOnlySuccessor": true,
+    "previousSelectedVersion": "0.2.4",
+    "originalFunctionalExecutionsRetained": true
+  },
+  "runtimeProbeSuccessor": {
+    "candidate": "Head 0.2.5 producer; selected version remains 0.2.4",
+    "newFullFunctionalMatrix": false,
+    "priorRunsRemainHistorical": true,
+    "reason": "Only three replacements in systemNode probe classification changed production; original flow matrices remain at their original producer identity. Current runtime probes are separately verified, not a new execution of old matrices.",
+    "runtimeProbeCapture": {
+      "path": "samples/runtime-probes/yes/results.json",
+      "sha256": "sha256:b1baf5c326d6e0725cb9e917217755a29bd600c0563d48e0b454fad990a0f438"
+    },
+    "runtimeProbeReader": {
+      "path": "dist/test/runtime-probes-reading.js",
+      "sha256": "sha256:124e92a00e28ff0c87bcaca69f43f7554e8ffb6ef356ba3cb486f769ae950605"
+    },
+    "actualDesktop": false,
+    "finalArtifact": false
+  },
+  "metadataOnlySuccessor": {
+    "version": "0.2.5",
+    "onlyVersionMetadataChanged": true,
+    "codeAndDependencyPinsIdentical": true,
+    "originalExecutionArraysRetained": true,
+    "newTimingOrFunctionalExecutionClaim": false,
+    "newFullMcpMatrix": false,
+    "finalArtifact": false,
+    "physicalDirectoryVerification": "sha256:f3d4fd68d713171d52d399f405f58b93d1a1b28df995d959a1f47962ec2ca49b",
+    "startupRuns": [
+      {
+        "node": "22.23.3",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      },
+      {
+        "node": "24.14.1",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      }
+    ]
   }
 }

@@ -1,0 +1,73 @@
+{
+  "protocol": "head-runtime-probe-contract@1",
+  "candidate": "Head 0.2.5 producer; release selection and final installed artifact are separate",
+  "vectors": [
+    "verified-installed-runtime",
+    "actual-absence",
+    "timeout-is-incomplete",
+    "timeout-before-valid-candidate",
+    "timeout-after-valid-candidate",
+    "malformed-candidate-and-valid-fallback",
+    "bounded-private-free-probe-telemetry",
+    "bounded-startup-response-summary"
+  ],
+  "discovery": {
+    "totalMs": 2000,
+    "perProbeMs": 250,
+    "timeoutReason": "budget",
+    "absenceReason": "missing",
+    "incompleteSelectionMayChooseAnotherCandidate": false,
+    "automaticRetryAdded": false,
+    "limitsChanged": false
+  },
+  "telemetry": {
+    "testHostOnly": true,
+    "maxRecorded": 32,
+    "truncationMarker": true,
+    "fields": [
+      "type",
+      "ordinal",
+      "timeoutMs",
+      "elapsedMs",
+      "status",
+      "signal",
+      "errorCode",
+      "stdoutBytes",
+      "stderrBytes",
+      "threw"
+    ],
+    "rawProcessOutput": false,
+    "commandOrArguments": false,
+    "environment": false,
+    "privateErrors": false
+  },
+  "startupSummary": {
+    "maxCells": 8,
+    "maxChars": 2000,
+    "declaredCodesOnly": true,
+    "reasons": [
+      "missing",
+      "budget",
+      "launch"
+    ],
+    "arbitraryFields": false
+  },
+  "evidence": {
+    "focalCasesPerRuntime": 21,
+    "electronCasesPerRuntime": 3,
+    "externalRuntimes": [
+      "22",
+      "24"
+    ],
+    "realElectron": "44.9.3",
+    "realUtilityProcess": true,
+    "MessagePort": true,
+    "RunAsNodeDisabled": true,
+    "candidateUnpackedLayout": true,
+    "newArchiveFormed": false,
+    "fullMCPMatricesReplayed": false
+  },
+  "noPrivateInputs": true,
+  "authority": "Evidence grants no authority; owner admission and own Root observation remain separate.",
+  "historicalFailure": "The old no-launch failure and successful retry remain preserved. The exact historical cause is still unproved."
+}

@@ -1,10 +1,10 @@
 {
   "protocol": "head-retention-revalidation@1",
-  "status": "Current installed directory, first-minute and export executions; exact-byte matching mixed-world evidence reused. Historical cut/restart and full deployment matrices remain historical.",
+  "status": "Successor with current six-cell measurements and separately checked Electron probe delta. Old functional matrices retain original producer identities; not rerun.",
   "artifact": {
-    "kind": "regional-runtime-directory",
-    "version": "0.2.3",
-    "runtimeDescriptor": "sha256:fdbc3990f1fe4fd96d44a3aa6a01d9b6dea10c8678450568bf299bfb1e5b801f",
+    "kind": "metadata-only-successor-of-verified-runtime-directory",
+    "version": "0.2.5",
+    "runtimeDescriptor": "sha256:53f82c7b22796d5172a127541aeb4ba3161192c8acd7390519bfbd4d04385c26",
     "memberCount": 4811,
     "completeAgainstAdmittedInventory": true,
     "installerScripts": false,
@@ -506,7 +506,7 @@
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:5484bc04685e74d203aa156554acfbf6554236a0142d1bf8679154010f8a3362"
+      "sha256": "sha256:8ba63d6dbada27d295a28bb7d47ad994ada8b7c844b2970a76b64d7757de3d22"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -1062,7 +1062,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
+      "sha256": "sha256:4c4ec70e77be9e16f64892f03515245e12d62ee80261b0f6278b7bcd627c0d34"
     },
     {
       "path": "src/ports/export.ts",
@@ -1234,8 +1234,8 @@
       "node": "22",
       "retentionUnitOutput": "TAP version 13\n# Subtest: warehouse: retained sources require current receiver pins, bytes, overlays and dependency closure\nok 1 - warehouse: retained sources require current receiver pins, bytes, overlays and dependency closure\n  ---\n  duration_ms: 1.778792\n  type: 'test'\n  ...\n# Subtest: warehouse: missing or altered connected/first.overlay.json cannot reuse dependent pins\nok 2 - warehouse: missing or altered connected/first.overlay.json cannot reuse dependent pins\n  ---\n  duration_ms: 0.284041\n  type: 'test'\n  ...\n# Subtest: warehouse: missing or altered pins/first/source.bound cannot reuse dependent pins\nok 3 - warehouse: missing or altered pins/first/source.bound cannot reuse dependent pins\n  ---\n  duration_ms: 0.130958\n  type: 'test'\n  ...\n# Subtest: warehouse: missing or altered worlds/world.bound cannot reuse dependent pins\nok 4 - warehouse: missing or altered worlds/world.bound cannot reuse dependent pins\n  ---\n  duration_ms: 0.169292\n  type: 'test'\n  ...\n# Subtest: warehouse: a package digest and its bytes confer no receiver authority\nok 5 - warehouse: a package digest and its bytes confer no receiver authority\n  ---\n  duration_ms: 0.111458\n  type: 'test'\n  ...\n# Subtest: warehouse: unexpected overlays and changed dependency pins invalidate reuse\nok 6 - warehouse: unexpected overlays and changed dependency pins invalidate reuse\n  ---\n  duration_ms: 0.17325\n  type: 'test'\n  ...\n# Subtest: warehouse: duplicate pins and escaping paths are not eligible for reuse\nok 7 - warehouse: duplicate pins and escaping paths are not eligible for reuse\n  ---\n  duration_ms: 0.094542\n  type: 'test'\n  ...\n# Subtest: observatory: retained sources require current receiver pins, bytes, overlays and dependency closure\nok 8 - observatory: retained sources require current receiver pins, bytes, overlays and dependency closure\n  ---\n  duration_ms: 0.192333\n  type: 'test'\n  ...\n# Subtest: observatory: missing or altered connected/first.overlay.json cannot reuse dependent pins\nok 9 - observatory: missing or altered connected/first.overlay.json cannot reuse dependent pins\n  ---\n  duration_ms: 0.281208\n  type: 'test'\n  ...\n# Subtest: observatory: missing or altered pins/first/source.bound cannot reuse dependent pins\nok 10 - observatory: missing or altered pins/first/source.bound cannot reuse dependent pins\n  ---\n  duration_ms: 0.275334\n  type: 'test'\n  ...\n# Subtest: observatory: missing or altered worlds/world.bound cannot reuse dependent pins\nok 11 - observatory: missing or altered worlds/world.bound cannot reuse dependent pins\n  ---\n  duration_ms: 0.114416\n  type: 'test'\n  ...\n# Subtest: observatory: a package digest and its bytes confer no receiver authority\nok 12 - observatory: a package digest and its bytes confer no receiver authority\n  ---\n  duration_ms: 0.068333\n  type: 'test'\n  ...\n# Subtest: observatory: unexpected overlays and changed dependency pins invalidate reuse\nok 13 - observatory: unexpected overlays and changed dependency pins invalidate reuse\n  ---\n  duration_ms: 0.096167\n  type: 'test'\n  ...\n# Subtest: observatory: duplicate pins and escaping paths are not eligible for reuse\nok 14 - observatory: duplicate pins and escaping paths are not eligible for reuse\n  ---\n  duration_ms: 0.082584\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 399.687\n",
       "partialReceiveOutput": "TAP version 13\n# Subtest: absence is not a refusal: a source whose bytes did not arrive, or hash otherwise, waits, with every source resting on it, as a demand the place holds naming them; the rest arrives on one yes; brought later, the same package connects it and the demand is paid\nok 1 - absence is not a refusal: a source whose bytes did not arrive, or hash otherwise, waits, with every source resting on it, as a demand the place holds naming them; the rest arrives on one yes; brought later, the same package connects it and the demand is paid\n  ---\n  duration_ms: 56079.175584\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 56293.605709\n",
-      "partialReceiveProvenance": "Historical cut/restart vector retained; not rerun or relabeled. Current mixed receiver flow and current guard tests cover the affected production path.",
-      "firstMinuteOutput": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 39082.528833\n  type: 'test'\n  ...\n# ENVIRONMENT node=v22.23.3 platform=darwin cpus=10 load=4.20654296875,2.73583984375,2.11376953125 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 0.56 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.68 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 2.03 s · new-with-source 2.68 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.71 s · repeated-with-receipt 0.07 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":2026.9717920000003,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2681.5058750000007,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":40.474083000000974,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":56.62812499999927,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2714.1912079999965,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":68.35383400000137,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 39286.827083\n",
+      "partialReceiveProvenance": "Historical cut/restart run retained, not replayed.",
+      "firstMinuteOutput": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 40950.188208\n  type: 'test'\n  ...\n# ENVIRONMENT node=v22.23.3 platform=darwin cpus=10 load=1.78076171875,1.7392578125,1.71923828125 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 3.43 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.70 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 1.97 s · new-with-source 2.70 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.68 s · repeated-with-receipt 0.07 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":1972.2150840000013,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2697.222666999998,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":38.42879199999879,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":57.543250000002445,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2679.0915000000023,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":66.13387499999953,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 41156.289875\n",
       "mcpFullFlow": {
         "protocol": "head-mcp-native-flow@1",
         "node": "22.23.3",
@@ -1297,7 +1297,9 @@
         "ceilingsChanged": false,
         "signed": false,
         "published": false,
-        "reuse": "Previously executed exact production bytes and public world pins; not rerun in this successor preparation."
+        "reuse": "Previously executed exact production bytes and public world pins; not rerun in this successor preparation.",
+        "historicalExecution": true,
+        "newExecutionClaim": false
       },
       "installedShare": {
         "node": "22.23.3",
@@ -1338,15 +1340,17 @@
         ],
         "credentialsUsed": false,
         "externalApiCalled": false,
-        "noExpectedDigestsRegenerated": true
+        "noExpectedDigestsRegenerated": true,
+        "historicalExecution": true,
+        "newExecutionClaim": false
       }
     },
     {
       "node": "24",
       "retentionUnitOutput": "TAP version 13\n# Subtest: warehouse: retained sources require current receiver pins, bytes, overlays and dependency closure\nok 1 - warehouse: retained sources require current receiver pins, bytes, overlays and dependency closure\n  ---\n  duration_ms: 1.917917\n  type: 'test'\n  ...\n# Subtest: warehouse: missing or altered connected/first.overlay.json cannot reuse dependent pins\nok 2 - warehouse: missing or altered connected/first.overlay.json cannot reuse dependent pins\n  ---\n  duration_ms: 0.288916\n  type: 'test'\n  ...\n# Subtest: warehouse: missing or altered pins/first/source.bound cannot reuse dependent pins\nok 3 - warehouse: missing or altered pins/first/source.bound cannot reuse dependent pins\n  ---\n  duration_ms: 0.218958\n  type: 'test'\n  ...\n# Subtest: warehouse: missing or altered worlds/world.bound cannot reuse dependent pins\nok 4 - warehouse: missing or altered worlds/world.bound cannot reuse dependent pins\n  ---\n  duration_ms: 0.165833\n  type: 'test'\n  ...\n# Subtest: warehouse: a package digest and its bytes confer no receiver authority\nok 5 - warehouse: a package digest and its bytes confer no receiver authority\n  ---\n  duration_ms: 0.160625\n  type: 'test'\n  ...\n# Subtest: warehouse: unexpected overlays and changed dependency pins invalidate reuse\nok 6 - warehouse: unexpected overlays and changed dependency pins invalidate reuse\n  ---\n  duration_ms: 0.240667\n  type: 'test'\n  ...\n# Subtest: warehouse: duplicate pins and escaping paths are not eligible for reuse\nok 7 - warehouse: duplicate pins and escaping paths are not eligible for reuse\n  ---\n  duration_ms: 0.162834\n  type: 'test'\n  ...\n# Subtest: observatory: retained sources require current receiver pins, bytes, overlays and dependency closure\nok 8 - observatory: retained sources require current receiver pins, bytes, overlays and dependency closure\n  ---\n  duration_ms: 0.277333\n  type: 'test'\n  ...\n# Subtest: observatory: missing or altered connected/first.overlay.json cannot reuse dependent pins\nok 9 - observatory: missing or altered connected/first.overlay.json cannot reuse dependent pins\n  ---\n  duration_ms: 0.221\n  type: 'test'\n  ...\n# Subtest: observatory: missing or altered pins/first/source.bound cannot reuse dependent pins\nok 10 - observatory: missing or altered pins/first/source.bound cannot reuse dependent pins\n  ---\n  duration_ms: 0.220917\n  type: 'test'\n  ...\n# Subtest: observatory: missing or altered worlds/world.bound cannot reuse dependent pins\nok 11 - observatory: missing or altered worlds/world.bound cannot reuse dependent pins\n  ---\n  duration_ms: 0.151875\n  type: 'test'\n  ...\n# Subtest: observatory: a package digest and its bytes confer no receiver authority\nok 12 - observatory: a package digest and its bytes confer no receiver authority\n  ---\n  duration_ms: 0.140292\n  type: 'test'\n  ...\n# Subtest: observatory: unexpected overlays and changed dependency pins invalidate reuse\nok 13 - observatory: unexpected overlays and changed dependency pins invalidate reuse\n  ---\n  duration_ms: 0.177375\n  type: 'test'\n  ...\n# Subtest: observatory: duplicate pins and escaping paths are not eligible for reuse\nok 14 - observatory: duplicate pins and escaping paths are not eligible for reuse\n  ---\n  duration_ms: 0.144417\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 323.221417\n",
       "partialReceiveOutput": "✔ absence is not a refusal: a source whose bytes did not arrive, or hash otherwise, waits, with every source resting on it, as a demand the place holds naming them; the rest arrives on one yes; brought later, the same package connects it and the demand is paid (57859.460542ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 58087.111958\n",
-      "partialReceiveProvenance": "Historical cut/restart vector retained; not rerun or relabeled. Current mixed receiver flow and current guard tests cover the affected production path.",
-      "firstMinuteOutput": "✔ onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named (41608.278541ms)\nℹ ENVIRONMENT node=v24.14.1 platform=darwin cpus=10 load=3.57958984375,2.814453125,2.17724609375 clock=client-performance-now concurrency=one-timed-suite\nℹ MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 3.45 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.68 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\nℹ MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 1.99 s · new-with-source 2.68 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.69 s · repeated-with-receipt 0.07 s\nℹ MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\nℹ MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":1991.8187499999985,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2678.342499999999,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":42.89420800000153,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":59.75708300000406,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2686.672666000006,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":71.5717500000028,\"ceiling\":90}]\nℹ MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 41836.012625\n",
+      "partialReceiveProvenance": "Historical cut/restart run retained, not replayed.",
+      "firstMinuteOutput": "TAP version 13\n# Subtest: onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\nok 1 - onboarding: steps, questions, tools and person-words within their ceilings; seconds measured, and red only with what they rest on named\n  ---\n  duration_ms: 37862.901542\n  type: 'test'\n  ...\n# ENVIRONMENT node=v24.14.1 platform=darwin cpus=10 load=2.03759765625,1.89306640625,1.78173828125 clock=client-performance-now concurrency=one-timed-suite\n# MEASURED tokens/answer model=utf8-bytes/4 · seconds/first-cell model=client-clock · new-without-source 361 (0+297+64) tokens, cells 344 (57+139+148) 0.41 s head/answered+head/reused · new-with-source 240 (240) tokens, cells 69 (69) 2.64 s head/answered · repeated-with-receipt 0 (0) tokens, cells 106 (106) 0.04 s head/kept\n# MEASURED seconds/first-cell model=client-clock · chained, no pause: new-without-source 1.98 s · new-with-source 2.64 s · repeated-with-receipt 0.04 s · typed, after 2000 ms: new-without-source 0.06 s · new-with-source 2.65 s · repeated-with-receipt 0.07 s\n# MEASURED steps 2 · questions 1 · tools 3 · answer seconds within 0..6\n# MEASURED exact-first-cell-ms [{\"scope\":\"seconds/first-cell/new-without-source/chained\",\"ms\":1977.5529999999999,\"ceiling\":5070},{\"scope\":\"seconds/first-cell/new-with-source/chained\",\"ms\":2640.2502909999985,\"ceiling\":3060},{\"scope\":\"seconds/first-cell/repeated-with-receipt/chained\",\"ms\":41.46350000000166,\"ceiling\":2120},{\"scope\":\"seconds/first-cell/new-without-source/typed\",\"ms\":61.36316599999918,\"ceiling\":2520},{\"scope\":\"seconds/first-cell/new-with-source/typed\",\"ms\":2652.148208999999,\"ceiling\":3670},{\"scope\":\"seconds/first-cell/repeated-with-receipt/typed\",\"ms\":67.85562499999651,\"ceiling\":90}]\n# MEASURED seconds/first-cell against its ceilings: every first cell within its ceiling\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 38075.543834\n",
       "mcpFullFlow": {
         "protocol": "head-mcp-native-flow@1",
         "node": "24.14.1",
@@ -1408,7 +1412,9 @@
         "ceilingsChanged": false,
         "signed": false,
         "published": false,
-        "reuse": "Previously executed exact production bytes and public world pins; not rerun in this successor preparation."
+        "reuse": "Previously executed exact production bytes and public world pins; not rerun in this successor preparation.",
+        "historicalExecution": true,
+        "newExecutionClaim": false
       },
       "installedShare": {
         "node": "24.14.1",
@@ -1449,7 +1455,9 @@
         ],
         "credentialsUsed": false,
         "externalApiCalled": false,
-        "noExpectedDigestsRegenerated": true
+        "noExpectedDigestsRegenerated": true,
+        "historicalExecution": true,
+        "newExecutionClaim": false
       }
     }
   ],
@@ -1475,7 +1483,7 @@
     "historicalDiagnostic": "Original import/stdin failure retained by predecessor digest; local workspace paths omitted from this successor."
   },
   "predecessor": {
-    "sha256": "sha256:a9d286e2fe4f4c0c1cc49b40586d5722ce6b025bab85157029836809ebf372ca",
+    "sha256": "sha256:600a90a6bc28a9ecd338fa9f6347d5519675f33c0334880665ebb2463d749da3",
     "historicalCapturePreserved": true
   },
   "RootEpoch": 187,
@@ -1571,5 +1579,63 @@
     "priorRunsKeptUnderOriginalArtifact": true,
     "newFullMCPMatrix": false,
     "finalArtifact": false
+  },
+  "runtimeProbeSuccessor": {
+    "candidate": "Head 0.2.5 producer; selected version remains 0.2.4",
+    "newFullFunctionalMatrix": false,
+    "priorRunsRemainHistorical": true,
+    "reason": "Only three replacements in systemNode probe classification changed production; original flow matrices remain at their original producer identity. Current runtime probes are separately verified, not a new execution of old matrices.",
+    "runtimeProbeCapture": {
+      "path": "samples/runtime-probes/yes/results.json",
+      "sha256": "sha256:d9b290d05262286d09330cb058defa6e3d6fff310e8c251e6906b918221b0240"
+    },
+    "runtimeProbeReader": {
+      "path": "dist/test/runtime-probes-reading.js",
+      "sha256": "sha256:a381ecd845459788f120a4eb9278e684b82e1aa5e2301e4b1a8ebc96f1d7bdd3"
+    },
+    "actualDesktop": false,
+    "finalArtifact": false
+  },
+  "metadataOnlySuccessor": {
+    "version": "0.2.5",
+    "onlyVersionMetadataChanged": true,
+    "codeAndDependencyPinsIdentical": true,
+    "originalExecutionArraysRetained": true,
+    "newTimingOrFunctionalExecutionClaim": false,
+    "newFullMcpMatrix": false,
+    "finalArtifact": false,
+    "physicalDirectoryVerification": "sha256:f3d4fd68d713171d52d399f405f58b93d1a1b28df995d959a1f47962ec2ca49b",
+    "startupRuns": [
+      {
+        "node": "22.23.3",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      },
+      {
+        "node": "24.14.1",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      }
+    ]
   }
 }

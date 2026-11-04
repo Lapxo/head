@@ -251,7 +251,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
+      "sha256": "sha256:4c4ec70e77be9e16f64892f03515245e12d62ee80261b0f6278b7bcd627c0d34"
     },
     {
       "path": "src/ports/export.ts",
@@ -475,7 +475,7 @@
     },
     {
       "path": "test/ci-repair-reading.ts",
-      "sha256": "sha256:98051a2050573df593ead01ab94054f299f1aaf6706308ad23d2fe47c12aa259"
+      "sha256": "sha256:a97af3f827ae3c8786499197014a6871b8cc6cdffe45291b39a8d07e3549f426"
     },
     {
       "path": "test/claims.test.ts",
@@ -491,7 +491,7 @@
     },
     {
       "path": "test/composition-reading.ts",
-      "sha256": "sha256:829b9d8a35620fec34bf2be74dd6e059f740fb88fffca6d5ee6f42df75d3ee33"
+      "sha256": "sha256:b398349e9c1953ef8f229438ad57fc0d3831d64911b29aba807fb7242fad9282"
     },
     {
       "path": "test/composition.test.ts",
@@ -499,7 +499,7 @@
     },
     {
       "path": "test/configured-ports.ts",
-      "sha256": "sha256:9e461b71f71979b957465f3d9e5cba7cf16a24c4e9f39e817d9b7a8e8871fc12"
+      "sha256": "sha256:4c5bc46006e7a9c17612315a4364d1cf96d6485f43032b6a8f5b64c4d45514f2"
     },
     {
       "path": "test/configured-receiver.test.ts",
@@ -527,11 +527,11 @@
     },
     {
       "path": "test/electron-host/runtime.test.ts",
-      "sha256": "sha256:f2616ad1cfc9f097f250b39c975ea5fd4c5afea850ddf2e9b94a702365247cde"
+      "sha256": "sha256:00403769225f03c28526044a7b27bf7edfbeefee293d8f9feba63b7ec568bfcd"
     },
     {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:f793bb69e751177f4474f0cb5831754b7d7c378f73107984643f272e9f933e8d"
+      "sha256": "sha256:189d1f2757384cd9988d1092faac1bf4f76793a05ddf5d21b180e942e81c2d57"
     },
     {
       "path": "test/fake-keychain.ts",
@@ -555,7 +555,7 @@
     },
     {
       "path": "test/functional-repairs-reading.ts",
-      "sha256": "sha256:9b055a83a2c8e8747b30db7cd8f510aebcf43d2f36e86bc0dba4745a6700326b"
+      "sha256": "sha256:f5f3c3d49d49077ff86f92c2018c4a2b7b64d3e368892e6dba9dac497513fc42"
     },
     {
       "path": "test/gestures.test.ts",
@@ -563,7 +563,7 @@
     },
     {
       "path": "test/implicit-root-reading.ts",
-      "sha256": "sha256:6d11a4c80cab97e5cee57003703e8741a6e37c14c1eebf0cebd4a543798a73c5"
+      "sha256": "sha256:87749419e87ff30da6d94a759bba52e14ad46d25c2e99a71018147f11decf5d7"
     },
     {
       "path": "test/implicit-root.test.ts",
@@ -571,7 +571,7 @@
     },
     {
       "path": "test/installed-share.ts",
-      "sha256": "sha256:5b9581a3c416141c6ab7de58cfd0b0818f09d2e2ba2b763c91f1e81369e98327"
+      "sha256": "sha256:f6d8698a194c58a6e2292277cd2caa48d6d85feb2b6861c082770af9ebb0e8a5"
     },
     {
       "path": "test/issuer.test.ts",
@@ -631,7 +631,7 @@
     },
     {
       "path": "test/mcp-receiver-reading.ts",
-      "sha256": "sha256:05a5d71ee22231fcfcb985bc3e3442867a52ab6b4b21be3bcfbe033192ce58bb"
+      "sha256": "sha256:619ff210ef567d3cbbdb97874114b0457d939d70ce73aa5f5a3b9bab00de549c"
     },
     {
       "path": "test/mcp-transport.test.ts",
@@ -719,7 +719,7 @@
     },
     {
       "path": "test/public-worlds-reading.ts",
-      "sha256": "sha256:40c559fd0bc585935e125cc637b982a61428897ee7a54c361dfad2871f1ce7fd"
+      "sha256": "sha256:b1b3a85b92f23506b9965fdaead08a4bb38d81c740c9a77f22190f7551fe259c"
     },
     {
       "path": "test/public-worlds.test.ts",
@@ -767,7 +767,7 @@
     },
     {
       "path": "test/received-retention-reading.ts",
-      "sha256": "sha256:6bdeba009c2e8fc84e66b0c98a6237cc27e6e9b73184897c1a84f65a16c6cd77"
+      "sha256": "sha256:698e23d9acf0387513f01715703bffddd2eea1dc5e63ed57fcb46ec412d4592a"
     },
     {
       "path": "test/received-retention.test.ts",
@@ -775,7 +775,7 @@
     },
     {
       "path": "test/receiver-access-reading.ts",
-      "sha256": "sha256:07e937d104d0ea3753aec5ee024e72a397bfedf7b37d71dc0d26f08b297eeffb"
+      "sha256": "sha256:f1fa7a56f8527cb120fb8e7f42b69487bbcd7bcabab3b511c10f820a9ecabd47"
     },
     {
       "path": "test/receiver-access.test.ts",
@@ -787,7 +787,7 @@
     },
     {
       "path": "test/receiver-runtime.ts",
-      "sha256": "sha256:8058ef4d3ed0a22262a39a5f1b22e8a26d6a20d089389a8f28b7137e457cd1ee"
+      "sha256": "sha256:bf6d121979fa17727dc8cb9228b333c9ff863debeef890335adbb8dde5262322"
     },
     {
       "path": "test/receiver.test.ts",
@@ -831,7 +831,11 @@
     },
     {
       "path": "test/runtime-inventory.ts",
-      "sha256": "sha256:19f7a74739a402d49afa43251b7faf90b8966b767b2978e754cf97e155bb4b00"
+      "sha256": "sha256:25f12ee14d210ff68906fc1fa34ec6b61d87d4eecc419b775d55552cca6e62c4"
+    },
+    {
+      "path": "test/runtime-probes-reading.ts",
+      "sha256": "sha256:e527cda9d048b4348742af1a8689395d9add1129af03c0fb5b790546787ae566"
     },
     {
       "path": "test/runtime-resolution.test.ts",
@@ -859,7 +863,7 @@
     },
     {
       "path": "test/security-reading.ts",
-      "sha256": "sha256:093200c84f1d88c4ae4d04c078baad2cd3faa25a3fefc82d437c3f29bf3d0844"
+      "sha256": "sha256:21cfb53901441ed47196eadf43e17806e7d1598f7632f1a820114fdbf64f051f"
     },
     {
       "path": "test/serve-bytes.ts",
@@ -891,7 +895,7 @@
     },
     {
       "path": "test/share-runtime.ts",
-      "sha256": "sha256:4f8428fd81291dd7cf0c3ad3887f849bc02e430bed6fae707aafff66af097755"
+      "sha256": "sha256:fd891c3074e05ab9c65e464ebc34beb76c58694971eda0b9d17992132098ff84"
     },
     {
       "path": "test/share.test.ts",
@@ -919,7 +923,7 @@
     },
     {
       "path": "test/standalone-runtime.ts",
-      "sha256": "sha256:ced618291b5a074090bea6a683b3d66fd3afa7b2dc084398ec705737fcb5a80e"
+      "sha256": "sha256:2ffc2a495a0cd5735d9acadbb2b08aeacb90e645337c2a9b7a9434dcd62d4aae"
     },
     {
       "path": "test/stores.test.ts",
@@ -1065,10 +1069,10 @@
     }
   },
   "Q4": "Domain permissions remain open; configuration preflight is not API action authorization.",
-  "status": "Independent observations retained; inventory reflects current readers and separately pinned current revalidation.",
+  "status": "Current inputs and runtime-probe revalidation; original functional runs remain historical.",
   "predecessor": {
-    "sha256": "sha256:f963044e64dcec62e38229ed0f886cde43a20042cdc886053326e1e11ee49abb",
-    "historicalExecutionsPreserved": true
+    "sha256": "sha256:2551ab84193d2625507efe864fe0ef0a38e7bd53eba434726adb4ec05ffa76b2",
+    "historicalCapturePreserved": true
   },
   "evidenceReuse": {
     "model": "Only factor two identical deadline checkpoints into one shared body. Previous first-cell, MCP and complete consumer runs retain their actual artifact identities. Inlining the helper restores the previously tested source byte for byte. Fresh installed-byte verification, focused controls, unchanged surface guard and two real Electron availability cases cover this refactor; no fresh timed or complete domain matrices are claimed.",
@@ -1350,7 +1354,7 @@
   },
   "currentRevalidation": {
     "path": "samples/received-retention/yes/current.json",
-    "sha256": "sha256:a9d286e2fe4f4c0c1cc49b40586d5722ce6b025bab85157029836809ebf372ca",
+    "sha256": "sha256:8bfb1cc30b5b7e53f42cf5f722907185c0e22392882763629732b462b2615ba3",
     "historicalMatricesRepeated": false
   },
   "releaseControlsRevalidation": {
@@ -1386,7 +1390,7 @@
   },
   "securityEvidence": {
     "path": "samples/security/yes/managed-egress.json",
-    "sha256": "sha256:116cde93954ccd9fbe4bf14e022f86315ee7125e05bc1e969fcb347530d311ed",
+    "sha256": "sha256:dd1df4890d90991ff768aac7c4eff95920475f6bbe68fb971014c8f09675a42e",
     "originalRunsRetained": true,
     "newFunctionalMatrix": false,
     "meaning": "Current security publication helpers and isolated focal fixtures have their own separate acceptance. This updates only the current consumed inputs; original complete consumers are not relabelled."
@@ -1400,5 +1404,63 @@
   "metadataCompletion": {
     "omittedWorldObserverRebound": true,
     "originalRunsRetained": true
+  },
+  "runtimeProbeSuccessor": {
+    "candidate": "Head 0.2.5 producer; selected version remains 0.2.4",
+    "newFullFunctionalMatrix": false,
+    "priorRunsRemainHistorical": true,
+    "reason": "Only three replacements in systemNode probe classification changed production; original flow matrices remain at their original producer identity. Current runtime probes are separately verified, not a new execution of old matrices.",
+    "runtimeProbeCapture": {
+      "path": "samples/runtime-probes/yes/results.json",
+      "sha256": "sha256:b1baf5c326d6e0725cb9e917217755a29bd600c0563d48e0b454fad990a0f438"
+    },
+    "runtimeProbeReader": {
+      "path": "dist/test/runtime-probes-reading.js",
+      "sha256": "sha256:124e92a00e28ff0c87bcaca69f43f7554e8ffb6ef356ba3cb486f769ae950605"
+    },
+    "actualDesktop": false,
+    "finalArtifact": false
+  },
+  "metadataOnlySuccessor": {
+    "version": "0.2.5",
+    "onlyVersionMetadataChanged": true,
+    "codeAndDependencyPinsIdentical": true,
+    "originalExecutionArraysRetained": true,
+    "newTimingOrFunctionalExecutionClaim": false,
+    "newFullMcpMatrix": false,
+    "finalArtifact": false,
+    "physicalDirectoryVerification": "sha256:f3d4fd68d713171d52d399f405f58b93d1a1b28df995d959a1f47962ec2ca49b",
+    "startupRuns": [
+      {
+        "node": "22.23.3",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      },
+      {
+        "node": "24.14.1",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      }
+    ]
   }
 }

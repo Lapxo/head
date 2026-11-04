@@ -1,6 +1,6 @@
 {
   "protocol": "head-configured-ports-capture@1",
-  "status": "Successor binds current bytes; historical full matrices retain their original identity. Current revalidation is separately identified.",
+  "status": "Current inputs and runtime-probe revalidation; original functional runs remain historical.",
   "inputs": [
     {
       "path": "dist/src/access/contract.d.ts",
@@ -496,7 +496,7 @@
     },
     {
       "path": "dist/src/ports/executable.js",
-      "sha256": "sha256:5484bc04685e74d203aa156554acfbf6554236a0142d1bf8679154010f8a3362"
+      "sha256": "sha256:8ba63d6dbada27d295a28bb7d47ad994ada8b7c844b2970a76b64d7757de3d22"
     },
     {
       "path": "dist/src/ports/export.d.ts",
@@ -804,7 +804,7 @@
     },
     {
       "path": "dist/test/received-retention-reading.js",
-      "sha256": "sha256:9f6e6bd63a8a8a43676051ca5ec8af0c163aad1260ee0eba1810232d9555e2e1"
+      "sha256": "sha256:6e05a1c57a4cdebc6ce14ed40d6ab089f40f1d4d9d7ce9316e3774ca3a4d1f87"
     },
     {
       "path": "dist/test/retained-fixture.js",
@@ -1064,7 +1064,7 @@
     },
     {
       "path": "src/ports/executable.ts",
-      "sha256": "sha256:d5b51891bfeb8ecbca64a4cb58b183445be59c7a5089c2d2f802b4b4341c282f"
+      "sha256": "sha256:4c4ec70e77be9e16f64892f03515245e12d62ee80261b0f6278b7bcd627c0d34"
     },
     {
       "path": "src/ports/export.ts",
@@ -1232,7 +1232,7 @@
     },
     {
       "path": "test/executable.test.ts",
-      "sha256": "sha256:f793bb69e751177f4474f0cb5831754b7d7c378f73107984643f272e9f933e8d"
+      "sha256": "sha256:189d1f2757384cd9988d1092faac1bf4f76793a05ddf5d21b180e942e81c2d57"
     },
     {
       "path": "test/protocol-surface.test.ts",
@@ -1244,7 +1244,7 @@
     },
     {
       "path": "test/received-retention-reading.ts",
-      "sha256": "sha256:6bdeba009c2e8fc84e66b0c98a6237cc27e6e9b73184897c1a84f65a16c6cd77"
+      "sha256": "sha256:698e23d9acf0387513f01715703bffddd2eea1dc5e63ed57fcb46ec412d4592a"
     },
     {
       "path": "test/retained-fixture.ts",
@@ -1345,7 +1345,7 @@
     }
   ],
   "predecessor": {
-    "sha256": "sha256:3049129a39975edbb7e1818f740b6d2a1ea67426ebe7a5ab06af8b21ba1beb7b",
+    "sha256": "sha256:2fa63f8dd443ee1964f43f2d7bc3516a393b0b72f8f27bb961008b08b749076d",
     "historicalCapturePreserved": true
   },
   "policySnapshots": [
@@ -1482,7 +1482,7 @@
   },
   "currentRevalidation": {
     "path": "samples/received-retention/yes/current.json",
-    "sha256": "sha256:5a1778e963df045632ee600905ee7094ed8cac38bac8a177c4500984eb86dd88",
+    "sha256": "sha256:8bfb1cc30b5b7e53f42cf5f722907185c0e22392882763629732b462b2615ba3",
     "historicalMatricesRepeated": false
   },
   "metadataSuccessor": {
@@ -1493,5 +1493,63 @@
     "newFullMCPMatrix": false,
     "regionalConsumerOnly": true,
     "finalReleaseArtifact": false
+  },
+  "runtimeProbeSuccessor": {
+    "candidate": "Head 0.2.5 producer; selected version remains 0.2.4",
+    "newFullFunctionalMatrix": false,
+    "priorRunsRemainHistorical": true,
+    "reason": "Only three replacements in systemNode probe classification changed production; original flow matrices remain at their original producer identity. Current runtime probes are separately verified, not a new execution of old matrices.",
+    "runtimeProbeCapture": {
+      "path": "samples/runtime-probes/yes/results.json",
+      "sha256": "sha256:b1baf5c326d6e0725cb9e917217755a29bd600c0563d48e0b454fad990a0f438"
+    },
+    "runtimeProbeReader": {
+      "path": "dist/test/runtime-probes-reading.js",
+      "sha256": "sha256:124e92a00e28ff0c87bcaca69f43f7554e8ffb6ef356ba3cb486f769ae950605"
+    },
+    "actualDesktop": false,
+    "finalArtifact": false
+  },
+  "metadataOnlySuccessor": {
+    "version": "0.2.5",
+    "onlyVersionMetadataChanged": true,
+    "codeAndDependencyPinsIdentical": true,
+    "originalExecutionArraysRetained": true,
+    "newTimingOrFunctionalExecutionClaim": false,
+    "newFullMcpMatrix": false,
+    "finalArtifact": false,
+    "physicalDirectoryVerification": "sha256:f3d4fd68d713171d52d399f405f58b93d1a1b28df995d959a1f47962ec2ca49b",
+    "startupRuns": [
+      {
+        "node": "22.23.3",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      },
+      {
+        "node": "24.14.1",
+        "selectedVersion": "0.2.5",
+        "initialized": true,
+        "tools": [
+          "ask",
+          "connect",
+          "do"
+        ],
+        "HomeUnchanged": true,
+        "secretLookup": false,
+        "externalApiCalled": false,
+        "archiveFormed": false,
+        "headCodeBytesIdenticalToAdmittedProducer": true
+      }
+    ]
   }
 }
